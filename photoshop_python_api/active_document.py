@@ -4,8 +4,9 @@ module author: Long Hao <hoolongvfx@gmail.com>
 """
 from photoshop_python_api.application import Application
 
-
 class ActiveDocument(Application):
+    def __int__(self):
+        super(Application, self).__init__()
 
     @property
     def path(self):
@@ -17,6 +18,9 @@ class ActiveDocument(Application):
 
     def save_as(self, *args, **kwargs):
         self.app.ActiveDocument.SaveAs(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.app.ActiveDocument.Save(*args, **kwargs)
 
     def add_art_layers(self):
         return self.app.ActiveDocument.ArtLayers.Add()

@@ -3,10 +3,16 @@ photoshop_python_api
 ```python
 from photoshop_python_api.documents import Documents
 from photoshop_python_api.save_options import SaveOptions
-d = Documents()
-doc = d.app.ActiveDocument
+
+documents = Documents()
+# create new documents
+doc = documents.add()
+# add new artlayers
+doc.add_art_layers()
 options = SaveOptions().psd
-doc.SaveAs('D:\\tes2t.psd', options)
+# save to psd
+doc.save_as('D:\\tes3111t.psd', options)
+
 ```
 
 reference
