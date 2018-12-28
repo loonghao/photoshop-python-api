@@ -7,17 +7,17 @@ from win32com.client import Dispatch, GetActiveObject
 
 
 class Application(object):
-    def __init__(self, version='2018'):
+    def __init__(self, version='2017'):
         defaunt = 'Photoshop.Application'
         self._version_id_mappings = {
-            '2018': '110',
+            '2017': '110',
             'cs6': '60'
         }
         self.version = version
         self.app_id = self._version_id_mappings.get(self.version)
 
         self._mappings = {
-            '2018': '{}.{}'.format(defaunt, self.app_id),
+            '2017': '{}.{}'.format(defaunt, self.app_id),
             'cs6': '{}.{}'.format(defaunt, self.app_id)
         }
         self.dll_version = self._mappings.get(self.version, defaunt)
