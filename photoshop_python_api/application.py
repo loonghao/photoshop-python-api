@@ -12,6 +12,7 @@ class Application(object):
 
     def __init__(self, ps_version='2017'):
         self._version_id_mappings = {
+            '2018': '120',
             '2017': '110',
             'cs6': '60'
         }
