@@ -1,9 +1,9 @@
 # Import local modules
 from photoshop_python_api.application import Application
-from photoshop_python_api.save_options.option import Option
+from photoshop_python_api._basic_option import BasicOption
 
 
-class PhotoshopSaveOptions(Option, Application):
+class PhotoshopSaveOptions(BasicOption, Application):
     object_name = 'PhotoshopSaveOptions'
 
     def __int__(self):

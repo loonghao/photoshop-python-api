@@ -1,6 +1,6 @@
 
 
-class Option(object):
+class BasicOption(object):
     def __int__(self, *args, **kwargs):
         self._data = kwargs
 

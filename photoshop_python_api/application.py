@@ -32,7 +32,7 @@ class Application(object):
 
     @property
     def active_layer(self):
-        return self.app.ActiveLayer
+        return self.app.ArtLayer
 
     def active_layer_set(self):
         return self.app.LayerSets
@@ -42,7 +42,7 @@ class Application(object):
         return self.app.Preferences
 
     def open(self, *args, **kwargs):
-        return self.app.Open(*args, **kwargs)
+        self.app.Open(*args, **kwargs)
 
     @staticmethod
     def _get_name(list_):

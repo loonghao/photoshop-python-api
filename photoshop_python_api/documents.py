@@ -23,6 +23,11 @@ class Documents(Application):
         doc_ref = self.add()
         return doc_ref.ArtLayers.Add()
 
+    def open(self, *args, **kwargs):
+        super(Documents, self).open(*args, **kwargs)
+        return self.active_document
+
+
     @property
     def active_document(self):
         return ActiveDocument()
