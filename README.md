@@ -1,5 +1,10 @@
 photoshop_python_api
 ====================
+Supported Photoshop version:
+
+    - cs6
+    - cc2018
+    - cc2017
 
 install
 -------
