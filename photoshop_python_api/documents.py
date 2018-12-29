@@ -19,7 +19,8 @@ class Documents(Application):
         self.app.Documents.Add(*args, **kwargs)
         return self.active_document
 
-    # def
+    def close(self, **kwargs):
+        return self.active_document.close(**kwargs)
 
     def add_art_layer(self):
         doc_ref = self.add()

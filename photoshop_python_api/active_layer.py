@@ -11,3 +11,5 @@ class ActiveLayer(Application):
 
     def add(self):
         self.app.ActiveDocument.ArtLayers.Add()
+
+
