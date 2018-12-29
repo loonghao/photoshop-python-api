@@ -37,6 +37,9 @@ class Application(object):
     def active_layer(self):
         return self.app.ActiveLayer
 
+    def active_layer_set(self):
+        return self.app.LayerSets
+
     @staticmethod
     def _get_name(list_):
         return '.'.join(list_)

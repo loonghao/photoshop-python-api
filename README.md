@@ -1,18 +1,20 @@
 photoshop_python_api
 ====================
+
+How to save a PSD
+-----------------
 ```python
 from photoshop_python_api.documents import Documents
-from photoshop_python_api.save_options import SaveOptions
+from photoshop_python_api.save_options import PhotoshopSaveOptions
 
 documents = Documents()
 # create new documents
 doc = documents.add()
 # add new artlayers
 doc.add_art_layers()
-options = SaveOptions().psd
+options = PhotoshopSaveOptions
 # save to psd
-doc.save_as('D:\\tes3111t.psd', options)
-
+doc.save_as('D:\\tes3111t.psd', options.option)
 ```
 
 reference

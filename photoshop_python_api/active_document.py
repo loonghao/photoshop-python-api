@@ -8,7 +8,11 @@ from photoshop_python_api.application import Application
 class ActiveDocument(Application):
     def __int__(self):
         super(ActiveDocument, self).__init__()
-        
+
+    @property
+    def layer_sets(self):
+        return self.active_document.layer_sets
+
     @property
     def width(self):
         return self.active_document.width
@@ -51,11 +55,16 @@ class ActiveDocument(Application):
         return self.active_document.ArtLayers.Add()
 
     def close(self, **kwargs):
+        """Closes the document."""
         self.active_document.Close(**kwargs)
 
-    # def Export(self, Options, *args, **kwargs):
-    #     self.active_document.ActiveDocument.Export(*args, **kwargs)
+    def flatten(self):
+        """Flattens all layers."""
+        return self.active_document.Flatten()
 
-    def add_text(self, text_item, **kwargs):
-        layer = self.add_art_layers()
-        text_item = text_item
+    def merge_visible_layers(self):
+        """Flattens all visible layers in the document."""
+        return self.active_document.MergeVisibleLayers()
+
+    def crop(self, **kwargs):
+        return self.active_document.Crop(**kwargs)
