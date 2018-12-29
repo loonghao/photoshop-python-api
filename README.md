@@ -1,6 +1,20 @@
 photoshop_python_api
 ====================
 
+install
+-------
+Clone from github.
+```cmd
+git clone https://github.com/loonghao/photoshop_python_api.git
+```
+Install requirements.
+```cmd
+pip install -r requirements.txt
+```
+Install package.
+```cmd
+python setup.py installl
+```
 How to save a PSD
 -----------------
 ```python
