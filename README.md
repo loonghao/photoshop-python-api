@@ -35,8 +35,8 @@ options = PhotoshopSaveOptions
 # save to psd
 doc.save_as('D:\\tes3111t.psd', options.option)
 ```
-Hello Word
-----------
+Hello, World
+------------
 ```python
 from photoshop_python_api.documents import Documents
 
