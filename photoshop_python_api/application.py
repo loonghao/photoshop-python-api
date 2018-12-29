@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-module author: Long Hao <hoolongvfx@gmail.com>
-"""
+# Import third-party modules
 import pywintypes
 from win32com.client import Dispatch, GetActiveObject
 
@@ -39,6 +36,13 @@ class Application(object):
 
     def active_layer_set(self):
         return self.app.LayerSets
+
+    @property
+    def preferences(self):
+        return self.app.Preferences
+
+    def open(self, *args, **kwargs):
+        return self.app.Open(*args, **kwargs)
 
     @staticmethod
     def _get_name(list_):

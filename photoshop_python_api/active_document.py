@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-module author: Long Hao <hoolongvfx@gmail.com>
-"""
+# Import local modules
 from photoshop_python_api.application import Application
 
 
@@ -54,9 +51,9 @@ class ActiveDocument(Application):
     def add_art_layers(self):
         return self.active_document.ArtLayers.Add()
 
-    def close(self, **kwargs):
+    def close(self):
         """Closes the document."""
-        self.active_document.Close(**kwargs)
+        self.active_document.Close()
 
     def flatten(self):
         """Flattens all layers."""

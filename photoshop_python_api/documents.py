@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-module author: Long Hao <hoolongvfx@gmail.com>
-"""
+# Import local modules
 from photoshop_python_api.active_document import ActiveDocument
 from photoshop_python_api.active_layer import ActiveLayer
 from photoshop_python_api.application import Application
@@ -29,8 +26,3 @@ class Documents(Application):
     @property
     def active_document(self):
         return ActiveDocument()
-
-if __name__ == '__main__':
-    d = Documents()
-    docRef = d.add_art_layer()
-    docRef.Name = 'fff'

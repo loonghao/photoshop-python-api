@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-module author: Long Hao <hoolongvfx@gmail.com>
-"""
-from application import Application
+# Import local modules
+from photoshop_python_api.application import Application
 
 
 class ActiveLayer(Application):
