@@ -54,6 +54,48 @@ newTextLayer.TextItem.Position = [160, 167]
 newTextLayer.TextItem.Size = 36
 newTextLayer.TextItem.Color = textColor
 ```
+Use PySide in Photoshop
+-----------------------
+```python
+import os
+import sys
+
+from PySide import QtCore
+from PySide import QtGui
+
+from photoshop_python_api.documents import Documents
+
+
+class MainWindow(QtGui.QMainWindow):
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent)
+
+        self.uiButton = QtGui.QPushButton('open', self)
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        grid = QtGui.QGridLayout()
+        grid.addWidget(self.uiButton, 3, 2)
+        main_widget = QtGui.QWidget()
+        main_widget.setLayout(grid)
+        self.setCentralWidget(main_widget)
+        self.uiButton.clicked.connect(self.browse_clicked)
+
+    # actions
+    def browse_clicked(self):
+        doc = Documents()
+        doc_ref = doc.active_document
+        os.system("start {}".format(os.path.dirname(doc_ref.path)))
+
+
+if __name__ == '__main__':
+    app = QtGui.QApplication(sys.argv)
+    dialog = MainWindow()
+    dialog.show()
+    sys.exit(app.exec_())
+
+```
+
+![alt text](https://github.com/loonghao/photoshop_python_api/image/pyside_open_folder.gif)
+
 reference
 =========
 http://www.timcoolmode.com/images/small/PSD_Exporter.py

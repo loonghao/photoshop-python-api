@@ -9,13 +9,13 @@ from comtypes.client import CreateObject
 class PhotoshopPythonAPIError(Exception):
     pass
 
-
 class Application(object):
-    object_name = 'Application'
     _root = 'Photoshop'
+    object_name = 'Application'
 
     def __init__(self, ps_version=None):
         self.mappings = {
+            '2019': '130',
             '2018': '120',
             '2017': '110',
             'cs6': '60'
@@ -29,13 +29,12 @@ class Application(object):
             try:
                 self.app = self.instance_photoshop(self._get_photoshop_version())
             except WindowsError:
-                raise PhotoshopPythonAPIError('Please check your {} '
-                                              'version: {}'.format(self._root,
-                                                                   self.version))
+                raise PhotoshopPythonAPIError('Please check if you have '
+                                              'Photoshop installed correctly.')
 
     def instance_photoshop(self, ps_id):
         progress_id = self._get_name([self._root, self.object_name, ps_id])
-        return CreateObject(progress_id)
+        return CreateObject(progress_id, dynamic=True)
 
     @staticmethod
     def _get_photoshop_version():
@@ -67,5 +66,4 @@ class Application(object):
 
     @staticmethod
     def _get_name(list_):
-        print list_
         return '.'.join(list_)
