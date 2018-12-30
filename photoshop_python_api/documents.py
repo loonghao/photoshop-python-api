@@ -13,7 +13,7 @@ class Documents(Application):
         return ActiveLayer()
 
     def add(self, *args, **kwargs):
-        self.app.Documents.Add(*args, **kwargs)
+        self.ps.Documents.Add(*args, **kwargs)
         return self.active_document
 
     def close(self, **kwargs):

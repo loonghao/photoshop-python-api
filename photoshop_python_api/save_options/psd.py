@@ -1,6 +1,6 @@
 # Import local modules
-from photoshop_python_api.application import Application
 from photoshop_python_api._basic_option import BasicOption
+from photoshop_python_api.application import Application
 
 
 class PhotoshopSaveOptions(BasicOption, Application):
@@ -14,7 +14,3 @@ class PhotoshopSaveOptions(BasicOption, Application):
         self.annotationsProperty = False
         self.layers = True
 
-if __name__ == '__main__':
-    p = PhotoshopSaveOptions()
-
-    print p.app
