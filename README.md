@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
 ```
 
-![alt text](https://github.com/loonghao/photoshop_python_api/image/pyside_open_folder.gif)
+![alt icon](https://github.com/loonghao/photoshop_python_api/blob/master/images/pyside_open_folder.gif)
 
 reference
 =========
