@@ -1,89 +1,49 @@
-# Import built-in modules
-import _winreg
-import os
+# -*- coding: utf-8 -*-
+"""
+module author: Long Hao <hoolongvfx@gmail.com>
+"""
 
-# Import third-party modules
-from comtypes.client import CreateObject
+from photoshop_python_api._core import Core
+from photoshop_python_api.active_document import ActiveDocument
+from photoshop_python_api.solid_color import SolidColor
 
+class Application(Core):
+    object_name = 'Application'
 
-class PhotoshopPythonAPIError(Exception):
-    pass
-
-
-class Application(object):
-    _root = 'Photoshop'
-    _object_name = 'Application'
-    object_name = None
-
-    def __init__(self, ps_version=None):
-        self.mappings = {
-            '2019': '130',
-            '2018': '120',
-            '2017': '110',
-            'cs6': '60'
-        }
-        self.app = None
-        self.version = os.getenv('PS_VERSION', ps_version)
-        self.app_id = self.mappings.get(self.version,
-                                        self._get_install_version())
-        try:
-            self.ps = self.instance_app(self.app_id)
-        except WindowsError:
-            try:
-                self.ps = self.instance_app(self._get_install_version())
-            except WindowsError:
-                raise PhotoshopPythonAPIError('Please check if you have '
-                                              'Photoshop installed correctly.')
-
-    def instance_app(self, ps_id):
-        if self.object_name:
-            progress_id = self._get_name([self._root, self.object_name, ps_id])
-            self.app = self._create_object(progress_id)
-        progress_id = self._get_name([self._root, self._object_name, ps_id])
-        return self._create_object(progress_id)
-
-    def _get_install_version(self):
-        key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,
-                              r"Software\Adobe\Photoshop")
-        self.app_id = _winreg.EnumKey(key, 0).split('.')[0]
-        return self.app_id
-
-    @staticmethod
-    def _create_object(*args, **kwargs):
-        return CreateObject(*args, **kwargs)
+    def __init__(self):
+        super(Application, self).__init__()
 
     @property
     def document(self):
-        return self.ps.Document
+        return self.app.Document
 
     @property
     def active_document(self):
-        return self.ps.ActiveDocument
+        return ActiveDocument()
 
     @property
+    def background_color(self):
+        return SolidColor()
+    @property
     def active_layer(self):
-        return self.ps.ArtLayer
+        return self.app.ArtLayer
 
     def active_layer_set(self):
-        return self.ps.LayerSets
+        return self.app.LayerSets
 
     @property
     def preferences(self):
-        return self.ps.Preferences
+        return self.app.Preferences
 
     def open(self, *args, **kwargs):
-        self.ps.Open(*args, **kwargs)
-
-    @staticmethod
-    def _get_name(list_):
-        return '.'.join(list_)
+        self.app.Open(*args, **kwargs)
 
     def run_jsx(self, jsx):
-        id60 = self.ps.stringIDToTypeID("AdobeScriptAutomation Scripts")
+        id60 = self.app.stringIDToTypeID("AdobeScriptAutomation Scripts")
         id_ = self._get_name([self._root, 'ActionDescriptor', self.app_id])
         desc12 = self._create_object(id_)
-        id61 = self.ps.charIDToTypeID("jsCt")
+        id61 = self.app.charIDToTypeID("jsCt")
         desc12.putPath(id61, jsx)
-        id62 = self.ps.charIDToTypeID("jsMs")
+        id62 = self.app.charIDToTypeID("jsMs")
         desc12.putString(id62, "null")
-        self.ps.executeAction(id60, desc12, 2)
+        self.app.executeAction(id60, desc12, 2)

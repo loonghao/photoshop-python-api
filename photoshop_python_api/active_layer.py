@@ -1,8 +1,8 @@
 # Import local modules
-from photoshop_python_api.application import Application
+from photoshop_python_api._core import Core
 
 
-class ActiveLayer(Application):
+class ActiveLayer(Core):
     def __int__(self):
         super(ActiveLayer, self).__init__()
 

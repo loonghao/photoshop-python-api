@@ -8,7 +8,4 @@ __author__ = 'Long Hao'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2018 Long Hao'
 
-from photoshop_python_api.action_descruotor import ActionDescriptor
-from photoshop_python_api.active_document import ActiveDocument
-from photoshop_python_api.application import Application
-from photoshop_python_api.documents import Documents
+# from photoshop_python_api.application import Application

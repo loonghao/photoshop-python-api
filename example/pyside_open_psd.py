@@ -1,14 +1,15 @@
+import os
 import sys
 
 from PySide import QtCore
 from PySide import QtGui
 
-from photoshop_python_api import Documents
+from photoshop_python_api.application import Application
 
 
-class Dialog(QtGui.QMainWindow):
+class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
-        super(Dialog, self).__init__(parent)
+        super(MainWindow, self).__init__(parent)
 
         self.uiButton = QtGui.QPushButton('open', self)
         self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
@@ -21,25 +22,13 @@ class Dialog(QtGui.QMainWindow):
 
     # actions
     def browse_clicked(self):
-        doc = Documents()
-        # photoshop doesn't appear to have a "save as" dialog accessible via
-        # python. so open our own Qt file dialog.
-        file_dialog = QtGui.QFileDialog(
-            caption="Save As",
-            filter="Photoshop Documents (*.psd)"
-        )
-        file_dialog.setLabelText(QtGui.QFileDialog.Accept, "Save")
-        file_dialog.setLabelText(QtGui.QFileDialog.Reject, "Cancel")
-        file_dialog.setOption(QtGui.QFileDialog.DontResolveSymlinks)
-        file_dialog.setOption(QtGui.QFileDialog.DontUseNativeDialog)
-        if not file_dialog.exec_():
-            return
-        path = file_dialog.selectedFiles()[0]
-        doc.open(path)
+        app = Application()
+        doc_ref = app.active_document
+        os.system("start {}".format(os.path.dirname(doc_ref.path)))
 
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
-    a = Dialog()
-    a.show()
+    dialog = MainWindow()
+    dialog.show()
     sys.exit(app.exec_())

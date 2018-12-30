@@ -1,9 +1,9 @@
 # Import local modules
-from photoshop_python_api.application import Application
+from photoshop_python_api._core import Core
 from photoshop_python_api._basic_option import BasicOption
 
 
-class PDFSaveOptions(BasicOption, Application):
+class PDFSaveOptions(BasicOption, Core):
     object_name = 'PDFSaveOptions'
 
     def __init__(self):

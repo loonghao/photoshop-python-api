@@ -23,37 +23,37 @@ python setup.py installl
 How to save a PSD
 -----------------
 ```python
-from photoshop_python_api.documents import Documents
-from photoshop_python_api.save_options import PhotoshopSaveOptions
-documents = Documents()
+from photoshop_python_api.document import Document
+from photoshop_python_api.save_options import JPEGSaveOptions
+documents = Document()
 # create new documents
-doc = documents.add()
+doc = documents.art_layers
 # add new artlayers
-doc.add_art_layers()
-options = PhotoshopSaveOptions()
+doc.add()
+options = JPEGSaveOptions()
 # save to psd
-options.save_as('c:/test.psd')
+documents.save_as('c:/te222221st.jpg', options, as_copy=True)
+
 ```
 Hello, World
 ------------
 ```python
-from photoshop_python_api.documents import Documents
-
+from photoshop_python_api.document import Document
 from photoshop_python_api.solid_color import SolidColor
 
-doc = Documents()
-doc_ref = doc.add()
-textColor = SolidColor().option
+doc = Document()
+doc_ref = doc.art_layers
+textColor = SolidColor()
 textColor.RGB.Red = 225
 textColor.RGB.Green = 0
 textColor.RGB.Blue = 0
-newTextLayer = doc_ref.add_art_layers()
-psTextLayer = 2  # from enum PsLayerKind
-newTextLayer.Kind = psTextLayer
+newTextLayer = doc_ref.add()
+newTextLayer.Kind = 2
 newTextLayer.TextItem.Contents = "Hello, World!"
 newTextLayer.TextItem.Position = [160, 167]
 newTextLayer.TextItem.Size = 36
-newTextLayer.TextItem.Color = textColor
+newTextLayer.TextItem.Color = textColor.option
+
 ```
 Use PySide in Photoshop
 -----------------------
@@ -64,7 +64,7 @@ import sys
 from PySide import QtCore
 from PySide import QtGui
 
-from photoshop_python_api.documents import Documents
+from photoshop_python_api.application import Application
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -82,8 +82,8 @@ class MainWindow(QtGui.QMainWindow):
 
     # actions
     def browse_clicked(self):
-        doc = Documents()
-        doc_ref = doc.active_document
+        app = Application()
+        doc_ref = app.active_document
         os.system("start {}".format(os.path.dirname(doc_ref.path)))
 
 
@@ -92,7 +92,6 @@ if __name__ == '__main__':
     dialog = MainWindow()
     dialog.show()
     sys.exit(app.exec_())
-
 ```
 
 ![alt icon](https://github.com/loonghao/photoshop_python_api/blob/master/images/pyside_open_folder.gif)

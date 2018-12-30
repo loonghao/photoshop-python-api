@@ -1,9 +1,9 @@
 # Import local modules
-from photoshop_python_api.application import Application
+from photoshop_python_api._core import Core
 from photoshop_python_api._basic_option import BasicOption
 
 
-class GIFSaveOptions(BasicOption, Application):
+class GIFSaveOptions(BasicOption, Core):
     object_name = 'GIFSaveOptions'
 
     def __init__(self):
