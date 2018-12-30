@@ -1,6 +1,7 @@
 # Import local modules
 from photoshop_python_api._basic_option import BasicOption
 from photoshop_python_api._core import Core
+from photoshop_python_api.cmyk_color import CMYKColor
 from photoshop_python_api.rgb_color import RGBColor
 
 
@@ -11,8 +12,8 @@ class SolidColor(BasicOption, Core):
         super(SolidColor, self).__init__()
 
     @property
-    def CMYK(self):
-        return self.app.CMYK
+    def cmyk(self):
+        return CMYKColor(self.app.CMYK)
 
     @property
     def gray(self):

@@ -4,9 +4,9 @@ from photoshop_python_api.solid_color import SolidColor
 doc = Document()
 doc_ref = doc.art_layers
 textColor = SolidColor()
-textColor.RGB.Red = 225
-textColor.RGB.Green = 0
-textColor.RGB.Blue = 1
+textColor.cmyk.Cyan = 225
+textColor.cmyk.magenta = 0
+# textColor.cmyk.Blue = 1
 newTextLayer = doc_ref.add()
 psTextLayer = 2  # from enum PsLayerKind
 newTextLayer.Kind = psTextLayer

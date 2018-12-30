@@ -7,6 +7,7 @@ from photoshop_python_api._core import Core
 from photoshop_python_api.active_document import ActiveDocument
 from photoshop_python_api.solid_color import SolidColor
 
+
 class Application(Core):
     object_name = 'Application'
 
@@ -24,6 +25,7 @@ class Application(Core):
     @property
     def background_color(self):
         return SolidColor()
+
     @property
     def active_layer(self):
         return self.app.ArtLayer
