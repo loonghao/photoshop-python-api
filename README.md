@@ -12,10 +12,6 @@ Clone from github.
 ```cmd
 git clone https://github.com/loonghao/photoshop_python_api.git
 ```
-Install requirements.
-```cmd
-pip install -r requirements.txt
-```
 Install package.
 ```cmd
 python setup.py installl
@@ -68,3 +64,5 @@ https://evanmccall.wordpress.com/2015/03/09/how-to-develop-photoshop-tools-in-py
 https://techarttiki.blogspot.com/2008/08/photoshop-scripting-with-python.html
 
 https://www.ps-scripts.com/
+
+https://programtalk.com/python-examples/comtypes.client.CreateObject/
