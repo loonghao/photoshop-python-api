@@ -21,7 +21,7 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    install_requires=['pypiwin32==219'],
+    install_requires=['comtypes'],
     package_data={'': ['LICENSE']},
     use_scm_version=True,
     setup_requires=['setuptools_scm']

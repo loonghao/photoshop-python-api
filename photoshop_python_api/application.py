@@ -1,6 +1,12 @@
+# Import built-in modules
+import os
+
 # Import third-party modules
-import pywintypes
-from win32com.client import Dispatch, GetActiveObject
+from comtypes.client import CreateObject
+
+
+class PhotoshopPythonAPIError(Exception):
+    pass
 
 
 class Application(object):
@@ -13,15 +19,16 @@ class Application(object):
             '2017': '110',
             'cs6': '60'
         }
-        self.version = ps_version
+        self.version = os.getenv('PS_VERSION', ps_version)
         self.app_id = self._version_id_mappings.get(self.version)
         self.progress_id = self._get_name(
             [self._root, self.object_name, self.app_id])
+        print self.progress_id
         try:
-            self.app = GetActiveObject(self.progress_id)
-        except pywintypes.com_error:
-            self.app = Dispatch(self.progress_id)
-
+            self.app = CreateObject(self.progress_id)
+        except WindowsError:
+            raise PhotoshopPythonAPIError('Please check your Photoshop '
+                                          'version: {}'.format(self.version))
     @property
     def document(self):
         return self.app.Document
