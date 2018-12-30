@@ -1,6 +1,6 @@
 # Import local modules
-from photoshop_python_api.application import Application
 from photoshop_python_api._basic_option import BasicOption
+from photoshop_python_api.application import Application
 
 
 class ExportOptionsSaveForWeb(BasicOption, Application):
@@ -13,7 +13,10 @@ class ExportOptionsSaveForWeb(BasicOption, Application):
 
 
 class PNGSaveOptions(BasicOption, Application):
-    object_name = 'ExportOptionsSaveForWeb'
+    object_name = 'PNGSaveOptions'
 
     def __init__(self):
         super(PNGSaveOptions, self).__init__()
+        self.Interlaced = False
+        self.Compression = True
+

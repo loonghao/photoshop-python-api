@@ -11,6 +11,5 @@ class PhotoshopSaveOptions(BasicOption, Application):
         # If true, the alpha channels are saved.
         self.AlphaChannels = False
         # If true, the annotations are save
-        self.annotationsProperty = False
-        self.layers = True
-
+        self.AnnotationsProperty = False
+        self.Layers = True

@@ -27,21 +27,20 @@ class Application(object):
         self.app_id = self.mappings.get(self.version,
                                         self._get_install_version())
         try:
-            self.ps = self.instance_photoshop(self.app_id)
+            self.ps = self.instance_app(self.app_id)
         except WindowsError:
             try:
-                self.ps = self.instance_photoshop(self._get_install_version())
+                self.ps = self.instance_app(self._get_install_version())
             except WindowsError:
                 raise PhotoshopPythonAPIError('Please check if you have '
                                               'Photoshop installed correctly.')
 
-    def instance_photoshop(self, ps_id):
-        progress_id = self._get_name([self._root, self._object_name, ps_id])
+    def instance_app(self, ps_id):
         if self.object_name:
-            progress_id = self._get_name(
-                [self._root, self._object_name, ps_id])
+            progress_id = self._get_name([self._root, self.object_name, ps_id])
             self.app = self._create_object(progress_id)
-        return self._create_object(progress_id, dynamic=True)
+        progress_id = self._get_name([self._root, self._object_name, ps_id])
+        return self._create_object(progress_id)
 
     def _get_install_version(self):
         key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,

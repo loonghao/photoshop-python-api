@@ -20,10 +20,8 @@ python setup.py installl
 How to save a PSD
 -----------------
 ```python
-import os
 from photoshop_python_api.documents import Documents
 from photoshop_python_api.save_options import PhotoshopSaveOptions
-os.environ['PS_VERSION'] = "2017"
 documents = Documents()
 # create new documents
 doc = documents.add()
@@ -31,7 +29,7 @@ doc = documents.add()
 doc.add_art_layers()
 options = PhotoshopSaveOptions()
 # save to psd
-doc.save_as('D:\\tes3111t.psd', options.option)
+options.save_as('c:/test.psd')
 ```
 Hello, World
 ------------

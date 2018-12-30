@@ -16,8 +16,8 @@ class Documents(Application):
         self.ps.Documents.Add(*args, **kwargs)
         return self.active_document
 
-    def close(self, **kwargs):
-        return self.active_document.close(**kwargs)
+    def close(self, saving=1):
+        return self.active_document.close(saving)
 
     def add_art_layer(self):
         doc_ref = self.add()
@@ -27,7 +27,14 @@ class Documents(Application):
         super(Documents, self).open(*args, **kwargs)
         return self.active_document
 
-
     @property
     def active_document(self):
         return ActiveDocument()
+
+    @property
+    def documents(self):
+        return self.ps.Documents
+
+    def close_all_documents(self, mode=3):
+        for doc in self.documents:
+            doc.Close(mode)

@@ -8,4 +8,4 @@ class JPEGSaveOptions(BasicOption, Application):
 
     def __init__(self):
         super(JPEGSaveOptions, self).__init__()
-        self.Quality = 1
+        self.Quality = 10

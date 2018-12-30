@@ -8,3 +8,7 @@ class GIFSaveOptions(BasicOption, Application):
 
     def __init__(self):
         super(GIFSaveOptions, self).__init__()
+        # self.Colors
+        # self.Dither
+        # self.DitherAmount
+        # self.Forced
