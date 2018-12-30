@@ -1,4 +1,5 @@
 # Import built-in modules
+import _winreg
 import os
 
 # Import third-party modules
@@ -13,22 +14,35 @@ class Application(object):
     object_name = 'Application'
     _root = 'Photoshop'
 
-    def __init__(self, ps_version='2017'):
-        self._version_id_mappings = {
+    def __init__(self, ps_version=None):
+        self.mappings = {
             '2018': '120',
             '2017': '110',
             'cs6': '60'
         }
         self.version = os.getenv('PS_VERSION', ps_version)
-        self.app_id = self._version_id_mappings.get(self.version)
-        self.progress_id = self._get_name(
-            [self._root, self.object_name, self.app_id])
-        print self.progress_id
+        self.app_id = self.mappings.get(self.version,
+                                        self._get_photoshop_version())
         try:
-            self.app = CreateObject(self.progress_id)
+            self.app = self.instance_photoshop(self.app_id)
         except WindowsError:
-            raise PhotoshopPythonAPIError('Please check your Photoshop '
-                                          'version: {}'.format(self.version))
+            try:
+                self.app = self.instance_photoshop(self._get_photoshop_version())
+            except WindowsError:
+                raise PhotoshopPythonAPIError('Please check your {} '
+                                              'version: {}'.format(self._root,
+                                                                   self.version))
+
+    def instance_photoshop(self, ps_id):
+        progress_id = self._get_name([self._root, self.object_name, ps_id])
+        return CreateObject(progress_id)
+
+    @staticmethod
+    def _get_photoshop_version():
+        key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,
+                              r"Software\Adobe\Photoshop")
+        return _winreg.EnumKey(key, 0).split('.')[0]
+
     @property
     def document(self):
         return self.app.Document
@@ -53,4 +67,5 @@ class Application(object):
 
     @staticmethod
     def _get_name(list_):
+        print list_
         return '.'.join(list_)
