@@ -7,4 +7,3 @@ class ActionDescriptor(BasicOption, Application):
 
     def __init__(self):
         super(ActionDescriptor, self).__init__()
-
