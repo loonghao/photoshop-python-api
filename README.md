@@ -1,5 +1,8 @@
 photoshop_python_api
 ====================
+
+https://theiviaxx.github.io/photoshop-docs/index.html
+
 Has been tested and used Photoshop version:
 
     - cc2019
@@ -93,17 +96,3 @@ if __name__ == '__main__':
 ```
 
 ![alt icon](https://github.com/loonghao/photoshop_python_api/blob/master/images/pyside_open_folder.gif)
-
-reference
-=========
-http://www.timcoolmode.com/images/small/PSD_Exporter.py
-
-https://github.com/lohriialo/photoshop-scripting-python
-
-https://evanmccall.wordpress.com/2015/03/09/how-to-develop-photoshop-tools-in-python/
-
-https://techarttiki.blogspot.com/2008/08/photoshop-scripting-with-python.html
-
-https://www.ps-scripts.com/
-
-https://programtalk.com/python-examples/comtypes.client.CreateObject/
