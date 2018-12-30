@@ -35,6 +35,7 @@ class Core(object):
             except WindowsError:
                 raise PhotoshopPythonAPIError('Please check if you have '
                                               'Photoshop installed correctly.')
+        self.__initialised = True
 
     def instance_app(self, ps_id):
         names = [self._root]
@@ -47,9 +48,9 @@ class Core(object):
         names.append(ps_id)
         if self.object_name:
             progress_id = self._get_name(names)
-            self.app = self._create_object(progress_id)
+            self.app = self._create_object(progress_id, dynamic=True)
         progress_id = self._get_name(names)
-        return self._create_object(progress_id)
+        return self._create_object(progress_id, dynamic=True)
 
     def _get_install_version(self):
         key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,

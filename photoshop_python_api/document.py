@@ -1,4 +1,5 @@
 # Import local modules
+from photoshop_python_api import save_options
 from photoshop_python_api._core import Core
 from photoshop_python_api.art_layers import ArtLayers
 
@@ -213,7 +214,7 @@ class Document(Core):
         """Changes the mode of the document."""
         return self.active_document.ChangeMode(*args, **kwargs)
 
-    def close(self, saving=2):
+    def close(self, saving=save_options.PROMPTTOSAVECHANGES):
         return self.active_document.Close(saving)
 
     def convertProfile(self):

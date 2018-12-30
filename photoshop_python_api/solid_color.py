@@ -1,6 +1,7 @@
 # Import local modules
 from photoshop_python_api._basic_option import BasicOption
 from photoshop_python_api._core import Core
+from photoshop_python_api.rgb_color import RGBColor
 
 
 class SolidColor(BasicOption, Core):
@@ -15,15 +16,15 @@ class SolidColor(BasicOption, Core):
 
     @property
     def gray(self):
-        return self.app.gray
+        return self.app.Gray
 
     @property
     def hsb(self):
-        return self.app.hsb
+        return self.app.HSB
 
     @property
     def lab(self):
-        return self.app.lab
+        return self.app.Lab
 
     @property
     def model(self):
@@ -31,12 +32,12 @@ class SolidColor(BasicOption, Core):
 
     @property
     def nearestWebColor(self):
-        return self.app.nearestWebColor
+        return self.app.NearestWebColor
 
     @property
     def RGB(self):
-        return self.app.RGB
+        return RGBColor(self.app.RGB)
 
     @property
     def isEqual(self, *args, **kwargs):
-        return self.app.isEqual(*args, **kwargs)
+        return self.app.IsEqual(*args, **kwargs)

@@ -5,17 +5,22 @@ class BasicOption(object):
         self._data = kwargs
 
     def __setattr__(self, key, value):
-        try:
-            self._data.update({key: value})
+        if '_Core__initialised' not in self.__dict__:
             return object.__setattr__(self, key, value)
-        except RuntimeError:
+        elif '_data' in self.__dict__ and key in self._data:
+            self._data[key] = value
+        else:
             return object.__setattr__(self, key, value)
 
     def __getattr__(self, item):
         try:
             return self.__getattribute__(item)
         except AttributeError:
-            return self._data.get(item)
+            try:
+                if '_data' in self.__dict__:
+                    return self._data[item]
+            except KeyError:
+                raise AttributeError(item)
 
     @property
     def option(self):
