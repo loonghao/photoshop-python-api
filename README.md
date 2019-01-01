@@ -1,7 +1,7 @@
 photoshop_python_api
 ====================
 
-https://theiviaxx.github.io/photoshop-docs/index.html
+https://loonghao.github.io/photoshop_python_api/
 
 Has been tested and used Photoshop version:
 
