@@ -11,8 +11,8 @@ from photoshop_python_api.save_options.psd import PhotoshopSaveOptions
 from photoshop_python_api.save_options.tif import TiffSaveOptions
 
 # Do not save changes.
-DONOTSAVECHANGES = 0
+DONOTSAVECHANGES = 2
 # Ask the user whether to save.
 PROMPTTOSAVECHANGES = 1
 # Save changes.
-SAVECHANGES = 2
+SAVECHANGES = 3

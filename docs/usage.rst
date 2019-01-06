@@ -25,7 +25,7 @@ To read a file and write it back out again::
         # # save to jpg
         jpg = 'c:/hello_world.jpg'
         doc.save_as(jpg, options, as_copy=True)
-        app.run_javascript('alert("save to jpg: {}")'.format(jpg))
+        app.eval_javascript('alert("save to jpg: {}")'.format(jpg))
 
 
 See the :ref:`src/photoshop_python_api` documentation for more details.

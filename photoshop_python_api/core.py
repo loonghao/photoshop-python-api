@@ -17,6 +17,7 @@ class Core(object):
     _object_name = 'Application'
     object_name = None
     sub_object_name = None
+    title = 'Photoshop Python API'
 
     def __init__(self, ps_version=None):
         self.mappings = {
@@ -74,17 +75,27 @@ class Core(object):
     def _get_name(list_):
         return '.'.join(list_)
 
-    def run_jsx(self, jsx):
-        id60 = self.ps.stringIDToTypeID("AdobeScriptAutomation Scripts")
-        id_ = self._get_name([self._root, 'ActionDescriptor', self.app_id])
-        desc12 = self._create_object(id_)
-        id61 = self.ps.charIDToTypeID("jsCt")
-        desc12.putPath(id61, jsx)
-        id62 = self.ps.charIDToTypeID("jsMs")
-        desc12.putString(id62, "null")
-        self.ps.executeAction(id60, desc12, 2)
+    def string_id_to_type_id(self, string):
+        return self.ps.stringIDToTypeID(string)
 
-    def run_javascript(self, command):
+    def char_id_to_type_id(self, char):
+        return self.ps.charIDToTypeID(char)
+
+    @property
+    def action_descriptor(self):
+        name = self._get_name([self._root, 'ActionDescriptor', self.app_id])
+        return self._create_object(name)
+
+    def run_jsx(self, jsx):
+        id60 = self.string_id_to_type_id("AdobeScriptAutomation Scripts")
+        action = self.action_descriptor
+        id61 = self.char_id_to_type_id("jsCt")
+        action.putPath(id61, jsx)
+        id62 = self.char_id_to_type_id("jsMs")
+        action.putString(id62, "null")
+        self.ps.executeAction(id60, action, 2)
+
+    def eval_javascript(self, command):
         dir_ = mkdtemp(prefix='photoshop_python_api_')
         js = os.path.join(dir_, 'temp_script.jsx')
         with open(js, 'w') as file_obj:

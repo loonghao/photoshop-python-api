@@ -1,7 +1,8 @@
 # Import local modules
 from photoshop_python_api import save_options
-from photoshop_python_api.core import Core
+from photoshop_python_api.active_document import ActiveDocument
 from photoshop_python_api.art_layers import ArtLayers
+from photoshop_python_api.core import Core
 from photoshop_python_api.documents import Documents
 from photoshop_python_api.errors import COMError
 
@@ -82,9 +83,9 @@ class Document(Core):
         try:
             return self.activeDocument.FullName
         except COMError:
-            self.run_javascript(
+            self.eval_javascript(
                 'alert ("Please save your Document first!",'
-                '"Photoshop Python API")')
+                '"{}")'.format(self.title))
 
     # @property
     # def guides(self):
@@ -158,7 +159,12 @@ class Document(Core):
     @property
     def path(self):
         """The path to the Document."""
-        return self.activeDocument.Path
+        try:
+            return self.activeDocument.Path
+        except COMError:
+            self.eval_javascript(
+                'alert ("Please save your Document first!",'
+                '"{}")'.format(self.title))
 
     @path.setter
     def path(self, path):
@@ -265,7 +271,8 @@ class Document(Core):
         return self.activeDocument.ExportDocument(*args, **kwargs)
 
     def duplicate(self, name, merge_layers_only=False):
-        return self.activeDocument.Duplicate(name, merge_layers_only)
+        self.activeDocument.Duplicate(name, merge_layers_only)
+        return ActiveDocument()
 
     def paste(self, into_selection):
         """Pastes contents of the clipboard into the Document."""
