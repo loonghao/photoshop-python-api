@@ -1,15 +1,13 @@
 from setuptools import find_packages
 from setuptools import setup
 
-import photoshop_python_api
 
 setup(
     name='photoshop_python_api',
-    version=photoshop_python_api.__version__,
     package_dir={'': '.'},
     packages=find_packages('.'),
     url='https://github.com/loonghao/photoshop_python_api',
-    author=photoshop_python_api.__author__,
+    author='Long Hao',
     author_email='hoolongvfx@gmail.com',
     classifiers=[
         'Programming Language :: Python',
