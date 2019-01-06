@@ -4,7 +4,7 @@ Usage
 
 To read a file and write it back out again::
 
-        from photoshop_python_api import Application
+        from photoshop_python_api.application import Application
         from photoshop_python_api.save_options import JPEGSaveOptions
         from photoshop_python_api.solid_color import SolidColor
 

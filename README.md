@@ -20,13 +20,14 @@ git clone https://github.com/loonghao/photoshop_python_api.git
 Install package.
 ```cmd
 python setup.py install
-
+```
 
 Hello World
 -----------
 
 ```python
-from photoshop_python_api import Application
+
+from photoshop_python_api.application import Application
 from photoshop_python_api.save_options import JPEGSaveOptions
 from photoshop_python_api.solid_color import SolidColor
 
