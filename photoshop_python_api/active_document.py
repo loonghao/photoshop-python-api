@@ -1,6 +1,8 @@
 # Import local modules
 from photoshop_python_api import save_options
+from photoshop_python_api.art_layers import ArtLayers
 from photoshop_python_api.core import Core
+from photoshop_python_api.errors import COMError
 
 
 class ActiveDocument(Core):
