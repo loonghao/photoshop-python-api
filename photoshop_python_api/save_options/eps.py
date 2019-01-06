@@ -3,10 +3,10 @@ from photoshop_python_api.core import Core
 from photoshop_python_api.basic_option import BasicOption
 
 
-class PDFSaveOptions(BasicOption, Core):
-    object_name = 'PDFSaveOptions'
+class EPSSaveOptions(BasicOption, Core):
+    object_name = 'EPSSaveOptions'
 
     def __init__(self):
-        super(PDFSaveOptions, self).__init__()
+        super(EPSSaveOptions, self).__init__()
 
 

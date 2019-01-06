@@ -1,17 +1,19 @@
 # Import built-in modules
 import _winreg
 import os
+from shutil import rmtree
+from tempfile import mkdtemp
 
 # Import third-party modules
 from comtypes.client import CreateObject
 
-
-class PhotoshopPythonAPIError(Exception):
-    pass
+# Import local modules
+from photoshop_python_api.errors import PhotoshopPythonAPIError
 
 
 class Core(object):
     _root = 'Photoshop'
+    REG_PATH = "Software\\Adobe\\Photoshop"
     _object_name = 'Application'
     object_name = None
     sub_object_name = None
@@ -37,6 +39,12 @@ class Core(object):
                                               'Photoshop installed correctly.')
         self.__initialised = True
 
+    def get_application_path(self):
+        key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE,
+                              "{}\\{}".format(self.REG_PATH, self.app_id))
+        return _winreg.QueryValueEx(key, 'ApplicationPath')[
+                   0] + 'Photoshop'
+
     def instance_app(self, ps_id):
         names = [self._root]
         if not self.object_name:
@@ -53,8 +61,8 @@ class Core(object):
         return self._create_object(progress_id, dynamic=True)
 
     def _get_install_version(self):
-        key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,
-                              r"Software\Adobe\Photoshop")
+        key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE,
+                              self.REG_PATH)
         self.app_id = _winreg.EnumKey(key, 0).split('.')[0]
         return self.app_id
 
@@ -65,3 +73,21 @@ class Core(object):
     @staticmethod
     def _get_name(list_):
         return '.'.join(list_)
+
+    def run_jsx(self, jsx):
+        id60 = self.ps.stringIDToTypeID("AdobeScriptAutomation Scripts")
+        id_ = self._get_name([self._root, 'ActionDescriptor', self.app_id])
+        desc12 = self._create_object(id_)
+        id61 = self.ps.charIDToTypeID("jsCt")
+        desc12.putPath(id61, jsx)
+        id62 = self.ps.charIDToTypeID("jsMs")
+        desc12.putString(id62, "null")
+        self.ps.executeAction(id60, desc12, 2)
+
+    def run_javascript(self, command):
+        dir_ = mkdtemp(prefix='photoshop_python_api_')
+        js = os.path.join(dir_, 'temp_script.jsx')
+        with open(js, 'w') as file_obj:
+            file_obj.write(command)
+        self.run_jsx(js)
+        rmtree(dir_)

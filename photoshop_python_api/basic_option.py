@@ -27,6 +27,6 @@ class BasicOption(object):
         return self.app
 
     def save_as(self, doc, file_path, as_copy=True, extension_type=2):
-        """Saves the document with the specified save options."""
+        """Saves the Document with the specified save options."""
         return doc.save_as(file_path, self.option, as_copy,
                            extension_type)

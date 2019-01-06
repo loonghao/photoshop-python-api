@@ -1,5 +1,5 @@
-from photoshop_python_api._basic_option import BasicOption
-from photoshop_python_api._core import Core
+from photoshop_python_api.basic_option import BasicOption
+from photoshop_python_api.core import Core
 
 
 class RGBColor(BasicOption, Core):

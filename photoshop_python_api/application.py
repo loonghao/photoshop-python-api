@@ -2,9 +2,15 @@
 """
 module author: Long Hao <hoolongvfx@gmail.com>
 """
+# Import built-in modules
+import os
+from shutil import rmtree
+from tempfile import mkdtemp
 
-from photoshop_python_api._core import Core
+# Import local modules
+from photoshop_python_api.core import Core
 from photoshop_python_api.active_document import ActiveDocument
+from photoshop_python_api.document import Document
 from photoshop_python_api.solid_color import SolidColor
 
 
@@ -16,10 +22,10 @@ class Application(Core):
 
     @property
     def document(self):
-        return self.app.Document
+        return Document()
 
     @property
-    def active_document(self):
+    def activeDocument(self):
         return ActiveDocument()
 
     @property
@@ -40,12 +46,3 @@ class Application(Core):
     def open(self, *args, **kwargs):
         self.app.Open(*args, **kwargs)
 
-    def run_jsx(self, jsx):
-        id60 = self.app.stringIDToTypeID("AdobeScriptAutomation Scripts")
-        id_ = self._get_name([self._root, 'ActionDescriptor', self.app_id])
-        desc12 = self._create_object(id_)
-        id61 = self.app.charIDToTypeID("jsCt")
-        desc12.putPath(id61, jsx)
-        id62 = self.app.charIDToTypeID("jsMs")
-        desc12.putString(id62, "null")
-        self.app.executeAction(id60, desc12, 2)
