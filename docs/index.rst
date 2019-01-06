@@ -3,18 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-photoshop_python_api
-======================================
+photoshop_python_api documentation
+==================================
 
 photoshop python api.
-
-Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   readme
    installation
    usage
-   api
+   src/photoshop_python_api
    history
