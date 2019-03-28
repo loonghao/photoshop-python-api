@@ -2,23 +2,21 @@
 """
 module author: Long Hao <hoolongvfx@gmail.com>
 """
-# Import built-in modules
 import os
-from shutil import rmtree
-from tempfile import mkdtemp
 
 # Import local modules
-from photoshop_python_api.core import Core
+from photoshop_python_api._core import Photoshop
+# Import built-in modules
 from photoshop_python_api.active_document import ActiveDocument
 from photoshop_python_api.document import Document
 from photoshop_python_api.solid_color import SolidColor
 
 
-class Application(Core):
+class Application(Photoshop):
     object_name = 'Application'
 
-    def __init__(self):
-        super(Application, self).__init__()
+    def __init__(self, version=None):
+        super(Application, self).__init__(version)
 
     @property
     def document(self):
@@ -29,8 +27,8 @@ class Application(Core):
         return ActiveDocument()
 
     @property
-    def background_color(self):
-        return SolidColor()
+    def backgroundColor(self):
+        return SolidColor
 
     @property
     def active_layer(self):
@@ -46,3 +44,6 @@ class Application(Core):
     def open(self, *args, **kwargs):
         self.app.Open(*args, **kwargs)
 
+    @staticmethod
+    def system(command):
+        os.system(command)

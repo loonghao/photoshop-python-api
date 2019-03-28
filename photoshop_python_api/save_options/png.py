@@ -1,9 +1,9 @@
 # Import local modules
-from photoshop_python_api.basic_option import BasicOption
-from photoshop_python_api.core import Core
+from photoshop_python_api._basic_option import BasicOption
+from photoshop_python_api._core import Photoshop
 
 
-class ExportOptionsSaveForWeb(BasicOption, Core):
+class ExportOptionsSaveForWeb(BasicOption, Photoshop):
     object_name = 'ExportOptionsSaveForWeb'
 
     def __init__(self):
@@ -12,7 +12,7 @@ class ExportOptionsSaveForWeb(BasicOption, Core):
         self.PNG8 = False  # Sets it to PNG-24 bit
 
 
-class PNGSaveOptions(BasicOption, Core):
+class PNGSaveOptions(BasicOption, Photoshop):
     object_name = 'PNGSaveOptions'
 
     def __init__(self):

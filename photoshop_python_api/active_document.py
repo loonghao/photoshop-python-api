@@ -1,23 +1,24 @@
 # Import local modules
 from photoshop_python_api import save_options
+from photoshop_python_api._core import Photoshop
 from photoshop_python_api.art_layers import ArtLayers
-from photoshop_python_api.core import Core
+from photoshop_python_api.documents import Documents
 from photoshop_python_api.errors import COMError
 
 
-class ActiveDocument(Core):
+class ActiveDocument(Photoshop):
     def __int__(self):
         super(ActiveDocument, self).__init__()
 
     @property
-    def activeDocument(self):
+    def active_document(self):
         """The current active Document."""
-        return self.ps.ActiveDocument
+        return self.adobe.ActiveDocument
 
     @property
     def active_layer(self):
         """The selected layer."""
-        return self.activeDocument.ActiveLayer
+        return self.active_document.ActiveLayer
 
     @property
     def art_layers(self):
@@ -26,60 +27,60 @@ class ActiveDocument(Core):
     @property
     def active_channels(self):
         """The selected channels."""
-        return self.activeDocument.ActiveChannels
+        return self.active_document.ActiveChannels
 
     @property
     def active_history_brush_source(self):
         """The history state to use with the history brush."""
-        return self.activeDocument.ActiveHistoryBrushSource
+        return self.active_document.ActiveHistoryBrushSource
 
     @property
     def active_history_state(self):
         """The current history state for this Document."""
-        return self.activeDocument.ActiveHistoryState
+        return self.active_document.ActiveHistoryState
 
     @property
     def background_layer(self):
         """The background layer for the Document."""
-        return self.activeDocument.BackgroundLayer
+        return self.active_document.BackgroundLayer
 
     @property
     def bits_per_channel(self):
         """The number of bits per channel."""
-        return self.activeDocument.BitsPerChannel
+        return self.active_document.BitsPerChannel
 
     @property
     def color_profile_name(self):
         """The name of the color profile. Valid only when no value is specified
         for color profile kind (to indicate a custom color profile)."""
-        return self.activeDocument.ColorProfileName
+        return self.active_document.ColorProfileName
 
     @property
     def color_profile_type(self):
         """The type of color model that defines the working space of the
         Document."""
-        return self.activeDocument.ColorProfileType
+        return self.active_document.ColorProfileType
 
     @property
     def color_samplers(self):
         """The current color samplers associated with the Document."""
-        return self.activeDocument.ColorSamplers
+        return self.active_document.ColorSamplers
 
     @property
     def component_channels(self):
         """The color component channels for this Document."""
-        return self.activeDocument.ComponentChannels
+        return self.active_document.ComponentChannels
 
     @property
     def count_items(self):
         """The current count items in the Document."""
-        return self.activeDocument.CountItems
+        return self.active_document.CountItems
 
     @property
     def fullName(self):
         """The full path name of the Document."""
         try:
-            return self.activeDocument.FullName
+            return self.active_document.FullName
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
@@ -91,74 +92,74 @@ class ActiveDocument(Core):
     @property
     def height(self):
         """The height of the Document."""
-        return self.activeDocument.Height
+        return self.active_document.Height
 
     @property
     def histogram(self):
         """A histogram showing the number of pixels at each color intensity
         level for the composite channel."""
-        return self.activeDocument.Histogram
+        return self.active_document.Histogram
 
     @property
     def history_states(self):
         """The history states collection in this Document."""
-        return self.activeDocument.HistoryStates
+        return self.active_document.HistoryStates
 
     @property
     def id(self):
         """The unique ID of this Document."""
-        return self.activeDocument.Id
+        return self.active_document.Id
 
     @property
     def info(self):
         """Metadata about the Document."""
-        return self.activeDocument.Info
+        return self.active_document.Info
 
     @property
     def layer_comps(self):
         """The layer comps collection in this Document."""
-        return self.activeDocument.LayerComps
+        return self.active_document.LayerComps
 
     @property
     def layers(self):
         """The layers collection in the Document."""
-        return self.activeDocument.Layers
+        return self.active_document.Layers
 
     @property
     def layer_setes(self):
         """The layer sets collection in the Document."""
-        return self.activeDocument.LayerSets
+        return self.active_document.LayerSets
 
     @property
     def managed(self):
         """If true, the Document is a workgroup Document."""
-        return self.activeDocument.Managed
+        return self.active_document.Managed
 
     @property
     def measurement_scale(self):
         """The measurement scale of the Document."""
-        return self.activeDocument.MeasurementScale
+        return self.active_document.MeasurementScale
 
     @property
     def mode(self):
         """The color profile."""
-        return self.activeDocument.Mode
+        return self.active_document.Mode
 
     @property
     def name(self):
         """The Document name."""
-        return self.activeDocument.Name
+        return self.active_document.Name
 
     @property
     def parent(self):
         """The object's container."""
-        return self.activeDocument.Parent
+        return self.active_document.Parent
 
     @property
     def path(self):
         """The path to the Document."""
         try:
-            return self.activeDocument.Path
+            return self.active_document.Path
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
@@ -166,16 +167,16 @@ class ActiveDocument(Core):
 
     @path.setter
     def path(self, path):
-        self.activeDocument.fullName = path
+        self.active_document.fullName = path
 
     @property
     def path_items(self):
-        return self.activeDocument.PathItems
+        return self.active_document.PathItems
 
     @property
     def pixel_aspect_ratio(self):
         """The (custom) pixel aspect ratio of the Document. Range: 0.100 to 10.000."""
-        return self.activeDocument.PixelAspectRatio
+        return self.active_document.PixelAspectRatio
 
     # @property
     # def print_settings(self):
@@ -184,52 +185,52 @@ class ActiveDocument(Core):
 
     @property
     def quick_mask_mode(self):
-        return self.activeDocument.QuickMaskMode
+        return self.active_document.QuickMaskMode
 
     @property
     def saved(self):
         """If true, the Document been saved since the last change."""
-        return self.activeDocument.Saved
+        return self.active_document.Saved
 
     @property
     def resolution(self):
         """The resolution of the Document (in pixels per inch)"""
-        return self.activeDocument.resolution
+        return self.active_document.resolution
 
     @property
     def selection(self):
         """The selected area of the Document."""
-        return self.activeDocument.selection
+        return self.active_document.selection
 
     @property
     def typename(self):
         """The class name of the object."""
-        return self.activeDocument.typename
+        return self.active_document.typename
 
     @property
     def width(self):
-        return self.activeDocument.Width
+        return self.active_document.Width
 
     @property
-    def xmp_metadata(self):
+    def xmpMetadata(self):
         """The XMP properties of the Document. The Camera RAW settings are
         stored here."""
-        return self.activeDocument.XmpMetadata
+        return self.active_document.XmpMetadata
 
     # Methods
-    def auto_count(self, *args, **kwargs):
+    def autoCount(self, *args, **kwargs):
         """Counts the objects in the Document."""
-        return self.activeDocument.AutoCount(*args, **kwargs)
+        return self.active_document.AutoCount(*args, **kwargs)
 
     def changeMode(self, *args, **kwargs):
         """Changes the mode of the Document."""
-        return self.activeDocument.ChangeMode(*args, **kwargs)
+        return self.active_document.ChangeMode(*args, **kwargs)
 
     def close(self, saving=save_options.DONOTSAVECHANGES):
-        return self.activeDocument.Close(saving)
+        return self.active_document.Close(saving)
 
     def convertProfile(self):
-        return self.activeDocument.convertProfile()
+        return self.active_document.convertProfile()
 
     #
     # def add_art_layer(self):
@@ -246,55 +247,55 @@ class ActiveDocument(Core):
     #     return ActiveDocument()
 
     @property
-    def Documents(self):
+    def documents(self):
         return Documents()
 
     def close_all_documents(self, mode=3):
-        for doc in self.Documents:
-            doc.Close(mode)
+        for doc in self.adobe.documents:
+            doc.close(mode)
 
-    def flatten(self):
+    def Flatten(self):
         """Flattens all layers."""
-        return self.activeDocument.Flatten()
+        return self.active_document.Flatten()
 
-    def merge_visible_layers(self):
+    def MergeVisibleLayers(self):
         """Flattens all visible layers in the Document."""
-        return self.activeDocument.MergeVisibleLayers()
+        return self.active_document.MergeVisibleLayers()
 
     def crop(self, **kwargs):
-        return self.activeDocument.Crop(**kwargs)
+        return self.active_document.Crop(**kwargs)
 
-    def export_document(self, *args, **kwargs):
+    def ExportDocument(self, *args, **kwargs):
         """Exports the Document."""
-        return self.activeDocument.ExportDocument(*args, **kwargs)
+        return self.active_document.ExportDocument(*args, **kwargs)
 
-    def duplicate(self, name, merge_layers_only=False):
-        self.activeDocument.Duplicate(name, merge_layers_only)
+    def Duplicate(self, name, merge_layers_only=False):
+        self.active_document.Duplicate(name, merge_layers_only)
         return ActiveDocument()
 
-    def paste(self, into_selection):
+    def Paste(self, into_selection):
         """Pastes contents of the clipboard into the Document."""
-        return self.activeDocument.Paste(into_selection)
+        return self.active_document.Paste(into_selection)
 
-    def rasterize_all_layers(self):
-        return self.activeDocument.RasterizeAllLayers()
+    def RasterizeAllLayers(self):
+        return self.active_document.RasterizeAllLayers()
 
     def reveal_all(self):
         """Expands the Document to show clipped sections."""
-        return self.activeDocument.RevealAll()
+        return self.active_document.RevealAll()
 
     def save(self):
         """Saves the Document."""
-        return self.activeDocument.Save()
+        return self.active_document.Save()
 
-    def save_as(self, file_path, options, as_copy=True, ext=2):
-        return self.activeDocument.SaveAs(file_path, options.option, as_copy,
-                                          ext)
+    def SaveAs(self, file_path, options, as_copy=True, ext=2):
+        return self.active_document.SaveAs(file_path,
+                                           options, as_copy, ext)
 
     def trim(self, *args, **kwargs):
-        return self.activeDocument.trim(*args, **kwargs)
+        return self.active_document.trim(*args, **kwargs)
 
-    def resize_image(self, width, height, resolution=72, psAutomatic=8):
+    def ResizeImage(self, width, height, resolution=72, psAutomatic=8):
         """Changes the size of the image.
 
         Args:
@@ -305,5 +306,5 @@ class ActiveDocument(Core):
         Returns:
 
         """
-        return self.activeDocument.ResizeImage(width, height, resolution,
-                                               psAutomatic)
+        return self.active_document.ResizeImage(width, height, resolution,
+                                                psAutomatic)

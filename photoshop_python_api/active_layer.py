@@ -1,8 +1,8 @@
 # Import local modules
-from photoshop_python_api.core import Core
+from photoshop_python_api._core import Photoshop
 
 
-class ActiveLayer(Core):
+class ActiveLayer(Photoshop):
     def __int__(self):
         super(ActiveLayer, self).__init__()
 
@@ -11,6 +11,6 @@ class ActiveLayer(Core):
         return self.active_layer.Typename
 
     def add(self):
-        self.ps.ActiveDocument.ArtLayers.Add()
+        self.adobe.ActiveDocument.ArtLayers.Add()
 
 

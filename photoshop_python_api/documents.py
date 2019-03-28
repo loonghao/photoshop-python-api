@@ -1,20 +1,20 @@
 # Import local modules
 from photoshop_python_api import save_options
-from photoshop_python_api.core import Core
+from photoshop_python_api._core import Photoshop
 from photoshop_python_api.art_layers import ArtLayers
 
 
-class Documents(Core):
+class Documents(Photoshop):
     def __init__(self):
         super(Documents, self).__init__()
 
     def Add(self):
-        return self.ps.Documents.Add()
+        return self.adobe.Documents.Add()
 
     @property
     def ActiveDocument(self):
         """The current active Document."""
-        return self.ps.ActiveDocument
+        return self.adobe.ActiveDocument
 
     @property
     def active_layer(self):
@@ -239,7 +239,7 @@ class Documents(Core):
 
     @property
     def documents(self):
-        return self.ps.Documents
+        return self.adobe.Documents
 
     def close_all_documents(self, mode=3):
         for doc in self.documents:

@@ -2,11 +2,11 @@
 Adobe Photoshop Actions menu. The ActionDescriptor class is part of the Action
 Manager functionality. For more details on the Action Manager,
 see the Photoshop Scripting Guide."""
-from photoshop_python_api.basic_option import BasicOption
-from photoshop_python_api.core import Core
+from photoshop_python_api._basic_option import BasicOption
+from photoshop_python_api._core import Photoshop
 
 
-class ActionDescriptor(BasicOption, Core):
+class ActionDescriptor(BasicOption, Photoshop):
     object_name = 'ActionDescriptor'
 
     def __init__(self):

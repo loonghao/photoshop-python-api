@@ -2,19 +2,19 @@
 from photoshop_python_api import save_options
 from photoshop_python_api.active_document import ActiveDocument
 from photoshop_python_api.art_layers import ArtLayers
-from photoshop_python_api.core import Core
+from photoshop_python_api._core import Photoshop
 from photoshop_python_api.documents import Documents
 from photoshop_python_api.errors import COMError
 
 
-class Document(Core):
+class Document(Photoshop):
     def __init__(self):
         super(Document, self).__init__()
 
     @property
     def activeDocument(self):
         """The current active Document."""
-        return self.ps.ActiveDocument
+        return self.adobe.ActiveDocument
 
     @property
     def active_layer(self):
@@ -271,7 +271,7 @@ class Document(Core):
         return self.activeDocument.ExportDocument(*args, **kwargs)
 
     def duplicate(self, name, merge_layers_only=False):
-        self.activeDocument.Duplicate(name, merge_layers_only)
+        self.activeDocument.duplicate(name, merge_layers_only)
         return ActiveDocument()
 
     def paste(self, into_selection):

@@ -1,8 +1,9 @@
-from photoshop_python_api.basic_option import BasicOption
-from photoshop_python_api.core import Core
+# Import local modules
+from photoshop_python_api._basic_option import BasicOption
+from photoshop_python_api._core import Photoshop
 
 
-class CMYKColor(BasicOption, Core):
+class CMYKColor(BasicOption, Photoshop):
     object_name = 'CMYKColor'
 
     def __init__(self, app):

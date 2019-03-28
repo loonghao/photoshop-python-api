@@ -1,8 +1,8 @@
-from photoshop_python_api.basic_option import BasicOption
-from photoshop_python_api.core import Core
+from photoshop_python_api._basic_option import BasicOption
+from photoshop_python_api._core import Photoshop
 
 
-class RGBColor(BasicOption, Core):
+class RGBColor(BasicOption, Photoshop):
     object_name = 'RGBColor'
 
     def __init__(self, app):

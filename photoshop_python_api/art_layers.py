@@ -1,14 +1,14 @@
 # Import local modules
-from photoshop_python_api.core import Core
+from photoshop_python_api._core import Photoshop
 
 
-class ArtLayers(Core):
+class ArtLayers(Photoshop):
     def __init__(self):
         super(ArtLayers, self).__init__()
 
     @property
     def art_layers(self):
-        return self.ps.ActiveDocument.ArtLayers
+        return self.adobe.ActiveDocument.ArtLayers
 
     @property
     def length(self):
