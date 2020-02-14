@@ -1,6 +1,5 @@
 # Import local modules
 from photoshop_python_api import save_options
-from photoshop_python_api.active_document import ActiveDocument
 from photoshop_python_api.art_layers import ArtLayers
 from photoshop_python_api._core import Photoshop
 from photoshop_python_api.documents import Documents
@@ -13,75 +12,65 @@ class Document(Photoshop):
 
     @property
     def activeDocument(self):
-        """The current active Document."""
-        return self.adobe.ActiveDocument
+        return self.adobe.activeDocument
 
     @property
-    def active_layer(self):
-        """The selected layer."""
-        return self.activeDocument.ActiveLayer
-
-    @property
-    def art_layers(self):
-        return ArtLayers()
-
-    @property
-    def active_channels(self):
+    def activeChannels(self):
         """The selected channels."""
-        return self.activeDocument.ActiveChannels
+        return self.activeDocument.activeChannels
 
     @property
-    def active_history_brush_source(self):
+    def activeHistoryBrushSource(self):
         """The history state to use with the history brush."""
-        return self.activeDocument.ActiveHistoryBrushSource
+        return self.activeDocument.activeHistoryBrushSource
 
     @property
     def active_history_state(self):
         """The current history state for this Document."""
-        return self.activeDocument.ActiveHistoryState
+        return self.activeDocument.activeHistoryState
 
     @property
     def background_layer(self):
         """The background layer for the Document."""
-        return self.activeDocument.BackgroundLayer
+        return self.activeDocument.backgroundLayer
 
     @property
-    def bits_per_channel(self):
+    def bitsPerChannel(self):
         """The number of bits per channel."""
-        return self.activeDocument.BitsPerChannel
+        return self.activeDocument.bitsPerChannel
 
     @property
-    def color_profile_name(self):
+    def colorProfileName(self):
         """The name of the color profile. Valid only when no value is specified
         for color profile kind (to indicate a custom color profile)."""
-        return self.activeDocument.ColorProfileName
+        return self.activeDocument.colorProfileName
 
     @property
-    def color_profile_type(self):
+    def colorProfileType(self):
         """The type of color model that defines the working space of the
         Document."""
-        return self.activeDocument.ColorProfileType
+        return self.activeDocument.colorProfileType
 
     @property
-    def color_samplers(self):
+    def colorSamplers(self):
         """The current color samplers associated with the Document."""
-        return self.activeDocument.ColorSamplers
+        return self.activeDocument.colorSamplers
 
     @property
-    def component_channels(self):
+    def componentChannels(self):
         """The color component channels for this Document."""
-        return self.activeDocument.ComponentChannels
+        return self.activeDocument.componentChannels
 
     @property
-    def count_items(self):
+    def countItems(self):
         """The current count items in the Document."""
-        return self.activeDocument.CountItems
+        return self.activeDocument.countItems
 
     @property
     def fullName(self):
         """The full path name of the Document."""
         try:
-            return self.activeDocument.FullName
+            return self.activeDocument.fullName
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
@@ -171,18 +160,18 @@ class Document(Photoshop):
         self.activeDocument.fullName = path
 
     @property
-    def path_items(self):
-        return self.activeDocument.PathItems
+    def pathItems(self):
+        return self.activeDocument.pathItems
 
     @property
-    def pixel_aspect_ratio(self):
+    def pixelAspectRatio(self):
         """The (custom) pixel aspect ratio of the Document. Range: 0.100 to 10.000."""
-        return self.activeDocument.PixelAspectRatio
+        return self.activeDocument.pixelAspectRatio
 
-    # @property
-    # def print_settings(self):
-    #     """Document print settings."""
-    #     return self.ActiveDocument.PrintSettings
+    @property
+    def printSettings(self):
+        """Document print settings."""
+        return self.activeDocument.printSettings
 
     @property
     def quick_mask_mode(self):
@@ -272,6 +261,7 @@ class Document(Photoshop):
 
     def duplicate(self, name, merge_layers_only=False):
         self.activeDocument.duplicate(name, merge_layers_only)
+        from photoshop_python_api.active_document import ActiveDocument
         return ActiveDocument()
 
     def paste(self, into_selection):
@@ -289,14 +279,13 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.activeDocument.Save()
 
-    def save_as(self, file_path, options, as_copy=False, ext=2):
-        return self.activeDocument.SaveAs(file_path, options.option, as_copy,
-                                          ext)
+    def saveAs(self, file_path, options, as_copy=False, ext=2):
+        return self.activeDocument.saveAs(file_path, options, as_copy, ext)
 
     def trim(self, *args, **kwargs):
         return self.activeDocument.trim(*args, **kwargs)
 
-    def resize_image(self, width, height, resolution=72, psAutomatic=8):
+    def resizeImage(self, width, height, resolution=72, psAutomatic=8):
         """Changes the size of the image.
 
         Args:
@@ -307,5 +296,5 @@ class Document(Photoshop):
         Returns:
 
         """
-        return self.activeDocument.ResizeImage(width, height, resolution,
+        return self.activeDocument.resizeImage(width, height, resolution,
                                                psAutomatic)

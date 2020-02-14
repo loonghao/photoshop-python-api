@@ -8,9 +8,10 @@ ADOBE_SCRIPT_AUTOMATION_SCRIPTS = 'AdobeScriptAutomation Scripts'
 
 # The photoshop version to COM progid mappings.
 PHOTOSHOP_VERSION_MAPPINGS = {
-    '2019': '130',
-    '2018': '120',
-    '2017': '110',
+    '2020': 140,
+    '2019': 130,
+    '2018': 120,
+    '2017': 110,
 }
 
 # Values for Photoshop enumeration 'PsLayerKind'.

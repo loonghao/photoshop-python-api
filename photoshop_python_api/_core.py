@@ -1,12 +1,15 @@
 # Import built-in modules
-import _winreg
+try:
+    import _winreg as winreg
+except ImportError:
+    import winreg
 import os
 from abc import ABCMeta
 from shutil import rmtree
 from tempfile import mkdtemp
 
-from comtypes import COMError
 # Import third-party modules
+from comtypes import COMError
 from comtypes.client import CreateObject
 
 from photoshop_python_api import constants
@@ -26,9 +29,9 @@ class Photoshop(object):
     def __init__(self, ps_version=None):
         version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
         self.app = None
-        self.version = os.getenv('PS_VERSION', ps_version)
+        self.photoshop_version = os.getenv('PS_VERSION', ps_version)
         version = self._get_install_version()
-        self.app_id = version_mappings.get(self.version, version)
+        self.app_id = version_mappings.get(self.photoshop_version, version)
         try:
             self.adobe = self.instance_app(self.app_id)
         except WindowsError:
@@ -41,10 +44,19 @@ class Photoshop(object):
     def __call__(self, *args, **kwargs):
         return self.app
 
+    def __getattribute__(self, item):
+        try:
+            return super(Photoshop, self).__getattribute__(item)
+        except AttributeError:
+            try:
+                return getattr(self.adobe, item)
+            except AttributeError:
+                return getattr(self.app, item)
+
     def get_application_path(self):
-        key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE,
-                              "{}\\{}".format(self.REG_PATH, self.app_id))
-        return _winreg.QueryValueEx(key, 'ApplicationPath')[
+        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
+                             "{}\\{}".format(self.REG_PATH, self.app_id))
+        return winreg.QueryValueEx(key, 'ApplicationPath')[
                    0] + 'Photoshop'
 
     def instance_app(self, ps_id):
@@ -56,16 +68,15 @@ class Photoshop(object):
         if self.sub_object_name:
             naming_space.append(self.sub_object_name)
         naming_space.append(ps_id)
-        if self.object_name:
-            progress_id = self._get_name(naming_space)
-            self.app = self._create_object(progress_id, dynamic=True)
         progress_id = self._get_name(naming_space)
+        if self.object_name:
+            self.app = self._create_object(progress_id, dynamic=True)
         return self._create_object(progress_id, dynamic=True)
 
     def _get_install_version(self):
-        key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE,
-                              self.REG_PATH)
-        self.app_id = _winreg.EnumKey(key, 0).split('.')[0]
+        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
+                             self.REG_PATH)
+        self.app_id = winreg.EnumKey(key, 0).split('.')[0]
         return self.app_id
 
     @staticmethod
@@ -76,10 +87,10 @@ class Photoshop(object):
     def _get_name(list_):
         return '.'.join(list_)
 
-    def string_id_to_type_id(self, string):
+    def stringIDToTypeID(self, string):
         return self.adobe.stringIDToTypeID(string)
 
-    def char_id_to_type_id(self, char):
+    def charIDToTypeID(self, char):
         return self.adobe.charIDToTypeID(char)
 
     @property
@@ -101,11 +112,11 @@ class Photoshop(object):
 
         """
         try:
-            id60 = self.string_id_to_type_id("AdobeScriptAutomation Scripts")
+            id60 = self.stringIDToTypeID("AdobeScriptAutomation Scripts")
             action = self.action_descriptor
-            id61 = self.char_id_to_type_id(constants.JSCT)
+            id61 = self.charIDToTypeID(constants.JSCT)
             action.putPath(id61, jsx)
-            id62 = self.char_id_to_type_id(constants.JSMS)
+            id62 = self.charIDToTypeID(constants.JSMS)
             action.putString(id62, constants.NULL)
             self.adobe.executeAction(id60, action, 2)
         except COMError:

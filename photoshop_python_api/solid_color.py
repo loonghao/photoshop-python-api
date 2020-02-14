@@ -5,11 +5,11 @@ from photoshop_python_api.cmyk_color import CMYKColor
 from photoshop_python_api.rgb_color import RGBColor
 
 
-class _SolidColor(Photoshop):
+class SolidColor(Photoshop):
     object_name = 'SolidColor'
 
     def __int__(self):
-        super(_SolidColor, self).__init__()
+        super(SolidColor, self).__init__()
 
     # @property
     # def cmyk(self):
@@ -43,4 +43,3 @@ class _SolidColor(Photoshop):
     # def isEqual(self, *args, **kwargs):
     #     return self.app.IsEqual(*args, **kwargs)
 
-SolidColor = _SolidColor().app
