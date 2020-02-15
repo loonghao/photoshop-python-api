@@ -13,7 +13,8 @@ from photoshop_python_api.documents import Documents
 from photoshop_python_api.layer import Layer
 from photoshop_python_api.layer_kind import LayerKind
 from photoshop_python_api.save_options import (
-    GIFSaveOptions, JPEGSaveOptions, PDFSaveOptions, PNGSaveOptions)
+    GIFSaveOptions, JPEGSaveOptions, PDFSaveOptions, PNGSaveOptions,
+)
 from photoshop_python_api.solid_color import SolidColor
 from photoshop_python_api.text_item import TextItem
 

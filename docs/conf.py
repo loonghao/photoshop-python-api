@@ -15,8 +15,9 @@
 import os
 import sys
 
-import photoshop_python_api
 import sphinx_rtd_theme
+
+import photoshop_python_api
 
 # If extensions (or modules to Document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is

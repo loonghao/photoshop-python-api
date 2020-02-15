@@ -1,5 +1,6 @@
 """Describe the distribution to distutils."""
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
 
 import photoshop_python_api
 
