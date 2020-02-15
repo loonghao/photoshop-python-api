@@ -39,4 +39,3 @@ repos:
     hooks:
       - id: add-trailing-comma
         args: [--py36-plus]
-
