@@ -16,10 +16,19 @@ from photoshop_python_api.save_options import (
     GIFSaveOptions, JPEGSaveOptions, PDFSaveOptions, PNGSaveOptions,
 )
 from photoshop_python_api.solid_color import SolidColor
+from photoshop_python_api.units import Units
 from photoshop_python_api.text_item import TextItem
+from photoshop_python_api.constants import NewDocumentMode
+from photoshop_python_api.constants import DocumentFill
+from photoshop_python_api.constants import DialogModes
+from photoshop_python_api.constants import SelectionType
 
 __all__ = [
     'Application',
+    'DialogModes',
+    'SelectionType',
+    'DocumentFill',
+    'NewDocumentMode',
     'LayerKind',
     'SolidColor',
     'TextItem',
@@ -33,4 +42,5 @@ __all__ = [
     'PNGSaveOptions',
     'PDFSaveOptions',
     'GIFSaveOptions',
+    'Units',
 ]

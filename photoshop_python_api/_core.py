@@ -45,6 +45,9 @@ class Photoshop:
     def __call__(self, *args, **kwargs):
         return self.app
 
+    def __repr__(self):
+        return f'{self.__class__.__name__} <{self._progress_id}>'
+
     def __getattribute__(self, item):
         try:
             return super().__getattribute__(item)
@@ -65,8 +68,8 @@ class Photoshop:
         else:
             naming_space.append(self.object_name)
         naming_space.append(ps_id)
-        progress_id = self._get_name(naming_space)
-        return self._create_object(progress_id, dynamic=True)
+        self._progress_id = self._get_name(naming_space)
+        return self._create_object(self._progress_id, dynamic=True)
 
     def _get_install_version(self):
         key = winreg.OpenKey(
@@ -116,7 +119,7 @@ class Photoshop:
             action.putPath(id61, jsx)
             id62 = self.charIDToTypeID(Adobe.JSMS)
             action.putString(id62, Adobe.NULL)
-            self.app.executeAction(id60, action, 2)
+            return self.app.executeAction(id60, action, 2)
         except COMError:
             raise PhotoshopPythonAPIError(
                 'The Photoshop is busy, '
@@ -144,5 +147,5 @@ class Photoshop:
         js = os.path.join(dir_, 'temp_script.jsx')
         with open(js, 'w') as file_obj:
             file_obj.write(command)
-        self.run_jsx(js)
-        rmtree(dir_)
+        return self.run_jsx(js)
+        # rmtree(dir_)

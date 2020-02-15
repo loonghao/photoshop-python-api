@@ -8,6 +8,13 @@ class ArtLayer(Photoshop):
         super().__init__(parent=parent)
 
     @property
+    def _layers(self):
+        return [layerset for layerset in self.app]
+
+    def __len__(self):
+        return self.length
+
+    @property
     def kind(self):
         return self.app.kind
 
@@ -25,25 +32,28 @@ class ArtLayer(Photoshop):
 
     @property
     def fillOpacity(self):
-        return self.app.artLayer.fillOpacity
+        return self.app.fillOpacity
 
     @property
     def length(self):
-        return self.art_layers.length
+        return len(self._layers)
 
     @property
     def parent(self):
-        return self.art_layers.parent
+        return self.app.parent
 
     @property
     def typename(self):
-        return self.art_layers.Typename
+        return self.app.Typename
 
     def add(self):
-        return self.art_layers.add()
+        return self.app.add()
 
     def get_by_name(self, name):
-        return self.art_layers.getByName(name)
+        return self.app.getByName(name)
 
     def remove_all(self):
-        return self.art_layers.RemoveAll()
+        return self.app.RemoveAll()
+
+    def applyAddNoise(self, amount, distribution, monochromatic):
+        return self.app.applyAddNoise(amount, distribution, monochromatic)

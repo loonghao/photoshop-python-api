@@ -1,4 +1,6 @@
 """The photoshop_python_api constants."""
+
+
 # This is an enum that will work in python-2 and python-3. No need for methods
 # in here. This is an enum which means we don't need an __init__ method.
 
@@ -77,3 +79,30 @@ class Adobe:
     UNITS_PICAS = 2  # Picas.
     UNITS_PIXELS = 1  # Pixels.
     UNITS_POINTS = 0  # Points.
+
+
+class NewDocumentMode(object):
+    GRAYSCALE = 1
+    RGB = 2
+    CMYK = 3
+    LAB = 4
+    BITMAP = 5
+
+
+class DocumentFill(object):
+    WHITE = 1
+    BACKGROUNDCOLOR = 2
+    TRANSPARENT = 3
+
+
+class DialogModes(object):
+    DisplayAllDialogs = 1
+    DisplayErrorDialogs = 2
+    DisplayNoDialogs = 3
+
+
+class SelectionType(object):
+    ReplaceSelection = 1
+    ExtendSelection = 2
+    DiminishSelection = 3
+    IntersectSelection = 4

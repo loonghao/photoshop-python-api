@@ -8,8 +8,12 @@ class ArtLayers(Photoshop):
         super().__init__(parent=parent)
 
     @property
+    def _layers(self):
+        return [layer for layer in self.app]
+
+    @property
     def length(self):
-        return self.app.length
+        return len(self._layers)
 
     @property
     def parent(self):
@@ -23,8 +27,11 @@ class ArtLayers(Photoshop):
         """Adds an element."""
         return ArtLayer(self.app.add())
 
-    def get_by_name(self, name):
-        return self.artLayers.getByName(name)
+    def getByName(self, name):
+        return self.app.getByName(name)
 
-    def remove_all(self):
-        return self.artLayers.RemoveAll()
+    def removeAll(self):
+        return self.app.removeAll()
+
+    def link(self, layer):
+        self.app.link(layer)

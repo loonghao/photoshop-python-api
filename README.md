@@ -5,7 +5,7 @@ https://photoshop-python-api.readthedocs.io
 http://wwwimages.adobe.com/www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf
 
 Has been tested and used Photoshop version:
-
+    - 2020
     - cc2019
     - cc2018
     - cc2017
@@ -43,7 +43,7 @@ new_text_layer = new_doc
 new_text_layer.kind = LayerKind.BRIGHTNESSCONTRAST
 new_text_layer.textItem.contents = "Hello, World!"
 new_text_layer.textItem.position = [160, 167]
-new_text_layer.textItem.size = 200
+new_text_layer.textItem.size = 40
 new_text_layer.textItem.color = text_color
 options = JPEGSaveOptions()
 options.quality = 10
@@ -76,5 +76,34 @@ o = JPEGSaveOptions()
 o.quality = 10
 thumb_doc.saveAs('c:/thumb.jpg', o, as_copy=True)
 thumb_doc.close()
+
+```
+
+Run javascript
+--------------
+
+```python
+
+from photoshop_python_api import Application
+
+app = Application()
+jsx = r"""
+var doc = app.activeDocument;
+var orig_name = doc.name;
+alert(orig_name);
+"""
+app.eval_javascript(jsx)
+
+```
+
+Open .psd file
+--------------
+
+```python
+
+from photoshop_python_api import Application
+
+app = Application()
+app.load("your/psd/or/psb/file_path.psd")
 
 ```

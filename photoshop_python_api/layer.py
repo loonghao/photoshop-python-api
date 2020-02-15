@@ -2,8 +2,8 @@ from photoshop_python_api._core import Photoshop
 
 
 class Layer(Photoshop):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent):
+        super().__init__(parent=parent)
 
     @property
     def active_layer(self):

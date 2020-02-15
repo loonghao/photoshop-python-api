@@ -4,6 +4,7 @@ import time
 from photoshop_python_api._core import Photoshop
 from photoshop_python_api.active_document import ActiveDocument
 from photoshop_python_api.documents import Documents
+from photoshop_python_api.preferences import Preferences
 from photoshop_python_api.solid_color import SolidColor
 
 
@@ -15,11 +16,15 @@ class Application(Photoshop):
     @property
     def activeDocument(self):
         """The frontmost documents."""
-        return ActiveDocument(self.app)
+        return ActiveDocument(self.app.activeDocument)
 
     @property
     def backgroundColor(self):
         return SolidColor()
+
+    @backgroundColor.setter
+    def backgroundColor(self, color):
+        self.app.backgroundColor = color
 
     @property
     def build(self):
@@ -35,7 +40,13 @@ class Application(Photoshop):
 
     @property
     def displayDialogs(self):
+        """The dialog mode for the document, which indicates whether or not
+        Photoshop displays dialogs when the script runs."""
         return self.app.displayDialogs
+
+    @displayDialogs.setter
+    def displayDialogs(self, value):
+        self.app.displayDialogs = value
 
     @property
     def documents(self):
@@ -106,7 +117,7 @@ class Application(Photoshop):
 
     @property
     def preferences(self):
-        return self.app.preferences
+        return Preferences(self.app.preferences)
 
     @property
     def preferencesFolder(self):
@@ -225,8 +236,12 @@ class Application(Photoshop):
     def active_layer_set(self):
         return self.app.LayerSets
 
-    def open(self, *args, **kwargs):
-        self.app.Open(*args, **kwargs)
+    def open(self, document_file_path):
+        return ActiveDocument(self.app.open(document_file_path))
+
+    def load(self, document_file_path):
+        """Loads a support document."""
+        return ActiveDocument(self.app.load(document_file_path))
 
     def doJavaScript(self, javascript, Arguments, ExecutionMode):
         self.app.doJavaScript(javascript, Arguments, ExecutionMode)

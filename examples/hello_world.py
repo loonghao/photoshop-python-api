@@ -10,13 +10,13 @@ def hello_world():
     new_doc = doc.artLayers.add()
     text_color = SolidColor()
     text_color.rgb.red = 225
-    text_color.rgb.green = 255
+    text_color.rgb.green = 0
     text_color.rgb.blue = 0
     new_text_layer = new_doc
     new_text_layer.kind = LayerKind.BRIGHTNESSCONTRAST
     new_text_layer.textItem.contents = 'Hello, World!'
     new_text_layer.textItem.position = [160, 167]
-    new_text_layer.textItem.size = 200
+    new_text_layer.textItem.size = 40
     new_text_layer.textItem.color = text_color
     options = JPEGSaveOptions()
     options.quality = 10

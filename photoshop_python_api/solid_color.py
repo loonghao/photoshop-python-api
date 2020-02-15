@@ -1,4 +1,8 @@
 from photoshop_python_api._core import Photoshop
+from photoshop_python_api.colors.cmyk_color import CMYKColor
+from photoshop_python_api.colors.lab_color import LabColor
+from photoshop_python_api.colors.rgb_color import RGBColor
+from photoshop_python_api.colors.hsb import HSBColor
 
 
 class SolidColor(Photoshop):
@@ -9,7 +13,7 @@ class SolidColor(Photoshop):
 
     @property
     def cmyk(self):
-        return self.app.cmyk
+        return CMYKColor(self.app.cmyk)
 
     @property
     def gray(self):
@@ -17,11 +21,11 @@ class SolidColor(Photoshop):
 
     @property
     def hsb(self):
-        return self.app.hbs
+        return HSBColor(self.app.hsb)
 
     @property
     def lab(self):
-        return self.app.lab
+        return LabColor(self.app.lab)
 
     @property
     def model(self):
@@ -33,7 +37,7 @@ class SolidColor(Photoshop):
 
     @property
     def rgb(self):
-        return self.app.rgb
+        return RGBColor(self.app.rgb)
 
     @property
     def isEqual(self, *args, **kwargs):
