@@ -3,10 +3,10 @@ from photoshop_python_api._core import Photoshop
 
 
 class ExportOptionsSaveForWeb(Photoshop):
-    object_name = "ExportOptionsSaveForWeb"
+    object_name = 'ExportOptionsSaveForWeb'
 
     def __init__(self):
-        super(ExportOptionsSaveForWeb, self).__init__()
+        super().__init__()
         self.format = 13  # PNG
         self.PNG8 = False  # Sets it to PNG-24 bit
 
@@ -57,7 +57,7 @@ class PNGSaveOptions(Photoshop):
     object_name = 'PNGSaveOptions'
 
     def __init__(self):
-        super(PNGSaveOptions, self).__init__()
+        super().__init__()
         self.interlaced = False
         self.compression = True
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Configure Sphinx."""
 # pylint: skip-file
 #
@@ -13,9 +12,11 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
 import os
 import sys
+
+import photoshop_python_api
+import sphinx_rtd_theme
 
 # If extensions (or modules to Document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
@@ -32,8 +33,6 @@ project_root = os.path.dirname(cwd)
 # version is used.
 sys.path.insert(0, project_root)
 
-import photoshop_python_api
-import sphinx_rtd_theme
 
 # -- General configuration ---------------------------------------------
 
@@ -51,7 +50,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -63,12 +62,12 @@ templates_path = ['_templates']
 # source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
-# The master toctree document.
+# The master toctree documents.
 master_doc = 'index'
 
 # General information about the project.
-project = u'photoshop_python_api'
-author = u'Long Hao'
+project = 'photoshop_python_api'
+author = 'Long Hao'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -112,7 +111,7 @@ html_theme = 'sphinx_rtd_theme'
 #
 html_theme_options = {
     'collapse_navigation': False,
-    'display_version': True
+    'display_version': True,
 }
 
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
@@ -149,12 +148,15 @@ latex_elements = {
     # 'figure_align': 'htbp',
 }
 
-# Grouping the document tree into LaTeX files. List of tuples
+# Grouping the documents tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'photoshop_python_api.tex', u'photoshop_python_api Documentation',
-     u'', 'manual'),
+    (
+        master_doc, 'photoshop_python_api.tex',
+        'photoshop_python_api Documentation',
+        '', 'manual',
+    ),
 ]
 
 
@@ -163,21 +165,27 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'photoshop_python_api', u'photoshop_python_api Documentation',
-     [author], 1)
+    (
+        master_doc, 'photoshop_python_api',
+        'photoshop_python_api Documentation',
+        [author], 1,
+    ),
 ]
 
 
 # -- Options for Texinfo output -------------------------------------------
 
-# Grouping the document tree into Texinfo files. List of tuples
+# Grouping the documents tree into Texinfo files. List of tuples
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'photoshop_python_api', u'photoshop_python_api Documentation',
-     author, 'photoshop_python_api',
-     'Photoshop python api',
-     'Miscellaneous'),
+    (
+        master_doc, 'photoshop_python_api',
+        'photoshop_python_api Documentation',
+        author, 'photoshop_python_api',
+        'Photoshop python api',
+        'Miscellaneous',
+    ),
 ]
 
 

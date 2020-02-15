@@ -6,7 +6,7 @@ from photoshop_python_api._core import Photoshop
 
 
 class ActionDescriptor(Photoshop):
-    object_name = "ActionDescriptor"
+    object_name = 'ActionDescriptor'
 
     def __init__(self):
-        super(ActionDescriptor, self).__init__()
+        super().__init__()

@@ -5,7 +5,7 @@ from photoshop_python_api.art_layer import ArtLayer
 
 class ArtLayers(Photoshop):
     def __init__(self, parent):
-        super(ArtLayers, self).__init__(parent=parent)
+        super().__init__(parent=parent)
 
     @property
     def length(self):

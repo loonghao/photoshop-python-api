@@ -2,10 +2,10 @@ from photoshop_python_api._core import Photoshop
 
 
 class TextItem(Photoshop):
-    object_name = "Application"
+    object_name = 'Application'
 
     def __init__(self, parent):
-        super(TextItem, self).__init__(parent=parent)
+        super().__init__(parent=parent)
 
     @property
     def contents(self):

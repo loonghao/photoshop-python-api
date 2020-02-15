@@ -10,7 +10,7 @@ from photoshop_python_api._core import Photoshop
 
 
 class ActionReference(Photoshop):
-    object_name = "ActionReference"
+    object_name = 'ActionReference'
 
     def __init__(self):
-        super(ActionReference, self).__init__()
+        super().__init__()

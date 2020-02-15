@@ -5,7 +5,7 @@ from photoshop_python_api._core import Photoshop
 class PhotoshopSaveOptions(Photoshop):
 
     def __int__(self):
-        super(PhotoshopSaveOptions, self).__init__()
+        super().__init__()
         # If true, the alpha channels are saved.
         self.AlphaChannels = False
         # If true, the annotations are save

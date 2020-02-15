@@ -1,16 +1,16 @@
 # Import local modules
 from photoshop_python_api import save_options
-from photoshop_python_api.art_layers import ArtLayers
 from photoshop_python_api._core import Photoshop
-from photoshop_python_api.errors import COMError
+from photoshop_python_api.art_layers import ArtLayers
 from photoshop_python_api.constants import Adobe
+from photoshop_python_api.errors import COMError
 
 
 class Document(Photoshop):
-    object_name = "Application"
+    object_name = 'Application'
 
     def __init__(self, parent):
-        super(Document, self).__init__(parent=parent)
+        super().__init__(parent=parent)
 
     @property
     def artLayers(self):
@@ -80,7 +80,8 @@ class Document(Photoshop):
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
-                '"{}")'.format(self.title))
+                '"{}")'.format(self.title),
+            )
 
     @property
     def height(self):
@@ -156,7 +157,8 @@ class Document(Photoshop):
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
-                '"{}")'.format(self.title))
+                '"{}")'.format(self.title),
+            )
 
     @path.setter
     def path(self, path):
@@ -280,8 +282,10 @@ class Document(Photoshop):
 
     def saveAs(self, file_path, options, as_copy=False):
         """Saves the documents with the specified save options."""
-        return self.app.saveAs(file_path, options, as_copy,
-                               Adobe.DIALOG_MODES_NO)
+        return self.app.saveAs(
+            file_path, options, as_copy,
+            Adobe.DIALOG_MODES_NO,
+        )
 
     def trim(self, *args, **kwargs):
         return self.activeDocument.trim(*args, **kwargs)
@@ -297,5 +301,7 @@ class Document(Photoshop):
         Returns:
 
         """
-        return self.activeDocument.resizeImage(width, height, resolution,
-                                               psAutomatic)
+        return self.activeDocument.resizeImage(
+            width, height, resolution,
+            psAutomatic,
+        )

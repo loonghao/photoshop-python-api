@@ -1,12 +1,11 @@
-# Import local modules
 from photoshop_python_api._core import Photoshop
 
 
 class SolidColor(Photoshop):
-    object_name = "SolidColor"
+    object_name = 'SolidColor'
 
     def __init__(self):
-        super(SolidColor, self).__init__()
+        super().__init__()
 
     @property
     def cmyk(self):

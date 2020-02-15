@@ -1,9 +1,9 @@
 """The photoshop_python_api constants."""
-
-
 # This is an enum that will work in python-2 and python-3. No need for methods
 # in here. This is an enum which means we don't need an __init__ method.
-class Adobe(object):
+
+
+class Adobe:
     # Name of photoshop action descriptor.
     ACTION_DESCRIPTOR = 'ActionDescriptor'
 
@@ -77,5 +77,3 @@ class Adobe(object):
     UNITS_PICAS = 2  # Picas.
     UNITS_PIXELS = 1  # Pixels.
     UNITS_POINTS = 0  # Points.
-
-

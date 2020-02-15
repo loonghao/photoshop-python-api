@@ -46,7 +46,7 @@ photoshop\_python\_api.application module
 photoshop\_python\_api.art\_layers module
 -----------------------------------------
 
-.. automodule:: photoshop_python_api.art_layers
+.. automodule:: photoshop_python_api.artLayers
     :members:
     :undoc-members:
     :show-inheritance:
@@ -75,10 +75,10 @@ photoshop\_python\_api.core module
     :undoc-members:
     :show-inheritance:
 
-photoshop\_python\_api.document module
+photoshop\_python\_api.documents module
 --------------------------------------
 
-.. automodule:: photoshop_python_api.document
+.. automodule:: photoshop_python_api.documents
     :members:
     :undoc-members:
     :show-inheritance:

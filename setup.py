@@ -1,17 +1,17 @@
 """Describe the distribution to distutils."""
+from setuptools import find_packages, setup
 
-# Import third-party modules
-from setuptools import find_packages
-from setuptools import setup
-
-# Import local modules
 import photoshop_python_api
 
-SHORT = ('photoshop_python_api is a python api that connects photoshop with '
-         'COM.')
-LONG = ('photoshop_python_api is a python api that connects photoshop with '
-        'COM. For more info check out the README at '
-        '\'github.com/loonghao/photoshop_python_api\'.')
+SHORT = (
+    'photoshop_python_api is a python api that connects photoshop with '
+    'COM.'
+)
+LONG = (
+    'photoshop_python_api is a python api that connects photoshop with '
+    'COM. For more info check out the README at '
+    '\'github.com/loonghao/photoshop_python_api\'.'
+)
 
 
 def parse_requirements(filename):

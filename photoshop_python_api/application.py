@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-module author: Long Hao <hoolongvfx@gmail.com>
-"""
 import os
 import time
 
-# Import local modules
 from photoshop_python_api._core import Photoshop
-# Import built-in modules
 from photoshop_python_api.active_document import ActiveDocument
-from photoshop_python_api.document import Document
 from photoshop_python_api.documents import Documents
 from photoshop_python_api.solid_color import SolidColor
 
@@ -17,7 +10,7 @@ from photoshop_python_api.solid_color import SolidColor
 class Application(Photoshop):
 
     def __init__(self, version=None):
-        super(Application, self).__init__(ps_version=version)
+        super().__init__(ps_version=version)
 
     @property
     def activeDocument(self):
@@ -85,7 +78,8 @@ class Application(Photoshop):
 
     @property
     def notifiers(self):
-        """The notifiers currently configured (in the Scripts Events Manager menu in the application)."""
+        """The notifiers currently configured (in the Scripts Events Manager
+        menu in the application)."""
         return self.app.notifiers
 
     @property
@@ -156,19 +150,21 @@ class Application(Photoshop):
         pass
 
     def bringToFront(self):
-        return self.eval_javascript("app.bringToFront();")
+        return self.eval_javascript('app.bringToFront();')
 
     def changeProgressText(self, text):
         """Changes the text that appears in the progress window."""
-        self.eval_javascript("app.changeProgressText('{}');".format(text))
+        self.eval_javascript(f"app.changeProgressText('{text}');")
 
     def doAction(self, action, action_from):
         """Plays the specified action from the Actions palette."""
         return self.app.doAction(action, action_from)
 
     def doForcedProgress(self, title, javascript):
-        script = "app.doForcedProgress('{}', '{}')".format(title,
-                                                           javascript)
+        script = "app.doForcedProgress('{}', '{}')".format(
+            title,
+            javascript,
+        )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -182,22 +178,26 @@ class Application(Photoshop):
             javascript (str): JavaScriptString to execute.
 
         """
-        script = "app.doProgress('{}', '{}')".format(title,
-                                                     javascript)
+        script = "app.doProgress('{}', '{}')".format(
+            title,
+            javascript,
+        )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSegmentTask(self, segmentLength, done, total, javascript):
         script = "app.doProgressSegmentTask({}, {}, {}, '{}');".format(
-            segmentLength, done, total, javascript)
+            segmentLength, done, total, javascript,
+        )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSubTask(self, index, limit, javascript):
         script = "app.doProgressSubTask({}, {}, '{}');".format(
-            index, limit, javascript)
+            index, limit, javascript,
+        )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -207,7 +207,7 @@ class Application(Photoshop):
         a subtask. Returns false on cancel.
 
         """
-        script = "app.doProgressTask({}, '{}');".format(index, javascript)
+        script = f"app.doProgressTask({index}, '{javascript}');"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -252,10 +252,10 @@ class Application(Photoshop):
 
     def refreshFonts(self):
         """Force the font list to get refreshed."""
-        return self.eval_javascript("app.refreshFonts();")
+        return self.eval_javascript('app.refreshFonts();')
 
     def showColorPicker(self):
-        return self.eval_javascript("app.showColorPicker();")
+        return self.eval_javascript('app.showColorPicker();')
 
     @staticmethod
     def system(command):
@@ -268,4 +268,4 @@ class Application(Photoshop):
         return self.app.typeIDToCharID(typeID)
 
     def updateProgress(self, done, total):
-        self.eval_javascript("app.updateProgress({}, {})".format(done, total))
+        self.eval_javascript(f'app.updateProgress({done}, {total})')

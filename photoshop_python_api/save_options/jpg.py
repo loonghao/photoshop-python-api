@@ -3,10 +3,10 @@ from photoshop_python_api._core import Photoshop
 
 
 class JPEGSaveOptions(Photoshop):
-    object_name = "JPEGSaveOptions"
+    object_name = 'JPEGSaveOptions'
 
     def __init__(self):
-        super(JPEGSaveOptions, self).__init__()
+        super().__init__()
         print()
         # print(self.)
 

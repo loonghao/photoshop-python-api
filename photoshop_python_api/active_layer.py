@@ -4,7 +4,7 @@ from photoshop_python_api._core import Photoshop
 
 class ActiveLayer(Photoshop):
     def __int__(self):
-        super(ActiveLayer, self).__init__()
+        super().__init__()
 
     @property
     def name(self):
@@ -12,5 +12,3 @@ class ActiveLayer(Photoshop):
 
     def add(self):
         self.app.ActiveDocument.ArtLayers.Add()
-
-

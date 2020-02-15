@@ -1,10 +1,9 @@
-# Import local modules
 from photoshop_python_api._core import Photoshop
 
 
 class Layer(Photoshop):
     def __init__(self):
-        super(Layer, self).__init__()
+        super().__init__()
 
     @property
     def active_layer(self):

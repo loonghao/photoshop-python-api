@@ -5,7 +5,7 @@ from photoshop_python_api.text_item import TextItem
 
 class ArtLayer(Photoshop):
     def __init__(self, parent):
-        super(ArtLayer, self).__init__(parent=parent)
+        super().__init__(parent=parent)
 
     @property
     def kind(self):

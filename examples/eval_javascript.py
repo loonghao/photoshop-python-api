@@ -1,4 +1,5 @@
 from photoshop_python_api.application import Application
+
 app = Application()
 jsx = r"""
 var doc = app.activeDocument;

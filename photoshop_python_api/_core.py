@@ -1,6 +1,4 @@
 # Import built-in modules
-from abc import ABCMeta
-
 try:
     # python-2.
     import _winreg as winreg
@@ -14,15 +12,14 @@ from tempfile import mkdtemp
 # Import third-party modules
 from comtypes import COMError
 from comtypes.client import CreateObject
-
 # Import local modules
 from photoshop_python_api.constants import Adobe
 from photoshop_python_api.errors import PhotoshopPythonAPIError
 
 
-class Photoshop(object):
-    _root = "Photoshop"
-    REG_PATH = "Software\\Adobe\\Photoshop"
+class Photoshop:
+    _root = 'Photoshop'
+    REG_PATH = 'Software\\Adobe\\Photoshop'
     _object_name = 'Application'
     object_name = None
 
@@ -34,12 +31,14 @@ class Photoshop(object):
         self.app_id = version_mappings.get(self.photoshop_version, version)
         try:
             self.app = self.instance_app(self.app_id)
-        except WindowsError:
+        except OSError:
             try:
                 self.app = self.instance_app(self._get_install_version())
-            except WindowsError:
-                raise PhotoshopPythonAPIError('Please check if you have '
-                                              'Photoshop installed correctly.')
+            except OSError:
+                raise PhotoshopPythonAPIError(
+                    'Please check if you have '
+                    'Photoshop installed correctly.',
+                )
         if parent:
             self.app = parent
 
@@ -48,14 +47,16 @@ class Photoshop(object):
 
     def __getattribute__(self, item):
         try:
-            return super(Photoshop, self).__getattribute__(item)
+            return super().__getattribute__(item)
         except AttributeError:
             return getattr(self.app, item)
 
     def get_application_path(self):
-        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
-                             "{}\\{}".format(self.REG_PATH, self.app_id))
-        return winreg.QueryValueEx(key, "ApplicationPath")[0] + 'Photoshop'
+        key = winreg.OpenKey(
+            winreg.HKEY_LOCAL_MACHINE,
+            f'{self.REG_PATH}\\{self.app_id}',
+        )
+        return winreg.QueryValueEx(key, 'ApplicationPath')[0] + 'Photoshop'
 
     def instance_app(self, ps_id):
         naming_space = [self._root]
@@ -68,8 +69,10 @@ class Photoshop(object):
         return self._create_object(progress_id, dynamic=True)
 
     def _get_install_version(self):
-        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
-                             self.REG_PATH)
+        key = winreg.OpenKey(
+            winreg.HKEY_LOCAL_MACHINE,
+            self.REG_PATH,
+        )
         self.app_id = winreg.EnumKey(key, 0).split('.')[0]
         return self.app_id
 
@@ -107,7 +110,7 @@ class Photoshop(object):
 
         """
         try:
-            id60 = self.stringIDToTypeID("AdobeScriptAutomation Scripts")
+            id60 = self.stringIDToTypeID('AdobeScriptAutomation Scripts')
             action = self.action_descriptor
             id61 = self.charIDToTypeID(Adobe.JSCT)
             action.putPath(id61, jsx)
@@ -115,8 +118,10 @@ class Photoshop(object):
             action.putString(id62, Adobe.NULL)
             self.app.executeAction(id60, action, 2)
         except COMError:
-            raise PhotoshopPythonAPIError('The Photoshop is busy, '
-                                          'Please try again.')
+            raise PhotoshopPythonAPIError(
+                'The Photoshop is busy, '
+                'Please try again.',
+            )
 
     def eval_javascript(self, command):
         """Eval Javascript in python.

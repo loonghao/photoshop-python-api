@@ -3,7 +3,7 @@ from photoshop_python_api._core import Photoshop
 
 
 class EPSSaveOptions(Photoshop):
-    object_name = "EPSSaveOptions"
+    object_name = 'EPSSaveOptions'
 
     def __init__(self):
-        super(EPSSaveOptions, self).__init__()
+        super().__init__()

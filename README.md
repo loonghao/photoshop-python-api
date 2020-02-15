@@ -27,26 +27,29 @@ Hello World
 
 ```python
 
-from photoshop_python_api.application import Application
-from photoshop_python_api.save_options import JPEGSaveOptions
-from photoshop_python_api.solid_color import SolidColor
+from photoshop_python_api import Application
+from photoshop_python_api import JPEGSaveOptions
+from photoshop_python_api import SolidColor
+from photoshop_python_api import LayerKind
 
 app = Application()
-doc = app.document
+doc = app.documents.add()
 new_doc = doc.artLayers.add()
-textColor = SolidColor()
-textColor.RGB.Red = 225
-textColor.RGB.Green = 0
-textColor.RGB.Blue = 0
-newTextLayer = new_doc
-newTextLayer.Kind = 2
-newTextLayer.TextItem.Contents = "Hello, World!"
-newTextLayer.TextItem.Position = [160, 167]
-newTextLayer.TextItem.Size = 36
-newTextLayer.TextItem.Color = textColor.option
+text_color = SolidColor()
+text_color.rgb.red = 225
+text_color.rgb.green = 255
+text_color.rgb.blue = 0
+new_text_layer = new_doc
+new_text_layer.kind = LayerKind.BRIGHTNESSCONTRAST
+new_text_layer.textItem.contents = "Hello, World!"
+new_text_layer.textItem.position = [160, 167]
+new_text_layer.textItem.size = 200
+new_text_layer.textItem.color = text_color
 options = JPEGSaveOptions()
-jpg = 'c:/hello_world.jpg'
-doc.save_as(jpg, options, as_copy=True)
+options.quality = 10
+# # save to jpg
+jpg = 'd:/hello_world.jpg'
+doc.saveAs(jpg, options, as_copy=True)
 app.eval_javascript('alert("save to jpg: {}")'.format(jpg))
 ```
 
@@ -56,8 +59,8 @@ Create thumbnail
 
 ```python
 
-from photoshop_python_api.application import Application
-from photoshop_python_api.save_options import JPEGSaveOptions
+from photoshop_python_api import Application
+from photoshop_python_api import JPEGSaveOptions
 
 app = Application()
 active_document = app.activeDocument
