@@ -1,3 +1,5 @@
+"""Describe the distribution to distutils."""
+
 # Import third-party modules
 from setuptools import find_packages
 from setuptools import setup
@@ -11,6 +13,13 @@ LONG = ('photoshop_python_api is a python api that connects photoshop with '
         'COM. For more info check out the README at '
         '\'github.com/loonghao/photoshop_python_api\'.')
 
+
+def parse_requirements(filename):
+    with open(filename, 'r') as f:
+        for line in f:
+            yield line.strip()
+
+
 setup(
     name='photoshop_python_api',
     package_dir={'': '.'},
@@ -18,7 +27,7 @@ setup(
     url='https://github.com/loonghao/photoshop_python_api',
     author=photoshop_python_api.__author__,
     version=photoshop_python_api.__version__,
-    author_email='hoolongvfx@gmail.com',
+    author_email='hal.long@outllok.com',
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
@@ -31,6 +40,6 @@ setup(
     ],
     description=SHORT,
     long_description=LONG,
-    install_requires=['comtypes'],
+    install_requires=list(parse_requirements('requirements.txt')),
     package_data={'': ['LICENSE']},
 )
