@@ -33,7 +33,7 @@ from photoshop_python_api.solid_color import SolidColor
 
 app = Application()
 doc = app.document
-new_doc = doc.art_layers.add()
+new_doc = doc.artLayers.add()
 textColor = SolidColor()
 textColor.RGB.Red = 225
 textColor.RGB.Green = 0
@@ -45,8 +45,33 @@ newTextLayer.TextItem.Position = [160, 167]
 newTextLayer.TextItem.Size = 36
 newTextLayer.TextItem.Color = textColor.option
 options = JPEGSaveOptions()
-# # save to jpg
 jpg = 'c:/hello_world.jpg'
 doc.save_as(jpg, options, as_copy=True)
 app.eval_javascript('alert("save to jpg: {}")'.format(jpg))
+```
+
+Create thumbnail
+----------------
+
+
+```python
+
+from photoshop_python_api.application import Application
+from photoshop_python_api.save_options import JPEGSaveOptions
+
+app = Application()
+active_document = app.activeDocument
+orig_name = active_document.name
+width_str = active_document.width
+height_str = active_document.height
+index = width_str / 1280
+thumb_width = int(width_str / index)
+thumb_height = int(height_str / index)
+thumb_doc = active_document.duplicate('{}_tumb'.format(orig_name))
+thumb_doc.resizeImage(thumb_width, thumb_height)
+o = JPEGSaveOptions()
+o.quality = 10
+thumb_doc.saveAs('c:/thumb.jpg', o, as_copy=True)
+thumb_doc.close()
+
 ```
