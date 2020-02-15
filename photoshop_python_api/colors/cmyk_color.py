@@ -1,15 +1,11 @@
 # Import local modules
-from photoshop_python_api._basic_option import BasicOption
 from photoshop_python_api._core import Photoshop
 
 
-class CMYKColor(BasicOption, Photoshop):
-    object_name = 'CMYKColor'
+class CMYKColor(Photoshop):
 
-    def __init__(self, app):
-        super(CMYKColor, self).__init__()
-        if app:
-            self.app = app
+    def __init__(self, parent):
+        super().__init__(parent=parent)
 
     @property
     def Black(self):

@@ -1,10 +1,13 @@
 # Import built-in modules
+from abc import ABCMeta
+
 try:
+    # python-2.
     import _winreg as winreg
 except ImportError:
+    # python-3
     import winreg
 import os
-from abc import ABCMeta
 from shutil import rmtree
 from tempfile import mkdtemp
 
@@ -12,34 +15,33 @@ from tempfile import mkdtemp
 from comtypes import COMError
 from comtypes.client import CreateObject
 
-from photoshop_python_api import constants
 # Import local modules
+from photoshop_python_api.constants import Adobe
 from photoshop_python_api.errors import PhotoshopPythonAPIError
 
 
 class Photoshop(object):
-    _root = 'Photoshop'
+    _root = "Photoshop"
     REG_PATH = "Software\\Adobe\\Photoshop"
     _object_name = 'Application'
     object_name = None
-    sub_object_name = None
-    title = 'Photoshop Python API'
-    __metaclass__ = ABCMeta
 
-    def __init__(self, ps_version=None):
-        version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
-        self.app = None
+    def __init__(self, ps_version=None, parent=None):
+        self._progress_id = None
+        version_mappings = Adobe.PHOTOSHOP_VERSION_MAPPINGS
         self.photoshop_version = os.getenv('PS_VERSION', ps_version)
         version = self._get_install_version()
         self.app_id = version_mappings.get(self.photoshop_version, version)
         try:
-            self.adobe = self.instance_app(self.app_id)
+            self.app = self.instance_app(self.app_id)
         except WindowsError:
             try:
-                self.adobe = self.instance_app(self._get_install_version())
+                self.app = self.instance_app(self._get_install_version())
             except WindowsError:
                 raise PhotoshopPythonAPIError('Please check if you have '
                                               'Photoshop installed correctly.')
+        if parent:
+            self.app = parent
 
     def __call__(self, *args, **kwargs):
         return self.app
@@ -48,16 +50,12 @@ class Photoshop(object):
         try:
             return super(Photoshop, self).__getattribute__(item)
         except AttributeError:
-            try:
-                return getattr(self.adobe, item)
-            except AttributeError:
-                return getattr(self.app, item)
+            return getattr(self.app, item)
 
     def get_application_path(self):
         key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
                              "{}\\{}".format(self.REG_PATH, self.app_id))
-        return winreg.QueryValueEx(key, 'ApplicationPath')[
-                   0] + 'Photoshop'
+        return winreg.QueryValueEx(key, "ApplicationPath")[0] + 'Photoshop'
 
     def instance_app(self, ps_id):
         naming_space = [self._root]
@@ -65,12 +63,8 @@ class Photoshop(object):
             naming_space.append(self._object_name)
         else:
             naming_space.append(self.object_name)
-        if self.sub_object_name:
-            naming_space.append(self.sub_object_name)
         naming_space.append(ps_id)
         progress_id = self._get_name(naming_space)
-        if self.object_name:
-            self.app = self._create_object(progress_id, dynamic=True)
         return self._create_object(progress_id, dynamic=True)
 
     def _get_install_version(self):
@@ -88,10 +82,10 @@ class Photoshop(object):
         return '.'.join(list_)
 
     def stringIDToTypeID(self, string):
-        return self.adobe.stringIDToTypeID(string)
+        return self.app.stringIDToTypeID(string)
 
     def charIDToTypeID(self, char):
-        return self.adobe.charIDToTypeID(char)
+        return self.app.charIDToTypeID(char)
 
     @property
     def action_descriptor(self):
@@ -106,6 +100,7 @@ class Photoshop(object):
 
         Examples:
             .. code-block:: python
+
                 >>> from photoshop_python_api import Application
                 >>> app = Application()
                 >>> app.run_jsx("c:/test.jsx")
@@ -114,11 +109,11 @@ class Photoshop(object):
         try:
             id60 = self.stringIDToTypeID("AdobeScriptAutomation Scripts")
             action = self.action_descriptor
-            id61 = self.charIDToTypeID(constants.JSCT)
+            id61 = self.charIDToTypeID(Adobe.JSCT)
             action.putPath(id61, jsx)
-            id62 = self.charIDToTypeID(constants.JSMS)
-            action.putString(id62, constants.NULL)
-            self.adobe.executeAction(id60, action, 2)
+            id62 = self.charIDToTypeID(Adobe.JSMS)
+            action.putString(id62, Adobe.NULL)
+            self.app.executeAction(id60, action, 2)
         except COMError:
             raise PhotoshopPythonAPIError('The Photoshop is busy, '
                                           'Please try again.')

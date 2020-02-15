@@ -1,14 +1,27 @@
 # Import local modules
 from photoshop_python_api._core import Photoshop
+from photoshop_python_api.text_item import TextItem
 
 
 class ArtLayer(Photoshop):
-    def __init__(self):
-        super(ArtLayer, self).__init__()
+    def __init__(self, parent):
+        super(ArtLayer, self).__init__(parent=parent)
 
     @property
-    def _artLayer(self):
-        return self.app.ArtLayer
+    def kind(self):
+        return self.app.kind
+
+    @kind.setter
+    def kind(self, value):
+        self.app.kind = value
+
+    @property
+    def textItem(self):
+        return TextItem(self.app.textItem)
+
+    @textItem.setter
+    def textItem(self, value):
+        self.app.textItem = value
 
     @property
     def fillOpacity(self):

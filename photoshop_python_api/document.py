@@ -2,17 +2,23 @@
 from photoshop_python_api import save_options
 from photoshop_python_api.art_layers import ArtLayers
 from photoshop_python_api._core import Photoshop
-from photoshop_python_api.documents import Documents
 from photoshop_python_api.errors import COMError
+from photoshop_python_api.constants import Adobe
 
 
 class Document(Photoshop):
-    def __init__(self):
-        super(Document, self).__init__()
+    object_name = "Application"
+
+    def __init__(self, parent):
+        super(Document, self).__init__(parent=parent)
+
+    @property
+    def artLayers(self):
+        return ArtLayers(self.app.artLayers)
 
     @property
     def activeDocument(self):
-        return self.adobe.activeDocument
+        return self.app.activeDocument
 
     @property
     def activeChannels(self):
@@ -76,9 +82,6 @@ class Document(Photoshop):
                 'alert ("Please save your Document first!",'
                 '"{}")'.format(self.title))
 
-    # @property
-    # def guides(self):
-    #     return self.ActiveDocument.Guides
     @property
     def height(self):
         """The height of the Document."""
@@ -165,7 +168,11 @@ class Document(Photoshop):
 
     @property
     def pixelAspectRatio(self):
-        """The (custom) pixel aspect ratio of the Document. Range: 0.100 to 10.000."""
+        """The (custom) pixel aspect ratio of the Document.
+
+        Range: 0.100 to 10.000.
+
+        """
         return self.activeDocument.pixelAspectRatio
 
     @property
@@ -216,8 +223,8 @@ class Document(Photoshop):
         """Changes the mode of the Document."""
         return self.activeDocument.ChangeMode(*args, **kwargs)
 
-    def close(self, saving=save_options.PROMPTTOSAVECHANGES):
-        return self.activeDocument.Close(saving)
+    def close(self, saving=save_options.DONOTSAVECHANGES):
+        return self.activeDocument.close(saving)
 
     def convertProfile(self):
         return self.activeDocument.convertProfile()
@@ -235,14 +242,6 @@ class Document(Photoshop):
     # @property
     # def ActiveDocument(self):
     #     return ActiveDocument()
-
-    @property
-    def Documents(self):
-        return Documents()
-
-    def close_all_documents(self, mode=3):
-        for doc in self.Documents:
-            doc.Close(mode)
 
     def flatten(self):
         """Flattens all layers."""
@@ -279,8 +278,10 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.activeDocument.Save()
 
-    def saveAs(self, file_path, options, as_copy=False, ext=2):
-        return self.activeDocument.saveAs(file_path, options, as_copy, ext)
+    def saveAs(self, file_path, options, as_copy=False):
+        """Saves the documents with the specified save options."""
+        return self.app.saveAs(file_path, options, as_copy,
+                               Adobe.DIALOG_MODES_NO)
 
     def trim(self, *args, **kwargs):
         return self.activeDocument.trim(*args, **kwargs)

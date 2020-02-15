@@ -15,22 +15,18 @@ from photoshop_python_api.solid_color import SolidColor
 
 
 class Application(Photoshop):
-    object_name = 'Application'
 
     def __init__(self, version=None):
-        super(Application, self).__init__(version)
-
-    @property
-    def document(self):
-        return Document()
+        super(Application, self).__init__(ps_version=version)
 
     @property
     def activeDocument(self):
-        return ActiveDocument()
+        """The frontmost documents."""
+        return ActiveDocument(self.app)
 
     @property
     def backgroundColor(self):
-        return SolidColor
+        return SolidColor()
 
     @property
     def build(self):
@@ -50,7 +46,7 @@ class Application(Photoshop):
 
     @property
     def documents(self):
-        return Documents()
+        return Documents(self.app.documents)
 
     # TODO:
     @property
@@ -229,10 +225,6 @@ class Application(Photoshop):
     def active_layer_set(self):
         return self.app.LayerSets
 
-    @property
-    def preferences(self):
-        return self.app.Preferences
-
     def open(self, *args, **kwargs):
         self.app.Open(*args, **kwargs)
 
@@ -240,7 +232,7 @@ class Application(Photoshop):
         self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
     def isQuicktimeAvailable(self):
-        return self.adobe.IsQuicktimeAvailable()
+        return self.app.IsQuicktimeAvailable()
 
     def purge(self, index):
         """

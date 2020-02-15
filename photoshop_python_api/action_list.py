@@ -10,7 +10,7 @@ from photoshop_python_api._core import Photoshop
 
 
 class ActionList(Photoshop):
-    object_name = 'ActionList'
+    object_name = "ActionList"
 
     def __init__(self):
         super(ActionList, self).__init__()

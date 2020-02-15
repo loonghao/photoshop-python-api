@@ -8,8 +8,7 @@ class Layer(Photoshop):
 
     @property
     def active_layer(self):
-        print dir(self.adobe.ActiveDocument)
-        return self.adobe.ActiveDocument.ActiveLayer
+        return self.app.ActiveDocument.ActiveLayer
 
     @property
     def all_locked(self):
