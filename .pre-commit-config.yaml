@@ -39,7 +39,4 @@ repos:
     hooks:
       - id: add-trailing-comma
         args: [--py36-plus]
-  - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v1.6.0
-    hooks:
-      - id: setup-cfg-fmt
+
