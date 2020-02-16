@@ -3,9 +3,12 @@ photoshop_python_api
 photoshop_python_api is a python api that connects photoshop with COM.
 
 https://photoshop-python-api.readthedocs.io
-http://wwwimages.adobe.com/www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf
+
+
+![icon](https://github.com/loonghao/photoshop_python_api/tree/master/images/logo.png)
 
 Has been tested and used Photoshop version:
+
     - 2020
     - cc2019
     - cc2018
@@ -108,3 +111,16 @@ app = Application()
 app.load("your/psd/or/psb/file_path.psd")
 
 ```
+
+Research and reference
+----------------------
+- https://theiviaxx.github.io/photoshop-docs/Photoshop/
+- http://wwwimages.adobe.com/www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf
+- https://github.com/lohriialo/photoshop-scripting-python
+- https://www.adobe.com/devnet/photoshop/scripting.html
+- https://www.youtube.com/playlist?list=PLUEniN8BpU8-Qmjyv3zyWaNvDYwJOJZ4m
+- http://yearbook.github.io/esdocs/#/Photoshop/Application
+- http://www.shining-lucy.com/wiki/page.php?id=appwiki:photoshop:ps_script
+- http://www.tonton-pixel.com/wp-content/uploads/DecisionTable.pdf
+- http://jongware.mit.edu/pscs5js_html/psjscs5/pc_Application.html
+- https://indd.adobe.com/view/a0207571-ff5b-4bbf-a540-07079bd21d75
