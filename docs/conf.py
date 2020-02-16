@@ -17,13 +17,12 @@ import sys
 
 import sphinx_rtd_theme
 
-import photoshop
-
 # If extensions (or modules to Document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
 # relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
 sys.path.insert(0, os.path.abspath('.'))
+import photoshop
 
 # Get the project root dir, which is the parent dir of this
 cwd = os.getcwd()
@@ -33,7 +32,6 @@ project_root = os.path.dirname(cwd)
 # This lets us ensure that the source package is imported, and that its
 # version is used.
 sys.path.insert(0, project_root)
-
 
 # -- General configuration ---------------------------------------------
 
@@ -98,7 +96,6 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -122,12 +119,10 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'photoshop_python_apidoc'
-
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -160,7 +155,6 @@ latex_documents = [
     ),
 ]
 
-
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
@@ -172,7 +166,6 @@ man_pages = [
         [author], 1,
     ),
 ]
-
 
 # -- Options for Texinfo output -------------------------------------------
 
@@ -188,7 +181,6 @@ texinfo_documents = [
         'Miscellaneous',
     ),
 ]
-
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
