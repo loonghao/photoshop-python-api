@@ -1,0 +1,2181 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>photoshop_python_api package &mdash; photoshop_python_api 0.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="photoshop_python_api.colors package" href="photoshop_python_api.colors.html" />
+    <link rel="prev" title="Usage" href="../usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> photoshop_python_api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#from-sources">From sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">photoshop_python_api package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="photoshop_python_api.colors.html">photoshop_python_api.colors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-cmyk-module">photoshop_python_api.colors.cmyk module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-hsb-module">photoshop_python_api.colors.hsb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-lab-module">photoshop_python_api.colors.lab module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-rgb-module">photoshop_python_api.colors.rgb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="photoshop_python_api.save_options.html">photoshop_python_api.save_options package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.bmp">photoshop_python_api.save_options.bmp module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.eps">photoshop_python_api.save_options.eps module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.gif">photoshop_python_api.save_options.gif module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.jpg">photoshop_python_api.save_options.jpg module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.pdf">photoshop_python_api.save_options.pdf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.png">photoshop_python_api.save_options.png module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.psd">photoshop_python_api.save_options.psd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.tif">photoshop_python_api.save_options.tif module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.action_descruotor">photoshop_python_api.action_descruotor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-action-list-module">photoshop_python_api.action_list module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-action-refrence-module">photoshop_python_api.action_refrence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.active_document">photoshop_python_api.active_document module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.active_layer">photoshop_python_api.active_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.application">photoshop_python_api.application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-art-layer-module">photoshop_python_api.art_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.art_layers">photoshop_python_api.art_layers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-constants-module">photoshop_python_api.constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.document">photoshop_python_api.document module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.documents">photoshop_python_api.documents module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.errors">photoshop_python_api.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-layer-module">photoshop_python_api.layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-layersets-module">photoshop_python_api.layerSets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-layer-kind-module">photoshop_python_api.layer_kind module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-layers-module">photoshop_python_api.layers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-preferences-module">photoshop_python_api.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-selection-module">photoshop_python_api.selection module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api.solid_color">photoshop_python_api.solid_color module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-text-fonts-module">photoshop_python_api.text_fonts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-text-item-module">photoshop_python_api.text_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photoshop-python-api-units-module">photoshop_python_api.units module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-photoshop_python_api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">photoshop_python_api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>photoshop_python_api package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/photoshop_python_api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="photoshop-python-api-package">
+<h1>photoshop_python_api package<a class="headerlink" href="#photoshop-python-api-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="photoshop_python_api.colors.html">photoshop_python_api.colors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.colors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-cmyk-module">photoshop_python_api.colors.cmyk module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-hsb-module">photoshop_python_api.colors.hsb module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-lab-module">photoshop_python_api.colors.lab module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-rgb-module">photoshop_python_api.colors.rgb module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.colors.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="photoshop_python_api.save_options.html">photoshop_python_api.save_options package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.bmp">photoshop_python_api.save_options.bmp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.eps">photoshop_python_api.save_options.eps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.gif">photoshop_python_api.save_options.gif module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.jpg">photoshop_python_api.save_options.jpg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.pdf">photoshop_python_api.save_options.pdf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.png">photoshop_python_api.save_options.png module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.psd">photoshop_python_api.save_options.psd module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.tif">photoshop_python_api.save_options.tif module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.save_options.html#module-photoshop_python_api.save_options">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-photoshop_python_api.action_descruotor">
+<span id="photoshop-python-api-action-descruotor-module"></span><h2>photoshop_python_api.action_descruotor module<a class="headerlink" href="#module-photoshop_python_api.action_descruotor" title="Permalink to this headline">¶</a></h2>
+<p>A record of key-value pairs for actions, such as those included on the
+Adobe Photoshop Actions menu. The ActionDescriptor class is part of the Action
+Manager functionality. For more details on the Action Manager,
+see the Photoshop Scripting Guide.</p>
+<dl class="class">
+<dt id="photoshop_python_api.action_descruotor.ActionDescriptor">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.action_descruotor.</code><code class="sig-name descname">ActionDescriptor</code><a class="reference internal" href="../_modules/photoshop_python_api/action_descruotor.html#ActionDescriptor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.action_descruotor.ActionDescriptor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.action_descruotor.ActionDescriptor.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'ActionDescriptor'</em><a class="headerlink" href="#photoshop_python_api.action_descruotor.ActionDescriptor.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="photoshop-python-api-action-list-module">
+<h2>photoshop_python_api.action_list module<a class="headerlink" href="#photoshop-python-api-action-list-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-action-refrence-module">
+<h2>photoshop_python_api.action_refrence module<a class="headerlink" href="#photoshop-python-api-action-refrence-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-photoshop_python_api.active_document">
+<span id="photoshop-python-api-active-document-module"></span><h2>photoshop_python_api.active_document module<a class="headerlink" href="#module-photoshop_python_api.active_document" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.active_document.ActiveDocument">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.active_document.</code><code class="sig-name descname">ActiveDocument</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.Documents">
+<em class="property">property </em><code class="sig-name descname">Documents</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.Documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.activeChannels">
+<em class="property">property </em><code class="sig-name descname">activeChannels</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.activeChannels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected channels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.activeDocument">
+<em class="property">property </em><code class="sig-name descname">activeDocument</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.activeDocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current active Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.activeLayer">
+<em class="property">property </em><code class="sig-name descname">activeLayer</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.activeLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.active_history_brush_source">
+<em class="property">property </em><code class="sig-name descname">active_history_brush_source</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.active_history_brush_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history state to use with the history brush.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.active_history_state">
+<em class="property">property </em><code class="sig-name descname">active_history_state</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.active_history_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current history state for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.artLayers">
+<em class="property">property </em><code class="sig-name descname">artLayers</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.artLayers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.auto_count">
+<code class="sig-name descname">auto_count</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.auto_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.auto_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the objects in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.background_layer">
+<em class="property">property </em><code class="sig-name descname">background_layer</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.background_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The background layer for the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.bits_per_channel">
+<em class="property">property </em><code class="sig-name descname">bits_per_channel</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.bits_per_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of bits per channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.changeMode">
+<code class="sig-name descname">changeMode</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.changeMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.changeMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the mode of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">saving=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.close_all_documents">
+<code class="sig-name descname">close_all_documents</code><span class="sig-paren">(</span><em class="sig-param">mode=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.close_all_documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.close_all_documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.color_profile_name">
+<em class="property">property </em><code class="sig-name descname">color_profile_name</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.color_profile_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the color profile. Valid only when no value is specified
+for color profile kind (to indicate a custom color profile).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.color_profile_type">
+<em class="property">property </em><code class="sig-name descname">color_profile_type</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.color_profile_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of color model that defines the working space of the
+Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.color_samplers">
+<em class="property">property </em><code class="sig-name descname">color_samplers</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.color_samplers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current color samplers associated with the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.component_channels">
+<em class="property">property </em><code class="sig-name descname">component_channels</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.component_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color component channels for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.convertProfile">
+<code class="sig-name descname">convertProfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.convertProfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.convertProfile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.count_items">
+<em class="property">property </em><code class="sig-name descname">count_items</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.count_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current count items in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.crop">
+<code class="sig-name descname">crop</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.crop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.crop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.duplicate">
+<code class="sig-name descname">duplicate</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">merge_layers_only=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.export_document">
+<code class="sig-name descname">export_document</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.export_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.export_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.flatten">
+<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all layers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.fullName">
+<em class="property">property </em><code class="sig-name descname">fullName</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.fullName" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full path name of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.height">
+<em class="property">property </em><code class="sig-name descname">height</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.histogram">
+<em class="property">property </em><code class="sig-name descname">histogram</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>A histogram showing the number of pixels at each color intensity
+level for the composite channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.history_states">
+<em class="property">property </em><code class="sig-name descname">history_states</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.history_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history states collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.id">
+<em class="property">property </em><code class="sig-name descname">id</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unique ID of this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.info">
+<em class="property">property </em><code class="sig-name descname">info</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.layer_comps">
+<em class="property">property </em><code class="sig-name descname">layer_comps</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.layer_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer comps collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.layer_setes">
+<em class="property">property </em><code class="sig-name descname">layer_setes</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.layer_setes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer sets collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.layers">
+<em class="property">property </em><code class="sig-name descname">layers</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layers collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.managed">
+<em class="property">property </em><code class="sig-name descname">managed</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.managed" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document is a workgroup Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.measurement_scale">
+<em class="property">property </em><code class="sig-name descname">measurement_scale</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.measurement_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>The measurement scale of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.merge_visible_layers">
+<code class="sig-name descname">merge_visible_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.merge_visible_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.merge_visible_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all visible layers in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.mode">
+<em class="property">property </em><code class="sig-name descname">mode</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color profile.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Document name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The object’s container.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.paste">
+<code class="sig-name descname">paste</code><span class="sig-paren">(</span><em class="sig-param">into_selection</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.paste"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.paste" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pastes contents of the clipboard into the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.path">
+<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path to the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.path_items">
+<em class="property">property </em><code class="sig-name descname">path_items</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.path_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.pixel_aspect_ratio">
+<em class="property">property </em><code class="sig-name descname">pixel_aspect_ratio</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.pixel_aspect_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>0.100 to 10.000.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>The (custom) pixel aspect ratio of the Document. Range</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.quick_mask_mode">
+<em class="property">property </em><code class="sig-name descname">quick_mask_mode</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.quick_mask_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.rasterize_all_layers">
+<code class="sig-name descname">rasterize_all_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.rasterize_all_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.rasterize_all_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.resize_image">
+<code class="sig-name descname">resize_image</code><span class="sig-paren">(</span><em class="sig-param">width</em>, <em class="sig-param">height</em>, <em class="sig-param">resolution=72</em>, <em class="sig-param">psAutomatic=8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.resize_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.resize_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the size of the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> – The desired width of the image.</p></li>
+<li><p><strong>height</strong> – The desired height of the image.</p></li>
+<li><p><strong>resolution</strong> – The resolution (in pixels per inch)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.resolution">
+<em class="property">property </em><code class="sig-name descname">resolution</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>The resolution of the Document (in pixels per inch)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.reveal_all">
+<code class="sig-name descname">reveal_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.reveal_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.reveal_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expands the Document to show clipped sections.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.save_as">
+<code class="sig-name descname">save_as</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">options</em>, <em class="sig-param">as_copy=True</em>, <em class="sig-param">ext=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.save_as"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.save_as" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.saved">
+<em class="property">property </em><code class="sig-name descname">saved</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document been saved since the last change.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.selection">
+<em class="property">property </em><code class="sig-name descname">selection</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected area of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.trim">
+<code class="sig-name descname">trim</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_document.html#ActiveDocument.trim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.trim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.typename">
+<em class="property">property </em><code class="sig-name descname">typename</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.typename" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class name of the object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.width">
+<em class="property">property </em><code class="sig-name descname">width</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.width" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_document.ActiveDocument.xmp_metadata">
+<em class="property">property </em><code class="sig-name descname">xmp_metadata</code><a class="headerlink" href="#photoshop_python_api.active_document.ActiveDocument.xmp_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>The XMP properties of the Document. The Camera RAW settings are
+stored here.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.active_layer">
+<span id="photoshop-python-api-active-layer-module"></span><h2>photoshop_python_api.active_layer module<a class="headerlink" href="#module-photoshop_python_api.active_layer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.active_layer.ActiveLayer">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.active_layer.</code><code class="sig-name descname">ActiveLayer</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_layer.html#ActiveLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_layer.ActiveLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.active_layer.ActiveLayer.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/active_layer.html#ActiveLayer.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.active_layer.ActiveLayer.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.active_layer.ActiveLayer.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#photoshop_python_api.active_layer.ActiveLayer.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.application">
+<span id="photoshop-python-api-application-module"></span><h2>photoshop_python_api.application module<a class="headerlink" href="#module-photoshop_python_api.application" title="Permalink to this headline">¶</a></h2>
+<p>module author: Long Hao &lt;<a class="reference external" href="mailto:hoolongvfx&#37;&#52;&#48;gmail&#46;com">hoolongvfx<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<dl class="class">
+<dt id="photoshop_python_api.application.Application">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.application.</code><code class="sig-name descname">Application</code><a class="reference internal" href="../_modules/photoshop_python_api/application.html#Application"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.application.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.activeDocument">
+<em class="property">property </em><code class="sig-name descname">activeDocument</code><a class="headerlink" href="#photoshop_python_api.application.Application.activeDocument" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.active_layer">
+<em class="property">property </em><code class="sig-name descname">active_layer</code><a class="headerlink" href="#photoshop_python_api.application.Application.active_layer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.active_layer_set">
+<code class="sig-name descname">active_layer_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/application.html#Application.active_layer_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.application.Application.active_layer_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.background_color">
+<em class="property">property </em><code class="sig-name descname">background_color</code><a class="headerlink" href="#photoshop_python_api.application.Application.background_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.document">
+<em class="property">property </em><code class="sig-name descname">document</code><a class="headerlink" href="#photoshop_python_api.application.Application.document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.documents">
+<em class="property">property </em><code class="sig-name descname">documents</code><a class="headerlink" href="#photoshop_python_api.application.Application.documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="photoshop_python_api.application.Application.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'Application'</em><a class="headerlink" href="#photoshop_python_api.application.Application.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.open">
+<code class="sig-name descname">open</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/application.html#Application.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.application.Application.open" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.application.Application.preferences">
+<em class="property">property </em><code class="sig-name descname">preferences</code><a class="headerlink" href="#photoshop_python_api.application.Application.preferences" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="photoshop-python-api-art-layer-module">
+<h2>photoshop_python_api.art_layer module<a class="headerlink" href="#photoshop-python-api-art-layer-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-photoshop_python_api.art_layers">
+<span id="photoshop-python-api-art-layers-module"></span><h2>photoshop_python_api.art_layers module<a class="headerlink" href="#module-photoshop_python_api.art_layers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.art_layers.ArtLayers">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.art_layers.</code><code class="sig-name descname">ArtLayers</code><a class="reference internal" href="../_modules/photoshop_python_api/art_layers.html#ArtLayers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.art_layers.ArtLayers.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/art_layers.html#ArtLayers.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.art_layers.ArtLayers.artLayers">
+<em class="property">property </em><code class="sig-name descname">artLayers</code><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers.artLayers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.art_layers.ArtLayers.get_by_name">
+<code class="sig-name descname">get_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/art_layers.html#ArtLayers.get_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers.get_by_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.art_layers.ArtLayers.length">
+<em class="property">property </em><code class="sig-name descname">length</code><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers.length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.art_layers.ArtLayers.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers.parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.art_layers.ArtLayers.remove_all">
+<code class="sig-name descname">remove_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/art_layers.html#ArtLayers.remove_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers.remove_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.art_layers.ArtLayers.typename">
+<em class="property">property </em><code class="sig-name descname">typename</code><a class="headerlink" href="#photoshop_python_api.art_layers.ArtLayers.typename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="photoshop-python-api-constants-module">
+<h2>photoshop_python_api.constants module<a class="headerlink" href="#photoshop-python-api-constants-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-photoshop_python_api.document">
+<span id="photoshop-python-api-document-module"></span><h2>photoshop_python_api.document module<a class="headerlink" href="#module-photoshop_python_api.document" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.document.Document">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.document.</code><code class="sig-name descname">Document</code><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.Documents">
+<em class="property">property </em><code class="sig-name descname">Documents</code><a class="headerlink" href="#photoshop_python_api.document.Document.Documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.activeChannels">
+<em class="property">property </em><code class="sig-name descname">activeChannels</code><a class="headerlink" href="#photoshop_python_api.document.Document.activeChannels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected channels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.activeDocument">
+<em class="property">property </em><code class="sig-name descname">activeDocument</code><a class="headerlink" href="#photoshop_python_api.document.Document.activeDocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current active Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.active_history_brush_source">
+<em class="property">property </em><code class="sig-name descname">active_history_brush_source</code><a class="headerlink" href="#photoshop_python_api.document.Document.active_history_brush_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history state to use with the history brush.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.active_history_state">
+<em class="property">property </em><code class="sig-name descname">active_history_state</code><a class="headerlink" href="#photoshop_python_api.document.Document.active_history_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current history state for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.active_layer">
+<em class="property">property </em><code class="sig-name descname">active_layer</code><a class="headerlink" href="#photoshop_python_api.document.Document.active_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.artLayers">
+<em class="property">property </em><code class="sig-name descname">artLayers</code><a class="headerlink" href="#photoshop_python_api.document.Document.artLayers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.auto_count">
+<code class="sig-name descname">auto_count</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.auto_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.auto_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the objects in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.backgroundLayer">
+<em class="property">property </em><code class="sig-name descname">backgroundLayer</code><a class="headerlink" href="#photoshop_python_api.document.Document.backgroundLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The background layer for the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.bitsPerChannel">
+<em class="property">property </em><code class="sig-name descname">bitsPerChannel</code><a class="headerlink" href="#photoshop_python_api.document.Document.bitsPerChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of bits per channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.changeMode">
+<code class="sig-name descname">changeMode</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.changeMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.changeMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the mode of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">saving=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.close_all_documents">
+<code class="sig-name descname">close_all_documents</code><span class="sig-paren">(</span><em class="sig-param">mode=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.close_all_documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.close_all_documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.colorProfileName">
+<em class="property">property </em><code class="sig-name descname">colorProfileName</code><a class="headerlink" href="#photoshop_python_api.document.Document.colorProfileName" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the color profile. Valid only when no value is specified
+for color profile kind (to indicate a custom color profile).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.color_profile_type">
+<em class="property">property </em><code class="sig-name descname">color_profile_type</code><a class="headerlink" href="#photoshop_python_api.document.Document.color_profile_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of color model that defines the working space of the
+Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.color_samplers">
+<em class="property">property </em><code class="sig-name descname">color_samplers</code><a class="headerlink" href="#photoshop_python_api.document.Document.color_samplers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current color samplers associated with the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.component_channels">
+<em class="property">property </em><code class="sig-name descname">component_channels</code><a class="headerlink" href="#photoshop_python_api.document.Document.component_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color component channels for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.convertProfile">
+<code class="sig-name descname">convertProfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.convertProfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.convertProfile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.count_items">
+<em class="property">property </em><code class="sig-name descname">count_items</code><a class="headerlink" href="#photoshop_python_api.document.Document.count_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current count items in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.crop">
+<code class="sig-name descname">crop</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.crop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.crop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.duplicate">
+<code class="sig-name descname">duplicate</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">merge_layers_only=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.export_document">
+<code class="sig-name descname">export_document</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.export_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.export_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.flatten">
+<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all layers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.fullName">
+<em class="property">property </em><code class="sig-name descname">fullName</code><a class="headerlink" href="#photoshop_python_api.document.Document.fullName" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full path name of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.height">
+<em class="property">property </em><code class="sig-name descname">height</code><a class="headerlink" href="#photoshop_python_api.document.Document.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.histogram">
+<em class="property">property </em><code class="sig-name descname">histogram</code><a class="headerlink" href="#photoshop_python_api.document.Document.histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>A histogram showing the number of pixels at each color intensity
+level for the composite channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.history_states">
+<em class="property">property </em><code class="sig-name descname">history_states</code><a class="headerlink" href="#photoshop_python_api.document.Document.history_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history states collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.id">
+<em class="property">property </em><code class="sig-name descname">id</code><a class="headerlink" href="#photoshop_python_api.document.Document.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unique ID of this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.info">
+<em class="property">property </em><code class="sig-name descname">info</code><a class="headerlink" href="#photoshop_python_api.document.Document.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.layer_comps">
+<em class="property">property </em><code class="sig-name descname">layer_comps</code><a class="headerlink" href="#photoshop_python_api.document.Document.layer_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer comps collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.layer_setes">
+<em class="property">property </em><code class="sig-name descname">layer_setes</code><a class="headerlink" href="#photoshop_python_api.document.Document.layer_setes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer sets collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.layers">
+<em class="property">property </em><code class="sig-name descname">layers</code><a class="headerlink" href="#photoshop_python_api.document.Document.layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layers collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.managed">
+<em class="property">property </em><code class="sig-name descname">managed</code><a class="headerlink" href="#photoshop_python_api.document.Document.managed" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document is a workgroup Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.measurement_scale">
+<em class="property">property </em><code class="sig-name descname">measurement_scale</code><a class="headerlink" href="#photoshop_python_api.document.Document.measurement_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>The measurement scale of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.merge_visible_layers">
+<code class="sig-name descname">merge_visible_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.merge_visible_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.merge_visible_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all visible layers in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.mode">
+<em class="property">property </em><code class="sig-name descname">mode</code><a class="headerlink" href="#photoshop_python_api.document.Document.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color profile.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#photoshop_python_api.document.Document.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Document name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#photoshop_python_api.document.Document.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The object’s container.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.paste">
+<code class="sig-name descname">paste</code><span class="sig-paren">(</span><em class="sig-param">into_selection</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.paste"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.paste" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pastes contents of the clipboard into the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.path">
+<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#photoshop_python_api.document.Document.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path to the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.path_items">
+<em class="property">property </em><code class="sig-name descname">path_items</code><a class="headerlink" href="#photoshop_python_api.document.Document.path_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.pixel_aspect_ratio">
+<em class="property">property </em><code class="sig-name descname">pixel_aspect_ratio</code><a class="headerlink" href="#photoshop_python_api.document.Document.pixel_aspect_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>0.100 to 10.000.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>The (custom) pixel aspect ratio of the Document. Range</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.quick_mask_mode">
+<em class="property">property </em><code class="sig-name descname">quick_mask_mode</code><a class="headerlink" href="#photoshop_python_api.document.Document.quick_mask_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.rasterize_all_layers">
+<code class="sig-name descname">rasterize_all_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.rasterize_all_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.rasterize_all_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.resize_image">
+<code class="sig-name descname">resize_image</code><span class="sig-paren">(</span><em class="sig-param">width</em>, <em class="sig-param">height</em>, <em class="sig-param">resolution=72</em>, <em class="sig-param">psAutomatic=8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.resize_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.resize_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the size of the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> – The desired width of the image.</p></li>
+<li><p><strong>height</strong> – The desired height of the image.</p></li>
+<li><p><strong>resolution</strong> – The resolution (in pixels per inch)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.resolution">
+<em class="property">property </em><code class="sig-name descname">resolution</code><a class="headerlink" href="#photoshop_python_api.document.Document.resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>The resolution of the Document (in pixels per inch)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.reveal_all">
+<code class="sig-name descname">reveal_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.reveal_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.reveal_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expands the Document to show clipped sections.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.saveAs">
+<code class="sig-name descname">saveAs</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">options</em>, <em class="sig-param">as_copy=False</em>, <em class="sig-param">ext=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.saveAs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.saveAs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.saved">
+<em class="property">property </em><code class="sig-name descname">saved</code><a class="headerlink" href="#photoshop_python_api.document.Document.saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document been saved since the last change.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.selection">
+<em class="property">property </em><code class="sig-name descname">selection</code><a class="headerlink" href="#photoshop_python_api.document.Document.selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected area of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.trim">
+<code class="sig-name descname">trim</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.trim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.document.Document.trim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.typename">
+<em class="property">property </em><code class="sig-name descname">typename</code><a class="headerlink" href="#photoshop_python_api.document.Document.typename" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class name of the object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.width">
+<em class="property">property </em><code class="sig-name descname">width</code><a class="headerlink" href="#photoshop_python_api.document.Document.width" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.document.Document.xmp_metadata">
+<em class="property">property </em><code class="sig-name descname">xmp_metadata</code><a class="headerlink" href="#photoshop_python_api.document.Document.xmp_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>The XMP properties of the Document. The Camera RAW settings are
+stored here.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.documents">
+<span id="photoshop-python-api-documents-module"></span><h2>photoshop_python_api.documents module<a class="headerlink" href="#module-photoshop_python_api.documents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.documents.Documents">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.documents.</code><code class="sig-name descname">Documents</code><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.ActiveDocument">
+<em class="property">property </em><code class="sig-name descname">ActiveDocument</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.ActiveDocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current active Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.Add">
+<code class="sig-name descname">Add</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.Add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.active_channels">
+<em class="property">property </em><code class="sig-name descname">active_channels</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.active_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected channels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.active_history_brush_source">
+<em class="property">property </em><code class="sig-name descname">active_history_brush_source</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.active_history_brush_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history state to use with the history brush.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.active_history_state">
+<em class="property">property </em><code class="sig-name descname">active_history_state</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.active_history_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current history state for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.active_layer">
+<em class="property">property </em><code class="sig-name descname">active_layer</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.active_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.art_layers">
+<em class="property">property </em><code class="sig-name descname">art_layers</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.art_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.auto_count">
+<code class="sig-name descname">auto_count</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.auto_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.auto_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the objects in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.background_layer">
+<em class="property">property </em><code class="sig-name descname">background_layer</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.background_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The background layer for the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.bits_per_channel">
+<em class="property">property </em><code class="sig-name descname">bits_per_channel</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.bits_per_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of bits per channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.changeMode">
+<code class="sig-name descname">changeMode</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.changeMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.changeMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the mode of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">saving=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.close_all_documents">
+<code class="sig-name descname">close_all_documents</code><span class="sig-paren">(</span><em class="sig-param">mode=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.close_all_documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.close_all_documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.color_profile_name">
+<em class="property">property </em><code class="sig-name descname">color_profile_name</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.color_profile_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the color profile. Valid only when no value is specified
+for color profile kind (to indicate a custom color profile).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.color_profile_type">
+<em class="property">property </em><code class="sig-name descname">color_profile_type</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.color_profile_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of color model that defines the working space of the
+Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.color_samplers">
+<em class="property">property </em><code class="sig-name descname">color_samplers</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.color_samplers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current color samplers associated with the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.component_channels">
+<em class="property">property </em><code class="sig-name descname">component_channels</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.component_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color component channels for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.convertProfile">
+<code class="sig-name descname">convertProfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.convertProfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.convertProfile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.count_items">
+<em class="property">property </em><code class="sig-name descname">count_items</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.count_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current count items in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.crop">
+<code class="sig-name descname">crop</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.crop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.crop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.documents">
+<em class="property">property </em><code class="sig-name descname">documents</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.duplicate">
+<code class="sig-name descname">duplicate</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">merge_layers_only=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.export_document">
+<code class="sig-name descname">export_document</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.export_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.export_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.flatten">
+<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all layers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.full_name">
+<em class="property">property </em><code class="sig-name descname">full_name</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full path name of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.height">
+<em class="property">property </em><code class="sig-name descname">height</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.histogram">
+<em class="property">property </em><code class="sig-name descname">histogram</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>A histogram showing the number of pixels at each color intensity
+level for the composite channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.history_states">
+<em class="property">property </em><code class="sig-name descname">history_states</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.history_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history states collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.id">
+<em class="property">property </em><code class="sig-name descname">id</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unique ID of this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.info">
+<em class="property">property </em><code class="sig-name descname">info</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.layer_comps">
+<em class="property">property </em><code class="sig-name descname">layer_comps</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.layer_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer comps collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.layer_setes">
+<em class="property">property </em><code class="sig-name descname">layer_setes</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.layer_setes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer sets collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.layers">
+<em class="property">property </em><code class="sig-name descname">layers</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layers collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.managed">
+<em class="property">property </em><code class="sig-name descname">managed</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.managed" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document is a workgroup Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.measurement_scale">
+<em class="property">property </em><code class="sig-name descname">measurement_scale</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.measurement_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>The measurement scale of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.merge_visible_layers">
+<code class="sig-name descname">merge_visible_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.merge_visible_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.merge_visible_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all visible layers in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.mode">
+<em class="property">property </em><code class="sig-name descname">mode</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color profile.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Document name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The object’s container.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.paste">
+<code class="sig-name descname">paste</code><span class="sig-paren">(</span><em class="sig-param">into_selection</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.paste"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.paste" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pastes contents of the clipboard into the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.path">
+<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path to the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.path_items">
+<em class="property">property </em><code class="sig-name descname">path_items</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.path_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.pixel_aspect_ratio">
+<em class="property">property </em><code class="sig-name descname">pixel_aspect_ratio</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.pixel_aspect_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>0.100 to 10.000.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>The (custom) pixel aspect ratio of the Document. Range</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.quick_mask_mode">
+<em class="property">property </em><code class="sig-name descname">quick_mask_mode</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.quick_mask_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.rasterize_all_layers">
+<code class="sig-name descname">rasterize_all_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.rasterize_all_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.rasterize_all_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.resize_image">
+<code class="sig-name descname">resize_image</code><span class="sig-paren">(</span><em class="sig-param">width</em>, <em class="sig-param">height</em>, <em class="sig-param">resolution=72</em>, <em class="sig-param">psAutomatic=8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.resize_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.resize_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the size of the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> – The desired width of the image.</p></li>
+<li><p><strong>height</strong> – The desired height of the image.</p></li>
+<li><p><strong>resolution</strong> – The resolution (in pixels per inch)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.resolution">
+<em class="property">property </em><code class="sig-name descname">resolution</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>The resolution of the Document (in pixels per inch)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.reveal_all">
+<code class="sig-name descname">reveal_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.reveal_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.reveal_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expands the Document to show clipped sections.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.save_as">
+<code class="sig-name descname">save_as</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">options</em>, <em class="sig-param">as_copy=False</em>, <em class="sig-param">ext=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.save_as"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.save_as" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.saved">
+<em class="property">property </em><code class="sig-name descname">saved</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document been saved since the last change.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.selection">
+<em class="property">property </em><code class="sig-name descname">selection</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected area of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.trim">
+<code class="sig-name descname">trim</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/documents.html#Documents.trim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.documents.Documents.trim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.typename">
+<em class="property">property </em><code class="sig-name descname">typename</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.typename" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class name of the object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.width">
+<em class="property">property </em><code class="sig-name descname">width</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.width" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.documents.Documents.xmp_metadata">
+<em class="property">property </em><code class="sig-name descname">xmp_metadata</code><a class="headerlink" href="#photoshop_python_api.documents.Documents.xmp_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>The XMP properties of the Document. The Camera RAW settings are
+stored here.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.errors">
+<span id="photoshop-python-api-errors-module"></span><h2>photoshop_python_api.errors module<a class="headerlink" href="#module-photoshop_python_api.errors" title="Permalink to this headline">¶</a></h2>
+<p>module author: Long Hao &lt;<a class="reference external" href="mailto:hoolongvfx&#37;&#52;&#48;gmail&#46;com">hoolongvfx<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<dl class="exception">
+<dt id="photoshop_python_api.errors.PhotoshopPythonAPICOMError">
+<em class="property">exception </em><code class="sig-prename descclassname">photoshop_python_api.errors.</code><code class="sig-name descname">PhotoshopPythonAPICOMError</code><a class="reference internal" href="../_modules/photoshop_python_api/errors.html#PhotoshopPythonAPICOMError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.errors.PhotoshopPythonAPICOMError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.COMError</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="photoshop_python_api.errors.PhotoshopPythonAPIError">
+<em class="property">exception </em><code class="sig-prename descclassname">photoshop_python_api.errors.</code><code class="sig-name descname">PhotoshopPythonAPIError</code><a class="reference internal" href="../_modules/photoshop_python_api/errors.html#PhotoshopPythonAPIError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.errors.PhotoshopPythonAPIError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="photoshop-python-api-layer-module">
+<h2>photoshop_python_api.layer module<a class="headerlink" href="#photoshop-python-api-layer-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-layersets-module">
+<h2>photoshop_python_api.layerSets module<a class="headerlink" href="#photoshop-python-api-layersets-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-layer-kind-module">
+<h2>photoshop_python_api.layer_kind module<a class="headerlink" href="#photoshop-python-api-layer-kind-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-layers-module">
+<h2>photoshop_python_api.layers module<a class="headerlink" href="#photoshop-python-api-layers-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-preferences-module">
+<h2>photoshop_python_api.preferences module<a class="headerlink" href="#photoshop-python-api-preferences-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-selection-module">
+<h2>photoshop_python_api.selection module<a class="headerlink" href="#photoshop-python-api-selection-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-photoshop_python_api.solid_color">
+<span id="photoshop-python-api-solid-color-module"></span><h2>photoshop_python_api.solid_color module<a class="headerlink" href="#module-photoshop_python_api.solid_color" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.solid_color.SolidColor">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.solid_color.</code><code class="sig-name descname">SolidColor</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/solid_color.html#SolidColor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.RGB">
+<em class="property">property </em><code class="sig-name descname">RGB</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.RGB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.cmyk">
+<em class="property">property </em><code class="sig-name descname">cmyk</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.cmyk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.gray">
+<em class="property">property </em><code class="sig-name descname">gray</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.gray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.hsb">
+<em class="property">property </em><code class="sig-name descname">hsb</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.hsb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.isEqual">
+<em class="property">property </em><code class="sig-name descname">isEqual</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.isEqual" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.lab">
+<em class="property">property </em><code class="sig-name descname">lab</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.lab" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.model">
+<em class="property">property </em><code class="sig-name descname">model</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.solid_color.SolidColor.nearestWebColor">
+<em class="property">property </em><code class="sig-name descname">nearestWebColor</code><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.nearestWebColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="photoshop_python_api.solid_color.SolidColor.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'SolidColor'</em><a class="headerlink" href="#photoshop_python_api.solid_color.SolidColor.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="photoshop-python-api-text-fonts-module">
+<h2>photoshop_python_api.text_fonts module<a class="headerlink" href="#photoshop-python-api-text-fonts-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-text-item-module">
+<h2>photoshop_python_api.text_item module<a class="headerlink" href="#photoshop-python-api-text-item-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="photoshop-python-api-units-module">
+<h2>photoshop_python_api.units module<a class="headerlink" href="#photoshop-python-api-units-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-photoshop_python_api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-photoshop_python_api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.Core">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">Core</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/core.html#Core"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Core" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.Core.REG_PATH">
+<code class="sig-name descname">REG_PATH</code><em class="property"> = 'Software\\Adobe\\Photoshop'</em><a class="headerlink" href="#photoshop_python_api.Core.REG_PATH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Core.action_descriptor">
+<em class="property">property </em><code class="sig-name descname">action_descriptor</code><a class="headerlink" href="#photoshop_python_api.Core.action_descriptor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Core.char_id_to_type_id">
+<code class="sig-name descname">char_id_to_type_id</code><span class="sig-paren">(</span><em class="sig-param">char</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/core.html#Core.char_id_to_type_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Core.char_id_to_type_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Core.eval_javascript">
+<code class="sig-name descname">eval_javascript</code><span class="sig-paren">(</span><em class="sig-param">command</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/core.html#Core.eval_javascript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Core.eval_javascript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Core.get_application_path">
+<code class="sig-name descname">get_application_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/core.html#Core.get_application_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Core.get_application_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Core.instance_app">
+<code class="sig-name descname">instance_app</code><span class="sig-paren">(</span><em class="sig-param">ps_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/core.html#Core.instance_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Core.instance_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="photoshop_python_api.Core.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = None</em><a class="headerlink" href="#photoshop_python_api.Core.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Core.run_jsx">
+<code class="sig-name descname">run_jsx</code><span class="sig-paren">(</span><em class="sig-param">jsx</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/core.html#Core.run_jsx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Core.run_jsx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Core.string_id_to_type_id">
+<code class="sig-name descname">string_id_to_type_id</code><span class="sig-paren">(</span><em class="sig-param">string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/core.html#Core.string_id_to_type_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Core.string_id_to_type_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="photoshop_python_api.Core.sub_object_name">
+<code class="sig-name descname">sub_object_name</code><em class="property"> = None</em><a class="headerlink" href="#photoshop_python_api.Core.sub_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="photoshop_python_api.Core.title">
+<code class="sig-name descname">title</code><em class="property"> = 'Photoshop Python API'</em><a class="headerlink" href="#photoshop_python_api.Core.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.BasicOption">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">BasicOption</code><a class="reference internal" href="../_modules/photoshop_python_api/basic_option.html#BasicOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.BasicOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="photoshop_python_api.BasicOption.option">
+<em class="property">property </em><code class="sig-name descname">option</code><a class="headerlink" href="#photoshop_python_api.BasicOption.option" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.BasicOption.save_as">
+<code class="sig-name descname">save_as</code><span class="sig-paren">(</span><em class="sig-param">doc</em>, <em class="sig-param">file_path</em>, <em class="sig-param">as_copy=True</em>, <em class="sig-param">extension_type=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/basic_option.html#BasicOption.save_as"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.BasicOption.save_as" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the Document with the specified save options.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.Document">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">Document</code><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.Document.Documents">
+<em class="property">property </em><code class="sig-name descname">Documents</code><a class="headerlink" href="#photoshop_python_api.Document.Documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.activeChannels">
+<em class="property">property </em><code class="sig-name descname">activeChannels</code><a class="headerlink" href="#photoshop_python_api.Document.activeChannels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected channels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.activeDocument">
+<em class="property">property </em><code class="sig-name descname">activeDocument</code><a class="headerlink" href="#photoshop_python_api.Document.activeDocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current active Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.active_history_brush_source">
+<em class="property">property </em><code class="sig-name descname">active_history_brush_source</code><a class="headerlink" href="#photoshop_python_api.Document.active_history_brush_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history state to use with the history brush.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.active_history_state">
+<em class="property">property </em><code class="sig-name descname">active_history_state</code><a class="headerlink" href="#photoshop_python_api.Document.active_history_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current history state for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.active_layer">
+<em class="property">property </em><code class="sig-name descname">active_layer</code><a class="headerlink" href="#photoshop_python_api.Document.active_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.artLayers">
+<em class="property">property </em><code class="sig-name descname">artLayers</code><a class="headerlink" href="#photoshop_python_api.Document.artLayers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.auto_count">
+<code class="sig-name descname">auto_count</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.auto_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.auto_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the objects in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.backgroundLayer">
+<em class="property">property </em><code class="sig-name descname">backgroundLayer</code><a class="headerlink" href="#photoshop_python_api.Document.backgroundLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The background layer for the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.bitsPerChannel">
+<em class="property">property </em><code class="sig-name descname">bitsPerChannel</code><a class="headerlink" href="#photoshop_python_api.Document.bitsPerChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of bits per channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.changeMode">
+<code class="sig-name descname">changeMode</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.changeMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.changeMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the mode of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">saving=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.close_all_documents">
+<code class="sig-name descname">close_all_documents</code><span class="sig-paren">(</span><em class="sig-param">mode=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.close_all_documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.close_all_documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.colorProfileName">
+<em class="property">property </em><code class="sig-name descname">colorProfileName</code><a class="headerlink" href="#photoshop_python_api.Document.colorProfileName" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the color profile. Valid only when no value is specified
+for color profile kind (to indicate a custom color profile).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.color_profile_type">
+<em class="property">property </em><code class="sig-name descname">color_profile_type</code><a class="headerlink" href="#photoshop_python_api.Document.color_profile_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of color model that defines the working space of the
+Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.color_samplers">
+<em class="property">property </em><code class="sig-name descname">color_samplers</code><a class="headerlink" href="#photoshop_python_api.Document.color_samplers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current color samplers associated with the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.component_channels">
+<em class="property">property </em><code class="sig-name descname">component_channels</code><a class="headerlink" href="#photoshop_python_api.Document.component_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color component channels for this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.convertProfile">
+<code class="sig-name descname">convertProfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.convertProfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.convertProfile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.count_items">
+<em class="property">property </em><code class="sig-name descname">count_items</code><a class="headerlink" href="#photoshop_python_api.Document.count_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current count items in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.crop">
+<code class="sig-name descname">crop</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.crop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.crop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.duplicate">
+<code class="sig-name descname">duplicate</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">merge_layers_only=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.export_document">
+<code class="sig-name descname">export_document</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.export_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.export_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.flatten">
+<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all layers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.fullName">
+<em class="property">property </em><code class="sig-name descname">fullName</code><a class="headerlink" href="#photoshop_python_api.Document.fullName" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full path name of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.height">
+<em class="property">property </em><code class="sig-name descname">height</code><a class="headerlink" href="#photoshop_python_api.Document.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.histogram">
+<em class="property">property </em><code class="sig-name descname">histogram</code><a class="headerlink" href="#photoshop_python_api.Document.histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>A histogram showing the number of pixels at each color intensity
+level for the composite channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.history_states">
+<em class="property">property </em><code class="sig-name descname">history_states</code><a class="headerlink" href="#photoshop_python_api.Document.history_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>The history states collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.id">
+<em class="property">property </em><code class="sig-name descname">id</code><a class="headerlink" href="#photoshop_python_api.Document.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unique ID of this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.info">
+<em class="property">property </em><code class="sig-name descname">info</code><a class="headerlink" href="#photoshop_python_api.Document.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.layer_comps">
+<em class="property">property </em><code class="sig-name descname">layer_comps</code><a class="headerlink" href="#photoshop_python_api.Document.layer_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer comps collection in this Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.layer_setes">
+<em class="property">property </em><code class="sig-name descname">layer_setes</code><a class="headerlink" href="#photoshop_python_api.Document.layer_setes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer sets collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.layers">
+<em class="property">property </em><code class="sig-name descname">layers</code><a class="headerlink" href="#photoshop_python_api.Document.layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layers collection in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.managed">
+<em class="property">property </em><code class="sig-name descname">managed</code><a class="headerlink" href="#photoshop_python_api.Document.managed" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document is a workgroup Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.measurement_scale">
+<em class="property">property </em><code class="sig-name descname">measurement_scale</code><a class="headerlink" href="#photoshop_python_api.Document.measurement_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>The measurement scale of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.merge_visible_layers">
+<code class="sig-name descname">merge_visible_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.merge_visible_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.merge_visible_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens all visible layers in the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.mode">
+<em class="property">property </em><code class="sig-name descname">mode</code><a class="headerlink" href="#photoshop_python_api.Document.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color profile.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#photoshop_python_api.Document.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Document name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#photoshop_python_api.Document.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The object’s container.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.paste">
+<code class="sig-name descname">paste</code><span class="sig-paren">(</span><em class="sig-param">into_selection</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.paste"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.paste" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pastes contents of the clipboard into the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.path">
+<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#photoshop_python_api.Document.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path to the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.path_items">
+<em class="property">property </em><code class="sig-name descname">path_items</code><a class="headerlink" href="#photoshop_python_api.Document.path_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.pixel_aspect_ratio">
+<em class="property">property </em><code class="sig-name descname">pixel_aspect_ratio</code><a class="headerlink" href="#photoshop_python_api.Document.pixel_aspect_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>0.100 to 10.000.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>The (custom) pixel aspect ratio of the Document. Range</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.quick_mask_mode">
+<em class="property">property </em><code class="sig-name descname">quick_mask_mode</code><a class="headerlink" href="#photoshop_python_api.Document.quick_mask_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.rasterize_all_layers">
+<code class="sig-name descname">rasterize_all_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.rasterize_all_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.rasterize_all_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.resize_image">
+<code class="sig-name descname">resize_image</code><span class="sig-paren">(</span><em class="sig-param">width</em>, <em class="sig-param">height</em>, <em class="sig-param">resolution=72</em>, <em class="sig-param">psAutomatic=8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.resize_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.resize_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the size of the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> – The desired width of the image.</p></li>
+<li><p><strong>height</strong> – The desired height of the image.</p></li>
+<li><p><strong>resolution</strong> – The resolution (in pixels per inch)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.resolution">
+<em class="property">property </em><code class="sig-name descname">resolution</code><a class="headerlink" href="#photoshop_python_api.Document.resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>The resolution of the Document (in pixels per inch)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.reveal_all">
+<code class="sig-name descname">reveal_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.reveal_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.reveal_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expands the Document to show clipped sections.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.saveAs">
+<code class="sig-name descname">saveAs</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">options</em>, <em class="sig-param">as_copy=False</em>, <em class="sig-param">ext=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.saveAs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.saveAs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.saved">
+<em class="property">property </em><code class="sig-name descname">saved</code><a class="headerlink" href="#photoshop_python_api.Document.saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the Document been saved since the last change.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.selection">
+<em class="property">property </em><code class="sig-name descname">selection</code><a class="headerlink" href="#photoshop_python_api.Document.selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>The selected area of the Document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.trim">
+<code class="sig-name descname">trim</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/document.html#Document.trim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Document.trim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.typename">
+<em class="property">property </em><code class="sig-name descname">typename</code><a class="headerlink" href="#photoshop_python_api.Document.typename" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class name of the object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.width">
+<em class="property">property </em><code class="sig-name descname">width</code><a class="headerlink" href="#photoshop_python_api.Document.width" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Document.xmp_metadata">
+<em class="property">property </em><code class="sig-name descname">xmp_metadata</code><a class="headerlink" href="#photoshop_python_api.Document.xmp_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>The XMP properties of the Document. The Camera RAW settings are
+stored here.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.SolidColor">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">SolidColor</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/solid_color.html#SolidColor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.SolidColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.RGB">
+<em class="property">property </em><code class="sig-name descname">RGB</code><a class="headerlink" href="#photoshop_python_api.SolidColor.RGB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.cmyk">
+<em class="property">property </em><code class="sig-name descname">cmyk</code><a class="headerlink" href="#photoshop_python_api.SolidColor.cmyk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.gray">
+<em class="property">property </em><code class="sig-name descname">gray</code><a class="headerlink" href="#photoshop_python_api.SolidColor.gray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.hsb">
+<em class="property">property </em><code class="sig-name descname">hsb</code><a class="headerlink" href="#photoshop_python_api.SolidColor.hsb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.isEqual">
+<em class="property">property </em><code class="sig-name descname">isEqual</code><a class="headerlink" href="#photoshop_python_api.SolidColor.isEqual" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.lab">
+<em class="property">property </em><code class="sig-name descname">lab</code><a class="headerlink" href="#photoshop_python_api.SolidColor.lab" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.model">
+<em class="property">property </em><code class="sig-name descname">model</code><a class="headerlink" href="#photoshop_python_api.SolidColor.model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.SolidColor.nearestWebColor">
+<em class="property">property </em><code class="sig-name descname">nearestWebColor</code><a class="headerlink" href="#photoshop_python_api.SolidColor.nearestWebColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="photoshop_python_api.SolidColor.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'SolidColor'</em><a class="headerlink" href="#photoshop_python_api.SolidColor.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.Application">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">Application</code><a class="reference internal" href="../_modules/photoshop_python_api/application.html#Application"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="method">
+<dt id="photoshop_python_api.Application.activeDocument">
+<em class="property">property </em><code class="sig-name descname">activeDocument</code><a class="headerlink" href="#photoshop_python_api.Application.activeDocument" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Application.active_layer">
+<em class="property">property </em><code class="sig-name descname">active_layer</code><a class="headerlink" href="#photoshop_python_api.Application.active_layer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Application.active_layer_set">
+<code class="sig-name descname">active_layer_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/application.html#Application.active_layer_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Application.active_layer_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Application.background_color">
+<em class="property">property </em><code class="sig-name descname">background_color</code><a class="headerlink" href="#photoshop_python_api.Application.background_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Application.document">
+<em class="property">property </em><code class="sig-name descname">document</code><a class="headerlink" href="#photoshop_python_api.Application.document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Application.documents">
+<em class="property">property </em><code class="sig-name descname">documents</code><a class="headerlink" href="#photoshop_python_api.Application.documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="photoshop_python_api.Application.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'Application'</em><a class="headerlink" href="#photoshop_python_api.Application.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Application.open">
+<code class="sig-name descname">open</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/application.html#Application.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.Application.open" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="photoshop_python_api.Application.preferences">
+<em class="property">property </em><code class="sig-name descname">preferences</code><a class="headerlink" href="#photoshop_python_api.Application.preferences" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.JPEGSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">JPEGSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/jpg.html#JPEGSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.JPEGSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.JPEGSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'JPEGSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.JPEGSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.GIFSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">GIFSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/gif.html#GIFSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.GIFSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.GIFSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'GIFSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.GIFSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.PhotoshopSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">PhotoshopSaveOptions</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/save_options/psd.html#PhotoshopSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.PhotoshopSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.PhotoshopSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'PhotoshopSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.PhotoshopSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.ExportOptionsSaveForWeb">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">ExportOptionsSaveForWeb</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/png.html#ExportOptionsSaveForWeb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.ExportOptionsSaveForWeb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.ExportOptionsSaveForWeb.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'ExportOptionsSaveForWeb'</em><a class="headerlink" href="#photoshop_python_api.ExportOptionsSaveForWeb.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.TiffSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">TiffSaveOptions</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/save_options/tif.html#TiffSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.TiffSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.TiffSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'TiffSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.TiffSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.PDFSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">PDFSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/pdf.html#PDFSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.PDFSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.PDFSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'PDFSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.PDFSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.PNGSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.</code><code class="sig-name descname">PNGSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/png.html#PNGSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.PNGSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.PNGSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'PNGSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.PNGSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="photoshop_python_api.colors.html" class="btn btn-neutral float-right" title="photoshop_python_api.colors package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

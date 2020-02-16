@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>photoshop_python_api.save_options package &mdash; photoshop_python_api 0.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="photoshop_python_api.colors package" href="photoshop_python_api.colors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> photoshop_python_api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#from-sources">From sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="photoshop_python_api.html">photoshop_python_api package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="photoshop_python_api.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="photoshop_python_api.colors.html">photoshop_python_api.colors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-cmyk-module">photoshop_python_api.colors.cmyk module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-hsb-module">photoshop_python_api.colors.hsb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-lab-module">photoshop_python_api.colors.lab module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#photoshop-python-api-colors-rgb-module">photoshop_python_api.colors.rgb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="photoshop_python_api.colors.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">photoshop_python_api.save_options package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.bmp">photoshop_python_api.save_options.bmp module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.eps">photoshop_python_api.save_options.eps module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.gif">photoshop_python_api.save_options.gif module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.jpg">photoshop_python_api.save_options.jpg module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.pdf">photoshop_python_api.save_options.pdf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.png">photoshop_python_api.save_options.png module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.psd">photoshop_python_api.save_options.psd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options.tif">photoshop_python_api.save_options.tif module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-photoshop_python_api.save_options">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.action_descruotor">photoshop_python_api.action_descruotor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-action-list-module">photoshop_python_api.action_list module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-action-refrence-module">photoshop_python_api.action_refrence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.active_document">photoshop_python_api.active_document module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.active_layer">photoshop_python_api.active_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.application">photoshop_python_api.application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-art-layer-module">photoshop_python_api.art_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.art_layers">photoshop_python_api.art_layers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-constants-module">photoshop_python_api.constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.document">photoshop_python_api.document module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.documents">photoshop_python_api.documents module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.errors">photoshop_python_api.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-layer-module">photoshop_python_api.layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-layersets-module">photoshop_python_api.layerSets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-layer-kind-module">photoshop_python_api.layer_kind module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-layers-module">photoshop_python_api.layers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-preferences-module">photoshop_python_api.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-selection-module">photoshop_python_api.selection module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api.solid_color">photoshop_python_api.solid_color module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-text-fonts-module">photoshop_python_api.text_fonts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-text-item-module">photoshop_python_api.text_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#photoshop-python-api-units-module">photoshop_python_api.units module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photoshop_python_api.html#module-photoshop_python_api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">photoshop_python_api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="photoshop_python_api.html">photoshop_python_api package</a> &raquo;</li>
+        
+      <li>photoshop_python_api.save_options package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/photoshop_python_api.save_options.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="photoshop-python-api-save-options-package">
+<h1>photoshop_python_api.save_options package<a class="headerlink" href="#photoshop-python-api-save-options-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.bmp">
+<span id="photoshop-python-api-save-options-bmp-module"></span><h2>photoshop_python_api.save_options.bmp module<a class="headerlink" href="#module-photoshop_python_api.save_options.bmp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.bmp.BMPSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.bmp.</code><code class="sig-name descname">BMPSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/bmp.html#BMPSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.bmp.BMPSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.bmp.BMPSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'BMPSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.bmp.BMPSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.eps">
+<span id="photoshop-python-api-save-options-eps-module"></span><h2>photoshop_python_api.save_options.eps module<a class="headerlink" href="#module-photoshop_python_api.save_options.eps" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.eps.EPSSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.eps.</code><code class="sig-name descname">EPSSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/eps.html#EPSSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.eps.EPSSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.eps.EPSSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'EPSSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.eps.EPSSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.gif">
+<span id="photoshop-python-api-save-options-gif-module"></span><h2>photoshop_python_api.save_options.gif module<a class="headerlink" href="#module-photoshop_python_api.save_options.gif" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.gif.GIFSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.gif.</code><code class="sig-name descname">GIFSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/gif.html#GIFSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.gif.GIFSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.gif.GIFSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'GIFSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.gif.GIFSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.jpg">
+<span id="photoshop-python-api-save-options-jpg-module"></span><h2>photoshop_python_api.save_options.jpg module<a class="headerlink" href="#module-photoshop_python_api.save_options.jpg" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.jpg.JPEGSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.jpg.</code><code class="sig-name descname">JPEGSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/jpg.html#JPEGSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.jpg.JPEGSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.jpg.JPEGSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'JPEGSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.jpg.JPEGSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.pdf">
+<span id="photoshop-python-api-save-options-pdf-module"></span><h2>photoshop_python_api.save_options.pdf module<a class="headerlink" href="#module-photoshop_python_api.save_options.pdf" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.pdf.PDFSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.pdf.</code><code class="sig-name descname">PDFSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/pdf.html#PDFSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.pdf.PDFSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.pdf.PDFSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'PDFSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.pdf.PDFSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.png">
+<span id="photoshop-python-api-save-options-png-module"></span><h2>photoshop_python_api.save_options.png module<a class="headerlink" href="#module-photoshop_python_api.save_options.png" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.png.ExportOptionsSaveForWeb">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.png.</code><code class="sig-name descname">ExportOptionsSaveForWeb</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/png.html#ExportOptionsSaveForWeb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.png.ExportOptionsSaveForWeb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.png.ExportOptionsSaveForWeb.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'ExportOptionsSaveForWeb'</em><a class="headerlink" href="#photoshop_python_api.save_options.png.ExportOptionsSaveForWeb.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="photoshop_python_api.save_options.png.PNGSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.png.</code><code class="sig-name descname">PNGSaveOptions</code><a class="reference internal" href="../_modules/photoshop_python_api/save_options/png.html#PNGSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.png.PNGSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.png.PNGSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'PNGSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.png.PNGSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.psd">
+<span id="photoshop-python-api-save-options-psd-module"></span><h2>photoshop_python_api.save_options.psd module<a class="headerlink" href="#module-photoshop_python_api.save_options.psd" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.psd.PhotoshopSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.psd.</code><code class="sig-name descname">PhotoshopSaveOptions</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/save_options/psd.html#PhotoshopSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.psd.PhotoshopSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.psd.PhotoshopSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'PhotoshopSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.psd.PhotoshopSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options.tif">
+<span id="photoshop-python-api-save-options-tif-module"></span><h2>photoshop_python_api.save_options.tif module<a class="headerlink" href="#module-photoshop_python_api.save_options.tif" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="photoshop_python_api.save_options.tif.TiffSaveOptions">
+<em class="property">class </em><code class="sig-prename descclassname">photoshop_python_api.save_options.tif.</code><code class="sig-name descname">TiffSaveOptions</code><span class="sig-paren">(</span><em class="sig-param">ps_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/photoshop_python_api/save_options/tif.html#TiffSaveOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photoshop_python_api.save_options.tif.TiffSaveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.basic_option.BasicOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">photoshop_python_api.core.Core</span></code></p>
+<dl class="attribute">
+<dt id="photoshop_python_api.save_options.tif.TiffSaveOptions.object_name">
+<code class="sig-name descname">object_name</code><em class="property"> = 'TiffSaveOptions'</em><a class="headerlink" href="#photoshop_python_api.save_options.tif.TiffSaveOptions.object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-photoshop_python_api.save_options">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-photoshop_python_api.save_options" title="Permalink to this headline">¶</a></h2>
+<p>module author: Long Hao &lt;<a class="reference external" href="mailto:hoolongvfx&#37;&#52;&#48;gmail&#46;com">hoolongvfx<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="photoshop_python_api.colors.html" class="btn btn-neutral float-left" title="photoshop_python_api.colors package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

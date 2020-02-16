@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>photoshop_python_api.active_document &mdash; photoshop_python_api 0.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> photoshop_python_api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#from-sources">From sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../src/photoshop_python_api.html">photoshop_python_api package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../src/photoshop_python_api.colors.html">photoshop_python_api.colors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.colors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.colors.html#photoshop-python-api-colors-cmyk-module">photoshop_python_api.colors.cmyk module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.colors.html#photoshop-python-api-colors-hsb-module">photoshop_python_api.colors.hsb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.colors.html#photoshop-python-api-colors-lab-module">photoshop_python_api.colors.lab module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.colors.html#photoshop-python-api-colors-rgb-module">photoshop_python_api.colors.rgb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.colors.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html">photoshop_python_api.save_options package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.bmp">photoshop_python_api.save_options.bmp module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.eps">photoshop_python_api.save_options.eps module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.gif">photoshop_python_api.save_options.gif module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.jpg">photoshop_python_api.save_options.jpg module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.pdf">photoshop_python_api.save_options.pdf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.png">photoshop_python_api.save_options.png module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.psd">photoshop_python_api.save_options.psd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options.tif">photoshop_python_api.save_options.tif module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src/photoshop_python_api.save_options.html#module-photoshop_python_api.save_options">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.action_descruotor">photoshop_python_api.action_descruotor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-action-list-module">photoshop_python_api.action_list module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-action-refrence-module">photoshop_python_api.action_refrence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.active_document">photoshop_python_api.active_document module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.active_layer">photoshop_python_api.active_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.application">photoshop_python_api.application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-art-layer-module">photoshop_python_api.art_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.art_layers">photoshop_python_api.art_layers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-constants-module">photoshop_python_api.constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.document">photoshop_python_api.document module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.documents">photoshop_python_api.documents module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.errors">photoshop_python_api.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-layer-module">photoshop_python_api.layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-layersets-module">photoshop_python_api.layerSets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-layer-kind-module">photoshop_python_api.layer_kind module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-layers-module">photoshop_python_api.layers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-preferences-module">photoshop_python_api.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-selection-module">photoshop_python_api.selection module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api.solid_color">photoshop_python_api.solid_color module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-text-fonts-module">photoshop_python_api.text_fonts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-text-item-module">photoshop_python_api.text_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#photoshop-python-api-units-module">photoshop_python_api.units module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/photoshop_python_api.html#module-photoshop_python_api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">photoshop_python_api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>photoshop_python_api.active_document</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for photoshop_python_api.active_document</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Import local modules</span>
+<span class="kn">from</span> <span class="nn">photoshop_python_api</span> <span class="kn">import</span> <span class="n">save_options</span>
+<span class="kn">from</span> <span class="nn">photoshop_python_api.art_layers</span> <span class="kn">import</span> <span class="n">ArtLayers</span>
+<span class="kn">from</span> <span class="nn">photoshop_python_api.core</span> <span class="kn">import</span> <span class="n">Core</span>
+<span class="kn">from</span> <span class="nn">photoshop_python_api.errors</span> <span class="kn">import</span> <span class="n">COMError</span>
+
+
+<div class="viewcode-block" id="ActiveDocument"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument">[docs]</a><span class="k">class</span> <span class="nc">ActiveDocument</span><span class="p">(</span><span class="n">Core</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ActiveDocument</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">activeDocument</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The current active Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adobe</span><span class="o">.</span><span class="n">activeDocument</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">activeLayer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The selected layer.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">activeLayer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">artLayers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ArtLayers</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">activeChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The selected channels.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">activeChannels</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">active_history_brush_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The history state to use with the history brush.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">activeHistoryBrushSource</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">active_history_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The current history state for this Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">activeHistoryState</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">background_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The background layer for the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">backgroundLayer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bits_per_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The number of bits per channel.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">BitsPerChannel</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">color_profile_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The name of the color profile. Valid only when no value is specified</span>
+<span class="sd">        for color profile kind (to indicate a custom color profile).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">ColorProfileName</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">color_profile_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The type of color model that defines the working space of the</span>
+<span class="sd">        Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">ColorProfileType</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">color_samplers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The current color samplers associated with the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">ColorSamplers</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">component_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The color component channels for this Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">ComponentChannels</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">count_items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The current count items in the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">CountItems</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fullName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The full path name of the Document.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">FullName</span>
+        <span class="k">except</span> <span class="n">COMError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eval_javascript</span><span class="p">(</span>
+                <span class="s1">&#39;alert (&quot;Please save your Document first!&quot;,&#39;</span>
+                <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+
+    <span class="c1"># @property</span>
+    <span class="c1"># def guides(self):</span>
+    <span class="c1">#     return self.ActiveDocument.Guides</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The height of the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Height</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A histogram showing the number of pixels at each color intensity</span>
+<span class="sd">        level for the composite channel.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Histogram</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">history_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The history states collection in this Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">HistoryStates</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The unique ID of this Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Id</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Metadata about the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Info</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">layer_comps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The layer comps collection in this Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">LayerComps</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">layers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The layers collection in the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Layers</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">layer_setes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The layer sets collection in the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">LayerSets</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">managed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If true, the Document is a workgroup Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Managed</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">measurement_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The measurement scale of the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">MeasurementScale</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The color profile.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Mode</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The Document name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The object&#39;s container.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Parent</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The path to the Document.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Path</span>
+        <span class="k">except</span> <span class="n">COMError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eval_javascript</span><span class="p">(</span>
+                <span class="s1">&#39;alert (&quot;Please save your Document first!&quot;,&#39;</span>
+                <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+
+    <span class="nd">@path</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">fullName</span> <span class="o">=</span> <span class="n">path</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">path_items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">PathItems</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pixel_aspect_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The (custom) pixel aspect ratio of the Document. Range: 0.100 to 10.000.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">PixelAspectRatio</span>
+
+    <span class="c1"># @property</span>
+    <span class="c1"># def print_settings(self):</span>
+    <span class="c1">#     &quot;&quot;&quot;Document print settings.&quot;&quot;&quot;</span>
+    <span class="c1">#     return self.ActiveDocument.PrintSettings</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">quick_mask_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">QuickMaskMode</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">saved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If true, the Document been saved since the last change.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Saved</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The resolution of the Document (in pixels per inch)&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">resolution</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">selection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The selected area of the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">selection</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">typename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The class name of the object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">typename</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Width</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">xmp_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The XMP properties of the Document. The Camera RAW settings are</span>
+<span class="sd">        stored here.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">XmpMetadata</span>
+
+    <span class="c1"># Methods</span>
+<div class="viewcode-block" id="ActiveDocument.auto_count"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.auto_count">[docs]</a>    <span class="k">def</span> <span class="nf">auto_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Counts the objects in the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">AutoCount</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.changeMode"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.changeMode">[docs]</a>    <span class="k">def</span> <span class="nf">changeMode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Changes the mode of the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">ChangeMode</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.close"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">saving</span><span class="o">=</span><span class="n">save_options</span><span class="o">.</span><span class="n">DONOTSAVECHANGES</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Close</span><span class="p">(</span><span class="n">saving</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.convertProfile"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.convertProfile">[docs]</a>    <span class="k">def</span> <span class="nf">convertProfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">convertProfile</span><span class="p">()</span></div>
+
+    <span class="c1">#</span>
+    <span class="c1"># def add_art_layer(self):</span>
+    <span class="c1">#     doc_ref = self.add()</span>
+    <span class="c1">#     return doc_ref.ArtLayers.Add()</span>
+    <span class="c1">#</span>
+    <span class="c1"># def open(self, *args, **kwargs):</span>
+    <span class="c1">#     super(Document, self).open(*args, **kwargs)</span>
+    <span class="c1">#     return self.ActiveDocument</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># @property</span>
+    <span class="c1"># def ActiveDocument(self):</span>
+    <span class="c1">#     return ActiveDocument()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">Documents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Documents</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ActiveDocument.close_all_documents"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.close_all_documents">[docs]</a>    <span class="k">def</span> <span class="nf">close_all_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Documents</span><span class="p">:</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">Close</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.flatten"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.flatten">[docs]</a>    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Flattens all layers.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.merge_visible_layers"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.merge_visible_layers">[docs]</a>    <span class="k">def</span> <span class="nf">merge_visible_layers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Flattens all visible layers in the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">MergeVisibleLayers</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.crop"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.crop">[docs]</a>    <span class="k">def</span> <span class="nf">crop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Crop</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.export_document"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.export_document">[docs]</a>    <span class="k">def</span> <span class="nf">export_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Exports the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">ExportDocument</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.duplicate"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.duplicate">[docs]</a>    <span class="k">def</span> <span class="nf">duplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">merge_layers_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Duplicate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">merge_layers_only</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ActiveDocument</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.paste"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.paste">[docs]</a>    <span class="k">def</span> <span class="nf">paste</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">into_selection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pastes contents of the clipboard into the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Paste</span><span class="p">(</span><span class="n">into_selection</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.rasterize_all_layers"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.rasterize_all_layers">[docs]</a>    <span class="k">def</span> <span class="nf">rasterize_all_layers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">RasterizeAllLayers</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.reveal_all"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.reveal_all">[docs]</a>    <span class="k">def</span> <span class="nf">reveal_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Expands the Document to show clipped sections.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">RevealAll</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.save"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves the Document.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">Save</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.save_as"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.save_as">[docs]</a>    <span class="k">def</span> <span class="nf">save_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">as_copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">SaveAs</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">option</span><span class="p">,</span> <span class="n">as_copy</span><span class="p">,</span>
+                                          <span class="n">ext</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.trim"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.trim">[docs]</a>    <span class="k">def</span> <span class="nf">trim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">trim</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ActiveDocument.resize_image"><a class="viewcode-back" href="../../src/photoshop_python_api.html#photoshop_python_api.active_document.ActiveDocument.resize_image">[docs]</a>    <span class="k">def</span> <span class="nf">resize_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">psAutomatic</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Changes the size of the image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            width: The desired width of the image.</span>
+<span class="sd">            height: The desired height of the image.</span>
+<span class="sd">            resolution: The resolution (in pixels per inch)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activeDocument</span><span class="o">.</span><span class="n">ResizeImage</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span>
+                                               <span class="n">psAutomatic</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
