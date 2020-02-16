@@ -2,14 +2,13 @@
 References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/ApplyFilters.py
 """
-
 # This sample script shows how to apply 3 different filters to
 # selections in the open document.
-
 from photoshop_python_api import Application
 from photoshop_python_api import DialogModes
-from photoshop_python_api import SolidColor
 from photoshop_python_api import SelectionType
+from photoshop_python_api import SolidColor
+from photoshop_python_api import TextureType
 
 # Start up Photoshop application
 # Or get Reference to already running Photoshop application instance
@@ -23,19 +22,16 @@ start_ruler_units = app.preferences.rulerUnits
 if start_ruler_units is not psPixels:
     app.preferences.rulerUnits = psPixels
 
-fileName = "d:/Untitled-11.psd"
+fileName = 'd:/Untitled-11.psd'
 docRef = app.open(fileName)
 nLayerSets = len([(i, x) for i, x in enumerate(docRef.layerSets)]) - 1
-# for some reason, len(docRef.LayerSets) return errors
-# So above list comprehension is same as below
-# nLayerSets = 0
-# for layerSet in docRef.LayerSets:
-#     nLayerSets += 1
 nArtLayers = len(
-    [(i, x) for i, x in enumerate(docRef.layerSets[nLayerSets].artLayers)])
+    [(i, x) for i, x in enumerate(docRef.layerSets[nLayerSets].artLayers)],
+)
 
 active_layer = docRef.activeLayer = docRef.layerSets[nLayerSets].artLayers[
-    nArtLayers]
+    nArtLayers
+]
 # # sel_area argument not accepted if using win32com, using comtypes instead
 sel_area = ((0, 212), (300, 212), (300, 300), (0, 300))
 docRef.selection.select(sel_area, SelectionType.ReplaceSelection, 20, True)
@@ -51,10 +47,12 @@ app.backgroundColor = backColor
 
 sel_area2 = ((120, 20), (210, 20), (210, 110), (120, 110))
 docRef.selection.select(sel_area2, SelectionType.ReplaceSelection, 25, False)
-active_layer.ApplyDiffuseGlow(9, 12, 15)
-psTinyLensTexture = 4  # from enum PsTextureType
-active_layer.ApplyGlassEffect(7, 3, 7, False, psTinyLensTexture, None)
-docRef.selection.Deselect()
+active_layer.applyDiffuseGlow(9, 12, 15)
+active_layer.applyGlassEffect(
+    7, 3, 7, False, TextureType.TinyLensTexture,
+    None,
+)
+docRef.selection.deselect()
 
 # Set ruler units back the way we found it
 if start_ruler_units is not psPixels:

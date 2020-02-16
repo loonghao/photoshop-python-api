@@ -1,11 +1,11 @@
 # Import local modules
 from photoshop_python_api import save_options
 from photoshop_python_api._core import Photoshop
+from photoshop_python_api.art_layer import ArtLayer
 from photoshop_python_api.art_layers import ArtLayers
 from photoshop_python_api.constants import Adobe
 from photoshop_python_api.errors import COMError
 from photoshop_python_api.layers import Layers
-from photoshop_python_api.art_layer import ArtLayer
 from photoshop_python_api.layerSets import LayerSets
 from photoshop_python_api.selection import Selection
 

@@ -1,8 +1,8 @@
 from photoshop_python_api._core import Photoshop
-from photoshop_python_api.colors.cmyk_color import CMYKColor
-from photoshop_python_api.colors.lab_color import LabColor
-from photoshop_python_api.colors.rgb_color import RGBColor
+from photoshop_python_api.colors.cmyk import CMYKColor
 from photoshop_python_api.colors.hsb import HSBColor
+from photoshop_python_api.colors.lab import LabColor
+from photoshop_python_api.colors.rgb import RGBColor
 
 
 class SolidColor(Photoshop):
