@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+
+# PyCharm project files
+.idea/
+
+# Vim / Notepad++ temp files
+*~
+.*/
+*.egg-info
+# PyInstaller output
+build/
+dist/
+*.spec
+
+# PyBuilder output
+.build/
+result/
+
+# Coverage output
+.coverage
+/venv/
+
+# Docs
+docs/_build/

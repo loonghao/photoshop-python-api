@@ -6,6 +6,6 @@ python:
 before_script: pip install coveralls
 script:
     - "py.test"
-    - "coverage run --source=photoshop_python_api setup.py test"
+    - "coverage run --source=photoshop setup.py test"
 after_success:
     - coveralls

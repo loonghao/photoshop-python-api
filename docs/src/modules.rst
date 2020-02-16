@@ -1,7 +1,7 @@
-photoshop_python_api
-====================
+photoshop
+=========
 
 .. toctree::
    :maxdepth: 4
 
-   photoshop_python_api
+   photoshop

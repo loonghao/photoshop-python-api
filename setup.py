@@ -1,24 +1,34 @@
-# Import third-party modules
+"""Describe the distribution to distutils."""
 from setuptools import find_packages
 from setuptools import setup
 
-# Import local modules
-import photoshop_python_api
+import photoshop
 
-SHORT = ('photoshop_python_api is a python api that connects photoshop with '
-         'COM.')
-LONG = ('photoshop_python_api is a python api that connects photoshop with '
-        'COM. For more info check out the README at '
-        '\'github.com/loonghao/photoshop_python_api\'.')
+SHORT = (
+    'The API for using COM (Component Object Model) objects interfaces of '
+    'Photoshop.'
+)
+LONG = (
+    'photoshop_python_api is a python api that connects photoshop with '
+    'COM. For more info check out the README at '
+    '\'github.com/loonghao/photoshop\'.'
+)
+
+
+def parse_requirements(filename):
+    with open(filename, 'r') as f:
+        for line in f:
+            yield line.strip()
+
 
 setup(
     name='photoshop_python_api',
     package_dir={'': '.'},
     packages=find_packages('.'),
     url='https://github.com/loonghao/photoshop_python_api',
-    author=photoshop_python_api.__author__,
-    version=photoshop_python_api.__version__,
-    author_email='hoolongvfx@gmail.com',
+    author=photoshop.__author__,
+    version=photoshop.__version__,
+    author_email='hal.long@outllok.com',
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
@@ -31,6 +41,6 @@ setup(
     ],
     description=SHORT,
     long_description=LONG,
-    install_requires=['comtypes'],
+    install_requires=list(parse_requirements('requirements.txt')),
     package_data={'': ['LICENSE']},
 )
