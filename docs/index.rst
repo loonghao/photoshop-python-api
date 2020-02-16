@@ -8,5 +8,5 @@ photoshop python api.
 
    installation
    usage
-   src/photoshop_python_api
+   src/modules
    history
