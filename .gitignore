@@ -20,3 +20,6 @@ result/
 # Coverage output
 .coverage
 /venv/
+
+# Docs
+docs/_build/

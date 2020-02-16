@@ -33,3 +33,7 @@ class RGBColor(Photoshop):
     @property
     def hexValue(self):
         return self.app.hexValue
+
+    @hexValue.setter
+    def hexValue(self, value):
+        self.app.hexValue = value

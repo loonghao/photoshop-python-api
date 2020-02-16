@@ -14,3 +14,9 @@ class ActionReference(Photoshop):
 
     def __init__(self):
         super().__init__()
+
+    def putName(self, key, value):
+        return self.app.putName(key, value)
+
+    def putClass(self, value):
+        return self.app.putClass(value)

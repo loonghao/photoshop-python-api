@@ -226,14 +226,15 @@ class Application(Photoshop):
     def eraseCustomOptions(self):
         pass
 
-    def executeAction(self, eventID, descriptor, displayDialogs):
+    def executeAction(self, eventID, descriptor, displayDialogs=2):
         return self.app.executeAction(eventID, descriptor, displayDialogs)
 
     @property
-    def active_layer(self):
+    def activeLayer(self):
         return self.app.ArtLayer
 
-    def active_layer_set(self):
+    @property
+    def layerSets(self):
         return self.app.LayerSets
 
     def open(self, document_file_path):
@@ -243,7 +244,7 @@ class Application(Photoshop):
         """Loads a support document."""
         return ActiveDocument(self.app.load(document_file_path))
 
-    def doJavaScript(self, javascript, Arguments, ExecutionMode):
+    def doJavaScript(self, javascript, Arguments=None, ExecutionMode=None):
         self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
     def isQuicktimeAvailable(self):

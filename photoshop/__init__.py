@@ -8,6 +8,7 @@ from photoshop.colors import RGBColor
 from photoshop.document import Document
 from photoshop.documents import Documents
 from photoshop.layer import Layer
+from photoshop.action_descriptor import ActionDescriptor
 from photoshop.layer_kind import LayerKind
 from photoshop.save_options import (
     GIFSaveOptions, JPEGSaveOptions, PDFSaveOptions, PNGSaveOptions,
@@ -23,6 +24,7 @@ from photoshop.constants import TextureType
 
 # All public APIs.
 __all__ = [
+    'ActionDescriptor',
     'Application',
     'DialogModes',
     'SelectionType',
