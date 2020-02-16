@@ -190,8 +190,3 @@ autodoc_mock_imports = [
     '_winreg',
     'winreg'
 ]
-from unittest import mock
-
-autodoc_mock_imports = ['numpy', 'matplotlib', 'matplotlib.pyplot']
-for mod_name in autodoc_mock_imports:
-    sys.modules[mod_name] = mock.Mock()
