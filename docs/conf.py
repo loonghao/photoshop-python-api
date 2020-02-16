@@ -22,7 +22,6 @@ import sphinx_rtd_theme
 # relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
 sys.path.insert(0, os.path.abspath('.'))
-import photoshop
 
 # Get the project root dir, which is the parent dir of this
 cwd = os.getcwd()
@@ -32,6 +31,8 @@ project_root = os.path.dirname(cwd)
 # This lets us ensure that the source package is imported, and that its
 # version is used.
 sys.path.insert(0, project_root)
+import photoshop
+
 
 # -- General configuration ---------------------------------------------
 
