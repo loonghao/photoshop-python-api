@@ -5,8 +5,8 @@ from setuptools import setup
 import photoshop
 
 SHORT = (
-    'photoshop_python_api is a python api that connects photoshop with '
-    'COM.'
+    'The API for using COM (Component Object Model) objects interfaces of '
+    'Photoshop.'
 )
 LONG = (
     'photoshop_python_api is a python api that connects photoshop with '

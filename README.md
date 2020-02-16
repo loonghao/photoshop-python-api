@@ -1,6 +1,6 @@
 photoshop_python_api
 ====================
-photoshop_python_api is a python api that connects photoshop with COM.
+The API for using COM (Component Object Model) objects interfaces of Photoshop.
 
 https://photoshop-python-api.readthedocs.io
 
@@ -15,7 +15,7 @@ Has been tested and used Photoshop version:
     - cc2017
     - cs6
 
-install
+Install
 -------
 Clone from github.
 ```cmd
