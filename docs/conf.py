@@ -188,6 +188,7 @@ intersphinx_mapping = {'https://docs.python.org/': None}
 
 
 autodoc_mock_imports = [
+    'comtypes',
     '_winreg',
     'winreg'
 ]
