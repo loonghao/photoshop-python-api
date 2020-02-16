@@ -23,6 +23,7 @@ try:
     from photoshop.constants import SelectionType
     from photoshop.constants import TextureType
 except ModuleNotFoundError:
+    # Fix Build docs failed on readthedocs.
     pass
 
 # All public APIs.

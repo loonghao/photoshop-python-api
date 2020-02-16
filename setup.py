@@ -5,11 +5,11 @@ from setuptools import setup
 import photoshop
 
 SHORT = (
-    'photoshop is a python api that connects photoshop with '
+    'photoshop_python_api is a python api that connects photoshop with '
     'COM.'
 )
 LONG = (
-    'photoshop is a python api that connects photoshop with '
+    'photoshop_python_api is a python api that connects photoshop with '
     'COM. For more info check out the README at '
     '\'github.com/loonghao/photoshop\'.'
 )

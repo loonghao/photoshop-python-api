@@ -7,8 +7,6 @@ class JPEGSaveOptions(Photoshop):
 
     def __init__(self):
         super().__init__()
-        print()
-        # print(self.)
 
     @property
     def quality(self):

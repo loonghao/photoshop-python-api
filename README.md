@@ -1,5 +1,6 @@
 photoshop_python_api
 ====================
+photoshop_python_api is a python api that connects photoshop with COM.
 
 https://photoshop-python-api.readthedocs.io
 http://wwwimages.adobe.com/www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf

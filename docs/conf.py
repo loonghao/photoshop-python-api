@@ -17,6 +17,8 @@ import sys
 
 import sphinx_rtd_theme
 
+import photoshop
+
 # If extensions (or modules to Document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
 # relative to the documentation root, use os.path.abspath to make it
@@ -31,7 +33,6 @@ project_root = os.path.dirname(cwd)
 # This lets us ensure that the source package is imported, and that its
 # version is used.
 sys.path.insert(0, project_root)
-import photoshop
 
 # -- General configuration ---------------------------------------------
 
@@ -188,5 +189,5 @@ intersphinx_mapping = {'https://docs.python.org/': None}
 autodoc_mock_imports = [
     'comtypes',
     '_winreg',
-    'winreg'
+    'winreg',
 ]

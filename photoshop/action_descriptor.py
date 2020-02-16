@@ -33,9 +33,6 @@ class ActionDescriptor(Photoshop):
     def getEnumerationType(self, index):
         return self.app.getEnumerationType(index)
 
-    def getEnumerationType(self, index):
-        return self.app.getEnumerationType(index)
-
     def getEnumerationValue(self, index):
         return self.app.getEnumerationValue(index)
 

@@ -1,4 +1,4 @@
-class Units(object):
+class Units:
     PIXELS = 1
     INCHES = 2
     CM = 3
