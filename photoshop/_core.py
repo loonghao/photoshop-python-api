@@ -1,28 +1,18 @@
+try:
+    # python-2.
+    import _winreg as winreg
+except ImportError:
+    # python-3
+    import winreg
 import os
 from shutil import rmtree
 from tempfile import mkdtemp
 
-try:
-    try:
-        # python-2.
-        import _winreg as winreg
-    except ImportError:
-        # python-3
-        import winreg
-    from comtypes import COMError
-    from comtypes.client import CreateObject
-    from photoshop.constants import Adobe
-    from photoshop.errors import PhotoshopPythonAPIError
+from comtypes import COMError
+from comtypes.client import CreateObject
 
-
-except ModuleNotFoundError:
-    from unittest.mock import MagicMock
-
-    # Fix build docs failed.
-    winreg = MagicMock()
-    COMError = MagicMock()
-    CreateObject = MagicMock()
-
+from photoshop.constants import Adobe
+from photoshop.errors import PhotoshopPythonAPIError
 
 
 class Photoshop:

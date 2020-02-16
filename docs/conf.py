@@ -33,7 +33,6 @@ project_root = os.path.dirname(cwd)
 sys.path.insert(0, project_root)
 import photoshop
 
-
 # -- General configuration ---------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -186,9 +185,13 @@ texinfo_documents = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
 
-
 autodoc_mock_imports = [
     'comtypes',
     '_winreg',
     'winreg'
 ]
+from unittest import mock
+
+autodoc_mock_imports = ['numpy', 'matplotlib', 'matplotlib.pyplot']
+for mod_name in autodoc_mock_imports:
+    sys.modules[mod_name] = mock.Mock()
