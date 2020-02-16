@@ -1,5 +1,5 @@
-from photoshop_python_api.application import Application
-from photoshop_python_api.save_options import JPEGSaveOptions
+from photoshop.application import Application
+from photoshop.save_options import JPEGSaveOptions
 
 MAX_THUMB_SIZE = 1280
 app = Application()

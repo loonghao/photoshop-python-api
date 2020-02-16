@@ -1,7 +1,7 @@
-from photoshop_python_api import Application
-from photoshop_python_api import DocumentFill
-from photoshop_python_api import NewDocumentMode
-from photoshop_python_api import Units
+from photoshop import Application
+from photoshop import DocumentFill
+from photoshop import NewDocumentMode
+from photoshop import Units
 
 app = Application()
 

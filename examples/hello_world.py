@@ -1,7 +1,7 @@
-from photoshop_python_api import LayerKind
-from photoshop_python_api.application import Application
-from photoshop_python_api.save_options import JPEGSaveOptions
-from photoshop_python_api.solid_color import SolidColor
+from photoshop import LayerKind
+from photoshop.application import Application
+from photoshop.save_options import JPEGSaveOptions
+from photoshop.solid_color import SolidColor
 
 
 def hello_world():

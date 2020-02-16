@@ -4,11 +4,11 @@ References:
 """
 # This sample script shows how to apply 3 different filters to
 # selections in the open document.
-from photoshop_python_api import Application
-from photoshop_python_api import DialogModes
-from photoshop_python_api import SelectionType
-from photoshop_python_api import SolidColor
-from photoshop_python_api import TextureType
+from photoshop import Application
+from photoshop import DialogModes
+from photoshop import SelectionType
+from photoshop import SolidColor
+from photoshop import TextureType
 
 # Start up Photoshop application
 # Or get Reference to already running Photoshop application instance

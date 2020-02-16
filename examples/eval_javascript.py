@@ -1,4 +1,4 @@
-from photoshop_python_api.application import Application
+from photoshop.application import Application
 
 app = Application()
 jsx = r"""

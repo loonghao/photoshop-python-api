@@ -2,16 +2,16 @@
 from setuptools import find_packages
 from setuptools import setup
 
-import photoshop_python_api
+import photoshop
 
 SHORT = (
-    'photoshop_python_api is a python api that connects photoshop with '
+    'photoshop is a python api that connects photoshop with '
     'COM.'
 )
 LONG = (
-    'photoshop_python_api is a python api that connects photoshop with '
+    'photoshop is a python api that connects photoshop with '
     'COM. For more info check out the README at '
-    '\'github.com/loonghao/photoshop_python_api\'.'
+    '\'github.com/loonghao/photoshop\'.'
 )
 
 
@@ -26,8 +26,8 @@ setup(
     package_dir={'': '.'},
     packages=find_packages('.'),
     url='https://github.com/loonghao/photoshop_python_api',
-    author=photoshop_python_api.__author__,
-    version=photoshop_python_api.__version__,
+    author=photoshop.__author__,
+    version=photoshop.__version__,
     author_email='hal.long@outllok.com',
     classifiers=[
         'Programming Language :: Python',

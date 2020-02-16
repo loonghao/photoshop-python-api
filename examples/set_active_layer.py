@@ -3,7 +3,7 @@ References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/ActiveLayer.py
 
 """
-from photoshop_python_api import Application
+from photoshop import Application
 
 app = Application()
 

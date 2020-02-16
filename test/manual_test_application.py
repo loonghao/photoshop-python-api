@@ -1,4 +1,4 @@
-from photoshop_python_api import Application
+from photoshop import Application
 
 
 def hello_world():

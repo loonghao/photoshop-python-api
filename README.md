@@ -27,10 +27,10 @@ Hello World
 
 ```python
 
-from photoshop_python_api import Application
-from photoshop_python_api import JPEGSaveOptions
-from photoshop_python_api import SolidColor
-from photoshop_python_api import LayerKind
+from photoshop import Application
+from photoshop import JPEGSaveOptions
+from photoshop import SolidColor
+from photoshop import LayerKind
 
 app = Application()
 doc = app.documents.add()
@@ -59,8 +59,8 @@ Create thumbnail
 
 ```python
 
-from photoshop_python_api import Application
-from photoshop_python_api import JPEGSaveOptions
+from photoshop import Application
+from photoshop import JPEGSaveOptions
 
 app = Application()
 active_document = app.activeDocument
@@ -84,7 +84,7 @@ Run javascript
 
 ```python
 
-from photoshop_python_api import Application
+from photoshop import Application
 
 app = Application()
 jsx = r"""
@@ -101,7 +101,7 @@ Open .psd file
 
 ```python
 
-from photoshop_python_api import Application
+from photoshop import Application
 
 app = Application()
 app.load("your/psd/or/psb/file_path.psd")

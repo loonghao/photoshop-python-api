@@ -1,5 +1,5 @@
-from photoshop_python_api.document import Document
-from photoshop_python_api.solid_color import SolidColor
+from photoshop.document import Document
+from photoshop.solid_color import SolidColor
 
 doc = Document()
 doc_ref = doc.art_layers
