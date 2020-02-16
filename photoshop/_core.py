@@ -1,7 +1,11 @@
 try:
-    # python-2.
-    import _winreg as winreg
-except (ImportError, ModuleNotFoundError):
+    try:
+        # python-2.
+        import _winreg as winreg
+    except ModuleNotFoundError:
+        # Fix build docs failed.
+        winreg = None
+except ImportError:
     # python-3
     import winreg
 import os
