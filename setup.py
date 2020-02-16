@@ -4,43 +4,11 @@ from setuptools import setup
 
 import photoshop
 
-SHORT = (
-    'The API for using COM (Component Object Model) objects interfaces of '
-    'Photoshop.'
-)
-LONG = (
-    'photoshop_python_api is a python api that connects photoshop with '
-    'COM. For more info check out the README at '
-    '\'github.com/loonghao/photoshop\'.'
-)
-
-
-def parse_requirements(filename):
-    with open(filename, 'r') as f:
-        for line in f:
-            yield line.strip()
-
-
 setup(
-    name='photoshop_python_api',
-    package_dir={'': '.'},
+    package_dir={'': 'src'},
     packages=find_packages('.'),
-    url='https://github.com/loonghao/photoshop_python_api',
-    author=photoshop.__author__,
     version=photoshop.__version__,
+    setup_requires=["setuptools-scm", "setuptools>=40.0"],
     author_email='hal.long@outllok.com',
-    classifiers=[
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-    ],
-    description=SHORT,
-    long_description=LONG,
-    install_requires=list(parse_requirements('requirements.txt')),
-    package_data={'': ['LICENSE']},
+    install_requires=['comtypes==1.1.7'],
 )
