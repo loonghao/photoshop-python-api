@@ -7,7 +7,7 @@ Installation
 From sources
 ------------
 
-The sources for pytoshop can be downloaded from the `Github repo`_.
+The sources for photoshop python api can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
@@ -24,3 +24,10 @@ Or download the `tarball`_:
 
 .. _Github repo: https://github.com/loonghao/photoshop_python_api
 .. _tarball: https://github.com/loonghao/photoshop_python_api/master
+
+Or you can install via pip.
+
+.. code-block:: console
+
+   $ pip install photoshop_python_api
+
