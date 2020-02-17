@@ -54,8 +54,8 @@ __all__ = [
     'Units',
 ]
 
-__title__ = 'photoshop'
-__version__ = '0.2.0'
+__title__ = 'photoshop_python_api'
+__version__ = '0.2.1'
 __author__ = 'Long Hao'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2018 Long Hao'
