@@ -1,6 +1,7 @@
 """
 References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/ApplyFilters.py
+
 """
 # This sample script shows how to apply 3 different filters to
 # selections in the open document.

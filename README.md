@@ -16,9 +16,14 @@ Has been tested and used Photoshop version:
     - cc2017
     - cs6
 
-Install
--------
-Clone from github.
+Installing
+----------
+You can install via pip.
+
+```cmd
+pip install photoshop_python_api
+```
+or through clone from Github.
 ```cmd
 git clone https://github.com/loonghao/photoshop_python_api.git
 ```
