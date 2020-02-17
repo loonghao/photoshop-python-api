@@ -1,7 +1,8 @@
 photoshop_python_api
 ====================
-The API for using COM (Component Object Model) objects interfaces of Photoshop.
+[![PyPI version](https://badge.fury.io/py/photoshop-python-api.svg)](https://badge.fury.io/py/photoshop-python-api)
 
+The API for using COM (Component Object Model) objects interfaces of Photoshop.
 https://photoshop-python-api.readthedocs.io
 
 ![alt text](https://github.com/loonghao/photoshop_python_api/blob/master/images/logo.png "photoshop_python_api")
