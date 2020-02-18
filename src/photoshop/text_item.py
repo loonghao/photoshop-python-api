@@ -53,3 +53,9 @@ class TextItem(Photoshop):
 
         """
         self.app.color = color_value
+
+    def capitalization(self):
+        return self.app.capitalization
+
+    def alternateLigatures(self):
+        return self.app.alternateLigatures

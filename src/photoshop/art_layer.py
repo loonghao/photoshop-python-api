@@ -1,6 +1,7 @@
 # Import local modules
 from photoshop._core import Photoshop
 from photoshop.text_item import TextItem
+from photoshop.constants import LayerKind
 
 
 class ArtLayer(Photoshop):
@@ -50,7 +51,7 @@ class ArtLayer(Photoshop):
          set `isBackgroundLayer` to true.
 
          """
-        return self.app.kind
+        return LayerKind(self.app.kind)
 
     @kind.setter
     def kind(self, layer_type):
@@ -152,8 +153,8 @@ class ArtLayer(Photoshop):
         return self.app.adjustBrightnessContrast(brightness, contrast)
 
     def adjustColorBalance(
-        self, shadows, midtones, highlights,
-        preserveLuminosity,
+            self, shadows, midtones, highlights,
+            preserveLuminosity,
     ):
         """Adjusts the color balance of the layer’s component channels.
 
@@ -194,8 +195,8 @@ class ArtLayer(Photoshop):
         return self.app.adjustCurves(curveShape)
 
     def adjustLevels(
-        self, inputRangeStart, inputRangeEnd, inputRangeGamma,
-        outputRangeStart, outputRangeEnd,
+            self, inputRangeStart, inputRangeEnd, inputRangeGamma,
+            outputRangeStart, outputRangeEnd,
     ):
         """Adjusts levels of the selected channels.
 
@@ -263,8 +264,8 @@ class ArtLayer(Photoshop):
         return self.app.applyDifferenceClouds()
 
     def applyDisplace(
-        self, horizontalScale, verticalScale, displacementType,
-        undefinedAreas, displacementMapFile,
+            self, horizontalScale, verticalScale, displacementType,
+            undefinedAreas, displacementMapFile,
     ):
         """Applies the displace filter."""
         return self.app.applyDisplace(
@@ -282,9 +283,9 @@ class ArtLayer(Photoshop):
         return self.app.applyGaussianBlur(radius)
 
     def applyGlassEffect(
-        self, distortion, smoothness, scaling, invert,
-        texture,
-        textureFile,
+            self, distortion, smoothness, scaling, invert,
+            texture,
+            textureFile,
     ):
         return self.app.applyGlassEffect(
             distortion, smoothness, scaling,
@@ -297,10 +298,10 @@ class ArtLayer(Photoshop):
         return self.app.applyHighPass(radius)
 
     def applyLensBlur(
-        self, source, focalDistance, invertDepthMap, shape,
-        radius,
-        bladeCurvature, rotation, brightness, threshold, amount,
-        distribution, monochromatic,
+            self, source, focalDistance, invertDepthMap, shape,
+            radius,
+            bladeCurvature, rotation, brightness, threshold, amount,
+            distribution, monochromatic,
     ):
         """Apply the lens blur filter."""
         return self.app.applyLensBlur(

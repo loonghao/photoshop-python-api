@@ -13,6 +13,10 @@ class Layers(Photoshop):
     def __len__(self):
         return self.length
 
+    def __getitem__(self, key):
+        print(self._layers)
+        return ArtLayer(self._layers[key])
+
     @property
     def length(self):
         return len(self._layers)
