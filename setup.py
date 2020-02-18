@@ -2,7 +2,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
-with open("README.md", "r") as fh:
+with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setup(
@@ -15,12 +15,14 @@ setup(
     setup_requires=['setuptools-scm', 'setuptools>=40.0'],
     author_email='hal.long@outllok.com',
     install_requires=['comtypes==1.1.7'],
-    description=('The API for using COM (Component Object Model) objects '
-                 'interfaces of Photoshop.'),
+    description=(
+        'The API for using COM (Component Object Model) objects '
+        'interfaces of Photoshop.'
+    ),
     long_description=long_description,
     long_description_content_type='text/markdown',
     classifiers=[
-        "Development Status :: 4 - Beta",
+        'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: Microsoft :: Windows :: Windows 10',
@@ -29,6 +31,6 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
-    ]
+    ],
 
 )

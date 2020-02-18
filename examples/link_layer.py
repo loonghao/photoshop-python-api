@@ -11,8 +11,8 @@ if len(app.documents) < 1:
     if start_ruler_units is not Units.PIXELS:
         app.preferences.rulerUnits = Units.PIXELS
     docRef = app.documents.add(
-        320, 240, 72, None, NewDocumentMode.RGB,
-        DocumentFill.BACKGROUNDCOLOR,
+        320, 240, 72, None, NewDocumentMode.NewRGB,
+        DocumentFill.BackgroundColor,
     )
 else:
     docRef = app.activeDocument
