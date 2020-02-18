@@ -1,12 +1,36 @@
 """The photoshop constants."""
+
+from functools import singledispatch
+
+
+def magic_attr(cls):
+    def _mappings(index):
+        for key, value in cls.__dict__.items():
+            if index == value:
+                return key
+
+    class PatchCls(cls):
+        def __init__(self, index):
+            self._index = index
+
+        def __repr__(self):
+            return _mappings(self._index)
+
+    return PatchCls
+
+
 # This is an enum that will work in python-2 and python-3. No need for methods
 # in here. This is an enum which means we don't need an __init__ method.
-
-
+@magic_attr
 class Adobe:
-    # Name of photoshop action descriptor.
-    ACTION_DESCRIPTOR = 'ActionDescriptor'
-
+    presetKind = 1
+    smartSharpen = 'smartSharpen'
+    presetKindType = 'presetKindType'
+    presetKindCustom = 'presetKindCustom'
+    noiseReduction = 'noiseReduction'
+    blur = 'blur'
+    blurType = 'blurType'
+    AMNT = 'Amnt'
     # Name of photoshop ``AdobeScriptAutomation Scripts``.
     ADOBE_SCRIPT_AUTOMATION_SCRIPTS = 'AdobeScriptAutomation Scripts'
 
@@ -28,12 +52,15 @@ class Adobe:
     # More ``StringIDs`` you can check out:
     # http://www.tonton-pixel.com/wp-content/uploads/DecisionTable.pdf
     NULL = 'null'
+    GSNB = 'GsnB'
     ORDN = 'Ordn'
     DOCI = 'DocI'
     CLS = 'Cls '  # This string ID requires a space.
     LYR = 'Lyr '  # This string ID requires a space.
     OFST = 'Ofst'
     PRC = '#Prc'
+    RDS = 'Rds '  # This string ID requires a space.
+    PX1 = '#Pxl'
     PLC = 'Plc '  # This string ID requires a space.
     IDNT = 'Idnt'
     HRZN = 'Hrzn'
@@ -79,26 +106,57 @@ class Adobe:
     UNITS_POINTS = 0  # Points.
 
 
+@magic_attr
+class PsAdjustmentReference:
+    Relative = 1
+    Absolute = 2
+
+
+@magic_attr
+class AnchorPosition:
+    TopLeft = 1
+    TopCenter = 2
+    TopRight = 3
+    MiddleLeft = 4
+    MiddleCenter = 5
+    BottomLeft = 7
+    BottomCenter = 8
+    BottomRight = 9
+
+
+@magic_attr
+class AntiAlias:
+    NoAntialias = 1
+    Sharp = 2
+    Crisp = 3
+    Strong = 4
+    Smooth = 5
+
+
+@magic_attr
 class NewDocumentMode:
-    GRAYSCALE = 1
-    RGB = 2
-    CMYK = 3
-    LAB = 4
-    BITMAP = 5
+    NewGray = 1
+    NewRGB = 2
+    NewCMYK = 3
+    NewLab = 4
+    NewBitmap = 5
 
 
+@magic_attr
 class DocumentFill:
-    WHITE = 1
-    BACKGROUNDCOLOR = 2
-    TRANSPARENT = 3
+    White = 1
+    BackgroundColor = 2
+    Transparent = 3
 
 
+@magic_attr
 class DialogModes:
     DisplayAllDialogs = 1
     DisplayErrorDialogs = 2
     DisplayNoDialogs = 3
 
 
+@magic_attr
 class SelectionType:
     ReplaceSelection = 1
     ExtendSelection = 2
@@ -106,9 +164,28 @@ class SelectionType:
     IntersectSelection = 4
 
 
+@magic_attr
 class TextureType:
     BlocksTexture = 1
     CanvasTexture = 2
     FrostedTexture = 3
     TinyLensTexture = 4
     TextureFile = 5
+
+
+@magic_attr
+class Units:
+    Pixels = 1
+    Inches = 2
+    CM = 3
+    MM = 4
+    Points = 5
+    Picas = 6
+    Percent = 7
+
+
+@magic_attr
+class LayerKind:
+    NormalLayer = 1
+    TextLayer = 2
+    SolidFillLayer = 3
