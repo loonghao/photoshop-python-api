@@ -1,16 +1,25 @@
-from photoshop.document import Document
-from photoshop.solid_color import SolidColor
+import photoshop as ps
 
-doc = Document()
-doc_ref = doc.art_layers
-textColor = SolidColor()
-textColor.cmyk.Cyan = 225
-textColor.cmyk.magenta = 0
-# textColor.cmyk.Blue = 1
-newTextLayer = doc_ref.add()
-psTextLayer = 2  # from enum PsLayerKind
-newTextLayer.Kind = psTextLayer
-newTextLayer.TextItem.Contents = 'Hello, World!'
-newTextLayer.TextItem.Position = [160, 167]
-newTextLayer.TextItem.Size = 36
-newTextLayer.TextItem.Color = textColor.option
+# Get photoshop instance.
+app = ps.Application()
+# Get current active document.
+doc = app.activeDocument
+
+# Add a solid color.
+textColor = ps.SolidColor()
+textColor.rgb.red = 43.0
+textColor.rgb.green = 197.0
+textColor.rgb.blue = 0.0
+
+# Create empty layer.
+new_text_layer = doc.artLayers.add()
+# Set empty layer type to text layer
+new_text_layer.kind = ps.LayerKind.TextLayer
+# Set current text layer contents to "Hello, World!".
+new_text_layer.textItem.contents = 'Hello, World!'
+# Change current text layer position.
+new_text_layer.textItem.position = [160, 167]
+# Change current text layer text size.
+new_text_layer.textItem.size = 36
+# Change current text layer color.
+new_text_layer.textItem.color = textColor
