@@ -189,3 +189,20 @@ class LayerKind:
     NormalLayer = 1
     TextLayer = 2
     SolidFillLayer = 3
+
+
+@magic_attr
+class FormatOptionsType:
+    OptimizedBaseline = 2
+    Progressive = 3
+    StandardBaseline = 4
+
+
+class MatteType:
+    NoMatte = 1
+    ForegroundColorMatte = 2
+    BackgroundColorMatte = 3
+    WhiteMatte = 4
+    BlackMatte = 5
+    SemiGray = 6
+    NetscapeGrayMatte = 7
