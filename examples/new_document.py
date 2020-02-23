@@ -1,13 +1,12 @@
 # Create a new Photoshop document with diminsions 4 inches by 4 inches.
-from photoshop import Application
-from photoshop import Units
+import photoshop as ps
 
 # Start up Photoshop application
-app = Application()
+app = ps.Application()
 
 start_ruler_units = app.preferences.rulerUnits
 
-app.preferences.rulerUnits = Units.Pixels
+app.preferences.rulerUnits = ps.Units.Pixels
 
 # Create the document
 docRef = app.documents.add(1920, 1080, 72.0, "My New Document")

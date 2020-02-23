@@ -1,52 +1,51 @@
-# This script demonstrates how you can use the action manager
-# to execute the Emboss filter.
+"""This script demonstrates how you can use the action manager to execute the
+Emboss filter.
+
+References:
+    https://github.com/lohriialo/photoshop-scripting-python/blob/master/SmartSharpen.py
+
+"""
+
 import os
-from photoshop import Application
-from photoshop import ActionDescriptor
-from photoshop import Adobe
+import photoshop as ps
 
-# Start up Photoshop application
-# Or get Reference to already running Photoshop application instance
-# app = Dispatch('Photoshop.Application')
-app = Application()
 
-fileName = os.path.join(os.path.dirname(__file__), 'Layer Comps.psd')
+app = ps.Application()
+
+fileName = os.path.join(os.path.dirname(__file__), 'layer_comps.psd')
 docRef = app.open(fileName)
 
 nlayerSets = docRef.layerSets
-nArtLayers = docRef.layerSets.item(len(nlayerSets)).artLayers
-
-docRef.activeLayer = docRef.layerSets.item(len(nlayerSets)).activeLayer.item(
-    len(nArtLayers))
+nArtLayers = docRef.layerSets.item(nlayerSets.length)
+docRef.activeLayer = nArtLayers.artLayers.item(nArtLayers.artLayers.length)
 
 
 def SmartSharpen(inAmount, inRadius, inNoise):
-    idsmart_sharpen_id = app.stringIDToTypeID(Adobe.smartSharpen)
-    desc37 = ActionDescriptor()
+    idsmart_sharpen_id = app.stringIDToTypeID(ps.smartSharpen)
+    desc37 = ps.ActionDescriptor()
 
-    idpresetKind = app.stringIDToTypeID(Adobe.presetKind)
-    idpresetKindType = app.stringIDToTypeID(Adobe.presetKindType)
-    idpresetKindCustom = app.stringIDToTypeID(Adobe.presetKindCustom)
+    idpresetKind = app.stringIDToTypeID(ps.presetKind)
+    idpresetKindType = app.stringIDToTypeID(ps.presetKindType)
+    idpresetKindCustom = app.stringIDToTypeID(ps.presetKindCustom)
     desc37.putEnumerated(idpresetKind, idpresetKindType, idpresetKindCustom)
 
-    idAmnt = app.charIDToTypeID(Adobe.AMNT)
-    idPrc = app.charIDToTypeID(Adobe.RDS)
+    idAmnt = app.charIDToTypeID(ps.AMNT)
+    idPrc = app.charIDToTypeID(ps.RDS)
     desc37.putUnitDouble(idAmnt, idPrc, inAmount)
 
-    idRds = app.charIDToTypeID(Adobe.RDS)
-    idPxl = app.charIDToTypeID(Adobe.PX1)
+    idRds = app.charIDToTypeID(ps.RDS)
+    idPxl = app.charIDToTypeID(ps.PX1)
     desc37.putUnitDouble(idRds, idPxl, inRadius)
 
-    idnoiseReduction = app.stringIDToTypeID(Adobe.noiseReduction)
-    idPrc = app.charIDToTypeID(Adobe.PRC)
+    idnoiseReduction = app.stringIDToTypeID(ps.noiseReduction)
+    idPrc = app.charIDToTypeID(ps.PRC)
     desc37.putUnitDouble(idnoiseReduction, idPrc, inNoise)
 
-    idblur = app.charIDToTypeID(Adobe.blur)
-    idblurType = app.stringIDToTypeID(Adobe.blurType)
-    idGsnB = app.charIDToTypeID(Adobe.GSNB)
+    idblur = app.charIDToTypeID(ps.blur)
+    idblurType = app.stringIDToTypeID(ps.blurType)
+    idGsnB = app.charIDToTypeID(ps.GSNB)
     desc37.putEnumerated(idblur, idblurType, idGsnB)
 
-    # now execute the action
     app.ExecuteAction(idsmart_sharpen_id, desc37)
 
 

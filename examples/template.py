@@ -1,6 +1,6 @@
 from photoshop import Application
-from photoshop.constants import LayerKind
-from photoshop.constants import Adobe
+from photoshop.enumerations import LayerKind
+from photoshop.enumerations import Adobe
 from datetime import datetime
 
 app = Application()

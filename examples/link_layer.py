@@ -1,18 +1,16 @@
-from photoshop import Application
-from photoshop import DocumentFill
-from photoshop import NewDocumentMode
-from photoshop import Units
 
-app = Application()
+import photoshop as ps
+
+app = ps.Application()
 
 start_ruler_units = app.preferences.rulerUnits
 
 if len(app.documents) < 1:
-    if start_ruler_units is not Units.PIXELS:
-        app.preferences.rulerUnits = Units.PIXELS
+    if start_ruler_units is not ps.Units.Pixels:
+        app.preferences.rulerUnits = ps.Units.Pixels
     docRef = app.documents.add(
-        320, 240, 72, None, NewDocumentMode.NewRGB,
-        DocumentFill.BackgroundColor,
+        320, 240, 72, None, ps.NewDocumentMode.NewRGB,
+        ps.DocumentFill.BackgroundColor,
     )
 else:
     docRef = app.activeDocument
