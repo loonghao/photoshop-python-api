@@ -1,9 +1,9 @@
-from photoshop.application import Application
+import photoshop as ps
 
-app = Application()
+app = ps.Application()
 jsx = r"""
 var doc = app.activeDocument;
 var orig_name = doc.name;
 alert(orig_name);
 """
-app.eval_javascript(jsx)
+app.doJavaScript(jsx)

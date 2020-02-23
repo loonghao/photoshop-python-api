@@ -1,6 +1,6 @@
 # Import local modules
 from photoshop._core import Photoshop
-from photoshop.art_layer import ArtLayer
+from photoshop.artlayer import ArtLayer
 
 
 class ArtLayers(Photoshop):
@@ -10,6 +10,9 @@ class ArtLayers(Photoshop):
     @property
     def _layers(self):
         return [layer for layer in self.app]
+
+    def __len__(self):
+        return self.length
 
     @property
     def length(self):

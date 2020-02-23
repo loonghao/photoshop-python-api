@@ -5,17 +5,13 @@ except ImportError:
     # python-3
     import winreg
 import os
-from shutil import rmtree
-from tempfile import mkdtemp
 
-from comtypes import COMError
 from comtypes.client import CreateObject
-
-from photoshop.constants import Adobe
+from photoshop import constants
 from photoshop.errors import PhotoshopPythonAPIError
 
 
-class Photoshop:
+class Photoshop(object):
     _root = 'Photoshop'
     REG_PATH = 'Software\\Adobe\\Photoshop'
     _object_name = 'Application'
@@ -23,7 +19,7 @@ class Photoshop:
 
     def __init__(self, ps_version=None, parent=None):
         self._progress_id = None
-        version_mappings = Adobe.PHOTOSHOP_VERSION_MAPPINGS
+        version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
         self.photoshop_version = os.getenv('PS_VERSION', ps_version)
         version = self._get_install_version()
         self.app_id = version_mappings.get(self.photoshop_version, version)
@@ -43,8 +39,11 @@ class Photoshop:
     def __call__(self, *args, **kwargs):
         return self.app
 
-    def __repr__(self):
+    def __str__(self):
         return f'{self.__class__.__name__} <{self._progress_id}>'
+
+    def __repr__(self):
+        return self
 
     def __getattribute__(self, item):
         try:
@@ -95,55 +94,3 @@ class Photoshop:
     def action_descriptor(self):
         name = self._get_name([self._root, 'ActionDescriptor', self.app_id])
         return self._create_object(name)
-
-    def run_jsx(self, jsx):
-        """Run a ``.jsx`` in python.
-
-        Args:
-            jsx (str): Absolute path of ``.jsx`` file.
-
-        Examples:
-            .. code-block:: python
-
-                >>> from photoshop import Application
-                >>> app = Application()
-                >>> app.run_jsx("c:/test.jsx")
-
-        """
-        try:
-            id60 = self.stringIDToTypeID('AdobeScriptAutomation Scripts')
-            action = self.action_descriptor
-            id61 = self.charIDToTypeID(Adobe.JSCT)
-            action.putPath(id61, jsx)
-            id62 = self.charIDToTypeID(Adobe.JSMS)
-            action.putString(id62, Adobe.NULL)
-            return self.app.executeAction(id60, action, 2)
-        except COMError:
-            raise PhotoshopPythonAPIError(
-                'The Photoshop is busy, '
-                'Please try again.',
-            )
-
-    def eval_javascript(self, command):
-        """Eval Javascript in python.
-
-        Args:
-            command (str): The javascript of Photoshop.
-
-        Examples:
-            .. code-block:: python
-
-                >>> from photoshop import Application
-                >>> app = Application()
-                >>> jsx = ('var doc = app.activeDocument;'
-                ...       'var orig_name = doc.name;'
-                ...       'alert(orig_name);')
-                >>> app.eval_javascript(jsx)
-
-        """
-        dir_ = mkdtemp(prefix='photoshop_python_api_')
-        js = os.path.join(dir_, 'temp_script.jsx')
-        with open(js, 'w') as file_obj:
-            file_obj.write(command)
-        self.run_jsx(js)
-        rmtree(dir_)

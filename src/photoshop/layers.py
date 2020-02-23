@@ -1,5 +1,5 @@
 from photoshop._core import Photoshop
-from photoshop.art_layer import ArtLayer
+from photoshop.artlayer import ArtLayer
 
 
 class Layers(Photoshop):
@@ -9,6 +9,9 @@ class Layers(Photoshop):
     @property
     def _layers(self):
         return [layer for layer in self.app]
+
+    def __getitem__(self, key):
+        return ArtLayer(self._layers[key])
 
     def __len__(self):
         return self.length

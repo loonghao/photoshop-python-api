@@ -1,29 +1,23 @@
-from photoshop import LayerKind
-from photoshop.application import Application
-from photoshop.save_options import JPEGSaveOptions
-from photoshop.solid_color import SolidColor
+import photoshop as ps
 
 
 def hello_world():
-    app = Application()
+    app = ps.Application()
     doc = app.documents.add()
     new_doc = doc.artLayers.add()
-    text_color = SolidColor()
-    text_color.rgb.red = 225
-    text_color.rgb.green = 0
-    text_color.rgb.blue = 0
+    text_color = ps.SolidColor()
+    text_color.rgb.green = 255
     new_text_layer = new_doc
-    new_text_layer.kind = LayerKind.BRIGHTNESSCONTRAST
+    new_text_layer.kind = ps.LayerKind.TextLayer
     new_text_layer.textItem.contents = 'Hello, World!'
     new_text_layer.textItem.position = [160, 167]
     new_text_layer.textItem.size = 40
     new_text_layer.textItem.color = text_color
-    options = JPEGSaveOptions()
-    options.quality = 10
+    options = ps.JPEGSaveOptions(quality=5)
     # # save to jpg
     jpg = 'd:/hello_world.jpg'
-    doc.saveAs(jpg, options, as_copy=True)
-    app.eval_javascript(f'alert("save to jpg: {jpg}")')
+    doc.saveAs(jpg, options, asCopy=True)
+    app.doJavaScript(f'alert("save to jpg: {jpg}")')
 
 
 if __name__ == '__main__':

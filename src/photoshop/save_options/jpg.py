@@ -1,12 +1,19 @@
 # Import local modules
 from photoshop._core import Photoshop
+from photoshop.enumerations import FormatOptionsType
+from photoshop.enumerations import MatteType
 
 
 class JPEGSaveOptions(Photoshop):
     object_name = 'JPEGSaveOptions'
 
-    def __init__(self):
+    def __init__(self, quality=5,
+                 embedColorProfile=True,
+                 matte=MatteType.NoMatte):
         super().__init__()
+        self.quality = quality
+        self.embedColorProfile = embedColorProfile
+        self.matte = matte
 
     @property
     def quality(self):
@@ -21,6 +28,18 @@ class JPEGSaveOptions(Photoshop):
         """The download format to use."""
         return self.app.formatOptions
 
+    @formatOptions.setter
+    def formatOptions(self, value):
+        self.app.formatOptions = value
+
+    @property
+    def embedColorProfile(self):
+        return self.app.embedColorProfile
+
+    @embedColorProfile.setter
+    def embedColorProfile(self, value):
+        self.app.embedColorProfile = value
+
     @property
     def matte(self):
         """The color to use to fill anti-aliased edges adjacent to transparent
@@ -31,6 +50,10 @@ class JPEGSaveOptions(Photoshop):
 
         """
         return self.app.matte
+
+    @matte.setter
+    def matte(self, value):
+        self.app.matte = value
 
     @property
     def scans(self):

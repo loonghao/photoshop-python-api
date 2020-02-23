@@ -1,6 +1,7 @@
 from photoshop._core import Photoshop
-from photoshop.art_layer import ArtLayer
-
+from photoshop.artlayer import ArtLayer
+from photoshop.layers import Layers
+from photoshop.layerSet import LayerSet
 
 class LayerSets(Photoshop):
     def __init__(self, parent):
@@ -22,3 +23,11 @@ class LayerSets(Photoshop):
 
     def add(self):
         self.app.add()
+
+    def item(self, index):
+        return LayerSet(self.app.item(index))
+
+    def getByName(self, name):
+        for layer in self._layerSets:
+            if name == layer.name:
+                return LayerSet(layer.layers)

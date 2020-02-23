@@ -8,12 +8,21 @@ from photoshop.colors.rgb import RGBColor
 class SolidColor(Photoshop):
     object_name = 'SolidColor'
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        # Initialize color.
+        self.rgb = RGBColor(self.app.rgb)
+        self.cmyk = CMYKColor(self.app.cmyk)
+        self.hsb = HSBColor(self.app.hsb)
+        self.lab = LabColor(self.app.lab)
 
     @property
     def cmyk(self):
         return CMYKColor(self.app.cmyk)
+
+    @cmyk.setter
+    def cmyk(self, value):
+        self.app.cmyk = value
 
     @property
     def gray(self):
@@ -23,9 +32,17 @@ class SolidColor(Photoshop):
     def hsb(self):
         return HSBColor(self.app.hsb)
 
+    @hsb.setter
+    def hsb(self, value):
+        self.app.hsb = value
+
     @property
     def lab(self):
         return LabColor(self.app.lab)
+
+    @lab.setter
+    def lab(self, value):
+        self.app.lab = value
 
     @property
     def model(self):
@@ -38,6 +55,10 @@ class SolidColor(Photoshop):
     @property
     def rgb(self):
         return RGBColor(self.app.rgb)
+
+    @rgb.setter
+    def rgb(self, value):
+        self.app.rgb = value
 
     @property
     def isEqual(self, *args, **kwargs):

@@ -20,7 +20,7 @@ class Application(Photoshop):
 
     @property
     def backgroundColor(self):
-        return SolidColor()
+        return SolidColor(self.app.backgroundColor)
 
     @backgroundColor.setter
     def backgroundColor(self, color):
@@ -61,7 +61,7 @@ class Application(Photoshop):
     def foregroundColor(self):
         """The default foreground color (used to paint, fill,
         and stroke selections)."""
-        return self.app.foregroundColor
+        return SolidColor(parent=self.app.foregroundColor)
 
     @property
     def freeMemory(self):

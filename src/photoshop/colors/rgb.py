@@ -5,13 +5,16 @@ class RGBColor(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self.blue = 0
+        self.red = 0
+        self.green = 0
 
     @property
     def blue(self):
         return self.app.blue
 
     @blue.setter
-    def blue(self, value):
+    def blue(self, value: int):
         self.app.blue = value
 
     @property
@@ -19,7 +22,7 @@ class RGBColor(Photoshop):
         return self.app.green
 
     @green.setter
-    def green(self, value):
+    def green(self, value: int):
         self.app.green = value
 
     @property
@@ -27,7 +30,7 @@ class RGBColor(Photoshop):
         return self.app.red
 
     @red.setter
-    def red(self, value):
+    def red(self, value: int):
         self.app.red = value
 
     @property
