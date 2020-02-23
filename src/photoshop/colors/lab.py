@@ -7,7 +7,7 @@ class LabColor(Photoshop):
         super().__init__(parent=parent)
         self.A = 0
         self.b = 0
-        self.L = 100
+        self.L = 0
 
     @property
     def A(self):

@@ -1,12 +1,20 @@
 # Import local modules
 from photoshop._core import Photoshop
 from photoshop.text_item import TextItem
-from photoshop.constants import LayerKind
+from photoshop.enumerations import LayerKind
 
 
 class ArtLayer(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
+
+    @property
+    def name(self):
+        return self.app.name
+
+    @name.setter
+    def name(self, text):
+        self.app.name = text
 
     @property
     def _layers(self):

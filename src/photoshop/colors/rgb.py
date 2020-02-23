@@ -5,9 +5,9 @@ class RGBColor(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
-        self.blue = 255
-        self.red = 255
-        self.green = 255
+        self.blue = 0
+        self.red = 0
+        self.green = 0
 
     @property
     def blue(self):

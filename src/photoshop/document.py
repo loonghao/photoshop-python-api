@@ -1,13 +1,13 @@
 # Import local modules
 from photoshop import save_options
 from photoshop._core import Photoshop
-from photoshop.art_layer import ArtLayer
-from photoshop.art_layers import ArtLayers
-from photoshop.constants import Adobe
+from photoshop.artlayer import ArtLayer
+from photoshop.artlayers import ArtLayers
 from photoshop.errors import COMError
 from photoshop.layers import Layers
 from photoshop.layerSets import LayerSets
 from photoshop.selection import Selection
+from photoshop.enumerations import ExtensionType
 
 
 class Document(Photoshop):
@@ -154,7 +154,7 @@ class Document(Photoshop):
     @property
     def name(self):
         """The Document name."""
-        return self.app.Name
+        return self.app.name
 
     @property
     def parent(self):
@@ -261,9 +261,9 @@ class Document(Photoshop):
     def duplicate(self, name, merge_layers_only=False):
         return Document(self.app.duplicate(name, merge_layers_only))
 
-    def paste(self, into_selection):
+    def paste(self):
         """Pastes contents of the clipboard into the Document."""
-        return self.app.Paste(into_selection)
+        return self.app.paste()
 
     def rasterizeAllLayers(self):
         return self.app.rasterizeAllLayers()
@@ -276,11 +276,12 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.app.Save()
 
-    def saveAs(self, file_path, options, as_copy=False):
+    def saveAs(self, file_path, options, asCopy=False,
+               extensionType=ExtensionType.Lowercase):
         """Saves the documents with the specified save options."""
         return self.app.saveAs(
-            file_path, options, as_copy,
-            Adobe.DIALOG_MODES_NO,
+            file_path, options, asCopy,
+            extensionType,
         )
 
     def trim(self, *args, **kwargs):
