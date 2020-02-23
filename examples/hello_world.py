@@ -3,7 +3,6 @@ import photoshop as ps
 
 def hello_world():
     app = ps.Application()
-    print(app.foregroundColor.rgb)
     doc = app.documents.add()
     new_doc = doc.artLayers.add()
     text_color = ps.SolidColor()

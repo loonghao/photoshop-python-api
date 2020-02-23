@@ -1,4 +1,4 @@
-from photoshop.art_layer import ArtLayer
+from photoshop.artlayer import ArtLayer
 
 
 def hello_world():

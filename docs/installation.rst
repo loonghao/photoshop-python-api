@@ -30,4 +30,3 @@ Or you can install via pip.
 .. code-block:: console
 
    $ pip install photoshop_python_api
-

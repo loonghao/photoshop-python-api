@@ -60,18 +60,18 @@ photoshop.application module
    :undoc-members:
    :show-inheritance:
 
-photoshop.art\_layer module
----------------------------
+photoshop.artlayer module
+-------------------------
 
-.. automodule:: photoshop.art_layer
+.. automodule:: photoshop.artlayer
    :members:
    :undoc-members:
    :show-inheritance:
 
-photoshop.art\_layers module
-----------------------------
+photoshop.artlayers module
+--------------------------
 
-.. automodule:: photoshop.art_layers
+.. automodule:: photoshop.artlayers
    :members:
    :undoc-members:
    :show-inheritance:
@@ -100,6 +100,14 @@ photoshop.documents module
    :undoc-members:
    :show-inheritance:
 
+photoshop.enumerations module
+-----------------------------
+
+.. automodule:: photoshop.enumerations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 photoshop.errors module
 -----------------------
 
@@ -116,18 +124,18 @@ photoshop.layer module
    :undoc-members:
    :show-inheritance:
 
-photoshop.layerSets module
---------------------------
+photoshop.layerSet module
+-------------------------
 
-.. automodule:: photoshop.layerSets
+.. automodule:: photoshop.layerSet
    :members:
    :undoc-members:
    :show-inheritance:
 
-photoshop.layer\_kind module
-----------------------------
+photoshop.layerSets module
+--------------------------
 
-.. automodule:: photoshop.layer_kind
+.. automodule:: photoshop.layerSets
    :members:
    :undoc-members:
    :show-inheritance:
@@ -176,14 +184,6 @@ photoshop.text\_item module
 ---------------------------
 
 .. automodule:: photoshop.text_item
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.units module
-----------------------
-
-.. automodule:: photoshop.units
    :members:
    :undoc-members:
    :show-inheritance:
