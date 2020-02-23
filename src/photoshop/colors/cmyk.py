@@ -6,39 +6,43 @@ class CMYKColor(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self.cyan = 0
+        self.magenta = 0
+        self.yellow = 0
+        self.black = 0
 
     @property
-    def Black(self):
-        return self.app.Black
+    def black(self):
+        """The black color value. Range: 0.0 to 100.0."""
+        return self.app.black
 
-    @Black.setter
-    def Black(self, value):
-        self.app.Black = value
+    @black.setter
+    def black(self, value):
+        self.app.black = value
 
     @property
-    def Cyan(self):
-        return self.app.Cyan
+    def cyan(self):
+        """The cyan color value. Range: 0.0 to 100.0."""
+        return self.app.cyan
 
-    @Cyan.setter
-    def Cyan(self, value):
-        self.app.Cyan = value
+    @cyan.setter
+    def cyan(self, value: int):
+        self.app.cyan = value
 
     @property
     def magenta(self):
+        """The magenta color value. Range: 0.0 to 100.0."""
         return self.app.magenta
 
     @magenta.setter
-    def magenta(self, value):
+    def magenta(self, value: int):
         self.app.magenta = value
 
     @property
-    def Yellow(self):
-        return self.app.HexValue
+    def yellow(self):
+        """The yellow color value. Range: 0.0 to 100.0."""
+        return self.app.yellow
 
-    @Yellow.setter
-    def Yellow(self):
-        return self.app.Yellow
-
-    @Yellow.getter
-    def Yellow(self):
-        return self.app.Yellow
+    @yellow.setter
+    def yellow(self, value: float):
+        self.app.yellow = value
