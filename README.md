@@ -24,7 +24,7 @@ You can install via pip.
 pip install photoshop_python_api
 ```
 or through clone from Github.
-```cmd
+```git exclude
 git clone https://github.com/loonghao/photoshop_python_api.git
 ```
 Install package.
@@ -56,61 +56,11 @@ doc.saveAs(jpg, options, asCopy=True)
 app.doJavaScript(f'alert("save to jpg: {jpg}")')
 
 ```
-
-Create thumbnail
-----------------
+![demo](https://i.imgur.com/25TrzbV.gif)
 
 
-```python
 
-import photoshop as ps
-
-app = ps.Application()
-active_document = app.activeDocument
-orig_name = active_document.name
-width_str = active_document.width
-height_str = active_document.height
-index = width_str / 1280
-thumb_width = int(width_str / index)
-thumb_height = int(height_str / index)
-thumb_doc = active_document.duplicate('{}_tumb'.format(orig_name))
-thumb_doc.resizeImage(thumb_width, thumb_height)
-o = ps.JPEGSaveOptions(quality=10)
-thumb_doc.saveAs('c:/thumb.jpg', o, as_copy=True)
-thumb_doc.close()
-
-```
-
-Run javascript
---------------
-
-```python
-
-import photoshop as ps
-
-app = ps.Application()
-jsx = r"""
-var doc = app.activeDocument;
-var orig_name = doc.name;
-alert(orig_name);
-"""
-app.doJavaScript(jsx)
-
-```
-
-Open .psd file
---------------
-
-```python
-
-import photoshop as ps
-
-app = ps.Application()
-app.load("your/psd/or/psb/file_path.psd")
-
-```
-
-Research and reference
+Useful links
 ----------------------
 - https://theiviaxx.github.io/photoshop-docs/Photoshop/
 - http://wwwimages.adobe.com/www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf
