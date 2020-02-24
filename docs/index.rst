@@ -1,7 +1,7 @@
 photoshop_python_api documentation
 ==================================
 
-photoshop python api.
+The API for using COM (Component Object Model) objects interfaces of Photoshop.
 
 .. toctree::
    :maxdepth: 2
