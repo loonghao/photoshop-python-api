@@ -77,3 +77,4 @@ Useful links
 - http://www.tonton-pixel.com/wp-content/uploads/DecisionTable.pdf
 - http://jongware.mit.edu/pscs5js_html/psjscs5/pc_Application.html
 - https://indd.adobe.com/view/a0207571-ff5b-4bbf-a540-07079bd21d75
+- http://shining-lucy.com/wiki/page.php?id=appwiki:photoshop:ps_script
