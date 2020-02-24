@@ -145,7 +145,10 @@ class ArtLayer(Photoshop):
 
     @property
     def typename(self):
-        return self.app.Typename
+        return self.eval_javascript("app.activeDocument.activeLayer.typename")
+
+    def link(self, artlayer):
+        return self.adobe.activeDocument.activeLayer.link(artlayer)
 
     def add(self):
         return self.app.add()
@@ -319,3 +322,6 @@ class ArtLayer(Photoshop):
             threshold, amount,
             distribution, monochromatic,
         )
+
+    def link(self, artlayer):
+        self.app.link(artlayer)

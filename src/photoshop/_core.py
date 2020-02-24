@@ -6,6 +6,7 @@ except ImportError:
     import winreg
 import os
 
+from comtypes import COMError
 from comtypes.client import CreateObject
 from photoshop import constants
 from photoshop.errors import PhotoshopPythonAPIError
@@ -34,6 +35,7 @@ class Photoshop(object):
                     'Photoshop installed correctly.',
                 )
         if parent:
+            self.adobe = self.app
             self.app = parent
 
     def __call__(self, *args, **kwargs):
@@ -84,13 +86,5 @@ class Photoshop(object):
     def _get_name(list_):
         return '.'.join(list_)
 
-    def stringIDToTypeID(self, string):
-        return self.app.stringIDToTypeID(string)
-
-    def charIDToTypeID(self, char):
-        return self.app.charIDToTypeID(char)
-
-    @property
-    def action_descriptor(self):
-        name = self._get_name([self._root, 'ActionDescriptor', self.app_id])
-        return self._create_object(name)
+    def eval_javascript(self, javascript, Arguments=None, ExecutionMode=None):
+        return self.adobe.doJavaScript(javascript, Arguments, ExecutionMode)

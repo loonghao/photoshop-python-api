@@ -4,10 +4,9 @@ import photoshop as ps
 def hello_world():
     app = ps.Application()
     doc = app.documents.add()
-    new_doc = doc.artLayers.add()
     text_color = ps.SolidColor()
     text_color.rgb.green = 255
-    new_text_layer = new_doc
+    new_text_layer = doc.artLayers.add()
     new_text_layer.kind = ps.LayerKind.TextLayer
     new_text_layer.textItem.contents = 'Hello, World!'
     new_text_layer.textItem.position = [160, 167]

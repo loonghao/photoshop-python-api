@@ -14,7 +14,7 @@ class Documents(Photoshop):
     def __len__(self):
         return self.length
 
-    def add(self, width=960, height=540, resolution=72.0, name="MY Document",
+    def add(self, width=960, height=540, resolution=72.0, name=None,
             mode=NewDocumentMode.NewRGB, initialFill=DocumentFill.White,
             pixelAspectRatio=None,
             bitsPerChannel=BitsPerChannelType.Document16Bits,

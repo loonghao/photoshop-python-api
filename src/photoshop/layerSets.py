@@ -1,7 +1,6 @@
 from photoshop._core import Photoshop
-from photoshop.artlayer import ArtLayer
-from photoshop.layers import Layers
 from photoshop.layerSet import LayerSet
+
 
 class LayerSets(Photoshop):
     def __init__(self, parent):
@@ -11,7 +10,8 @@ class LayerSets(Photoshop):
         return self.length
 
     def __getitem__(self, key):
-        return ArtLayer(self._layerSets[key])
+        print(key)
+        return LayerSet(self._layerSets[key])
 
     @property
     def _layerSets(self):
@@ -22,7 +22,7 @@ class LayerSets(Photoshop):
         return len(self._layerSets)
 
     def add(self):
-        self.app.add()
+        return LayerSet(self.app.add())
 
     def item(self, index):
         return LayerSet(self.app.item(index))

@@ -1,9 +1,9 @@
-# Import local modules
 from photoshop._core import Photoshop
 from photoshop.artlayer import ArtLayer
-
+from photoshop.layer import Layer
 
 class ArtLayers(Photoshop):
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 
@@ -28,7 +28,7 @@ class ArtLayers(Photoshop):
 
     def add(self):
         """Adds an element."""
-        return ArtLayer(self.app.add())
+        return Layer(self.app.add())
 
     def getByName(self, name):
         return self.app.getByName(name)

@@ -5,6 +5,7 @@ from photoshop.artlayer import ArtLayer
 from photoshop.artlayers import ArtLayers
 from photoshop.errors import COMError
 from photoshop.layers import Layers
+from photoshop.layer import Layer
 from photoshop.layerSets import LayerSets
 from photoshop.selection import Selection
 from photoshop.enumerations import ExtensionType
@@ -22,7 +23,7 @@ class Document(Photoshop):
 
     @property
     def activeLayer(self):
-        return ArtLayer(self.app.activeLayer)
+        return Layer(self.app.activeLayer)
 
     @activeLayer.setter
     def activeLayer(self, item):
@@ -119,7 +120,7 @@ class Document(Photoshop):
     @property
     def info(self):
         """Metadata about the Document."""
-        return self.app.Info
+        return self.app.info
 
     @property
     def layer_comps(self):

@@ -277,6 +277,9 @@ class Application(Photoshop):
     def system(command):
         os.system(command)
 
+    def stringIDToTypeID(self, string):
+        return self.app.stringIDToTypeID(string)
+
     def typeIDToStringID(self, typeID):
         return self.app.typeIDToStringID(typeID)
 
