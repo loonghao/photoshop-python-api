@@ -7,17 +7,16 @@ import photoshop as ps
 
 app = ps.Application()
 
-if len(app.documents) < 1:
+if app.documents.length < 1:
     docRef = app.documents.add()
 else:
     docRef = app.activeDocument
 
-if len(docRef.layers) < 2:
+if docRef.layers.length < 2:
     docRef.artLayers.add()
 
 activeLayerName = docRef.activeLayer.name
-SetLayerName = ''
-if docRef.activeLayer.name != app.activeDocument.layers.item(len(docRef.layers)).name:
-    docRef.activeLayer = docRef.layers.item(len(docRef.layers))
+if docRef.activeLayer.name != docRef.layers.item(docRef.layers.length).name:
+    docRef.activeLayer = docRef.layers.item(docRef.layers.length)
 else:
     docRef.activeLayer = docRef.layers.item(1)
