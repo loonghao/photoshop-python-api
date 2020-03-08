@@ -1,5 +1,7 @@
 from photoshop._core import Photoshop
 from photoshop.artlayer import ArtLayer
+from photoshop.layer import Layer
+from photoshop.errors import COMError
 
 
 class Layers(Photoshop):
@@ -11,10 +13,13 @@ class Layers(Photoshop):
         return [layer for layer in self.app]
 
     def __getitem__(self, key):
-        return ArtLayer(self._layers[key])
-
-    def __len__(self):
-        return self.length
+        item = self._layers[key]
+        try:
+            # If have text item will be return ArtLayer.
+            item.textItem
+            return ArtLayer(item)
+        except:
+            return Layer(self._layers[key])
 
     @property
     def length(self):
@@ -25,3 +30,10 @@ class Layers(Photoshop):
 
     def item(self, index):
         return ArtLayer(self.app.item(index))
+
+    def __iter__(self):
+        for layer in self._layers:
+            if layer.kind == "1":
+                yield Layer(layer)
+            else:
+                yield ArtLayer(layer)

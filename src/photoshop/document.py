@@ -8,6 +8,7 @@ from photoshop.layers import Layers
 from photoshop.layer import Layer
 from photoshop.layerSets import LayerSets
 from photoshop.selection import Selection
+from photoshop.layerSet import LayerSet
 from photoshop.enumerations import ExtensionType
 
 
@@ -23,7 +24,11 @@ class Document(Photoshop):
 
     @property
     def activeLayer(self):
-        return Layer(self.app.activeLayer)
+        type_ = self.eval_javascript("app.activeDocument.activeLayer.typename")
+        mappings = {"LayerSet": LayerSet,
+                    "ArtLayer": ArtLayer}
+        func = mappings[type_]
+        return func(self.app.activeLayer)
 
     @activeLayer.setter
     def activeLayer(self, item):
@@ -123,7 +128,7 @@ class Document(Photoshop):
         return self.app.info
 
     @property
-    def layer_comps(self):
+    def layerComps(self):
         """The layer comps collection in this Document."""
         return self.app.LayerComps
 

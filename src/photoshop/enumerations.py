@@ -16,11 +16,14 @@ def magic_attr(cls):
         def __repr__(self):
             return _mappings(self._index)
 
+        def __eq__(self, other):
+            return _mappings(self._index) == other
+
     return PatchCls
 
 
 @magic_attr
-class PsAdjustmentReference:
+class AdjustmentReference:
     Relative = 1
     Absolute = 2
 
@@ -134,3 +137,49 @@ class BitsPerChannelType:
     Document8Bits = 8
     Document16Bits = 16
     Document32Bits = 32
+
+
+@magic_attr
+class ColorBlendMode:
+    NormalBlendColor = 2
+    DissolveBlend = 3
+    DarkenBlend = 4
+    MultiplyBlend = 5
+    ColorBurnBlend = 6
+    LinearBurnBlend = 7
+    LightenBlend = 8
+    ScreenBlend = 9
+    ColorDodgeBlend = 10
+    LinearDodgeBlend = 11
+    OverlayBlend = 12
+    SoftLightBlend = 13
+    HardLightBlend = 14
+    VividLightBlend = 15
+    LinearLightBlend = 16
+    PinLightBlend = 17
+    DifferenceBlend = 18
+    ExclusionBlend = 19
+    HueBlend = 20
+    SaturationBlendColor = 21
+    ColorBlendMode = 22
+    LuminosityBlend = 23
+    BehindBlend = 24
+    ClearBlend = 25
+    HardMixBlend = 26
+    LighterColorBlend = 27
+    DarkerColorBlend = 28
+    SubtractBlend = 29
+    DivideBlend = 30
+
+
+@magic_attr
+class StrokeLocation:
+    InsideStroke = 1
+    CenterStroke = 2
+    OutsideStroke = 3
+
+
+@magic_attr
+class NoiseDistribution:
+    UniformNoise = 1
+    GaussianNoise = 2

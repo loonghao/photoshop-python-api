@@ -22,7 +22,7 @@ try:
     )
     from photoshop.solid_color import SolidColor
     from photoshop.text_item import TextItem
-
+    from photoshop.enumerations import NoiseDistribution
     from photoshop.enumerations import Units
     from photoshop.enumerations import LayerKind
     from photoshop.enumerations import NewDocumentMode
@@ -30,6 +30,8 @@ try:
     from photoshop.enumerations import DialogModes
     from photoshop.enumerations import SelectionType
     from photoshop.enumerations import TextureType
+    from photoshop.enumerations import ColorBlendMode
+    from photoshop.enumerations import StrokeLocation
     from photoshop.constants import *
 except ModuleNotFoundError:
     # Fix Build docs failed on readthedocs.
@@ -42,11 +44,13 @@ __all__ = [
     'ArtLayer',
     'Application',
     'CMYKColor',
+    'ColorBlendMode',
     'DialogModes',
     'DocumentFill',
     'Document',
     'Documents',
     'SelectionType',
+    'StrokeLocation',
     'TextureType',
     'NewDocumentMode',
     'LayerKind',
@@ -58,6 +62,7 @@ __all__ = [
     'HSBColor',
     'RGBColor',
     'Layer',
+    'NoiseDistribution',
     'JPEGSaveOptions',
     'PNGSaveOptions',
     'PDFSaveOptions',

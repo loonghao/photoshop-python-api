@@ -5,19 +5,17 @@
 import photoshop as ps
 
 app = ps.Application()
-if len(app.documents) < 1:
+if app.documents.length < 1:
     docRef = app.documents.add()
 else:
     docRef = app.activeDocument
 
-if len(docRef.layers) < 2:
+if docRef.layers.length < 2:
     docRef.artLayers.add()
 
-activeLayerName = docRef.activeLayer.name
-SetLayerName = ''
 
 print(docRef.activeLayer.name)
-print(docRef.layers.item(len(docRef.layers)))
+print(docRef.layers.item(docRef.layers.length))
 # Set current active to first layer.
 # docRef.activeLayer = docRef.layers.item(1)
 new_layer = docRef.artLayers.add()

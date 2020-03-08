@@ -2,6 +2,7 @@
 from photoshop._core import Photoshop
 from photoshop.text_item import TextItem
 from photoshop.enumerations import LayerKind
+from photoshop.layer import Layer
 
 
 class ArtLayer(Photoshop):
@@ -15,13 +16,6 @@ class ArtLayer(Photoshop):
     @name.setter
     def name(self, text):
         self.app.name = text
-
-    @property
-    def _layers(self):
-        return [layerset for layerset in self.app]
-
-    def __len__(self):
-        return self.length
 
     @property
     def fillOpacity(self):
@@ -141,11 +135,7 @@ class ArtLayer(Photoshop):
 
     @property
     def length(self):
-        return len(self._layers)
-
-    @property
-    def typename(self):
-        return self.eval_javascript("app.activeDocument.activeLayer.typename")
+        return len([layerset for layerset in self.app])
 
     def link(self, artlayer):
         return self.adobe.activeDocument.activeLayer.link(artlayer)
@@ -325,3 +315,7 @@ class ArtLayer(Photoshop):
 
     def link(self, artlayer):
         self.app.link(artlayer)
+
+    # @property
+    # def textItem(self):
+    #     return Layer(self.app)

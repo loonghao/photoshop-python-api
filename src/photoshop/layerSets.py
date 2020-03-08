@@ -1,5 +1,6 @@
 from photoshop._core import Photoshop
 from photoshop.layerSet import LayerSet
+from photoshop.errors import PhotoshopPythonAPIError
 
 
 class LayerSets(Photoshop):
@@ -10,7 +11,6 @@ class LayerSets(Photoshop):
         return self.length
 
     def __getitem__(self, key):
-        print(key)
         return LayerSet(self._layerSets[key])
 
     @property
@@ -28,6 +28,8 @@ class LayerSets(Photoshop):
         return LayerSet(self.app.item(index))
 
     def getByName(self, name):
-        for layer in self._layerSets:
+        for layer in self.app:
             if name == layer.name:
-                return LayerSet(layer.layers)
+                return LayerSet(layer)
+        raise PhotoshopPythonAPIError(f'Could not find a LayerSet named '
+                                      f'"{name}"')

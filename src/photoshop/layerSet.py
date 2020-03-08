@@ -2,6 +2,7 @@ from photoshop._core import Photoshop
 from photoshop.artlayer import ArtLayer
 from photoshop.layers import Layers
 from photoshop.artlayers import ArtLayers
+from photoshop.errors import PhotoshopPythonAPIError
 
 
 class LayerSet(Photoshop):
@@ -26,18 +27,25 @@ class LayerSet(Photoshop):
 
     @property
     def layers(self):
-        return self.app.layers
+        return Layers(self.app.layers)
 
     @property
     def parent(self):
         return self.app.parent
-
-    @property
-    def typename(self):
-        return self.app.typename
 
     def add(self):
         self.app.add()
 
     def merge(self):
         self.app.merge()
+
+    def __iter__(self):
+        for layer in self.app:
+            yield layer
+
+    @property
+    def isBackgroundLayer(self):
+        index = "app.activeDocument.layers.length-1"
+        layers = "app.activeDocument.layers"
+        layer = self.eval_javascript(f"{layers}({index}).name")
+        return bool(layer == self.app.name)

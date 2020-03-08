@@ -9,6 +9,7 @@ class TextItem(Photoshop):
 
     @property
     def contents(self):
+        """str:"""
         return self.app.contents
 
     @contents.setter
@@ -59,3 +60,7 @@ class TextItem(Photoshop):
 
     def alternateLigatures(self):
         return self.app.alternateLigatures
+
+    @property
+    def name(self):
+        return self.app.name

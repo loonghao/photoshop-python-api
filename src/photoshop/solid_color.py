@@ -18,6 +18,12 @@ class SolidColor(Photoshop):
 
     @property
     def cmyk(self):
+        """
+
+        Returns:
+            photoshop.colors.cmyk.CMYKColor:
+
+        """
         return CMYKColor(self.app.cmyk)
 
     @cmyk.setter

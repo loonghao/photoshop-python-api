@@ -28,12 +28,10 @@ nArtLayers = len(
 active_layer = docRef.activeLayer = docRef.layerSets[nLayerSets].artLayers[
     nArtLayers
 ]
-# # sel_area argument not accepted if using win32com, using comtypes instead
 sel_area = ((0, 212), (300, 212), (300, 300), (0, 300))
 docRef.selection.select(sel_area, ps.SelectionType.ReplaceSelection, 20, True)
-psGaussianNoise = 2  # from enum PsNoiseDistribution
 print(active_layer.name)
-active_layer.applyAddNoise(15, psGaussianNoise, False)
+active_layer.applyAddNoise(15, ps.NoiseDistribution.GaussianNoise, False)
 
 backColor = ps.SolidColor()
 backColor.hsb.hue = 0

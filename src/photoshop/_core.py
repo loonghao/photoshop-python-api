@@ -38,6 +38,10 @@ class Photoshop(object):
             self.adobe = self.app
             self.app = parent
 
+    @property
+    def typename(self):
+        return self.__class__.__name__
+
     def __call__(self, *args, **kwargs):
         return self.app
 

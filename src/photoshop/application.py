@@ -245,7 +245,7 @@ class Application(Photoshop):
         return ActiveDocument(self.app.load(document_file_path))
 
     def doJavaScript(self, javascript, Arguments=None, ExecutionMode=None):
-        self.app.doJavaScript(javascript, Arguments, ExecutionMode)
+        return self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
     def isQuicktimeAvailable(self):
         return self.app.IsQuicktimeAvailable()

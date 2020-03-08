@@ -1,5 +1,6 @@
 from photoshop._core import Photoshop
 from photoshop.enumerations import AnchorPosition
+from photoshop.enumerations import LayerKind
 
 
 class Layer(Photoshop):
@@ -8,7 +9,7 @@ class Layer(Photoshop):
 
     @property
     def kind(self):
-        return self.adobe.activeDocument.activeLayer.kind
+        return LayerKind(self.adobe.activeDocument.activeLayer.kind)
 
     @kind.setter
     def kind(self, value):
@@ -62,7 +63,7 @@ class Layer(Photoshop):
 
     @property
     def typename(self):
-        return self.app.typename
+        return self.eval_javascript("app.activeDocument.activeLayer.typename")
 
     @property
     def visible(self):
@@ -71,6 +72,10 @@ class Layer(Photoshop):
     @property
     def xmpMetadata(self):
         return self.app.xmpMetadata
+
+    @property
+    def isBackgroundLayer(self):
+        return self.app.isBackgroundLayer
 
     def duplicate(self):
         self.app.duplicate()

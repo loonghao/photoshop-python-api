@@ -8,7 +8,6 @@ from photoshop.enumerations import BitsPerChannelType
 
 class Documents(Photoshop):
     def __init__(self, parent):
-        # super().__init__(parent=parent)
         super().__init__(parent=parent)
 
     def __len__(self):
@@ -42,6 +41,10 @@ class Documents(Photoshop):
                                      initialFill, pixelAspectRatio,
                                      bitsPerChannel,
                                      colorProfileName))
+
+    def __iter__(self):
+        for layer in self.app:
+            yield layer
 
     @property
     def length(self):
