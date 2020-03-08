@@ -37,6 +37,10 @@ Install package.
 python setup.py install
 ```
 
+Since it uses COM (Component Object Model) connect Photoshop, it can be used 
+in any DCC software with a python interpreter.
+
+
 Hello World
 -----------
 
@@ -63,6 +67,9 @@ app.doJavaScript(f'alert("save to jpg: {jpg}")')
 ```
 ![demo](https://i.imgur.com/25TrzbV.gif)
 
+More examples
+-------------
+- https://photoshop-python-api.readthedocs.io/en/master/usage.html
 
 
 Useful links

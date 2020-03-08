@@ -66,6 +66,5 @@ class SolidColor(Photoshop):
     def rgb(self, value):
         self.app.rgb = value
 
-    @property
-    def isEqual(self, *args, **kwargs):
-        return self.app.IsEqual(*args, **kwargs)
+    def isEqual(self, color):
+        return self.app.isEqual(color)
