@@ -2,6 +2,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
+
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
@@ -10,7 +11,7 @@ setup(
     author='Long Hao',
     package_dir={'': 'src'},
     url='https://github.com/loonghao/photoshop_python_api',
-    version='0.3.0',
+    version='0.4.0',
     packages=find_packages('./src'),
     setup_requires=['setuptools-scm', 'setuptools>=40.0'],
     author_email='hal.long@outllok.com',
@@ -32,5 +33,4 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-
 )
