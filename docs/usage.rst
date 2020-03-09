@@ -2,76 +2,74 @@
 Usage
 =====
 
-active_layer
+Active Layer
 ------------
   .. literalinclude:: ../examples/active_layer.py
 
-add_slate
+Add Slate
 ---------
   .. literalinclude:: ../examples/add_slate.py
 
-apply_filters
+Apply Filters
 -------------
   .. literalinclude:: ../examples/apply_filters.py
 
-color
+Color
 -----
   .. literalinclude:: ../examples/color.py
 
-compare_colors
+Compare Colors
 --------------
   .. literalinclude:: ../examples/compare_colors.py
 
-copy_and_paste
+Copy And Paste
 --------------
   .. literalinclude:: ../examples/copy_and_paste.py
 
-create_thumbnail
+Create Thumbnail
 ----------------
   .. literalinclude:: ../examples/create_thumbnail.py
 
-emboss_action
+Emboss Action
 -------------
   .. literalinclude:: ../examples/emboss_action.py
 
-eval_javascript
+Eval Javascript
 ---------------
   .. literalinclude:: ../examples/eval_javascript.py
 
-hello_world
+Hello World
 -----------
   .. literalinclude:: ../examples/hello_world.py
 
-link_layer
+Link Layer
 ----------
   .. literalinclude:: ../examples/link_layer.py
 
-move_to_end
+Move To End
 -----------
   .. literalinclude:: ../examples/move_to_end.py
 
-new_document
+New Document
 ------------
   .. literalinclude:: ../examples/new_document.py
 
-open_psd
+Open Psd
 --------
   .. literalinclude:: ../examples/open_psd.py
 
-rotate_layer
+Rotate Layer
 ------------
   .. literalinclude:: ../examples/rotate_layer.py
 
-selection_stroke
+Selection Stroke
 ----------------
   .. literalinclude:: ../examples/selection_stroke.py
 
-set_active_layer
+Set Active Layer
 ----------------
   .. literalinclude:: ../examples/set_active_layer.py
 
-smart_sharpen
+Smart Sharpen
 -------------
   .. literalinclude:: ../examples/smart_sharpen.py
-
-    

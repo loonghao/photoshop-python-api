@@ -38,3 +38,4 @@ toml==0.10.0
 urllib3==1.25.8
 virtualenv==20.0.4
 zipp==2.2.0
+stringcase==1.2.0

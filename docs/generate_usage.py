@@ -1,6 +1,7 @@
 import os
 import glob
 from jinja2 import Template
+import stringcase
 
 template = Template(r"""
 Usage
@@ -28,7 +29,8 @@ class Examples(object):
 
     @staticmethod
     def get_name(file):
-        return os.path.basename(file).split(".py")[0]
+        name = os.path.basename(file).split(".py")[0]
+        return stringcase.titlecase(name)
 
     @staticmethod
     def get_line(name):
