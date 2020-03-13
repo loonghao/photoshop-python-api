@@ -58,6 +58,10 @@ Open Psd
 --------
   .. literalinclude:: ../examples/open_psd.py
 
+Photoshop Session
+-----------------
+  .. literalinclude:: ../examples/photoshop_session.py
+
 Rotate Layer
 ------------
   .. literalinclude:: ../examples/rotate_layer.py
@@ -66,6 +70,14 @@ Selection Stroke
 ----------------
   .. literalinclude:: ../examples/selection_stroke.py
 
+Session Hello World
+-------------------
+  .. literalinclude:: ../examples/session_hello_world.py
+
+Session Smart Sharpen
+---------------------
+  .. literalinclude:: ../examples/session_smart_sharpen.py
+
 Set Active Layer
 ----------------
   .. literalinclude:: ../examples/set_active_layer.py
@@ -73,3 +85,5 @@ Set Active Layer
 Smart Sharpen
 -------------
   .. literalinclude:: ../examples/smart_sharpen.py
+
+    
