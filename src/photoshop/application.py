@@ -1,6 +1,5 @@
 import os
 import time
-
 from photoshop._core import Photoshop
 from photoshop.active_document import ActiveDocument
 from photoshop.documents import Documents
@@ -242,7 +241,8 @@ class Application(Photoshop):
 
     def load(self, document_file_path):
         """Loads a support document."""
-        return ActiveDocument(self.app.load(document_file_path))
+        self.app.load(document_file_path)
+        return self.activeDocument
 
     def doJavaScript(self, javascript, Arguments=None, ExecutionMode=None):
         return self.app.doJavaScript(javascript, Arguments, ExecutionMode)

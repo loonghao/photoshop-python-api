@@ -1,6 +1,4 @@
-"""The photoshop constants."""
-
-from functools import singledispatch
+"""The photoshop enumerations."""
 
 
 def magic_attr(cls):
@@ -183,3 +181,10 @@ class StrokeLocation:
 class NoiseDistribution:
     UniformNoise = 1
     GaussianNoise = 2
+
+
+@magic_attr
+class SaveOptions:
+    SaveChanges = 1
+    DoNotSaveChanges = 2
+    PromptToSaveChanges = 3

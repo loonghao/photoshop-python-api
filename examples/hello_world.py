@@ -13,7 +13,6 @@ def hello_world():
     new_text_layer.textItem.size = 40
     new_text_layer.textItem.color = text_color
     options = ps.JPEGSaveOptions(quality=5)
-    # # save to jpg
     jpg = 'd:/hello_world.jpg'
     doc.saveAs(jpg, options, asCopy=True)
     app.doJavaScript(f'alert("save to jpg: {jpg}")')
