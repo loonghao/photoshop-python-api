@@ -1,5 +1,4 @@
 # Import local modules
-from photoshop import save_options
 from photoshop._core import Photoshop
 from photoshop.artlayer import ArtLayer
 from photoshop.artlayers import ArtLayers
@@ -10,6 +9,7 @@ from photoshop.layerSets import LayerSets
 from photoshop.selection import Selection
 from photoshop.layerSet import LayerSet
 from photoshop.enumerations import ExtensionType
+from photoshop.enumerations import SaveOptions
 
 
 class Document(Photoshop):
@@ -243,7 +243,7 @@ class Document(Photoshop):
         """Changes the mode of the Document."""
         return self.app.ChangeMode(*args, **kwargs)
 
-    def close(self, saving=save_options.DONOTSAVECHANGES):
+    def close(self, saving=SaveOptions.DoNotSaveChanges):
         return self.app.close(saving)
 
     def convertProfile(self):
@@ -282,7 +282,7 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.app.Save()
 
-    def saveAs(self, file_path, options, asCopy=False,
+    def saveAs(self, file_path, options, asCopy=True,
                extensionType=ExtensionType.Lowercase):
         """Saves the documents with the specified save options."""
         return self.app.saveAs(
