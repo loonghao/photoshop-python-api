@@ -7,4 +7,4 @@ for script in glob.glob(os.path.join(root, "*.py")):
     try:
         exec(open(script, "r").read())
     except:
-        print("Test fialed: {}".format(script))
+        print("Test failed: {}".format(script))
