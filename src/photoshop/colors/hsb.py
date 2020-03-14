@@ -4,9 +4,6 @@ from photoshop._core import Photoshop
 class HSBColor(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
-        self.hue = 0
-        self.saturation = 100
-        self.brightness = 0
 
     @property
     def brightness(self):
