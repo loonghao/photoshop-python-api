@@ -7,7 +7,7 @@ from photoshop import Session
 
 file_path = os.path.join(os.path.dirname(__file__), "slate_template.psd")
 
-with Session(file_path) as adobe:
+with Session(file_path, "open") as adobe:
     layer_set = adobe.active_document.layerSets.getByName("template")
     data = {
         "project name": "test_project",
