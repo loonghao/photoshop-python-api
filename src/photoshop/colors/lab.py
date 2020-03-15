@@ -5,6 +5,9 @@ class LabColor(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self.A = 0
+        self.b = 0
+        self.L = 0
 
     @property
     def A(self):

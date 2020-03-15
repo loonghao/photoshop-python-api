@@ -6,6 +6,10 @@ class CMYKColor(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self.cyan = 75
+        self.magenta = 68
+        self.yellow = 67
+        self.black = 90
 
     @property
     def black(self):
