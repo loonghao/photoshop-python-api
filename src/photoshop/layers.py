@@ -12,6 +12,9 @@ class Layers(Photoshop):
     def _layers(self):
         return [layer for layer in self.app]
 
+    def __len__(self):
+        return self.length
+
     def __getitem__(self, key):
         item = self._layers[key]
         try:

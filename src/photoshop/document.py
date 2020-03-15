@@ -49,12 +49,12 @@ class Document(Photoshop):
         return self.app.activeHistoryBrushSource
 
     @property
-    def active_history_state(self):
-        """The current history state for this Document."""
+    def activeHistoryState(self):
+        """The current history state for this document."""
         return self.app.activeHistoryState
 
     @property
-    def background_layer(self):
+    def backgroundLayer(self):
         """The background layer for the Document."""
         return self.app.backgroundLayer
 
@@ -62,6 +62,10 @@ class Document(Photoshop):
     def bitsPerChannel(self):
         """The number of bits per channel."""
         return self.app.bitsPerChannel
+
+    @property
+    def channels(self):
+        return self.app.channels
 
     @property
     def colorProfileName(self):
@@ -201,8 +205,9 @@ class Document(Photoshop):
         return self.app.printSettings
 
     @property
-    def quick_mask_mode(self):
-        return self.app.QuickMaskMode
+    def quickMaskMode(self):
+        """If true, the document is in Quick Mask mode."""
+        return self.app.quickMaskMode
 
     @property
     def saved(self):
@@ -229,19 +234,19 @@ class Document(Photoshop):
         return self.app.Width
 
     @property
-    def xmp_metadata(self):
+    def xmpMetadata(self):
         """The XMP properties of the Document. The Camera RAW settings are
         stored here."""
-        return self.app.XmpMetadata
+        return self.app.xmpMetadata
 
     # Methods
-    def auto_count(self, *args, **kwargs):
+    def autoCount(self, *args, **kwargs):
         """Counts the objects in the Document."""
-        return self.app.AutoCount(*args, **kwargs)
+        return self.app.autoCount(*args, **kwargs)
 
     def changeMode(self, *args, **kwargs):
         """Changes the mode of the Document."""
-        return self.app.ChangeMode(*args, **kwargs)
+        return self.app.changeMode(*args, **kwargs)
 
     def close(self, saving=SaveOptions.DoNotSaveChanges):
         return self.app.close(saving)
@@ -253,42 +258,77 @@ class Document(Photoshop):
         """Flattens all layers."""
         return self.app.Flatten()
 
-    def merge_visible_layers(self):
+    def mergeVisibleLayers(self):
         """Flattens all visible layers in the Document."""
-        return self.app.MergeVisibleLayers()
+        return self.app.mergeVisibleLayers()
 
     def crop(self, **kwargs):
         return self.app.Crop(**kwargs)
 
-    def export_document(self, *args, **kwargs):
+    def exportDocument(self, *args, **kwargs):
         """Exports the Document."""
         return self.app.exportDocument(*args, **kwargs)
 
-    def duplicate(self, name, merge_layers_only=False):
+    def duplicate(self, name=None, merge_layers_only=False):
         return Document(self.app.duplicate(name, merge_layers_only))
 
     def paste(self):
         """Pastes contents of the clipboard into the Document."""
         return self.app.paste()
 
+    def print(self):
+        """Prints the document."""
+        return self.app.print()
+
+    def printOneCopy(self):
+        self.app.printOneCopy()
+
     def rasterizeAllLayers(self):
         return self.app.rasterizeAllLayers()
 
+    def recordMeasurements(self, source, dataPoints):
+        """Records the measurements of document."""
+        self.app.recordMeasurements(source, dataPoints)
+
     def reveal_all(self):
         """Expands the Document to show clipped sections."""
-        return self.app.RevealAll()
+        return self.app.revealAll()
 
     def save(self):
         """Saves the Document."""
-        return self.app.Save()
+        return self.app.save()
 
     def saveAs(self, file_path, options, asCopy=True,
                extensionType=ExtensionType.Lowercase):
-        """Saves the documents with the specified save options."""
+        """Saves the documents with the specified save options.
+
+        Args:
+            file_path (str): Absolute path of psd file.
+            options (photoshop.JPEGSaveOptions): Save options.
+            asCopy (bool):
+        """
         return self.app.saveAs(
             file_path, options, asCopy,
             extensionType,
         )
+
+    def splitChannels(self):
+        """Splits the channels of the document."""
+        self.app.splitChannels()
+
+    def suspendHistory(self, historyString, javaScriptString):
+        """Provides a single history state for the entire script.
+
+        Allows a single undo for all actions taken in the script.
+
+        """
+        self.eval_javascript(
+            f"app.activeDocument.suspendHistory('{historyString}',"
+            f" '{javaScriptString}')")
+
+    def trap(self, width):
+        """Applies trapping to a CMYK document. Valid only when ‘mode’ = CMYK."""
+        self.app.trap(width)
 
     def trim(self, *args, **kwargs):
         return self.app.trim(*args, **kwargs)

@@ -42,6 +42,11 @@ except ModuleNotFoundError:
 
 
 class Session(object):
+    """Session of photoshop.
+
+    We can control active documents in this Session.
+
+    """
     presetKind = 'presetKindType'
     smartSharpen = 'smartSharpen'
     presetKindType = 'presetKindType'
@@ -83,9 +88,13 @@ class Session(object):
     JSCT = 'jsCt'
     PLACED_LAYER_EDIT_CONTENTS = 'placedLayerEditContents'
 
-    def __init__(self, file_path=None):
+    def __init__(self, file_path=None, action=None, callback=None,
+                 auto_close=False):
         super().__init__()
         self.path = file_path
+        self._auto_close = auto_close
+        self._callback = callback
+        self._action = action
         self._active_document = None
         self.app = Application()
         self.SaveOptions = SaveOptions
@@ -93,7 +102,7 @@ class Session(object):
         self.StrokeLocation = StrokeLocation
         self.ColorBlendMode = ColorBlendMode
         self.TextItem = TextItem
-        self.ActionReference = ActionReference
+        self.ActionReference = ActionReference()
         self.ActionDescriptor = ActionDescriptor()
         self.NoiseDistribution = NoiseDistribution
         self.TextureType = TextureType
@@ -122,17 +131,51 @@ class Session(object):
         except COMError:
             raise PhotoshopPythonAPIError("No active document available.")
 
+    @staticmethod
+    def echo(*args, **kwargs):
+        """Print message."""
+        print(*args, **kwargs)
+
+    def alert(self, text: str):
+        """Alert message box in photoshop.
+
+        Args:
+            text (str): The text will pop up in photoshop.
+
+        """
+        self.app.doJavaScript(f"alert('{text}')")
+
     @active_document.setter
     def active_document(self, active_document):
+        """Set active document."""
         self._active_document = active_document
 
+    def _action_open(self):
+        self.active_document = self.app.open(self.path)
+
+    def _action_new_document(self):
+        self.active_document = self.app.documents.add()
+
+    def _action_document_duplicate(self):
+        self.active_document = self.active_document.duplicate()
+
     def __enter__(self):
-        if self.path:
-            self.active_document = self.app.open(self.path)
+        try:
+            _action = getattr(self, '_action_{}'.format(self._action))
+            _action()
+        except AttributeError:
+            pass
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print("Close Session")
+        try:
+            if self._callback:
+                self._callback(self)
+        except Exception as err:
+            raise PhotoshopPythonAPIError(err)
+        finally:
+            if self._auto_close:
+                self.active_document.close()
 
 
 # All public APIs.

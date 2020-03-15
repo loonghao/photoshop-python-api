@@ -37,6 +37,10 @@ class Application(Photoshop):
     def currentTool(self):
         return self.app.currentTool
 
+    @currentTool.setter
+    def currentTool(self, tool_name):
+        self.app.currentTool = tool_name
+
     @property
     def displayDialogs(self):
         """The dialog mode for the document, which indicates whether or not

@@ -12,6 +12,9 @@ class ArtLayers(Photoshop):
     def _layers(self):
         return [layer for layer in self.app]
 
+    def __len__(self):
+        return self.length
+
     def __iter__(self):
         for layer in self.app:
             yield layer
