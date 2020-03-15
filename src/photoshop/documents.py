@@ -1,4 +1,3 @@
-# Import local modules
 from photoshop._core import Photoshop
 from photoshop.document import Document
 from photoshop.enumerations import NewDocumentMode

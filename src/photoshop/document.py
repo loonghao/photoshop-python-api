@@ -4,7 +4,6 @@ from photoshop.artlayer import ArtLayer
 from photoshop.artlayers import ArtLayers
 from photoshop.errors import COMError
 from photoshop.layers import Layers
-from photoshop.layer import Layer
 from photoshop.layerSets import LayerSets
 from photoshop.selection import Selection
 from photoshop.layerSet import LayerSet

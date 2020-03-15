@@ -1,8 +1,6 @@
 from photoshop._core import Photoshop
-from photoshop.artlayer import ArtLayer
 from photoshop.layers import Layers
 from photoshop.artlayers import ArtLayers
-from photoshop.errors import PhotoshopPythonAPIError
 
 
 class LayerSet(Photoshop):

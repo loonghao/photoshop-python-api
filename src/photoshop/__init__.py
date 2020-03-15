@@ -41,7 +41,7 @@ except ModuleNotFoundError:
     pass
 
 
-class Session(object):
+class Session:
     """Session of photoshop.
 
     We can control active documents in this Session.
@@ -126,8 +126,7 @@ class Session(object):
         try:
             if not self._active_document:
                 return self.app.activeDocument
-            else:
-                return self._active_document
+            return self._active_document
         except COMError:
             raise PhotoshopPythonAPIError("No active document available.")
 

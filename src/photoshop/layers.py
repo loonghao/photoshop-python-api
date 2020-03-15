@@ -1,7 +1,6 @@
 from photoshop._core import Photoshop
 from photoshop.artlayer import ArtLayer
 from photoshop.layer import Layer
-from photoshop.errors import COMError
 
 
 class Layers(Photoshop):
@@ -29,7 +28,7 @@ class Layers(Photoshop):
         return len(self._layers)
 
     def removeAll(self):
-        print([layer.name for layer in self.app])
+        return [layer.name for layer in self.app]
 
     def item(self, index):
         return ArtLayer(self.app.item(index))
