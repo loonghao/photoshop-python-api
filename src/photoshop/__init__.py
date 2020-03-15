@@ -213,7 +213,7 @@ __all__ = [
 ]
 
 __title__ = 'photoshop_python_api'
-__version__ = '0.5.0'
+__version__ = '0.6.0'
 __author__ = 'Long Hao'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2018 Long Hao'

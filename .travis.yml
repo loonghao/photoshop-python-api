@@ -1,6 +1,6 @@
 language: python
+os: windows
 python:
-    - "3.5"
     - "3.6"
     - "3.7"
     - "3.8"
@@ -9,6 +9,7 @@ before_script:
     - pip install pylint flake8
 script:
     - pylint src/photoshop
+    - flake8 src/photoshop
 after_success:
     - pylint --output-format=html pylint_server > /tmp/pylint-report.html
     - curl -v -m 120 -X POST -F travis-job-id=$TRAVIS_JOB_ID -F pylint-report=@/tmp/pylint-report.html https://pylint.yourserver.com/reports
