@@ -4,9 +4,11 @@ python:
     - "3.6"
     - "3.7"
     - "3.8"
-before_script: pip install coveralls
+before_script:
+    - python --version
+    - pip install pylint flake8
 script:
-    - "py.test"
-    - "coverage run --source=photoshop setup.py test"
+    - pylint src/photoshop
 after_success:
-    - coveralls
+    - pylint --output-format=html pylint_server > /tmp/pylint-report.html
+    - curl -v -m 120 -X POST -F travis-job-id=$TRAVIS_JOB_ID -F pylint-report=@/tmp/pylint-report.html https://pylint.yourserver.com/reports
