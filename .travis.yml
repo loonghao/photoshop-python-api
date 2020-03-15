@@ -1,0 +1,14 @@
+language: python
+python:
+    - "3.6"
+    - "3.7"
+    - "3.8"
+before_script:
+    - python --version
+    - pip install pylint flake8 codecov
+script:
+    - codecov
+
+cache: pip
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log

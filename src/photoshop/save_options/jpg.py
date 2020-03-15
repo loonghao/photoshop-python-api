@@ -1,6 +1,4 @@
-# Import local modules
 from photoshop._core import Photoshop
-from photoshop.enumerations import FormatOptionsType
 from photoshop.enumerations import MatteType
 
 

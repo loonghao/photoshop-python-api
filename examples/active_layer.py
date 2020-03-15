@@ -1,24 +1,19 @@
 # Set the active layer to the last art layer of the active document, or the
 # first if the last is already active.
 
+from photoshop import Session
 
-import photoshop as ps
+with Session() as ps:
+    if len(ps.app.documents) < 1:
+        docRef = ps.app.documents.add()
+    else:
+        docRef = ps.app.activeDocument
 
-app = ps.Application()
-if app.documents.length < 1:
-    docRef = app.documents.add()
-else:
-    docRef = app.activeDocument
+    if len(docRef.layers) < 2:
+        docRef.artLayers.add()
 
-if docRef.layers.length < 2:
-    docRef.artLayers.add()
-
-
-print(docRef.activeLayer.name)
-print(docRef.layers.item(docRef.layers.length))
-# Set current active to first layer.
-# docRef.activeLayer = docRef.layers.item(1)
-new_layer = docRef.artLayers.add()
-print(new_layer.name)
-new_layer.name = "test"
-
+    print(docRef.activeLayer.name)
+    print(docRef.layers.item(len(docRef.layers)))
+    new_layer = docRef.artLayers.add()
+    print(new_layer.name)
+    new_layer.name = "test"

@@ -10,6 +10,10 @@ Add Slate
 ---------
   .. literalinclude:: ../examples/add_slate.py
 
+Apply Crystallize Filter Action
+-------------------------------
+  .. literalinclude:: ../examples/apply_crystallize_filter_action.py
+
 Apply Filters
 -------------
   .. literalinclude:: ../examples/apply_filters.py
@@ -30,6 +34,10 @@ Create Thumbnail
 ----------------
   .. literalinclude:: ../examples/create_thumbnail.py
 
+Current Tool
+------------
+  .. literalinclude:: ../examples/current_tool.py
+
 Emboss Action
 -------------
   .. literalinclude:: ../examples/emboss_action.py
@@ -38,6 +46,10 @@ Eval Javascript
 ---------------
   .. literalinclude:: ../examples/eval_javascript.py
 
+Fill Selection
+--------------
+  .. literalinclude:: ../examples/fill_selection.py
+
 Hello World
 -----------
   .. literalinclude:: ../examples/hello_world.py
@@ -45,6 +57,10 @@ Hello World
 Link Layer
 ----------
   .. literalinclude:: ../examples/link_layer.py
+
+Load Selection
+--------------
+  .. literalinclude:: ../examples/load_selection.py
 
 Move To End
 -----------
@@ -70,9 +86,21 @@ Selection Stroke
 ----------------
   .. literalinclude:: ../examples/selection_stroke.py
 
+Session Callback
+----------------
+  .. literalinclude:: ../examples/session_callback.py
+
+Session Document Duplicate
+--------------------------
+  .. literalinclude:: ../examples/session_document_duplicate.py
+
 Session Hello World
 -------------------
   .. literalinclude:: ../examples/session_hello_world.py
+
+Session New Document
+--------------------
+  .. literalinclude:: ../examples/session_new_document.py
 
 Session Smart Sharpen
 ---------------------

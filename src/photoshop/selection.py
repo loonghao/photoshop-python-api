@@ -1,5 +1,5 @@
 from photoshop._core import Photoshop
-
+from photoshop.enumerations import SelectionType
 
 class Selection(Photoshop):
     def __init__(self, parent=None):
@@ -82,6 +82,35 @@ class Selection(Photoshop):
         """
         return self.app.grow(tolerance, antiAlias)
 
+    def invert(self):
+        """Inverts the selection."""
+        self.app.invert()
+
+    def load(self, from_channel, combination, inverting):
+        """Loads the selection from the specified channel."""
+        return self.app.load(from_channel, combination, inverting)
+
+    def makeWorkPath(self, tolerance):
+        """Makes this selection item the workpath for this document."""
+        self.app.makeWorkPath(tolerance)
+
+    def resize(self, horizontal, vertical, anchor):
+        """Resizes the selected area to the specified dimensions and anchor
+         position."""
+        self.app.resize(horizontal, vertical, anchor)
+
+    def resizeBoundary(self, horizontal, vertical, anchor):
+        """Scales the boundary of the selection."""
+        self.app.resizeBoundary(horizontal, vertical, anchor)
+
+    def rotate(self, angle, anchor):
+        """Rotates the object."""
+        self.app.rotate(angle, anchor)
+
+    def rotateBoundary(self, angle, anchor):
+        """Rotates the boundary of the selection."""
+        self.app.rotateBoundary(angle, anchor)
+
     def stroke(self, strokeColor, width, location, mode, opacity,
                preserveTransparency):
         """Strokes the selection.
@@ -108,3 +137,23 @@ class Selection(Photoshop):
 
         """
         return self.app.selectBorder(width)
+
+    def similar(self, tolerance, antiAlias):
+        return self.app.similar(tolerance, antiAlias)
+
+    def smooth(self, radius):
+        """Cleans up stray pixels left inside or outside a color-based
+        selection (within the radius specified in pixels)."""
+        return self.app.smooth(radius)
+
+    def store(self, into, combination=SelectionType.ReplaceSelection):
+        """Saves the selection as a channel."""
+        return self.app.store(into, combination)
+
+    def translate(self, deltaX, deltaY):
+        """Moves the object relative to its current position."""
+        return self.app.translate(deltaX, deltaY)
+
+    def translateBoundary(self, deltaX, deltaY):
+        """Moves the boundary of selection relative to its current position."""
+        return self.app.translateBoundary(deltaX, deltaY)

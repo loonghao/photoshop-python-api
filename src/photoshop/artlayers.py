@@ -1,5 +1,4 @@
 from photoshop._core import Photoshop
-from photoshop.artlayer import ArtLayer
 from photoshop.layer import Layer
 
 
@@ -11,6 +10,9 @@ class ArtLayers(Photoshop):
     @property
     def _layers(self):
         return [layer for layer in self.app]
+
+    def __len__(self):
+        return self.length
 
     def __iter__(self):
         for layer in self.app:

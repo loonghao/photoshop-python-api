@@ -1,8 +1,6 @@
-# Import local modules
 from photoshop._core import Photoshop
 from photoshop.text_item import TextItem
 from photoshop.enumerations import LayerKind
-from photoshop.layer import Layer
 
 
 class ArtLayer(Photoshop):
@@ -312,10 +310,3 @@ class ArtLayer(Photoshop):
             threshold, amount,
             distribution, monochromatic,
         )
-
-    def link(self, artlayer):
-        self.app.link(artlayer)
-
-    # @property
-    # def textItem(self):
-    #     return Layer(self.app)

@@ -1,12 +1,7 @@
-try:
-    # python-2.
-    import _winreg as winreg
-except ImportError:
-    # python-3
-    import winreg
+"""This class provides all photoshop API core functions."""
+import winreg
 import os
 
-from comtypes import COMError
 from comtypes.client import CreateObject
 from photoshop import constants
 from photoshop.errors import PhotoshopPythonAPIError
