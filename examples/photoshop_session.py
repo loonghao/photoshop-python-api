@@ -7,8 +7,8 @@ from photoshop import Session
 
 file_path = os.path.join(os.path.dirname(__file__), "slate_template.psd")
 
-with Session(file_path, "open") as adobe:
-    layer_set = adobe.active_document.layerSets.getByName("template")
+with Session(file_path, action="open", auto_close=True) as ps:
+    layer_set = ps.active_document.layerSets.getByName("template")
     data = {
         "project name": "test_project",
         "datetime": datetime.today().strftime('%Y-%m-%d')
@@ -18,6 +18,5 @@ with Session(file_path, "open") as adobe:
             layer.textItem.contents = data[layer.textItem.contents.strip()]
 
     jpg_file = "d:/photoshop_slate.jpg"
-    adobe.active_document.saveAs(jpg_file, adobe.JPEGSaveOptions())
+    ps.active_document.saveAs(jpg_file, ps.JPEGSaveOptions())
     os.startfile(jpg_file)
-    adobe.active_document.close()

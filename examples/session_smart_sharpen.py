@@ -9,42 +9,37 @@ References:
 import os
 from photoshop import Session
 
-
 fileName = os.path.join(os.path.dirname(__file__), 'layer_comps.psd')
 
-with Session(fileName) as adobe:
-    nlayerSets = adobe.active_document.layerSets
-    nArtLayers = adobe.active_document.layerSets.item(nlayerSets.length)
-    adobe.active_document.activeLayer = nArtLayers.artLayers.item(nArtLayers.artLayers.length)
-
-
+with Session(fileName) as ps:
     def SmartSharpen(inAmount, inRadius, inNoise):
-        idsmart_sharpen_id = adobe.app.stringIDToTypeID(adobe.smartSharpen)
-        desc37 = adobe.ActionDescriptor()
+        idsmart_sharpen_id = ps.app.stringIDToTypeID(ps.smartSharpen)
+        desc37 = ps.ActionDescriptor()
 
-        idpresetKind = adobe.app.stringIDToTypeID(adobe.presetKind)
-        idpresetKindType = adobe.app.stringIDToTypeID(adobe.presetKindType)
-        idpresetKindCustom = adobe.app.stringIDToTypeID(adobe.presetKindCustom)
-        desc37.putEnumerated(idpresetKind, idpresetKindType, idpresetKindCustom)
+        idpresetKind = ps.app.stringIDToTypeID(ps.presetKind)
+        idpresetKindType = ps.app.stringIDToTypeID(ps.presetKindType)
+        idpresetKindCustom = ps.app.stringIDToTypeID(ps.presetKindCustom)
+        desc37.putEnumerated(idpresetKind, idpresetKindType,
+                             idpresetKindCustom)
 
-        idAmnt = adobe.app.charIDToTypeID(adobe.AMNT)
-        idPrc = adobe.app.charIDToTypeID(adobe.RDS)
+        idAmnt = ps.app.charIDToTypeID(ps.AMNT)
+        idPrc = ps.app.charIDToTypeID(ps.RDS)
         desc37.putUnitDouble(idAmnt, idPrc, inAmount)
 
-        idRds = adobe.app.charIDToTypeID(adobe.RDS)
-        idPxl = adobe.app.charIDToTypeID(adobe.PX1)
+        idRds = ps.app.charIDToTypeID(ps.RDS)
+        idPxl = ps.app.charIDToTypeID(ps.PX1)
         desc37.putUnitDouble(idRds, idPxl, inRadius)
 
-        idnoiseReduction = adobe.app.stringIDToTypeID(adobe.noiseReduction)
-        idPrc = adobe.app.charIDToTypeID(adobe.PRC)
+        idnoiseReduction = ps.app.stringIDToTypeID(ps.noiseReduction)
+        idPrc = ps.app.charIDToTypeID(ps.PRC)
         desc37.putUnitDouble(idnoiseReduction, idPrc, inNoise)
 
-        idblur = adobe.app.charIDToTypeID(adobe.blur)
-        idblurType = adobe.app.stringIDToTypeID(adobe.blurType)
-        idGsnB = adobe.app.charIDToTypeID(adobe.GSNB)
+        idblur = ps.app.charIDToTypeID(ps.blur)
+        idblurType = ps.app.stringIDToTypeID(ps.blurType)
+        idGsnB = ps.app.charIDToTypeID(ps.GSNB)
         desc37.putEnumerated(idblur, idblurType, idGsnB)
 
-        adobe.app.ExecuteAction(idsmart_sharpen_id, desc37)
+        ps.app.ExecuteAction(idsmart_sharpen_id, desc37)
 
 
     SmartSharpen(300, 2.0, 20)

@@ -4,11 +4,10 @@ References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/CompareColors.py
 
 """
-import photoshop as ps
+from photoshop import Session
 
-app = ps.Application()
-
-if app.foregroundColor.isEqual(app.backgroundColor):
-    print("They're Equal")
-else:
-    print("NOT Equal")
+with Session() as ps:
+    if ps.app.foregroundColor.isEqual(ps.app.backgroundColor):
+        ps.echo("They're Equal.")
+    else:
+        ps.echo("NOT Equal.")

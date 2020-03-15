@@ -1,7 +1,8 @@
 from photoshop import Session
 
 
-def do_something():
+def do_something(photoshop_api):
+    print(photoshop_api.active_document)
     print("Do something.")
 
 

@@ -1,20 +1,20 @@
-import photoshop as ps
+import os
+from photoshop import Session
 
-MAX_THUMB_SIZE = 1280
-app = ps.Application()
-doc = app.activeDocument
-orig_name = doc.name
-width_str = doc.width
-height_str = doc.height
-thumb_name = f'{orig_name}_tumb'
-index = width_str / MAX_THUMB_SIZE
+with Session(auto_close=True) as ps:
+    orig_name = ps.active_document.name
+    width_str = ps.active_document.width
+    height_str = ps.active_document.height
+    thumb_name = f'{orig_name}_tumb'
+    index = width_str / 1248
 
-thumb_width = int(width_str / index)
+    thumb_width = int(width_str / index)
 
-thumb_height = int(height_str / index)
+    thumb_height = int(height_str / index)
 
-thumb_doc = doc.duplicate(thumb_name)
-thumb_doc.resizeImage(thumb_width, thumb_height - 100)
-o = ps.JPEGSaveOptions()
-thumb_doc.saveAs('d:/thumb.jpg', o, asCopy=True)
-thumb_doc.close()
+    thumb_doc = ps.active_document.duplicate(thumb_name)
+    thumb_doc.resizeImage(thumb_width, thumb_height - 100)
+    thumb_file = 'd:/thumb.jpg'
+    thumb_doc.saveAs(thumb_file, ps.JPEGSaveOptions(), asCopy=True)
+    thumb_doc.close()
+    os.startfile(thumb_file)
