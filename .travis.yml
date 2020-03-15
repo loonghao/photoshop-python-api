@@ -5,10 +5,13 @@ python:
     - "3.8"
 before_script:
     - python --version
-    - pip install pylint flake8
+    - pip install pylint flake8 codecov
 script:
-    - pylint src/photoshop
-    - flake8 src/photoshop
+    - codecov
 after_success:
     - pylint --output-format=html pylint_server > /tmp/pylint-report.html
     - curl -v -m 120 -X POST -F travis-job-id=$TRAVIS_JOB_ID -F pylint-report=@/tmp/pylint-report.html https://pylint.yourserver.com/reports
+
+cache: pip
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
