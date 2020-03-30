@@ -99,6 +99,15 @@ More examples
 -------------
 - https://photoshop-python-api.readthedocs.io/en/master/usage.html
 
+[How to get a list of COM objects from the registry ](https://rakhesh.com/powershell/how-to-get-a-list-of-com-objects-from-the-registry/)
+
+how to get Photoshop program ID.
+
+```PS>
+Get-ChildItem "HKLM:\SOFTWARE\Classes" | 
+  ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } | 
+  ?{ $_.PSChildName -match "Photoshop.Application" } | ft PSChildName
+```
 
 Useful links
 ----------------------
