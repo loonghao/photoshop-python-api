@@ -99,18 +99,20 @@ More examples
 -------------
 - https://photoshop-python-api.readthedocs.io/en/master/usage.html
 
-[How to get a list of COM objects from the registry ](https://rakhesh.com/powershell/how-to-get-a-list-of-com-objects-from-the-registry/)
+[How to get a list of COM objects from the registry](https://rakhesh.com/powershell/how-to-get-a-list-of-com-objects-from-the-registry/)
 
-how to get Photoshop program ID.
+how to get Photoshop program ID
+-------------------------------
 
 ```PS>
 Get-ChildItem "HKLM:\SOFTWARE\Classes" | 
   ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } | 
   ?{ $_.PSChildName -match "Photoshop.Application" } | ft PSChildName
 ```
+![get_program_id](https://i.imgur.com/UwPN7qq.png)
 
 Useful links
-----------------------
+------------
 - https://theiviaxx.github.io/photoshop-docs/Photoshop/
 - http://wwwimages.adobe.com/www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf
 - https://github.com/lohriialo/photoshop-scripting-python
