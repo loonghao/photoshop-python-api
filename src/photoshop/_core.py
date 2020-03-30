@@ -5,25 +5,26 @@ import os
 from comtypes.client import CreateObject
 from photoshop import constants
 from photoshop.errors import PhotoshopPythonAPIError
+import platform
 
 
 class Photoshop(object):
     _root = 'Photoshop'
-    REG_PATH = 'Software\\Adobe\\Photoshop'
+    REG_PATH = 'SOFTWARE\\Adobe\\Photoshop'
     _object_name = 'Application'
     object_name = None
 
     def __init__(self, ps_version=None, parent=None):
-        self._progress_id = None
+        self._program_name = None
         version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
         self.photoshop_version = os.getenv('PS_VERSION', ps_version)
-        version = self._get_install_version()
-        self.app_id = version_mappings.get(self.photoshop_version, version)
+        self.app_id = version_mappings.get(self.photoshop_version,
+                                           self._get_program_id())
         try:
             self.app = self.instance_app(self.app_id)
         except OSError:
             try:
-                self.app = self.instance_app(self._get_install_version())
+                self.app = self.instance_app(self._get_program_id())
             except OSError:
                 raise PhotoshopPythonAPIError(
                     'Please check if you have '
@@ -41,7 +42,7 @@ class Photoshop(object):
         return self.app
 
     def __str__(self):
-        return f'{self.__class__.__name__} <{self._progress_id}>'
+        return f'{self.__class__.__name__} <{self._program_name}>'
 
     def __repr__(self):
         return self
@@ -52,12 +53,35 @@ class Photoshop(object):
         except AttributeError:
             return getattr(self.app, item)
 
-    def get_application_path(self):
-        key = winreg.OpenKey(
+    @staticmethod
+    def open_key(key):
+        bitness = platform.architecture()[0]
+        mappings = {
+            '32bit': winreg.KEY_WOW64_32KEY,
+            '64bit': winreg.KEY_WOW64_64KEY
+        }
+        return winreg.OpenKey(
             winreg.HKEY_LOCAL_MACHINE,
-            f'{self.REG_PATH}\\{self.app_id}',
+            key,
+            access=winreg.KEY_READ | mappings[bitness]
         )
-        return winreg.QueryValueEx(key, 'ApplicationPath')[0] + 'Photoshop'
+
+    def get_application_path(self):
+        """str: The absolute path of Photoshop installed location."""
+        key = self.open_key(f'{self.REG_PATH}\\{self.app_id}.0')
+        return winreg.QueryValueEx(key, 'ApplicationPath')[0]
+
+    def get_plugin_path(self):
+        """str: The absolute plugin path of Photoshop."""
+        return os.path.join(self.get_application_path(), 'Plug-ins')
+
+    def get_presets_path(self):
+        """str: The absolute presets path of Photoshop."""
+        return os.path.join(self.get_application_path(), 'Presets')
+
+    def get_script_path(self):
+        """str: The absolute scripts path of Photoshop."""
+        return os.path.join(self.get_presets_path(), 'Scripts')
 
     def instance_app(self, ps_id):
         naming_space = [self._root]
@@ -66,24 +90,49 @@ class Photoshop(object):
         else:
             naming_space.append(self.object_name)
         naming_space.append(ps_id)
-        self._progress_id = self._get_name(naming_space)
-        return self._create_object(self._progress_id, dynamic=True)
+        self._program_name = self._assemble_program_name(naming_space)
+        return CreateObject(self._program_name, dynamic=True)
 
-    def _get_install_version(self):
-        key = winreg.OpenKey(
-            winreg.HKEY_LOCAL_MACHINE,
-            self.REG_PATH,
-        )
+    def _get_program_id(self):
+        key = self.open_key(self.REG_PATH)
         self.app_id = winreg.EnumKey(key, 0).split('.')[0]
         return self.app_id
 
     @staticmethod
-    def _create_object(*args, **kwargs):
-        return CreateObject(*args, **kwargs)
+    def _assemble_program_name(names):
+        """Assemble program name of Photoshop.
 
-    @staticmethod
-    def _get_name(list_):
-        return '.'.join(list_)
+        Args:
+            names (list of str): The name to be assembled.
+                .e.g:
+                    [
+                        'Photoshop',
+                        'ActionDescriptor',
+                        '140'
+                    ]
+
+        Returns:
+            str: Assembled name.
+
+        Examples:
+            Photoshop.ActionDescriptor
+            Photoshop.ActionDescriptor.140
+            Photoshop.ActionList
+            Photoshop.ActionList.140
+            Photoshop.ActionReference
+            Photoshop.ActionReference.140
+            Photoshop.Application
+            Photoshop.Application.140
+            Photoshop.BatchOptions
+            Photoshop.BatchOptions.140
+            Photoshop.BitmapConversionOptions
+            Photoshop.BMPSaveOptions
+            Photoshop.BMPSaveOptions.140
+            Photoshop.CameraRAWOpenOptions
+            Photoshop.CameraRAWOpenOptions.140
+
+        """
+        return '.'.join(names)
 
     def eval_javascript(self, javascript, Arguments=None, ExecutionMode=None):
         return self.adobe.doJavaScript(javascript, Arguments, ExecutionMode)
