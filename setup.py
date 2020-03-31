@@ -11,7 +11,7 @@ setup(
     author='Long Hao',
     package_dir={'': 'src'},
     url='https://github.com/loonghao/photoshop_python_api',
-    version='0.7.2.',
+    version='0.7.2',
     packages=find_packages('./src'),
     setup_requires=['setuptools-scm', 'setuptools>=40.0'],
     author_email='hal.long@outllok.com',
