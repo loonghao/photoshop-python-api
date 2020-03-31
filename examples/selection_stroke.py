@@ -10,7 +10,7 @@ import photoshop as ps
 
 app = ps.Application()
 
-if len([(i, x) for i, x in enumerate(app.documents, 1)]) > 0:
+if len(list((i, x) for i, x in enumerate(app.documents, 1))) > 0:
     if not app.activeDocument.activeLayer.isBackgroundLayer:
         psPixels = 1
         start_ruler_units = app.Preferences.RulerUnits

@@ -15,7 +15,7 @@ class LayerSets(Photoshop):
 
     @property
     def _layerSets(self):
-        return [layerset for layerset in self.app]
+        return list(self.app)
 
     @property
     def length(self):
