@@ -55,20 +55,29 @@ class Photoshop(object):
 
     @staticmethod
     def open_key(key):
-        bitness = platform.architecture()[0]
+        """Open the register key.
+
+        Args:
+            key (str): The key of register.
+
+        Returns:
+            str: The handle to the specified key.
+
+        """
+        machine_type = platform.machine()
         mappings = {
-            '32bit': winreg.KEY_WOW64_32KEY,
-            '64bit': winreg.KEY_WOW64_64KEY
+            'AMD64': winreg.KEY_WOW64_64KEY
         }
         return winreg.OpenKey(
             winreg.HKEY_LOCAL_MACHINE,
             key,
-            access=winreg.KEY_READ | mappings[bitness]
+            access=winreg.KEY_READ | mappings.get(machine_type,
+                                                  winreg.KEY_WOW64_32KEY)
         )
 
     def get_application_path(self):
         """str: The absolute path of Photoshop installed location."""
-        key = self.open_key(f'{self.REG_PATH}\\{self.app_id}.0')
+        key = self.open_key(f'{self.REG_PATH}\\{self.get_program_id()}')
         return winreg.QueryValueEx(key, 'ApplicationPath')[0]
 
     def get_plugin_path(self):
@@ -93,9 +102,12 @@ class Photoshop(object):
         self._program_name = self._assemble_program_name(naming_space)
         return CreateObject(self._program_name, dynamic=True)
 
-    def _get_program_id(self):
+    def get_program_id(self):
         key = self.open_key(self.REG_PATH)
-        self.app_id = winreg.EnumKey(key, 0).split('.')[0]
+        return winreg.EnumKey(key, 0)
+
+    def _get_program_id(self):
+        self.app_id = self.get_program_id().split('.')[0]
         return self.app_id
 
     @staticmethod
