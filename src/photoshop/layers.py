@@ -9,7 +9,7 @@ class Layers(Photoshop):
 
     @property
     def _layers(self):
-        return [layer for layer in self.app]
+        return list(self.app)
 
     def __len__(self):
         return self.length

@@ -20,9 +20,9 @@ if start_ruler_units is not psPixels:
 
 fileName = os.path.join(os.path.dirname(__file__), "layer_comps.psd")
 docRef = app.open(fileName)
-nLayerSets = len([(i, x) for i, x in enumerate(docRef.layerSets)]) - 1
+nLayerSets = len(list((i, x) for i, x in enumerate(docRef.layerSets))) - 1
 nArtLayers = len(
-    [(i, x) for i, x in enumerate(docRef.layerSets[nLayerSets].artLayers)],
+    list((i, x) for i, x in enumerate(docRef.layerSets[nLayerSets].artLayers)),
 )
 
 active_layer = docRef.activeLayer = docRef.layerSets[nLayerSets].artLayers[

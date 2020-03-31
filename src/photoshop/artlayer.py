@@ -133,7 +133,7 @@ class ArtLayer(Photoshop):
 
     @property
     def length(self):
-        return len([layerset for layerset in self.app])
+        return len(list(self.app))
 
     def link(self, artlayer):
         return self.adobe.activeDocument.activeLayer.link(artlayer)

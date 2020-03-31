@@ -47,7 +47,7 @@ class Documents(Photoshop):
 
     @property
     def length(self):
-        return len([doc for doc in self.app])
+        return len(list(self.app))
 
     def getByName(self, document_name: str):
         return self.app.getByName(document_name)
