@@ -1,9 +1,9 @@
 import os
 import time
 from photoshop._core import Photoshop
-from photoshop.active_document import ActiveDocument
-from photoshop.documents import Documents
-from photoshop.preferences import Preferences
+from photoshop._active_document import ActiveDocument
+from photoshop._documents import Documents
+from photoshop._preferences import Preferences
 from photoshop.solid_color import SolidColor
 
 

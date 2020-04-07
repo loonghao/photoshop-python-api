@@ -1,5 +1,5 @@
 # Import local modules
-from photoshop.document import Document
+from photoshop._document import Document
 
 
 class ActiveDocument(Document):

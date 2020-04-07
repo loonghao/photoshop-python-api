@@ -7,3 +7,10 @@ class PhotoshopPythonAPIError(Exception):
 
 class PhotoshopPythonAPICOMError(COMError):
     pass
+
+
+__all__ = [
+    'COMError',
+    'PhotoshopPythonAPIError',
+    'PhotoshopPythonAPICOMError'
+]

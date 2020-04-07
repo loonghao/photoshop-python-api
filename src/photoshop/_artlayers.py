@@ -1,5 +1,5 @@
 from photoshop._core import Photoshop
-from photoshop.layer import Layer
+from photoshop._layer import Layer
 
 
 class ArtLayers(Photoshop):
