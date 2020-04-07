@@ -73,7 +73,6 @@ class Session:
     def __init__(self,
                  file_path=None,
                  action=None,
-                 actions=None,
                  callback=None,
                  auto_close=False):
         """Session of Photoshop.
@@ -100,8 +99,6 @@ class Session:
                         Create a new document.
                     - document_duplicate
                         Duplicate current active document.
-
-            actions (list of str): The list of actions.
             callback (function): The callback function for this Photoshop
                 session. The idea behind it is to allow us to pass some custom
                 callback function every time we exit the current Photoshop
@@ -116,7 +113,6 @@ class Session:
         self._auto_close = auto_close
         self._callback = callback
         self._action = action
-        self._actions = actions or []
         self._active_document = None
         self.app = Application()
         self.SaveOptions = SaveOptions
@@ -186,9 +182,8 @@ class Session:
 
     def __enter__(self):
         try:
-            for action in self._actions:
-                _action = getattr(self, '_action_{}'.format(action))
-                _action()
+            _action = getattr(self, f'_action_{self._action}')
+            _action()
         except AttributeError:
             pass
         return self
