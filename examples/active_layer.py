@@ -12,8 +12,8 @@ with Session() as ps:
     if len(docRef.layers) < 2:
         docRef.artLayers.add()
 
-    print(docRef.activeLayer.name)
-    print(docRef.layers.item(len(docRef.layers)))
+    ps.echo(docRef.activeLayer.name)
+    ps.echo(docRef.layers.item(len(docRef.layers)))
     new_layer = docRef.artLayers.add()
-    print(new_layer.name)
+    ps.echo(new_layer.name)
     new_layer.name = "test"
