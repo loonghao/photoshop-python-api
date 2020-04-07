@@ -1,6 +1,7 @@
 from photoshop._core import Photoshop
 from photoshop.enumerations import SelectionType
 
+
 class Selection(Photoshop):
     def __init__(self, parent=None):
         super().__init__(parent=parent)

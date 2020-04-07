@@ -1,6 +1,6 @@
 from photoshop._core import Photoshop
-from photoshop.artlayer import ArtLayer
-from photoshop.layer import Layer
+from photoshop._artlayer import ArtLayer
+from photoshop._layer import Layer
 
 
 class Layers(Photoshop):

@@ -1,5 +1,5 @@
 from photoshop._core import Photoshop
-from photoshop.layerSet import LayerSet
+from photoshop._layerSet import LayerSet
 from photoshop.errors import PhotoshopPythonAPIError
 
 

@@ -1,5 +1,5 @@
 from photoshop._core import Photoshop
-from photoshop.document import Document
+from photoshop._document import Document
 from photoshop.enumerations import NewDocumentMode
 from photoshop.enumerations import DocumentFill
 from photoshop.enumerations import BitsPerChannelType

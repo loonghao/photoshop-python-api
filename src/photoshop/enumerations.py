@@ -188,3 +188,25 @@ class SaveOptions:
     SaveChanges = 1
     DoNotSaveChanges = 2
     PromptToSaveChanges = 3
+
+
+__all__ = [
+    'AdjustmentReference',
+    'AnchorPosition',
+    'AntiAlias',
+    'NewDocumentMode',
+    'DocumentFill',
+    'DialogModes',
+    'SelectionType',
+    'TextureType',
+    'Units',
+    'LayerKind',
+    'FormatOptionsType',
+    'MatteType',
+    'ExtensionType',
+    'BitsPerChannelType',
+    'ColorBlendMode',
+    'StrokeLocation',
+    'NoiseDistribution',
+    'SaveOptions',
+]

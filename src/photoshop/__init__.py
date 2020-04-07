@@ -1,41 +1,20 @@
 try:
+    from photoshop import colors
+    from photoshop import save_options
+    from photoshop import enumerations
+    from photoshop import errors
     from photoshop.action_descriptor import ActionDescriptor
+    from photoshop.action_list import ActionList
     from photoshop.action_refrence import ActionReference
     from photoshop.application import Application
-    from photoshop.artlayer import ArtLayer
-    from photoshop.layerSets import LayerSets
-    from photoshop.layerSet import LayerSet
-    from photoshop.colors import (
-        LabColor,
-        HSBColor,
-        CMYKColor,
-        RGBColor,
-    )
-    from photoshop.document import Document
-    from photoshop.documents import Documents
-    from photoshop.layer import Layer
-    from photoshop.save_options import (
-        GIFSaveOptions,
-        JPEGSaveOptions,
-        PDFSaveOptions,
-        PNGSaveOptions,
-    )
-    from photoshop.solid_color import SolidColor
-    from photoshop.text_item import TextItem
-    from photoshop.enumerations import NoiseDistribution
-    from photoshop.enumerations import Units
-    from photoshop.enumerations import LayerKind
-    from photoshop.enumerations import NewDocumentMode
-    from photoshop.enumerations import DocumentFill
-    from photoshop.enumerations import DialogModes
-    from photoshop.enumerations import SelectionType
-    from photoshop.enumerations import TextureType
-    from photoshop.enumerations import ColorBlendMode
-    from photoshop.enumerations import StrokeLocation
-    from photoshop.enumerations import SaveOptions
     from photoshop.constants import *
-    from photoshop.errors import PhotoshopPythonAPIError
-    from photoshop.errors import COMError
+    from photoshop.enumerations import *
+    from photoshop.errors import *
+    from photoshop.colors import *
+    from photoshop.solid_color import SolidColor
+    from photoshop.save_options import *
+    from photoshop.text_fonts import TextFonts
+    from photoshop.text_item import TextItem
 except ModuleNotFoundError:
     # Fix Build docs failed on readthedocs.
     pass
@@ -45,6 +24,9 @@ class Session:
     """Session of photoshop.
 
     We can control active documents in this Session.
+
+    Attributes:
+        app (photoshop.application.Application):
 
     """
     presetKind = 'presetKindType'
@@ -88,13 +70,53 @@ class Session:
     JSCT = 'jsCt'
     PLACED_LAYER_EDIT_CONTENTS = 'placedLayerEditContents'
 
-    def __init__(self, file_path=None, action=None, callback=None,
+    def __init__(self,
+                 file_path=None,
+                 action=None,
+                 actions=None,
+                 callback=None,
                  auto_close=False):
+        """Session of Photoshop.
+
+
+        Examples:
+            .. code-block:: python
+
+                from photoshop import Session
+                with Session("your/psd/or/psb/file_path.psd",
+                            action="open") as ps:
+                    ps.echo(ps.active_document.name)
+
+        Args:
+            file_path (str): The absolute path of the file. This path can be
+                used together with action. If the path is an existing ``psd`
+                or image path, use ``open`` action to open this file in the
+                current session.
+            action (str): Name of the action.
+                .e.g:
+                    - open
+                        Open the file from the option `file_path`.
+                    - new_document
+                        Create a new document.
+                    - document_duplicate
+                        Duplicate current active document.
+
+            actions (list of str): The list of actions.
+            callback (function): The callback function for this Photoshop
+                session. The idea behind it is to allow us to pass some custom
+                callback function every time we exit the current Photoshop
+                session.
+            auto_close (bool): Is it necessary to close the current document
+                when exiting the current context session. The default is
+                ``False`` not to exit current session.
+
+        """
         super().__init__()
         self.path = file_path
         self._auto_close = auto_close
         self._callback = callback
         self._action = action
+        self._actions = actions or []
         self._active_document = None
         self.app = Application()
         self.SaveOptions = SaveOptions
@@ -116,6 +138,10 @@ class Session:
         self.JPEGSaveOptions = JPEGSaveOptions
         self.PDFSaveOptions = PDFSaveOptions
         self.PNGSaveOptions = PNGSaveOptions
+        self.PhotoshopSaveOptions = PhotoshopSaveOptions
+        self.ExportOptionsSaveForWeb = ExportOptionsSaveForWeb
+        self.BMPSaveOptions = BMPSaveOptions
+        self.TiffSaveOptions = TiffSaveOptions
         self.LabColor = LabColor
         self.HSBColor = HSBColor
         self.CMYKColor = CMYKColor
@@ -160,8 +186,9 @@ class Session:
 
     def __enter__(self):
         try:
-            _action = getattr(self, '_action_{}'.format(self._action))
-            _action()
+            for action in self._actions:
+                _action = getattr(self, '_action_{}'.format(action))
+                _action()
         except AttributeError:
             pass
         return self
@@ -178,42 +205,24 @@ class Session:
 
 
 # All public APIs.
-__all__ = [
+__all__ = (
     'ActionDescriptor',
+    'ActionList',
     'ActionReference',
-    'ArtLayer',
     'Application',
-    'CMYKColor',
-    'ColorBlendMode',
-    'DialogModes',
-    'DocumentFill',
-    'Document',
-    'Documents',
-    'SelectionType',
-    'StrokeLocation',
-    'TextureType',
-    'NewDocumentMode',
-    'LayerKind',
     'SolidColor',
+    'TextFonts',
     'TextItem',
-    'LabColor',
-    'LayerSets',
-    'LayerSet',
-    'HSBColor',
-    'RGBColor',
-    'Layer',
-    'NoiseDistribution',
-    'SaveOptions',
-    'JPEGSaveOptions',
-    'PNGSaveOptions',
-    'PDFSaveOptions',
-    'GIFSaveOptions',
-    'Units',
-    'Session'
-]
+    'Session',
+    colors.__all__
+    + save_options.__all__
+    + enumerations.__all__
+    + errors.__all__
+)
+
 
 __title__ = 'photoshop_python_api'
-__version__ = '0.7.2'
+__version__ = '0.8.0'
 __author__ = 'Long Hao'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2018 Long Hao'
