@@ -11,7 +11,7 @@ from photoshop import Session
 
 fileName = os.path.join(os.path.dirname(__file__), 'layer_comps.psd')
 
-with Session(fileName) as ps:
+with Session(fileName, action='open') as ps:
     def SmartSharpen(inAmount, inRadius, inNoise):
         idsmart_sharpen_id = ps.app.stringIDToTypeID(ps.smartSharpen)
         desc37 = ps.ActionDescriptor()
@@ -41,5 +41,10 @@ with Session(fileName) as ps:
 
         ps.app.ExecuteAction(idsmart_sharpen_id, desc37)
 
+
+    docRef = ps.active_document
+    nlayerSets = docRef.layerSets
+    nArtLayers = docRef.layerSets.item(nlayerSets.length)
+    docRef.activeLayer = nArtLayers.artLayers.item(nArtLayers.artLayers.length)
 
     SmartSharpen(300, 2.0, 20)
