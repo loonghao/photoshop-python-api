@@ -11,6 +11,7 @@ from photoshop.enumerations import ExtensionType
 from photoshop.enumerations import SaveOptions
 
 
+# pylint: disable=too-many-public-methods
 class Document(Photoshop):
     object_name = 'Application'
 

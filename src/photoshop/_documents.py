@@ -5,6 +5,7 @@ from photoshop.enumerations import DocumentFill
 from photoshop.enumerations import BitsPerChannelType
 
 
+# pylint: disable=too-many-public-methods
 class Documents(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
