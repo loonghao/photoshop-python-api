@@ -2,7 +2,7 @@ from photoshop._core import Photoshop
 from photoshop._layer import Layer
 
 
-# pylint: disable=too-many-arguments
+# pylint: disable=too-many-public-methods
 class ArtLayers(Photoshop):
 
     def __init__(self, parent):
