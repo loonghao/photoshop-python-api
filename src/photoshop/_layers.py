@@ -21,6 +21,8 @@ class Layers(Photoshop):
             if hasattr(item, 'textItem'):
                 # If have text item will be return ArtLayer.
                 return ArtLayer(item)
+            else:
+                return Layer(self._layers[key])
         except COMError:
             return Layer(self._layers[key])
 

@@ -3,6 +3,7 @@ from photoshop.text_item import TextItem
 from photoshop.enumerations import LayerKind
 
 
+# pylint: disable=too-many-public-methods
 class ArtLayer(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
