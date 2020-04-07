@@ -201,20 +201,21 @@ class Session:
 
 # All public APIs.
 __all__ = (
-    'ActionDescriptor',
-    'ActionList',
-    'ActionReference',
-    'Application',
-    'SolidColor',
-    'TextFonts',
-    'TextItem',
-    'Session',
-    colors.__all__
+    [
+        'ActionDescriptor',
+        'ActionList',
+        'ActionReference',
+        'Application',
+        'SolidColor',
+        'TextFonts',
+        'TextItem',
+        'Session'
+    ]
+    + colors.__all__
     + save_options.__all__
     + enumerations.__all__
     + errors.__all__
 )
-
 
 __title__ = 'photoshop_python_api'
 __version__ = '0.8.0'

@@ -2,6 +2,7 @@ from photoshop._core import Photoshop
 from photoshop.enumerations import SelectionType
 
 
+# pylint: disable=too-many-public-methods
 class Selection(Photoshop):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
