@@ -5,15 +5,10 @@ from photoshop.save_options.png import ExportOptionsSaveForWeb
 from photoshop.save_options.png import PNGSaveOptions
 from photoshop.save_options.psd import PhotoshopSaveOptions
 from photoshop.save_options.tif import TiffSaveOptions
-
-# Do not save changes.
-DONOTSAVECHANGES = 2
-# Ask the user whether to save.
-PROMPTTOSAVECHANGES = 1
-# Save changes.
-SAVECHANGES = 3
+from photoshop.save_options.bmp import BMPSaveOptions
 
 __all__ = [
+    'BMPSaveOptions',
     'GIFSaveOptions',
     'JPEGSaveOptions',
     'PDFSaveOptions',
