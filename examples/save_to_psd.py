@@ -7,5 +7,5 @@ with Session() as ps:
     options = ps.PhotoshopSaveOptions()
     layers = doc.artLayers
     doc.saveAs(psd_file, options, True)
-    ps.alert(f'alert("Task done!")')
+    ps.alert('Task done!')
     ps.echo(doc.activeLayer)

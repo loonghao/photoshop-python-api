@@ -36,22 +36,6 @@ photoshop.action\_refrence module
    :undoc-members:
    :show-inheritance:
 
-photoshop.active\_document module
----------------------------------
-
-.. automodule:: photoshop.active_document
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.active\_layer module
-------------------------------
-
-.. automodule:: photoshop.active_layer
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 photoshop.application module
 ----------------------------
 
@@ -60,42 +44,10 @@ photoshop.application module
    :undoc-members:
    :show-inheritance:
 
-photoshop.artlayer module
--------------------------
-
-.. automodule:: photoshop.artlayer
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.artlayers module
---------------------------
-
-.. automodule:: photoshop.artlayers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 photoshop.constants module
 --------------------------
 
 .. automodule:: photoshop.constants
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.document module
--------------------------
-
-.. automodule:: photoshop.document
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.documents module
---------------------------
-
-.. automodule:: photoshop.documents
    :members:
    :undoc-members:
    :show-inheritance:
@@ -112,54 +64,6 @@ photoshop.errors module
 -----------------------
 
 .. automodule:: photoshop.errors
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.layer module
-----------------------
-
-.. automodule:: photoshop.layer
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.layerSet module
--------------------------
-
-.. automodule:: photoshop.layerSet
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.layerSets module
---------------------------
-
-.. automodule:: photoshop.layerSets
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.layers module
------------------------
-
-.. automodule:: photoshop.layers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.preferences module
-----------------------------
-
-.. automodule:: photoshop.preferences
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-photoshop.selection module
---------------------------
-
-.. automodule:: photoshop.selection
    :members:
    :undoc-members:
    :show-inheritance:
