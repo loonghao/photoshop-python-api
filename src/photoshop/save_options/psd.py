@@ -3,6 +3,7 @@ from photoshop._core import Photoshop
 
 
 class PhotoshopSaveOptions(Photoshop):
+    object_name = 'PhotoshopSaveOptions'
 
     def __int__(self):
         super().__init__()
