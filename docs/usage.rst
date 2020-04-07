@@ -46,6 +46,10 @@ Eval Javascript
 ---------------
   .. literalinclude:: ../examples/eval_javascript.py
 
+Export Layers As Png
+--------------------
+  .. literalinclude:: ../examples/export_layers_as_png.py
+
 Fill Selection
 --------------
   .. literalinclude:: ../examples/fill_selection.py
@@ -81,6 +85,10 @@ Photoshop Session
 Rotate Layer
 ------------
   .. literalinclude:: ../examples/rotate_layer.py
+
+Save To Psd
+-----------
+  .. literalinclude:: ../examples/save_to_psd.py
 
 Selection Stroke
 ----------------
