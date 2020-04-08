@@ -1,6 +1,11 @@
 """Add metadata to current active document."""
-from photoshop import Session
+
+# Import built-in modules
 import os
+
+# Import local modules
+from photoshop import Session
+
 
 with Session(action="new_document") as ps:
     doc = ps.active_document
