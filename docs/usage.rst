@@ -6,6 +6,10 @@ Active Layer
 ------------
   .. literalinclude:: ../examples/active_layer.py
 
+Add Metadata
+------------
+  .. literalinclude:: ../examples/add_metadata.py
+
 Add Slate
 ---------
   .. literalinclude:: ../examples/add_slate.py
