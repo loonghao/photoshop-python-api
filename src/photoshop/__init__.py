@@ -15,6 +15,24 @@ try:
     from photoshop.save_options import *
     from photoshop.text_fonts import TextFonts
     from photoshop.text_item import TextItem
+
+    # All public APIs.
+    __all__ = (
+        [
+            'ActionDescriptor',
+            'ActionList',
+            'ActionReference',
+            'Application',
+            'SolidColor',
+            'TextFonts',
+            'TextItem',
+            'Session'
+        ]
+        + colors.__all__
+        + save_options.__all__
+        + enumerations.__all__
+        + errors.__all__
+    )
 except ModuleNotFoundError:
     # Fix Build docs failed on readthedocs.
     pass
@@ -198,24 +216,6 @@ class Session:
             if self._auto_close:
                 self.active_document.close()
 
-
-# All public APIs.
-__all__ = (
-    [
-        'ActionDescriptor',
-        'ActionList',
-        'ActionReference',
-        'Application',
-        'SolidColor',
-        'TextFonts',
-        'TextItem',
-        'Session'
-    ]
-    + colors.__all__
-    + save_options.__all__
-    + enumerations.__all__
-    + errors.__all__
-)
 
 __title__ = 'photoshop_python_api'
 __version__ = '0.9.0'
