@@ -1,12 +1,20 @@
-"""Metadata about a document object. These values can be set by selecting
-File > File Info in the Adobe Photoshop application."""
-from ._core import Photoshop
+"""Metadata about a document object.
+
+These values can be set by selecting File > File Info in the Adobe Photoshop
+application.
+
+"""
+
+# Import built-in modules
 from pprint import pformat
 
+# Import local modules
+from ._core import Photoshop
 
+
+# pylint: disable=too-many-public-methods
 class DocumentInfo(Photoshop):
-    """Metadata about a document object. These values can be set by selecting
-    File > File Info in the Adobe Photoshop application."""
+    """Metadata about a document object."""
 
     def __init__(self, parent):
         super().__init__(parent=parent)
@@ -179,17 +187,6 @@ class DocumentInfo(Photoshop):
     @ownerUrl.setter
     def ownerUrl(self, url):
         self.app.ownerUrl = url
-
-    @property
-    def parent(self):
-        """Get current document
-
-        Returns:
-            photoshop._document.Document: The Document instance.
-
-        """
-        from ._document import Document
-        return Document(self.app.parent)
 
     @property
     def provinceState(self):
