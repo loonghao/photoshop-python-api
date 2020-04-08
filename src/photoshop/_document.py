@@ -9,6 +9,7 @@ from photoshop._selection import Selection
 from photoshop._layerSet import LayerSet
 from photoshop.enumerations import ExtensionType
 from photoshop.enumerations import SaveOptions
+from photoshop._documentinfo import DocumentInfo
 
 
 # pylint: disable=too-many-public-methods
@@ -102,7 +103,7 @@ class Document(Photoshop):
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
-                '"{}")'.format(self.title),
+                '"{}")'.format(self.name),
             )
 
     @property
@@ -129,7 +130,7 @@ class Document(Photoshop):
     @property
     def info(self):
         """Metadata about the Document."""
-        return self.app.info
+        return DocumentInfo(self.app.info)
 
     @property
     def layerComps(self):
@@ -179,7 +180,7 @@ class Document(Photoshop):
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
-                '"{}")'.format(self.title),
+                '"{}")'.format(self.name),
             )
 
     @path.setter
