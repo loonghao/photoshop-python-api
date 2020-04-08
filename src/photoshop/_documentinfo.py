@@ -112,8 +112,8 @@ class DocumentInfo(Photoshop):
         return self.app.copyrighted
 
     @copyrighted.setter
-    def copyrighted(self, copyright):
-        self.app.copyrighted = copyright
+    def copyrighted(self, info):
+        self.app.copyrighted = info
 
     @property
     def country(self):
