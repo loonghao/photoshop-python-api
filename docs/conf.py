@@ -191,3 +191,13 @@ autodoc_mock_imports = [
     '_winreg',
     'winreg',
 ]
+
+
+def generate_examples(app):
+    print("Starting generate examples.rst")
+    exec(open("generate_examples.py").read(), globals())
+
+
+def setup(app):
+    """Add custom build hook."""
+    app.connect('builder-inited', generate_examples)

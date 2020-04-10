@@ -4,8 +4,8 @@ from jinja2 import Template
 import stringcase
 
 template = Template(r"""
-Usage
-=====
+Examples
+========
 {% for file_ in Examples.get_examples() %}
 {{ Examples.get_name(file_) }}
 {{ Examples.get_line(Examples.get_name(file_))}}
@@ -37,8 +37,7 @@ class Examples(object):
         return "-" * len(name)
 
 
-if __name__ == '__main__':
-    root = os.path.dirname(os.path.dirname(__file__))
-    with open(os.path.join(root, "docs", "usage.rst"), "w") as f:
-        f.write(template.render(
-            Examples=Examples(os.path.join(root, "examples"))))
+root = os.path.dirname(os.path.dirname(__file__))
+with open("examples.rst", "w") as f:
+    f.write(template.render(
+        Examples=Examples(os.path.join(root, "examples"))))
