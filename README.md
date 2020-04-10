@@ -97,7 +97,7 @@ with Session(action="new_document") as ps:
 
 More examples
 -------------
-- https://photoshop-python-api.readthedocs.io/en/master/usage.html
+- https://photoshop-python-api.readthedocs.io/en/master/examples.html
 
 how to get Photoshop program ID
 -------------------------------
