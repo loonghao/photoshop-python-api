@@ -1,4 +1,4 @@
-"""The photoshop enumerations."""
+"""The enumerations defined for use with Photoshop properties and methods."""
 
 
 def magic_attr(cls):
@@ -22,12 +22,20 @@ def magic_attr(cls):
 
 @magic_attr
 class AdjustmentReference:
+    """Color adjustment specifications."""
     Relative = 1
     Absolute = 2
 
 
 @magic_attr
 class AnchorPosition:
+    """The pint around which to transform and object.
+
+    This is the point that doest not move when an object is rotated or resized
+    using methods in `ArtLayer`, `LayerSet` and `Selection`, or when the
+    entire canvas is resized with Document.resizeCanvas().
+
+    """
     TopLeft = 1
     TopCenter = 2
     TopRight = 3
@@ -40,11 +48,52 @@ class AnchorPosition:
 
 @magic_attr
 class AntiAlias:
+    """
+
+    Method to use to smooth edges by softening the color transition
+    between edge pixels and background pixels.
+
+    """
     NoAntialias = 1
     Sharp = 2
     Crisp = 3
     Strong = 4
     Smooth = 5
+
+
+@magic_attr
+class AutoKernType:
+    """The type of kerning to use for characters.
+
+    Used in `TextItem.autoKerning`.
+
+    """
+    Manual = 2
+    Metrics = 1
+    OPTICAL = 3
+
+
+@magic_attr
+class BatchDestinationType:
+    """The Destination, if any, for batch-processed files, specified in the
+    BatchOptions used with the `Application.batch()` method:
+
+
+    """
+    FOLDER = 1
+    NODESTINATION = 2
+    SAVEANDCLOSE = 3
+
+
+@magic_attr
+class BitmapConversionType:
+    """Specifies the quality of an image you are converting to bitmap mode.
+
+    Used in `BitmapConversionOptions`.
+
+    """
+    CUSTOMPATTERN = 1
+
 
 
 @magic_attr
@@ -85,6 +134,13 @@ class TextureType:
     FrostedTexture = 3
     TinyLensTexture = 4
     TextureFile = 5
+
+
+@magic_attr
+class TextCase:
+    AllCAPS = 1
+    NORMAL = 2
+    SMALLCAPS = 3
 
 
 @magic_attr

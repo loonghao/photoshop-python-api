@@ -15,11 +15,11 @@ class Documents(Photoshop):
 
     def add(self, width=960, height=540, resolution=72.0, name=None,
             mode=NewDocumentMode.NewRGB, initialFill=DocumentFill.White,
-            pixelAspectRatio=None,
+            pixelAspectRatio=1.0,
             bitsPerChannel=BitsPerChannelType.Document16Bits,
             colorProfileName=None
             ):
-        """
+        """Creates a new document object and adds it to this collections.
 
         Args:
             width (int): The width of the document.
@@ -29,6 +29,7 @@ class Documents(Photoshop):
             mode (): The document mode.
             initialFill : The initial fill of the document.
             pixelAspectRatio: The initial pixel aspect ratio of the document.
+                                Default is `1.0`, the range is `0.1-10.00`.
             bitsPerChannel: The number of bits per channel.
             colorProfileName: The name of color profile for document.
 
@@ -51,4 +52,4 @@ class Documents(Photoshop):
         return len(list(self.app))
 
     def getByName(self, document_name: str):
-        return self.app.getByName(document_name)
+        return Document(self.app.getByName(document_name))

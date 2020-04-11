@@ -1,9 +1,7 @@
-"""ActionDescriptor of photoshop scripting.
+"""This object provides an array-style mechanism for storing data.
 
-A record of key-value pairs for actions, such as those included on the
-Adobe Photoshop Actions menu. The ActionDescriptor class is part of the Action
-Manager functionality. For more details on the Action Manager,
-see the Photoshop Scripting Guide.
+It can be used for low-level access info Photoshop.
+
 
 """
 from photoshop._core import Photoshop
@@ -18,3 +16,33 @@ class ActionList(Photoshop):
     @property
     def count(self):
         return self.app.count
+
+    def getBoolean(self, index):
+        return self.app.getBoolean(index)
+
+    def getClass(self, index):
+        return self.app.getClass(index)
+
+    def getData(self, index):
+        return self.app.getData(index)
+
+    def getDouble(self, index):
+        return self.app.getDouble(index)
+
+    def getEnumerationType(self, index):
+        return self.app.getEnumerationType(index)
+
+    def getEnumerationValue(self, index):
+        return self.app.getEnumerationValue(index)
+
+    def getInteger(self, index):
+        return self.app.getInteger(index)
+
+    def getLargeInteger(self, index):
+        return self.app.getLargeInteger(index)
+
+    def getList(self, index):
+        return self.app.getList(index)
+
+    def getObjectType(self, index):
+        return self.app.getObjectType(index)

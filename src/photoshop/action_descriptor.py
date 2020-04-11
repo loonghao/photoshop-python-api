@@ -1,7 +1,11 @@
-"""A record of key-value pairs for actions, such as those included on the
-Adobe Photoshop Actions menu. The ActionDescriptor class is part of the Action
+"""A record of key-text_font pairs for actions.
+
+such as those included on the Adobe Photoshop Actions menu.
+The ActionDescriptor class is part of the Action
 Manager functionality. For more details on the Action Manager,
-see the Photoshop Scripting Guide."""
+see the Photoshop Scripting Guide.
+
+"""
 from photoshop._core import Photoshop
 
 
@@ -16,16 +20,47 @@ class ActionDescriptor(Photoshop):
         return self.app.count
 
     def clear(self):
+        """Clears the descriptor."""
         self.app.clear()
 
     def erase(self, key):
-        return self.app.erase(key)
+        """Erases a key form the descriptor."""
+        self.app.erase(key)
+
+    def fromStream(self, value):
+        """Create a descriptor from a stream of bytes.
+
+        for reading from disk.
+
+        """
+        self.app.fromStream(value)
 
     def getBoolean(self, key):
+        """Gets the text_font of a key of type boolean.
+
+        Args:
+            key (str): key of type boolean.
+
+        Returns:
+            bool: The text_font of a key of type boolean.
+
+        """
         return self.app.getBoolean(key)
 
     def getClass(self, key):
+        """Gets the text_font of a key of type class.
+
+        Args:
+            key (str): The key of type class.
+
+        Returns:
+            int: The text_font of a key of type class.
+
+        """
         return self.app.getClass(key)
+
+    def getData(self, key):
+        return self.app.getData(key)
 
     def getDouble(self, key):
         return self.app.getDouble(key)
@@ -39,35 +74,52 @@ class ActionDescriptor(Photoshop):
     def getInteger(self, index):
         return self.app.getInteger(index)
 
+    def getKey(self, index):
+        return self.app.getKey(index)
+
     def getLargeInteger(self, index):
         return self.app.getLargeInteger(index)
 
     def getList(self, index):
         return self.app.getList(index)
 
-    def getTypeObject(self, index):
-        return self.app.getTypeObject(index)
+    def getObjectType(self, key):
+        return self.app.getObjectType(key)
 
-    def getObjectValue(self, index):
-        return self.app.getObjectValue(index)
+    def getObjectValue(self, key):
+        return self.app.getObjectValue(key)
 
-    def getPath(self, index):
-        return self.app.getPath(index)
+    def getPath(self, key):
+        return self.app.getPath(key)
 
-    def getReference(self, index):
-        return self.app.getReference(index)
+    def getReference(self, key):
+        return self.app.getReference(key)
 
-    def getString(self, index):
-        return self.app.getString(index)
+    def getString(self, key):
+        return self.app.getString(key)
 
-    def getType(self, index):
-        return self.app.getType(index)
+    def getType(self, key):
+        return self.app.getType(key)
 
-    def getUnitDoubleType(self, index):
-        return self.app.getUnitDoubleType(index)
+    def getUnitDoubleType(self, key):
+        return self.app.getUnitDoubleType(key)
 
-    def getUnitDoubleValue(self, index):
-        return self.app.getUnitDoubleValue(index)
+    def getUnitDoubleValue(self, key):
+        return self.app.getUnitDoubleValue(key)
+
+    def hasKey(self, key):
+        return self.app.hasKey(key)
+
+    def isEqual(self, otherDesc):
+        """
+
+        Args:
+            otherDesc (photoshop.action_descriptor.ActionDescriptor):
+
+        Returns:
+
+        """
+        return self.app.isEqual(otherDesc)
 
     def putBoolean(self, key, value):
         self.app.putBoolean(key, value)
@@ -76,13 +128,36 @@ class ActionDescriptor(Photoshop):
         self.app.putClass(value)
 
     def putDouble(self, key, value):
-        return self.app.putDouble(key, value)
+        self.app.putDouble(key, value)
 
-    def putEnumerated(self, DesiredClass, EnumType, Value):
-        return self.app.putEnumerated(DesiredClass, EnumType, Value)
+    def putEnumerated(self, key, enum_type, value):
+        self.app.putEnumerated(key, enum_type, value)
+
+    def putInteger(self, key, value):
+        self.app.putInteger(key, value)
+
+    def putLargeInteger(self, key, value):
+        self.app.putLargeInteger(key, value)
+
+    def putList(self, key, value):
+        self.app.putList(key, value)
+
+    def putObject(self, key, class_id, value):
+        self.app.putObject(key, class_id, value)
+
+    def putPath(self, key, value):
+        self.app.putPath(key, value)
 
     def putReference(self, key, value):
-        return self.app.putReference(key, value)
+        self.app.putReference(key, value)
 
-    def putObject(self, key, classID, value):
-        return self.app.putObject(key, classID, value)
+    def putString(self, key, value):
+        self.app.putString(key, value)
+
+    def putUnitDouble(self, key, value):
+        self.app.putUnitDouble(key, value)
+
+    def toStream(self):
+        """Gets the entire descriptor as as stream of bytes,
+        for writing to disk."""
+        return self.app.toSteadm()

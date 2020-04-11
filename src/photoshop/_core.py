@@ -16,6 +16,7 @@ class Photoshop(object):
 
     def __init__(self, ps_version=None, parent=None):
         self._program_name = None
+        self._has_parent = False
         version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
         self.photoshop_version = os.getenv('PS_VERSION', ps_version)
         self.app_id = version_mappings.get(self.photoshop_version,
@@ -33,6 +34,7 @@ class Photoshop(object):
         if parent:
             self.adobe = self.app
             self.app = parent
+            self._has_parent = True
 
     @property
     def typename(self):
@@ -147,4 +149,7 @@ class Photoshop(object):
         return '.'.join(names)
 
     def eval_javascript(self, javascript, Arguments=None, ExecutionMode=None):
-        return self.adobe.doJavaScript(javascript, Arguments, ExecutionMode)
+        executor = self.app
+        if self._has_parent:
+            executor = self.adobe
+        return executor.doJavaScript(javascript, Arguments, ExecutionMode)

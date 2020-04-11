@@ -20,7 +20,12 @@ class Layer(Photoshop):
 
     @property
     def allLocked(self):
+        """True to completely lock the contents and settings of this layer."""
         return self.app.allLocked
+
+    @allLocked.setter
+    def allLocked(self, boolean):
+        self.app.allLocked = boolean
 
     @property
     def blendMode(self):
