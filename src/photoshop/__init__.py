@@ -5,7 +5,7 @@ try:
     from photoshop import errors
     from photoshop.action_descriptor import ActionDescriptor
     from photoshop.action_list import ActionList
-    from photoshop.action_refrence import ActionReference
+    from photoshop.action_reference import ActionReference
     from photoshop.application import Application
     from photoshop.constants import *
     from photoshop.enumerations import *
@@ -13,7 +13,6 @@ try:
     from photoshop.colors import *
     from photoshop.solid_color import SolidColor
     from photoshop.save_options import *
-    from photoshop.text_fonts import TextFonts
     from photoshop.text_item import TextItem
 
     # All public APIs.

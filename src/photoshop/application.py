@@ -1,10 +1,28 @@
+"""The Adobe Adobe Photoshop CC application object.
+
+Which is the root of the object model and provides access to all other
+objects. This object provides application-wide information,
+such as application defaults and available fonts. It provides many important
+methods, such as those for opening files and loading documents.
+
+app = Application()
+
+app.documents.add(800, 600, 72, "docRef")
+
+"""
+
+# Import built-in modules
 import os
 import time
+from pathlib import Path
+
+# Import local modules
 from photoshop._core import Photoshop
-from photoshop._active_document import ActiveDocument
+from photoshop._document import Document
 from photoshop._documents import Documents
 from photoshop._preferences import Preferences
 from photoshop.solid_color import SolidColor
+from photoshop._text_fonts import TextFonts
 
 
 class Application(Photoshop):
@@ -14,31 +32,76 @@ class Application(Photoshop):
 
     @property
     def activeDocument(self):
-        """The frontmost documents."""
-        return ActiveDocument(self.app.activeDocument)
+        """The frontmost documents.
+
+        Setting this property is equivalent to clicking an
+        open document in the Adobe Photoshop CC
+        application to bring it to the front of the screen.
+
+        """
+        return Document(self.app.activeDocument)
+
+    @activeDocument.setter
+    def activeDocument(self, document):
+        self.app.activeDocument = document
 
     @property
     def backgroundColor(self):
+        """The default background color and color style for documents.
+
+        Returns:
+            photoshop.solid_color.SolidColor: The SolidColor instance.
+
+        """
         return SolidColor(self.app.backgroundColor)
 
     @backgroundColor.setter
     def backgroundColor(self, color):
+        """Sets the default background color and color style for documents.
+
+        Args:
+            color (photoshop.solid_color.SolidColor): The SolidColor instance.
+
+        """
         self.app.backgroundColor = color
 
     @property
     def build(self):
+        """str: The information about the application."""
         return self.app.build
 
     @property
     def colorSettings(self):
+        """The name of the current color settings.
+
+        as selected with Edit > Color Settings.
+
+        """
         return self.app.colorSettings
+
+    @colorSettings.setter
+    def colorSettings(self, settings):
+        """The name of the current color settings.
+
+        Args:
+            settings (str): The name of the current tool sel.
+
+        """
+        self.app.colorSettings = settings
 
     @property
     def currentTool(self):
+        """str: The name of the current tool sel."""
         return self.app.currentTool
 
     @currentTool.setter
     def currentTool(self, tool_name):
+        """Sets the current tool for select.
+
+        Args:
+            tool_name (str): The name of the current tool sel.
+
+        """
         self.app.currentTool = tool_name
 
     @property
@@ -48,23 +111,46 @@ class Application(Photoshop):
         return self.app.displayDialogs
 
     @displayDialogs.setter
-    def displayDialogs(self, value):
-        self.app.displayDialogs = value
+    def displayDialogs(self, dialog_mode):
+        """The dialog mode for the document, which indicates whether or not
+        Photoshop displays dialogs when the script runs.
+
+        Args:
+            dialog_mode (photoshop.enumerations.DialogModes): The dialog modes.
+
+        """
+        self.app.displayDialogs = dialog_mode
 
     @property
     def documents(self):
+        """photoshop._documents.Documents: The Documents instance."""
         return Documents(self.app.documents)
 
-    # TODO:
     @property
     def fonts(self):
-        return self.app.fonts
+        return TextFonts(self.app.fonts)
 
     @property
     def foregroundColor(self):
-        """The default foreground color (used to paint, fill,
-        and stroke selections)."""
+        """Get default foreground color.
+
+        Used to paint, fill, and stroke selections.
+
+        Returns:
+            photoshop.solid_color.SolidColor: The SolidColor instance.
+
+        """
         return SolidColor(parent=self.app.foregroundColor)
+
+    @foregroundColor.setter
+    def foregroundColor(self, color):
+        """Set the `foregroundColor`.
+
+        Args:
+            color (photoshop.solid_color.SolidColor): The SolidColor instance.
+
+        """
+        self.app.foregroundColor = color
 
     @property
     def freeMemory(self):
@@ -101,6 +187,10 @@ class Application(Photoshop):
         """If true, notifiers are enabled."""
         return self.app.notifiersEnabled
 
+    @notifiersEnabled.setter
+    def notifiersEnabled(self, value):
+        self.app.notifiersEnabled = value
+
     @property
     def parent(self):
         """The object’s container."""
@@ -108,7 +198,8 @@ class Application(Photoshop):
 
     @property
     def path(self):
-        return self.app.path
+        """str: The full path to the location of the Photoshop application."""
+        return Path(self.app.path)
 
     @property
     def playbackDisplayDialogs(self):
@@ -118,13 +209,17 @@ class Application(Photoshop):
     def playbackParameters(self):
         return self.app.playbackParameters
 
+    @playbackParameters.setter
+    def playbackParameters(self, value):
+        self.app.playbackParameters = value
+
     @property
     def preferences(self):
         return Preferences(self.app.preferences)
 
     @property
     def preferencesFolder(self):
-        return self.app.preferencesFolder
+        return Path(self.app.preferencesFolder)
 
     @property
     def recentFiles(self):
@@ -155,20 +250,30 @@ class Application(Photoshop):
         return self.app.windowsFileTypes
 
     # Methods.
+    def batch(self, *args, **kwargs):
+        """Runs the batch automation routine.
 
-    def batch(self):
-        pass
+        Similar to the **File** > **Automate** > **Batch** command.
+
+        """
+        self.app.bath(*args, **kwargs)
 
     def beep(self):
-        """Alerts the user."""
-        pass
+        """Causes a "beep" sound."""
+        self.eval_javascript("app.beep()")
 
     def bringToFront(self):
-        return self.eval_javascript('app.bringToFront();')
+        return self.eval_javascript('app.bringToFront()')
 
     def changeProgressText(self, text):
         """Changes the text that appears in the progress window."""
-        self.eval_javascript(f"app.changeProgressText('{text}');")
+        self.eval_javascript(f"app.changeProgressText('{text}')")
+
+    def charIDToTypeID(self, char_id):
+        return self.app.charIDToTypeID(char_id)
+
+    def compareWithNumbers(self, first, second):
+        return self.app.compareWithNumbers(first, second)
 
     def doAction(self, action, action_from):
         """Plays the specified action from the Actions palette."""
@@ -226,8 +331,8 @@ class Application(Photoshop):
         # Ensure the script execute success.
         time.sleep(1)
 
-    def eraseCustomOptions(self):
-        pass
+    def eraseCustomOptions(self, key):
+        self.app.eraseCustomOptions(key)
 
     def executeAction(self, eventID, descriptor, displayDialogs=2):
         return self.app.executeAction(eventID, descriptor, displayDialogs)
@@ -240,8 +345,14 @@ class Application(Photoshop):
     def layerSets(self):
         return self.app.LayerSets
 
-    def open(self, document_file_path):
-        return ActiveDocument(self.app.open(document_file_path))
+    def open(self, document_file_path, document_type=None,
+             as_smart_object=False):
+        document = self.app.open(document_file_path,
+                                 document_type,
+                                 as_smart_object)
+        if not as_smart_object:
+            return Document(document)
+        return document
 
     def load(self, document_file_path):
         """Loads a support document."""
@@ -254,11 +365,11 @@ class Application(Photoshop):
     def isQuicktimeAvailable(self):
         return self.app.IsQuicktimeAvailable()
 
-    def purge(self, index):
-        """
+    def purge(self, target):
+        """Purges one or more caches.
 
         Args:
-            index:
+            target:
                 .e.g:
                     0: Clears all caches.
                     1: Clears the clipboard.
@@ -268,21 +379,50 @@ class Application(Photoshop):
         Returns:
 
         """
-        self.app.purge(index)
+        self.app.purge(target)
+
+    def putCustomOptions(self, key, custom_object, persistent):
+        self.app.putCustomOptions(key, custom_object, persistent)
+
+    def refresh(self):
+        """Pauses the script while the application refreshes.
+
+        Ues to slow down execution and show the results to the user as the
+        script runs.
+        Use carefully; your script runs much more slowly when using this
+        method.
+
+        """
+        self.app.refresh()
 
     def refreshFonts(self):
         """Force the font list to get refreshed."""
         return self.eval_javascript('app.refreshFonts();')
 
+    def runMenuItem(self, menu_id):
+        """Run a menu item given the menu ID."""
+        return self.eval_javascript(f'app.runMenuItem({menu_id})',)
+
     def showColorPicker(self):
+        """Returns false if dialog is cancelled, true otherwise."""
         return self.eval_javascript('app.showColorPicker();')
+
+    def stringIDToTypeID(self, string_id):
+        return self.app.stringIDToTypeID(string_id)
+
+    def togglePalettes(self):
+        """Toggle palette visibility."""
+        self.app.togglePallettes()
+
+    def toolSupportsBrushes(self, tool):
+        return self.app.toolSupportsBrushes(tool)
+
+    def toolSupportsBrushPresets(self, tool):
+        return self.app.toolSupportsPresets(tool)
 
     @staticmethod
     def system(command):
         os.system(command)
-
-    def stringIDToTypeID(self, string):
-        return self.app.stringIDToTypeID(string)
 
     def typeIDToStringID(self, typeID):
         return self.app.typeIDToStringID(typeID)

@@ -1,3 +1,21 @@
+"""The active containment object for layers and all other objects.
+
+The basic canvas for the file.
+
+- Access the object for the currently active document through
+  `Application.activeDocument.`
+- You can access other documents or iterate through all open documents using
+  in the `Application.documents` collection. You can access individual
+  documents in the list by index, or use Documents.getByName() to retrieve
+  them by name.
+- Create documents programmatically using the Documents.add() method.
+
+
+"""
+
+# Import built-in modules
+from pathlib import Path
+
 # Import local modules
 from photoshop._core import Photoshop
 from photoshop._artlayer import ArtLayer
@@ -25,6 +43,7 @@ class Document(Photoshop):
 
     @property
     def activeLayer(self):
+        """The selected layer."""
         type_ = self.eval_javascript("app.activeDocument.activeLayer.typename")
         mappings = {"LayerSet": LayerSet,
                     "ArtLayer": ArtLayer}
@@ -32,8 +51,15 @@ class Document(Photoshop):
         return func(self.app.activeLayer)
 
     @activeLayer.setter
-    def activeLayer(self, item):
-        self.app.activeLayer = item
+    def activeLayer(self, layer):
+        """Sets the select layer as active layer.
+
+        Args:
+            layer (photoshop._artlayer.ArtLayer or
+                   photoshop._layerSet.LayerSet): The artLayer.
+
+        """
+        self.app.activeLayer = layer
 
     @property
     def activeChannels(self):
@@ -74,11 +100,19 @@ class Document(Photoshop):
         for color profile kind (to indicate a custom color profile)."""
         return self.app.colorProfileName
 
+    @colorProfileName.setter
+    def colorProfileName(self, name):
+        self.app.colorProfileName = name
+
     @property
     def colorProfileType(self):
         """The type of color model that defines the working space of the
         Document."""
         return self.app.colorProfileType
+
+    @colorProfileType.setter
+    def colorProfileType(self, profile_type):
+        self.app.colorProfileType = profile_type
 
     @property
     def colorSamplers(self):
@@ -99,7 +133,7 @@ class Document(Photoshop):
     def fullName(self):
         """The full path name of the Document."""
         try:
-            return self.app.fullName
+            return Path(self.app.fullName)
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
@@ -176,7 +210,7 @@ class Document(Photoshop):
     def path(self):
         """The path to the Document."""
         try:
-            return self.app.Path
+            return Path(self.app.path)
         except COMError:
             self.eval_javascript(
                 'alert ("Please save your Document first!",'
@@ -328,7 +362,11 @@ class Document(Photoshop):
             f" '{javaScriptString}')")
 
     def trap(self, width):
-        """Applies trapping to a CMYK document. Valid only when ‘mode’ = CMYK."""
+        """
+        Applies trapping to a CMYK document.
+        Valid only when ‘mode’ = CMYK.
+
+        """
         self.app.trap(width)
 
     def trim(self, *args, **kwargs):
