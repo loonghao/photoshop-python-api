@@ -1,16 +1,16 @@
+"""Defines an HSB color, used in the `SolidColor` object."""
+
+# Import local modules
 from photoshop._core import Photoshop
 
 
 class HSBColor(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
-        self.hue = 0
-        self.saturation = 100
-        self.brightness = 0
 
     @property
     def brightness(self):
-        return self.app.brightness
+        return round(self.app.brightness)
 
     @brightness.setter
     def brightness(self, value):
@@ -18,7 +18,7 @@ class HSBColor(Photoshop):
 
     @property
     def saturation(self):
-        return self.app.saturation
+        return round(self.app.saturation)
 
     @saturation.setter
     def saturation(self, value):
@@ -27,7 +27,7 @@ class HSBColor(Photoshop):
     @property
     def hue(self):
         """The hue value. Range: 0.0 to 360.0."""
-        return self.app.hue
+        return round(self.app.hue)
 
     @hue.setter
     def hue(self, value):
