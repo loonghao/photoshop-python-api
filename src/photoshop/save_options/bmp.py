@@ -1,3 +1,4 @@
+"""Options for saving a document in BMO format."""
 from photoshop._core import Photoshop
 
 
@@ -6,3 +7,17 @@ class BMPSaveOptions(Photoshop):
 
     def __init__(self):
         super().__init__()
+
+    @property
+    def alphaChannels(self):
+        """State to save the alpha channels."""
+        return self.app.alphaChannels
+
+    @alphaChannels.setter
+    def alphaChannels(self, value):
+        """Sets whether to save the alpha channels or not.
+
+        Args:
+
+        """
+        self.app.alphaChannels = value

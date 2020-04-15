@@ -23,6 +23,7 @@ from photoshop._documents import Documents
 from photoshop._preferences import Preferences
 from photoshop.solid_color import SolidColor
 from photoshop._text_fonts import TextFonts
+from photoshop.enumerations import DialogModes
 
 
 class Application(Photoshop):
@@ -87,7 +88,7 @@ class Application(Photoshop):
             settings (str): The name of the current tool sel.
 
         """
-        self.app.colorSettings = settings
+        self.doJavaScript(f'app.colorSettings="{settings}"')
 
     @property
     def currentTool(self):
@@ -108,7 +109,7 @@ class Application(Photoshop):
     def displayDialogs(self):
         """The dialog mode for the document, which indicates whether or not
         Photoshop displays dialogs when the script runs."""
-        return self.app.displayDialogs
+        return DialogModes(self.app.displayDialogs)
 
     @displayDialogs.setter
     def displayDialogs(self, dialog_mode):
@@ -363,7 +364,7 @@ class Application(Photoshop):
         return self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
     def isQuicktimeAvailable(self):
-        return self.app.IsQuicktimeAvailable()
+        return self.eval_javascript('app.isQuicktimeAvailable()')
 
     def purge(self, target):
         """Purges one or more caches.
@@ -401,7 +402,7 @@ class Application(Photoshop):
 
     def runMenuItem(self, menu_id):
         """Run a menu item given the menu ID."""
-        return self.eval_javascript(f'app.runMenuItem({menu_id})',)
+        return self.eval_javascript(f'app.runMenuItem({menu_id})', )
 
     def showColorPicker(self):
         """Returns false if dialog is cancelled, true otherwise."""
@@ -424,11 +425,11 @@ class Application(Photoshop):
     def system(command):
         os.system(command)
 
-    def typeIDToStringID(self, typeID):
-        return self.app.typeIDToStringID(typeID)
+    def typeIDToStringID(self, type_id):
+        return self.app.typeIDToStringID(type_id)
 
-    def typeIDToCharID(self, typeID):
-        return self.app.typeIDToCharID(typeID)
+    def typeIDToCharID(self, type_id):
+        return self.app.typeIDToCharID(type_id)
 
     def updateProgress(self, done, total):
         self.eval_javascript(f'app.updateProgress({done}, {total})')
