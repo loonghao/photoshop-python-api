@@ -1,5 +1,6 @@
 from photoshop._core import Photoshop
 from photoshop.text_font import TextFont
+from photoshop.solid_color import SolidColor
 
 
 class TextItem(Photoshop):
@@ -178,19 +179,12 @@ class TextItem(Photoshop):
         self.app.size = value
 
     @property
-    def color(self):
-        return self.app.color
+    def color(self) -> SolidColor:
+        return SolidColor(self.app.color)
 
     @color.setter
     def color(self, color_value):
-        """
-
-        Args:
-            color_value (photoshop_python_api.SolidColor):
-
-        Returns:
-
-        """
+        """The color of textItem."""
         self.app.color = color_value
 
     @property

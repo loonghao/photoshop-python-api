@@ -95,7 +95,6 @@ class BitmapConversionType:
     CUSTOMPATTERN = 1
 
 
-
 @magic_attr
 class NewDocumentMode:
     NewGray = 1
@@ -246,11 +245,51 @@ class SaveOptions:
     PromptToSaveChanges = 3
 
 
+@magic_attr
+class ColorModel:
+    CMYK: 3
+    GRAYSCALE = 1
+    HSB = 5
+    LAB = 4
+    NONE = 1
+    RGB = 1
+
+
+@magic_attr
+class DescValueType:
+    ALLASTYPE = 1
+    BOOLEANTYPE = 2
+    CLASSTYPE = 3
+    DOUBLETYPE = 4
+    ENUMERATEDTYPE = 5
+    INTEGERTYPE = 6
+    LARGEINTEGERTYPE = 7
+    LISTTYPE = 8
+    OBJECTTYPE = 9
+    RAWTYPE = 10
+    REFERENCETYPE = 11
+    STRINGTYPE = 12
+    UNITDOUBLE = 13
+
+
+@magic_attr
+class ReferenceFormType:
+    CLASSTYPE = 1
+    ENUMERATED = 2
+    IDENTIFIER = 3
+    INDEX = 4
+    NAME = 5
+    OFFSET = 6
+    PROPERTY = 7
+
+
 __all__ = [
+    'ColorModel',
     'AdjustmentReference',
     'AnchorPosition',
     'AntiAlias',
     'NewDocumentMode',
+    'DescValueType',
     'DocumentFill',
     'DialogModes',
     'SelectionType',
@@ -264,5 +303,6 @@ __all__ = [
     'ColorBlendMode',
     'StrokeLocation',
     'NoiseDistribution',
+    'ReferenceFormType',
     'SaveOptions',
 ]

@@ -12,9 +12,16 @@ class TextFonts(Photoshop):
             yield TextFont(font)
 
     @property
+    def _fonts(self):
+        return [a for a in self.app]
+
+    def __len__(self):
+        return self.length
+
+    @property
     def length(self):
         """The number pf elements in the collection."""
-        return len(self.app)
+        return len(self._fonts)
 
     def getByName(self, name):
         """Gets the font by the font name.

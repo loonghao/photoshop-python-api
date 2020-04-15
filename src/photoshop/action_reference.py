@@ -9,19 +9,39 @@ with an ActionDescriptor.
 
 """
 from photoshop._core import Photoshop
+from photoshop.enumerations import ReferenceFormType
 
 
 class ActionReference(Photoshop):
     object_name = 'ActionReference'
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
 
     def getContainer(self):
         return self.app.getContainer()
 
     def getDesiredClass(self):
         return self.app.getDesiredClass()
+
+    def getEnumeratedType(self) -> int:
+        return self.app.getEnumeratedType()
+
+    def getEnumeratedValue(self) -> int:
+        return self.app.getEnumeratedValue()
+
+    def getForm(self) -> ReferenceFormType:
+        """Gets the form of this action reference."""
+        return ReferenceFormType(self.app.getForm())
+
+    def getIdentifier(self) -> int:
+        """Gets the identifier value for a reference whose form is
+        identifier."""
+        return self.app.getIdentifier()
+
+    def getIndex(self) -> int:
+        """Gets the index value for a reference in a list or array,"""
+        return self.app.getIndex()
 
     def putName(self, key, value):
         return self.app.putName(key, value)

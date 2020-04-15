@@ -10,8 +10,8 @@ from photoshop._core import Photoshop
 class ActionList(Photoshop):
     object_name = 'ActionList'
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
 
     @property
     def count(self):

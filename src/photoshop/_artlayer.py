@@ -108,7 +108,7 @@ class ArtLayer(Photoshop):
         self.app.positionLocked = value
 
     @property
-    def textItem(self):
+    def textItem(self) -> TextItem:
         """The text that is associated with the layer. Valid only when ‘kind’
         is text layer."""
         return TextItem(self.app.textItem)
