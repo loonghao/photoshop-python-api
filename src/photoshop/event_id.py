@@ -1,0 +1,12 @@
+class EventID:
+    """4 char ID or string."""
+    TDTransform = "Tdt "
+    Average = "Avrg"
+    ApplyStyle = "ASty"
+    Assert = "Asrt"
+    AccentedEdges = "AccE"
+    Add = "Add"
+    AddNoise = "AdNs"
+    AddTo = "AddT"
+    Align = "Algn"
+    All = "All "
