@@ -12,8 +12,9 @@ startRulerUnits = app.preferences.rulerUnits
 
 app.preferences.rulerUnits = ps.Units.Inches
 
-doc = app.documents.add(7, 5, 72, None,
-                        ps.NewDocumentMode.NewRGB, ps.DocumentFill.White)
+doc = app.documents.add(
+    7, 5, 72, None, ps.NewDocumentMode.NewRGB, ps.DocumentFill.White
+)
 
 # Make sure the active layer is not a text layer, which cannot be copied to the
 # clipboard.

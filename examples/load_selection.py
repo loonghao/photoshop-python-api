@@ -11,9 +11,12 @@ with Session() as ps:
     # Save a rectangular selection area offset by 50 pixels from the image
     # border into an alpha channel.
     offset = 50
-    selBounds1 = ((offset, offset), (doc_ref.Width - offset, offset),
-                  (doc_ref.Width - offset, doc_ref.Height - offset),
-                  (offset, doc_ref.Height - offset))
+    selBounds1 = (
+        (offset, offset),
+        (doc_ref.Width - offset, offset),
+        (doc_ref.Width - offset, doc_ref.Height - offset),
+        (offset, doc_ref.Height - offset),
+    )
     doc_ref.selection.select(selBounds1)
     selAlpha = doc_ref.channels.Add()
     doc_ref.selection.store(selAlpha)

@@ -1,7 +1,7 @@
 """Add slate information dynamically。"""
 
-from datetime import datetime
 import os
+from datetime import datetime
 
 from photoshop import Session
 
@@ -11,7 +11,7 @@ with Session(file_path, action="open", auto_close=True) as ps:
     layer_set = ps.active_document.layerSets.getByName("template")
     data = {
         "project name": "test_project",
-        "datetime": datetime.today().strftime('%Y-%m-%d')
+        "datetime": datetime.today().strftime("%Y-%m-%d"),
     }
     for layer in layer_set.layers:
         if layer.kind == "TextLayer":

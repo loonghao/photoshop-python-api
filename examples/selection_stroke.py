@@ -18,11 +18,12 @@ if len(list((i, x) for i, x in enumerate(app.documents, 1))) > 0:
 
         selRef = app.activeDocument.selection
         offset = 10
-        selBounds = ((offset, offset),
-                     (app.activeDocument.width - offset, offset),
-                     (app.activeDocument.width - offset,
-                      app.activeDocument.height - offset),
-                     (offset, app.activeDocument.height - offset))
+        selBounds = (
+            (offset, offset),
+            (app.activeDocument.width - offset, offset),
+            (app.activeDocument.width - offset, app.activeDocument.height - offset),
+            (offset, app.activeDocument.height - offset),
+        )
 
         selRef.select(selBounds)
         selRef.selectBorder(5)
@@ -35,13 +36,18 @@ if len(list((i, x) for i, x in enumerate(app.documents, 1))) > 0:
         strokeColor.cmyk.yellow = 70
         strokeColor.cmyk.black = 0
         app.displayDialogs = ps.DialogModes.DisplayNoDialogs
-        selRef.stroke(strokeColor, 2, ps.StrokeLocation.OutsideStroke,
-                      ps.ColorBlendMode.ColorBlendMode, 75, True)
+        selRef.stroke(
+            strokeColor,
+            2,
+            ps.StrokeLocation.OutsideStroke,
+            ps.ColorBlendMode.ColorBlendMode,
+            75,
+            True,
+        )
 
         # Set ruler units back the way we found it.
         app.preferences.rulerUnits = start_ruler_units
     else:
         print("Operation cannot be performed on background layer")
 else:
-    print("Create a document with an active selection before running this "
-          "script!")
+    print("Create a document with an active selection before running this " "script!")

@@ -7,12 +7,12 @@ References:
 """
 
 import os
-import photoshop as ps
 
+import photoshop as ps
 
 app = ps.Application()
 
-fileName = os.path.join(os.path.dirname(__file__), 'layer_comps.psd')
+fileName = os.path.join(os.path.dirname(__file__), "layer_comps.psd")
 docRef = app.open(fileName)
 
 nlayerSets = docRef.layerSets

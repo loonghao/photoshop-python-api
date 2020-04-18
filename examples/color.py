@@ -1,6 +1,5 @@
 from photoshop import Session
 
-
 with Session() as ps:
     doc = ps.active_document
     # Add a solid color.
@@ -14,7 +13,7 @@ with Session() as ps:
     # Set empty layer type to text layer
     new_text_layer.kind = ps.LayerKind.TextLayer
     # Set current text layer contents to "Hello, World!".
-    new_text_layer.textItem.contents = 'Hello, World!'
+    new_text_layer.textItem.contents = "Hello, World!"
     # Change current text layer position.
     new_text_layer.textItem.position = [160, 167]
     # Change current text layer text size.
