@@ -1,5 +1,6 @@
 """Export every layer as a .png file."""
 import os
+
 from photoshop import Session
 
 
@@ -9,9 +10,8 @@ def hide_all_layers(layers):
 
 
 def main():
-    psd_file = os.path.join(os.path.dirname(__file__),
-                            'export_layers_as_png.psd')
-    with Session(psd_file, action='open') as ps:
+    psd_file = os.path.join(os.path.dirname(__file__), "export_layers_as_png.psd")
+    with Session(psd_file, action="open") as ps:
         doc = ps.active_document
         options = ps.PNGSaveOptions()
         layers = doc.artLayers
@@ -28,5 +28,5 @@ def main():
         ps.echo(doc.activeLayer)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

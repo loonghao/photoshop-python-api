@@ -25,8 +25,7 @@ def create_thumbnail(output_path=None, max_resolution=512):
         str: The absolute output path of the thumbnail image.
 
     """
-    output_path = output_path or os.path.join(mkdtemp(prefix="thumb"),
-                                              "thumb.jpg")
+    output_path = output_path or os.path.join(mkdtemp(prefix="thumb"), "thumb.jpg")
 
     with Session(auto_close=True) as ps:
         orig_name = ps.active_document.name
@@ -45,6 +44,6 @@ def create_thumbnail(output_path=None, max_resolution=512):
         return output_path
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     thumb_file = create_thumbnail()
     print(f"Save thumbnail file to {thumb_file}.")

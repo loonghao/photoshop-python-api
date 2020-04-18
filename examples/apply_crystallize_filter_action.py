@@ -23,8 +23,8 @@ with Session(fileName, "open") as ps:
 
     # get the last layer in LayerSets
     ps.active_document.activeLayer = ps.active_document.layerSets.item(
-        len(nLayerSets)).artLayers.item(len(nArtLayers))
-
+        len(nLayerSets)
+    ).artLayers.item(len(nArtLayers))
 
     def applyCrystallize(cellSize):
         cellSizeID = ps.app.CharIDToTypeID("ClSz")
@@ -34,6 +34,5 @@ with Session(fileName, "open") as ps:
         filterDescriptor.putInteger(cellSizeID, cellSize)
 
         ps.app.executeAction(eventCrystallizeID, filterDescriptor)
-
 
     applyCrystallize(25)

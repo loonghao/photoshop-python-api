@@ -7,8 +7,8 @@
 
 """
 
-from datetime import datetime
 import os
+from datetime import datetime
 
 from photoshop import Session
 
@@ -18,7 +18,7 @@ with Session(slate_template, action="open", auto_close=True) as ps:
 
     data = {
         "project name": "test_project",
-        "datetime": datetime.today().strftime('%Y-%m-%d')
+        "datetime": datetime.today().strftime("%Y-%m-%d"),
     }
     for layer in layer_set.layers:
         if layer.kind == "TextLayer":
