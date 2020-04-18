@@ -1,26 +1,34 @@
 """This class provides all photoshop API core functions."""
-import winreg
-import os
 
+# Import built-in modules
+import os
+import platform
+import winreg
+from typing import Any
+from typing import List
+
+# Import third-party modules
 from comtypes.client import CreateObject
+
+# Import local modules
 from photoshop import constants
 from photoshop.errors import PhotoshopPythonAPIError
-import platform
 
 
 class Photoshop(object):
-    _root = 'Photoshop'
-    REG_PATH = 'SOFTWARE\\Adobe\\Photoshop'
-    _object_name = 'Application'
+    _root = "Photoshop"
+    REG_PATH = "SOFTWARE\\Adobe\\Photoshop"
+    _object_name = "Application"
     object_name = None
 
-    def __init__(self, ps_version=None, parent=None):
+    def __init__(self, ps_version: str = None, parent: Any = None):
         self._program_name = None
         self._has_parent = False
         version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
-        self.photoshop_version = os.getenv('PS_VERSION', ps_version)
-        self.app_id = version_mappings.get(self.photoshop_version,
-                                           self._get_program_id())
+        self.photoshop_version = os.getenv("PS_VERSION", ps_version)
+        self.app_id = version_mappings.get(
+            self.photoshop_version, self._get_program_id()
+        )
         try:
             self.app = self.instance_app(self.app_id)
         except OSError:
@@ -28,8 +36,8 @@ class Photoshop(object):
                 self.app = self.instance_app(self._get_program_id())
             except OSError:
                 raise PhotoshopPythonAPIError(
-                    'Please check if you have '
-                    'Photoshop installed correctly.',
+                    "Please check if you have "
+                    "Photoshop installed correctly.",
                 )
         if parent:
             self.adobe = self.app
@@ -44,7 +52,7 @@ class Photoshop(object):
         return self.app
 
     def __str__(self):
-        return f'{self.__class__.__name__} <{self._program_name}>'
+        return f"{self.__class__.__name__} <{self._program_name}>"
 
     def __repr__(self):
         return self
@@ -52,7 +60,7 @@ class Photoshop(object):
     def __getattribute__(self, item):
         try:
             return super().__getattribute__(item)
-        except AttributeError:
+        except (AttributeError, NameError):
             return getattr(self.app, item)
 
     @staticmethod
@@ -67,32 +75,30 @@ class Photoshop(object):
 
         """
         machine_type = platform.machine()
-        mappings = {
-            'AMD64': winreg.KEY_WOW64_64KEY
-        }
+        mappings = {"AMD64": winreg.KEY_WOW64_64KEY}
         return winreg.OpenKey(
             winreg.HKEY_LOCAL_MACHINE,
             key,
             access=winreg.KEY_READ | mappings.get(machine_type,
-                                                  winreg.KEY_WOW64_32KEY)
+                                                  winreg.KEY_WOW64_32KEY),
         )
 
     def get_application_path(self):
         """str: The absolute path of Photoshop installed location."""
-        key = self.open_key(f'{self.REG_PATH}\\{self.get_program_id()}')
-        return winreg.QueryValueEx(key, 'ApplicationPath')[0]
+        key = self.open_key(f"{self.REG_PATH}\\{self.get_program_id()}")
+        return winreg.QueryValueEx(key, "ApplicationPath")[0]
 
     def get_plugin_path(self):
         """str: The absolute plugin path of Photoshop."""
-        return os.path.join(self.get_application_path(), 'Plug-ins')
+        return os.path.join(self.get_application_path(), "Plug-ins")
 
     def get_presets_path(self):
         """str: The absolute presets path of Photoshop."""
-        return os.path.join(self.get_application_path(), 'Presets')
+        return os.path.join(self.get_application_path(), "Presets")
 
     def get_script_path(self):
         """str: The absolute scripts path of Photoshop."""
-        return os.path.join(self.get_presets_path(), 'Scripts')
+        return os.path.join(self.get_presets_path(), "Scripts")
 
     def instance_app(self, ps_id):
         naming_space = [self._root]
@@ -104,16 +110,16 @@ class Photoshop(object):
         self._program_name = self._assemble_program_name(naming_space)
         return CreateObject(self._program_name, dynamic=True)
 
-    def get_program_id(self):
+    def get_program_id(self) -> str:
         key = self.open_key(self.REG_PATH)
         return winreg.EnumKey(key, 0)
 
-    def _get_program_id(self):
-        self.app_id = self.get_program_id().split('.')[0]
+    def _get_program_id(self) -> str:
+        self.app_id = self.get_program_id().split(".")[0]
         return self.app_id
 
     @staticmethod
-    def _assemble_program_name(names):
+    def _assemble_program_name(names: List[str]):
         """Assemble program name of Photoshop.
 
         Args:
@@ -146,7 +152,7 @@ class Photoshop(object):
             Photoshop.CameraRAWOpenOptions.140
 
         """
-        return '.'.join(names)
+        return ".".join(names)
 
     def eval_javascript(self, javascript, Arguments=None, ExecutionMode=None):
         executor = self.app
