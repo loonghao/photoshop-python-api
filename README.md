@@ -12,7 +12,7 @@ The API for using COM (Component Object Model) objects interfaces of Photoshop.
 
 https://photoshop-python-api.readthedocs.io
 
-![logo](https://i.imgur.com/9UyCttp.png)
+![logo](https://i.imgur.com/cjp1RH6.png)
 
 Has been tested and used Photoshop version:
 
