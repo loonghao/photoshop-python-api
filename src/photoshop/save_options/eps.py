@@ -8,7 +8,8 @@ class EPSSaveOptions(Photoshop):
     using the `Document.saveAs()`
 
     """
-    object_name = 'EPSSaveOptions'
+
+    object_name = "EPSSaveOptions"
 
     def __init__(self):
         super().__init__()
@@ -20,4 +21,3 @@ class EPSSaveOptions(Photoshop):
     @embedColorProfile.setter
     def embedColorProfile(self, boolean):
         self.app.embedColorProfile = boolean
-

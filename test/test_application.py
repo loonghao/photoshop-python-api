@@ -2,8 +2,9 @@
 import pytest
 
 from photoshop.application import Application
-from photoshop.solid_color import SolidColor
 from photoshop.enumerations import DialogModes
+from photoshop.solid_color import SolidColor
+from photoshop.event_id import EventID
 
 
 class TestApplication:
@@ -20,6 +21,7 @@ class TestApplication:
         foreground_color.rgb.green = 0
         self.app.foregroundColor = foreground_color
         self.app.currentTool = "moveTool"
+        self.app.notifiers.removeAll()
 
     def test_active_document(self, photoshop_app):
         assert photoshop_app.activeDocument.name == \
@@ -71,8 +73,8 @@ class TestApplication:
         assert len(self.app.documents) == 0
 
     def test_get_fonts_count(self):
-        assert self.app.fonts.length == 445
-        assert len(self.app.fonts) == 445
+        assert self.app.fonts.length == 440
+        assert len(self.app.fonts) == 440
 
     def test_get_foreground_color(self):
         assert self.app.foregroundColor.rgb.red == 255
@@ -88,3 +90,108 @@ class TestApplication:
         assert self.app.foregroundColor.lab.A == 93
         assert self.app.foregroundColor.lab.B == -61
         assert self.app.foregroundColor.lab.L == 60
+
+    def test_get_free_memory(self):
+        assert self.app.freeMemory
+
+    def test_get_locale(self):
+        assert self.app.locale == "en_US"
+
+    def test_macintoshFileTypes(self):
+        assert "JPEG" in self.app.macintoshFileTypes
+
+    def test_get_name(self):
+        assert self.app.name == "Adobe Photoshop"
+
+    def test_notifiers(self):
+        assert self.app.notifiers.length == 0
+
+    def test_add_notifiers(self, tmpdir):
+        jsx_file = tmpdir.join("event.jsx")
+        jsx_file.write('alert("Test Event")')
+        self.app.notifiers.add(EventID.Open, str(jsx_file))
+        assert self.app.notifiers.length == 1
+        assert self.app.notifiers[0].event == EventID.Open
+
+    def test_get_notifiersEnabled(self):
+        assert not self.app.notifiersEnabled
+
+    def test_get_application_path(self):
+        assert self.app.path.as_posix() == \
+               "C:/Program Files/Adobe/Adobe Photoshop 2020"
+
+    def test_playbackDisplayDialogs(self):
+        assert self.app.playbackDisplayDialogs == "DialogModes.NO"
+
+    def test_playbackParameters(self):
+        # assert self.app.playbackParameters
+        print("Need test.")
+
+    def test_preferences(self):
+        assert self.app.preferences
+
+    def test_get_preferencesFolder(self):
+        assert self.app.preferencesFolder.is_dir()
+
+    def test_get_recentFiles(self):
+        assert self.app.recentFiles
+
+    def test_scriptingBuildDate(self):
+        assert self.app.scriptingBuildDate == "Apr 10 2020 00:39:52"
+
+    def test_get_scriptingVersion(self):
+        assert self.app.scriptingVersion == "21.1"
+
+    def test_get_systemInformation(self):
+        assert self.app.systemInformation
+
+    def test_get_typename(self):
+        assert self.app.typename == "Application"
+
+    def test_get_version(self):
+        assert self.app.version == "21.1.2"
+
+    def test_windowsFileTypes(self):
+        assert len(self.app.windowsFileTypes) >= 100
+
+    def test_batch(self):
+        self.app.batch()
+
+    def test_beep(self):
+        self.app.beep()
+
+    def test_bringToFront(self):
+        self.app.bringToFront()
+
+    def test_changeProgressText(self):
+        self.app.changeProgressText("test")
+
+    def test_charIDToTypeID(self):
+        assert self.app.charIDToTypeID("Type") == "1417244773"
+
+    def test_compareWithNumbers(self):
+        assert self.app.compareWithNumbers(20, 1)
+
+    def test_do_action(self):
+        self.app.doAction('Vignette (selection)', 'Default Actions')
+
+    def test_featureEnabled(self):
+        assert self.app.featureEnabled("photoshop/extended")
+
+    # def test_getCustomOptions(self):
+    #     assert self.app.getCustomOptions("Application")
+
+    def test_isQuicktimeAvailable(self):
+        assert self.app.isQuicktimeAvailable
+
+    def test_openDialog(self):
+        assert self.app.openDialog()
+
+    def test_refresh(self):
+        return self.app.refresh()
+
+    def test_refreshFonts(self):
+        return self.app.refreshFonts()
+
+    def test_run_menu_item(self):
+        assert self.app.runMenuItem("MyCustomItem")

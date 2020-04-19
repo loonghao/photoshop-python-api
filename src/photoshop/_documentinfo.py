@@ -20,31 +20,33 @@ class DocumentInfo(Photoshop):
         super().__init__(parent=parent)
 
     def __str__(self):
-        return pformat({
-            "author": self.author,
-            "authorPosition": self.authorPosition,
-            "caption": self.caption,
-            "captionWriter": self.captionWriter,
-            "category": self.category,
-            "city": self.city,
-            "country": self.country,
-            "copyrightNotice": self.copyrightNotice,
-            "copyrighted": self.copyrighted,
-            "creationDate": self.creationDate,
-            "credit": self.credit,
-            "exif": self.exif,
-            "headline": self.headline,
-            "instructions": self.instructions,
-            "jobName": self.jobName,
-            "keywords": self.keywords,
-            "provinceState": self.provinceState,
-            "source": self.source,
-            "ownerUrl": self.ownerUrl,
-            "supplementalCategories": self.supplementalCategories,
-            "title": self.title,
-            "transmissionReference": self.transmissionReference,
-            "urgency": self.urgency
-        })
+        return pformat(
+            {
+                "author": self.author,
+                "authorPosition": self.authorPosition,
+                "caption": self.caption,
+                "captionWriter": self.captionWriter,
+                "category": self.category,
+                "city": self.city,
+                "country": self.country,
+                "copyrightNotice": self.copyrightNotice,
+                "copyrighted": self.copyrighted,
+                "creationDate": self.creationDate,
+                "credit": self.credit,
+                "exif": self.exif,
+                "headline": self.headline,
+                "instructions": self.instructions,
+                "jobName": self.jobName,
+                "keywords": self.keywords,
+                "provinceState": self.provinceState,
+                "source": self.source,
+                "ownerUrl": self.ownerUrl,
+                "supplementalCategories": self.supplementalCategories,
+                "title": self.title,
+                "transmissionReference": self.transmissionReference,
+                "urgency": self.urgency,
+            }
+        )
 
     @property
     def author(self):

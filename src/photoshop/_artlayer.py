@@ -1,20 +1,21 @@
+from typing import Any
+
 from photoshop._core import Photoshop
-from photoshop.text_item import TextItem
 from photoshop.enumerations import LayerKind
+from photoshop.text_item import TextItem
 
 
 # pylint: disable=too-many-public-methods
 class ArtLayer(Photoshop):
-
-    def __init__(self, parent):
+    def __init__(self, parent: Any = None):
         super().__init__(parent=parent)
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.app.name
 
     @name.setter
-    def name(self, text):
+    def name(self, text: str):
         self.app.name = text
 
     @property
@@ -154,8 +155,7 @@ class ArtLayer(Photoshop):
         return self.app.adjustBrightnessContrast(brightness, contrast)
 
     def adjustColorBalance(
-            self, shadows, midtones, highlights,
-            preserveLuminosity,
+        self, shadows, midtones, highlights, preserveLuminosity,
     ):
         """Adjusts the color balance of the layer’s component channels.
 
@@ -176,8 +176,7 @@ class ArtLayer(Photoshop):
 
         """
         return self.app.adjustColorBalance(
-            shadows, midtones, highlights,
-            preserveLuminosity,
+            shadows, midtones, highlights, preserveLuminosity,
         )
 
     def adjustCurves(self, curveShape):
@@ -196,8 +195,12 @@ class ArtLayer(Photoshop):
         return self.app.adjustCurves(curveShape)
 
     def adjustLevels(
-            self, inputRangeStart, inputRangeEnd, inputRangeGamma,
-            outputRangeStart, outputRangeEnd,
+        self,
+        inputRangeStart,
+        inputRangeEnd,
+        inputRangeGamma,
+        outputRangeStart,
+        outputRangeEnd,
     ):
         """Adjusts levels of the selected channels.
 
@@ -212,9 +215,11 @@ class ArtLayer(Photoshop):
 
         """
         return self.app.adjustLevels(
-            inputRangeStart, inputRangeEnd,
+            inputRangeStart,
+            inputRangeEnd,
             inputRangeGamma,
-            outputRangeStart, outputRangeEnd,
+            outputRangeStart,
+            outputRangeEnd,
         )
 
     def applyAddNoise(self, amount, distribution, monochromatic):
@@ -265,14 +270,20 @@ class ArtLayer(Photoshop):
         return self.app.applyDifferenceClouds()
 
     def applyDisplace(
-            self, horizontalScale, verticalScale, displacementType,
-            undefinedAreas, displacementMapFile,
+        self,
+        horizontalScale,
+        verticalScale,
+        displacementType,
+        undefinedAreas,
+        displacementMapFile,
     ):
         """Applies the displace filter."""
         return self.app.applyDisplace(
-            horizontalScale, verticalScale,
+            horizontalScale,
+            verticalScale,
             displacementType,
-            undefinedAreas, displacementMapFile,
+            undefinedAreas,
+            displacementMapFile,
         )
 
     def applyDustAndScratches(self, radius, threshold):
@@ -284,14 +295,10 @@ class ArtLayer(Photoshop):
         return self.app.applyGaussianBlur(radius)
 
     def applyGlassEffect(
-            self, distortion, smoothness, scaling, invert,
-            texture,
-            textureFile,
+        self, distortion, smoothness, scaling, invert, texture, textureFile,
     ):
         return self.app.applyGlassEffect(
-            distortion, smoothness, scaling,
-            invert, texture,
-            textureFile,
+            distortion, smoothness, scaling, invert, texture, textureFile,
         )
 
     def applyHighPass(self, radius):
@@ -299,16 +306,32 @@ class ArtLayer(Photoshop):
         return self.app.applyHighPass(radius)
 
     def applyLensBlur(
-            self, source, focalDistance, invertDepthMap, shape,
-            radius,
-            bladeCurvature, rotation, brightness, threshold, amount,
-            distribution, monochromatic,
+        self,
+        source,
+        focalDistance,
+        invertDepthMap,
+        shape,
+        radius,
+        bladeCurvature,
+        rotation,
+        brightness,
+        threshold,
+        amount,
+        distribution,
+        monochromatic,
     ):
         """Apply the lens blur filter."""
         return self.app.applyLensBlur(
-            source, focalDistance, invertDepthMap,
-            shape, radius,
-            bladeCurvature, rotation, brightness,
-            threshold, amount,
-            distribution, monochromatic,
+            source,
+            focalDistance,
+            invertDepthMap,
+            shape,
+            radius,
+            bladeCurvature,
+            rotation,
+            brightness,
+            threshold,
+            amount,
+            distribution,
+            monochromatic,
         )

@@ -3,7 +3,7 @@ from photoshop._core import Photoshop
 
 
 class ExportOptionsSaveForWeb(Photoshop):
-    object_name = 'ExportOptionsSaveForWeb'
+    object_name = "ExportOptionsSaveForWeb"
 
     def __init__(self):
         super().__init__()
@@ -54,7 +54,7 @@ class ExportOptionsSaveForWeb(Photoshop):
 
 
 class PNGSaveOptions(Photoshop):
-    object_name = 'PNGSaveOptions'
+    object_name = "PNGSaveOptions"
 
     def __init__(self):
         super().__init__()

@@ -7,7 +7,7 @@ class ActiveLayer(Photoshop):
         super().__init__()
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.active_layer.Typename
 
     def add(self):

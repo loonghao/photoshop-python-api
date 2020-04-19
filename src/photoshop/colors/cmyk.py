@@ -2,10 +2,12 @@
 
 # Import local modules
 from __future__ import annotations
+
 from photoshop._core import Photoshop
 
 
 class CMYKColor(Photoshop):
+    object_name = "CMYKColor"
 
     def __init__(self, parent):
         super().__init__(parent=parent)

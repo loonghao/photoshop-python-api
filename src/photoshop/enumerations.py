@@ -23,6 +23,7 @@ def magic_attr(cls):
 @magic_attr
 class AdjustmentReference:
     """Color adjustment specifications."""
+
     Relative = 1
     Absolute = 2
 
@@ -36,6 +37,7 @@ class AnchorPosition:
     entire canvas is resized with Document.resizeCanvas().
 
     """
+
     TopLeft = 1
     TopCenter = 2
     TopRight = 3
@@ -54,6 +56,7 @@ class AntiAlias:
     between edge pixels and background pixels.
 
     """
+
     NoAntialias = 1
     Sharp = 2
     Crisp = 3
@@ -68,6 +71,7 @@ class AutoKernType:
     Used in `TextItem.autoKerning`.
 
     """
+
     Manual = 2
     Metrics = 1
     OPTICAL = 3
@@ -80,6 +84,7 @@ class BatchDestinationType:
 
 
     """
+
     FOLDER = 1
     NODESTINATION = 2
     SAVEANDCLOSE = 3
@@ -92,6 +97,7 @@ class BitmapConversionType:
     Used in `BitmapConversionOptions`.
 
     """
+
     CUSTOMPATTERN = 1
 
 
@@ -247,7 +253,7 @@ class SaveOptions:
 
 @magic_attr
 class ColorModel:
-    CMYK: 3
+    CMYK = 3
     GRAYSCALE = 1
     HSB = 5
     LAB = 4
@@ -283,26 +289,32 @@ class ReferenceFormType:
     PROPERTY = 7
 
 
+@magic_attr
+class MeasurementRange:
+    ALLMEASUREMENTS = 1
+    ACTIVEMEASUREMENTS = 2
+
+
 __all__ = [
-    'ColorModel',
-    'AdjustmentReference',
-    'AnchorPosition',
-    'AntiAlias',
-    'NewDocumentMode',
-    'DescValueType',
-    'DocumentFill',
-    'DialogModes',
-    'SelectionType',
-    'TextureType',
-    'Units',
-    'LayerKind',
-    'FormatOptionsType',
-    'MatteType',
-    'ExtensionType',
-    'BitsPerChannelType',
-    'ColorBlendMode',
-    'StrokeLocation',
-    'NoiseDistribution',
-    'ReferenceFormType',
-    'SaveOptions',
+    "ColorModel",
+    "AdjustmentReference",
+    "AnchorPosition",
+    "AntiAlias",
+    "NewDocumentMode",
+    "DescValueType",
+    "DocumentFill",
+    "DialogModes",
+    "SelectionType",
+    "TextureType",
+    "Units",
+    "LayerKind",
+    "FormatOptionsType",
+    "MatteType",
+    "ExtensionType",
+    "BitsPerChannelType",
+    "ColorBlendMode",
+    "StrokeLocation",
+    "NoiseDistribution",
+    "ReferenceFormType",
+    "SaveOptions",
 ]

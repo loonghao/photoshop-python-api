@@ -13,7 +13,7 @@ from photoshop.enumerations import ReferenceFormType
 
 
 class ActionReference(Photoshop):
-    object_name = 'ActionReference'
+    object_name = "ActionReference"
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)

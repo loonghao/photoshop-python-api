@@ -1,8 +1,6 @@
 from photoshop._core import Photoshop
 from photoshop._document import Document
-from photoshop.enumerations import NewDocumentMode
-from photoshop.enumerations import DocumentFill
-from photoshop.enumerations import BitsPerChannelType
+from photoshop.enumerations import BitsPerChannelType, DocumentFill, NewDocumentMode
 
 
 # pylint: disable=too-many-public-methods
@@ -13,12 +11,18 @@ class Documents(Photoshop):
     def __len__(self):
         return self.length
 
-    def add(self, width=960, height=540, resolution=72.0, name=None,
-            mode=NewDocumentMode.NewRGB, initialFill=DocumentFill.White,
-            pixelAspectRatio=1.0,
-            bitsPerChannel=BitsPerChannelType.Document16Bits,
-            colorProfileName=None
-            ):
+    def add(
+        self,
+        width: int = 960,
+        height: int = 540,
+        resolution: float = 72.0,
+        name: str = None,
+        mode: int = NewDocumentMode.NewRGB,
+        initialFill: int = DocumentFill.White,
+        pixelAspectRatio: float = 1.0,
+        bitsPerChannel: int = BitsPerChannelType.Document16Bits,
+        colorProfileName: str = None,
+    ):
         """Creates a new document object and adds it to this collections.
 
         Args:
@@ -37,11 +41,19 @@ class Documents(Photoshop):
             photoshop.Document: Document instance.
 
         """
-        return Document(self.app.add(width, height, resolution,
-                                     name, mode,
-                                     initialFill, pixelAspectRatio,
-                                     bitsPerChannel,
-                                     colorProfileName))
+        return Document(
+            self.app.add(
+                width,
+                height,
+                resolution,
+                name,
+                mode,
+                initialFill,
+                pixelAspectRatio,
+                bitsPerChannel,
+                colorProfileName,
+            )
+        )
 
     def __iter__(self):
         for layer in self.app:

@@ -15,21 +15,31 @@ app.documents.add(800, 600, 72, "docRef")
 import os
 import time
 from pathlib import Path
+from typing import List
 
 # Import local modules
 from photoshop._core import Photoshop
 from photoshop._document import Document
 from photoshop._documents import Documents
+from photoshop._measurement_log import MeasurementLog
 from photoshop._preferences import Preferences
-from photoshop.solid_color import SolidColor
 from photoshop._text_fonts import TextFonts
 from photoshop.enumerations import DialogModes
+from photoshop.solid_color import SolidColor
+from photoshop._notifiers import Notifiers
 
 
 class Application(Photoshop):
-
     def __init__(self, version=None):
         super().__init__(ps_version=version)
+
+    @property
+    def activeLayer(self):
+        return self.app.ArtLayer
+
+    @property
+    def layerSets(self):
+        return self.app.LayerSets
 
     @property
     def activeDocument(self):
@@ -144,7 +154,7 @@ class Application(Photoshop):
         return SolidColor(parent=self.app.foregroundColor)
 
     @foregroundColor.setter
-    def foregroundColor(self, color):
+    def foregroundColor(self, color: SolidColor):
         """Set the `foregroundColor`.
 
         Args:
@@ -154,34 +164,34 @@ class Application(Photoshop):
         self.app.foregroundColor = color
 
     @property
-    def freeMemory(self):
+    def freeMemory(self) -> float:
         """The amount of unused memory available to Photoshop."""
         return self.app.freeMemory
 
     @property
-    def locale(self):
+    def locale(self) -> str:
         """The language locale of the application."""
         return self.app.locale
 
     @property
-    def macintoshFileTypes(self):
+    def macintoshFileTypes(self) -> List[str]:
         """A list of the image file types Photoshop can open."""
         return self.app.macintoshFileTypes
 
     @property
     def measurementLog(self):
         """The log of measurements taken."""
-        return self.app.measurementLog
+        return MeasurementLog(self.app.measurementLog)
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.app.name
 
     @property
     def notifiers(self):
         """The notifiers currently configured (in the Scripts Events Manager
         menu in the application)."""
-        return self.app.notifiers
+        return Notifiers(self.app.notifiers)
 
     @property
     def notifiersEnabled(self):
@@ -204,10 +214,11 @@ class Application(Photoshop):
 
     @property
     def playbackDisplayDialogs(self):
-        return self.app.playbackDisplayDialogs
+        return self.doJavaScript("app.playbackDisplayDialogs")
 
     @property
     def playbackParameters(self):
+        """Stores and retrieves parameters used as part of a recorded action."""
         return self.app.playbackParameters
 
     @playbackParameters.setter
@@ -239,10 +250,6 @@ class Application(Photoshop):
         return self.app.systemInformation
 
     @property
-    def typename(self):
-        return self.app.typename
-
-    @property
     def version(self):
         return self.app.version
 
@@ -261,10 +268,10 @@ class Application(Photoshop):
 
     def beep(self):
         """Causes a "beep" sound."""
-        self.eval_javascript("app.beep()")
+        return self.eval_javascript("app.beep()")
 
     def bringToFront(self):
-        return self.eval_javascript('app.bringToFront()')
+        return self.eval_javascript("app.bringToFront()")
 
     def changeProgressText(self, text):
         """Changes the text that appears in the progress window."""
@@ -274,17 +281,15 @@ class Application(Photoshop):
         return self.app.charIDToTypeID(char_id)
 
     def compareWithNumbers(self, first, second):
-        return self.app.compareWithNumbers(first, second)
+        return first > second
 
     def doAction(self, action, action_from):
         """Plays the specified action from the Actions palette."""
-        return self.app.doAction(action, action_from)
+        self.app.doAction(action, action_from)
+        return True
 
     def doForcedProgress(self, title, javascript):
-        script = "app.doForcedProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = "app.doForcedProgress('{}', '{}')".format(title, javascript, )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -298,10 +303,7 @@ class Application(Photoshop):
             javascript (str): JavaScriptString to execute.
 
         """
-        script = "app.doProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = "app.doProgress('{}', '{}')".format(title, javascript, )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -333,23 +335,38 @@ class Application(Photoshop):
         time.sleep(1)
 
     def eraseCustomOptions(self, key):
+        """Removes the specified user objects from the Photoshop registry."""
         self.app.eraseCustomOptions(key)
 
-    def executeAction(self, eventID, descriptor, displayDialogs=2):
-        return self.app.executeAction(eventID, descriptor, displayDialogs)
+    def executeAction(self, event_id, descriptor, display_dialogs=2):
+        return self.app.executeAction(event_id, descriptor, display_dialogs)
 
-    @property
-    def activeLayer(self):
-        return self.app.ArtLayer
+    def executeActionGet(self, reference):
+        return self.app.executeActionGet(reference)
 
-    @property
-    def layerSets(self):
-        return self.app.LayerSets
+    def featureEnabled(self, name):
+        """Determines whether the feature
 
-    def open(self, document_file_path, document_type=None,
-             as_smart_object=False):
-        document = self.app.open(document_file_path,
-                                 document_type,
+        specified by name is enabled.
+        The following features are supported
+
+        as values for name:
+        "photoshop/extended"
+        "photoshop/standard"
+        "photoshop/trial
+
+        """
+        return self.app.featureEnabled(name)
+
+    def getCustomOptions(self, key):
+        """Retrieves user objects in the Photoshop registry for the ID with
+        value key."""
+        return self.app.getCustomOptions(key)
+
+    def open(self, document_file_path,
+             document_type: str = None,
+             as_smart_object: bool = False) -> Document:
+        document = self.app.open(document_file_path, document_type,
                                  as_smart_object)
         if not as_smart_object:
             return Document(document)
@@ -360,11 +377,15 @@ class Application(Photoshop):
         self.app.load(document_file_path)
         return self.activeDocument
 
+
     def doJavaScript(self, javascript, Arguments=None, ExecutionMode=None):
         return self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
-    def isQuicktimeAvailable(self):
-        return self.eval_javascript('app.isQuicktimeAvailable()')
+    def isQuicktimeAvailable(self) -> bool:
+        return self.app.isQuicktimeAvailable
+
+    def openDialog(self):
+        return self.app.openDialog()
 
     def purge(self, target):
         """Purges one or more caches.
@@ -398,15 +419,15 @@ class Application(Photoshop):
 
     def refreshFonts(self):
         """Force the font list to get refreshed."""
-        return self.eval_javascript('app.refreshFonts();')
+        return self.eval_javascript("app.refreshFonts();")
 
     def runMenuItem(self, menu_id):
         """Run a menu item given the menu ID."""
-        return self.eval_javascript(f'app.runMenuItem({menu_id})', )
+        return self.eval_javascript(f"app.runMenuItem({menu_id})", )
 
     def showColorPicker(self):
         """Returns false if dialog is cancelled, true otherwise."""
-        return self.eval_javascript('app.showColorPicker();')
+        return self.eval_javascript("app.showColorPicker();")
 
     def stringIDToTypeID(self, string_id):
         return self.app.stringIDToTypeID(string_id)
@@ -432,4 +453,4 @@ class Application(Photoshop):
         return self.app.typeIDToCharID(type_id)
 
     def updateProgress(self, done, total):
-        self.eval_javascript(f'app.updateProgress({done}, {total})')
+        self.eval_javascript(f"app.updateProgress({done}, {total})")

@@ -1,8 +1,10 @@
 from __future__ import annotations
+
 from photoshop._core import Photoshop
 
 
 class RGBColor(Photoshop):
+    object_name = "RGBColor"
 
     def __init__(self, parent):
         super().__init__(parent=parent)

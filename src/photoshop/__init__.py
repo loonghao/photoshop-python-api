@@ -1,3 +1,5 @@
+from typing import Any
+
 try:
     from photoshop import colors
     from photoshop import save_options
@@ -12,20 +14,21 @@ try:
     from photoshop.errors import *
     from photoshop.colors import *
     from photoshop.solid_color import SolidColor
+    from photoshop.event_id import EventID
     from photoshop.save_options import *
     from photoshop.text_item import TextItem
 
     # All public APIs.
     __all__ = (
         [
-            'ActionDescriptor',
-            'ActionList',
-            'ActionReference',
-            'Application',
-            'SolidColor',
-            'TextFonts',
-            'TextItem',
-            'Session'
+            "ActionDescriptor",
+            "ActionList",
+            "ActionReference",
+            "Application",
+            "SolidColor",
+            "TextFonts",
+            "TextItem",
+            "Session",
         ]
         + colors.__all__
         + save_options.__all__
@@ -46,52 +49,51 @@ class Session:
         app (photoshop.application.Application):
 
     """
-    presetKind = 'presetKindType'
-    smartSharpen = 'smartSharpen'
-    presetKindType = 'presetKindType'
-    presetKindCustom = 'presetKindCustom'
-    noiseReduction = 'noiseReduction'
-    blur = 'blur'
-    blurType = 'blurType'
-    AMNT = 'Amnt'
-    contentLayer = 'contentLayer'
-    NULL = 'null'
-    GSNB = 'GsnB'
-    ORDN = 'Ordn'
-    DOCI = 'DocI'
-    CLS = 'Cls '  # This string ID requires a space.
-    LYR = 'Lyr '  # This string ID requires a space.
-    OFST = 'Ofst'
-    PRC = '#Prc'
-    RDS = 'Rds '  # This string ID requires a space.
-    PX1 = '#Pxl'
-    PLC = 'Plc '  # This string ID requires a space.
-    IDNT = 'Idnt'
-    HRZN = 'Hrzn'
-    IN = 'In  '  # This string ID requires two spaces.
-    TRGT = 'Trgt'
-    SAVE = 'save'
-    SAVE_STAGE = 'saveStage'
-    SAVE_STAGE_TYPE = 'saveStageType'
-    SAVE_SUCCEEDED = 'saveSucceeded'
-    RASTERIZE_LAYER = 'rasterizeLayer'
-    YSN = 'YsN '  # This string ID requires a space.
-    N = 'N   '  # This string ID requires three spaces.
-    VRTC = 'Vrtc'
-    SVNG = 'Svng'
-    FTCS = 'FTcs'
-    QCST = 'QCSt'
-    QCSA = 'Qcsa'
-    FORCE_NOTIFY = 'forceNotify'
-    JSMS = 'jsMs'
-    JSCT = 'jsCt'
-    PLACED_LAYER_EDIT_CONTENTS = 'placedLayerEditContents'
 
-    def __init__(self,
-                 file_path=None,
-                 action=None,
-                 callback=None,
-                 auto_close=False):
+    presetKind = "presetKindType"
+    smartSharpen = "smartSharpen"
+    presetKindType = "presetKindType"
+    presetKindCustom = "presetKindCustom"
+    noiseReduction = "noiseReduction"
+    blurType = "blurType"
+    AMNT = "Amnt"
+    contentLayer = "contentLayer"
+    DOCI = "DocI"
+    CLS = "Cls "  # This string ID requires a space.
+    LYR = "Lyr "  # This string ID requires a space.
+    OFST = "Ofst"
+    PRC = "#Prc"
+    RDS = "Rds "  # This string ID requires a space.
+    PX1 = "#Pxl"
+    PLC = "Plc "  # This string ID requires a space.
+    IDNT = "Idnt"
+    HRZN = "Hrzn"
+    IN = "In  "  # This string ID requires two spaces.
+    TRGT = "Trgt"
+    SAVE = "save"
+    SAVE_STAGE = "saveStage"
+    SAVE_STAGE_TYPE = "saveStageType"
+    SAVE_SUCCEEDED = "saveSucceeded"
+    RASTERIZE_LAYER = "rasterizeLayer"
+    YSN = "YsN "  # This string ID requires a space.
+    N = "N   "  # This string ID requires three spaces.
+    VRTC = "Vrtc"
+    SVNG = "Svng"
+    FTCS = "FTcs"
+    QCST = "QCSt"
+    QCSA = "Qcsa"
+    FORCE_NOTIFY = "forceNotify"
+    JSMS = "jsMs"
+    JSCT = "jsCt"
+    PLACED_LAYER_EDIT_CONTENTS = "placedLayerEditContents"
+
+    def __init__(
+        self,
+        file_path: str = None,
+        action: str = None,
+        callback: Any = None,
+        auto_close=False,
+    ):
         """Session of Photoshop.
 
 
@@ -132,6 +134,7 @@ class Session:
         self._action = action
         self._active_document = None
         self.app = Application()
+        self.event = EventID
         self.SaveOptions = SaveOptions
         self.SolidColor = SolidColor
         self.StrokeLocation = StrokeLocation
@@ -199,7 +202,7 @@ class Session:
 
     def __enter__(self):
         try:
-            _action = getattr(self, f'_action_{self._action}')
+            _action = getattr(self, f"_action_{self._action}")
             _action()
         except AttributeError:
             pass
@@ -216,8 +219,8 @@ class Session:
                 self.active_document.close()
 
 
-__title__ = 'photoshop_python_api'
-__version__ = '0.10.0'
-__author__ = 'Long Hao'
-__license__ = 'MIT'
-__copyright__ = 'Copyright 2018 Long Hao'
+__title__ = "photoshop_python_api"
+__version__ = "0.10.0"
+__author__ = "Long Hao"
+__license__ = "MIT"
+__copyright__ = "Copyright 2018 Long Hao"

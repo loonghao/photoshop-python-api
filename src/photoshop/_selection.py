@@ -1,5 +1,7 @@
 from photoshop._core import Photoshop
 from photoshop.enumerations import SelectionType
+from photoshop.solid_color import SolidColor
+from photoshop.enumerations import ColorBlendMode
 
 
 # pylint: disable=too-many-public-methods
@@ -58,31 +60,28 @@ class Selection(Photoshop):
         """
         return self.app.feather(by)
 
-    def fill(self, fillType, mode, opacity, preserveTransparency):
-        """Fills the selection.
+    def fill(
+        self,
+        fill_type: SolidColor,
+        mode: ColorBlendMode = None,
+        opacity=None,
+        preserve_transparency=None,
+    ):
+        """Fills the selection."""
+        return self.app.fill(fill_type, mode, opacity, preserve_transparency)
 
-        Args:
-            fillType (str): The color or history state with which to fill the
-                object.
-            mode (): The color blend mode.
-            opacity (int): The opacity as a percentage. Range: 1 to 100.
-            preserveTransparency (bool): If true, perserves transparencies.
-
-        """
-        return self.app.fill(fillType, mode, opacity, preserveTransparency)
-
-    def grow(self, tolerance, antiAlias):
+    def grow(self, tolerance, anti_alias):
         """Grows the selection to include all adjacent pixels falling within
 
-        the specified tolerance range.
+        The specified tolerance range.
 
         Args:
             tolerance (int): The tolerance range. Range: 0 to 255.
-            antiAlias (bool): If true, anti-aliasing is used.
+            anti_alias (bool): If true, anti-aliasing is used.
 
 
         """
-        return self.app.grow(tolerance, antiAlias)
+        return self.app.grow(tolerance, anti_alias)
 
     def invert(self):
         """Inverts the selection."""
@@ -113,8 +112,7 @@ class Selection(Photoshop):
         """Rotates the boundary of the selection."""
         self.app.rotateBoundary(angle, anchor)
 
-    def stroke(self, strokeColor, width, location, mode, opacity,
-               preserveTransparency):
+    def stroke(self, strokeColor, width, location, mode, opacity, preserveTransparency):
         """Strokes the selection.
 
         Args:
@@ -127,8 +125,9 @@ class Selection(Photoshop):
             preserveTransparency (bool): If true, preserves transparency.
 
         """
-        return self.app.stroke(strokeColor, width, location, mode, opacity,
-                               preserveTransparency)
+        return self.app.stroke(
+            strokeColor, width, location, mode, opacity, preserveTransparency
+        )
 
     def selectBorder(self, width):
         """Selects the selection border only (in the specified width);

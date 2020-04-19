@@ -7,15 +7,16 @@ see the Photoshop Scripting Guide.
 
 """
 
+from pathlib import Path
+
 from photoshop._core import Photoshop
 from photoshop.action_list import ActionList
 from photoshop.action_reference import ActionReference
 from photoshop.enumerations import DescValueType
-from pathlib import Path
 
 
 class ActionDescriptor(Photoshop):
-    object_name = 'ActionDescriptor'
+    object_name = "ActionDescriptor"
 
     def __init__(self):
         super().__init__()

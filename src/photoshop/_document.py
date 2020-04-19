@@ -14,25 +14,26 @@ The basic canvas for the file.
 """
 
 # Import built-in modules
+from typing import Sequence
 from pathlib import Path
+
+from photoshop._artlayer import ArtLayer
+from photoshop._artlayers import ArtLayers
 
 # Import local modules
 from photoshop._core import Photoshop
-from photoshop._artlayer import ArtLayer
-from photoshop._artlayers import ArtLayers
-from photoshop.errors import COMError
+from photoshop._documentinfo import DocumentInfo
 from photoshop._layers import Layers
+from photoshop._layerSet import LayerSet
 from photoshop._layerSets import LayerSets
 from photoshop._selection import Selection
-from photoshop._layerSet import LayerSet
-from photoshop.enumerations import ExtensionType
-from photoshop.enumerations import SaveOptions
-from photoshop._documentinfo import DocumentInfo
+from photoshop.enumerations import ExtensionType, SaveOptions
+from photoshop.errors import COMError
 
 
 # pylint: disable=too-many-public-methods
 class Document(Photoshop):
-    object_name = 'Application'
+    object_name = "Application"
 
     def __init__(self, parent):
         super().__init__(parent=parent)
@@ -45,8 +46,7 @@ class Document(Photoshop):
     def activeLayer(self):
         """The selected layer."""
         type_ = self.eval_javascript("app.activeDocument.activeLayer.typename")
-        mappings = {"LayerSet": LayerSet,
-                    "ArtLayer": ArtLayer}
+        mappings = {"LayerSet": LayerSet, "ArtLayer": ArtLayer}
         func = mappings[type_]
         return func(self.app.activeLayer)
 
@@ -136,8 +136,7 @@ class Document(Photoshop):
             return Path(self.app.fullName)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",'
-                '"{}")'.format(self.name),
+                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
             )
 
     @property
@@ -197,7 +196,7 @@ class Document(Photoshop):
         return self.app.Mode
 
     @property
-    def name(self):
+    def name(self) -> str:
         """The Document name."""
         return self.app.name
 
@@ -213,8 +212,7 @@ class Document(Photoshop):
             return Path(self.app.path)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",'
-                '"{}")'.format(self.name),
+                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
             )
 
     @path.setter
@@ -333,8 +331,9 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.app.save()
 
-    def saveAs(self, file_path, options, asCopy=True,
-               extensionType=ExtensionType.Lowercase):
+    def saveAs(
+        self, file_path, options, asCopy=True, extensionType=ExtensionType.Lowercase
+    ):
         """Saves the documents with the specified save options.
 
         Args:
@@ -342,10 +341,7 @@ class Document(Photoshop):
             options (photoshop.JPEGSaveOptions): Save options.
             asCopy (bool):
         """
-        return self.app.saveAs(
-            file_path, options, asCopy,
-            extensionType,
-        )
+        return self.app.saveAs(file_path, options, asCopy, extensionType,)
 
     def splitChannels(self):
         """Splits the channels of the document."""
@@ -359,7 +355,8 @@ class Document(Photoshop):
         """
         self.eval_javascript(
             f"app.activeDocument.suspendHistory('{historyString}',"
-            f" '{javaScriptString}')")
+            f" '{javaScriptString}')"
+        )
 
     def trap(self, width):
         """
@@ -383,7 +380,4 @@ class Document(Photoshop):
         Returns:
 
         """
-        return self.app.resizeImage(
-            width, height, resolution,
-            psAutomatic,
-        )
+        return self.app.resizeImage(width, height, resolution, psAutomatic,)

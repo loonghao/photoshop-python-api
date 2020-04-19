@@ -3,11 +3,9 @@ from photoshop.enumerations import MatteType
 
 
 class JPEGSaveOptions(Photoshop):
-    object_name = 'JPEGSaveOptions'
+    object_name = "JPEGSaveOptions"
 
-    def __init__(self, quality=5,
-                 embedColorProfile=True,
-                 matte=MatteType.NoMatte):
+    def __init__(self, quality=5, embedColorProfile=True, matte=MatteType.NoMatte):
         super().__init__()
         self.quality = quality
         self.embedColorProfile = embedColorProfile
