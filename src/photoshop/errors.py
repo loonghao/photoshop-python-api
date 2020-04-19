@@ -9,8 +9,4 @@ class PhotoshopPythonAPICOMError(COMError):
     pass
 
 
-__all__ = [
-    'COMError',
-    'PhotoshopPythonAPIError',
-    'PhotoshopPythonAPICOMError'
-]
+__all__ = ["COMError", "PhotoshopPythonAPIError", "PhotoshopPythonAPICOMError"]

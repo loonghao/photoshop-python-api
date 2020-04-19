@@ -1,22 +1,22 @@
-presetKind = 'presetKindType'
-smartSharpen = 'smartSharpen'
-presetKindType = 'presetKindType'
-presetKindCustom = 'presetKindCustom'
-noiseReduction = 'noiseReduction'
-blur = 'blur'
-blurType = 'blurType'
-AMNT = 'Amnt'
-contentLayer = 'contentLayer'
+presetKind = "presetKindType"
+smartSharpen = "smartSharpen"
+presetKindType = "presetKindType"
+presetKindCustom = "presetKindCustom"
+noiseReduction = "noiseReduction"
+blur = "blur"
+blurType = "blurType"
+AMNT = "Amnt"
+contentLayer = "contentLayer"
 
 # Name of photoshop ``AdobeScriptAutomation Scripts``.
-ADOBE_SCRIPT_AUTOMATION_SCRIPTS = 'AdobeScriptAutomation Scripts'
+ADOBE_SCRIPT_AUTOMATION_SCRIPTS = "AdobeScriptAutomation Scripts"
 
 # The photoshop version to COM progid mappings.
 PHOTOSHOP_VERSION_MAPPINGS = {
-    '2020': 140,
-    '2019': 130,
-    '2018': 120,
-    '2017': 110,
+    "2020": 140,
+    "2019": 130,
+    "2018": 120,
+    "2017": 110,
 }
 
 # Values for Photoshop enumeration 'PsLayerKind'.
@@ -28,42 +28,42 @@ SOLID_FILL_LAYER = 3
 # The all action constants from ``ScriptingListenerJS`` plugin.
 # More ``StringIDs`` you can check out:
 # http://www.tonton-pixel.com/wp-content/uploads/DecisionTable.pdf
-NULL = 'null'
-GSNB = 'GsnB'
-ORDN = 'Ordn'
-DOCI = 'DocI'
-CLS = 'Cls '  # This string ID requires a space.
-LYR = 'Lyr '  # This string ID requires a space.
-OFST = 'Ofst'
-PRC = '#Prc'
-RDS = 'Rds '  # This string ID requires a space.
-PX1 = '#Pxl'
-PLC = 'Plc '  # This string ID requires a space.
-IDNT = 'Idnt'
-HRZN = 'Hrzn'
-IN = 'In  '  # This string ID requires two spaces.
-TRGT = 'Trgt'
-SAVE = 'save'
-SAVE_STAGE = 'saveStage'
-SAVE_STAGE_TYPE = 'saveStageType'
-SAVE_SUCCEEDED = 'saveSucceeded'
-RASTERIZE_LAYER = 'rasterizeLayer'
-YSN = 'YsN '  # This string ID requires a space.
-N = 'N   '  # This string ID requires three spaces.
-VRTC = 'Vrtc'
-SVNG = 'Svng'
-FTCS = 'FTcs'
-QCST = 'QCSt'
-QCSA = 'Qcsa'
-FORCE_NOTIFY = 'forceNotify'
-JSMS = 'jsMs'
-JSCT = 'jsCt'
-PLACED_LAYER_EDIT_CONTENTS = 'placedLayerEditContents'
+NULL = "null"
+GSNB = "GsnB"
+ORDN = "Ordn"
+DOCI = "DocI"
+CLS = "Cls "  # This string ID requires a space.
+LYR = "Lyr "  # This string ID requires a space.
+OFST = "Ofst"
+PRC = "#Prc"
+RDS = "Rds "  # This string ID requires a space.
+PX1 = "#Pxl"
+PLC = "Plc "  # This string ID requires a space.
+IDNT = "Idnt"
+HRZN = "Hrzn"
+IN = "In  "  # This string ID requires two spaces.
+TRGT = "Trgt"
+SAVE = "save"
+SAVE_STAGE = "saveStage"
+SAVE_STAGE_TYPE = "saveStageType"
+SAVE_SUCCEEDED = "saveSucceeded"
+RASTERIZE_LAYER = "rasterizeLayer"
+YSN = "YsN "  # This string ID requires a space.
+N = "N   "  # This string ID requires three spaces.
+VRTC = "Vrtc"
+SVNG = "Svng"
+FTCS = "FTcs"
+QCST = "QCSt"
+QCSA = "Qcsa"
+FORCE_NOTIFY = "forceNotify"
+JSMS = "jsMs"
+JSCT = "jsCt"
+PLACED_LAYER_EDIT_CONTENTS = "placedLayerEditContents"
 
 # The photoshop save options.
-JPEG_SAVE_OPTIONS = 'JPEGSaveOptions'
-PNG_SAVE_OPTIONS = 'PNGSaveOptions'
-PHOTOSHOP_SAVE_OPTIONS = 'PhotoshopSaveOptions'
+JPEG_SAVE_OPTIONS = "JPEGSaveOptions"
+PNG_SAVE_OPTIONS = "PNGSaveOptions"
+PHOTOSHOP_SAVE_OPTIONS = "PhotoshopSaveOptions"
 
 # Controls whether Photoshop displays dialogs during scripts.
 # Show all dialogs.

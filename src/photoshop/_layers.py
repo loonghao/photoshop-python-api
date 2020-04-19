@@ -1,5 +1,5 @@
-from photoshop._core import Photoshop
 from photoshop._artlayer import ArtLayer
+from photoshop._core import Photoshop
 from photoshop._layer import Layer
 from photoshop.errors import COMError
 
@@ -18,7 +18,7 @@ class Layers(Photoshop):
     def __getitem__(self, key):
         item = self._layers[key]
         try:
-            if hasattr(item, 'textItem'):
+            if hasattr(item, "textItem"):
                 # If have text item will be return ArtLayer.
                 return ArtLayer(item)
             else:

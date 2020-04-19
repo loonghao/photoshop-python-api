@@ -1,10 +1,10 @@
 from photoshop._core import Photoshop
-from photoshop.text_font import TextFont
 from photoshop.solid_color import SolidColor
+from photoshop.text_font import TextFont
 
 
 class TextItem(Photoshop):
-    object_name = 'Application'
+    object_name = "Application"
 
     def __init__(self, parent):
         super().__init__(parent=parent)

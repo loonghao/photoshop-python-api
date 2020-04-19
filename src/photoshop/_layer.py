@@ -1,6 +1,5 @@
 from photoshop._core import Photoshop
-from photoshop.enumerations import AnchorPosition
-from photoshop.enumerations import LayerKind
+from photoshop.enumerations import AnchorPosition, LayerKind
 
 
 # pylint: disable=too-many-public-methods

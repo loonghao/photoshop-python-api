@@ -5,6 +5,8 @@ from photoshop._core import Photoshop
 
 
 class HSBColor(Photoshop):
+    object_name = "HSBColor"
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 

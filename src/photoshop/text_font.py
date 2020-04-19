@@ -2,7 +2,6 @@ from photoshop._core import Photoshop
 
 
 class TextFont(Photoshop):
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 

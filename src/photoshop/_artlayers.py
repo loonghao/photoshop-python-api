@@ -4,7 +4,6 @@ from photoshop._layer import Layer
 
 # pylint: disable=too-many-public-methods
 class ArtLayers(Photoshop):
-
     def __init__(self, parent):
         super().__init__(parent=parent)
 

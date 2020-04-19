@@ -3,7 +3,6 @@ from photoshop.text_font import TextFont
 
 
 class TextFonts(Photoshop):
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 

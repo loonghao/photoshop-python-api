@@ -10,16 +10,16 @@ Maps a color to equivalents in all available color models.
 """
 
 from photoshop._core import Photoshop
-from photoshop.enumerations import ColorModel
 from photoshop.colors.cmyk import CMYKColor
+from photoshop.colors.gray import GrayColor
 from photoshop.colors.hsb import HSBColor
 from photoshop.colors.lab import LabColor
 from photoshop.colors.rgb import RGBColor
-from photoshop.colors.gray import GrayColor
+from photoshop.enumerations import ColorModel
 
 
 class SolidColor(Photoshop):
-    object_name = 'SolidColor'
+    object_name = "SolidColor"
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)

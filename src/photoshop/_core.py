@@ -9,6 +9,7 @@ from typing import List
 
 # Import third-party modules
 from comtypes.client import CreateObject
+from comtypes import COMError
 
 # Import local modules
 from photoshop import constants
@@ -60,7 +61,7 @@ class Photoshop(object):
     def __getattribute__(self, item):
         try:
             return super().__getattribute__(item)
-        except (AttributeError, NameError):
+        except AttributeError:
             return getattr(self.app, item)
 
     @staticmethod
