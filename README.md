@@ -4,6 +4,7 @@ photoshop_python_api
 [![PyPI version](https://img.shields.io/pypi/v/photoshop-python-api?color=green)](https://badge.fury.io/py/photoshop-python-api)
 [![Documentation Status](https://readthedocs.org/projects/photoshop-python-api/badge/?version=master)](https://photoshop-python-api.readthedocs.io/en/master/?badge=master)
 ![Downloads Status](https://img.shields.io/pypi/dw/photoshop-python-api)
+[![Downloads](https://pepy.tech/badge/photoshop-python-api)](https://pepy.tech/project/photoshop-python-api)
 ![license](https://img.shields.io/pypi/l/photoshop-python-api)
 ![pypi format](https://img.shields.io/pypi/format/photoshop-python-api)
 
