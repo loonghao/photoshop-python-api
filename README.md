@@ -124,3 +124,5 @@ Useful links
 - http://jongware.mit.edu/pscs5js_html/psjscs5/pc_Application.html
 - https://indd.adobe.com/view/a0207571-ff5b-4bbf-a540-07079bd21d75
 - http://shining-lucy.com/wiki/page.php?id=appwiki:photoshop:ps_script
+- http://web.archive.org/web/20140121053819/http://www.pcpix.com/Photoshop/char.html
+- http://www.tonton-pixel.com/scripts/utility-scripts/get-equivalent-id-code/index.html
