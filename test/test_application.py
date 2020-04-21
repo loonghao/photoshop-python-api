@@ -194,4 +194,30 @@ class TestApplication:
         return self.app.refreshFonts()
 
     def test_run_menu_item(self):
-        assert self.app.runMenuItem("MyCustomItem")
+        assert self.app.runMenuItem(
+            self.app.stringIDToTypeID("toggleProofColors"))
+
+    def test_showColorPicker(self):
+        assert self.app.showColorPicker()
+
+    def test_stringIDToTypeID(self):
+        assert self.app.stringIDToTypeID("toggleProofColors") == 2034
+
+    def test_togglePalettes(self):
+        assert self.app.togglePalettes()
+        self.app.togglePalettes()
+
+    def test_toolSupportsBrushes(self):
+        assert self.app.toolSupportsBrushes("Tool")
+
+    def test_toolSupportsBrushPresets(self):
+        assert self.app.toolSupportsBrushPresets("Tool")
+
+    def test_typeIDToCharID(self):
+        assert self.app.typeIDToCharID("toggleProofColors")
+
+    def test_typeIDToStringID(self):
+        assert self.app.typeIDToStringID("toggleProofColors")
+
+    def test_updateProgress(self):
+        assert self.app.updateProgress("Done", "total")
