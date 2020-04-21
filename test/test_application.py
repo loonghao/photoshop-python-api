@@ -3,12 +3,13 @@ import pytest
 
 from photoshop.application import Application
 from photoshop.solid_color import SolidColor
-from photoshop.string_ids import StringIDs
+from photoshop.event_id import EventID
 
 
 class TestApplication:
     """Test the solidColor."""
 
+    # pylint: disable=attribute-defined-outside-init
     @pytest.fixture(autouse=True)
     def setup(self):
         self.app = Application()
@@ -108,9 +109,9 @@ class TestApplication:
     def test_add_notifiers(self, tmpdir):
         jsx_file = tmpdir.join("event.jsx")
         jsx_file.write('alert("Test Event")')
-        self.app.notifiers.add(StringIDs.Open, str(jsx_file))
+        self.app.notifiers.add(EventID.Open, str(jsx_file))
         assert self.app.notifiers.length == 1
-        assert self.app.notifiers[0].EventID == StringIDs.Open
+        assert self.app.notifiers[0].EventID == EventID.Open
 
     def test_get_notifiersEnabled(self):
         assert not self.app.notifiersEnabled
