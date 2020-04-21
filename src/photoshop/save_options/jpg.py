@@ -5,7 +5,8 @@ from photoshop.enumerations import MatteType
 class JPEGSaveOptions(Photoshop):
     object_name = "JPEGSaveOptions"
 
-    def __init__(self, quality=5, embedColorProfile=True, matte=MatteType.NoMatte):
+    def __init__(self, quality=5, embedColorProfile=True,
+                 matte=MatteType.NoMatte):
         super().__init__()
         self.quality = quality
         self.embedColorProfile = embedColorProfile
@@ -38,13 +39,8 @@ class JPEGSaveOptions(Photoshop):
 
     @property
     def matte(self):
-        """The color to use to fill anti-aliased edges adjacent to transparent
-        areas of the image. Default: white.
-
-        References:
-            https://theiviaxx.github.io/photoshop-docs/Photoshop/JPEGSaveOptions/matte.html#jpegsaveoptions-matte
-
-        """
+        """The color to use to fill anti-aliased edges adjacent to
+        transparent"""
         return self.app.matte
 
     @matte.setter
@@ -54,3 +50,7 @@ class JPEGSaveOptions(Photoshop):
     @property
     def scans(self):
         return self.app.scans
+
+    @scans.setter
+    def scans(self, value):
+        self.app.scans = value

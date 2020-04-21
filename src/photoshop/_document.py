@@ -14,7 +14,6 @@ The basic canvas for the file.
 """
 
 # Import built-in modules
-from typing import Sequence
 from pathlib import Path
 
 from photoshop._artlayer import ArtLayer
@@ -369,7 +368,7 @@ class Document(Photoshop):
     def trim(self, *args, **kwargs):
         return self.app.trim(*args, **kwargs)
 
-    def resizeImage(self, width, height, resolution=72, psAutomatic=8):
+    def resizeImage(self, width, height, resolution=72, automatic=8):
         """Changes the size of the image.
 
         Args:
@@ -377,7 +376,5 @@ class Document(Photoshop):
             height: The desired height of the image.
             resolution: The resolution (in pixels per inch)
 
-        Returns:
-
         """
-        return self.app.resizeImage(width, height, resolution, psAutomatic,)
+        return self.app.resizeImage(width, height, resolution, automatic)
