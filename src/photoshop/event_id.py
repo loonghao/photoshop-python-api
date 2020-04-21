@@ -1,10 +1,7 @@
-"""
-
-http://web.archive.org/web/20140121053819/http://www.pcpix.com/Photoshop/char.htm
-"""
 class EventID:
-
-    TDTransform = "Tdt "
+    # Here is a list of JSON CallBack events in Photoshop.
+    # https://community.adobe.com/t5/get-started/photoshop-json-callback-events-list-up-to-cc2015-ver-16/td-p/4792115?page=1
+    TDTransform = "TdT "
     Average = "Avrg"
     ApplyStyle = "ASty"
     Assert = "Asrt"
@@ -232,3 +229,17 @@ class EventID:
     BackLight = "BacL"
     FillFlash = "FilE"
     ColorCast = "ColE"
+    OpenUntitled = "OpnU"
+    PresetKind = "presetKindType"
+    SmartSharpen = "smartSharpen"
+    PresetKindType = "presetKindType"
+    PresetKindCustom = "presetKindCustom"
+    NoiseReduction = "noiseReduction"
+    BlurType = "blurType"
+    ContentLayer = "contentLayer"
+    SaveStage = "saveStage"
+    SaveStageType = "saveStageType"
+    SaveSucceeded = "saveSucceeded"
+    RasterizeLayer = "rasterizeLayer"
+    ForceNotify = "forceNotify"
+    PlacedLayerEditContents = "placedLayerEditContents"

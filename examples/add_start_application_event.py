@@ -16,4 +16,4 @@ with Session() as ps:
     jsx_file = os.path.join(root, "event.jsx")
     with open(jsx_file, "w") as f:
         f.write('alert("Start Application event.")')
-    ps.app.notifiers.add(ps.event.Notify, jsx_file)
+    ps.app.notifiers.add(ps.EventID.Notify, jsx_file)

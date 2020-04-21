@@ -50,20 +50,6 @@ class Session:
 
     """
 
-    presetKind = "presetKindType"
-    smartSharpen = "smartSharpen"
-    presetKindType = "presetKindType"
-    presetKindCustom = "presetKindCustom"
-    noiseReduction = "noiseReduction"
-    blurType = "blurType"
-    contentLayer = "contentLayer"
-    SAVE_STAGE = "saveStage"
-    SAVE_STAGE_TYPE = "saveStageType"
-    SAVE_SUCCEEDED = "saveSucceeded"
-    RASTERIZE_LAYER = "rasterizeLayer"
-    FORCE_NOTIFY = "forceNotify"
-    PLACED_LAYER_EDIT_CONTENTS = "placedLayerEditContents"
-
     def __init__(
             self,
             file_path: str = None,
@@ -113,7 +99,7 @@ class Session:
         self.app = Application()
         self.ActionReference = ActionReference()
         self.ActionDescriptor = ActionDescriptor()
-        self.event = EventID
+        self.EventID = EventID
         self.SaveOptions = SaveOptions
         self.SolidColor = SolidColor
         self.StrokeLocation = StrokeLocation
