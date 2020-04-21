@@ -20,20 +20,20 @@ try:
 
     # All public APIs.
     __all__ = (
-        [
-            "ActionDescriptor",
-            "ActionList",
-            "ActionReference",
-            "Application",
-            "SolidColor",
-            "TextFonts",
-            "TextItem",
-            "Session",
-        ]
-        + colors.__all__
-        + save_options.__all__
-        + enumerations.__all__
-        + errors.__all__
+            [
+                "ActionDescriptor",
+                "ActionList",
+                "ActionReference",
+                "Application",
+                "SolidColor",
+                "TextFonts",
+                "TextItem",
+                "Session",
+            ]
+            + colors.__all__
+            + save_options.__all__
+            + enumerations.__all__
+            + errors.__all__
     )
 except ModuleNotFoundError:
     # Fix Build docs failed on readthedocs.
@@ -56,43 +56,20 @@ class Session:
     presetKindCustom = "presetKindCustom"
     noiseReduction = "noiseReduction"
     blurType = "blurType"
-    AMNT = "Amnt"
     contentLayer = "contentLayer"
-    DOCI = "DocI"
-    CLS = "Cls "  # This string ID requires a space.
-    LYR = "Lyr "  # This string ID requires a space.
-    OFST = "Ofst"
-    PRC = "#Prc"
-    RDS = "Rds "  # This string ID requires a space.
-    PX1 = "#Pxl"
-    PLC = "Plc "  # This string ID requires a space.
-    IDNT = "Idnt"
-    HRZN = "Hrzn"
-    IN = "In  "  # This string ID requires two spaces.
-    TRGT = "Trgt"
-    SAVE = "save"
     SAVE_STAGE = "saveStage"
     SAVE_STAGE_TYPE = "saveStageType"
     SAVE_SUCCEEDED = "saveSucceeded"
     RASTERIZE_LAYER = "rasterizeLayer"
-    YSN = "YsN "  # This string ID requires a space.
-    N = "N   "  # This string ID requires three spaces.
-    VRTC = "Vrtc"
-    SVNG = "Svng"
-    FTCS = "FTcs"
-    QCST = "QCSt"
-    QCSA = "Qcsa"
     FORCE_NOTIFY = "forceNotify"
-    JSMS = "jsMs"
-    JSCT = "jsCt"
     PLACED_LAYER_EDIT_CONTENTS = "placedLayerEditContents"
 
     def __init__(
-        self,
-        file_path: str = None,
-        action: str = None,
-        callback: Any = None,
-        auto_close=False,
+            self,
+            file_path: str = None,
+            action: str = None,
+            callback: Any = None,
+            auto_close=False,
     ):
         """Session of Photoshop.
 
@@ -134,14 +111,14 @@ class Session:
         self._action = action
         self._active_document = None
         self.app = Application()
+        self.ActionReference = ActionReference()
+        self.ActionDescriptor = ActionDescriptor()
         self.event = EventID
         self.SaveOptions = SaveOptions
         self.SolidColor = SolidColor
         self.StrokeLocation = StrokeLocation
         self.ColorBlendMode = ColorBlendMode
         self.TextItem = TextItem
-        self.ActionReference = ActionReference()
-        self.ActionDescriptor = ActionDescriptor()
         self.NoiseDistribution = NoiseDistribution
         self.TextureType = TextureType
         self.SelectionType = SelectionType
