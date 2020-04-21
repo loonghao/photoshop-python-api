@@ -60,12 +60,8 @@ class ActionReference(Photoshop):
     def putIndex(self, desired_class, value):
         return self.app.putIndex(desired_class, value)
 
-    def putName(self, desired_class, value):
-        return self.app.putName(desired_class, value)
-
     def putOffset(self, desired_class, value):
         return self.app.putOffset(desired_class, value)
 
     def putProperty(self, desired_class, value):
         return self.app.putProperty(desired_class, value)
-

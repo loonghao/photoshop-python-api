@@ -9,7 +9,6 @@ from typing import List
 
 # Import third-party modules
 from comtypes.client import CreateObject
-from comtypes import COMError
 
 # Import local modules
 from photoshop import constants
