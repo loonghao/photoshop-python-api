@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import List
 
 from photoshop._core import Photoshop
@@ -9,7 +8,8 @@ class MeasurementLog(Photoshop):
         super().__init__(parent=parent)
 
     def exportMeasurements(
-        self, file_path: str, range_: int = None, data_point: List[str] = []
+            self, file_path: str, range_: int = None,
+            data_point: List[str] = []
     ):
         self.app.exportMeasurements(file_path, range_, data_point)
 
