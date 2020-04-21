@@ -377,7 +377,6 @@ class Application(Photoshop):
         self.app.load(document_file_path)
         return self.activeDocument
 
-
     def doJavaScript(self, javascript, Arguments=None, ExecutionMode=None):
         return self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
@@ -434,7 +433,7 @@ class Application(Photoshop):
 
     def togglePalettes(self):
         """Toggle palette visibility."""
-        self.app.togglePallettes()
+        return self.doJavaScript("app.togglePalettes()")
 
     def toolSupportsBrushes(self, tool):
         return self.app.toolSupportsBrushes(tool)

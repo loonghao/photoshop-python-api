@@ -1,4 +1,9 @@
+"""
+
+http://web.archive.org/web/20140121053819/http://www.pcpix.com/Photoshop/char.htm
+"""
 class EventID:
+
     TDTransform = "Tdt "
     Average = "Avrg"
     ApplyStyle = "ASty"

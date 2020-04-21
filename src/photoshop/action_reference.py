@@ -48,3 +48,24 @@ class ActionReference(Photoshop):
 
     def putClass(self, value):
         return self.app.putClass(value)
+
+    def putEnumerated(self, desired_class, enum_type, value):
+        """Puts an enumeration type and ID into a reference along with the
+        desired class for the reference."""
+        return self.app.putEnumerated(desired_class, enum_type, value)
+
+    def putIdentifier(self, desired_class, value):
+        return self.app.putIdentifier(desired_class, value)
+
+    def putIndex(self, desired_class, value):
+        return self.app.putIndex(desired_class, value)
+
+    def putName(self, desired_class, value):
+        return self.app.putName(desired_class, value)
+
+    def putOffset(self, desired_class, value):
+        return self.app.putOffset(desired_class, value)
+
+    def putProperty(self, desired_class, value):
+        return self.app.putProperty(desired_class, value)
+
