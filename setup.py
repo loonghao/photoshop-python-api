@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 with open("src/photoshop/__init__.py", "r") as file_object:
     context = file_object.read()
-    version = re.search(r"__version__\s*=\s*'([\d/.]+)'", context).groups()[0]
+    version = re.search(r'__version__\s*=\s*"([\d/.]+)"', context).groups()[0]
 
 setup(
     name="photoshop_python_api",
