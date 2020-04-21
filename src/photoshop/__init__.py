@@ -16,6 +16,7 @@ try:
     from photoshop.solid_color import SolidColor
     from photoshop.event_id import EventID
     from photoshop.save_options import *
+    from photoshop.open_options import *
     from photoshop.text_item import TextItem
 
     # All public APIs.
