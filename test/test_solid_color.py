@@ -7,6 +7,7 @@ from photoshop import Session
 class TestSolidColor:
     """Test the solidColor."""
 
+    # pylint: disable=attribute-defined-outside-init
     @pytest.fixture(autouse=True)
     def setup(self):
         self.session = Session()
