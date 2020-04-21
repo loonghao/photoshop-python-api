@@ -21,29 +21,29 @@ docRef.activeLayer = nArtLayers.artLayers.item(nArtLayers.artLayers.length)
 
 
 def SmartSharpen(inAmount, inRadius, inNoise):
-    idsmart_sharpen_id = app.stringIDToTypeID(ps.smartSharpen)
+    idsmart_sharpen_id = app.stringIDToTypeID(ps.EventID.SmartSharpen)
     desc37 = ps.ActionDescriptor()
 
-    idpresetKind = app.stringIDToTypeID(ps.presetKind)
-    idpresetKindType = app.stringIDToTypeID(ps.presetKindType)
-    idpresetKindCustom = app.stringIDToTypeID(ps.presetKindCustom)
+    idpresetKind = app.stringIDToTypeID(ps.EventID.PresetKind)
+    idpresetKindType = app.stringIDToTypeID(ps.EventID.PresetKindType)
+    idpresetKindCustom = app.stringIDToTypeID(ps.EventID.PresetKindCustom)
     desc37.putEnumerated(idpresetKind, idpresetKindType, idpresetKindCustom)
 
-    idAmnt = app.charIDToTypeID(ps.AMNT)
-    idPrc = app.charIDToTypeID(ps.RDS)
+    idAmnt = app.charIDToTypeID("Amnt")
+    idPrc = app.charIDToTypeID("Rds ")
     desc37.putUnitDouble(idAmnt, idPrc, inAmount)
 
-    idRds = app.charIDToTypeID(ps.RDS)
-    idPxl = app.charIDToTypeID(ps.PX1)
+    idRds = app.charIDToTypeID("Rds ")
+    idPxl = app.charIDToTypeID("#Pxl")
     desc37.putUnitDouble(idRds, idPxl, inRadius)
 
-    idnoiseReduction = app.stringIDToTypeID(ps.noiseReduction)
-    idPrc = app.charIDToTypeID(ps.PRC)
+    idnoiseReduction = app.stringIDToTypeID("noiseReduction")
+    idPrc = app.charIDToTypeID("#Prc")
     desc37.putUnitDouble(idnoiseReduction, idPrc, inNoise)
 
-    idblur = app.charIDToTypeID(ps.blur)
-    idblurType = app.stringIDToTypeID(ps.blurType)
-    idGsnB = app.charIDToTypeID(ps.GSNB)
+    idblur = app.charIDToTypeID("blur")
+    idblurType = app.stringIDToTypeID("blurType")
+    idGsnB = app.charIDToTypeID("GsnB")
     desc37.putEnumerated(idblur, idblurType, idGsnB)
 
     app.ExecuteAction(idsmart_sharpen_id, desc37)
