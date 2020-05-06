@@ -5,6 +5,7 @@ from photoshop.save_options.pdf import PDFSaveOptions
 from photoshop.save_options.png import ExportOptionsSaveForWeb, PNGSaveOptions
 from photoshop.save_options.psd import PhotoshopSaveOptions
 from photoshop.save_options.tif import TiffSaveOptions
+from photoshop.save_options.tag import TargaSaveOptions
 
 __all__ = [
     "BMPSaveOptions",
@@ -15,4 +16,5 @@ __all__ = [
     "PNGSaveOptions",
     "PhotoshopSaveOptions",
     "TiffSaveOptions",
+    "TargaSaveOptions",
 ]
