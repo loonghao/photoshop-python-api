@@ -23,11 +23,6 @@ class SolidColor(Photoshop):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        # # # Initialize color.
-        # self.rgb = RGBColor(self.app.rgb)
-        # self.cmyk = CMYKColor(self.app.cmyk)
-        # self.hsb = HSBColor(self.app.hsb)
-        # self.lab = LabColor(self.app.lab)
 
     @property
     def cmyk(self) -> CMYKColor:
