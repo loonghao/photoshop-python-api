@@ -1,5 +1,6 @@
 from photoshop._core import Photoshop
 from photoshop._channel import Channel
+from photoshop.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods
@@ -35,3 +36,5 @@ class Channels(Photoshop):
         for channel in self._channels:
             if channel.name == name:
                 return Channel(channel)
+        raise PhotoshopPythonAPIError("Could not find a channel named "
+                                      f'"{name}"')
