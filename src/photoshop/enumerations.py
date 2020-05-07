@@ -295,6 +295,32 @@ class MeasurementRange:
     ACTIVEMEASUREMENTS = 2
 
 
+@magic_attr
+class ElementPlacement:
+    INSIDE = 0
+    PLACEATBEGINNING = 1
+    PLACEATEND = 2
+    PLACEBEFORE = 3
+    PLACEAFTER = 4
+
+
+@magic_attr
+class TargaBitsPerPixels:
+    SIXTEEN = 0
+    THIRTYTWO = 1
+    TWENTYFOUR = 2
+
+
+@magic_attr
+class RasterizeType:
+    ENTIRELAYER = 0
+    FILLCONTENT = 1
+    LAYERCLIPPINGPATH = 2
+    LINKEDLAYERS = 3
+    SHAPE = 4
+    TEXTCONTENTS = 5
+
+
 __all__ = [
     "ColorModel",
     "AdjustmentReference",
@@ -317,4 +343,7 @@ __all__ = [
     "NoiseDistribution",
     "ReferenceFormType",
     "SaveOptions",
+    "ElementPlacement",
+    "TargaBitsPerPixels",
+    "RasterizeType"
 ]
