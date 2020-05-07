@@ -1,5 +1,4 @@
 from photoshop._core import Photoshop
-from photoshop._layerSet import LayerSet
 from photoshop.errors import PhotoshopPythonAPIError
 
 
@@ -11,6 +10,7 @@ class LayerSets(Photoshop):
         return self.length
 
     def __getitem__(self, key):
+        from photoshop._layerSet import LayerSet
         return LayerSet(self._layerSets[key])
 
     @property

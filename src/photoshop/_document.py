@@ -21,6 +21,7 @@ from photoshop._artlayers import ArtLayers
 
 # Import local modules
 from photoshop._core import Photoshop
+from photoshop._channels import Channels
 from photoshop._documentinfo import DocumentInfo
 from photoshop._layers import Layers
 from photoshop._layerSet import LayerSet
@@ -95,7 +96,7 @@ class Document(Photoshop):
 
     @property
     def channels(self):
-        return self.app.channels
+        return Channels(self.app.channels)
 
     @property
     def colorProfileName(self):
