@@ -29,3 +29,5 @@ with Session(action="new_document") as ps:
 
     # Set visible.
     new_layer_set.visible = False
+
+    merged_layer.remove()

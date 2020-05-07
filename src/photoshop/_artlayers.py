@@ -1,5 +1,5 @@
 from photoshop._core import Photoshop
-from photoshop._layer import Layer
+from photoshop._artlayer import ArtLayer
 
 
 # pylint: disable=too-many-public-methods
@@ -35,13 +35,10 @@ class ArtLayers(Photoshop):
 
     def add(self):
         """Adds an element."""
-        return Layer(self.app.add())
+        return ArtLayer(self.app.add())
 
     def getByName(self, name):
         return self.app.getByName(name)
 
     def removeAll(self):
         return self.app.removeAll()
-
-    def link(self, layer):
-        self.app.link(layer)

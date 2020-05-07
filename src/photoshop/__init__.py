@@ -118,10 +118,12 @@ class Session:
         self.JPEGSaveOptions = JPEGSaveOptions
         self.PDFSaveOptions = PDFSaveOptions
         self.PNGSaveOptions = PNGSaveOptions
+        self.ElementPlacement = ElementPlacement
         self.PhotoshopSaveOptions = PhotoshopSaveOptions
         self.ExportOptionsSaveForWeb = ExportOptionsSaveForWeb
         self.BMPSaveOptions = BMPSaveOptions
         self.TiffSaveOptions = TiffSaveOptions
+        self.TargaSaveOptions = TargaSaveOptions
         self.LabColor = LabColor
         self.HSBColor = HSBColor
         self.CMYKColor = CMYKColor

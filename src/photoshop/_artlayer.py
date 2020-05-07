@@ -2,6 +2,7 @@ from typing import Any
 
 from photoshop._core import Photoshop
 from photoshop.enumerations import LayerKind
+from photoshop.enumerations import RasterizeType
 from photoshop.text_item import TextItem
 
 
@@ -22,18 +23,34 @@ class ArtLayer(Photoshop):
     def fillOpacity(self):
         return self.app.fillOpacity
 
+    @fillOpacity.setter
+    def fillOpacity(self, value):
+        self.app.fillOpacity = value
+
     @property
     def filterMaskDensity(self):
         return self.app.filterMaskDensity
+
+    @filterMaskDensity.setter
+    def filterMaskDensity(self, value):
+        self.app.filterMaskDensity = value
 
     @property
     def filterMaskFeather(self):
         return self.app.filterMaskFeather
 
+    @filterMaskFeather.setter
+    def filterMaskFeather(self, value):
+        self.app.filterMaskFeather = value
+
     @property
     def grouped(self):
         """bool: If true, the layer is grouped with the layer below."""
         return self.app.grouped
+
+    @grouped.setter
+    def grouped(self, value):
+        self.app.grouped = value
 
     @property
     def isBackgroundLayer(self):
@@ -135,6 +152,22 @@ class ArtLayer(Photoshop):
         self.app.vectorMaskDensity = value
 
     @property
+    def vectorMaskFeather(self):
+        return self.app.vectorMaskFeather
+
+    @vectorMaskFeather.setter
+    def vectorMaskFeather(self, value):
+        self.app.vectorMaskFeather = value
+
+    @property
+    def visible(self):
+        return self.app.visible
+
+    @visible.setter
+    def visible(self, value):
+        self.app.visible = value
+
+    @property
     def length(self):
         return len(list(self.app))
 
@@ -155,7 +188,7 @@ class ArtLayer(Photoshop):
         return self.app.adjustBrightnessContrast(brightness, contrast)
 
     def adjustColorBalance(
-        self, shadows, midtones, highlights, preserveLuminosity,
+            self, shadows, midtones, highlights, preserveLuminosity,
     ):
         """Adjusts the color balance of the layer’s component channels.
 
@@ -195,12 +228,12 @@ class ArtLayer(Photoshop):
         return self.app.adjustCurves(curveShape)
 
     def adjustLevels(
-        self,
-        inputRangeStart,
-        inputRangeEnd,
-        inputRangeGamma,
-        outputRangeStart,
-        outputRangeEnd,
+            self,
+            inputRangeStart,
+            inputRangeEnd,
+            inputRangeGamma,
+            outputRangeStart,
+            outputRangeEnd,
     ):
         """Adjusts levels of the selected channels.
 
@@ -270,12 +303,12 @@ class ArtLayer(Photoshop):
         return self.app.applyDifferenceClouds()
 
     def applyDisplace(
-        self,
-        horizontalScale,
-        verticalScale,
-        displacementType,
-        undefinedAreas,
-        displacementMapFile,
+            self,
+            horizontalScale,
+            verticalScale,
+            displacementType,
+            undefinedAreas,
+            displacementMapFile,
     ):
         """Applies the displace filter."""
         return self.app.applyDisplace(
@@ -295,7 +328,8 @@ class ArtLayer(Photoshop):
         return self.app.applyGaussianBlur(radius)
 
     def applyGlassEffect(
-        self, distortion, smoothness, scaling, invert, texture, textureFile,
+            self, distortion, smoothness, scaling, invert, texture,
+            textureFile,
     ):
         return self.app.applyGlassEffect(
             distortion, smoothness, scaling, invert, texture, textureFile,
@@ -306,19 +340,19 @@ class ArtLayer(Photoshop):
         return self.app.applyHighPass(radius)
 
     def applyLensBlur(
-        self,
-        source,
-        focalDistance,
-        invertDepthMap,
-        shape,
-        radius,
-        bladeCurvature,
-        rotation,
-        brightness,
-        threshold,
-        amount,
-        distribution,
-        monochromatic,
+            self,
+            source,
+            focalDistance,
+            invertDepthMap,
+            shape,
+            radius,
+            bladeCurvature,
+            rotation,
+            brightness,
+            threshold,
+            amount,
+            distribution,
+            monochromatic,
     ):
         """Apply the lens blur filter."""
         return self.app.applyLensBlur(
@@ -335,3 +369,59 @@ class ArtLayer(Photoshop):
             distribution,
             monochromatic,
         )
+
+    def applyLensFlare(self, brightness, flareCenter, lensType):
+        return self.app.applyLensFlare(brightness, flareCenter, lensType)
+
+    def applyMaximum(self, radius):
+        self.app.applyMaximum(radius)
+
+    def applyMedianNoise(self, radius):
+        self.app.applyMedianNoise(radius)
+
+    def applyMinimum(self, radius):
+        self.app.applyMinimum(radius)
+
+    def applyMotionBlur(self, angle, radius):
+        self.app.applyMotionBlur(angle, radius)
+
+    def applyNTSC(self):
+        self.app.applyNTSC()
+
+    def applyOceanRipple(self, size, magnitude):
+        self.app.applyOceanRipple(size, magnitude)
+
+    def applyOffset(self, horizontal, vertical, undefinedAreas):
+        self.app.applyOffset(horizontal, vertical, undefinedAreas)
+
+    def applyPinch(self, amount):
+        self.app.applyPinch(amount)
+
+    def remove(self):
+        layer = f'app.activeDocument.artLayers.getByName("{self.app.name}")'
+        print(layer)
+        self.eval_javascript(f'{layer}.remove()')
+
+    def rasterize(self, target: RasterizeType):
+        self.app.rasterize(target)
+
+    def posterize(self, levels):
+        self.app.posterize(levels)
+
+    def move(self, relativeObject, insertionLocation):
+        self.app.move(relativeObject, insertionLocation)
+
+    def merge(self):
+        self.app.merge()
+
+    def link(self, with_layer):
+        self.app.link(with_layer)
+
+    def unlink(self, with_layer):
+        self.app.unlink(with_layer)
+
+    def invert(self):
+        self.app.invert()
+
+    def duplicate(self, relativeObject=None, insertionLocation=None):
+        self.app.duplicate(relativeObject, insertionLocation)
