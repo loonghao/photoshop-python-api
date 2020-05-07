@@ -171,9 +171,6 @@ class ArtLayer(Photoshop):
     def length(self):
         return len(list(self.app))
 
-    def link(self, artlayer):
-        return self.adobe.activeDocument.activeLayer.link(artlayer)
-
     def add(self):
         return self.app.add()
 
