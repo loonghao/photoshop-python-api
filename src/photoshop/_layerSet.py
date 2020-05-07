@@ -3,6 +3,7 @@ from photoshop._core import Photoshop
 from photoshop._layers import Layers
 from photoshop._artlayer import ArtLayer
 from photoshop.enumerations import AnchorPosition
+from photoshop._layerSets import LayerSets
 
 
 class LayerSet(Photoshop):
@@ -41,7 +42,6 @@ class LayerSet(Photoshop):
 
     @property
     def layerSets(self):
-        from photoshop._layerSets import LayerSets
         return LayerSets(self.app.layerSets)
 
     @property

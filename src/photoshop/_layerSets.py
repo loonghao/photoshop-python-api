@@ -31,4 +31,5 @@ class LayerSets(Photoshop):
         for layer in self.app:
             if name == layer.name:
                 return LayerSet(layer)
-        raise PhotoshopPythonAPIError(f"Could not find a LayerSet named " f'"{name}"')
+        raise PhotoshopPythonAPIError("Could not find a LayerSet named " 
+                                      f'"{name}"')
