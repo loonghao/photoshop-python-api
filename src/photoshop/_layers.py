@@ -1,9 +1,8 @@
 from photoshop._artlayer import ArtLayer
 from photoshop._core import Photoshop
-from photoshop._layer import Layer
-from photoshop.errors import COMError
 
 
+# pylint: disable=too-many-public-methods
 class Layers(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
@@ -17,14 +16,7 @@ class Layers(Photoshop):
 
     def __getitem__(self, key):
         item = self._layers[key]
-        try:
-            if hasattr(item, "textItem"):
-                # If have text item will be return ArtLayer.
-                return ArtLayer(item)
-            else:
-                return Layer(self._layers[key])
-        except COMError:
-            return Layer(self._layers[key])
+        return ArtLayer(item)
 
     @property
     def length(self):
@@ -38,7 +30,4 @@ class Layers(Photoshop):
 
     def __iter__(self):
         for layer in self._layers:
-            if layer.kind == "1":
-                yield Layer(layer)
-            else:
-                yield ArtLayer(layer)
+            yield ArtLayer(layer)

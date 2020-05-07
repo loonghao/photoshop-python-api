@@ -89,6 +89,10 @@ class Document(Photoshop):
         """The number of bits per channel."""
         return self.app.bitsPerChannel
 
+    @bitsPerChannel.setter
+    def bitsPerChannel(self, value):
+        self.app.bitsPerChannel = value
+
     @property
     def channels(self):
         return self.app.channels
@@ -135,7 +139,8 @@ class Document(Photoshop):
             return Path(self.app.fullName)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
+                'alert ("Please save your Document first!",'
+                '"{}")'.format(self.name),
             )
 
     @property
@@ -211,7 +216,8 @@ class Document(Photoshop):
             return Path(self.app.path)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
+                'alert ("Please save your Document first!",'
+                '"{}")'.format(self.name),
             )
 
     @path.setter
@@ -330,9 +336,8 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.app.save()
 
-    def saveAs(
-        self, file_path, options, asCopy=True, extensionType=ExtensionType.Lowercase
-    ):
+    def saveAs(self, file_path, options, asCopy=True,
+               extensionType=ExtensionType.Lowercase):
         """Saves the documents with the specified save options.
 
         Args:
@@ -340,7 +345,7 @@ class Document(Photoshop):
             options (photoshop.JPEGSaveOptions): Save options.
             asCopy (bool):
         """
-        return self.app.saveAs(file_path, options, asCopy, extensionType,)
+        return self.app.saveAs(file_path, options, asCopy, extensionType)
 
     def splitChannels(self):
         """Splits the channels of the document."""

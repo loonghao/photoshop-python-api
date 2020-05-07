@@ -22,7 +22,7 @@ class Documents(Photoshop):
         mode: int = NewDocumentMode.NewRGB,
         initialFill: int = DocumentFill.White,
         pixelAspectRatio: float = 1.0,
-        bitsPerChannel: int = BitsPerChannelType.Document16Bits,
+        bitsPerChannel: int = BitsPerChannelType.Document8Bits,
         colorProfileName: str = None,
     ):
         """Creates a new document object and adds it to this collections.
