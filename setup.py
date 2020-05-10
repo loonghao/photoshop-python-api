@@ -17,13 +17,10 @@ setup(
     url="https://github.com/loonghao/photoshop_python_api",
     version=version,
     packages=find_packages("./src"),
-    setup_requires=["setuptools-scm", "setuptools>=40.0"],
-    author_email="hal.long@outllok.com",
+    setup_requires=["setuptools>=40.0"],
+    author_email="hal.long@outlook.com",
     install_requires=["comtypes==1.1.7"],
-    description=(
-        "The API for using COM (Component Object Model) objects "
-        "interfaces of Photoshop."
-    ),
+    description="Python API for Photoshop.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
