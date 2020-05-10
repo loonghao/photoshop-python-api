@@ -23,7 +23,11 @@ class Examples(object):
         self._root = root
 
     def get_examples(self):
-        return glob.glob(os.path.join(self._root, "*.py"))
+        files = [
+            file_ for file_ in glob.iglob(os.path.join(self._root, "*.py"))
+            if "_psd_files.py" not in file_
+        ]
+        return files
 
     @staticmethod
     def convert_relative_path(file):
