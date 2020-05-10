@@ -15,30 +15,30 @@ file_path = PSD_FILE["layer_comps.psd"]
 
 with Session(file_path, action="open") as ps:
     def SmartSharpen(inAmount, inRadius, inNoise):
-        idsmart_sharpen_id = ps.app.stringIDToTypeID(ps.smartSharpen)
+        idsmart_sharpen_id = ps.app.stringIDToTypeID(ps.EventID.SmartSharpen)
         desc37 = ps.ActionDescriptor()
 
-        idpresetKind = ps.app.stringIDToTypeID(ps.presetKind)
-        idpresetKindType = ps.app.stringIDToTypeID(ps.presetKindType)
-        idpresetKindCustom = ps.app.stringIDToTypeID(ps.presetKindCustom)
+        idpresetKind = ps.app.stringIDToTypeID(ps.EventID.PresetKind)
+        idpresetKindType = ps.app.stringIDToTypeID(ps.EventID.PresetKindType)
+        idpresetKindCustom = ps.app.stringIDToTypeID(
+            ps.EventID.PresetKindCustom)
         desc37.putEnumerated(idpresetKind, idpresetKindType,
                              idpresetKindCustom)
-
-        idAmnt = ps.app.charIDToTypeID(ps.AMNT)
-        idPrc = ps.app.charIDToTypeID(ps.RDS)
+        idAmnt = ps.app.charIDToTypeID("Amnt")
+        idPrc = ps.app.charIDToTypeID("Rds ")
         desc37.putUnitDouble(idAmnt, idPrc, inAmount)
 
-        idRds = ps.app.charIDToTypeID(ps.RDS)
-        idPxl = ps.app.charIDToTypeID(ps.PX1)
+        idRds = ps.app.charIDToTypeID("Rds ")
+        idPxl = ps.app.charIDToTypeID("#Pxl")
         desc37.putUnitDouble(idRds, idPxl, inRadius)
 
-        idnoiseReduction = ps.app.stringIDToTypeID(ps.noiseReduction)
-        idPrc = ps.app.charIDToTypeID(ps.PRC)
+        idnoiseReduction = ps.app.stringIDToTypeID("noiseReduction")
+        idPrc = ps.app.charIDToTypeID("#Prc")
         desc37.putUnitDouble(idnoiseReduction, idPrc, inNoise)
 
-        idblur = ps.app.charIDToTypeID(ps.blur)
-        idblurType = ps.app.stringIDToTypeID(ps.blurType)
-        idGsnB = ps.app.charIDToTypeID(ps.GSNB)
+        idblur = ps.app.charIDToTypeID("blur")
+        idblurType = ps.app.stringIDToTypeID("blurType")
+        idGsnB = ps.app.charIDToTypeID("GsnB")
         desc37.putEnumerated(idblur, idblurType, idGsnB)
 
         ps.app.ExecuteAction(idsmart_sharpen_id, desc37)

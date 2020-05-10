@@ -9,9 +9,6 @@ References:
 
 """
 
-
-import os
-
 from photoshop import Session
 
 import examples._psd_files as psd  # Import from examples.

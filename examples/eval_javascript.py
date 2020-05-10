@@ -1,4 +1,4 @@
-import photoshop as ps
+import photoshop.api as ps
 
 app = ps.Application()
 jsx = r"""

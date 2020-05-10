@@ -1,4 +1,4 @@
-import photoshop as ps
+import photoshop.api as ps
 
 
 def hello_world():

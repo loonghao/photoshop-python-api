@@ -6,7 +6,7 @@ References:
 
 """
 
-import photoshop as ps
+import photoshop.api as ps
 
 import examples._psd_files as psd  # Import from examples.
 

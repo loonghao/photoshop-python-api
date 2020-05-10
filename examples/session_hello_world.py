@@ -1,4 +1,4 @@
-"""Add slate information dynamically。"""
+"""Add slate information dynamically."""
 
 from photoshop import Session
 

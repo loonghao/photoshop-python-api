@@ -22,7 +22,7 @@ with Session(action="new_document") as ps:
     # Add a new artLayer in current active document.
     layer = docRef.artLayers.add()
     # Move the artLayer under the duplicate layerSet.
-    layer.move(duplicate_layer_set, ps.ElementPlacement.INSIDE)
+    layer.move(duplicate_layer_set, ps.ElementPlacement.PlaceInside)
     # Merge the layerSet.
     merged_layer = duplicate_layer_set.merge()
     ps.echo(merged_layer.name)
