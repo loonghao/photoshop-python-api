@@ -6,7 +6,7 @@ from .enumerations import RasterizeType
 from .text_item import TextItem
 
 
-# pylint: disable=too-many-public-methods
+# pylint: disable=too-many-public-methods, too-many-arguments
 class ArtLayer(Photoshop):
     def __init__(self, parent: Any = None):
         super().__init__(parent=parent)

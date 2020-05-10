@@ -5,7 +5,7 @@ from .enumerations import DocumentFill
 from .enumerations import NewDocumentMode
 
 
-# pylint: disable=too-many-public-methods
+# pylint: disable=too-many-public-methods, too-many-arguments
 class Documents(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)

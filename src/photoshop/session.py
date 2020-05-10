@@ -1,7 +1,57 @@
+"""Provides a public session class for Photoshop api.
+
+Usually we only need to manipulate the currently active document of photoshop.
+So as follows:
+
+.. code-block:: python
+
+    from photoshop import Session
+
+    with Session(action="new_document") as ps:
+        doc = ps.active_document
+        text_color = ps.SolidColor()
+        text_color.rgb.green = 255
+        new_text_layer = doc.artLayers.add()
+        new_text_layer.kind = ps.LayerKind.TextLayer
+        new_text_layer.textItem.contents = 'Hello, World!'
+        new_text_layer.textItem.position = [160, 167]
+        new_text_layer.textItem.size = 40
+        new_text_layer.textItem.color = text_color
+        options = ps.JPEGSaveOptions(quality=5)
+        jpg = 'd:/hello_world.jpg'
+        doc.saveAs(jpg, options, asCopy=True)
+        ps.app.doJavaScript(f'alert("save to jpg: {jpg}")')
+
+"""
+
+# Import built-modules
 from typing import Any
 
 # Import local modules
-from photoshop.api import *
+from photoshop.api import ActionReference
+from photoshop.api import ActionDescriptor
+from photoshop.api import enumerations
+from photoshop.api import errors
+from photoshop.api import Application
+from photoshop.api import EventID
+from photoshop.api import SolidColor
+
+from photoshop.api import TextItem
+from photoshop.api import LabColor
+from photoshop.api import HSBColor
+from photoshop.api import CMYKColor
+from photoshop.api import RGBColor
+from photoshop.api import GrayColor
+
+from photoshop.api import GIFSaveOptions
+from photoshop.api import JPEGSaveOptions
+from photoshop.api import PDFSaveOptions
+from photoshop.api import PNGSaveOptions
+from photoshop.api import PhotoshopSaveOptions
+from photoshop.api import ExportOptionsSaveForWeb
+from photoshop.api import BMPSaveOptions
+from photoshop.api import TiffSaveOptions
+from photoshop.api import TargaSaveOptions
 
 
 class Session:
@@ -88,136 +138,136 @@ class Session:
         self.GrayColor = GrayColor
 
         # From enumerations
-        self.LensType = LensType
-        self.AdjustmentReference = AdjustmentReference
-        self.AnchorPosition = AnchorPosition
-        self.AntiAlias = AntiAlias
-        self.AutoKernType = AutoKernType
-        self.BMPDepthType = BMPDepthType
-        self.BatchDestinationType = BatchDestinationType
-        self.BitmapConversionType = BitmapConversionType
-        self.BitmapHalfToneType = BitmapHalfToneType
-        self.BitsPerChannelType = BitsPerChannelType
-        self.BlendMode = BlendMode
-        self.ByteOrderType = ByteOrderType
-        self.CameraRAWSettingsType = CameraRAWSettingsType
-        self.CameraRAWSize = CameraRAWSize
-        self.Case = Case
-        self.ChangeMode = ChangeMode
-        self.ChannelType = ChannelType
-        self.ColorBlendMode = ColorBlendMode
-        self.ColorModel = ColorModel
-        self.ColorPicker = ColorPicker
-        self.ColorProfileType = ColorProfileType
-        self.ColorReductionType = ColorReductionType
-        self.ColorSpaceType = ColorSpaceType
-        self.CopyrightedType = CopyrightedType
-        self.CreateFields = CreateFields
-        self.CropToType = CropToType
-        self.DCSType = DCSType
-        self.DepthMaource = DepthMaource
-        self.DescValueType = DescValueType
-        self.DialogModes = DialogModes
-        self.Direction = Direction
-        self.DisplacementMapType = DisplacementMapType
-        self.DitherType = DitherType
-        self.DocumentFill = DocumentFill
-        self.DocumentMode = DocumentMode
-        self.EditLogItemsType = EditLogItemsType
-        self.ElementPlacement = ElementPlacement
-        self.EliminateFields = EliminateFields
-        self.ExportType = ExportType
-        self.ExtensionType = ExtensionType
-        self.FileNamingType = FileNamingType
-        self.FontPreviewType = FontPreviewType
-        self.ForcedColors = ForcedColors
-        self.FormatOptionsType = FormatOptionsType
-        self.GalleryConstrainType = GalleryConstrainType
-        self.GalleryFontType = GalleryFontType
-        self.GallerySecurityTextColorType = GallerySecurityTextColorType
-        self.GallerySecurityTextPositionType = GallerySecurityTextPositionType
-        self.GallerySecurityTextRotateType = GallerySecurityTextRotateType
-        self.GallerySecurityType = GallerySecurityType
-        self.GalleryThumbSizeType = GalleryThumbSizeType
-        self.Geometry = Geometry
-        self.GridLineStyle = GridLineStyle
-        self.GridSize = GridSize
-        self.GuideLineStyle = GuideLineStyle
-        self.IllustratorPathType = IllustratorPathType
-        self.Intent = Intent
-        self.JavaScriptExecutionMode = JavaScriptExecutionMode
-        self.Justification = Justification
-        self.Language = Language
-        self.LayerCompressionType = LayerCompressionType
-        self.LayerKind = LayerKind
-        self.LayerType = LayerType
-        self.MagnificationType = MagnificationType
-        self.MatteType = MatteType
-        self.MeasurementRange = MeasurementRange
-        self.MeasurementSource = MeasurementSource
-        self.NewDocumentMode = NewDocumentMode
-        self.NoiseDistribution = NoiseDistribution
-        self.OffsetUndefinedAreas = OffsetUndefinedAreas
-        self.OpenDocumentMode = OpenDocumentMode
-        self.OpenDocumentType = OpenDocumentType
-        self.OperatingSystem = OperatingSystem
-        self.Orientation = Orientation
-        self.OtherPaintingCursors = OtherPaintingCursors
-        self.PDFCompatibilityType = PDFCompatibilityType
-        self.PDFEncodingType = PDFEncodingType
-        self.PDFResampleType = PDFResampleType
-        self.PDFStandardType = PDFStandardType
-        self.PICTBitsPerPixel = PICTBitsPerPixel
-        self.PICTCompression = PICTCompression
-        self.PaintingCursors = PaintingCursors
-        self.PaletteType = PaletteType
-        self.PathKind = PathKind
-        self.PhotoCDColorSpace = PhotoCDColorSpace
-        self.PhotoCDSize = PhotoCDSize
-        self.PicturePackageTextType = PicturePackageTextType
-        self.PointKind = PointKind
-        self.PointType = PointType
-        self.PolarConversionType = PolarConversionType
-        self.PreviewType = PreviewType
-        self.PurgeTarget = PurgeTarget
-        self.QueryStateType = QueryStateType
-        self.RadialBlurMethod = RadialBlurMethod
-        self.RadialBlurBest = RadialBlurBest
-        self.RasterizeType = RasterizeType
-        self.ReferenceFormType = ReferenceFormType
-        self.ResampleMethod = ResampleMethod
-        self.ResetTarget = ResetTarget
-        self.RippleSize = RippleSize
-        self.SaveBehavior = SaveBehavior
-        self.SaveDocumentType = SaveDocumentType
-        self.SaveEncoding = SaveEncoding
-        self.SaveLogItemsType = SaveLogItemsType
-        self.SaveOptions = SaveOptions
-        self.SelectionType = SelectionType
-        self.ShapeOperation = ShapeOperation
-        self.SmartBlurMode = SmartBlurMode
-        self.SmartBlurQuality = SmartBlurQuality
-        self.SourceSpaceType = SourceSpaceType
-        self.SpherizeMode = SpherizeMode
-        self.StrikeThruType = StrikeThruType
-        self.StrokeLocation = StrokeLocation
-        self.TargaBitsPerPixels = TargaBitsPerPixels
-        self.TextComposer = TextComposer
-        self.TextType = TextType
-        self.TextureType = TextureType
-        self.TiffEncodingType = TiffEncodingType
-        self.ToolType = ToolType
-        self.TransitionType = TransitionType
-        self.TrimType = TrimType
-        self.TypeUnits = TypeUnits
-        self.UndefinedAreas = UndefinedAreas
-        self.UnderlineType = UnderlineType
-        self.Units = Units
-        self.Urgency = Urgency
-        self.Wartyle = Wartyle
-        self.WaveType = WaveType
-        self.WhiteBalanceType = WhiteBalanceType
-        self.ZigZagType = ZigZagType
+        self.LensType = enumerations.LensType
+        self.AdjustmentReference = enumerations.AdjustmentReference
+        self.AnchorPosition = enumerations.AnchorPosition
+        self.AntiAlias = enumerations.AntiAlias
+        self.AutoKernType = enumerations.AutoKernType
+        self.BMPDepthType = enumerations.BMPDepthType
+        self.BatchDestinationType = enumerations.BatchDestinationType
+        self.BitmapConversionType = enumerations.BitmapConversionType
+        self.BitmapHalfToneType = enumerations.BitmapHalfToneType
+        self.BitsPerChannelType = enumerations.BitsPerChannelType
+        self.BlendMode = enumerations.BlendMode
+        self.ByteOrderType = enumerations.ByteOrderType
+        self.CameraRAWSettingsType = enumerations.CameraRAWSettingsType
+        self.CameraRAWSize = enumerations.CameraRAWSize
+        self.Case = enumerations.Case
+        self.ChangeMode = enumerations.ChangeMode
+        self.ChannelType = enumerations.ChannelType
+        self.ColorBlendMode = enumerations.ColorBlendMode
+        self.ColorModel = enumerations.ColorModel
+        self.ColorPicker = enumerations.ColorPicker
+        self.ColorProfileType = enumerations.ColorProfileType
+        self.ColorReductionType = enumerations.ColorReductionType
+        self.ColorSpaceType = enumerations.ColorSpaceType
+        self.CopyrightedType = enumerations.CopyrightedType
+        self.CreateFields = enumerations.CreateFields
+        self.CropToType = enumerations.CropToType
+        self.DCSType = enumerations.DCSType
+        self.DepthMaource = enumerations.DepthMaource
+        self.DescValueType = enumerations.DescValueType
+        self.DialogModes = enumerations.DialogModes
+        self.Direction = enumerations.Direction
+        self.DisplacementMapType = enumerations.DisplacementMapType
+        self.DitherType = enumerations.DitherType
+        self.DocumentFill = enumerations.DocumentFill
+        self.DocumentMode = enumerations.DocumentMode
+        self.EditLogItemsType = enumerations.EditLogItemsType
+        self.ElementPlacement = enumerations.ElementPlacement
+        self.EliminateFields = enumerations.EliminateFields
+        self.ExportType = enumerations.ExportType
+        self.ExtensionType = enumerations.ExtensionType
+        self.FileNamingType = enumerations.FileNamingType
+        self.FontPreviewType = enumerations.FontPreviewType
+        self.ForcedColors = enumerations.ForcedColors
+        self.FormatOptionsType = enumerations.FormatOptionsType
+        self.GalleryConstrainType = enumerations.GalleryConstrainType
+        self.GalleryFontType = enumerations.GalleryFontType
+        self.GallerySecurityTextColorType = enumerations.GallerySecurityTextColorType
+        self.GallerySecurityTextPositionType = enumerations.GallerySecurityTextPositionType
+        self.GallerySecurityTextRotateType = enumerations.GallerySecurityTextRotateType
+        self.GallerySecurityType = enumerations.GallerySecurityType
+        self.GalleryThumbSizeType = enumerations.GalleryThumbSizeType
+        self.Geometry = enumerations.Geometry
+        self.GridLineStyle = enumerations.GridLineStyle
+        self.GridSize = enumerations.GridSize
+        self.GuideLineStyle = enumerations.GuideLineStyle
+        self.IllustratorPathType = enumerations.IllustratorPathType
+        self.Intent = enumerations.Intent
+        self.JavaScriptExecutionMode = enumerations.JavaScriptExecutionMode
+        self.Justification = enumerations.Justification
+        self.Language = enumerations.Language
+        self.LayerCompressionType = enumerations.LayerCompressionType
+        self.LayerKind = enumerations.LayerKind
+        self.LayerType = enumerations.LayerType
+        self.MagnificationType = enumerations.MagnificationType
+        self.MatteType = enumerations.MatteType
+        self.MeasurementRange = enumerations.MeasurementRange
+        self.MeasurementSource = enumerations.MeasurementSource
+        self.NewDocumentMode = enumerations.NewDocumentMode
+        self.NoiseDistribution = enumerations.NoiseDistribution
+        self.OffsetUndefinedAreas = enumerations.OffsetUndefinedAreas
+        self.OpenDocumentMode = enumerations.OpenDocumentMode
+        self.OpenDocumentType = enumerations.OpenDocumentType
+        self.OperatingSystem = enumerations.OperatingSystem
+        self.Orientation = enumerations.Orientation
+        self.OtherPaintingCursors = enumerations.OtherPaintingCursors
+        self.PDFCompatibilityType = enumerations.PDFCompatibilityType
+        self.PDFEncodingType = enumerations.PDFEncodingType
+        self.PDFResampleType = enumerations.PDFResampleType
+        self.PDFStandardType = enumerations.PDFStandardType
+        self.PICTBitsPerPixel = enumerations.PICTBitsPerPixel
+        self.PICTCompression = enumerations.PICTCompression
+        self.PaintingCursors = enumerations.PaintingCursors
+        self.PaletteType = enumerations.PaletteType
+        self.PathKind = enumerations.PathKind
+        self.PhotoCDColorSpace = enumerations.PhotoCDColorSpace
+        self.PhotoCDSize = enumerations.PhotoCDSize
+        self.PicturePackageTextType = enumerations.PicturePackageTextType
+        self.PointKind = enumerations.PointKind
+        self.PointType = enumerations.PointType
+        self.PolarConversionType = enumerations.PolarConversionType
+        self.PreviewType = enumerations.PreviewType
+        self.PurgeTarget = enumerations.PurgeTarget
+        self.QueryStateType = enumerations.QueryStateType
+        self.RadialBlurMethod = enumerations.RadialBlurMethod
+        self.RadialBlurBest = enumerations.RadialBlurBest
+        self.RasterizeType = enumerations.RasterizeType
+        self.ReferenceFormType = enumerations.ReferenceFormType
+        self.ResampleMethod = enumerations.ResampleMethod
+        self.ResetTarget = enumerations.ResetTarget
+        self.RippleSize = enumerations.RippleSize
+        self.SaveBehavior = enumerations.SaveBehavior
+        self.SaveDocumentType = enumerations.SaveDocumentType
+        self.SaveEncoding = enumerations.SaveEncoding
+        self.SaveLogItemsType = enumerations.SaveLogItemsType
+        self.SaveOptions = enumerations.SaveOptions
+        self.SelectionType = enumerations.SelectionType
+        self.ShapeOperation = enumerations.ShapeOperation
+        self.SmartBlurMode = enumerations.SmartBlurMode
+        self.SmartBlurQuality = enumerations.SmartBlurQuality
+        self.SourceSpaceType = enumerations.SourceSpaceType
+        self.SpherizeMode = enumerations.SpherizeMode
+        self.StrikeThruType = enumerations.StrikeThruType
+        self.StrokeLocation = enumerations.StrokeLocation
+        self.TargaBitsPerPixels = enumerations.TargaBitsPerPixels
+        self.TextComposer = enumerations.TextComposer
+        self.TextType = enumerations.TextType
+        self.TextureType = enumerations.TextureType
+        self.TiffEncodingType = enumerations.TiffEncodingType
+        self.ToolType = enumerations.ToolType
+        self.TransitionType = enumerations.TransitionType
+        self.TrimType = enumerations.TrimType
+        self.TypeUnits = enumerations.TypeUnits
+        self.UndefinedAreas = enumerations.UndefinedAreas
+        self.UnderlineType = enumerations.UnderlineType
+        self.Units = enumerations.Units
+        self.Urgency = enumerations.Urgency
+        self.Wartyle = enumerations.Wartyle
+        self.WaveType = enumerations.WaveType
+        self.WhiteBalanceType = enumerations.WhiteBalanceType
+        self.ZigZagType = enumerations.ZigZagType
 
     @property
     def active_document(self):
@@ -225,8 +275,9 @@ class Session:
             if not self._active_document:
                 return self.app.activeDocument
             return self._active_document
-        except COMError:
-            raise PhotoshopPythonAPIError("No active document available.")
+        except errors.PhotoshopPythonAPICOMError:
+            raise errors.PhotoshopPythonAPIError("No active document "
+                                                 "available.")
 
     @staticmethod
     def echo(*args, **kwargs):
@@ -269,7 +320,7 @@ class Session:
             if self._callback:
                 self._callback(self)
         except Exception as err:
-            raise PhotoshopPythonAPIError(err)
+            raise errors.PhotoshopPythonAPIError(err)
         finally:
             if self._auto_close:
                 self.active_document.close()
