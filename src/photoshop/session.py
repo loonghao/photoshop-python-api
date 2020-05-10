@@ -1,27 +1,7 @@
 from typing import Any
+
+# Import local modules
 from photoshop.api import *
-# try:
-#     from photoshop.api import *
-#
-#     # All public APIs.
-#     __all__ = (
-#             [
-#                 "ActionDescriptor",
-#                 "ActionList",
-#                 "ActionReference",
-#                 "Application",
-#                 "SolidColor",
-#                 "TextFonts",
-#                 "TextItem",
-#                 "Session",
-#             ]
-#             + colors.__all__
-#             + save_options.__all__
-#             + errors.__all__
-#     )
-# except ModuleNotFoundError:
-#     # Fix Build docs failed on readthedocs.
-#     pass
 
 
 class Session:
@@ -75,45 +55,169 @@ class Session:
 
         """
         super().__init__()
+
         self.path = file_path
         self._auto_close = auto_close
         self._callback = callback
         self._action = action
         self._active_document = None
+
         self.app = Application()
         self.ActionReference = ActionReference()
         self.ActionDescriptor = ActionDescriptor()
         self.EventID = EventID
-        self.SaveOptions = SaveOptions
         self.SolidColor = SolidColor
-        self.StrokeLocation = StrokeLocation
-        self.ColorBlendMode = ColorBlendMode
         self.TextItem = TextItem
-        self.NoiseDistribution = NoiseDistribution
-        self.TextureType = TextureType
-        self.SelectionType = SelectionType
-        self.DocumentFill = DocumentFill
-        self.DialogModes = DialogModes
-        self.NewDocumentMode = NewDocumentMode
-        self.LayerKind = LayerKind
-        self.Units = Units
+
+        # The save options.
         self.GIFSaveOptions = GIFSaveOptions
         self.JPEGSaveOptions = JPEGSaveOptions
         self.PDFSaveOptions = PDFSaveOptions
         self.PNGSaveOptions = PNGSaveOptions
-        self.ElementPlacement = ElementPlacement
         self.PhotoshopSaveOptions = PhotoshopSaveOptions
         self.ExportOptionsSaveForWeb = ExportOptionsSaveForWeb
         self.BMPSaveOptions = BMPSaveOptions
         self.TiffSaveOptions = TiffSaveOptions
         self.TargaSaveOptions = TargaSaveOptions
+
+        # The colors.
         self.LabColor = LabColor
         self.HSBColor = HSBColor
         self.CMYKColor = CMYKColor
         self.RGBColor = RGBColor
+        self.GrayColor = GrayColor
 
         # From enumerations
-
+        self.LensType = LensType
+        self.AdjustmentReference = AdjustmentReference
+        self.AnchorPosition = AnchorPosition
+        self.AntiAlias = AntiAlias
+        self.AutoKernType = AutoKernType
+        self.BMPDepthType = BMPDepthType
+        self.BatchDestinationType = BatchDestinationType
+        self.BitmapConversionType = BitmapConversionType
+        self.BitmapHalfToneType = BitmapHalfToneType
+        self.BitsPerChannelType = BitsPerChannelType
+        self.BlendMode = BlendMode
+        self.ByteOrderType = ByteOrderType
+        self.CameraRAWSettingsType = CameraRAWSettingsType
+        self.CameraRAWSize = CameraRAWSize
+        self.Case = Case
+        self.ChangeMode = ChangeMode
+        self.ChannelType = ChannelType
+        self.ColorBlendMode = ColorBlendMode
+        self.ColorModel = ColorModel
+        self.ColorPicker = ColorPicker
+        self.ColorProfileType = ColorProfileType
+        self.ColorReductionType = ColorReductionType
+        self.ColorSpaceType = ColorSpaceType
+        self.CopyrightedType = CopyrightedType
+        self.CreateFields = CreateFields
+        self.CropToType = CropToType
+        self.DCSType = DCSType
+        self.DepthMaource = DepthMaource
+        self.DescValueType = DescValueType
+        self.DialogModes = DialogModes
+        self.Direction = Direction
+        self.DisplacementMapType = DisplacementMapType
+        self.DitherType = DitherType
+        self.DocumentFill = DocumentFill
+        self.DocumentMode = DocumentMode
+        self.EditLogItemsType = EditLogItemsType
+        self.ElementPlacement = ElementPlacement
+        self.EliminateFields = EliminateFields
+        self.ExportType = ExportType
+        self.ExtensionType = ExtensionType
+        self.FileNamingType = FileNamingType
+        self.FontPreviewType = FontPreviewType
+        self.ForcedColors = ForcedColors
+        self.FormatOptionsType = FormatOptionsType
+        self.GalleryConstrainType = GalleryConstrainType
+        self.GalleryFontType = GalleryFontType
+        self.GallerySecurityTextColorType = GallerySecurityTextColorType
+        self.GallerySecurityTextPositionType = GallerySecurityTextPositionType
+        self.GallerySecurityTextRotateType = GallerySecurityTextRotateType
+        self.GallerySecurityType = GallerySecurityType
+        self.GalleryThumbSizeType = GalleryThumbSizeType
+        self.Geometry = Geometry
+        self.GridLineStyle = GridLineStyle
+        self.GridSize = GridSize
+        self.GuideLineStyle = GuideLineStyle
+        self.IllustratorPathType = IllustratorPathType
+        self.Intent = Intent
+        self.JavaScriptExecutionMode = JavaScriptExecutionMode
+        self.Justification = Justification
+        self.Language = Language
+        self.LayerCompressionType = LayerCompressionType
+        self.LayerKind = LayerKind
+        self.LayerType = LayerType
+        self.MagnificationType = MagnificationType
+        self.MatteType = MatteType
+        self.MeasurementRange = MeasurementRange
+        self.MeasurementSource = MeasurementSource
+        self.NewDocumentMode = NewDocumentMode
+        self.NoiseDistribution = NoiseDistribution
+        self.OffsetUndefinedAreas = OffsetUndefinedAreas
+        self.OpenDocumentMode = OpenDocumentMode
+        self.OpenDocumentType = OpenDocumentType
+        self.OperatingSystem = OperatingSystem
+        self.Orientation = Orientation
+        self.OtherPaintingCursors = OtherPaintingCursors
+        self.PDFCompatibilityType = PDFCompatibilityType
+        self.PDFEncodingType = PDFEncodingType
+        self.PDFResampleType = PDFResampleType
+        self.PDFStandardType = PDFStandardType
+        self.PICTBitsPerPixel = PICTBitsPerPixel
+        self.PICTCompression = PICTCompression
+        self.PaintingCursors = PaintingCursors
+        self.PaletteType = PaletteType
+        self.PathKind = PathKind
+        self.PhotoCDColorSpace = PhotoCDColorSpace
+        self.PhotoCDSize = PhotoCDSize
+        self.PicturePackageTextType = PicturePackageTextType
+        self.PointKind = PointKind
+        self.PointType = PointType
+        self.PolarConversionType = PolarConversionType
+        self.PreviewType = PreviewType
+        self.PurgeTarget = PurgeTarget
+        self.QueryStateType = QueryStateType
+        self.RadialBlurMethod = RadialBlurMethod
+        self.RadialBlurBest = RadialBlurBest
+        self.RasterizeType = RasterizeType
+        self.ReferenceFormType = ReferenceFormType
+        self.ResampleMethod = ResampleMethod
+        self.ResetTarget = ResetTarget
+        self.RippleSize = RippleSize
+        self.SaveBehavior = SaveBehavior
+        self.SaveDocumentType = SaveDocumentType
+        self.SaveEncoding = SaveEncoding
+        self.SaveLogItemsType = SaveLogItemsType
+        self.SaveOptions = SaveOptions
+        self.SelectionType = SelectionType
+        self.ShapeOperation = ShapeOperation
+        self.SmartBlurMode = SmartBlurMode
+        self.SmartBlurQuality = SmartBlurQuality
+        self.SourceSpaceType = SourceSpaceType
+        self.SpherizeMode = SpherizeMode
+        self.StrikeThruType = StrikeThruType
+        self.StrokeLocation = StrokeLocation
+        self.TargaBitsPerPixels = TargaBitsPerPixels
+        self.TextComposer = TextComposer
+        self.TextType = TextType
+        self.TextureType = TextureType
+        self.TiffEncodingType = TiffEncodingType
+        self.ToolType = ToolType
+        self.TransitionType = TransitionType
+        self.TrimType = TrimType
+        self.TypeUnits = TypeUnits
+        self.UndefinedAreas = UndefinedAreas
+        self.UnderlineType = UnderlineType
+        self.Units = Units
+        self.Urgency = Urgency
+        self.Wartyle = Wartyle
+        self.WaveType = WaveType
+        self.WhiteBalanceType = WhiteBalanceType
+        self.ZigZagType = ZigZagType
 
     @property
     def active_document(self):
