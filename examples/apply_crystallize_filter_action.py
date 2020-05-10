@@ -14,9 +14,11 @@ import os
 
 from photoshop import Session
 
-fileName = os.path.join(os.path.dirname(__file__), "layer_comps.psd")
+import examples._psd_files as psd  # Import from examples.
 
-with Session(fileName, "open") as ps:
+PSD_FILE = psd.get_psd_files()
+
+with Session(PSD_FILE["layer_comps.psd"], "open") as ps:
     nLayerSets = ps.active_document.layerSets
     print(len(nLayerSets))
     nArtLayers = ps.active_document.layerSets.item(len(nLayerSets)).artLayers

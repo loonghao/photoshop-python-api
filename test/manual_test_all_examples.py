@@ -4,8 +4,8 @@ import os
 
 root = os.path.join(os.path.dirname(os.path.dirname(__file__)), "examples")
 
-for script in glob.glob(os.path.join(root, "*.py")):
+for script_file in glob.iglob(os.path.join(root, "*.py")):
     try:
-        exec(open(script, "r").read())
+        exec(open(script_file, "r").read())
     except:
-        print("Test failed: {}".format(script))
+        print(f"Test failed: {script_file}")

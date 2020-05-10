@@ -1,6 +1,5 @@
 from photoshop import Session
 
-psDisplayNoDialogs = 3
 with Session() as ps:
     app = ps.app
     for index, x in enumerate(range(50)):
@@ -42,7 +41,7 @@ with Session() as ps:
         desc22.putObject(idType, idSolidColorLayer, desc23)
         idContentLayer2 = app.StringIDToTypeID("contentLayer")
         desc21.putObject(idUsng, idContentLayer2, desc22)
-        app.executeAction(idMk, desc21, psDisplayNoDialogs)
+        app.executeAction(idMk, desc21, ps.DialogModes.DisplayNoDialogs)
 
         # Select mask.
         idSlct = app.charIDToTypeID("slct")
@@ -56,6 +55,6 @@ with Session() as ps:
         desc38.putReference(idNull1, ref20)
         idMkVs = app.charIDToTypeID("MkVs")
         desc38.putBoolean(idMkVs, False)
-        app.executeAction(idSlct, desc38, psDisplayNoDialogs)
+        app.executeAction(idSlct, desc38, ps.DialogModes.DisplayNoDialogs)
 
         app.activeDocument.activeLayer.invert()
