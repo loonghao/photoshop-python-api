@@ -4,14 +4,7 @@
 import os
 import platform
 
-try:
-    import winreg
-except ModuleNotFoundError:
-    # Fix Build docs failed on readthedocs.
-    from unittest.mock import MagicMock
-
-    winreg = MagicMock()
-
+import winreg
 from typing import Any
 from typing import List
 
