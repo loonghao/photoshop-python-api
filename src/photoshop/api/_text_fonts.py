@@ -1,5 +1,6 @@
 from ._core import Photoshop
 from .text_font import TextFont
+from .errors import PhotoshopPythonAPIError
 
 
 class TextFonts(Photoshop):
@@ -36,3 +37,5 @@ class TextFonts(Photoshop):
         for font in self.app:
             if font.name == name:
                 return TextFont(font)
+        raise PhotoshopPythonAPIError("Could not find a TextFont named "
+                                      f'"{name}"')
