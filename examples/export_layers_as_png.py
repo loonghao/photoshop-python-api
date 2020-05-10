@@ -3,6 +3,10 @@ import os
 
 from photoshop import Session
 
+import examples._psd_files as psd  # Import from examples.
+
+PSD_FILE = psd.get_psd_files()
+
 
 def hide_all_layers(layers):
     for layer in layers:
@@ -10,7 +14,7 @@ def hide_all_layers(layers):
 
 
 def main():
-    psd_file = os.path.join(os.path.dirname(__file__), "export_layers_as_png.psd")
+    psd_file = PSD_FILE["export_layers_as_png.psd"]
     with Session(psd_file, action="open") as ps:
         doc = ps.active_document
         options = ps.PNGSaveOptions()

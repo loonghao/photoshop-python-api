@@ -6,14 +6,15 @@ References:
 
 """
 
-import os
-
 import photoshop as ps
+
+import examples._psd_files as psd  # Import from examples.
 
 app = ps.Application()
 
-fileName = os.path.join(os.path.dirname(__file__), "layer_comps.psd")
-docRef = app.open(fileName)
+PSD_FILE = psd.get_psd_files()
+file_path = PSD_FILE["layer_comps.psd"]
+docRef = app.open(file_path)
 
 nlayerSets = docRef.layerSets
 nArtLayers = docRef.layerSets.item(nlayerSets.length)
