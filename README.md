@@ -47,7 +47,7 @@ Hello World
 
 ```python
 
-import photoshop as ps
+import photoshop.api as ps
 app = ps.Application()
 doc = app.documents.add()
 new_doc = doc.artLayers.add()
@@ -127,3 +127,4 @@ Useful links
 - http://web.archive.org/web/20140121053819/http://www.pcpix.com/Photoshop/char.html
 - http://www.tonton-pixel.com/scripts/utility-scripts/get-equivalent-id-code/index.html
 - https://github.com/Adobe-CEP/Samples/tree/master/PhotoshopEvents
+- https://evanmccall.wordpress.com/2015/03/09/how-to-develop-photoshop-tools-in-python
