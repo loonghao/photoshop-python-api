@@ -4,7 +4,7 @@ from .solid_color import SolidColor
 from .enumerations import ColorBlendMode
 
 
-# pylint: disable=too-many-public-methods
+# pylint: disable=too-many-public-methods, too-many-arguments
 class Selection(Photoshop):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
