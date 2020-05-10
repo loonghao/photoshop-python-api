@@ -280,7 +280,8 @@ class Application(Photoshop):
     def charIDToTypeID(self, char_id):
         return self.app.charIDToTypeID(char_id)
 
-    def compareWithNumbers(self, first, second):
+    @staticmethod
+    def compareWithNumbers(first, second):
         return first > second
 
     def doAction(self, action, action_from):

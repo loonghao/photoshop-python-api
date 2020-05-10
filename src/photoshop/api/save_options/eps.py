@@ -1,5 +1,5 @@
 # Import local modules
-from photoshop._core import Photoshop
+from .._core import Photoshop
 
 
 class EPSSaveOptions(Photoshop):
