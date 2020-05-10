@@ -6,7 +6,7 @@ References:
 
 """
 
-import photoshop as ps
+import photoshop.api as ps
 
 app = ps.Application()
 
@@ -21,7 +21,8 @@ if len(list((i, x) for i, x in enumerate(app.documents, 1))) > 0:
         selBounds = (
             (offset, offset),
             (app.activeDocument.width - offset, offset),
-            (app.activeDocument.width - offset, app.activeDocument.height - offset),
+            (app.activeDocument.width - offset,
+             app.activeDocument.height - offset),
             (offset, app.activeDocument.height - offset),
         )
 
@@ -50,4 +51,5 @@ if len(list((i, x) for i, x in enumerate(app.documents, 1))) > 0:
     else:
         print("Operation cannot be performed on background layer")
 else:
-    print("Create a document with an active selection before running this " "script!")
+    print("Create a document with an active selection before running this "
+          "script!")

@@ -1,5 +1,5 @@
 # Create a new Photoshop document with diminsions 4 inches by 4 inches.
-import photoshop as ps
+import photoshop.api as ps
 
 # Start up Photoshop application
 app = ps.Application()

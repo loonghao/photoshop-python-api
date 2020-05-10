@@ -1,4 +1,4 @@
-import photoshop as ps
+import photoshop.api as ps
 from photoshop import Session
 
 # style 1

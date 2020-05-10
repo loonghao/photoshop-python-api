@@ -1,4 +1,4 @@
-"""Add slate information dynamically。"""
+"""Add slate information dynamically."""
 
 import os
 from datetime import datetime
