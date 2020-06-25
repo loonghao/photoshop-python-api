@@ -28,6 +28,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "tubi",
+      "name": "tubi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4058383?v=4",
+      "profile": "https://github.com/tubi",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "skipCi": true
