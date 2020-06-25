@@ -9,7 +9,7 @@ photoshop_python_api
 ![pypi format](https://img.shields.io/pypi/format/photoshop-python-api)
 [![chat on Discird](https://img.shields.io/discord/724615671400628314)](https://discord.gg/AnxSa6n)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 
 Python API for Photoshop.
