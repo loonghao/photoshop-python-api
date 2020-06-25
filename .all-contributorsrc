@@ -27,6 +27,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "voodraizer",
+      "name": "voodraizer",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1332729?v=4",
+      "profile": "https://github.com/voodraizer",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "skipCi": true
