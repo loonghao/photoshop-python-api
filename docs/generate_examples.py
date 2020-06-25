@@ -47,4 +47,3 @@ class Examples(object):
 root = os.path.dirname(os.path.dirname(__file__))
 with open("examples.rst", "w") as f:
     f.write(template.render(Examples=Examples(os.path.join(root, "examples"))))
-
