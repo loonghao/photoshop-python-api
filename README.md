@@ -7,6 +7,7 @@ photoshop_python_api
 [![Downloads](https://pepy.tech/badge/photoshop-python-api)](https://pepy.tech/project/photoshop-python-api)
 ![license](https://img.shields.io/pypi/l/photoshop-python-api)
 ![pypi format](https://img.shields.io/pypi/format/photoshop-python-api)
+[![chat on Discird](https://img.shields.io/discord/724615671400628314)](https://discord.gg/AnxSa6n)
 
 Python API for Photoshop.
 
