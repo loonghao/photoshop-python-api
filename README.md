@@ -117,6 +117,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/loonghao"><img src="https://avatars1.githubusercontent.com/u/13111745?v=4" width="100px;" alt=""/><br /><sub><b>Hal</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=loonghao" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/voodraizer"><img src="https://avatars0.githubusercontent.com/u/1332729?v=4" width="100px;" alt=""/><br /><sub><b>voodraizer</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Avoodraizer" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/tubi-carrillo"><img src="https://avatars3.githubusercontent.com/u/33004093?v=4" width="100px;" alt=""/><br /><sub><b>tubi</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Atubi-carrillo" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/loonghao"><img src="https://avatars1.githubusercontent.com/u/13111745?v=4" width="100px;" alt=""/><br /><sub><b>Hal</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=loonghao" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/voodraizer"><img src="https://avatars0.githubusercontent.com/u/1332729?v=4" width="100px;" alt=""/><br /><sub><b>voodraizer</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Avoodraizer" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/brunosly"><img src="https://avatars2.githubusercontent.com/u/4326547?v=4" width="100px;" alt=""/><br /><sub><b>brunosly</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Abrunosly" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
