@@ -1,9 +1,11 @@
 {
   "projectName": "photoshop-python-api",
-  "projectOwner": "Hal.Long",
+  "projectOwner": "loonghao",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "commit": true,
   "contributorsPerLine": 7,
@@ -16,5 +18,16 @@
       "link": "[<%= symbol %>](<%= url %> \"<%= description %>\"),"
     }
   },
-  "contributors": []
+  "contributors": [
+    {
+      "login": "loonghao",
+      "name": "Hal",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13111745?v=4",
+      "profile": "https://github.com/loonghao",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "skipCi": true
 }
