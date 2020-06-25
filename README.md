@@ -9,7 +9,7 @@ photoshop_python_api
 ![pypi format](https://img.shields.io/pypi/format/photoshop-python-api)
 [![chat on Discird](https://img.shields.io/discord/724615671400628314)](https://discord.gg/AnxSa6n)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 
 Python API for Photoshop.
@@ -114,8 +114,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/loonghao"><img src="https://avatars1.githubusercontent.com/u/13111745?v=4" width="100px;" alt=""/><br /><sub><b>Hal</b></sub></a></td>
-    <td align="center"><a href="https://github.com/voodraizer"><img src="https://avatars0.githubusercontent.com/u/1332729?v=4" width="100px;" alt=""/><br /><sub><b>voodraizer</b></sub></a></td>
+    <td align="center"><a href="https://github.com/loonghao"><img src="https://avatars1.githubusercontent.com/u/13111745?v=4" width="100px;" alt=""/><br /><sub><b>Hal</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=loonghao" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/voodraizer"><img src="https://avatars0.githubusercontent.com/u/1332729?v=4" width="100px;" alt=""/><br /><sub><b>voodraizer</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Avoodraizer" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/brunosly"><img src="https://avatars2.githubusercontent.com/u/4326547?v=4" width="100px;" alt=""/><br /><sub><b>brunosly</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Abrunosly" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
