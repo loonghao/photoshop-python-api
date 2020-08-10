@@ -1,30 +1,39 @@
-photoshop_python_api
-====================
-![python version](https://img.shields.io/pypi/pyversions/photoshop-python-api)
-[![PyPI version](https://img.shields.io/pypi/v/photoshop-python-api?color=green)](https://badge.fury.io/py/photoshop-python-api)
-[![Documentation Status](https://readthedocs.org/projects/photoshop-python-api/badge/?version=master)](https://photoshop-python-api.readthedocs.io/en/master/?badge=master)
-![Downloads Status](https://img.shields.io/pypi/dw/photoshop-python-api)
-[![Downloads](https://pepy.tech/badge/photoshop-python-api)](https://pepy.tech/project/photoshop-python-api)
-![license](https://img.shields.io/pypi/l/photoshop-python-api)
-![pypi format](https://img.shields.io/pypi/format/photoshop-python-api)
-[![chat on Discird](https://img.shields.io/discord/724615671400628314)](https://discord.gg/AnxSa6n)
+<p align="center">
+<img src="https://i.imgur.com/cjp1RH6.png" alt="logo"></a>
+</p>
+
+<p align="center">
+<a href="https://img.shields.io/pypi/pyversions/photoshop-python-api">
+<img src="https://img.shields.io/pypi/pyversions/photoshop-python-api" alt="python version"></a>
+<a href="https://badge.fury.io/py/photoshop-python-api">
+<img src="https://img.shields.io/pypi/v/photoshop-python-api?color=green" alt="PyPI version"></a>
+<a href="https://photoshop-python-api.readthedocs.io/en/master/?badge=master">
+<img src="https://readthedocs.org/projects/photoshop-python-api/badge/?version=master" alt="Documentation Status"></a>
+<img src="https://img.shields.io/pypi/dw/photoshop-python-api" alt="Downloads Status"></a>
+<a href="https://pepy.tech/badge/photoshop-python-api">
+<img src="https://pepy.tech/badge/photoshop-python-api" alt="Downloads"></a>
+<img src="https://img.shields.io/pypi/l/photoshop-python-api" alt="License"></a>
+<img src="https://img.shields.io/pypi/format/photoshop-python-api" alt="pypi format"></a>
+<a href="https://discord.gg/AnxSa6n">
+<img src="https://img.shields.io/discord/724615671400628314" alt="Chat on Discird"></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+<a href="#contributors-">
+<img src="https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square" alt="All Contributors"></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
+</p>
 
-Python API for Photoshop.
+<p align="center">Python API for Photoshop.</p>
 
-https://photoshop-python-api.readthedocs.io
-
-![logo](https://i.imgur.com/cjp1RH6.png)
+<p align="center"><em>The example above was created with Photoshop Python API. Check it out at <a href="https://photoshop-python-api.readthedocs.io/en/master/examples.html.">photoshop-python-api.readthedocs.io/examples</a>.</em></p>
 
 Has been tested and used Photoshop version:
 
-    - 2020
-    - cc2019
-    - cc2018
-    - cc2017
-    - cs6
+- [x] 2020
+- [x] cc2019
+- [x] cc2018
+- [x] cc2017
+- [x] cs6
+
 
 Installing
 ----------
@@ -99,11 +108,6 @@ with Session(action="new_document") as ps:
 
 
 ```
-
-More examples
--------------
-- https://photoshop-python-api.readthedocs.io/en/master/examples.html
-
 
 ## Contributors ✨
 
