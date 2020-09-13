@@ -1,5 +1,8 @@
 """Add slate information dynamically."""
 
+import os
+from tempfile import mkdtemp
+
 from photoshop import Session
 
 with Session() as adobe:
@@ -13,6 +16,6 @@ with Session() as adobe:
     new_text_layer.textItem.size = 40
     new_text_layer.textItem.color = text_color
     options = adobe.JPEGSaveOptions(quality=1)
-    jpg = "d:/hello_world.jpg"
-    doc.saveAs(jpg, options, asCopy=True)
-    adobe.app.doJavaScript(f'alert("save to jpg: {jpg}")')
+    jpg_file = os.path.join(mkdtemp("photoshop-python-api"), "hello_world.jpg")
+    doc.saveAs(jpg_file, options, asCopy=True)
+    adobe.app.doJavaScript(f'alert("save to jpg: {jpg_file}")')

@@ -1,3 +1,6 @@
+import os
+from tempfile import mkdtemp
+
 from photoshop import Session
 
 with Session(action="new_document") as ps:
@@ -12,4 +15,6 @@ with Session(action="new_document") as ps:
     new_text_layer.textItem.position = [160, 167]
     new_text_layer.textItem.size = 40
     new_text_layer.textItem.color = text_color
-    doc.saveAs("d:/test.tag", ps.TargaSaveOptions(), asCopy=True)
+    tga_file = os.path.join(mkdtemp("photoshop-python-api"), "test.tga")
+    doc.saveAs(tga_file, ps.TargaSaveOptions(), asCopy=True)
+    os.startfile(tga_file)
