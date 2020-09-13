@@ -9,6 +9,7 @@
 
 import os
 from datetime import datetime
+from tempfile import mkdtemp
 
 from photoshop import Session
 
@@ -24,9 +25,10 @@ with Session(slate_template, action="open", auto_close=True) as ps:
         "datetime": datetime.today().strftime("%Y-%m-%d"),
     }
     for layer in layer_set.layers:
-        if layer.kind == "TextLayer":
+        if layer.kind == ps.LayerKind.TextLayer:
             layer.textItem.contents = data[layer.textItem.contents.strip()]
 
-    jpg_file = "d:/photoshop_slate.jpg"
+    jpg_file = os.path.join(mkdtemp("photoshop-python-api"), "slate.jpg")
     ps.active_document.saveAs(jpg_file, ps.JPEGSaveOptions())
+    print(f"Save jpg to {jpg_file}")
     os.startfile(jpg_file)

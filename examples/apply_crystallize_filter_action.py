@@ -16,14 +16,13 @@ import examples._psd_files as psd  # Import from examples.
 PSD_FILE = psd.get_psd_files()
 
 with Session(PSD_FILE["layer_comps.psd"], "open") as ps:
-    nLayerSets = ps.active_document.layerSets
-    print(len(nLayerSets))
-    nArtLayers = ps.active_document.layerSets.item(len(nLayerSets)).artLayers
+    active_document = ps.active_document
+    nLayerSets = active_document.layerSets
+    print(f"The total amount of current layerSet (Group) is {len(nLayerSets)}.")
+    nArtLayers = active_document.layerSets.item(len(nLayerSets)).artLayers
 
     # get the last layer in LayerSets
-    ps.active_document.activeLayer = ps.active_document.layerSets.item(
-        len(nLayerSets)
-    ).artLayers.item(len(nArtLayers))
+    active_document.activeLayer = active_document.layerSets.item(len(nLayerSets)).artLayers.item(len(nArtLayers))
 
     def applyCrystallize(cellSize):
         cellSizeID = ps.app.CharIDToTypeID("ClSz")
@@ -35,3 +34,4 @@ with Session(PSD_FILE["layer_comps.psd"], "open") as ps:
         ps.app.executeAction(eventCrystallizeID, filterDescriptor)
 
     applyCrystallize(25)
+    print("Apply crystallize done.")
