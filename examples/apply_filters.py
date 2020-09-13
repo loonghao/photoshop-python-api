@@ -34,7 +34,7 @@ active_layer = docRef.activeLayer = docRef.layerSets[nLayerSets].artLayers[
     nArtLayers]
 sel_area = ((0, 212), (300, 212), (300, 300), (0, 300))
 docRef.selection.select(sel_area, ps.SelectionType.ReplaceSelection, 20, True)
-print(active_layer.name)
+print(f"Current active layer: {active_layer.name}")
 active_layer.applyAddNoise(15, ps.NoiseDistribution.GaussianNoise, False)
 
 backColor = ps.SolidColor()

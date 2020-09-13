@@ -1,3 +1,6 @@
+import os
+from tempfile import mkdtemp
+
 import photoshop.api as ps
 
 
@@ -13,9 +16,9 @@ def hello_world():
     new_text_layer.textItem.size = 40
     new_text_layer.textItem.color = text_color
     options = ps.JPEGSaveOptions(quality=5)
-    jpg = "d:/hello_world.jpg"
-    doc.saveAs(jpg, options, asCopy=True)
-    app.doJavaScript(f'alert("save to jpg: {jpg}")')
+    jpg_file = os.path.join(mkdtemp("photoshop-python-api"), "hello_world.jpg")
+    doc.saveAs(jpg_file, options, asCopy=True)
+    os.startfile(jpg_file)
 
 
 if __name__ == "__main__":
