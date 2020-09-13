@@ -19,8 +19,7 @@
 <a href="https://github.com/loonghao/photoshop-python-api/graphs/commit-activity">
 <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors-">
-<img src="https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square" alt="All Contributors"></a>
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 </p>
 
@@ -125,6 +124,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/brunosly"><img src="https://avatars2.githubusercontent.com/u/4326547?v=4" width="100px;" alt=""/><br /><sub><b>brunosly</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Abrunosly" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/tubi-carrillo"><img src="https://avatars3.githubusercontent.com/u/33004093?v=4" width="100px;" alt=""/><br /><sub><b>tubi</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Atubi-carrillo" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/wjxiehaixin"><img src="https://avatars0.githubusercontent.com/u/48039822?v=4" width="100px;" alt=""/><br /><sub><b>wjxiehaixin</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Awjxiehaixin" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://it.econline.net"><img src="https://avatars0.githubusercontent.com/u/993544?v=4" width="100px;" alt=""/><br /><sub><b>罗马钟</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Aenzozhong" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
