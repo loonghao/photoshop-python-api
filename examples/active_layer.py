@@ -13,7 +13,6 @@ with Session() as ps:
         docRef.artLayers.add()
 
     ps.echo(docRef.activeLayer.name)
-    ps.echo(docRef.layers.item(len(docRef.layers)))
     new_layer = docRef.artLayers.add()
     ps.echo(new_layer.name)
     new_layer.name = "test"

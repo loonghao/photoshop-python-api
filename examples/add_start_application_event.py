@@ -17,3 +17,4 @@ with Session() as ps:
     with open(jsx_file, "w") as f:
         f.write('alert("Start Application event.")')
     ps.app.notifiers.add(ps.EventID.Notify, jsx_file)
+    print("Add event done.")

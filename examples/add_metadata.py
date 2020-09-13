@@ -11,5 +11,5 @@ with Session(action="new_document") as ps:
     doc.info.author = os.getenv("USERNAME")
     doc.info.provinceState = "Beijing"
     doc.info.title = "My Demo"
-    # Print all metadata of current active document.
+    print("Print all metadata of current active document.")
     ps.echo(doc.info)
