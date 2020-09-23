@@ -11,11 +11,10 @@ with Session() as ps:
     pdf = os.path.join(mkdtemp(), "test.pdf")
     ps.active_document.saveAs(pdf, option)
 
-
 with Session() as ps:
     option = ps.PDFSaveOptions()
     option.jpegQuality = 12
     option.layers = True
-    option.view = True
+    option.view = True  # opens the saved PDF in Acrobat.
     pdf = os.path.join(mkdtemp(), "test.pdf")
     ps.active_document.saveAs(pdf, option)
