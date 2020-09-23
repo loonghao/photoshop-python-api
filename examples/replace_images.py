@@ -1,16 +1,11 @@
-"""
-var idplacedLayerReplaceContents = stringIDToTypeID( "placedLayerReplaceContents" );
-    var desc93 = new ActionDescriptor();
-    var idnull = charIDToTypeID( "null" );
-    desc93.putPath( idnull, new File( "C:\\Users\\hao.long\\Pictures\\HAL-1.png" ) );
-executeAction( idplacedLayerReplaceContents, desc93, DialogModes.NO );
-"""
+"""Replace the image of the current active layer with a new image."""
+
 
 from photoshop import Session
 
 with Session() as ps:
-    idplacedLayerReplaceContents = ps.app.stringIDToTypeID("placedLayerReplaceContents")
+    replace_contents = ps.app.stringIDToTypeID("placedLayerReplaceContents")
     desc = ps.ActionDescriptor
     idnull = ps.app.charIDToTypeID("null")
     desc.putPath(idnull, "your/image/path.jpg")
-    ps.app.executeAction(idplacedLayerReplaceContents, desc)
+    ps.app.executeAction(replace_contents, desc)

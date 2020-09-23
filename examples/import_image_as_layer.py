@@ -1,17 +1,4 @@
-"""
-function replaceContents (newFile) {  
-// =======================================================  
-var idplacedLayerReplaceContents = stringIDToTypeID( "placedLayerReplaceContents");
-    var desc3 = new ActionDescriptor();  
-    var idnull = charIDToTypeID( "null" );  
-    desc3.putPath( idnull, new File( newFile ) );  
-    var idPgNm = charIDToTypeID( "PgNm" );  
-    desc3.putInteger( idPgNm, 1 );  
-executeAction( idplacedLayerReplaceContents, desc3, DialogModes.NO );  
-return app.activeDocument.activeLayer  
-};  
-
-"""
+"""Import a image as a artLayer."""
 
 from photoshop import Session
 
