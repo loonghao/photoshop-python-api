@@ -1,7 +1,7 @@
 """
 function replaceContents (newFile) {  
 // =======================================================  
-var idplacedLayerReplaceContents = stringIDToTypeID( "placedLayerReplaceContents" );  
+var idplacedLayerReplaceContents = stringIDToTypeID( "placedLayerReplaceContents");
     var desc3 = new ActionDescriptor();  
     var idnull = charIDToTypeID( "null" );  
     desc3.putPath( idnull, new File( newFile ) );  
