@@ -11,10 +11,10 @@ from photoshop.api.enumerations import PDFResampleType
 from photoshop.api.errors import COMError
 
 
+# pylint: disable=too-many-instance-attributes,too-many-public-methods
 class PDFSaveOptions(Photoshop):
     object_name = "PDFSaveOptions"
 
-    # pylint: disable=too-many-instance-attributes
     def __init__(self, **kwargs):
         super().__init__()
         self.layers = False
