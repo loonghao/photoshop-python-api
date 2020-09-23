@@ -7,6 +7,7 @@ using the Document.saveAs() method.
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import PDFEncodingType
+from photoshop.api.enumerations import PDFResampleType
 from photoshop.api.errors import COMError
 
 
@@ -22,10 +23,10 @@ class PDFSaveOptions(Photoshop):
         self.view = False
         self.annotations = True
         self.colorConversion = False
-        # self.convertToEightBit = True
+        self.convertToEightBit = True
         self.description = "No description."
         self.encoding_types = PDFEncodingType
-        # self.downSample = PDFResampleType.NoResample
+        self.downSample = PDFResampleType.NoResample
         if kwargs:
             if "encoding" in kwargs:
                 self.encoding = kwargs.get("encoding",
