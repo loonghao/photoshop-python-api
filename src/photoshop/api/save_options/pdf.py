@@ -14,6 +14,7 @@ from photoshop.api.errors import COMError
 class PDFSaveOptions(Photoshop):
     object_name = "PDFSaveOptions"
 
+    # pylint: disable=too-many-instance-attributes
     def __init__(self, **kwargs):
         super().__init__()
         self.layers = False
@@ -27,6 +28,7 @@ class PDFSaveOptions(Photoshop):
         self.description = "No description."
         self.encoding_types = PDFEncodingType
         self.downSample = PDFResampleType.NoResample
+        self.embedColorProfile = True
         if kwargs:
             if "encoding" in kwargs:
                 self.encoding = kwargs.get("encoding",
@@ -36,6 +38,7 @@ class PDFSaveOptions(Photoshop):
 
     @property
     def alphaChannels(self):
+        """True to save the alpha channels with the file."""
         return self.app.alphaChannels
 
     @alphaChannels.setter
@@ -50,6 +53,7 @@ class PDFSaveOptions(Photoshop):
 
     @annotations.setter
     def annotations(self, value):
+        """If true, the annotations are saved."""
         self.app.annotations = value
 
     @property
@@ -59,6 +63,7 @@ class PDFSaveOptions(Photoshop):
 
     @colorConversion.setter
     def colorConversion(self, value):
+        """If true, converts the color profile to the destination profile."""
         self.app.colorConversion = value
 
     @property
@@ -69,6 +74,8 @@ class PDFSaveOptions(Photoshop):
 
     @convertToEightBit.setter
     def convertToEightBit(self, value):
+        """If true, converts a 16-bit image to 8-bit for better
+        compatibility with other applications."""
         self.app.convertToEightBit = value
 
     @property
@@ -78,6 +85,7 @@ class PDFSaveOptions(Photoshop):
 
     @description.setter
     def description(self, text):
+        """Description of the save options in use."""
         self.app.description = text
 
     @property
@@ -93,6 +101,8 @@ class PDFSaveOptions(Photoshop):
 
     @destinationProfile.setter
     def destinationProfile(self, value):
+        """Describes the final RGB or CMYK output device,
+        such as a monitor or press standard."""
         self.app.destinationProfile = value
 
     @property
@@ -141,10 +151,12 @@ class PDFSaveOptions(Photoshop):
 
     @property
     def embedColorProfile(self):
+        """If true, the color profile is embedded in the document."""
         return self.app.embedColorProfile
 
     @embedColorProfile.setter
     def embedColorProfile(self, value: bool):
+        """If true, the color profile is embedded in the document."""
         self.app.embedColorProfile = value
 
     @property
@@ -154,6 +166,7 @@ class PDFSaveOptions(Photoshop):
 
     @embedThumbnail.setter
     def embedThumbnail(self, value: bool):
+        """If true, includes a small preview image in Acrobat."""
         self.app.embedThumbnail = value
 
     @property
@@ -169,7 +182,6 @@ class PDFSaveOptions(Photoshop):
         """The encoding method to use."""
         self.app.encoding = value
 
-    #
     @property
     def jpegQuality(self):
         """Get the quality of the produced image."""
@@ -218,6 +230,7 @@ class PDFSaveOptions(Photoshop):
 
     @property
     def outputConditionID(self):
+        """The identifier for the output condition."""
         try:
             return self.app.outputConditionID
         except COMError:
@@ -227,10 +240,13 @@ class PDFSaveOptions(Photoshop):
 
     @outputConditionID.setter
     def outputConditionID(self, value):
+        """The identifier for the output condition."""
         self.app.outputConditionID = value
 
     @property
     def preserveEditing(self):
+        """If true, allows users to reopen the PDF in Photoshop with
+        native Photoshop data intact."""
         try:
             return self.app.preserveEditing
         except COMError:
@@ -240,6 +256,8 @@ class PDFSaveOptions(Photoshop):
 
     @preserveEditing.setter
     def preserveEditing(self, value):
+        """If true, allows users to reopen the PDF in Photoshop with
+        native Photoshop data intact."""
         self.app.preserveEditing = value
 
     @property
@@ -304,6 +322,7 @@ class PDFSaveOptions(Photoshop):
 
     @property
     def tileSize(self):
+        """The compression option. Valid only when encoding is JPEG2000."""
         try:
             return self.app.tileSize
         except COMError:
@@ -313,6 +332,7 @@ class PDFSaveOptions(Photoshop):
 
     @tileSize.setter
     def tileSize(self, value):
+        """The compression option. Valid only when encoding is JPEG2000."""
         if self.encoding not in (
                 self.encoding_types.PDFJPEG2000HIGH,
                 self.encoding_types.PDFJPEG2000LOSSLESS,
@@ -321,8 +341,8 @@ class PDFSaveOptions(Photoshop):
                 self.encoding_types.PDFJPEG2000LOW,
                 self.encoding_types.PDFJPEG2000MEDHIGH
         ):
-            raise ValueError("tileSize only work in PDFJPEG2000. Please "
-                             "change PDFSaveOptions.encoding to PDFJPEG2000.")
+            raise ValueError("tileSize only work in JPEG2000. Please "
+                             "change PDFSaveOptions.encoding to JPEG2000.")
         self.app.tileSize = value
 
     @property
