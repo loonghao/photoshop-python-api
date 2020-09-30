@@ -30,11 +30,13 @@
 
 Has been tested and used Photoshop version:
 
-- [x] 2020
-- [x] cc2019
-- [x] cc2018
-- [x] cc2017
-- [x] cs6
+| Photoshop Version | Supported          |
+| ----------------- | ------------------ |
+| 2020              | :white_check_mark: |
+| cc2019            | :white_check_mark: |
+| cc2018            | :white_check_mark: |
+| cc2017            | :white_check_mark: |
+
 
 
 Installing
