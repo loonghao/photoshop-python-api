@@ -16,16 +16,15 @@ The basic canvas for the file.
 # Import built-in modules
 from pathlib import Path
 
+# Import local modules
 from ._artlayer import ArtLayer
 from ._artlayers import ArtLayers
-
-# Import local modules
-from ._core import Photoshop
 from ._channels import Channels
+from ._core import Photoshop
 from ._documentinfo import DocumentInfo
-from ._layers import Layers
 from ._layerSet import LayerSet
 from ._layerSets import LayerSets
+from ._layers import Layers
 from ._selection import Selection
 from .enumerations import ExtensionType, SaveOptions
 from .errors import COMError
@@ -301,12 +300,22 @@ class Document(Photoshop):
         """Flattens all visible layers in the Document."""
         return self.app.mergeVisibleLayers()
 
-    def crop(self, **kwargs):
-        return self.app.Crop(**kwargs)
+    def crop(self, bounds, angle=None, width=None, height=None):
+        """Crops the document.
 
-    def exportDocument(self, *args, **kwargs):
+        Args:
+            bounds (list of int): Four coordinates for the region remaining
+                after cropping.
+            angle (float, optional): The angle of cropping bounds.
+            width (int, optional): The width of the resulting document.
+            height (int, optional): The height of the resulting document.
+
+        """
+        return self.app.crop(bounds, angle, width, height)
+
+    def exportDocument(self, file_path, exportAs=None, options=None):
         """Exports the Document."""
-        return self.app.exportDocument(*args, **kwargs)
+        return self.app.exportDocument(file_path, exportAs, options)
 
     def duplicate(self, name=None, merge_layers_only=False):
         return Document(self.app.duplicate(name, merge_layers_only))
@@ -371,8 +380,24 @@ class Document(Photoshop):
         """
         self.app.trap(width)
 
-    def trim(self, *args, **kwargs):
-        return self.app.trim(*args, **kwargs)
+    def trim(self, trim_type, top=True, left=True, bottom=True, right=True):
+        """Trims the transparent area around the image on the specified
+        sides of the canvas.
+
+        Args:
+            trim_type (TrimType): The color or type of pixels to base the trim
+                on.
+                .e.g:
+                    - TrimType.BottomRightPixel
+                    - TrimType.TopLeftPixel
+                    - TrimType.TransparentPixels
+            top (bool, optional): If true, trims away the top of the document.
+            left (bool, optional): If true, trims away the left of the document.
+            bottom (bool, optional): If true, trims away the bottom of the document.
+            right (bool, optional): 	If true, trims away the right of the document.
+
+        """
+        return self.app.trim(trim_type, top, left, bottom, right)
 
     def resizeImage(self, width, height, resolution=72, automatic=8):
         """Changes the size of the image.
