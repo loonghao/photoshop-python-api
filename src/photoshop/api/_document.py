@@ -392,9 +392,12 @@ class Document(Photoshop):
                     - TrimType.TopLeftPixel
                     - TrimType.TransparentPixels
             top (bool, optional): If true, trims away the top of the document.
-            left (bool, optional): If true, trims away the left of the document.
-            bottom (bool, optional): If true, trims away the bottom of the document.
-            right (bool, optional): 	If true, trims away the right of the document.
+            left (bool, optional): If true, trims away the left of the
+                document.
+            bottom (bool, optional): If true, trims away the bottom of the
+                document.
+            right (bool, optional): 	If true, trims away the right of the
+                document.
 
         """
         return self.app.trim(trim_type, top, left, bottom, right)
