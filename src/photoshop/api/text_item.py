@@ -1,4 +1,5 @@
 from ._core import Photoshop
+from .enumerations import AntiAlias, AutoKernType
 from .solid_color import SolidColor
 from .text_font import TextFont
 
@@ -18,17 +19,18 @@ class TextItem(Photoshop):
         self.app.alternateLigatures = value
 
     @property
-    def antiAliasMethod(self):
-        return self.app.antiAliasMethod
+    def antiAliasMethod(self) -> AntiAlias:
+        """The method of anti aliasing to use."""
+        return AntiAlias(self.app.antiAliasMethod)
 
     @antiAliasMethod.setter
     def antiAliasMethod(self, value):
         self.app.antiAliasMethod = value
 
     @property
-    def autoKerning(self):
+    def autoKerning(self) -> AutoKernType:
         """The auto kerning option to use."""
-        return self.app.autoKerning
+        return AutoKernType(self.app.autoKerning)
 
     @autoKerning.setter
     def autoKerning(self, value):
@@ -40,10 +42,17 @@ class TextItem(Photoshop):
 
     @autoLeadingAmount.setter
     def autoLeadingAmount(self, value):
+        """The percentage to use for auto (default) leading (in points).
+
+        Valid only when useAutoLeading = True.
+
+        """
+        self.app.useAutoLeading = True
         self.app.autoLeadingAmount = value
 
     @property
     def baselineShift(self):
+        """The unit value to use in the baseline offset of text."""
         return self.app.baselineShift
 
     @baselineShift.setter
@@ -51,12 +60,32 @@ class TextItem(Photoshop):
         self.app.baselineShift = value
 
     @property
-    def contents(self):
-        """str: The actual text in the layer."""
+    def capitalization(self):
+        """Gets text case."""
+        return self.app.capitalization
+
+    @capitalization.setter
+    def capitalization(self, value):
+        """Sets text case."""
+        self.app.capitalization = value
+
+    @property
+    def color(self) -> SolidColor:
+        """The text color."""
+        return SolidColor(self.app.color)
+
+    @color.setter
+    def color(self, color_value):
+        """The color of textItem."""
+        self.app.color = color_value
+
+    @property
+    def contents(self) -> str:
+        """The actual text in the layer."""
         return self.app.contents
 
     @contents.setter
-    def contents(self, text):
+    def contents(self, text: str):
         """Set the actual text in the layer.
 
         Args:
@@ -67,6 +96,9 @@ class TextItem(Photoshop):
 
     @property
     def desiredGlyphScaling(self):
+        """The desired amount by which to scale the horizontal size of the
+        text letters. A percentage value; at 100, the width of characters is
+        not scaled."""
         return self.app.desiredGlyphScaling
 
     @desiredGlyphScaling.setter
@@ -177,25 +209,6 @@ class TextItem(Photoshop):
     @size.setter
     def size(self, value):
         self.app.size = value
-
-    @property
-    def color(self) -> SolidColor:
-        return SolidColor(self.app.color)
-
-    @color.setter
-    def color(self, color_value):
-        """The color of textItem."""
-        self.app.color = color_value
-
-    @property
-    def capitalization(self):
-        """Gets text case."""
-        return self.app.capitalization
-
-    @capitalization.setter
-    def capitalization(self, value):
-        """Sets text case."""
-        self.app.capitalization = value
 
     @property
     def name(self):

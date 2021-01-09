@@ -23,8 +23,7 @@ class TargaSaveOptions(Photoshop):
         return self.app.resolution
 
     @resolution.setter
-    def resolution(self,
-                   value: TargaBitsPerPixels = TargaBitsPerPixels.Targa24Bits):
+    def resolution(self, value: TargaBitsPerPixels = TargaBitsPerPixels.Targa24Bits):
         self.app.resolution = value
 
     @property

@@ -37,5 +37,4 @@ class TextFonts(Photoshop):
         for font in self.app:
             if font.name == name:
                 return TextFont(font)
-        raise PhotoshopPythonAPIError("Could not find a TextFont named "
-                                      f'"{name}"')
+        raise PhotoshopPythonAPIError("Could not find a TextFont named " f'"{name}"')

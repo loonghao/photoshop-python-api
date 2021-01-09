@@ -38,7 +38,6 @@ class EPSOpenOptions(Photoshop):
     def width(self):
         return self.app.width
 
-
     @property
     def embedColorProfile(self):
         return self.app.embedColorProfile

@@ -31,8 +31,7 @@ class PDFSaveOptions(Photoshop):
         self.embedColorProfile = True
         if kwargs:
             if "encoding" in kwargs:
-                self.encoding = kwargs.get("encoding",
-                                           self.encoding_types.PDFJPEG)
+                self.encoding = kwargs.get("encoding", self.encoding_types.PDFJPEG)
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
@@ -95,9 +94,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.destinationProfile
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @destinationProfile.setter
     def destinationProfile(self, value):
@@ -122,9 +123,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.downSampleSize
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @downSampleSize.setter
     def downSampleSize(self, value):
@@ -139,9 +142,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.downSampleSizeLimit
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @downSampleSizeLimit.setter
     def downSampleSizeLimit(self, value: float):
@@ -234,9 +239,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.outputConditionID
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @outputConditionID.setter
     def outputConditionID(self, value):
@@ -250,9 +257,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.preserveEditing
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @preserveEditing.setter
     def preserveEditing(self, value):
@@ -266,9 +275,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.presetFile
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @presetFile.setter
     def presetFile(self, file_name):
@@ -281,9 +292,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.profileInclusionPolicy
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @profileInclusionPolicy.setter
     def profileInclusionPolicy(self, value):
@@ -296,9 +309,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.registryName
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @registryName.setter
     def registryName(self, value):
@@ -311,9 +326,11 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.spotColors
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @spotColors.setter
     def spotColors(self, value):
@@ -326,23 +343,27 @@ class PDFSaveOptions(Photoshop):
         try:
             return self.app.tileSize
         except COMError:
-            raise ValueError("Should set value first. "
-                             "This parameter can only be read after the "
-                             "value has been set.")
+            raise ValueError(
+                "Should set value first. "
+                "This parameter can only be read after the "
+                "value has been set."
+            )
 
     @tileSize.setter
     def tileSize(self, value):
         """The compression option. Valid only when encoding is JPEG2000."""
         if self.encoding not in (
-                self.encoding_types.PDFJPEG2000HIGH,
-                self.encoding_types.PDFJPEG2000LOSSLESS,
-                self.encoding_types.PDFJPEG2000MED,
-                self.encoding_types.PDFJPEG2000MEDLOW,
-                self.encoding_types.PDFJPEG2000LOW,
-                self.encoding_types.PDFJPEG2000MEDHIGH
+            self.encoding_types.PDFJPEG2000HIGH,
+            self.encoding_types.PDFJPEG2000LOSSLESS,
+            self.encoding_types.PDFJPEG2000MED,
+            self.encoding_types.PDFJPEG2000MEDLOW,
+            self.encoding_types.PDFJPEG2000LOW,
+            self.encoding_types.PDFJPEG2000MEDHIGH,
         ):
-            raise ValueError("tileSize only work in JPEG2000. Please "
-                             "change PDFSaveOptions.encoding to JPEG2000.")
+            raise ValueError(
+                "tileSize only work in JPEG2000. Please "
+                "change PDFSaveOptions.encoding to JPEG2000."
+            )
         self.app.tileSize = value
 
     @property

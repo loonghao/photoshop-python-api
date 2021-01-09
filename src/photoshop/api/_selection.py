@@ -97,7 +97,7 @@ class Selection(Photoshop):
 
     def resize(self, horizontal, vertical, anchor):
         """Resizes the selected area to the specified dimensions and anchor
-         position."""
+        position."""
         self.app.resize(horizontal, vertical, anchor)
 
     def resizeBoundary(self, horizontal, vertical, anchor):

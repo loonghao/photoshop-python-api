@@ -290,7 +290,10 @@ class Application(Photoshop):
         return True
 
     def doForcedProgress(self, title, javascript):
-        script = "app.doForcedProgress('{}', '{}')".format(title, javascript, )
+        script = "app.doForcedProgress('{}', '{}')".format(
+            title,
+            javascript,
+        )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -304,14 +307,20 @@ class Application(Photoshop):
             javascript (str): JavaScriptString to execute.
 
         """
-        script = "app.doProgress('{}', '{}')".format(title, javascript, )
+        script = "app.doProgress('{}', '{}')".format(
+            title,
+            javascript,
+        )
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSegmentTask(self, segmentLength, done, total, javascript):
         script = "app.doProgressSegmentTask({}, {}, {}, '{}');".format(
-            segmentLength, done, total, javascript,
+            segmentLength,
+            done,
+            total,
+            javascript,
         )
         self.eval_javascript(script)
         # Ensure the script execute success.
@@ -319,7 +328,9 @@ class Application(Photoshop):
 
     def doProgressSubTask(self, index, limit, javascript):
         script = "app.doProgressSubTask({}, {}, '{}');".format(
-            index, limit, javascript,
+            index,
+            limit,
+            javascript,
         )
         self.eval_javascript(script)
         # Ensure the script execute success.
@@ -364,11 +375,13 @@ class Application(Photoshop):
         value key."""
         return self.app.getCustomOptions(key)
 
-    def open(self, document_file_path,
-             document_type: str = None,
-             as_smart_object: bool = False) -> Document:
-        document = self.app.open(document_file_path, document_type,
-                                 as_smart_object)
+    def open(
+        self,
+        document_file_path,
+        document_type: str = None,
+        as_smart_object: bool = False,
+    ) -> Document:
+        document = self.app.open(document_file_path, document_type, as_smart_object)
         if not as_smart_object:
             return Document(document)
         return document
@@ -423,7 +436,9 @@ class Application(Photoshop):
 
     def runMenuItem(self, menu_id):
         """Run a menu item given the menu ID."""
-        return self.eval_javascript(f"app.runMenuItem({menu_id})", )
+        return self.eval_javascript(
+            f"app.runMenuItem({menu_id})",
+        )
 
     def showColorPicker(self):
         """Returns false if dialog is cancelled, true otherwise."""
