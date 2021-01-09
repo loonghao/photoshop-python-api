@@ -1,9 +1,7 @@
 """"""
 import pytest
 
-from photoshop.application import Application
-from photoshop.solid_color import SolidColor
-from photoshop.event_id import EventID
+from photoshop.api import Application, EventID, SolidColor
 
 
 class TestApplication:
@@ -24,8 +22,7 @@ class TestApplication:
         self.app.notifiers.removeAll()
 
     def test_active_document(self, photoshop_app):
-        assert photoshop_app.activeDocument.name == \
-               self.app.activeDocument.name
+        assert photoshop_app.activeDocument.name == self.app.activeDocument.name
 
     def test_get_background_color(self):
         assert self.app.backgroundColor.rgb.red == 255
@@ -44,8 +41,10 @@ class TestApplication:
 
     def test_set_background_color(self, photoshop_app):
         self.app.backgroundColor.rgb.green = 0
-        assert self.app.backgroundColor.rgb.green == \
-               photoshop_app.backgroundColor.rgb.green
+        assert (
+            self.app.backgroundColor.rgb.green
+            == photoshop_app.backgroundColor.rgb.green
+        )
 
     def test_build(self):
         assert self.app.build == "21.0 (20191018.r.37 2019/10/18: 614690fb487)"
@@ -67,7 +66,7 @@ class TestApplication:
         assert self.app.currentTool == "typeCreateOrEditTool"
 
     def test_displayDialogs(self):
-        assert self.app.displayDialogs == "DisplayErrorDialogs"
+        assert str(self.app.displayDialogs) == "DialogModes.DisplayErrorDialogs"
 
     def test_documents(self):
         assert len(self.app.documents) == 0
@@ -117,8 +116,7 @@ class TestApplication:
         assert not self.app.notifiersEnabled
 
     def test_get_application_path(self):
-        assert self.app.path.as_posix() == \
-               "C:/Program Files/Adobe/Adobe Photoshop 2020"
+        assert self.app.path.as_posix() == "C:/Program Files/Adobe/Adobe Photoshop 2020"
 
     def test_playbackDisplayDialogs(self):
         assert self.app.playbackDisplayDialogs == "DialogModes.NO"
@@ -173,7 +171,7 @@ class TestApplication:
         assert self.app.compareWithNumbers(20, 1)
 
     def test_do_action(self):
-        self.app.doAction('Vignette (selection)', 'Default Actions')
+        self.app.doAction("Vignette (selection)", "Default Actions")
 
     def test_featureEnabled(self):
         assert self.app.featureEnabled("photoshop/extended")
@@ -194,8 +192,7 @@ class TestApplication:
         return self.app.refreshFonts()
 
     def test_run_menu_item(self):
-        assert self.app.runMenuItem(
-            self.app.stringIDToTypeID("toggleProofColors"))
+        assert self.app.runMenuItem(self.app.stringIDToTypeID("toggleProofColors"))
 
     def test_showColorPicker(self):
         assert self.app.showColorPicker()
