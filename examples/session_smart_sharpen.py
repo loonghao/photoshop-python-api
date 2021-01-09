@@ -6,24 +6,22 @@ References:
 
 """
 
-from photoshop import Session
-
 import examples._psd_files as psd  # Import from examples.
+from photoshop import Session
 
 PSD_FILE = psd.get_psd_files()
 file_path = PSD_FILE["layer_comps.psd"]
 
 with Session(file_path, action="open") as ps:
+
     def SmartSharpen(inAmount, inRadius, inNoise):
         idsmart_sharpen_id = ps.app.stringIDToTypeID(ps.EventID.SmartSharpen)
         desc37 = ps.ActionDescriptor()
 
         idpresetKind = ps.app.stringIDToTypeID(ps.EventID.PresetKind)
         idpresetKindType = ps.app.stringIDToTypeID(ps.EventID.PresetKindType)
-        idpresetKindCustom = ps.app.stringIDToTypeID(
-            ps.EventID.PresetKindCustom)
-        desc37.putEnumerated(idpresetKind, idpresetKindType,
-                             idpresetKindCustom)
+        idpresetKindCustom = ps.app.stringIDToTypeID(ps.EventID.PresetKindCustom)
+        desc37.putEnumerated(idpresetKind, idpresetKindType, idpresetKindCustom)
         idAmnt = ps.app.charIDToTypeID("Amnt")
         idPrc = ps.app.charIDToTypeID("Rds ")
         desc37.putUnitDouble(idAmnt, idPrc, inAmount)
@@ -42,7 +40,6 @@ with Session(file_path, action="open") as ps:
         desc37.putEnumerated(idblur, idblurType, idGsnB)
 
         ps.app.ExecuteAction(idsmart_sharpen_id, desc37)
-
 
     docRef = ps.active_document
     nlayerSets = docRef.layerSets

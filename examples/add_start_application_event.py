@@ -7,9 +7,10 @@ Just like you manually in Script> Script Events Manager to enable the event.
 
 """
 
-from photoshop import Session
-from tempfile import mkdtemp
 import os
+from tempfile import mkdtemp
+
+from photoshop import Session
 
 with Session() as ps:
     root = mkdtemp()

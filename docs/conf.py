@@ -13,8 +13,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 import os
-import sys
 import re
+import sys
 
 import sphinx_rtd_theme
 
@@ -30,8 +30,7 @@ project_root = os.path.join(os.path.dirname(cwd), "src", "photoshop")
 
 with open(os.path.join(project_root, "__init__.py"), "r") as file_object:
     context = file_object.read()
-    package_version = re.search(r'__version__\s*=\s*"([\d/.]+)"',
-                                context).groups()[0]
+    package_version = re.search(r'__version__\s*=\s*"([\d/.]+)"', context).groups()[0]
 
 # -- General configuration ---------------------------------------------
 
@@ -145,7 +144,13 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "photoshop.tex", "photoshop Documentation", "", "manual",),
+    (
+        master_doc,
+        "photoshop.tex",
+        "photoshop Documentation",
+        "",
+        "manual",
+    ),
 ]
 
 # -- Options for manual page output ---------------------------------------

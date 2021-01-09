@@ -5,9 +5,7 @@ from tempfile import mkdtemp
 from photoshop import Session
 
 with Session() as ps:
-    option = ps.PDFSaveOptions(jpegQuality=12,
-                               layers=True,
-                               view=True)
+    option = ps.PDFSaveOptions(jpegQuality=12, layers=True, view=True)
     pdf = os.path.join(mkdtemp(), "test.pdf")
     ps.active_document.saveAs(pdf, option)
 

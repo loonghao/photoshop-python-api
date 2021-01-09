@@ -24,7 +24,8 @@ class Examples(object):
 
     def get_examples(self):
         files = [
-            file_ for file_ in glob.iglob(os.path.join(self._root, "*.py"))
+            file_
+            for file_ in glob.iglob(os.path.join(self._root, "*.py"))
             if "_psd_files.py" not in file_
         ]
         return files
