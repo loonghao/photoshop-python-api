@@ -1,6 +1,7 @@
 """Manual test all examples."""
 import glob
 import os
+
 from photoshop.api import Application
 
 root = os.path.join(os.path.dirname(os.path.dirname(__file__)), "examples")
