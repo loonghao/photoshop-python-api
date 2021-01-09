@@ -11,9 +11,8 @@ import os
 from datetime import datetime
 from tempfile import mkdtemp
 
-from photoshop import Session
-
 import examples._psd_files as psd  # Import from examples.
+from photoshop import Session
 
 PSD_FILE = psd.get_psd_files()
 slate_template = PSD_FILE["slate_template.psd"]

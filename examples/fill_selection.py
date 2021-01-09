@@ -10,8 +10,7 @@ with Session() as ps:
         if start_ruler_units is not ps.Units.Pixels:
             ps.app.Preferences.RulerUnits = ps.Units.Pixels
         docRef = ps.app.documents.add(
-            320, 240, 72, None, ps.NewDocumentMode.NewRGB,
-            ps.DocumentFill.White
+            320, 240, 72, None, ps.NewDocumentMode.NewRGB, ps.DocumentFill.White
         )
         docRef.artLayers.add()
         ps.app.preferences.rulerUnits = start_ruler_units

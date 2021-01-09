@@ -5,10 +5,10 @@ References:
 """
 import os
 
+import examples._psd_files as psd  # Import from examples.
+
 # selections in the open document.
 import photoshop.api as ps
-
-import examples._psd_files as psd  # Import from examples.
 
 PSD_FILE = psd.get_psd_files()
 
@@ -30,8 +30,7 @@ nArtLayers = len(
     list((i, x) for i, x in enumerate(docRef.layerSets[nLayerSets].artLayers)),
 )
 
-active_layer = docRef.activeLayer = docRef.layerSets[nLayerSets].artLayers[
-    nArtLayers]
+active_layer = docRef.activeLayer = docRef.layerSets[nLayerSets].artLayers[nArtLayers]
 sel_area = ((0, 212), (300, 212), (300, 300), (0, 300))
 docRef.selection.select(sel_area, ps.SelectionType.ReplaceSelection, 20, True)
 print(f"Current active layer: {active_layer.name}")
@@ -44,11 +43,15 @@ backColor.hsb.brightness = 100
 app.backgroundColor = backColor
 
 sel_area2 = ((120, 20), (210, 20), (210, 110), (120, 110))
-docRef.selection.select(sel_area2, ps.SelectionType.ReplaceSelection, 25,
-                        False)
+docRef.selection.select(sel_area2, ps.SelectionType.ReplaceSelection, 25, False)
 active_layer.applyDiffuseGlow(9, 12, 15)
 active_layer.applyGlassEffect(
-    7, 3, 7, False, ps.TextureType.TinyLensTexture, None,
+    7,
+    3,
+    7,
+    False,
+    ps.TextureType.TinyLensTexture,
+    None,
 )
 docRef.selection.deselect()
 

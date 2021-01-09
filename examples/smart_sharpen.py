@@ -6,9 +6,8 @@ References:
 
 """
 
-import photoshop.api as ps
-
 import examples._psd_files as psd  # Import from examples.
+import photoshop.api as ps
 
 app = ps.Application()
 
