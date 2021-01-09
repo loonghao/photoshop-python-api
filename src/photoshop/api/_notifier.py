@@ -33,7 +33,7 @@ class Notifier(Photoshop):
 
     @property
     def eventFile(self) -> Path:
-        """ The path to the file to execute when the event occurs and
+        """The path to the file to execute when the event occurs and
         activates the notifier."""
         return Path(self.app.eventFile)
 

@@ -37,8 +37,7 @@ class Photoshop(object):
                 self.app = self.instance_app(self._get_program_id())
             except OSError:
                 raise PhotoshopPythonAPIError(
-                    "Please check if you have "
-                    "Photoshop installed correctly.",
+                    "Please check if you have " "Photoshop installed correctly.",
                 )
         if parent:
             self.adobe = self.app
@@ -80,8 +79,7 @@ class Photoshop(object):
         return winreg.OpenKey(
             winreg.HKEY_LOCAL_MACHINE,
             key,
-            access=winreg.KEY_READ | mappings.get(machine_type,
-                                                  winreg.KEY_WOW64_32KEY),
+            access=winreg.KEY_READ | mappings.get(machine_type, winreg.KEY_WOW64_32KEY),
         )
 
     def get_application_path(self):

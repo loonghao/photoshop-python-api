@@ -28,30 +28,28 @@ So as follows:
 from typing import Any
 
 # Import local modules
-from photoshop.api import ActionReference
 from photoshop.api import ActionDescriptor
-from photoshop.api import enumerations
-from photoshop.api import errors
+from photoshop.api import ActionReference
 from photoshop.api import Application
-from photoshop.api import EventID
-from photoshop.api import SolidColor
-
-from photoshop.api import TextItem
-from photoshop.api import LabColor
-from photoshop.api import HSBColor
+from photoshop.api import BMPSaveOptions
 from photoshop.api import CMYKColor
-from photoshop.api import RGBColor
-from photoshop.api import GrayColor
-
+from photoshop.api import EventID
+from photoshop.api import ExportOptionsSaveForWeb
 from photoshop.api import GIFSaveOptions
+from photoshop.api import GrayColor
+from photoshop.api import HSBColor
 from photoshop.api import JPEGSaveOptions
+from photoshop.api import LabColor
 from photoshop.api import PDFSaveOptions
 from photoshop.api import PNGSaveOptions
 from photoshop.api import PhotoshopSaveOptions
-from photoshop.api import ExportOptionsSaveForWeb
-from photoshop.api import BMPSaveOptions
-from photoshop.api import TiffSaveOptions
+from photoshop.api import RGBColor
+from photoshop.api import SolidColor
 from photoshop.api import TargaSaveOptions
+from photoshop.api import TextItem
+from photoshop.api import TiffSaveOptions
+from photoshop.api import enumerations
+from photoshop.api import errors
 
 
 class Session:
@@ -65,11 +63,11 @@ class Session:
     """
 
     def __init__(
-            self,
-            file_path: str = None,
-            action: str = None,
-            callback: Any = None,
-            auto_close=False,
+        self,
+        file_path: str = None,
+        action: str = None,
+        callback: Any = None,
+        auto_close=False,
     ):
         """Session of Photoshop.
 
@@ -185,7 +183,9 @@ class Session:
         self.GalleryConstrainType = enumerations.GalleryConstrainType
         self.GalleryFontType = enumerations.GalleryFontType
         self.GallerySecurityTextColorType = enumerations.GallerySecurityTextColorType
-        self.GallerySecurityTextPositionType = enumerations.GallerySecurityTextPositionType
+        self.GallerySecurityTextPositionType = (
+            enumerations.GallerySecurityTextPositionType
+        )
         self.GallerySecurityTextRotateType = enumerations.GallerySecurityTextRotateType
         self.GallerySecurityType = enumerations.GallerySecurityType
         self.GalleryThumbSizeType = enumerations.GalleryThumbSizeType
@@ -276,8 +276,7 @@ class Session:
                 return self.app.activeDocument
             return self._active_document
         except errors.PhotoshopPythonAPICOMError:
-            raise errors.PhotoshopPythonAPIError("No active document "
-                                                 "available.")
+            raise errors.PhotoshopPythonAPIError("No active document " "available.")
 
     @staticmethod
     def echo(*args, **kwargs):
@@ -307,12 +306,20 @@ class Session:
     def _action_document_duplicate(self):
         self.active_document = self.active_document.duplicate()
 
-    def __enter__(self):
+    def run_action(self):
         try:
             _action = getattr(self, f"_action_{self._action}")
             _action()
         except AttributeError:
             pass
+
+    def close(self):
+        """closing current session."""
+        if self._auto_close:
+            self.active_document.close()
+
+    def __enter__(self):
+        self.run_action()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -322,5 +329,4 @@ class Session:
         except Exception as err:
             raise errors.PhotoshopPythonAPIError(err)
         finally:
-            if self._auto_close:
-                self.active_document.close()
+            self.close()

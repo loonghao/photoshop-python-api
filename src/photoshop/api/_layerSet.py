@@ -6,7 +6,6 @@ from .enumerations import AnchorPosition
 
 
 class LayerSet(Photoshop):
-
     def __init__(self, parent):
         super().__init__(parent=parent)
 
@@ -43,6 +42,7 @@ class LayerSet(Photoshop):
     def layerSets(self):
         # pylint: disable=import-outside-toplevel
         from ._layerSets import LayerSets
+
         return LayerSets(self.app.layerSets)
 
     @property
@@ -95,10 +95,9 @@ class LayerSet(Photoshop):
 
     def remove(self):
         layer = f'app.activeDocument.layerSets.getByName("{self.app.name}")'
-        self.eval_javascript(f'{layer}.remove()')
+        self.eval_javascript(f"{layer}.remove()")
 
-    def resize(self, horizontal=None, vertical=None,
-               anchor: AnchorPosition = None):
+    def resize(self, horizontal=None, vertical=None, anchor: AnchorPosition = None):
         self.app.resize(horizontal, vertical, anchor)
 
     def __iter__(self):
