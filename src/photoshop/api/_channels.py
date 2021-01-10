@@ -1,5 +1,5 @@
-from ._core import Photoshop
 from ._channel import Channel
+from ._core import Photoshop
 from .errors import PhotoshopPythonAPIError
 
 
@@ -36,4 +36,4 @@ class Channels(Photoshop):
         for channel in self._channels:
             if channel.name == name:
                 return Channel(channel)
-        raise PhotoshopPythonAPIError("Could not find a channel named " f'"{name}"')
+        raise PhotoshopPythonAPIError(f'Could not find a channel named "{name}"')

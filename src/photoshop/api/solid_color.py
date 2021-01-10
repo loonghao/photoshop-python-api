@@ -74,7 +74,7 @@ class SolidColor(Photoshop):
         return RGBColor(self.app.NearestWebColor)
 
     @property
-    def rgb(self):
+    def rgb(self) -> RGBColor:
         """The RGB color mode."""
         return RGBColor(self.app.rgb)
 

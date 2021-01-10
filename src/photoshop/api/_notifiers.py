@@ -8,8 +8,8 @@ Notifiers must be enabled using the Application.notifiersEnabled property.
 
 """
 
-from typing import Any
-from typing import Optional
+from typing import Any, Optional
+
 from ._core import Photoshop
 from ._notifier import Notifier
 

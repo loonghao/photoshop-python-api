@@ -1,6 +1,6 @@
-from ._core import Photoshop
-
 from pathlib import Path
+
+from ._core import Photoshop
 
 
 class Preferences(Photoshop):

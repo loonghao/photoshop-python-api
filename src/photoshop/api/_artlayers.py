@@ -1,5 +1,5 @@
-from ._core import Photoshop
 from ._artlayer import ArtLayer
+from ._core import Photoshop
 
 
 # pylint: disable=too-many-public-methods

@@ -1,8 +1,6 @@
 from ._core import Photoshop
 from ._document import Document
-from .enumerations import BitsPerChannelType
-from .enumerations import DocumentFill
-from .enumerations import NewDocumentMode
+from .enumerations import BitsPerChannelType, DocumentFill, NewDocumentMode
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments

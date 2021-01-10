@@ -22,9 +22,10 @@ from ._artlayers import ArtLayers
 from ._channels import Channels
 from ._core import Photoshop
 from ._documentinfo import DocumentInfo
+from ._layerComps import LayerComps
+from ._layers import Layers
 from ._layerSet import LayerSet
 from ._layerSets import LayerSets
-from ._layers import Layers
 from ._selection import Selection
 from .enumerations import ExtensionType, SaveOptions
 from .errors import COMError
@@ -172,7 +173,7 @@ class Document(Photoshop):
     @property
     def layerComps(self):
         """The layer comps collection in this Document."""
-        return self.app.LayerComps
+        return LayerComps(self.app.layerComps)
 
     @property
     def layers(self):
@@ -266,6 +267,16 @@ class Document(Photoshop):
     def typename(self):
         """The class name of the object."""
         return self.app.typename
+
+    @property
+    def cloudDocument(self):
+        """This document is in the cloud."""
+        return self.app.cloudDocument
+
+    @property
+    def cloudWorkAreaDirectory(self):
+        """Local directory for this cloud document."""
+        return self.app.cloudWorkAreaDirectory
 
     @property
     def width(self):

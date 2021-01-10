@@ -9,8 +9,9 @@ References:
 
 """
 
-import examples._psd_files as psd  # Import from examples.
 from photoshop import Session
+
+import examples._psd_files as psd  # Import from examples.
 
 PSD_FILE = psd.get_psd_files()
 

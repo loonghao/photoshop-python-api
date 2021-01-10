@@ -4,8 +4,9 @@ import os
 from datetime import datetime
 from tempfile import mkdtemp
 
-import examples._psd_files as psd  # Import from examples.
 from photoshop import Session
+
+import examples._psd_files as psd  # Import from examples.
 
 PSD_FILE = psd.get_psd_files()
 file_path = PSD_FILE["slate_template.psd"]
