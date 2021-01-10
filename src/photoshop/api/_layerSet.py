@@ -1,8 +1,9 @@
+# Import local modules
+from ._artlayer import ArtLayer
 from ._artlayers import ArtLayers
 from ._core import Photoshop
 from ._layers import Layers
-from ._artlayer import ArtLayer
-from .enumerations import AnchorPosition
+from .enumerations import AnchorPosition, BlendMode
 
 
 class LayerSet(Photoshop):
@@ -23,7 +24,7 @@ class LayerSet(Photoshop):
 
     @property
     def blendMode(self):
-        return self.app.blendMode
+        return BlendMode(self.app.blendMode)
 
     @property
     def bounds(self):
@@ -33,6 +34,10 @@ class LayerSet(Photoshop):
     @property
     def enabledChannels(self):
         return self.app.enabledChannels
+
+    @enabledChannels.setter
+    def enabledChannels(self, value):
+        self.app.enabledChannels = value
 
     @property
     def layers(self):
@@ -51,15 +56,17 @@ class LayerSet(Photoshop):
         return self.app.linkedLayers or []
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.app.name
 
     @name.setter
     def name(self, value):
+        """The name of this layer set."""
         self.app.name = value
 
     @property
     def opacity(self):
+        """The master opacity of the set."""
         return round(self.app.opacity)
 
     @opacity.setter
@@ -99,6 +106,17 @@ class LayerSet(Photoshop):
 
     def resize(self, horizontal=None, vertical=None, anchor: AnchorPosition = None):
         self.app.resize(horizontal, vertical, anchor)
+
+    def rotate(self, angle, anchor=None):
+        self.app.rotate(angle, anchor)
+
+    def translate(self, delta_x, delta_y):
+        """Moves the position relative to its current position."""
+        self.app.translate(delta_x, delta_y)
+
+    def unlink(self):
+        """Unlinks the layer set."""
+        self.app.unlink()
 
     def __iter__(self):
         for layer in self.app:

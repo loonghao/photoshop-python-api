@@ -6,6 +6,7 @@ Notifiers must be enabled using the Application.notifiersEnabled property
 
 """
 from pathlib import Path
+
 from ._core import Photoshop
 
 

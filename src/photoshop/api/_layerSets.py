@@ -1,6 +1,6 @@
 from ._core import Photoshop
-from .errors import PhotoshopPythonAPIError
 from ._layerSet import LayerSet
+from .errors import PhotoshopPythonAPIError
 
 
 class LayerSets(Photoshop):
@@ -26,6 +26,9 @@ class LayerSets(Photoshop):
 
     def item(self, index):
         return LayerSet(self.app.item(index))
+
+    def removeAll(self):
+        self.app.removeAll()
 
     def getByName(self, name):
         for layer in self.app:

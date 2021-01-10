@@ -27,14 +27,20 @@ class LayerComps(Photoshop):
     def typename(self):
         return self.app.typename
 
-    def add(self, name,
-            comment="No Comment.",
-            appearance=True,
-            position=True,
-            visibility=True,
-            childLayerCompStat=False):
-        return LayerComp(self.app.add(name, comment, appearance, position, visibility,
-                                      childLayerCompStat))
+    def add(
+        self,
+        name,
+        comment="No Comment.",
+        appearance=True,
+        position=True,
+        visibility=True,
+        childLayerCompStat=False,
+    ):
+        return LayerComp(
+            self.app.add(
+                name, comment, appearance, position, visibility, childLayerCompStat
+            )
+        )
 
     def getByName(self, name):
         for layer in self._layers:

@@ -1,7 +1,6 @@
 from ._core import Photoshop
-from .enumerations import SelectionType
+from .enumerations import ColorBlendMode, SelectionType
 from .solid_color import SolidColor
-from .enumerations import ColorBlendMode
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments

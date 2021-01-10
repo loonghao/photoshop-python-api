@@ -3,10 +3,8 @@
 # Import built-in modules
 import os
 import platform
-
 import winreg
-from typing import Any
-from typing import List
+from typing import Any, List
 
 # Import third-party modules
 from comtypes.client import CreateObject

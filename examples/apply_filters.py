@@ -5,10 +5,10 @@ References:
 """
 import os
 
-import examples._psd_files as psd  # Import from examples.
-
 # selections in the open document.
 import photoshop.api as ps
+
+import examples._psd_files as psd  # Import from examples.
 
 PSD_FILE = psd.get_psd_files()
 

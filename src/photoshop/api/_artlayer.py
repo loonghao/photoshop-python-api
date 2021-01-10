@@ -1,8 +1,7 @@
 from typing import Any
 
 from ._core import Photoshop
-from .enumerations import LayerKind
-from .enumerations import RasterizeType
+from .enumerations import LayerKind, RasterizeType
 from .text_item import TextItem
 
 
@@ -10,6 +9,22 @@ from .text_item import TextItem
 class ArtLayer(Photoshop):
     def __init__(self, parent: Any = None):
         super().__init__(parent=parent)
+
+    @property
+    def allLocked(self):
+        return self.app.allLocked
+
+    @allLocked.setter
+    def allLocked(self, value):
+        self.app.allLocked = value
+
+    @property
+    def blendMode(self):
+        return self.app.blendMode
+
+    @blendMode.setter
+    def blendMode(self, mode):
+        self.app.blendMode = mode
 
     @property
     def name(self) -> str:
@@ -128,7 +143,12 @@ class ArtLayer(Photoshop):
     @property
     def textItem(self) -> TextItem:
         """The text that is associated with the layer. Valid only when ‘kind’
-        is text layer."""
+        is text layer.
+
+        returns:
+            TextItem:
+
+        """
         return TextItem(self.app.textItem)
 
     @textItem.setter
@@ -413,7 +433,6 @@ class ArtLayer(Photoshop):
 
     def remove(self):
         layer = f'app.activeDocument.artLayers.getByName("{self.app.name}")'
-        print(layer)
         self.eval_javascript(f"{layer}.remove()")
 
     def rasterize(self, target: RasterizeType):

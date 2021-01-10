@@ -6,8 +6,7 @@ using the Document.saveAs() method.
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import PDFEncodingType
-from photoshop.api.enumerations import PDFResampleType
+from photoshop.api.enumerations import PDFEncodingType, PDFResampleType
 from photoshop.api.errors import COMError
 
 

@@ -22,11 +22,11 @@ from ._core import Photoshop
 from ._document import Document
 from ._documents import Documents
 from ._measurement_log import MeasurementLog
+from ._notifiers import Notifiers
 from ._preferences import Preferences
 from ._text_fonts import TextFonts
 from .enumerations import DialogModes
 from .solid_color import SolidColor
-from ._notifiers import Notifiers
 
 
 class Application(Photoshop):
