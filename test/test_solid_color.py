@@ -1,6 +1,5 @@
 """"""
 import pytest
-
 from photoshop import Session
 
 

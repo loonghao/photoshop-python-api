@@ -1,6 +1,5 @@
 """"""
 import pytest
-
 from photoshop.api import Application, EventID, SolidColor
 
 
