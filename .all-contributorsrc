@@ -64,6 +64,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ClementHector",
+      "name": "clement",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7068597?v=4",
+      "profile": "https://github.com/ClementHector",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "skipCi": true
