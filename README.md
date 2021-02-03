@@ -20,7 +20,7 @@
 <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 </p>
 
@@ -122,17 +122,19 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/loonghao"><img src="https://avatars1.githubusercontent.com/u/13111745?v=4" width="100px;" alt=""/><br /><sub><b>Hal</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=loonghao" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/voodraizer"><img src="https://avatars0.githubusercontent.com/u/1332729?v=4" width="100px;" alt=""/><br /><sub><b>voodraizer</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Avoodraizer" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/brunosly"><img src="https://avatars2.githubusercontent.com/u/4326547?v=4" width="100px;" alt=""/><br /><sub><b>brunosly</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Abrunosly" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/tubi-carrillo"><img src="https://avatars3.githubusercontent.com/u/33004093?v=4" width="100px;" alt=""/><br /><sub><b>tubi</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Atubi-carrillo" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/wjxiehaixin"><img src="https://avatars0.githubusercontent.com/u/48039822?v=4" width="100px;" alt=""/><br /><sub><b>wjxiehaixin</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Awjxiehaixin" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="http://it.econline.net"><img src="https://avatars0.githubusercontent.com/u/993544?v=4" width="100px;" alt=""/><br /><sub><b>罗马钟</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Aenzozhong" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/loonghao"><img src="https://avatars1.githubusercontent.com/u/13111745?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hal</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=loonghao" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/voodraizer"><img src="https://avatars0.githubusercontent.com/u/1332729?v=4?s=100" width="100px;" alt=""/><br /><sub><b>voodraizer</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Avoodraizer" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/brunosly"><img src="https://avatars2.githubusercontent.com/u/4326547?v=4?s=100" width="100px;" alt=""/><br /><sub><b>brunosly</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Abrunosly" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/tubi-carrillo"><img src="https://avatars3.githubusercontent.com/u/33004093?v=4?s=100" width="100px;" alt=""/><br /><sub><b>tubi</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Atubi-carrillo" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/wjxiehaixin"><img src="https://avatars0.githubusercontent.com/u/48039822?v=4?s=100" width="100px;" alt=""/><br /><sub><b>wjxiehaixin</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Awjxiehaixin" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://it.econline.net"><img src="https://avatars0.githubusercontent.com/u/993544?v=4?s=100" width="100px;" alt=""/><br /><sub><b>罗马钟</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Aenzozhong" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/ClementHector"><img src="https://avatars.githubusercontent.com/u/7068597?v=4?s=100" width="100px;" alt=""/><br /><sub><b>clement</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3AClementHector" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://allcontributors.org) specification.
