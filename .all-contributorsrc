@@ -73,6 +73,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "krevlinmen",
+      "name": "krevlinmen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56278440?v=4",
+      "profile": "https://github.com/krevlinmen",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "skipCi": true
