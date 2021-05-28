@@ -1,0 +1,50 @@
+name: Python package
+
+on: [pull_request]
+
+jobs:
+  python-check:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install -U pip poetry
+        poetry --version
+        poetry install
+    - name: Run tests and linters
+      run: |
+        #!/bin/sh -e
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        export PREFIX="poetry run python -m "
+        if [ -d 'venv' ] ; then
+            export PREFIX="venv/bin/"
+        fi
+
+        ${PREFIX}pytest --cov-report term-missing --cov-report=xml:coverage.xml --cov=entity_addict
+        ${PREFIX}black entity_addict --check
+        ${PREFIX}isort --check-only entity_addict
+        ${PREFIX}flake8 entity_addict/
+        ${PREFIX}mypy entity_addict/
+        ${PREFIX}pydocstyle --convention=google --add-ignore=D1,D415
+
+    - name: Upload coverage to Codecov
+      if: runner.os == 'Linux'
+      uses: codecov/codecov-action@v1.0.3
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
