@@ -5,7 +5,9 @@ References:
 
 """
 
+# Import local modules
 import photoshop.api as ps
+
 
 app = ps.Application()
 

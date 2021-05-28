@@ -1,8 +1,11 @@
 """A trim example."""
 
+# Import third-party modules
+import examples._psd_files as psd  # Import from examples.
+
+# Import local modules
 from photoshop import Session
 
-import examples._psd_files as psd  # Import from examples.
 
 PSD_FILE = psd.get_psd_files()
 example_file = PSD_FILE["trim.psd"]

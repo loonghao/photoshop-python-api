@@ -1,6 +1,8 @@
 """Import a image as a artLayer."""
 
+# Import local modules
 from photoshop import Session
+
 
 with Session(action="new_document") as ps:
     desc = ps.ActionDescriptor

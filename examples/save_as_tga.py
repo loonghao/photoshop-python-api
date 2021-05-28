@@ -1,7 +1,10 @@
+# Import built-in modules
 import os
 from tempfile import mkdtemp
 
+# Import local modules
 from photoshop import Session
+
 
 with Session(action="new_document") as ps:
     doc = ps.active_document

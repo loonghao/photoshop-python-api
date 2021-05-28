@@ -1,5 +1,7 @@
-import photoshop.api as ps
+# Import local modules
 from photoshop import Session
+import photoshop.api as ps
+
 
 # style 1
 app = ps.Application()

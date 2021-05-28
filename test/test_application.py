@@ -1,6 +1,11 @@
 """"""
+# Import third-party modules
 import pytest
-from photoshop.api import Application, EventID, SolidColor
+
+# Import local modules
+from photoshop.api import Application
+from photoshop.api import EventID
+from photoshop.api import SolidColor
 
 
 class TestApplication:
