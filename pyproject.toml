@@ -20,6 +20,9 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
 ]
+packages = [
+    { include = "src/photoshop" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
