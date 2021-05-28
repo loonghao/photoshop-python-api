@@ -1,4 +1,6 @@
+# Import local modules
 from photoshop import Session
+
 
 with Session() as ps:
     # Print the current tool.

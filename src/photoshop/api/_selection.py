@@ -1,6 +1,8 @@
-from ._core import Photoshop
-from .enumerations import ColorBlendMode, SelectionType
-from .solid_color import SolidColor
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import ColorBlendMode
+from photoshop.api.enumerations import SelectionType
+from photoshop.api.solid_color import SolidColor
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments

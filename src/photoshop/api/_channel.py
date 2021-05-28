@@ -1,4 +1,5 @@
-from ._core import Photoshop
+# Import local modules
+from photoshop.api._core import Photoshop
 
 
 # pylint: disable=too-many-public-methods

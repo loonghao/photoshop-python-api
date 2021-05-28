@@ -7,13 +7,17 @@
 
 """
 
-import os
+# Import built-in modules
 from datetime import datetime
+import os
 from tempfile import mkdtemp
 
+# Import third-party modules
+import examples._psd_files as psd  # Import from examples.
+
+# Import local modules
 from photoshop import Session
 
-import examples._psd_files as psd  # Import from examples.
 
 PSD_FILE = psd.get_psd_files()
 slate_template = PSD_FILE["slate_template.psd"]

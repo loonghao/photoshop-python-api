@@ -1,3 +1,4 @@
+# Import local modules
 from photoshop import Session
 
 

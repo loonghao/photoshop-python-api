@@ -1,10 +1,13 @@
+# Import built-in modules
 import os
 
+# Import third-party modules
 import pytest
 
 
 @pytest.fixture()
 def photoshop_app():
+    # Import local modules
     from photoshop.api import Application
 
     app = Application()

@@ -1,4 +1,5 @@
 """constants type of enum for Photoshop."""
+# Import built-in modules
 from enum import IntEnum
 
 

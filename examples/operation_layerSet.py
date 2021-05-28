@@ -1,6 +1,8 @@
 """A examples to show you how to operation layerSet."""
 
+# Import local modules
 from photoshop import Session
+
 
 with Session(action="new_document") as ps:
     docRef = ps.active_document

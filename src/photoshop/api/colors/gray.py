@@ -1,6 +1,6 @@
 """Defines a gray color, used in the `SolidColor` object."""
 # Import local modules
-from .._core import Photoshop
+from photoshop.api._core import Photoshop
 
 
 class GrayColor(Photoshop):

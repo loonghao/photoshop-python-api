@@ -4,10 +4,10 @@ python:
     - "3.7"
     - "3.8"
 before_script:
-    - python --version
-    - pip install pylint flake8 codecov
+    - pip install poetry
+    - poetry install
 script:
-    - codecov
+    - poetry run codecov
 
 cache: pip
 before_cache:
