@@ -9,7 +9,7 @@ application.
 from pprint import pformat
 
 # Import local modules
-from ._core import Photoshop
+from photoshop.api._core import Photoshop
 
 
 # pylint: disable=too-many-public-methods

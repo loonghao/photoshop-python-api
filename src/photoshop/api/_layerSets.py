@@ -1,6 +1,7 @@
-from ._core import Photoshop
-from ._layerSet import LayerSet
-from .errors import PhotoshopPythonAPIError
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api._layerSet import LayerSet
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class LayerSets(Photoshop):

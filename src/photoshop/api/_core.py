@@ -3,22 +3,23 @@
 # Import built-in modules
 import os
 import platform
+from typing import Any
+from typing import List
 import winreg
-from typing import Any, List
 
 # Import third-party modules
 from comtypes.client import CreateObject
 
 # Import local modules
-from . import constants
-from .errors import PhotoshopPythonAPIError
+from photoshop.api import constants
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class Photoshop(object):
     _root = "Photoshop"
     REG_PATH = "SOFTWARE\\Adobe\\Photoshop"
     _object_name = "Application"
-    object_name = None
+    object_name: str = None
 
     def __init__(self, ps_version: str = None, parent: Any = None):
         self._program_name = None

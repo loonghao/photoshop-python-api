@@ -1,5 +1,7 @@
 """Save your current active document as a .psd file."""
+# Import local modules
 from photoshop import Session
+
 
 with Session() as ps:
     psd_file = "your/psd/save/file/path.psd"

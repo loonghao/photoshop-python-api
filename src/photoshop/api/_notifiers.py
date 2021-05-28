@@ -8,10 +8,13 @@ Notifiers must be enabled using the Application.notifiersEnabled property.
 
 """
 
-from typing import Any, Optional
+# Import built-in modules
+from typing import Any
+from typing import Optional
 
-from ._core import Photoshop
-from ._notifier import Notifier
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api._notifier import Notifier
 
 
 class Notifiers(Photoshop):

@@ -1,6 +1,6 @@
 # Import local modules
-from .._core import Photoshop
-from ..enumerations import TargaBitsPerPixels
+from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import TargaBitsPerPixels
 
 
 class TargaSaveOptions(Photoshop):

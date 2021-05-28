@@ -1,7 +1,7 @@
 # Import local modules
-from ._core import Photoshop
-from ._layerComp import LayerComp
-from .errors import PhotoshopPythonAPIError
+from photoshop.api._core import Photoshop
+from photoshop.api._layerComp import LayerComp
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class LayerComps(Photoshop):

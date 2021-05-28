@@ -4,7 +4,8 @@ It can be used for low-level access info Photoshop.
 
 
 """
-from ._core import Photoshop
+# Import local modules
+from photoshop.api._core import Photoshop
 
 
 class ActionList(Photoshop):
