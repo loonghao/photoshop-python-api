@@ -33,7 +33,6 @@ jobs:
             export PREFIX="venv/bin/"
         fi
 
-        ${PREFIX}pytest --cov-report term-missing --cov-report=xml:coverage.xml --cov=photoshop-python-api
         ${PREFIX}black src/photoshop --check
         ${PREFIX}isort --check-only src/photoshop
         ${PREFIX}flake8 src/photoshop

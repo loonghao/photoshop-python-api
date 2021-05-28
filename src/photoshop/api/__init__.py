@@ -27,6 +27,7 @@ from photoshop.api.save_options import TiffSaveOptions
 from photoshop.api.solid_color import SolidColor
 from photoshop.api.text_item import TextItem
 
+
 __all__ = [  # noqa: F405
     "ActionDescriptor",
     "ActionReference",
