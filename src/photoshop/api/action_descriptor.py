@@ -7,12 +7,14 @@ see the Photoshop Scripting Guide.
 
 """
 
+# Import built-in modules
 from pathlib import Path
 
-from ._core import Photoshop
-from .action_list import ActionList
-from .action_reference import ActionReference
-from .enumerations import DescValueType
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api.action_list import ActionList
+from photoshop.api.action_reference import ActionReference
+from photoshop.api.enumerations import DescValueType
 
 
 class ActionDescriptor(Photoshop):
@@ -67,7 +69,7 @@ class ActionDescriptor(Photoshop):
         return self.app.getClass(key)
 
     def getData(self, key: int) -> int:
-        """Gets raw byte data as a string value. """
+        """Gets raw byte data as a string value."""
         return self.app.getData(key)
 
     def getDouble(self, key: int) -> int:

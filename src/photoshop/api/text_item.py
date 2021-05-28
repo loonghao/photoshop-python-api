@@ -1,8 +1,15 @@
-from ._core import Photoshop
-from .enumerations import (AntiAlias, AutoKernType, Direction, Justification,
-                           Language, StrikeThruType, TextComposer, TextType)
-from .solid_color import SolidColor
-from .text_font import TextFont
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import AntiAlias
+from photoshop.api.enumerations import AutoKernType
+from photoshop.api.enumerations import Direction
+from photoshop.api.enumerations import Justification
+from photoshop.api.enumerations import Language
+from photoshop.api.enumerations import StrikeThruType
+from photoshop.api.enumerations import TextComposer
+from photoshop.api.enumerations import TextType
+from photoshop.api.solid_color import SolidColor
+from photoshop.api.text_font import TextFont
 
 
 class TextItem(Photoshop):

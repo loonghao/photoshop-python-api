@@ -33,12 +33,10 @@ jobs:
             export PREFIX="venv/bin/"
         fi
 
-        ${PREFIX}pytest --cov-report term-missing --cov-report=xml:coverage.xml --cov=entity_addict
-        ${PREFIX}black entity_addict --check
-        ${PREFIX}isort --check-only entity_addict
-        ${PREFIX}flake8 entity_addict/
-        ${PREFIX}mypy entity_addict/
-        ${PREFIX}pydocstyle --convention=google --add-ignore=D1,D415
+        ${PREFIX}pytest --cov-report term-missing --cov-report=xml:coverage.xml --cov=photoshop-python-api
+        ${PREFIX}black src/photoshop --check
+        ${PREFIX}isort --check-only src/photoshop
+        ${PREFIX}flake8 src/photoshop
 
     - name: Upload coverage to Codecov
       if: runner.os == 'Linux'

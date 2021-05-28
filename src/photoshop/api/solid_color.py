@@ -9,13 +9,14 @@ Maps a color to equivalents in all available color models.
 
 """
 
-from ._core import Photoshop
-from .colors.cmyk import CMYKColor
-from .colors.gray import GrayColor
-from .colors.hsb import HSBColor
-from .colors.lab import LabColor
-from .colors.rgb import RGBColor
-from .enumerations import ColorModel
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api.colors.cmyk import CMYKColor
+from photoshop.api.colors.gray import GrayColor
+from photoshop.api.colors.hsb import HSBColor
+from photoshop.api.colors.lab import LabColor
+from photoshop.api.colors.rgb import RGBColor
+from photoshop.api.enumerations import ColorModel
 
 
 class SolidColor(Photoshop):

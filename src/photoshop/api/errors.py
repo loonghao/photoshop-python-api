@@ -1,3 +1,4 @@
+# Import third-party modules
 from comtypes import COMError
 
 

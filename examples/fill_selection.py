@@ -1,7 +1,9 @@
 # Fill the current selection with an RGB color.
 
 
+# Import local modules
 from photoshop import Session
+
 
 with Session() as ps:
     start_ruler_units = ps.app.Preferences.RulerUnits

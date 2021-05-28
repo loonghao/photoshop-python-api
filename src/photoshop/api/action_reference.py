@@ -8,8 +8,9 @@ It can be used for low-level access into Contains data associated
 with an ActionDescriptor.
 
 """
-from ._core import Photoshop
-from .enumerations import ReferenceFormType
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import ReferenceFormType
 
 
 class ActionReference(Photoshop):

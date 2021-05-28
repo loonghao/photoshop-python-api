@@ -5,9 +5,11 @@ var notRef = app.notifiers.add("OnClickGoButton", eventFile)
 Notifiers must be enabled using the Application.notifiersEnabled property
 
 """
+# Import built-in modules
 from pathlib import Path
 
-from ._core import Photoshop
+# Import local modules
+from photoshop.api._core import Photoshop
 
 
 class Notifier(Photoshop):

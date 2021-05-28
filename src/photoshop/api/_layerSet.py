@@ -1,9 +1,10 @@
 # Import local modules
-from ._artlayer import ArtLayer
-from ._artlayers import ArtLayers
-from ._core import Photoshop
-from ._layers import Layers
-from .enumerations import AnchorPosition, BlendMode
+from photoshop.api._artlayer import ArtLayer
+from photoshop.api._artlayers import ArtLayers
+from photoshop.api._core import Photoshop
+from photoshop.api._layers import Layers
+from photoshop.api.enumerations import AnchorPosition
+from photoshop.api.enumerations import BlendMode
 
 
 class LayerSet(Photoshop):
@@ -28,7 +29,7 @@ class LayerSet(Photoshop):
 
     @property
     def bounds(self):
-        """ The bounding rectangle of the layer set."""
+        """The bounding rectangle of the layer set."""
         return self.app.bounds
 
     @property

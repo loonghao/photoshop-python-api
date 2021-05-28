@@ -1,6 +1,8 @@
+# Import built-in modules
 import os
 from tempfile import mkdtemp
 
+# Import local modules
 import photoshop.api as ps
 
 

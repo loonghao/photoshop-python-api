@@ -24,16 +24,32 @@ So as follows:
 
 """
 
-# Import built-modules
+# Import built-in modules
 from typing import Any
 
 # Import local modules
-from photoshop.api import (
-    ActionDescriptor, ActionReference, Application, BMPSaveOptions, CMYKColor,
-    EventID, ExportOptionsSaveForWeb, GIFSaveOptions, GrayColor, HSBColor,
-    JPEGSaveOptions, LabColor, PDFSaveOptions, PhotoshopSaveOptions,
-    PNGSaveOptions, RGBColor, SolidColor, TargaSaveOptions, TextItem,
-    TiffSaveOptions, enumerations, errors)
+from photoshop.api import ActionDescriptor
+from photoshop.api import ActionReference
+from photoshop.api import Application
+from photoshop.api import BMPSaveOptions
+from photoshop.api import CMYKColor
+from photoshop.api import EventID
+from photoshop.api import ExportOptionsSaveForWeb
+from photoshop.api import GIFSaveOptions
+from photoshop.api import GrayColor
+from photoshop.api import HSBColor
+from photoshop.api import JPEGSaveOptions
+from photoshop.api import LabColor
+from photoshop.api import PDFSaveOptions
+from photoshop.api import PNGSaveOptions
+from photoshop.api import PhotoshopSaveOptions
+from photoshop.api import RGBColor
+from photoshop.api import SolidColor
+from photoshop.api import TargaSaveOptions
+from photoshop.api import TextItem
+from photoshop.api import TiffSaveOptions
+from photoshop.api import enumerations
+from photoshop.api import errors
 
 
 class Session:
