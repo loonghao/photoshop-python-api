@@ -1,6 +1,9 @@
-from ._core import Photoshop
-from ._document import Document
-from .enumerations import BitsPerChannelType, DocumentFill, NewDocumentMode
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api._document import Document
+from photoshop.api.enumerations import BitsPerChannelType
+from photoshop.api.enumerations import DocumentFill
+from photoshop.api.enumerations import NewDocumentMode
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments

@@ -1,5 +1,6 @@
 """Options for saving a document in BMO format."""
-from .._core import Photoshop
+# Import local modules
+from photoshop.api._core import Photoshop
 
 
 class BMPSaveOptions(Photoshop):

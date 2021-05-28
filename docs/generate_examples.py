@@ -1,8 +1,11 @@
+# Import built-in modules
 import glob
 import os
 
-import stringcase
+# Import third-party modules
 from jinja2 import Template
+import stringcase
+
 
 template = Template(
     r"""

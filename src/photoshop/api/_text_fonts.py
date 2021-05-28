@@ -1,6 +1,7 @@
-from ._core import Photoshop
-from .errors import PhotoshopPythonAPIError
-from .text_font import TextFont
+# Import local modules
+from photoshop.api._core import Photoshop
+from photoshop.api.errors import PhotoshopPythonAPIError
+from photoshop.api.text_font import TextFont
 
 
 class TextFonts(Photoshop):

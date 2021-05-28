@@ -1,5 +1,5 @@
 # Import local modules
-from ._core import Photoshop
+from photoshop.api._core import Photoshop
 
 
 class ActiveLayer(Photoshop):

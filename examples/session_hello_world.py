@@ -1,9 +1,12 @@
 """Add slate information dynamically."""
 
+# Import built-in modules
 import os
 from tempfile import mkdtemp
 
+# Import local modules
 from photoshop import Session
+
 
 with Session() as adobe:
     doc = adobe.app.documents.add(2000, 2000)

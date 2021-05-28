@@ -1,7 +1,9 @@
 """Replace the image of the current active layer with a new image."""
 
 
+# Import local modules
 from photoshop import Session
+
 
 with Session() as ps:
     replace_contents = ps.app.stringIDToTypeID("placedLayerReplaceContents")

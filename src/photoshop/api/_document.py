@@ -16,19 +16,22 @@ The basic canvas for the file.
 # Import built-in modules
 from pathlib import Path
 
+# Import third-party modules
+from comtypes import COMError
+
 # Import local modules
-from ._artlayer import ArtLayer
-from ._artlayers import ArtLayers
-from ._channels import Channels
-from ._core import Photoshop
-from ._documentinfo import DocumentInfo
-from ._layerComps import LayerComps
-from ._layers import Layers
-from ._layerSet import LayerSet
-from ._layerSets import LayerSets
-from ._selection import Selection
-from .enumerations import ExtensionType, SaveOptions
-from .errors import COMError
+from photoshop.api._artlayer import ArtLayer
+from photoshop.api._artlayers import ArtLayers
+from photoshop.api._channels import Channels
+from photoshop.api._core import Photoshop
+from photoshop.api._documentinfo import DocumentInfo
+from photoshop.api._layerComps import LayerComps
+from photoshop.api._layerSet import LayerSet
+from photoshop.api._layerSets import LayerSets
+from photoshop.api._layers import Layers
+from photoshop.api._selection import Selection
+from photoshop.api.enumerations import ExtensionType
+from photoshop.api.enumerations import SaveOptions
 
 
 # pylint: disable=too-many-public-methods
@@ -140,8 +143,7 @@ class Document(Photoshop):
             return Path(self.app.fullName)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",'
-                '"{}")'.format(self.name),
+                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
             )
 
     @property
@@ -217,8 +219,7 @@ class Document(Photoshop):
             return Path(self.app.path)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",'
-                '"{}")'.format(self.name),
+                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
             )
 
     @path.setter
@@ -357,8 +358,9 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.app.save()
 
-    def saveAs(self, file_path, options, asCopy=True,
-               extensionType=ExtensionType.Lowercase):
+    def saveAs(
+        self, file_path, options, asCopy=True, extensionType=ExtensionType.Lowercase
+    ):
         """Saves the documents with the specified save options.
 
         Args:

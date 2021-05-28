@@ -1,8 +1,11 @@
 """Manual test all examples."""
+# Import built-in modules
 import glob
 import os
 
+# Import local modules
 from photoshop.api import Application
+
 
 root = os.path.join(os.path.dirname(os.path.dirname(__file__)), "examples")
 

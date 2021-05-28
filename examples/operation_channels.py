@@ -1,6 +1,8 @@
 """A examples to show you how to operation active document channels."""
 
+# Import local modules
 from photoshop import Session
+
 
 with Session() as ps:
     doc = ps.active_document

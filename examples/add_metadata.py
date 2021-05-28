@@ -6,6 +6,7 @@ import os
 # Import local modules
 from photoshop import Session
 
+
 with Session(action="new_document") as ps:
     doc = ps.active_document
     doc.info.author = os.getenv("USERNAME")

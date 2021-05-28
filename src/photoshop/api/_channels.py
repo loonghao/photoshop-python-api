@@ -1,6 +1,7 @@
-from ._channel import Channel
-from ._core import Photoshop
-from .errors import PhotoshopPythonAPIError
+# Import local modules
+from photoshop.api._channel import Channel
+from photoshop.api._core import Photoshop
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods

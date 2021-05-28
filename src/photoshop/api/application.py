@@ -13,20 +13,20 @@ app.documents.add(800, 600, 72, "docRef")
 
 # Import built-in modules
 import os
-import time
 from pathlib import Path
+import time
 from typing import List
 
 # Import local modules
-from ._core import Photoshop
-from ._document import Document
-from ._documents import Documents
-from ._measurement_log import MeasurementLog
-from ._notifiers import Notifiers
-from ._preferences import Preferences
-from ._text_fonts import TextFonts
-from .enumerations import DialogModes
-from .solid_color import SolidColor
+from photoshop.api._core import Photoshop
+from photoshop.api._document import Document
+from photoshop.api._documents import Documents
+from photoshop.api._measurement_log import MeasurementLog
+from photoshop.api._notifiers import Notifiers
+from photoshop.api._preferences import Preferences
+from photoshop.api._text_fonts import TextFonts
+from photoshop.api.enumerations import DialogModes
+from photoshop.api.solid_color import SolidColor
 
 
 class Application(Photoshop):
