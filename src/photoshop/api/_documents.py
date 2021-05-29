@@ -4,6 +4,7 @@ from photoshop.api._document import Document
 from photoshop.api.enumerations import BitsPerChannelType
 from photoshop.api.enumerations import DocumentFill
 from photoshop.api.enumerations import NewDocumentMode
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments
@@ -11,7 +12,7 @@ class Documents(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self.length
 
     def add(
@@ -25,7 +26,7 @@ class Documents(Photoshop):
         pixelAspectRatio: float = 1.0,
         bitsPerChannel: int = BitsPerChannelType.Document8Bits,
         colorProfileName: str = None,
-    ):
+    ) -> Document:
         """Creates a new document object and adds it to this collections.
 
         Args:
@@ -58,12 +59,18 @@ class Documents(Photoshop):
             )
         )
 
-    def __iter__(self):
+    def __iter__(self) -> Document:
         for doc in self.app:
             yield Document(doc)
 
+    def __getitem__(self, item) -> Document:
+        try:
+            return Document(self.app[item])
+        except IndexError:
+            raise PhotoshopPythonAPIError("Currently Photoshop did not find Documents.")
+
     @property
-    def length(self):
+    def length(self) -> int:
         return len(list(self.app))
 
     def getByName(self, document_name: str):
