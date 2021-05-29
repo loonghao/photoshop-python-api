@@ -116,29 +116,25 @@ class Application(Photoshop):
         self.app.currentTool = tool_name
 
     @property
-    def displayDialogs(self):
+    def displayDialogs(self) -> DialogModes:
         """The dialog mode for the document, which indicates whether or not
         Photoshop displays dialogs when the script runs."""
         return DialogModes(self.app.displayDialogs)
 
     @displayDialogs.setter
-    def displayDialogs(self, dialog_mode):
+    def displayDialogs(self, dialog_mode: DialogModes):
         """The dialog mode for the document, which indicates whether or not
         Photoshop displays dialogs when the script runs.
-
-        Args:
-            dialog_mode (.enumerations.DialogModes): The dialog modes.
-
         """
         self.app.displayDialogs = dialog_mode
 
     @property
-    def documents(self):
+    def documents(self) -> Documents:
         """._documents.Documents: The Documents instance."""
         return Documents(self.app.documents)
 
     @property
-    def fonts(self):
+    def fonts(self) -> TextFonts:
         return TextFonts(self.app.fonts)
 
     @property
