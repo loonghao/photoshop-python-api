@@ -1,3 +1,9 @@
+## v0.16.0 (2021-05-29)
+
+### Feat
+
+- **documents**: support get document by index
+
 ## v0.15.2 (2021-05-29)
 
 ### Refactor
