@@ -20,7 +20,7 @@
 <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 </p>
 
@@ -132,6 +132,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/krevlinmen"><img src="https://avatars.githubusercontent.com/u/56278440?v=4?s=100" width="100px;" alt=""/><br /><sub><b>krevlinmen</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Akrevlinmen" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/SThomasN"><img src="https://avatars.githubusercontent.com/u/63218023?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3ASThomasN" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
