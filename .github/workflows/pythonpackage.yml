@@ -6,9 +6,9 @@ jobs:
   python-check:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      max-parallel: 5
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2
@@ -23,6 +23,7 @@ jobs:
         python -m pip install -U pip poetry
         poetry --version
         poetry install
+
     - name: Run tests and linters
       run: |
         #!/bin/sh -e
@@ -33,9 +34,9 @@ jobs:
             export PREFIX="venv/bin/"
         fi
 
-        ${PREFIX}black src/photoshop --check
-        ${PREFIX}isort --check-only src/photoshop
-        ${PREFIX}flake8 src/photoshop
+        ${PREFIX}black photoshop --check
+        ${PREFIX}isort --check-only photoshop
+        ${PREFIX}flake8 photoshop
 
     - name: Upload coverage to Codecov
       if: runner.os == 'Linux'
