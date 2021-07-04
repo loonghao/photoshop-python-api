@@ -1,3 +1,9 @@
+## v0.16.1 (2021-07-04)
+
+### Fix
+
+- fix install failed in python-3.9
+
 ## v0.16.0 (2021-05-29)
 
 ### Feat
