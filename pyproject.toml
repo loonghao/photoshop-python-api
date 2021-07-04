@@ -19,14 +19,19 @@ classifiers = [
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
 ]
+
 packages = [
-    { include = "src/photoshop" },
+    { include = "photoshop" },
 ]
+[tool.poetry.build]
+generate-setup-file = false
 
 [tool.poetry.dependencies]
 python = "^3.6"
 comtypes = "1.1.7"
+wheel = "^0.36.2"
 
 [tool.poetry.dev-dependencies]
 black = "^21.5b1"
@@ -49,7 +54,7 @@ version = "0.16.0"
 tag_format = "v$version"
 version_files = [
     "pyproject.toml:version",
-    "src/photoshop/__version__.py"
+    "photoshop/__version__.py"
 ]
 
 [build-system]
@@ -87,9 +92,9 @@ include_trailing_comma = true
 lines_after_imports = 2
 lines_between_types = 1
 use_parentheses = true
-src_paths = ["src", "test"]
+src_paths = ["photoshop", "test"]
 filter_files = true
-known_first_party = "src"
+known_first_party = "photoshop"
 
 # Enforce import section headers.
 import_heading_future = "Import future modules"
