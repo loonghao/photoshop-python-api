@@ -658,6 +658,16 @@ class TextItem(Photoshop):
         """
         return self.app.width
 
+    @width.setter
+    def width(self, value: float):
+        """The width of the bounding box for
+
+        paragraph text.
+        Valid only when kind = TextType.PARAGRAPHTEXT.
+
+        """
+        self.app.width = value
+
     def convertToShape(self):
         """Converts the text item and its containing layer to a fill layer with the
         text changed to a clipping path."""
