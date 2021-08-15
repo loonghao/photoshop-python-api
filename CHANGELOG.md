@@ -1,3 +1,9 @@
+## v0.16.2 (2021-08-15)
+
+### Fix
+
+- **api/text_item.py**: missing width.setter for paragraphtext in text_item.py
+
 ## v0.16.1 (2021-07-04)
 
 ### Fix
