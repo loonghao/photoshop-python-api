@@ -1,0 +1,48 @@
+site_name: Photoshop Python API
+repo_url: https://github.com/loonghao/photoshop-python-api
+repo_name: github
+site_author: longhao
+remote_branch: master
+copyright: "Copyright (c) 2019 Long Hao"
+
+nav:
+    - Introduction: 'index.md'
+    - Examples: "examples.md"
+    - 'Issue Tracker': 'https://github.com/loonghao/photoshop-python-api/issues'
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false
+      use_pygments: true
+      noclasses: true
+      pygments_style: monokai
+  - extra
+  - admonition
+  - def_list
+  - footnotes
+  - meta
+  - toc
+  - pymdownx.arithmatex
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
+
+theme:
+  name: material
+
+plugins:
+    - search
+    - git-revision-date
+
+docs_dir: docs_src
