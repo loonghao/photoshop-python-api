@@ -1,5 +1,7 @@
+# Welcome to Photoshop Python API
+
 <p align="center">
-<img src="https://i.imgur.com/cjp1RH6.png" alt="logo">
+<a><img src="https://i.imgur.com/cjp1RH6.png" alt="logo"></a>
 </p>
 
 <p align="center">
@@ -9,7 +11,7 @@
 <img src="https://img.shields.io/pypi/v/photoshop-python-api?color=green" alt="PyPI version"></a>
 <a href="https://photoshop-python-api.readthedocs.io/en/master/?badge=master">
 <img src="https://readthedocs.org/projects/photoshop-python-api/badge/?version=master" alt="Documentation Status"></a>
-<img src="https://img.shields.io/pypi/dw/photoshop-python-api" alt="Downloads Status">
+<a><img src="https://img.shields.io/pypi/dw/photoshop-python-api" alt="Downloads Status"></a>
 <a href="https://pepy.tech/badge/photoshop-python-api">
 <img src="https://pepy.tech/badge/photoshop-python-api" alt="Downloads"></a>
 <img src="https://img.shields.io/pypi/l/photoshop-python-api" alt="License">
@@ -18,17 +20,13 @@
 <img src="https://img.shields.io/discord/724615671400628314" alt="Chat on Discird"></a>
 <a href="https://github.com/loonghao/photoshop-python-api/graphs/commit-activity">
 <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
+<img src="https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square" alt="All Contributors">
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END --> 
 </p>
 
 <p align="center">Python API for Photoshop.</p>
 
 <p align="center"><em>The example above was created with Photoshop Python API. Check it out at <a href="https://loonghao.github.io/photoshop-python-api/examples">https://loonghao.github.io/photoshop-python-api/examples</a>.</em></p>
-
-Has been tested and used Photoshop version:
 
 | Photoshop Version | Supported          |
 | ----------------- | ------------------ |
@@ -39,21 +37,20 @@ Has been tested and used Photoshop version:
 | cc2017            |       ✅           |
 
 
-Installing
-----------
+
+## Installing
+
 You can install via pip.
 
 ```cmd
 pip install photoshop_python_api
 ```
 
-
 Since it uses COM (Component Object Model) connect Photoshop, it can be used 
 in any DCC software with a python interpreter.
 
 
-Hello World
------------
+## Hello World
 
 ```python
 
@@ -76,13 +73,14 @@ doc.saveAs(jpg, options, asCopy=True)
 app.doJavaScript(f'alert("save to jpg: {jpg}")')
 
 ```
+
 ![demo](https://i.imgur.com/25TrzbV.gif)
 
 
-Photoshop Session
------------------
-Use it as context.
+## Photoshop Session
 
+Use it as context.
+<br>
 ```python
 
 from photoshop import Session
@@ -103,10 +101,12 @@ with Session(action="new_document") as ps:
     doc.saveAs(jpg, options, asCopy=True)
     ps.app.doJavaScript(f'alert("save to jpg: {jpg}")')
 
-
 ```
+<br>
 
 ## Contributors ✨
+
+<br>
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -126,7 +126,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/krevlinmen"><img src="https://avatars.githubusercontent.com/u/56278440?v=4?s=100" width="100px;" alt=""/><br /><sub><b>krevlinmen</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Akrevlinmen" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/SThomasN"><img src="https://avatars.githubusercontent.com/u/63218023?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3ASThomasN" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/CaptainCsaba"><img src="https://avatars.githubusercontent.com/u/59013751?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CaptainCsaba</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3ACaptainCsaba" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
@@ -136,34 +135,57 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://allcontributors.org) specification.
+
 Contributions of any kind are welcome!
+<br>
 
 
-how to get Photoshop program ID
--------------------------------
-```PS>
+## how to get Photoshop program ID
+<br>
+
+```
 Get-ChildItem "HKLM:\SOFTWARE\Classes" | 
   ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } | 
   ?{ $_.PSChildName -match "Photoshop.Application" } | ft PSChildName
 ```
+<br>
+
 ![get_program_id](https://i.imgur.com/UwPN7qq.png)
+<br>
 
 [How to get a list of COM objects from the registry](https://rakhesh.com/powershell/how-to-get-a-list-of-com-objects-from-the-registry/)
 
-Useful links
-------------
+<br>
+
+## Useful links
+<br>
+
 - https://theiviaxx.github.io/photoshop-docs/Photoshop/
+  
 - http://wwwimages.adobe.com/www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf
+
 - https://github.com/lohriialo/photoshop-scripting-python
+
 - https://www.adobe.com/devnet/photoshop/scripting.html
+
 - https://www.youtube.com/playlist?list=PLUEniN8BpU8-Qmjyv3zyWaNvDYwJOJZ4m
+
 - http://yearbook.github.io/esdocs/#/Photoshop/Application
+
 - http://www.shining-lucy.com/wiki/page.php?id=appwiki:photoshop:ps_script
+
 - http://www.tonton-pixel.com/wp-content/uploads/DecisionTable.pdf
+
 - http://jongware.mit.edu/pscs5js_html/psjscs5/pc_Application.html
+
 - https://indd.adobe.com/view/a0207571-ff5b-4bbf-a540-07079bd21d75
+
 - http://shining-lucy.com/wiki/page.php?id=appwiki:photoshop:ps_script
+
 - http://web.archive.org/web/20140121053819/http://www.pcpix.com/Photoshop/char.html
+
 - http://www.tonton-pixel.com/scripts/utility-scripts/get-equivalent-id-code/index.html
+
 - https://github.com/Adobe-CEP/Samples/tree/master/PhotoshopEvents
+
 - https://evanmccall.wordpress.com/2015/03/09/how-to-develop-photoshop-tools-in-python
