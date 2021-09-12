@@ -100,6 +100,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Afanyiyu",
+      "name": "Il Harper",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20179549?v=4",
+      "profile": "https://ilharper.vbox.moe",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "skipCi": true
