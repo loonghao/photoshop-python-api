@@ -1,3 +1,9 @@
+## v0.17.0 (2021-09-21)
+
+### Feat
+
+- Update the logic of searching the installation path of Photoshop through the registration
+
 ## v0.16.3 (2021-09-12)
 
 ### Fix
