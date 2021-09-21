@@ -52,6 +52,7 @@ from photoshop.api import enumerations
 from photoshop.api import errors
 
 
+# pylint: disable=too-many-arguments
 class Session:
     """Session of photoshop.
 
@@ -67,7 +68,8 @@ class Session:
         file_path: str = None,
         action: str = None,
         callback: Any = None,
-        auto_close=False,
+        auto_close: bool = False,
+        ps_version: str = None,
     ):
         """Session of Photoshop.
 
@@ -81,11 +83,11 @@ class Session:
                     ps.echo(ps.active_document.name)
 
         Args:
-            file_path (str): The absolute path of the file. This path can be
+            file_path: The absolute path of the file. This path can be
                 used together with action. If the path is an existing ``psd`
                 or image path, use ``open`` action to open this file in the
                 current session.
-            action (str): Name of the action.
+            action: Name of the action.
                 .e.g:
                     - open
                         Open the file from the option `file_path`.
@@ -93,13 +95,18 @@ class Session:
                         Create a new document.
                     - document_duplicate
                         Duplicate current active document.
-            callback (function): The callback function for this Photoshop
+            callback: The callback function for this Photoshop
                 session. The idea behind it is to allow us to pass some custom
                 callback function every time we exit the current Photoshop
                 session.
-            auto_close (bool): Is it necessary to close the current document
+            auto_close: Is it necessary to close the current document
                 when exiting the current context session. The default is
                 ``False`` not to exit current session.
+            ps_version: Specify the version number of photoshop.
+                .e.g:
+                    - 2022
+                    - 2021
+                    - cs6
 
         """
         super().__init__()
@@ -110,7 +117,7 @@ class Session:
         self._action = action
         self._active_document = None
 
-        self.app = Application()
+        self.app = Application(version=ps_version)
         self.ActionReference = ActionReference()
         self.ActionDescriptor = ActionDescriptor()
         self.EventID = EventID

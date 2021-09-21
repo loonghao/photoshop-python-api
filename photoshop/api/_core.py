@@ -26,17 +26,19 @@ class Photoshop(object):
         self._has_parent = False
         version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
         self.photoshop_version = os.getenv("PS_VERSION", ps_version)
-        self.app_id = version_mappings.get(
-            self.photoshop_version, self._get_program_id()
-        )
+        if self.photoshop_version:
+            # Store current photoshop version.
+            os.environ["PS_VERSION"] = self.photoshop_version
+        self.app_id = version_mappings.get(self.photoshop_version, "0")
         try:
             self.app = self.instance_app(self.app_id)
         except OSError:
+            # get photoshop from registration.
             try:
                 self.app = self.instance_app(self._get_program_id())
             except OSError:
                 raise PhotoshopPythonAPIError(
-                    "Please check if you have " "Photoshop installed correctly.",
+                    "Please check if you have Photoshop installed correctly.",
                 )
         if parent:
             self.adobe = self.app
@@ -75,11 +77,19 @@ class Photoshop(object):
         """
         machine_type = platform.machine()
         mappings = {"AMD64": winreg.KEY_WOW64_64KEY}
-        return winreg.OpenKey(
-            winreg.HKEY_LOCAL_MACHINE,
-            key,
-            access=winreg.KEY_READ | mappings.get(machine_type, winreg.KEY_WOW64_32KEY),
-        )
+        platform_type = mappings.get(machine_type, winreg.KEY_WOW64_32KEY)
+        try:
+            return winreg.OpenKey(
+                winreg.HKEY_LOCAL_MACHINE,
+                key,
+                access=winreg.KEY_READ | platform_type,
+            )
+        except FileNotFoundError as err:
+            full_reg_path = f"HKEY_LOCAL_MACHINE\\{key}"
+            raise PhotoshopPythonAPIError(
+                f"Failed to read the registration: <{full_reg_path}>, "
+                "please check if you have Photoshop installed correctly."
+            ) from err
 
     def get_application_path(self):
         """str: The absolute path of Photoshop installed location."""
@@ -110,7 +120,16 @@ class Photoshop(object):
 
     def get_program_id(self) -> str:
         key = self.open_key(self.REG_PATH)
-        return winreg.EnumKey(key, 0)
+        index = 0
+        while True:
+            value = winreg.EnumKey(key, index)
+            index += 1
+            if value:
+                try:
+                    self.instance_app(value.split(".")[0])
+                except OSError:
+                    continue
+                return value.split(".")[0]
 
     def _get_program_id(self) -> str:
         self.app_id = self.get_program_id().split(".")[0]
