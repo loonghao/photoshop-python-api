@@ -460,51 +460,52 @@
 </table>
 <h2 id="installing">Installing</h2>
 <p>You can install via pip.</p>
-<div class="highlight"><pre><span></span><code>pip install photoshop_python_api
-</code></pre></div>
+<pre class="highlight"><code class="language-cmd">pip install photoshop_python_api</code></pre>
 <p>Since it uses COM (Component Object Model) connect Photoshop, it can be used 
 in any DCC software with a python interpreter.</p>
 <h2 id="hello-world">Hello World</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">photoshop.api</span> <span class="k">as</span> <span class="nn">ps</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
-<span class="n">doc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">documents</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
-<span class="n">new_doc</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">artLayers</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
-<span class="n">text_color</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SolidColor</span><span class="p">()</span>
-<span class="n">text_color</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">green</span> <span class="o">=</span> <span class="mi">255</span>
-<span class="n">new_text_layer</span> <span class="o">=</span> <span class="n">new_doc</span>
-<span class="n">new_text_layer</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">LayerKind</span><span class="o">.</span><span class="n">TextLayer</span>
-<span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span>
-<span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">167</span><span class="p">]</span>
-<span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">text_color</span>
-<span class="n">options</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">JPEGSaveOptions</span><span class="p">(</span><span class="n">quality</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="c1"># # save to jpg</span>
-<span class="n">jpg</span> <span class="o">=</span> <span class="s1">&#39;d:/hello_world.jpg&#39;</span>
-<span class="n">doc</span><span class="o">.</span><span class="n">saveAs</span><span class="p">(</span><span class="n">jpg</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">asCopy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="o">.</span><span class="n">doJavaScript</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;alert(&quot;save to jpg: </span><span class="si">{</span><span class="n">jpg</span><span class="si">}</span><span class="s1">&quot;)&#39;</span><span class="p">)</span>
-</code></pre></div>
+<pre class="highlight"><code class="language-python">
+import photoshop.api as ps
+app = ps.Application()
+doc = app.documents.add()
+new_doc = doc.artLayers.add()
+text_color = ps.SolidColor()
+text_color.rgb.green = 255
+new_text_layer = new_doc
+new_text_layer.kind = ps.LayerKind.TextLayer
+new_text_layer.textItem.contents = 'Hello, World!'
+new_text_layer.textItem.position = [160, 167]
+new_text_layer.textItem.size = 40
+new_text_layer.textItem.color = text_color
+options = ps.JPEGSaveOptions(quality=5)
+# # save to jpg
+jpg = 'd:/hello_world.jpg'
+doc.saveAs(jpg, options, asCopy=True)
+app.doJavaScript(f'alert("save to jpg: {jpg}")')
+</code></pre>
 <p><img alt="demo" src="https://i.imgur.com/25TrzbV.gif" /></p>
 <h2 id="photoshop-session">Photoshop Session</h2>
 <p>Use it as context.
 <br>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">photoshop</span> <span class="kn">import</span> <span class="n">Session</span>
+<pre class="highlight"><code class="language-python">
+from photoshop import Session
 
 
-<span class="k">with</span> <span class="n">Session</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;new_document&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ps</span><span class="p">:</span>
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">active_document</span>
-    <span class="n">text_color</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SolidColor</span><span class="p">()</span>
-    <span class="n">text_color</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">green</span> <span class="o">=</span> <span class="mi">255</span>
-    <span class="n">new_text_layer</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">artLayers</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
-    <span class="n">new_text_layer</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">LayerKind</span><span class="o">.</span><span class="n">TextLayer</span>
-    <span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span>
-    <span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">167</span><span class="p">]</span>
-    <span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">40</span>
-    <span class="n">new_text_layer</span><span class="o">.</span><span class="n">textItem</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">text_color</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">JPEGSaveOptions</span><span class="p">(</span><span class="n">quality</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">jpg</span> <span class="o">=</span> <span class="s1">&#39;d:/hello_world.jpg&#39;</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">saveAs</span><span class="p">(</span><span class="n">jpg</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">asCopy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">ps</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">doJavaScript</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;alert(&quot;save to jpg: </span><span class="si">{</span><span class="n">jpg</span><span class="si">}</span><span class="s1">&quot;)&#39;</span><span class="p">)</span>
-</code></pre></div>
+with Session(action="new_document") as ps:
+    doc = ps.active_document
+    text_color = ps.SolidColor()
+    text_color.rgb.green = 255
+    new_text_layer = doc.artLayers.add()
+    new_text_layer.kind = ps.LayerKind.TextLayer
+    new_text_layer.textItem.contents = 'Hello, World!'
+    new_text_layer.textItem.position = [160, 167]
+    new_text_layer.textItem.size = 40
+    new_text_layer.textItem.color = text_color
+    options = ps.JPEGSaveOptions(quality=5)
+    jpg = 'd:/hello_world.jpg'
+    doc.saveAs(jpg, options, asCopy=True)
+    ps.app.doJavaScript(f'alert("save to jpg: {jpg}")')
+</code></pre>
 <br></p>
 <h2 id="contributors">Contributors ✨</h2>
 <p><br></p>
@@ -538,10 +539,9 @@ in any DCC software with a python interpreter.</p>
 <br></p>
 <h2 id="how-to-get-photoshop-program-id">how to get Photoshop program ID</h2>
 <p><br></p>
-<p><div class="highlight"><pre><span></span><code>Get-ChildItem &quot;HKLM:\SOFTWARE\Classes&quot; | 
-  ?{ ($_.PSChildName -match &quot;^[a-z]+\.[a-z]+(\.\d+)?$&quot;) -and ($_.GetSubKeyNames() -contains &quot;CLSID&quot;) } | 
-  ?{ $_.PSChildName -match &quot;Photoshop.Application&quot; } | ft PSChildName
-</code></pre></div>
+<p><pre class="highlight"><code>Get-ChildItem "HKLM:\SOFTWARE\Classes" | 
+  ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } | 
+  ?{ $_.PSChildName -match "Photoshop.Application" } | ft PSChildName</code></pre>
 <br></p>
 <p><img alt="get_program_id" src="https://i.imgur.com/UwPN7qq.png" />
 <br></p>
