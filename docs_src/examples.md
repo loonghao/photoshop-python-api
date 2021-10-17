@@ -50,22 +50,6 @@ with Session(action="new_document") as ps:
 
 ```
 
-Add Paragraphtext
------------------
-```python
-from photoshop import Session
-
-
-with Session(action="new_document") as ps:
-    doc = ps.app.activeDocument()
-    layer = doc.artLayers.add()
-    newTextLayer = doc.artLayers.add()
-    newTextLayer.kind = ps.LayerKind.TextLayer
-    newTextLayer.textItem.kind = ps.TextType.ParagraphText
-    newTextLayer.textItem.contents = "Hello, World!"
-
-```
-
 Add Slate
 ---------
 ```python
@@ -1028,14 +1012,17 @@ Replace Images
 ```python
 """Replace the image of the current active layer with a new image."""
 
+
 # Import local modules
 from photoshop import Session
 
+
 with Session() as ps:
-    layer = ps.active_document.activeLayer
-    print(f"old name: {layer.name}")
-    layer.name = "new name"
-    print(f"new name: {layer.name}")
+    replace_contents = ps.app.stringIDToTypeID("placedLayerReplaceContents")
+    desc = ps.ActionDescriptor
+    idnull = ps.app.charIDToTypeID("null")
+    desc.putPath(idnull, "your/image/path.jpg")
+    ps.app.executeAction(replace_contents, desc)
 
 ```
 
