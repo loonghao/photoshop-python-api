@@ -16,6 +16,7 @@ import os
 from pathlib import Path
 import time
 from typing import List
+from typing import Union
 
 # Import local modules
 from photoshop.api._core import Photoshop
@@ -42,7 +43,7 @@ class Application(Photoshop):
         return self.app.LayerSets
 
     @property
-    def activeDocument(self):
+    def activeDocument(self) -> Document:
         """The frontmost documents.
 
         Setting this property is equivalent to clicking an
@@ -106,11 +107,11 @@ class Application(Photoshop):
         return self.app.currentTool
 
     @currentTool.setter
-    def currentTool(self, tool_name):
+    def currentTool(self, tool_name: str) -> None:
         """Sets the current tool for select.
 
         Args:
-            tool_name (str): The name of the current tool sel.
+            tool_name: The name of the current tool sel.
 
         """
         self.app.currentTool = tool_name
@@ -277,15 +278,15 @@ class Application(Photoshop):
         return self.app.charIDToTypeID(char_id)
 
     @staticmethod
-    def compareWithNumbers(first, second):
+    def compareWithNumbers(first: Union[int, float], second: Union[int, float]):
         return first > second
 
-    def doAction(self, action, action_from):
+    def doAction(self, action_name: str, action_from: str = "Default Actions") -> bool:
         """Plays the specified action from the Actions palette."""
-        self.app.doAction(action, action_from)
+        self.app.doAction(action_name, action_from)
         return True
 
-    def doForcedProgress(self, title, javascript):
+    def doForcedProgress(self, title: str, javascript: str):
         script = "app.doForcedProgress('{}', '{}')".format(
             title,
             javascript,

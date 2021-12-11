@@ -12,7 +12,7 @@ class TextFont(Photoshop):
         return self.app.family
 
     @property
-    def name(self):
+    def name(self) -> str:
         """The name of the font."""
         return self.app.name
 

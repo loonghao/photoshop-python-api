@@ -1,3 +1,6 @@
+# Import built-in modules
+from typing import Generator
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -59,7 +62,7 @@ class Documents(Photoshop):
             )
         )
 
-    def __iter__(self) -> Document:
+    def __iter__(self) -> Generator[Document, None, None]:
         for doc in self.app:
             yield Document(doc)
 
@@ -73,5 +76,5 @@ class Documents(Photoshop):
     def length(self) -> int:
         return len(list(self.app))
 
-    def getByName(self, document_name: str):
+    def getByName(self, document_name: str) -> Document:
         return Document(self.app.getByName(document_name))

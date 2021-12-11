@@ -23,9 +23,13 @@ So as follows:
         ps.app.doJavaScript(f'alert("save to jpg: {jpg}")')
 
 """
+# Import future modules
+from __future__ import annotations
 
 # Import built-in modules
 from typing import Any
+from typing import Optional
+from typing import TYPE_CHECKING
 
 # Import local modules
 from photoshop.api import ActionDescriptor
@@ -50,6 +54,12 @@ from photoshop.api import TextItem
 from photoshop.api import TiffSaveOptions
 from photoshop.api import enumerations
 from photoshop.api import errors
+
+
+# Only running mypy checks.
+if TYPE_CHECKING:  # noqa
+    # Import local modules
+    from photoshop.api._document import Document  # noqa
 
 
 # pylint: disable=too-many-arguments
@@ -115,7 +125,7 @@ class Session:
         self._auto_close = auto_close
         self._callback = callback
         self._action = action
-        self._active_document = None
+        self._active_document: Optional[Document] = None
 
         self.app = Application(version=ps_version)
         self.ActionReference = ActionReference()
@@ -277,7 +287,7 @@ class Session:
         self.ZigZagType = enumerations.ZigZagType
 
     @property
-    def active_document(self):
+    def active_document(self) -> Document:
         try:
             if not self._active_document:
                 return self.app.activeDocument
@@ -300,36 +310,36 @@ class Session:
         self.app.doJavaScript(f"alert('{text}')")
 
     @active_document.setter
-    def active_document(self, active_document):
+    def active_document(self, active_document: Document) -> None:
         """Set active document."""
         self._active_document = active_document
 
-    def _action_open(self):
-        self.active_document = self.app.open(self.path)
+    def _action_open(self) -> None:
+        self._active_document = self.app.open(self.path)
 
-    def _action_new_document(self):
-        self.active_document = self.app.documents.add()
+    def _action_new_document(self) -> None:
+        self._active_document = self.app.documents.add()
 
-    def _action_document_duplicate(self):
-        self.active_document = self.active_document.duplicate()
+    def _action_document_duplicate(self) -> None:
+        self._active_document = self.active_document.duplicate()
 
-    def run_action(self):
+    def run_action(self) -> None:
         try:
             _action = getattr(self, f"_action_{self._action}")
             _action()
         except AttributeError:
             pass
 
-    def close(self):
+    def close(self) -> None:
         """closing current session."""
         if self._auto_close:
             self.active_document.close()
 
-    def __enter__(self):
+    def __enter__(self) -> Session:
         self.run_action()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, *args: Any, **kwargs: Any) -> None:
         try:
             if self._callback:
                 self._callback(self)

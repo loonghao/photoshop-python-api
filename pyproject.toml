@@ -107,3 +107,6 @@ force_single_line = true
 # All project unrelated unknown imports belong to third-party.
 default_section = "THIRDPARTY"
 skip_glob = "*/docs/conf.py"
+
+[mypy]
+ignore_missing_imports = true

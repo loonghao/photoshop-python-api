@@ -23,3 +23,9 @@ result/
 
 # Docs
 docs_src/_build/
+
+# Examples export files
+examples/files/bg
+examples/files/red
+examples/files/blue
+examples/files/green

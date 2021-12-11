@@ -1,5 +1,9 @@
 # The photoshop version to COM progid mappings.
-PHOTOSHOP_VERSION_MAPPINGS = {
+# Import built-in modules
+from typing import Dict
+
+
+PHOTOSHOP_VERSION_MAPPINGS: Dict[str, str] = {
     "2021": "150",
     "2020": "140",
     "2019": "130",

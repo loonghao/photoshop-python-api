@@ -5,6 +5,7 @@ import os
 import platform
 from typing import Any
 from typing import List
+from typing import Optional
 import winreg
 
 # Import third-party modules
@@ -16,13 +17,13 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class Photoshop(object):
-    _root = "Photoshop"
-    REG_PATH = "SOFTWARE\\Adobe\\Photoshop"
-    _object_name = "Application"
-    object_name: str = None
+    _root: str = "Photoshop"
+    REG_PATH: str = "SOFTWARE\\Adobe\\Photoshop"
+    _object_name: str = "Application"
+    object_name: Optional[str] = None
 
-    def __init__(self, ps_version: str = None, parent: Any = None):
-        self._program_name = None
+    def __init__(self, ps_version: str = "", parent: Any = None):
+        self._program_name: Optional[str] = None
         self._has_parent = False
         version_mappings = constants.PHOTOSHOP_VERSION_MAPPINGS
         self.photoshop_version = os.getenv("PS_VERSION", ps_version)
@@ -46,33 +47,30 @@ class Photoshop(object):
             self._has_parent = True
 
     @property
-    def typename(self):
+    def typename(self) -> str:
         return self.__class__.__name__
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: Any, **kwargs: Any) -> "Photoshop":
         return self.app
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__class__.__name__} <{self._program_name}>"
 
     def __repr__(self):
         return self
 
-    def __getattribute__(self, item):
+    def __getattribute__(self, item: str) -> str:
         try:
             return super().__getattribute__(item)
         except AttributeError:
             return getattr(self.app, item)
 
     @staticmethod
-    def open_key(key):
+    def open_key(key: str) -> winreg.HKEYType:
         """Open the register key.
 
         Args:
-            key (str): The key of register.
-
-        Returns:
-            str: The handle to the specified key.
+            key: The key of register.
 
         """
         machine_type = platform.machine()
@@ -91,24 +89,24 @@ class Photoshop(object):
                 "please check if you have Photoshop installed correctly."
             ) from err
 
-    def get_application_path(self):
-        """str: The absolute path of Photoshop installed location."""
+    def get_application_path(self) -> str:
+        """The absolute path of Photoshop installed location."""
         key = self.open_key(f"{self.REG_PATH}\\{self.get_program_id()}")
         return winreg.QueryValueEx(key, "ApplicationPath")[0]
 
-    def get_plugin_path(self):
-        """str: The absolute plugin path of Photoshop."""
+    def get_plugin_path(self) -> str:
+        """The absolute plugin path of Photoshop."""
         return os.path.join(self.get_application_path(), "Plug-ins")
 
-    def get_presets_path(self):
-        """str: The absolute presets path of Photoshop."""
+    def get_presets_path(self) -> str:
+        """The absolute presets path of Photoshop."""
         return os.path.join(self.get_application_path(), "Presets")
 
-    def get_script_path(self):
-        """str: The absolute scripts path of Photoshop."""
+    def get_script_path(self) -> str:
+        """The absolute scripts path of Photoshop."""
         return os.path.join(self.get_presets_path(), "Scripts")
 
-    def instance_app(self, ps_id):
+    def instance_app(self, ps_id: str) -> Any:
         naming_space = [self._root]
         if not self.object_name:
             naming_space.append(self._object_name)
@@ -149,7 +147,7 @@ class Photoshop(object):
                     ]
 
         Returns:
-            str: Assembled name.
+            Assembled name.
 
         Examples:
             Photoshop.ActionDescriptor
