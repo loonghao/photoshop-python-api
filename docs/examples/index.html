@@ -356,6 +356,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#do-photoshop-action" class="md-nav__link">
+    Do Photoshop Action
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#emboss-action" class="md-nav__link">
     Emboss Action
   </a>
@@ -728,6 +735,13 @@
         <li class="md-nav__item">
   <a href="#current-tool" class="md-nav__link">
     Current Tool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#do-photoshop-action" class="md-nav__link">
+    Do Photoshop Action
   </a>
   
 </li>
@@ -1412,6 +1426,13 @@ with Session() as ps:
 
     # Set current tool to `typeCreateOrEditTool`.
     ps.app.currentTool = "typeCreateOrEditTool"
+</code></pre>
+<h2 id="do-photoshop-action">Do Photoshop Action</h2>
+<pre class="highlight"><code class="language-python">"""Do a photoshop action."""
+from photoshop import Session
+
+with Session() as api:
+    api.app.doAction(action="Frame Channel - 50 pixel")
 </code></pre>
 <h2 id="emboss-action">Emboss Action</h2>
 <pre class="highlight"><code class="language-python"># Import local modules
@@ -2245,7 +2266,7 @@ with Session(example_file, action="open") as ps:
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-08-15
+      Last update: 2021-10-17
     
   </small>
 </div>
