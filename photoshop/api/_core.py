@@ -16,6 +16,8 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class Photoshop(object):
+    """Core API for all photoshop objects."""
+
     _root = "Photoshop"
     REG_PATH = "SOFTWARE\\Adobe\\Photoshop"
     _object_name = "Application"
@@ -46,7 +48,8 @@ class Photoshop(object):
             self._has_parent = True
 
     @property
-    def typename(self):
+    def typename(self) -> str:
+        """Current typename."""
         return self.__class__.__name__
 
     def __call__(self, *args, **kwargs):
@@ -65,14 +68,17 @@ class Photoshop(object):
             return getattr(self.app, item)
 
     @staticmethod
-    def open_key(key):
+    def open_key(key: str) -> str:
         """Open the register key.
 
         Args:
-            key (str): The key of register.
+            key: The key of register.
 
         Returns:
-            str: The handle to the specified key.
+            The handle to the specified key.
+
+        Raises:
+            - PhotoshopPythonAPIError
 
         """
         machine_type = platform.machine()
@@ -96,16 +102,16 @@ class Photoshop(object):
         key = self.open_key(f"{self.REG_PATH}\\{self.get_program_id()}")
         return winreg.QueryValueEx(key, "ApplicationPath")[0]
 
-    def get_plugin_path(self):
-        """str: The absolute plugin path of Photoshop."""
+    def get_plugin_path(self) -> str:
+        """The absolute plugin path of Photoshop."""
         return os.path.join(self.get_application_path(), "Plug-ins")
 
-    def get_presets_path(self):
-        """str: The absolute presets path of Photoshop."""
+    def get_presets_path(self) -> str:
+        """The absolute presets path of Photoshop."""
         return os.path.join(self.get_application_path(), "Presets")
 
-    def get_script_path(self):
-        """str: The absolute scripts path of Photoshop."""
+    def get_script_path(self) -> str:
+        """The absolute scripts path of Photoshop."""
         return os.path.join(self.get_presets_path(), "Scripts")
 
     def instance_app(self, ps_id):

@@ -10,6 +10,11 @@ from photoshop.api.text_item import TextItem
 
 # pylint: disable=too-many-public-methods, too-many-arguments
 class ArtLayer(Photoshop):
+    """An object within a document that contains the visual elements of the image
+
+    (equivalent to a layer in the Adobe Photoshop application).
+
+    """
     def __init__(self, parent: Any = None):
         super().__init__(parent=parent)
 
@@ -39,10 +44,12 @@ class ArtLayer(Photoshop):
 
     @property
     def fillOpacity(self):
+        """he interior opacity of the layer. Range: 0.0 to 100.0."""
         return self.app.fillOpacity
 
     @fillOpacity.setter
     def fillOpacity(self, value):
+        """he interior opacity of the layer. Range: 0.0 to 100.0."""
         self.app.fillOpacity = value
 
     @property
@@ -62,8 +69,8 @@ class ArtLayer(Photoshop):
         self.app.filterMaskFeather = value
 
     @property
-    def grouped(self):
-        """bool: If true, the layer is grouped with the layer below."""
+    def grouped(self) -> bool:
+        """If true, the layer is grouped with the layer below."""
         return self.app.grouped
 
     @grouped.setter
