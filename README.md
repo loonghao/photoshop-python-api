@@ -20,7 +20,7 @@
 <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 </p>
 
@@ -128,6 +128,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/SThomasN"><img src="https://avatars.githubusercontent.com/u/63218023?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3ASThomasN" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/CaptainCsaba"><img src="https://avatars.githubusercontent.com/u/59013751?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CaptainCsaba</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3ACaptainCsaba" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://ilharper.vbox.moe"><img src="https://avatars.githubusercontent.com/u/20179549?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Il Harper</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=Afanyiyu" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/blunderedbishop"><img src="https://avatars.githubusercontent.com/u/56189376?v=4?s=100" width="100px;" alt=""/><br /><sub><b>blunderedbishop</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Ablunderedbishop" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
