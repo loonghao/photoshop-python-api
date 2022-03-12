@@ -25,9 +25,7 @@ with Session(PSD_FILE["layer_comps.psd"], "open") as ps:
     nArtLayers = active_document.layerSets.item(len(nLayerSets)).artLayers
 
     # get the last layer in LayerSets
-    active_document.activeLayer = active_document.layerSets.item(
-        len(nLayerSets)
-    ).artLayers.item(len(nArtLayers))
+    active_document.activeLayer = active_document.layerSets.item(len(nLayerSets)).artLayers.item(len(nArtLayers))
 
     def applyCrystallize(cellSize):
         cellSizeID = ps.app.CharIDToTypeID("ClSz")

@@ -14,9 +14,7 @@ class TestTextItem:
     @pytest.fixture(autouse=True)
     def setup(self, psd_file):
         """Setup for current test."""
-        self.session = Session(
-            file_path=psd_file("textitem"), action="open", auto_close=True
-        )
+        self.session = Session(file_path=psd_file("textitem"), action="open", auto_close=True)
         self.session.run_action()
         doc = self.session.active_document
         layer = doc.activeLayer
@@ -24,7 +22,7 @@ class TestTextItem:
         yield
         # self.session.close()
 
-    def test_alternateLigatures(self):
+    def manual_test_alternateLigatures(self):
         assert self.text_item.alternateLigatures == 0
 
     def test_antiAliasMethod(self):

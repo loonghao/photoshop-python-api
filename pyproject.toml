@@ -15,8 +15,6 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Microsoft :: Windows :: Windows 10",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.5",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -29,12 +27,11 @@ packages = [
 generate-setup-file = false
 
 [tool.poetry.dependencies]
-python = "^3.6"
-comtypes = "1.1.7"
+python = ">=3.7,<4.0"
 wheel = "^0.36.2"
+comtypes = "^1.1.11"
 
 [tool.poetry.dev-dependencies]
-black = "^21.5b1"
 commitizen = "^2.17.8"
 pre-commit = "^2.13.0"
 codecov = "^2.1.11"
@@ -46,6 +43,17 @@ mypy = "^0.812"
 coverage = "^5.5"
 mkdocs = "^1.2.2"
 mkdocs-git-revision-date-plugin = "^0.3.1"
+black = "^22.1.0"
+mkdocs-material = "^8.2.5"
+mkdocstrings-python = "^0.6.6"
+mkdocs-pymdownx-material-extras = "^1.6"
+mkdocs-same-dir = "^0.1.1"
+mkdocs-include-markdown-plugin = "^3.3.0"
+mkdocs-gen-files = "^0.3.4"
+mkdocs-autolinks-plugin = "^0.4.0"
+mkdocs-minify-plugin = "^0.5.0"
+mkdocs-git-revision-date-localized-plugin = "^1.0.0"
+pytest-cov = "^3.0.0"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
@@ -61,7 +69,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line-length = 88
+line-length = 120
 target_version = ['py36']
 include = '\.pyi?$'
 exclude = '''

@@ -4,19 +4,33 @@ repo_name: github
 site_author: longhao
 remote_branch: master
 copyright: "Copyright (c) 2019 Long Hao"
+features:
+  - content.code.annotate
+  - navigation.indexes
+  - navigation.sections
+  - navigation.tabs
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
+
+docs_dir: docs
+
+palette:
+  scheme: dracula
+  primary: deep purple # Primary colors
+  accent: deep purple # accent color
 
 nav:
     - Introduction: 'index.md'
+    - API: api.md
     - Examples: "examples.md"
     - 'Issue Tracker': 'https://github.com/loonghao/photoshop-python-api/issues'
 
 markdown_extensions:
-  - codehilite:
-      guess_lang: false
-      use_pygments: true
-      noclasses: true
-      pygments_style: monokai
-  - extra
+  - pymdownx.extra
   - admonition
   - def_list
   - footnotes
@@ -27,6 +41,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.highlight
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
@@ -34,15 +50,48 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tasklist
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.tilde
+  - attr_list
+  - md_in_html
 
 theme:
   name: material
 
 plugins:
+    - include-markdown
     - search
-    - git-revision-date
-
-docs_dir: docs_src
+    - same-dir
+    - autorefs
+    - autolinks
+    - git-revision-date-localized:
+        type: timeago
+        fallback_to_build_date: true
+        enable_creation_date: true
+        enabled: true
+    - mkdocstrings:
+        handlers:
+          python:
+            rendering:
+              show_root_heading: true
+              show_signature_annotations: true
+              show_source: false
+    - minify:
+        minify_html: true
+        minify_js: true
+        minify_css: true
+        htmlmin_opts:
+            remove_comments: true
+    - mkdocs_pymdownx_material_extras
+    - gen-files:
+        scripts:
+          - docs/gen_api_nav.py
+          - docs/gen_examples.py

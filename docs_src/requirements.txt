@@ -1,4 +1,0 @@
-- stringcase
-- mkdocs
-- mkdocs_git_revision_date_plugin
-- mkdocs_material

@@ -1,3 +1,5 @@
+"""The selected area of the document or layer."""
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ColorBlendMode
@@ -28,8 +30,9 @@ class Selection(Photoshop):
     def clear(self):
         self.app.clear()
 
-    def contract(self):
-        self.app.contract()
+    def contract(self, contract_by):
+        """Contracts the selection."""
+        self.app.contract(contract_by)
 
     def copy(self):
         self.app.copy()
@@ -126,9 +129,7 @@ class Selection(Photoshop):
             preserveTransparency (bool): If true, preserves transparency.
 
         """
-        return self.app.stroke(
-            strokeColor, width, location, mode, opacity, preserveTransparency
-        )
+        return self.app.stroke(strokeColor, width, location, mode, opacity, preserveTransparency)
 
     def selectBorder(self, width):
         """Selects the selection border only (in the specified width);

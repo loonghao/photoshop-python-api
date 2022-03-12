@@ -6,8 +6,11 @@ import photoshop.api as ps
 
 app = ps.Application()
 
-doc = app.documents[0]
-print(doc.name)
+# doc = app.documents[0]
+# print(doc.name)
 
 for doc in app.documents:
-    print(doc.name)
+    # for layer in doc.layers:
+    for l in doc.layers:
+        l.duplicate()
+        # print(layer.name, doc.name)

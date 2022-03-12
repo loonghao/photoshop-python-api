@@ -39,9 +39,7 @@ class Notifiers(Photoshop):
     def length(self):
         return len(self._notifiers)
 
-    def add(
-        self, event, event_file: Optional[Any] = None, event_class: Optional[Any] = None
-    ) -> Notifier:
+    def add(self, event, event_file: Optional[Any] = None, event_class: Optional[Any] = None) -> Notifier:
         self.parent.notifiersEnabled = True
         return Notifier(self.app.add(event, event_file, event_class))
 

@@ -1,10 +1,14 @@
+"""Plugin for generate API docs."""
+
 # Import built-in modules
-import glob
 import os
+from pathlib import Path
 
 # Import third-party modules
 from jinja2 import Template
+import mkdocs_gen_files
 import stringcase
+
 
 template = Template(
     r"""
@@ -17,21 +21,17 @@ Examples
 {{ Examples.get_content(file_) }}
 ```
 {% endfor %}
-    
+
 """
 )
 
 
 class Examples(object):
-    def __init__(self, root):
+    def __init__(self, root: Path):
         self._root = root
 
     def get_examples(self):
-        files = [
-            file_
-            for file_ in glob.iglob(os.path.join(self._root, "*.py"))
-            if "_psd_files.py" not in file_
-        ]
+        files = [file_ for file_ in self._root.glob("*.py") if "_psd_files.py" not in file_.as_posix()]
         return files
 
     @staticmethod
@@ -54,6 +54,12 @@ class Examples(object):
             return "".join(f.readlines())
 
 
-root = os.path.dirname(os.path.dirname(__file__))
-with open("examples.md", "w") as f:
-    f.write(template.render(Examples=Examples(os.path.join(root, "examples"))))
+def main():
+    root = Path(__file__).parent.parent
+    with mkdocs_gen_files.open("examples.md", "w") as nav_file:
+        examples_data = Examples(root.joinpath("examples"))
+        nav_file.write(template.render(Examples=examples_data))
+
+
+if __name__ == "<run_path>":
+    main()
