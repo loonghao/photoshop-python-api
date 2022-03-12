@@ -36,13 +36,15 @@ from photoshop.api.enumerations import SaveOptions
 
 # pylint: disable=too-many-public-methods
 class Document(Photoshop):
+    """The active containment object for the layers and all other objects in the script; the basic canvas for the file."""
+
     object_name = "Application"
 
     def __init__(self, parent):
         super().__init__(parent=parent)
 
     @property
-    def artLayers(self):
+    def artLayers(self) -> ArtLayers:
         return ArtLayers(self.app.artLayers)
 
     @property
@@ -394,11 +396,10 @@ class Document(Photoshop):
         Args:
             trim_type (TrimType): The color or type of pixels to base the trim on.
 
-                Examples
-
-                    - `TrimType.BottomRightPixel`
-                    - `TrimType.TopLeftPixel`
-                    - `TrimType.TransparentPixels`
+                Examples:
+                    - TrimType.BottomRightPixel
+                    - TrimType.TopLeftPixel
+                    - TrimType.TransparentPixels
 
             top (bool, optional): If true, trims away the top of the document.
             left (bool, optional): If true, trims away the left of the document.
