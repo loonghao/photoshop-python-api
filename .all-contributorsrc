@@ -109,6 +109,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "blunderedbishop",
+      "name": "blunderedbishop",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56189376?v=4",
+      "profile": "https://github.com/blunderedbishop",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "skipCi": true
