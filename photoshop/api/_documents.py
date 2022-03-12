@@ -61,6 +61,7 @@ class Documents(Photoshop):
 
     def __iter__(self) -> Document:
         for doc in self.app:
+            self.adobe.activeDocument = doc
             yield Document(doc)
 
     def __getitem__(self, item) -> Document:

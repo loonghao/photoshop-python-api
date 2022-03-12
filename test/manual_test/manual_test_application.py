@@ -45,10 +45,7 @@ class TestApplication:
 
     def test_set_background_color(self, photoshop_app):
         self.app.backgroundColor.rgb.green = 0
-        assert (
-            self.app.backgroundColor.rgb.green
-            == photoshop_app.backgroundColor.rgb.green
-        )
+        assert self.app.backgroundColor.rgb.green == photoshop_app.backgroundColor.rgb.green
 
     def test_build(self):
         assert self.app.build == "21.0 (20191018.r.37 2019/10/18: 614690fb487)"

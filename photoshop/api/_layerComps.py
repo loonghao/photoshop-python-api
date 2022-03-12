@@ -36,11 +36,7 @@ class LayerComps(Photoshop):
         visibility=True,
         childLayerCompStat=False,
     ):
-        return LayerComp(
-            self.app.add(
-                name, comment, appearance, position, visibility, childLayerCompStat
-            )
-        )
+        return LayerComp(self.app.add(name, comment, appearance, position, visibility, childLayerCompStat))
 
     def getByName(self, name):
         for layer in self._layers:

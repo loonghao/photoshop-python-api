@@ -358,14 +358,12 @@ class Document(Photoshop):
         """Saves the Document."""
         return self.app.save()
 
-    def saveAs(
-        self, file_path, options, asCopy=True, extensionType=ExtensionType.Lowercase
-    ):
+    def saveAs(self, file_path, options, asCopy=True, extensionType=ExtensionType.Lowercase):
         """Saves the documents with the specified save options.
 
         Args:
             file_path (str): Absolute path of psd file.
-            options (.JPEGSaveOptions): Save options.
+            options (JPEGSaveOptions): Save options.
             asCopy (bool):
         """
         return self.app.saveAs(file_path, options, asCopy, extensionType)
@@ -380,10 +378,7 @@ class Document(Photoshop):
         Allows a single undo for all actions taken in the script.
 
         """
-        self.eval_javascript(
-            f"app.activeDocument.suspendHistory('{historyString}',"
-            f" '{javaScriptString}')"
-        )
+        self.eval_javascript(f"app.activeDocument.suspendHistory('{historyString}'," f" '{javaScriptString}')")
 
     def trap(self, width):
         """
@@ -394,23 +389,21 @@ class Document(Photoshop):
         self.app.trap(width)
 
     def trim(self, trim_type, top=True, left=True, bottom=True, right=True):
-        """Trims the transparent area around the image on the specified
-        sides of the canvas.
+        """Trims the transparent area around the image on the specified sides of the canvas.
 
         Args:
-            trim_type (TrimType): The color or type of pixels to base the trim
-                on.
-                .e.g:
-                    - TrimType.BottomRightPixel
-                    - TrimType.TopLeftPixel
-                    - TrimType.TransparentPixels
+            trim_type (TrimType): The color or type of pixels to base the trim on.
+
+                Examples
+
+                    - `TrimType.BottomRightPixel`
+                    - `TrimType.TopLeftPixel`
+                    - `TrimType.TransparentPixels`
+
             top (bool, optional): If true, trims away the top of the document.
-            left (bool, optional): If true, trims away the left of the
-                document.
-            bottom (bool, optional): If true, trims away the bottom of the
-                document.
-            right (bool, optional): 	If true, trims away the right of the
-                document.
+            left (bool, optional): If true, trims away the left of the document.
+            bottom (bool, optional): If true, trims away the bottom of the document.
+            right (bool, optional): If true, trims away the right of the document.
 
         """
         return self.app.trim(trim_type, top, left, bottom, right)

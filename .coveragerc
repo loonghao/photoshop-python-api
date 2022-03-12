@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = src/photoshop
+source = photoshop
 
 [report]
 exclude_lines =

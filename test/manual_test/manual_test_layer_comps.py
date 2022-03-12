@@ -13,9 +13,7 @@ class TestTextItem:
     @pytest.fixture(autouse=True)
     def setup(self, psd_file):
         """Setup for current test."""
-        self.session = Session(
-            file_path=psd_file("layer_comps"), action="open", auto_close=True
-        )
+        self.session = Session(file_path=psd_file("layer_comps"), action="open", auto_close=True)
         self.session.run_action()
         doc = self.session.active_document
         self.layer_compse = doc.layerComps  # -> TextItem
