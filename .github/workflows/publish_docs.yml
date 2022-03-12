@@ -1,0 +1,24 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v2
+      - run: pip install --upgrade pip && python -m pip install -U pip poetry
+      - run: poetry --version
+      - run: poetry install
+      - name: Publish docs
+        run: |
+        gh --version
+        poetry run mkdocs gh-deploy --remote-branch gh-pages
+
+
