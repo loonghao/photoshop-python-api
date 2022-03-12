@@ -18,7 +18,6 @@ jobs:
       - run: poetry install
       - name: Publish docs
         run: |
-        gh --version
-        poetry run mkdocs gh-deploy --remote-branch gh-pages
-
+          gh --version
+          poetry run mkdocs gh-deploy --remote-branch gh-pages
 
