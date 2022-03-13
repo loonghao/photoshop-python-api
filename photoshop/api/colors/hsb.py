@@ -5,6 +5,8 @@ from photoshop.api._core import Photoshop
 
 
 class HSBColor(Photoshop):
+    """An HSB color specification."""
+
     object_name = "HSBColor"
 
     def __init__(self, parent):

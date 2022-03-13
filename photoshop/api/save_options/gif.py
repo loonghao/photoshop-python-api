@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class GIFSaveOptions(Photoshop):
+    """Options for saving a document in GIF format."""
+
     object_name = "GIFSaveOptions"
 
     def __init__(self):

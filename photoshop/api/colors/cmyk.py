@@ -1,12 +1,12 @@
 """Defines a CMYK color, used in the `SolidColor` object."""
 
 # Import local modules
-
-# Import local modules
 from photoshop.api._core import Photoshop
 
 
 class CMYKColor(Photoshop):
+    """A CMYK color specification."""
+
     object_name = "CMYKColor"
 
     def __init__(self, parent):

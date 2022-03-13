@@ -4,6 +4,8 @@ from photoshop.api.enumerations import MatteType
 
 
 class JPEGSaveOptions(Photoshop):
+    """Options for saving a document in JPEG format."""
+
     object_name = "JPEGSaveOptions"
 
     def __init__(self, quality=5, embedColorProfile=True, matte=MatteType.NoMatte):

@@ -1,9 +1,12 @@
 """Options for saving a document in BMO format."""
+
 # Import local modules
 from photoshop.api._core import Photoshop
 
 
 class BMPSaveOptions(Photoshop):
+    """Options for saving a document in BMP format."""
+
     object_name = "BMPSaveOptions"
 
     def __init__(self):

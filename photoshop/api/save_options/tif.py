@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class TiffSaveOptions(Photoshop):
+    """Options for saving a document in TIFF format."""
+
     object_name = "TiffSaveOptions"
 
     def __int__(self):
