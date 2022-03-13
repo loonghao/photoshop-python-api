@@ -6,17 +6,23 @@ on:
       - main
 
 jobs:
-  bump-version:
+  bump_version:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
+      - run: git config --global init.defaultBranch main
       - name: Check out
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: '${{ secrets.PERSONAL_ACCESS_TOKEN }}'
-      - name: Create bump and changelog
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - id: cz
+        name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
+        env:
+          INPUT_BRANCH: main
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release Version
+        run: gh release create ${{ steps.cz.outputs.version }} -F CHANGELOG.md
