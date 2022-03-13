@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class PhotoshopSaveOptions(Photoshop):
+    """Options for saving a Photoshop document."""
+
     object_name = "PhotoshopSaveOptions"
 
     def __int__(self):

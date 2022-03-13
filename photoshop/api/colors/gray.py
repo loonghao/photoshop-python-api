@@ -1,9 +1,12 @@
 """Defines a gray color, used in the `SolidColor` object."""
+
 # Import local modules
 from photoshop.api._core import Photoshop
 
 
 class GrayColor(Photoshop):
+    """Options for defining a gray color."""
+
     object_name = "GrayColor"
 
     def __init__(self, parent):

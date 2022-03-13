@@ -4,6 +4,8 @@ from photoshop.api.enumerations import TargaBitsPerPixels
 
 
 class TargaSaveOptions(Photoshop):
+    """Options for saving a document in TGA (Targa) format."""
+
     object_name = "TargaSaveOptions"
 
     def __int__(self):

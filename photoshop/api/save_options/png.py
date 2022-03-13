@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class ExportOptionsSaveForWeb(Photoshop):
+    """Options for exporting Save For Web files."""
+
     object_name = "ExportOptionsSaveForWeb"
 
     def __init__(self):

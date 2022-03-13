@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class RGBColor(Photoshop):
+    """The definition of an RGB color mode."""
+
     object_name = "RGBColor"
 
     def __init__(self, parent):

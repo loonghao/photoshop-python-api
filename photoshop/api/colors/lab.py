@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class LabColor(Photoshop):
+    """A Lab color specification."""
+
     object_name = "LabColor"
 
     def __init__(self, parent):

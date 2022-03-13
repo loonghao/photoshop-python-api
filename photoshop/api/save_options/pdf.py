@@ -13,6 +13,8 @@ from photoshop.api.errors import COMError
 
 # pylint: disable=too-many-instance-attributes,too-many-public-methods
 class PDFSaveOptions(Photoshop):
+    """Options for saving a document in PDF format."""
+
     object_name = "PDFSaveOptions"
 
     def __init__(self, **kwargs):
