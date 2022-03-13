@@ -13,6 +13,8 @@ from photoshop.api.text_font import TextFont
 
 
 class TextItem(Photoshop):
+    """The text that is associated with the layer. Valid only when ‘kind’ is text layer."""
+
     object_name = "Application"
 
     def __init__(self, parent):

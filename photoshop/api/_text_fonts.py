@@ -5,6 +5,8 @@ from photoshop.api.text_font import TextFont
 
 
 class TextFonts(Photoshop):
+    """An installed font."""
+
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
@@ -24,15 +26,15 @@ class TextFonts(Photoshop):
         """The number pf elements in the collection."""
         return len(self._fonts)
 
-    def getByName(self, name):
+    def getByName(self, name: str) -> TextFont:
         """Gets the font by the font name.
 
         Args:
-            name (str): The name of the font.
+            name: The name of the font.
 
 
         Returns:
-            Font
+            font instance.
 
         """
         for font in self.app:

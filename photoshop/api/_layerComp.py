@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class LayerComp(Photoshop):
+    """A snapshot of a state of the layers in a document (can be used to view different page layouts or compostions)."""
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 

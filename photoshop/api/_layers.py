@@ -6,6 +6,8 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 
 # pylint: disable=too-many-public-methods
 class Layers(Photoshop):
+    """The layers collection in the document."""
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 

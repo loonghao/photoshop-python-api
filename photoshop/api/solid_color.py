@@ -4,8 +4,7 @@ Maps a color to equivalents in all available color models.
 
 - Used in `Application.backgroundColor` and `foregroundColor` properties, in
 `Channel.color`, in `ColorSampler.color`, and in `TextItem.color`
-- Passed to `PathItem.fillPath()`, `Selection.fill()`, and
-`Selection.stroke()`.
+- Passed to `PathItem.fillPath()`, `Selection.fill()`, and `Selection.stroke()`.
 
 """
 
@@ -20,6 +19,8 @@ from photoshop.api.enumerations import ColorModel
 
 
 class SolidColor(Photoshop):
+    """A color definition used in the document."""
+
     object_name = "SolidColor"
 
     def __init__(self, parent=None):

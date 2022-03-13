@@ -5,6 +5,8 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class LayerComps(Photoshop):
+    """The layer comps collection in this document."""
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 

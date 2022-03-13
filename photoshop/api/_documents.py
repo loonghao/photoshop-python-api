@@ -9,6 +9,8 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 
 # pylint: disable=too-many-public-methods, too-many-arguments
 class Documents(Photoshop):
+    """The collection of open documents."""
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 
