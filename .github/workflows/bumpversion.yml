@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
-      - run: git config --global init.defaultBranch main
       - name: Check out
         uses: actions/checkout@v2
         with:
@@ -20,9 +19,8 @@ jobs:
       - id: cz
         name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
-        env:
-          INPUT_BRANCH: main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
       - name: Create release Version
         run: gh release create ${{ steps.cz.outputs.version }} -F CHANGELOG.md
