@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class TextFont(Photoshop):
+    """An installed font."""
+
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 

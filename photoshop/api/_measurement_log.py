@@ -3,6 +3,8 @@ from photoshop.api._core import Photoshop
 
 
 class MeasurementLog(Photoshop):
+    """The log of measurements taken."""
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 

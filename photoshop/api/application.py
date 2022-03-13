@@ -30,6 +30,13 @@ from photoshop.api.solid_color import SolidColor
 
 
 class Application(Photoshop):
+    """The Adobe Photoshop application object, which contains all other Adobe Photoshop objects.
+
+    This is the root of the object model, and provides access to all other objects.
+    To access the properties and methods, you can use the pre-defined global variable app.
+
+    """
+
     def __init__(self, version=None):
         super().__init__(ps_version=version)
 

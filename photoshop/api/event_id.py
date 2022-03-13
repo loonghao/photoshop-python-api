@@ -3,6 +3,8 @@ from enum import Enum
 
 
 class EventID(str, Enum):
+    """All event ids."""
+
     # Here is a list of JSON CallBack events in Photoshop.
     # https://community.adobe.com/t5/get-started/photoshop-json-callback-events-list-up-to-cc2015-ver-16/td-p/4792115?page=1
     TDTransform = "TdT "
