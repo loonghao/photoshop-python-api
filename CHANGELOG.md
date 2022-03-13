@@ -1,3 +1,17 @@
+## v0.17.2 (2022-03-13)
+
+### Perf
+
+- improve docs
+
+### Fix
+
+- retag and update ci
+
+### Refactor
+
+- improve `getByName` from `artLayers` and `layers`
+
 ## v0.17.1 (2022-03-12)
 
 ### Refactor
