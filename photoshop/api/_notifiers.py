@@ -1,10 +1,12 @@
-"""
-The collection of Notifier objects in the document. Access through the
-Application.notifiers collection property.
+"""The collection of Notifier objects in the document.
 
-For example:
-var notRef = app.notifiers.add("OnClickGoButton", eventFile)
-Notifiers must be enabled using the Application.notifiersEnabled property.
+Access through the Application.notifiers collection property.
+
+Examples:
+    Notifiers must be enabled using the Application.notifiersEnabled property.
+    ```javascript
+    var notRef = app.notifiers.add("OnClickGoButton", eventFile)
+    ```
 
 """
 
@@ -18,6 +20,8 @@ from photoshop.api._notifier import Notifier
 
 
 class Notifiers(Photoshop):
+    """The `notifiers` currently configured (in the Scripts Events Manager menu in the application)."""
+
     def __init__(self, parent: Optional[Any] = None):
         super().__init__(parent=parent)
 
