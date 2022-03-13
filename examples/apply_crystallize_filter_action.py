@@ -1,7 +1,7 @@
 """ This script demonstrates how you can use the action manager
 
 to execute the Crystallize filter.
-In order to find all the IDs, see https://helpx.adobe.com/photoshop/kb/downloadable-plugins-and-content.html#ScriptingListenerplugin
+In order to find all the IDs, see https://helpx.adobe.com/photoshop/kb/downloadable-plugins-and-content.html#ScriptingListenerplugin # noqa: E501
 This blog here explains what a script listener is http://blogs.adobe.com/crawlspace/2006/05/installing_and_1.html
 
 References:
