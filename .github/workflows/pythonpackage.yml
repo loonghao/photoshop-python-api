@@ -36,7 +36,7 @@ jobs:
 
         ${PREFIX}black photoshop --check
         ${PREFIX}isort --check-only photoshop
-        ${PREFIX}flake8 photoshop
+        ${PREFIX}flake8 photoshop --max-line-length 120
 
     - name: Upload coverage to Codecov
       if: runner.os == 'Linux'

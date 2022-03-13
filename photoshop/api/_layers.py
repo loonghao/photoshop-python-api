@@ -1,6 +1,7 @@
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods
@@ -24,7 +25,9 @@ class Layers(Photoshop):
         return len(self._layers)
 
     def removeAll(self):
-        return [layer.name for layer in self.app]
+        """Deletes all elements."""
+        for layer in self.app:
+            ArtLayer(layer).remove()
 
     def item(self, index):
         return ArtLayer(self.app.item(index))
@@ -32,3 +35,10 @@ class Layers(Photoshop):
     def __iter__(self):
         for layer in self._layers:
             yield ArtLayer(layer)
+
+    def getByName(self, name: str) -> ArtLayer:
+        """Get the first element in the collection with the provided name."""
+        for layer in self.app:
+            if layer.name == name:
+                return ArtLayer(layer)
+        raise PhotoshopPythonAPIError("X")

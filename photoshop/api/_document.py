@@ -36,7 +36,7 @@ from photoshop.api.enumerations import SaveOptions
 
 # pylint: disable=too-many-public-methods
 class Document(Photoshop):
-    """The active containment object for the layers and all other objects in the script; the basic canvas for the file."""
+    """The active containment object for the layers and all other objects in the script; the basic canvas for the file."""  # noqa: E501
 
     object_name = "Application"
 

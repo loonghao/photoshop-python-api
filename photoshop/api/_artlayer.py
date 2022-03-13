@@ -15,6 +15,7 @@ class ArtLayer(Photoshop):
     (equivalent to a layer in the Adobe Photoshop application).
 
     """
+
     def __init__(self, parent: Any = None):
         super().__init__(parent=parent)
 

@@ -1,10 +1,13 @@
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods
 class ArtLayers(Photoshop):
+    """The collection of art layer objects in the document."""
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 
@@ -38,8 +41,19 @@ class ArtLayers(Photoshop):
         """Adds an element."""
         return ArtLayer(self.app.add())
 
-    def getByName(self, name):
-        return self.app.getByName(name)
+    def getByName(self, name: str) -> ArtLayer:
+        """Get the first element in the collection with the provided name.
+
+        Raises:
+            PhotoshopPythonAPIError: Could not find a artLayer.
+
+        """
+        for layer in self.app:
+            if layer.name == name:
+                return ArtLayer(layer)
+        raise PhotoshopPythonAPIError(f'Could not find a artLayer named "{name}"')
 
     def removeAll(self):
-        return self.app.removeAll()
+        """Deletes all elements."""
+        for layer in self.app:
+            ArtLayer(layer).remove()
