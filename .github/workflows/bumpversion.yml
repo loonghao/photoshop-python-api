@@ -24,3 +24,5 @@ jobs:
           branch: main
       - name: Create release Version
         run: gh release create ${{ steps.cz.outputs.version }} -F CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
