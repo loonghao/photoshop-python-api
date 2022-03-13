@@ -1,3 +1,9 @@
+## v0.17.5 (2022-03-13)
+
+### Fix
+
+- update ci config and re-tag
+
 ## v0.17.4 (2022-03-13)
 
 ### Perf
