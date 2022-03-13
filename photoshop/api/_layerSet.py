@@ -8,6 +8,12 @@ from photoshop.api.enumerations import BlendMode
 
 
 class LayerSet(Photoshop):
+    """A group of layer objects, which can include art layer objects and other (nested) layer set objects.
+
+    A single command or set of commands manipulates all layers in a layer set object.
+
+    """
+
     def __init__(self, parent):
         super().__init__(parent=parent)
 
@@ -93,9 +99,11 @@ class LayerSet(Photoshop):
         self.app.link(with_layer)
 
     def add(self):
+        """Adds an element."""
         self.app.add()
 
-    def merge(self):
+    def merge(self) -> ArtLayer:
+        """Merges the layer set."""
         return ArtLayer(self.app.merge())
 
     def move(self, relativeObject, insertionLocation):

@@ -142,7 +142,7 @@ class Photoshop(object):
         return self.app_id
 
     @staticmethod
-    def _assemble_program_name(names: List[str]):
+    def _assemble_program_name(names: List[str]) -> str:
         """Assemble program name of Photoshop.
 
         Args:
@@ -158,21 +158,21 @@ class Photoshop(object):
             str: Assembled name.
 
         Examples:
-            Photoshop.ActionDescriptor
-            Photoshop.ActionDescriptor.140
-            Photoshop.ActionList
-            Photoshop.ActionList.140
-            Photoshop.ActionReference
-            Photoshop.ActionReference.140
-            Photoshop.Application
-            Photoshop.Application.140
-            Photoshop.BatchOptions
-            Photoshop.BatchOptions.140
-            Photoshop.BitmapConversionOptions
-            Photoshop.BMPSaveOptions
-            Photoshop.BMPSaveOptions.140
-            Photoshop.CameraRAWOpenOptions
-            Photoshop.CameraRAWOpenOptions.140
+            - Photoshop.ActionDescriptor
+            - Photoshop.ActionDescriptor.140
+            - Photoshop.ActionList
+            - Photoshop.ActionList.140
+            - Photoshop.ActionReference
+            - Photoshop.ActionReference.140
+            - Photoshop.Application
+            - Photoshop.Application.140
+            - Photoshop.BatchOptions
+            - Photoshop.BatchOptions.140
+            - Photoshop.BitmapConversionOptions
+            - Photoshop.BMPSaveOptions
+            - Photoshop.BMPSaveOptions.140
+            - Photoshop.CameraRAWOpenOptions
+            - Photoshop.CameraRAWOpenOptions.140
 
         """
         return ".".join(names)

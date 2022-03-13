@@ -9,6 +9,8 @@ from photoshop.api.solid_color import SolidColor
 
 # pylint: disable=too-many-public-methods, too-many-arguments
 class Selection(Photoshop):
+    """The selected area of the document."""
+
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
@@ -28,6 +30,7 @@ class Selection(Photoshop):
         return self.app.typename
 
     def clear(self):
+        """Clears the selection and does not copy it to the clipboard."""
         self.app.clear()
 
     def contract(self, contract_by):
@@ -35,31 +38,34 @@ class Selection(Photoshop):
         self.app.contract(contract_by)
 
     def copy(self):
+        """Copies the selection to the clipboard."""
         self.app.copy()
 
     def cut(self):
+        """Cuts the current selection to the clipboard."""
         self.app.cut()
 
     def select(self, *args, **kwargs):
         return self.app.select(*args, **kwargs)
 
     def deselect(self):
+        """Deselects the current selection."""
         return self.app.deselect()
 
-    def expand(self, by):
+    def expand(self, by: int):
         """Expands the selection.
 
         Args:
-            by (int): The amount to expand the selection.
+            by: The amount to expand the selection.
 
         """
         self.app.expand(by)
 
-    def feather(self, by):
+    def feather(self, by: int):
         """Feathers the edges of the selection.
 
         Args:
-            by (int): The amount to feather the edge.
+            by: The amount to feather the edge.
 
         """
         return self.app.feather(by)
