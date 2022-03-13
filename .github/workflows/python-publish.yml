@@ -3,7 +3,7 @@ name: Upload Python Package
 on:
   push:
     tags:
-      - 'v*'
+      - "v*.*.*"
 
 jobs:
   deploy:
@@ -13,6 +13,9 @@ jobs:
       with:
         token: '${{ secrets.PERSONAL_ACCESS_TOKEN }}'
         fetch-depth: 0
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
@@ -28,3 +31,7 @@ jobs:
         PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         poetry publish --build -u $PYPI_USERNAME -p $PYPI_PASSWORD
+    - name: Create release Version
+      run: gh release create ${{ steps.vars.outputs.tag }} --generate-notes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
