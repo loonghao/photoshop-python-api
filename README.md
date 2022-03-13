@@ -7,8 +7,6 @@
 <img src="https://img.shields.io/pypi/pyversions/photoshop-python-api" alt="python version"></a>
 <a href="https://badge.fury.io/py/photoshop-python-api">
 <img src="https://img.shields.io/pypi/v/photoshop-python-api?color=green" alt="PyPI version"></a>
-<a href="https://photoshop-python-api.readthedocs.io/en/master/?badge=master">
-<img src="https://readthedocs.org/projects/photoshop-python-api/badge/?version=master" alt="Documentation Status"></a>
 <img src="https://img.shields.io/pypi/dw/photoshop-python-api" alt="Downloads Status">
 <a href="https://pepy.tech/badge/photoshop-python-api">
 <img src="https://pepy.tech/badge/photoshop-python-api" alt="Downloads"></a>
@@ -18,6 +16,13 @@
 <img src="https://img.shields.io/discord/724615671400628314" alt="Chat on Discird"></a>
 <a href="https://github.com/loonghao/photoshop-python-api/graphs/commit-activity">
 <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
+<a href="https://github.com/loonghao/photoshop-python-api/actions/workflows/bumpversion.yml">
+<img src="https://github.com/loonghao/photoshop-python-api/actions/workflows/bumpversion.yml/badge.svg" alt="Bump version"></a>
+<a href="https://github.com/loonghao/photoshop-python-api/actions/workflows/pages/pages-build-deployment">
+<img src="https://github.com/loonghao/photoshop-python-api/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a>
+<a href="https://github.com/loonghao/photoshop-python-api/actions/workflows/publish_docs.yml">
+<img src="https://github.com/loonghao/photoshop-python-api/actions/workflows/publish_docs.yml/badge.svg" alt="Documentation Status"></a>
+
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
