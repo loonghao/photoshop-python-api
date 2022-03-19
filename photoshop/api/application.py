@@ -16,11 +16,14 @@ import os
 from pathlib import Path
 import time
 from typing import List
+from typing import Optional
 
 # Import local modules
+from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
 from photoshop.api._documents import Documents
+from photoshop.api._layerSets import LayerSets
 from photoshop.api._measurement_log import MeasurementLog
 from photoshop.api._notifiers import Notifiers
 from photoshop.api._preferences import Preferences
@@ -37,16 +40,16 @@ class Application(Photoshop):
 
     """
 
-    def __init__(self, version=None):
+    def __init__(self, version: Optional[str] = None):
         super().__init__(ps_version=version)
 
     @property
-    def activeLayer(self):
-        return self.app.ArtLayer
+    def activeLayer(self) -> ArtLayer:
+        return ArtLayer(self.app.ArtLayer)
 
     @property
-    def layerSets(self):
-        return self.app.LayerSets
+    def layerSets(self) -> LayerSets:
+        return LayerSets(self.app.LayerSets)
 
     @property
     def activeDocument(self):
@@ -60,25 +63,20 @@ class Application(Photoshop):
         return Document(self.app.activeDocument)
 
     @activeDocument.setter
-    def activeDocument(self, document):
+    def activeDocument(self, document: Document):
         self.app.activeDocument = document
 
     @property
-    def backgroundColor(self):
-        """The default background color and color style for documents.
-
-        Returns:
-            .solid_color.SolidColor: The SolidColor instance.
-
-        """
+    def backgroundColor(self) -> SolidColor:
+        """The default background color and color style for documents."""
         return SolidColor(self.app.backgroundColor)
 
     @backgroundColor.setter
-    def backgroundColor(self, color):
+    def backgroundColor(self, color: SolidColor):
         """Sets the default background color and color style for documents.
 
         Args:
-            color (.solid_color.SolidColor): The SolidColor instance.
+            color: The SolidColor instance.
 
         """
         self.app.backgroundColor = color
@@ -98,11 +96,11 @@ class Application(Photoshop):
         return self.app.colorSettings
 
     @colorSettings.setter
-    def colorSettings(self, settings):
+    def colorSettings(self, settings: str):
         """The name of the current color settings.
 
         Args:
-            settings (str): The name of the current tool sel.
+            settings: The name of the current tool sel.
 
         """
         self.doJavaScript(f'app.colorSettings="{settings}"')
@@ -113,11 +111,11 @@ class Application(Photoshop):
         return self.app.currentTool
 
     @currentTool.setter
-    def currentTool(self, tool_name):
+    def currentTool(self, tool_name: str):
         """Sets the current tool for select.
 
         Args:
-            tool_name (str): The name of the current tool sel.
+            tool_name: The name of the current tool sel.
 
         """
         self.app.currentTool = tool_name
@@ -145,13 +143,13 @@ class Application(Photoshop):
         return TextFonts(self.app.fonts)
 
     @property
-    def foregroundColor(self):
+    def foregroundColor(self) -> SolidColor:
         """Get default foreground color.
 
         Used to paint, fill, and stroke selections.
 
         Returns:
-            .solid_color.SolidColor: The SolidColor instance.
+            The SolidColor instance.
 
         """
         return SolidColor(parent=self.app.foregroundColor)
@@ -161,7 +159,7 @@ class Application(Photoshop):
         """Set the `foregroundColor`.
 
         Args:
-            color (.solid_color.SolidColor): The SolidColor instance.
+            color: The SolidColor instance.
 
         """
         self.app.foregroundColor = color
@@ -182,7 +180,7 @@ class Application(Photoshop):
         return self.app.macintoshFileTypes
 
     @property
-    def measurementLog(self):
+    def measurementLog(self) -> MeasurementLog:
         """The log of measurements taken."""
         return MeasurementLog(self.app.measurementLog)
 
@@ -191,7 +189,7 @@ class Application(Photoshop):
         return self.app.name
 
     @property
-    def notifiers(self):
+    def notifiers(self) -> Notifiers:
         """The notifiers currently configured (in the Scripts Events Manager
         menu in the application)."""
         return Notifiers(self.app.notifiers)

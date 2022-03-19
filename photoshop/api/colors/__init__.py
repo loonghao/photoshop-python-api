@@ -7,9 +7,9 @@ from photoshop.api.colors.rgb import RGBColor
 
 
 __all__ = [
-    "CMYKColor",
-    "HSBColor",
-    "LabColor",
-    "RGBColor",
-    "GrayColor",
+    CMYKColor.__name__,
+    GrayColor.__name__,
+    HSBColor.__name__,
+    LabColor.__name__,
+    RGBColor.__name__,
 ]

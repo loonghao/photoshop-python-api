@@ -15,6 +15,10 @@ The basic canvas for the file.
 
 # Import built-in modules
 from pathlib import Path
+from typing import List
+from typing import NoReturn
+from typing import Optional
+from typing import TypeVar
 
 # Import third-party modules
 from comtypes import COMError
@@ -32,11 +36,20 @@ from photoshop.api._layers import Layers
 from photoshop.api._selection import Selection
 from photoshop.api.enumerations import ExtensionType
 from photoshop.api.enumerations import SaveOptions
+from photoshop.api.enumerations import TrimType
+
+
+# Custom types.
+PS_Layer = TypeVar("PS_Layer", LayerSet, ArtLayer)
 
 
 # pylint: disable=too-many-public-methods
 class Document(Photoshop):
-    """The active containment object for the layers and all other objects in the script; the basic canvas for the file."""  # noqa: E501
+    """The active containment object for the layers and all other objects in the script.
+
+    the basic canvas for the file.
+
+    """  # noqa: E501
 
     object_name = "Application"
 
@@ -48,7 +61,7 @@ class Document(Photoshop):
         return ArtLayers(self.app.artLayers)
 
     @property
-    def activeLayer(self):
+    def activeLayer(self) -> PS_Layer:
         """The selected layer."""
         type_ = self.eval_javascript("app.activeDocument.activeLayer.typename")
         mappings = {"LayerSet": LayerSet, "ArtLayer": ArtLayer}
@@ -56,7 +69,7 @@ class Document(Photoshop):
         return func(self.app.activeLayer)
 
     @activeLayer.setter
-    def activeLayer(self, layer):
+    def activeLayer(self, layer) -> NoReturn:
         """Sets the select layer as active layer.
 
         Args:
@@ -215,7 +228,7 @@ class Document(Photoshop):
         return self.app.Parent
 
     @property
-    def path(self):
+    def path(self) -> str:
         """The path to the Document."""
         try:
             return Path(self.app.path)
@@ -225,7 +238,7 @@ class Document(Photoshop):
             )
 
     @path.setter
-    def path(self, path):
+    def path(self, path: str) -> NoReturn:
         self.app.fullName = path
 
     @property
@@ -314,20 +327,25 @@ class Document(Photoshop):
         """Flattens all visible layers in the Document."""
         return self.app.mergeVisibleLayers()
 
-    def crop(self, bounds, angle=None, width=None, height=None):
+    def crop(
+        self,
+        bounds: List[int],
+        angle: Optional[float] = None,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
+    ):
         """Crops the document.
 
         Args:
-            bounds (list of int): Four coordinates for the region remaining
-                after cropping.
-            angle (float, optional): The angle of cropping bounds.
-            width (int, optional): The width of the resulting document.
-            height (int, optional): The height of the resulting document.
+            bounds: Four coordinates for the region remaining after cropping.
+            angle: The angle of cropping bounds.
+            width: The width of the resulting document.
+            height: The height of the resulting document.
 
         """
         return self.app.crop(bounds, angle, width, height)
 
-    def exportDocument(self, file_path, exportAs=None, options=None):
+    def exportDocument(self, file_path: str, exportAs=None, options=None):
         """Exports the Document."""
         return self.app.exportDocument(file_path, exportAs, options)
 
@@ -380,9 +398,9 @@ class Document(Photoshop):
         Allows a single undo for all actions taken in the script.
 
         """
-        self.eval_javascript(f"app.activeDocument.suspendHistory('{historyString}'," f" '{javaScriptString}')")
+        self.eval_javascript(f"app.activeDocument.suspendHistory('{historyString}', '{javaScriptString}')")
 
-    def trap(self, width):
+    def trap(self, width: int):
         """
         Applies trapping to a CMYK document.
         Valid only when ‘mode’ = CMYK.
@@ -390,32 +408,40 @@ class Document(Photoshop):
         """
         self.app.trap(width)
 
-    def trim(self, trim_type, top=True, left=True, bottom=True, right=True):
+    def trim(
+        self,
+        trim_type: TrimType,
+        top: Optional[bool] = True,
+        left: Optional[bool] = True,
+        bottom: Optional[bool] = True,
+        right: Optional[bool] = True,
+    ):
         """Trims the transparent area around the image on the specified sides of the canvas.
 
         Args:
-            trim_type (TrimType): The color or type of pixels to base the trim on.
+            trim_type: The color or type of pixels to base the trim on.
 
                 Examples:
                     - TrimType.BottomRightPixel
                     - TrimType.TopLeftPixel
                     - TrimType.TransparentPixels
 
-            top (bool, optional): If true, trims away the top of the document.
-            left (bool, optional): If true, trims away the left of the document.
-            bottom (bool, optional): If true, trims away the bottom of the document.
-            right (bool, optional): If true, trims away the right of the document.
+            top: If true, trims away the top of the document.
+            left: If true, trims away the left of the document.
+            bottom: If true, trims away the bottom of the document.
+            right: If true, trims away the right of the document.
 
         """
         return self.app.trim(trim_type, top, left, bottom, right)
 
-    def resizeImage(self, width, height, resolution=72, automatic=8):
+    def resizeImage(self, width: int, height: int, resolution: int = 72, automatic: int = 8):
         """Changes the size of the image.
 
         Args:
             width: The desired width of the image.
             height: The desired height of the image.
             resolution: The resolution (in pixels per inch)
+            automatic: Value for automatic.
 
         """
         return self.app.resizeImage(width, height, resolution, automatic)

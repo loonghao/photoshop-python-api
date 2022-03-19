@@ -1,8 +1,8 @@
 """Provides a public session class for Photoshop api.
 
 Usually we only need to manipulate the currently active document of photoshop.
-So as follows:
 
+So as follows:
 ```python
 
 from photoshop import Session
@@ -61,7 +61,9 @@ class Session:
     We can control active documents in this Session.
 
     Attributes:
-        app (photoshop.application.Application):
+        app: Application of Photoshop.
+        ActionReference:
+        ActionDescriptor:
 
     """
 
@@ -77,12 +79,13 @@ class Session:
 
 
         Examples:
-            .. code-block:: python
+            ```python
 
                 from photoshop import Session
                 with Session("your/psd/or/psb/file_path.psd",
                             action="open") as ps:
                     ps.echo(ps.active_document.name)
+            ```
 
         Args:
             file_path: The absolute path of the file. This path can be
@@ -97,13 +100,10 @@ class Session:
                         Create a new document.
                     - document_duplicate
                         Duplicate current active document.
-            callback: The callback function for this Photoshop
-                session. The idea behind it is to allow us to pass some custom
-                callback function every time we exit the current Photoshop
-                session.
-            auto_close: Is it necessary to close the current document
-                when exiting the current context session. The default is
-                ``False`` not to exit current session.
+            callback: The callback function for this Photoshop session. The idea behind it is to allow us to pass
+                some custom callback function every time we exit the current Photoshop session.
+            auto_close: Is it necessary to close the current document when exiting the current context session.
+                The default is ``False`` not to exit current session.
             ps_version: Specify the version number of photoshop.
                 .e.g:
                     - 2022
@@ -119,9 +119,9 @@ class Session:
         self._action = action
         self._active_document = None
 
-        self.app = Application(version=ps_version)
-        self.ActionReference = ActionReference()
-        self.ActionDescriptor = ActionDescriptor()
+        self.app: Application = Application(version=ps_version)
+        self.ActionReference: ActionReference = ActionReference()
+        self.ActionDescriptor: ActionDescriptor = ActionDescriptor()
         self.EventID = EventID
         self.SolidColor = SolidColor
         self.TextItem = TextItem
@@ -278,12 +278,18 @@ class Session:
 
     @property
     def active_document(self):
+        """Get current active document.
+
+        Raises:
+            - PhotoshopPythonAPICOMError: No active document available.
+
+        """
         try:
             if not self._active_document:
                 return self.app.activeDocument
             return self._active_document
         except errors.PhotoshopPythonAPICOMError:
-            raise errors.PhotoshopPythonAPIError("No active document " "available.")
+            raise errors.PhotoshopPythonAPIError("No active document available.")
 
     @staticmethod
     def echo(*args, **kwargs):

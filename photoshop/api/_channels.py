@@ -33,7 +33,7 @@ class Channels(Photoshop):
     def removeAll(self):
         self.app.removeAll()
 
-    def getByName(self, name):
+    def getByName(self, name) -> Channel:
         for channel in self._channels:
             if channel.name == name:
                 return Channel(channel)

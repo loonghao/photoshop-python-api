@@ -11,13 +11,13 @@ from photoshop.api.save_options.tif import TiffSaveOptions
 
 
 __all__ = [
-    "BMPSaveOptions",
-    "GIFSaveOptions",
-    "JPEGSaveOptions",
-    "PDFSaveOptions",
-    "ExportOptionsSaveForWeb",
-    "PNGSaveOptions",
-    "PhotoshopSaveOptions",
-    "TiffSaveOptions",
-    "TargaSaveOptions",
+    BMPSaveOptions.__name__,
+    GIFSaveOptions.__name__,
+    JPEGSaveOptions.__name__,
+    PDFSaveOptions.__name__,
+    ExportOptionsSaveForWeb.__name__,
+    PNGSaveOptions.__name__,
+    PhotoshopSaveOptions.__name__,
+    TargaSaveOptions.__name__,
+    TiffSaveOptions.__name__,
 ]

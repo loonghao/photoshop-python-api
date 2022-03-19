@@ -533,6 +533,17 @@ dev = ["bump2version (==1.0.1)", "flake8 (==3.9.2)", "flake8-implicit-str-concat
 test = ["pytest (==6.2.5)", "pytest-cov (==3.0.0)"]
 
 [[package]]
+name = "mkdocs-literate-nav"
+version = "0.4.1"
+description = "MkDocs plugin to specify the navigation in Markdown instead of YAML"
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+mkdocs = ">=1.0.3,<2.0.0"
+
+[[package]]
 name = "mkdocs-material"
 version = "8.2.5"
 description = "A Material Design theme for MkDocs"
@@ -1087,7 +1098,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<4.0"
-content-hash = "90095dcee1e8bff41b1e88fe0d23de441748cfb6e62d11158173edddde9cc225"
+content-hash = "458645c459efd33839f5d8d857b9ea6c2d125e410190893688ddf1b4da217f17"
 
 [metadata.files]
 argcomplete = [
@@ -1443,6 +1454,10 @@ mkdocs-git-revision-date-plugin = [
 mkdocs-include-markdown-plugin = [
     {file = "mkdocs_include_markdown_plugin-3.3.0-py3-none-any.whl", hash = "sha256:d820523a28c893b92f4c5c383332d36379874a3741f4fe04f11bf41afca18a2b"},
     {file = "mkdocs_include_markdown_plugin-3.3.0.tar.gz", hash = "sha256:1462d343f150b59e78f0aebf9ff9ef9d591fbd9630193e0c9d661abf6df92d6a"},
+]
+mkdocs-literate-nav = [
+    {file = "mkdocs-literate-nav-0.4.1.tar.gz", hash = "sha256:9efe26b662f2f901cae5807bfd51446d30ea7e033c2bc43a15d6282c7dfac1ab"},
+    {file = "mkdocs_literate_nav-0.4.1-py3-none-any.whl", hash = "sha256:a4b761792ba21defbe2dfd5e0de6ba451639e1ca0f0661c37eda83cc6261e4f9"},
 ]
 mkdocs-material = [
     {file = "mkdocs-material-8.2.5.tar.gz", hash = "sha256:cdfb39edc77f5c2bbfca02b4fc3764de38b2093eff121aed37674204439901ce"},

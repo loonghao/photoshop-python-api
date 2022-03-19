@@ -2,5 +2,5 @@ from ..open_options.eps import EPSOpenOptions
 
 
 __all__ = [
-    "EPSOpenOptions",
+    EPSOpenOptions.__name__,
 ]
