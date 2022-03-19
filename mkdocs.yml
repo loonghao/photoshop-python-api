@@ -24,10 +24,14 @@ palette:
   accent: deep purple # accent color
 
 nav:
-    - Introduction: 'index.md'
-    - API: api.md
-    - Examples: "examples.md"
-    - 'Issue Tracker': 'https://github.com/loonghao/photoshop-python-api/issues'
+- Home:
+  - Overview: index.md
+  - Changelog: changelog.md
+  - Examples: examples.md
+# defer to gen-files + literate-nav
+- Code Reference: reference/
+- 'Issue Tracker': 'https://github.com/loonghao/photoshop-python-api/issues'
+
 
 markdown_extensions:
   - pymdownx.extra
@@ -72,6 +76,12 @@ plugins:
     - same-dir
     - autorefs
     - autolinks
+    - gen-files:
+        scripts:
+          - docs/gen_api_nav.py
+          - docs/gen_examples.py
+    - literate-nav:
+        nav_file: SUMMARY.md
     - git-revision-date-localized:
         type: timeago
         fallback_to_build_date: true
@@ -80,10 +90,20 @@ plugins:
     - mkdocstrings:
         handlers:
           python:
+            import:
+              - https://docs.python.org/3/objects.inv
             rendering:
               show_root_heading: true
-              show_signature_annotations: true
               show_source: false
+              docstring_section_style: list
+              members_order: alphabetical
+              show_category_heading: no
+              merge_init_into_class: yes
+              how_submodules: no
+            selection:
+              docstring_style: google
+              docstring_options:
+                ignore_init_summary: yes
     - minify:
         minify_html: true
         minify_js: true
@@ -91,7 +111,3 @@ plugins:
         htmlmin_opts:
             remove_comments: true
     - mkdocs_pymdownx_material_extras
-    - gen-files:
-        scripts:
-          - docs/gen_api_nav.py
-          - docs/gen_examples.py
