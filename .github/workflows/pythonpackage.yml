@@ -11,7 +11,7 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
     - name: Set up Python ${{ matrix.python-version }}
@@ -37,12 +37,3 @@ jobs:
         ${PREFIX}black photoshop --check
         ${PREFIX}isort --check-only photoshop
         ${PREFIX}flake8 photoshop --max-line-length 120
-
-    - name: Upload coverage to Codecov
-      if: runner.os == 'Linux'
-      uses: codecov/codecov-action@v1.5.2
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
