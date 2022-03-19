@@ -1,3 +1,13 @@
+## v0.17.6 (2022-03-19)
+
+### Refactor
+
+- improve type hints
+
+### Fix
+
+- add `ArtLayer` instance return when duplicate layer
+
 ## v0.17.5 (2022-03-13)
 
 ### Fix
