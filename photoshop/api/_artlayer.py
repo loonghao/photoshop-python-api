@@ -456,7 +456,7 @@ class ArtLayer(Photoshop):
         self.app.move(relativeObject, insertionLocation)
 
     def merge(self):
-        self.app.merge()
+        return ArtLayer(self.app.merge())
 
     def link(self, with_layer):
         self.app.link(with_layer)
@@ -468,4 +468,4 @@ class ArtLayer(Photoshop):
         self.app.invert()
 
     def duplicate(self, relativeObject=None, insertionLocation=None):
-        self.app.duplicate(relativeObject, insertionLocation)
+        return ArtLayer(self.app.duplicate(relativeObject, insertionLocation))
