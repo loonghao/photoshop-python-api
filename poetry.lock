@@ -462,14 +462,14 @@ i18n = ["babel (>=2.9.0)"]
 
 [[package]]
 name = "mkdocs-autolinks-plugin"
-version = "0.4.0"
+version = "0.5.0"
 description = "An MkDocs plugin"
 category = "dev"
 optional = false
 python-versions = ">=2.7"
 
 [package.dependencies]
-mkdocs = ">=1.0.4"
+mkdocs = ">=1.2.3"
 
 [[package]]
 name = "mkdocs-autorefs"
@@ -1084,7 +1084,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<4.0"
-content-hash = "4d874d9976eefcc18235a09820c3140c783fee38231cc64c3e6e46110e2556bd"
+content-hash = "d18c0c1a88f998dbb87f18649fac6defb944b10a07624a0f81cf18486e747e7a"
 
 [metadata.files]
 argcomplete = [
@@ -1419,8 +1419,8 @@ mkdocs = [
     {file = "mkdocs-1.2.3.tar.gz", hash = "sha256:89f5a094764381cda656af4298727c9f53dc3e602983087e1fe96ea1df24f4c1"},
 ]
 mkdocs-autolinks-plugin = [
-    {file = "mkdocs-autolinks-plugin-0.4.0.tar.gz", hash = "sha256:348bc0d5a6fcb6c9c2e8d415fee2de6281c64717669127e54cebc9bfbd600907"},
-    {file = "mkdocs_autolinks_plugin-0.4.0-py2-none-any.whl", hash = "sha256:2d6584ab7e525aa3c18292553bf2af3d29085ef19308afca5e3cf3723390c37e"},
+    {file = "mkdocs-autolinks-plugin-0.5.0.tar.gz", hash = "sha256:cdfc8909c3756ab0531c0bfec33f11ae87d60ea2d89df46742daf28d389b6a3f"},
+    {file = "mkdocs_autolinks_plugin-0.5.0-py3-none-any.whl", hash = "sha256:6072c10cbec716c8a46cec7cf6f1e8c7dd52576fce59915e219a7911d457e72f"},
 ]
 mkdocs-autorefs = [
     {file = "mkdocs-autorefs-0.4.1.tar.gz", hash = "sha256:70748a7bd025f9ecd6d6feeba8ba63f8e891a1af55f48e366d6d6e78493aba84"},
