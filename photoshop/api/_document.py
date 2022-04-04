@@ -19,6 +19,7 @@ from typing import List
 from typing import NoReturn
 from typing import Optional
 from typing import TypeVar
+from typing import Union
 
 # Import third-party modules
 from comtypes import COMError
@@ -34,9 +35,11 @@ from photoshop.api._layerSet import LayerSet
 from photoshop.api._layerSets import LayerSets
 from photoshop.api._layers import Layers
 from photoshop.api._selection import Selection
+from photoshop.api.enumerations import ExportType
 from photoshop.api.enumerations import ExtensionType
 from photoshop.api.enumerations import SaveOptions
 from photoshop.api.enumerations import TrimType
+from photoshop.api.save_options import ExportOptionsSaveForWeb
 
 
 # Custom types.
@@ -345,9 +348,26 @@ class Document(Photoshop):
         """
         return self.app.crop(bounds, angle, width, height)
 
-    def exportDocument(self, file_path: str, exportAs=None, options=None):
-        """Exports the Document."""
-        return self.app.exportDocument(file_path, exportAs, options)
+    def exportDocument(
+        self, file_path: str, exportAs: ExportType = None, options: Union[ExportOptionsSaveForWeb] = None
+    ):
+        """Exports the Document.
+
+        Note:
+          This is a patched version, Due to the problem of dynamic binding,
+          we cannot call it directly, so this command is executed by javascript.
+
+        References:
+          - https://stackoverflow.com/questions/12286761/saving-a-png-with-photoshop-script-not-working
+
+        """
+        file_path = file_path.replace("\\", "/")
+        scripts = f"""
+        var file = new File("{file_path}");
+        {options.as_javascript()}
+        app.activeDocument.exportDocument(file, ExportType.{exportAs.name.upper()}, opts)
+        """
+        return self.eval_javascript(scripts)
 
     def duplicate(self, name=None, merge_layers_only=False):
         return Document(self.app.duplicate(name, merge_layers_only))
