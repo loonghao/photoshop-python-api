@@ -54,6 +54,15 @@ class ExportOptionsSaveForWeb(Photoshop):
     def dither(self, value):
         self.app.dither = value
 
+    def as_javascript(self) -> str:
+        """Is patch function to make as javascript."""
+        return f"""
+        var opts;
+        opts = new ExportOptionsSaveForWeb();
+        opts.PNG8 = {str(self.PNG8).lower()};
+        opts.quality = {self.quality};
+        """
+
 
 class PNGSaveOptions(Photoshop):
     object_name = "PNGSaveOptions"
