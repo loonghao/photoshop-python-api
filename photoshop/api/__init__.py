@@ -3,6 +3,7 @@
 # Import local modules
 from photoshop.api import constants
 from photoshop.api.action_descriptor import ActionDescriptor
+from photoshop.api.action_list import ActionList
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.application import Application
 from photoshop.api.colors import CMYKColor
@@ -31,6 +32,7 @@ from photoshop.api.text_item import TextItem
 __all__ = [  # noqa: F405
     "ActionDescriptor",
     "ActionReference",
+    "ActionList",
     "Application",
     "constants",
     "enumerations",

@@ -31,6 +31,7 @@ from typing import Any
 
 # Import local modules
 from photoshop.api import ActionDescriptor
+from photoshop.api import ActionList
 from photoshop.api import ActionReference
 from photoshop.api import Application
 from photoshop.api import BMPSaveOptions
@@ -122,6 +123,7 @@ class Session:
         self.app: Application = Application(version=ps_version)
         self.ActionReference: ActionReference = ActionReference()
         self.ActionDescriptor: ActionDescriptor = ActionDescriptor()
+        self.ActionList: ActionList = ActionList()
         self.EventID = EventID
         self.SolidColor = SolidColor
         self.TextItem = TextItem
