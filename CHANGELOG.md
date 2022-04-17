@@ -1,3 +1,9 @@
+## v0.18.1 (2022-04-17)
+
+### Refactor
+
+- **ActionList**: Added ActionList to __init__ and Session to make ActionList callable from Application or Session object
+
 ## v0.18.0 (2022-04-04)
 
 ### Fix
