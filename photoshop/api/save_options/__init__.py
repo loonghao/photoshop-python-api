@@ -8,6 +8,7 @@ from photoshop.api.save_options.png import PNGSaveOptions
 from photoshop.api.save_options.psd import PhotoshopSaveOptions
 from photoshop.api.save_options.tag import TargaSaveOptions
 from photoshop.api.save_options.tif import TiffSaveOptions
+from photoshop.api.save_options.eps import EPSSaveOptions
 
 
 __all__ = [
@@ -20,4 +21,5 @@ __all__ = [
     PhotoshopSaveOptions.__name__,
     TargaSaveOptions.__name__,
     TiffSaveOptions.__name__,
+    EPSSaveOptions.__name__,
 ]
