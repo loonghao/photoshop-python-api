@@ -44,6 +44,7 @@ from photoshop.api import HSBColor
 from photoshop.api import JPEGSaveOptions
 from photoshop.api import LabColor
 from photoshop.api import PDFSaveOptions
+from photoshop.api import EPSSaveOptions
 from photoshop.api import PNGSaveOptions
 from photoshop.api import PhotoshopSaveOptions
 from photoshop.api import RGBColor
@@ -132,6 +133,7 @@ class Session:
         self.GIFSaveOptions = GIFSaveOptions
         self.JPEGSaveOptions = JPEGSaveOptions
         self.PDFSaveOptions = PDFSaveOptions
+        self.EPSSaveOptions = EPSSaveOptions
         self.PNGSaveOptions = PNGSaveOptions
         self.PhotoshopSaveOptions = PhotoshopSaveOptions
         self.ExportOptionsSaveForWeb = ExportOptionsSaveForWeb
