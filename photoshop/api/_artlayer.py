@@ -41,7 +41,7 @@ class ArtLayer(Photoshop):
 
         Returns:
             list: Layer objects"""
-        return list(self.app.linkedLayers)
+        return [ArtLayer(layer) for layer in self.app.linkedLayers]
 
     @property
     def name(self) -> str:
@@ -459,8 +459,8 @@ class ArtLayer(Photoshop):
         self.app.applyPinch(amount)
 
     def remove(self):
-        layer = f'app.activeDocument.artLayers.getByName("{self.app.name}")'
-        self.eval_javascript(f"{layer}.remove()")
+        """Removes this layer from the document."""
+        self.app.delete()
 
     def rasterize(self, target: RasterizeType):
         self.app.rasterize(target)
