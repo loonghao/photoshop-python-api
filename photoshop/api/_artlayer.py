@@ -36,6 +36,14 @@ class ArtLayer(Photoshop):
         self.app.blendMode = mode
 
     @property
+    def linkedLayers(self) -> list:
+        """Get all layers linked to this layer.
+
+        Returns:
+            list: Layer objects"""
+        return list(self.app.linkedLayers)
+
+    @property
     def name(self) -> str:
         return self.app.name
 
@@ -45,12 +53,12 @@ class ArtLayer(Photoshop):
 
     @property
     def fillOpacity(self):
-        """he interior opacity of the layer. Range: 0.0 to 100.0."""
+        """The interior opacity of the layer. Range: 0.0 to 100.0."""
         return self.app.fillOpacity
 
     @fillOpacity.setter
     def fillOpacity(self, value):
-        """he interior opacity of the layer. Range: 0.0 to 100.0."""
+        """The interior opacity of the layer. Range: 0.0 to 100.0."""
         self.app.fillOpacity = value
 
     @property
@@ -123,6 +131,15 @@ class ArtLayer(Photoshop):
         self.app.layerMaskFeather = value
 
     @property
+    def opacity(self):
+        """The master opacity of the layer."""
+        return round(self.app.opacity)
+
+    @opacity.setter
+    def opacity(self, value):
+        self.app.opacity = value
+
+    @property
     def parent(self):
         """The object’s container."""
         return self.app.parent
@@ -158,7 +175,6 @@ class ArtLayer(Photoshop):
 
         returns:
             TextItem:
-
         """
         return TextItem(self.app.textItem)
 
@@ -461,8 +477,9 @@ class ArtLayer(Photoshop):
     def link(self, with_layer):
         self.app.link(with_layer)
 
-    def unlink(self, with_layer):
-        self.app.unlink(with_layer)
+    def unlink(self):
+        """Unlink this layer from any linked layers."""
+        self.app.unlink()
 
     def invert(self):
         self.app.invert()
