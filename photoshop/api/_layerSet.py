@@ -110,8 +110,8 @@ class LayerSet(Photoshop):
         self.app.move(relativeObject, insertionLocation)
 
     def remove(self):
-        layer = f'app.activeDocument.layerSets.getByName("{self.app.name}")'
-        self.eval_javascript(f"{layer}.remove()")
+        """Remove this layer set from the document."""
+        self.app.delete()
 
     def resize(self, horizontal=None, vertical=None, anchor: AnchorPosition = None):
         self.app.resize(horizontal, vertical, anchor)
