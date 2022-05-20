@@ -1,3 +1,13 @@
+## v0.19.0 (2022-05-20)
+
+### Fix
+
+- **ArtLayer,-LayerSet**: adjusted linkedLayers property, fixed remove()
+
+### Feat
+
+- **ArtLayer**: added linkedLayers and opacity, fixed unlink
+
 ## v0.18.1 (2022-04-17)
 
 ### Refactor
