@@ -1,4 +1,4 @@
-"""Export every layer as a .png file."""
+"""Export every layer as a .png file use `ExportOptionsSaveForWeb`."""
 # Import built-in modules
 import os
 
@@ -7,7 +7,6 @@ import examples._psd_files as psd  # Import from examples.
 
 # Import local modules
 from photoshop import Session
-
 
 PSD_FILE = psd.get_psd_files()
 
@@ -21,8 +20,7 @@ def main():
     psd_file = PSD_FILE["export_layers_as_png.psd"]
     with Session(psd_file, action="open") as ps:
         doc = ps.active_document
-        options = ps.PNGSaveOptions()
-        options.compression = 1
+        options = ps.ExportOptionsSaveForWeb()
         layers = doc.artLayers
         for layer in layers:
             hide_all_layers(layers)
@@ -32,7 +30,7 @@ def main():
             if not os.path.exists(layer_path):
                 os.makedirs(layer_path)
             image_path = os.path.join(layer_path, f"{layer.name}.png")
-            doc.saveAs(image_path, True, options)
+            doc.exportDocument(image_path, exportAs=ps.ExportType.SaveForWeb, options=options)
         ps.alert("Task done!")
         ps.echo(doc.activeLayer)
 
