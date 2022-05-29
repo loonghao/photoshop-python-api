@@ -23,6 +23,7 @@ from typing import Union
 
 # Import third-party modules
 from comtypes import COMError
+import pythoncom
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
@@ -348,9 +349,7 @@ class Document(Photoshop):
         """
         return self.app.crop(bounds, angle, width, height)
 
-    def exportDocument(
-        self, file_path: str, exportAs: ExportType = None, options: Union[ExportOptionsSaveForWeb] = None
-    ):
+    def exportDocument(self, file_path: str, exportAs: ExportType, options: Union[ExportOptionsSaveForWeb]):
         """Exports the Document.
 
         Note:
@@ -362,12 +361,7 @@ class Document(Photoshop):
 
         """
         file_path = file_path.replace("\\", "/")
-        scripts = f"""
-        var file = new File("{file_path}");
-        {options.as_javascript()}
-        app.activeDocument.exportDocument(file, ExportType.{exportAs.name.upper()}, opts)
-        """
-        return self.eval_javascript(scripts)
+        self.app.export(file_path, exportAs, options)
 
     def duplicate(self, name=None, merge_layers_only=False):
         return Document(self.app.duplicate(name, merge_layers_only))
