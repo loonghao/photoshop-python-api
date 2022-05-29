@@ -14,10 +14,11 @@ class ExportOptionsSaveForWeb(Photoshop):
 
     @property
     def PNG8(self):
+        """If true, uses 8 bits. If false, uses 24 bits. Valid only when ‘format’ = PNG."""
         return self.app.PNG8
 
     @PNG8.setter
-    def PNG8(self, value):
+    def PNG8(self, value: bool):
         self.app.PNG8 = value
 
     @property
@@ -54,14 +55,13 @@ class ExportOptionsSaveForWeb(Photoshop):
     def dither(self, value):
         self.app.dither = value
 
-    def as_javascript(self) -> str:
-        """Is patch function to make as javascript."""
-        return f"""
-        var opts;
-        opts = new ExportOptionsSaveForWeb();
-        opts.PNG8 = {str(self.PNG8).lower()};
-        opts.quality = {self.quality};
-        """
+    @property
+    def quality(self):
+        return self.app.quality
+
+    @quality.setter
+    def quality(self, value: int):
+        self.app.quality = value
 
 
 class PNGSaveOptions(Photoshop):
@@ -70,12 +70,20 @@ class PNGSaveOptions(Photoshop):
     def __init__(self):
         super().__init__()
         self.interlaced = False
-        self.compression = True
+        self.compression = 6
 
     @property
-    def interlaced(self):
+    def interlaced(self) -> bool:
         return self.app.interlaced
 
     @interlaced.setter
-    def interlaced(self, value):
+    def interlaced(self, value: bool):
         self.app.interlaced = value
+
+    @property
+    def compression(self) -> int:
+        return self.app.compression
+
+    @compression.setter
+    def compression(self, value: int):
+        self.app.compression = value
