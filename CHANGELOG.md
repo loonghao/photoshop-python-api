@@ -1,3 +1,10 @@
+## v0.19.1 (2022-05-29)
+
+### Fix
+
+- **document**: export document
+- **png**: exported PNG image is too large
+
 ## v0.19.0 (2022-05-20)
 
 ### Fix
