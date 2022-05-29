@@ -23,7 +23,6 @@ from typing import Union
 
 # Import third-party modules
 from comtypes import COMError
-import pythoncom
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
