@@ -32,7 +32,7 @@ def main():
             if not os.path.exists(layer_path):
                 os.makedirs(layer_path)
             image_path = os.path.join(layer_path, f"{layer.name}.png")
-            doc.saveAs(image_path, True, options)
+            doc.saveAs(image_path, options=options, asCopy=True)
         ps.alert("Task done!")
         ps.echo(doc.activeLayer)
 
