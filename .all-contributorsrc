@@ -127,6 +127,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "damienchambe",
+      "name": "Damien Chambe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42462209?v=4",
+      "profile": "https://github.com/damienchambe",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "skipCi": true
