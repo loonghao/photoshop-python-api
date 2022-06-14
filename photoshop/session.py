@@ -36,6 +36,7 @@ from photoshop.api import ActionReference
 from photoshop.api import Application
 from photoshop.api import BMPSaveOptions
 from photoshop.api import CMYKColor
+from photoshop.api import EPSSaveOptions
 from photoshop.api import EventID
 from photoshop.api import ExportOptionsSaveForWeb
 from photoshop.api import GIFSaveOptions
@@ -132,6 +133,7 @@ class Session:
         self.GIFSaveOptions = GIFSaveOptions
         self.JPEGSaveOptions = JPEGSaveOptions
         self.PDFSaveOptions = PDFSaveOptions
+        self.EPSSaveOptions = EPSSaveOptions
         self.PNGSaveOptions = PNGSaveOptions
         self.PhotoshopSaveOptions = PhotoshopSaveOptions
         self.ExportOptionsSaveForWeb = ExportOptionsSaveForWeb
