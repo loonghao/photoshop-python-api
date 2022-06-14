@@ -1,3 +1,9 @@
+## v0.19.2 (2022-06-14)
+
+### Refactor
+
+- **session.py**: add EPS save options
+
 ## v0.19.1 (2022-05-29)
 
 ### Fix
