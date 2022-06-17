@@ -17,6 +17,7 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.event_id import EventID
 from photoshop.api.open_options import EPSOpenOptions
 from photoshop.api.save_options import BMPSaveOptions
+from photoshop.api.save_options import EPSSaveOptions
 from photoshop.api.save_options import ExportOptionsSaveForWeb
 from photoshop.api.save_options import GIFSaveOptions
 from photoshop.api.save_options import JPEGSaveOptions
@@ -55,5 +56,6 @@ __all__ = [  # noqa: F405
     "TiffSaveOptions",
     "TargaSaveOptions",
     "EPSOpenOptions",
+    "EPSSaveOptions",
     "TextItem",
 ]
