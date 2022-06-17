@@ -25,7 +25,7 @@
 
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 </p>
 
@@ -136,6 +136,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/blunderedbishop"><img src="https://avatars.githubusercontent.com/u/56189376?v=4?s=100" width="100px;" alt=""/><br /><sub><b>blunderedbishop</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Ablunderedbishop" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/MrTeferi"><img src="https://avatars.githubusercontent.com/u/92750180?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MrTeferi</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=MrTeferi" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/damienchambe"><img src="https://avatars.githubusercontent.com/u/42462209?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Damien Chambe</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=damienchambe" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/be42day"><img src="https://avatars.githubusercontent.com/u/20614168?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ehsan Akbari Tabar</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Abe42day" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
