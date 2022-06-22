@@ -150,6 +150,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 This project follows the [all-contributors](https://allcontributors.org) specification.
 Contributions of any kind are welcome!
 
+# Repobeats analytics
+![Repobeats analytics](https://repobeats.axiom.co/api/embed/0f4ab02065b94983fc95677c6587a61ce5fa8397.svg "Repobeats analytics image")
+
 
 how to get Photoshop program ID
 -------------------------------
