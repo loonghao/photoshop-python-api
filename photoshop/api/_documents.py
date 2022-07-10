@@ -76,5 +76,9 @@ class Documents(Photoshop):
     def length(self) -> int:
         return len(list(self.app))
 
-    def getByName(self, document_name: str):
-        return Document(self.app.getByName(document_name))
+    def getByName(self, document_name: str) -> Document:
+        """Get document by given document name."""
+        for doc in self.app:
+            if doc.name == document_name:
+                return Document(doc)
+        raise PhotoshopPythonAPIError(f'Could not find a document named "{document_name}"')
