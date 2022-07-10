@@ -1,3 +1,9 @@
+## v0.19.4 (2022-07-10)
+
+### Fix
+
+- get document by document name from documents.
+
 ## v0.19.3 (2022-06-17)
 
 ### Fix
