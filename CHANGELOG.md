@@ -1,3 +1,9 @@
+## v0.19.5 (2022-07-17)
+
+### Refactor
+
+- **application**: add a default value of action
+
 ## v0.19.4 (2022-07-10)
 
 ### Fix
