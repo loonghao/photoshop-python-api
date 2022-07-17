@@ -1,4 +1,4 @@
-"""A examples to show you how to operation layerSet."""
+"""A examples to show you how to operate layerSet."""
 
 # Import local modules
 from photoshop import Session

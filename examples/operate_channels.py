@@ -1,4 +1,4 @@
-"""A examples to show you how to operation active document channels."""
+"""A examples to show you how to operate active document channels."""
 
 # Import local modules
 from photoshop import Session
