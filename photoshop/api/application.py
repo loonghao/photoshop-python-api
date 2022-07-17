@@ -285,7 +285,7 @@ class Application(Photoshop):
     def compareWithNumbers(first, second):
         return first > second
 
-    def doAction(self, action, action_from):
+    def doAction(self, action, action_from="Default Actions"):
         """Plays the specified action from the Actions palette."""
         self.app.doAction(action, action_from)
         return True
