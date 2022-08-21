@@ -2,9 +2,9 @@
 
 # Import local modules
 from photoshop.api import constants
-from photoshop.api.action_descriptor import ActionDescriptor
-from photoshop.api.action_list import ActionList
-from photoshop.api.action_reference import ActionReference
+from photoshop.api._actionmanager_type_binder import ActionDescriptor
+from photoshop.api._actionmanager_type_binder import ActionList
+from photoshop.api._actionmanager_type_binder import ActionReference
 from photoshop.api.application import Application
 from photoshop.api.colors import CMYKColor
 from photoshop.api.colors import GrayColor

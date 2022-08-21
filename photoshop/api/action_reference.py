@@ -8,68 +8,82 @@ It can be used for low-level access into Contains data associated
 with an ActionDescriptor.
 
 """
+
+# Import built-in modules
+from abc import ABC
+from abc import abstractmethod
+
+# Import third-party modules
+import comtypes
+
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ReferenceFormType
 
 
-class ActionReference(Photoshop):
-    """Contains data describing a referenced Action.
-
-    The action reference object is part of the Action Manager functionality.
-    For details on using the Action Manager, see the Photoshop Scripting Guide.
-
-    """
-
+class ActionReference(Photoshop, ABC):
     object_name = "ActionReference"
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: comtypes.client.lazybind.Dispatch = None):
         super().__init__(parent=parent)
 
+    @abstractmethod
     def getContainer(self):
-        return self.app.getContainer()
+        """Implemented in _actionmanager_type_binder.ActionReference"""
+        pass
 
-    def getDesiredClass(self):
+    def getDesiredClass(self) -> int:
+        """Gets a number representing the class of the object."""
         return self.app.getDesiredClass()
 
     def getEnumeratedType(self) -> int:
+        """Gets the enumeration type."""
         return self.app.getEnumeratedType()
 
     def getEnumeratedValue(self) -> int:
+        """Gets the enumeration value."""
         return self.app.getEnumeratedValue()
 
-    def getForm(self) -> ReferenceFormType:
-        """Gets the form of this action reference."""
-        return ReferenceFormType(self.app.getForm())
+    @abstractmethod
+    def getForm(self):
+        """Implemented in _actionmanager_type_binder.ActionReference"""
+        pass
 
     def getIdentifier(self) -> int:
-        """Gets the identifier value for a reference whose form is
-        identifier."""
+        """Gets the identifier value for a reference whose form is identifier."""
         return self.app.getIdentifier()
 
     def getIndex(self) -> int:
-        """Gets the index value for a reference in a list or array,"""
+        """Gets the index value for a reference in a list or array."""
         return self.app.getIndex()
 
-    def putName(self, key, value):
-        return self.app.putName(key, value)
+    def getName(self) -> str:
+        """Gets the name of a reference."""
+        return self.app.getName()
 
-    def putClass(self, value):
-        return self.app.putClass(value)
+    def getOffset(self) -> int:
+        """Gets the offset of the object’s index value."""
+        return self.app.getOffset()
 
-    def putEnumerated(self, desired_class, enum_type, value):
-        """Puts an enumeration type and ID into a reference along with the
-        desired class for the reference."""
-        return self.app.putEnumerated(desired_class, enum_type, value)
+    def getProperty(self) -> int:
+        return self.app.getProperty()
 
-    def putIdentifier(self, desired_class, value):
-        return self.app.putIdentifier(desired_class, value)
+    def putClass(self, desiredClass: int):
+        self.app.putClass(desiredClass)
 
-    def putIndex(self, desired_class, value):
-        return self.app.putIndex(desired_class, value)
+    def putEnumerated(self, desiredClass: int, enumType: int, value: int):
+        self.app.putEnumerated(desiredClass, enumType, value)
 
-    def putOffset(self, desired_class, value):
-        return self.app.putOffset(desired_class, value)
+    def putIdentifier(self, desiredClass: int, value: int):
+        self.app.putIdentifier(desiredClass, value)
 
-    def putProperty(self, desired_class, value):
-        return self.app.putProperty(desired_class, value)
+    def putIndex(self, desiredClass: int, value: int):
+        self.app.putIndex(desiredClass, value)
+
+    def putName(self, desiredClass: int, value: str):
+        self.app.putName(desiredClass, value)
+
+    def putOffset(self, desiredClass: int, value: int):
+        self.app.putOffset(desiredClass, value)
+
+    def putProperty(self, desiredClass: int, value: int):
+        self.app.putProperty(desiredClass, value)
