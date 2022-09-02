@@ -7,13 +7,24 @@ We just put type-irrelevant codes in one file then inherit it in this file and a
 
 # Import local modules
 from photoshop.api.action_descriptor import ActionDescriptor as AD_proto
+from photoshop.api.action_manager._main_types.action_descriptor import ActionDescriptor as AD_utils_proto
 from photoshop.api.action_list import ActionList as AL_proto
+from photoshop.api.action_manager._main_types.action_list import ActionList as AL_utils_proto
 from photoshop.api.action_reference import ActionReference as AR_proto
+from photoshop.api.action_manager._main_types.action_reference import ActionReference as AR_utils_proto
 from photoshop.api.enumerations import DescValueType
 from photoshop.api.enumerations import ReferenceFormType
 
 
-class ActionDescriptor(AD_proto):
+class ActionDescriptor(AD_proto, AD_utils_proto):
+    @classmethod
+    def load(cls, adict: dict) -> 'ActionDescriptor':
+        return super().load(adict, globals())
+
+    def __init__(self, parent=None, classID=None):
+        self.classID = classID
+        super().__init__(parent=parent)
+
     def getType(self, key: int) -> DescValueType:
         """Gets the type of a key."""
         return DescValueType(self.app.getType(key))
@@ -31,7 +42,11 @@ class ActionDescriptor(AD_proto):
         return ActionReference(parent=self.app.getReference(key))
 
 
-class ActionList(AL_proto):
+class ActionList(AL_proto, AL_utils_proto):
+    @classmethod
+    def load(cls, alist: list) -> 'ActionList':
+        return super().load(alist, globals())
+
     def getType(self, index: int) -> DescValueType:
         """Gets the type of a list element."""
         return DescValueType(self.app.getType(index))
@@ -49,7 +64,11 @@ class ActionList(AL_proto):
         return ActionReference(parent=self.app.getReference(index))
 
 
-class ActionReference(AR_proto):
+class ActionReference(AR_proto, AR_utils_proto):
+    @classmethod
+    def load(cls, adict: dict) -> 'ActionReference':
+        return super().load(adict)
+
     def getForm(self) -> ReferenceFormType:
         """Gets the form of this action reference."""
         return ReferenceFormType(self.app.getForm())
