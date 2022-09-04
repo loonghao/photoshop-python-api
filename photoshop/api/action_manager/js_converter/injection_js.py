@@ -1,4 +1,8 @@
-#You may turn on syntax highlighting for js here.
+'''Defines injection, a variable which contains js code.
+These js code implements Photoshop functions, and lures a piece of js code
+to output all its information on executing executeAction function.
+You may turn on syntax highlighting for js here.'''
+
 injection = '''
 
 class UnitDouble {

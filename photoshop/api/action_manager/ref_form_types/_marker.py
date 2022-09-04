@@ -1,3 +1,6 @@
+'''Defines class marker. It is the class of Identifier, Index, Offset.
+It is INTERNAL. You should not import or initialize it.'''
+
 class marker:
   def __init__(self, name, value=0):
     self.name = name

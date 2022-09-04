@@ -5,7 +5,9 @@ from typing import Any
 from abc import ABC, abstractclassmethod
 
 class ActionDescriptor:
-  '''A vessel for my extra utils.'''
+  '''A vessel for my extra utils.
+  You should not use, and cannot initialize it
+  because it is an abstract class.'''
 
   @abstractclassmethod
   def load(cls, adict: dict, namespace: dict):  # pass globals() for namespace
@@ -23,11 +25,13 @@ class ActionDescriptor:
     return new
 
   def uget(self, key: str) -> Any:
+    '''Get a value of a key in an ActionDescriptor, no matter its type.'''
     keyid = str2id(key)
     val = pack(self, keyid)
     return val
 
   def uput(self, key: str, val: Any):
+    '''Put a value of a key into an ActionDescriptor, no matter its type.'''
     keyid = str2id(key)
     typestr, args = unpack(val)
     put_func = getattr(self, 'put'+typestr)
@@ -44,6 +48,7 @@ class ActionDescriptor:
     return key in keys
 
   def dump(self) -> dict:
+    '''Convert an ActionDescriptor to a python object.'''
     #This is a dict comprehension.
     ddict = {'_classID':self.classID}
     ddict.update({

@@ -1,6 +1,8 @@
 from ..utils import *
 
 class ActionDescriptor_Iterator:
+  '''An iterator. You don't need to initialize it manually.'''
+
   def __init__(self, psobj: 'ActionDescriptor'):
     self.curobj = psobj
     self.n = -1

@@ -4,6 +4,7 @@ from collections import namedtuple
 UnitDouble_proto = namedtuple('UnitDouble_proto', ['unit', 'double'])
 
 class UnitDouble(UnitDouble_proto):
+  '''You can initialize a UnitDouble object with 2 arguments: unit, double.'''
   @classmethod
   def _packer(cls, obj, index):
     unit = id2str(obj.getUnitDoubleType(index))

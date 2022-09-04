@@ -4,6 +4,7 @@ from collections import namedtuple
 Enumerated_proto = namedtuple('Enumerated_proto', ['type', 'value'])
 
 class Enumerated(Enumerated_proto):
+  '''You can initialize an Enumerated object with 2 arguments: type, value.'''
   @classmethod
   def _packer(cls, obj, index):
     type = id2str(obj.getEnumerationType(index))

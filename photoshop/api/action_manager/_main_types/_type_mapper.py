@@ -1,3 +1,7 @@
+'''Maybe the core of this submodule.
+Handles almost all type mappings. (Some else are in ReferenceKey.)
+This module is INTERNAL. You should not import functions from it.'''
+
 from ..desc_value_types import *
 from ..ref_form_types import *
 from ..utils import *

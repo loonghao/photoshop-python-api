@@ -1,3 +1,8 @@
+'''Defines functions to parse information got on the js side into loadable form.
+Use with following: (You need to install Node.js to PATH!)
+import photoshop.api.action_manager as am
+am.dumpjs(some_js_code)'''
+
 from .node_execjs import execjs
 from .injection_js import injection
 from ..utils import str2id, id2str, str2hash, hash2str

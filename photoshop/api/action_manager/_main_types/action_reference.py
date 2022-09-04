@@ -3,7 +3,9 @@ from ..ref_form_types import ReferenceKey
 from abc import ABC, abstractclassmethod
 
 class ActionReference(ABC):
-  '''A vessel for my extra utils.'''
+  '''A vessel for my extra utils.
+  You should not use, and cannot initialize it
+  because it is an abstract class.'''
 
   @abstractclassmethod
   def load(cls, alist: list):
@@ -19,6 +21,7 @@ class ActionReference(ABC):
     return new
 
   def uget(self, index: int) -> ReferenceKey:
+    '''Get a key in an ActionReference as ReferenceKey, no matter its type.'''
     target = self
     for i in range(index+1):
       try:
@@ -28,6 +31,7 @@ class ActionReference(ABC):
     return ReferenceKey._packer(target)
 
   def uput(self, rkey: ReferenceKey):
+    '''Put a ReferenceKey into an ActionReference, no matter its type.'''
     assert type(rkey) == ReferenceKey
     ftype, dcls, v = rkey._unpacker()
     put_func = getattr(self, 'put'+ftype)
@@ -35,6 +39,7 @@ class ActionReference(ABC):
     put_func(*args)
 
   def dump(self) -> list:
+    '''Convert an ActionReference to a python object.'''
     target = self
     tlist = ['!ref']
     tlist.extend([elem for elem in self])

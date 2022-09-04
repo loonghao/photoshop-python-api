@@ -1,6 +1,8 @@
 from typing import Any
 
 class ActionList_Iterator:
+  '''An iterator. You don't need to initialize it manually.'''
+
   def __init__(self, psobj: 'ActionList'):
     self.curobj = psobj
     self.n = -1

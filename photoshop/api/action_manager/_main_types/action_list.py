@@ -5,7 +5,9 @@ from typing import Any
 from abc import ABC, abstractclassmethod
 
 class ActionList(ABC):
-  '''A vessel for my extra utils.'''
+  '''A vessel for my extra utils.
+  You should not use, and cannot initialize it
+  because it is an abstract class.'''
 
   @abstractclassmethod
   def load(cls, alist: list, namespace: dict):  # pass globals() for namespace
@@ -26,10 +28,12 @@ class ActionList(ABC):
     return typestr
 
   def uget(self, index: int) -> Any:
+    '''Get an element in an ActionList, no matter its type.'''
     val = pack(self, index)
     return val
 
   def uput(self, val: Any):
+    '''Put an element into an ActionList, no matter its type.'''
     typestr, args = unpack(val)
     #ActionList type checking
     assert True if (dtype := self.dtype) is None else dtype == typestr, \
@@ -44,6 +48,7 @@ class ActionList(ABC):
     return ActionList_Iterator(self)
 
   def dump(self) -> list:
+    '''Convert an ActionList to a python object.'''
     #This is a list comprehension.
     dlist = [
       (

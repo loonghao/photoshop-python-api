@@ -1,7 +1,8 @@
-#Format it like json!
-#Just literal processing.
+'''Format a repr() string like json.
+This is just literal processing.'''
 
 def jformat(astr, indent=4, prefix=None):
+  '''Formats a repr() string.'''
   all_am_keywords = [  # noqa: F405
     'str2id',
     'id2str',
@@ -56,4 +57,5 @@ def jformat(astr, indent=4, prefix=None):
   return nstr
 
 def jprint(obj, indent=4):
+  '''Print formatted repr of an object.'''
   print(jformat(repr(obj), indent=indent))

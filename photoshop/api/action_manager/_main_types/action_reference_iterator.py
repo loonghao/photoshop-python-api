@@ -1,6 +1,8 @@
 from ..ref_form_types import ReferenceKey
 
 class ActionReference_Iterator:
+  '''An iterator. You don't need to initialize it manually.'''
+
   def __init__(self, psobj: 'ActionReference'):
     self.curobj = psobj
     self.init = True

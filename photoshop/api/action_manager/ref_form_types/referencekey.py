@@ -1,3 +1,6 @@
+'''Defines class ReferenceKey. It handles type mapping in ActionReference.
+You can initialize it with 2 arguments: desiredclass, value.'''
+
 from ..utils import *
 from ..desc_value_types import TypeID, Enumerated
 from photoshop.api.enumerations import ReferenceFormType

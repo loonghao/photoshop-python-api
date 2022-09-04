@@ -1,3 +1,5 @@
+'''Defines execjs, a function to run js in Node.js'''
+
 import os,re,subprocess
 
 # Node.js check

@@ -1,8 +1,11 @@
+'''TypeID conversion utilities of this submodule.'''
+
 from photoshop.api._core import Photoshop
 
 __all__ = ['str2id', 'id2str']
 
 class app(Photoshop):
+  '''Partially reimplement the Application class in this file to avoid circular import.'''
   typename = 'Application'
   def str2id(self, string: str) -> int:
     return self.app.stringIDToTypeID(string)
