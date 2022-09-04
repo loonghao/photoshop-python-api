@@ -9,4 +9,4 @@ if __name__ == '__main__':
     print('Operation:')
     print(obj[0])
     print('Descriptor:')
-    jprint(obj[1])
+    jprint(obj[1], prefix='am')
