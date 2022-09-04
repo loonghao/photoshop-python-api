@@ -31,10 +31,7 @@ with Session(PSD_FILE["layer_comps.psd"], "open") as ps:
     active_document.activeLayer = active_document.layerSets.item(len(nLayerSets)).artLayers.item(len(nArtLayers))
 
     def applyCrystallize(cellSize):
-        filter_dict = {
-            '_classID':None,
-            'ClSz':cellSize
-        }
+        filter_dict = {"_classID": None, "ClSz": cellSize}
         filter_desc = ps.ActionDescriptor.load(filter_dict)
         ps.app.executeAction(am.str2id("Crst"), filter_desc)
 

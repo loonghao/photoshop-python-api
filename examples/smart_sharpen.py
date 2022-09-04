@@ -27,14 +27,15 @@ docRef.activeLayer = nArtLayers.artLayers.item(nArtLayers.artLayers.length)
 
 def SmartSharpen(inAmount, inRadius, inNoise):
     ss_dict = {
-        '_classID':None,
-        'presetKindType':am.Enumerated(type='presetKindType', value='presetKindCustom'),
-        'amount':am.UnitDouble(unit='radius', double=inAmount),
-        'radius':am.UnitDouble(unit='pixelsUnit', double=inRadius),
-        'noiseReduction':am.UnitDouble(unit='percentUnit', double=inNoise),
-        'blur':am.Enumerated(type='blurType', value='gaussianBlur')
+        "_classID": None,
+        "presetKindType": am.Enumerated(type="presetKindType", value="presetKindCustom"),  # noqa
+        "amount": am.UnitDouble(unit="radius", double=inAmount),
+        "radius": am.UnitDouble(unit="pixelsUnit", double=inRadius),
+        "noiseReduction": am.UnitDouble(unit="percentUnit", double=inNoise),
+        "blur": am.Enumerated(type="blurType", value="gaussianBlur"),
     }
     ss_desc = ps.ActionDescriptor.load(ss_dict)
-    app.ExecuteAction(am.str2id('smartSharpen'), ss_desc)
+    app.ExecuteAction(am.str2id("smartSharpen"), ss_desc)
+
 
 SmartSharpen(300, 2.0, 20)

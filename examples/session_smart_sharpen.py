@@ -11,6 +11,7 @@ import examples._psd_files as psd  # Import from examples.
 
 # Import local modules
 from photoshop import Session
+import photoshop.api.action_manager as am
 
 
 PSD_FILE = psd.get_psd_files()
@@ -20,14 +21,14 @@ with Session(file_path, action="open") as ps:
 
     def SmartSharpen(inAmount, inRadius, inNoise):
         ss_dict = {
-            '_classID':None,
-            'presetKindType':am.Enumerated(type='presetKindType', value='presetKindCustom'),
-            'amount':am.UnitDouble(unit='radius', double=inAmount),
-            'radius':am.UnitDouble(unit='pixelsUnit', double=inRadius),
-            'noiseReduction':am.UnitDouble(unit='percentUnit', double=inNoise),
-            'blur':am.Enumerated(type='blurType', value='gaussianBlur')
+            "_classID": None,
+            "presetKindType": am.Enumerated(type="presetKindType", value="presetKindCustom"),  # noqa
+            "amount": am.UnitDouble(unit="radius", double=inAmount),
+            "radius": am.UnitDouble(unit="pixelsUnit", double=inRadius),
+            "noiseReduction": am.UnitDouble(unit="percentUnit", double=inNoise),
+            "blur": am.Enumerated(type="blurType", value="gaussianBlur"),
         }
         ss_desc = ps.ActionDescriptor.load(ss_dict)
-        app.ExecuteAction(am.str2id('smartSharpen'), ss_desc)
+        ps.app.ExecuteAction(am.str2id("smartSharpen"), ss_desc)
 
     SmartSharpen(300, 2.0, 20)

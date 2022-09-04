@@ -1,9 +1,11 @@
-'''Defines injection, a variable which contains js code.
+# flake8: noqa
+
+"""Defines injection, a variable which contains js code.
 These js code implements Photoshop functions, and lures a piece of js code
 to output all its information on executing executeAction function.
-You may turn on syntax highlighting for js here.'''
+You may turn on syntax highlighting for js here."""
 
-injection = '''
+injection = """
 
 class UnitDouble {
 	constructor(unit,ndouble) {
@@ -137,4 +139,4 @@ function executeAction(operate,desc,exeoption) {
 	console.log(execlogjson)
     console.log('END OF JSON')
 }
-'''
+"""

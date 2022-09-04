@@ -1,6 +1,6 @@
 """Convert Smart object to artLayer."""
 
-# Import builtin modules
+# Import built-in modules
 from textwrap import dedent
 
 # Import local modules
@@ -10,10 +10,12 @@ import photoshop.api.action_manager as am
 
 # example 1
 with Session() as ps:
-    js = dedent("""
+    js = dedent(
+        """
         var idplacedLayerConvertToLayers = stringIDToTypeID( "placedLayerConvertToLayers" );
         executeAction( idplacedLayerConvertToLayers, undefined, DialogModes.NO );
-    """)
+    """
+    )
     ps.app.doJavaScript(js)
 
 # example 2
