@@ -1,5 +1,8 @@
 """Replace the image of the current active layer with a new image."""
 
+# Import builtin modules
+import pathlib
+
 # Import third-party modules
 import examples._psd_files as psd  # Import from examples.
 
@@ -14,12 +17,12 @@ with Session(PSD_FILE["replace_images.psd"], action="open") as ps:
     active_layer = ps.active_document.activeLayer
     bounds = active_layer.bounds
     print(f"current layer {active_layer.name}: {bounds}")
-    input_file = PSD_FILE["red_100x200.png"]
-    replace_contents = ps.app.stringIDToTypeID("placedLayerReplaceContents")
-    desc = ps.ActionDescriptor
-    idnull = ps.app.charIDToTypeID("null")
-    desc.putPath(idnull, input_file)
-    ps.app.executeAction(replace_contents, desc)
+    input_dict = {
+        '_classID':None,
+        'null':pathlib.Path(PSD_FILE["red_100x200.png"])
+    }
+    input_desc = ps.ActionDescriptor.load(input_dict)
+    ps.app.executeAction(am.str2id("placedLayerReplaceContents"), input_desc)
 
     # replaced image.
     active_layer = ps.active_document.activeLayer
