@@ -8,9 +8,24 @@ from photoshop import Session
 import photoshop.api.action_manager as am
 
 
-with Session(action="new_document") as ps:
-    # replace it with your own path here
-    import_dict = {"_classID": None, "null": pathlib.Path("your/image/path")}
+def importfile(app, path: pathlib.WindowsPath, position: (float, float), size: (float, float)):  # noqa
+    px, py = position
+    sx, sy = size
+    import_dict = {
+        "null": path,
+        "freeTransformCenterState": am.Enumerated(type="quadCenterState", value="QCSAverage"),
+        "offset": {
+            "horizontal": am.UnitDouble(unit="distanceUnit", double=px),
+            "vertical": am.UnitDouble(unit="distanceUnit", double=py),
+            "_classID": "offset",
+        },
+        "width": am.UnitDouble(unit="percentUnit", double=sx),
+        "height": am.UnitDouble(unit="percentUnit", double=sy),
+        "_classID": None,
+    }
     import_desc = ps.ActionDescriptor.load(import_dict)
-    ps.app.executeAction(am.str2id("Plc "), import_desc)
-    # length of charID should always be 4, if not, pad with spaces
+    app.executeAction(am.str2id("placeEvent"), import_desc)
+
+
+with Session(action="new_document") as ps:
+    importfile(ps.app, pathlib.Path("your/image/path"), (-100, 456), (4470, 4463))

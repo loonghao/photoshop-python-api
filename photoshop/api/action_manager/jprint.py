@@ -58,6 +58,6 @@ def jformat(astr, indent=4, prefix=None):
     return nstr
 
 
-def jprint(obj, indent=4):
+def jprint(obj, indent=4, prefix=None):
     """Print formatted repr of an object."""
-    print(jformat(repr(obj), indent=indent))
+    print(jformat(repr(obj), indent=indent, prefix=prefix))

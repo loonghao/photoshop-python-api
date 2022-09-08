@@ -30,6 +30,13 @@ class TypeID {
 	}
 }
 
+class File {
+	constructor(string) {
+		this.type = 'File'
+		this.string = string
+	}
+}
+
 function charIDToTypeID(chr) {
 	return 'CharID_'+chr
 }
@@ -49,6 +56,7 @@ class ActionDescriptor {
 	putReference(key,val) {this[key] = val}
 	putList(key,val) {this[key] = val}
 	putClass(key,val) {this[key] = new TypeID(val)}
+	putPath(key,val) {this[key] = val}
 }
 
 class ActionList {
@@ -63,6 +71,7 @@ class ActionList {
 	putReference(val) {this.len += 1; this[this.len-1] = val}
 	putList(val) {this.len += 1; this[this.len-1] = val}
 	putClass(val) {this.len += 1; this[this.len-1] = new TypeID(val)}
+	putPath(val) {this.len += 1; this[this.len-1] = val}
 }
 
 class ActionReference {

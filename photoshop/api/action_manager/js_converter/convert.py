@@ -5,6 +5,7 @@ am.dumpjs(some_js_code)"""
 
 # Import built-in modules
 import json
+import pathlib
 
 from ..desc_value_types import Enumerated
 from ..desc_value_types import TypeID
@@ -45,6 +46,7 @@ str2getpacker = {
     "UnitDouble": lambda x: UnitDouble(unhead(x["unit"]), x["double"]),
     "Enumerated": lambda x: Enumerated(unhead(x["enumtype"]), unhead(x["enumval"])),
     "TypeID": lambda x: toid(x["string"]),
+    "File": lambda x: pathlib.Path(x["string"]),
     "ActionDescriptor": lambda x: parsedict(x),
     "ActionReference": lambda x: parseref(x),
     "ActionList": lambda x: parselist(x),

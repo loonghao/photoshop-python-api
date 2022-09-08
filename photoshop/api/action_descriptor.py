@@ -129,7 +129,7 @@ class ActionDescriptor(Photoshop, ABC):
         """Implemented in _actionmanager_type_binder.ActionDescriptor"""
         pass
 
-    def getPath(self, key: int) -> pathlib.Path:
+    def getPath(self, key: int) -> pathlib.WindowsPath:
         """Gets the value of a key of type File."""
         return pathlib.Path(self.app.getPath(key))
 
@@ -200,7 +200,7 @@ class ActionDescriptor(Photoshop, ABC):
         assert value.typename == "ActionDescriptor"
         self.app.putObject(key, classID, value)
 
-    def putPath(self, key: int, value: pathlib.Path):
+    def putPath(self, key: int, value: pathlib.WindowsPath):
         """Sets the value for a key whose type is path."""
         self.app.putPath(key, str(value))
 

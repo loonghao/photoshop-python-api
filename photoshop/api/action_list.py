@@ -91,7 +91,7 @@ class ActionList(Photoshop, ABC):
         """Implemented in _actionmanager_type_binder.ActionList"""
         pass
 
-    def getPath(self, index: int) -> pathlib.Path:
+    def getPath(self, index: int) -> pathlib.WindowsPath:
         """Gets the value of a list element of type File."""
         return pathlib.Path(self.app.getPath(index))
 
@@ -162,7 +162,7 @@ class ActionList(Photoshop, ABC):
         assert value.typename == "ActionDescriptor"
         self.app.putObject(classID, value)
 
-    def putPath(self, value: pathlib.Path):
+    def putPath(self, value: pathlib.WindowsPath):
         """Appends a new value, a path."""
         self.app.putPath(str(value))
 

@@ -2,6 +2,9 @@
 Handles almost all type mappings. (Some else are in ReferenceKey.)
 This module is INTERNAL. You should not import functions from it."""
 
+# Import built-in modules
+import pathlib
+
 from ..desc_value_types import Enumerated
 from ..desc_value_types import TypeID
 from ..desc_value_types import UnitDouble
@@ -15,6 +18,7 @@ pytype2str = {
     int: "Integer",
     float: "Double",
     str: "String",
+    pathlib.WindowsPath: "Path",
     Enumerated: "Enumerated",
     UnitDouble: "UnitDouble",
     TypeID: "Class",
@@ -43,6 +47,7 @@ def unpack(val):
 def pack(obj, index):  # "index" means id of key string or list index.
     valtype = obj.getType(index)
     typestr = str(valtype)[14:-4]
+    typestr = "Path" if typestr == "Alias" else typestr
     if typestr == "Data":
         # No plan to support RawType because it seldom runs successfully
         # and is seldom used in regular scripting.
