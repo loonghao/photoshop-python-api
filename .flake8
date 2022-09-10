@@ -1,4 +1,5 @@
 [flake8]
+ignore = BLK100
 
 # flake8-quotes:
 # Use double quotes as our default to comply with black, we like it and
