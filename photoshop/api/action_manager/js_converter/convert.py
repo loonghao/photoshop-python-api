@@ -85,8 +85,8 @@ def parseref(tdict):
     plist = ["!ref"]
     # py37 compat
     try:
-        exec(
-            """ext = [(str2refgetpacker[val["type"]](e) """
+        ext = eval(
+            """[(str2refgetpacker[val["type"]](e) """
             + """if type(val := e["Value"]) == dict """
             + """else str2refgetpacker["default"](e)) for e in d2l]"""
         )
