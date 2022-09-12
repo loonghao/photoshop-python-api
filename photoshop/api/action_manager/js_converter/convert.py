@@ -86,9 +86,9 @@ def parseref(tdict):
     # py37 compat
     try:
         ext = eval(
-            """[(str2refgetpacker[val["type"]](e) """
-            + """if type(val := e["Value"]) == dict """
-            + """else str2refgetpacker["default"](e)) for e in d2l]"""
+            """[(str2refgetpacker[val["type"]](e) """ +
+            """if type(val := e["Value"]) == dict """ +
+            """else str2refgetpacker["default"](e)) for e in d2l]"""
         )
     except SyntaxError:
         ext = [
