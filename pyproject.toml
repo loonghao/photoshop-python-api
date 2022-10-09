@@ -53,7 +53,7 @@ mkdocs-gen-files = "^0.3.4"
 mkdocs-autolinks-plugin = "^0.6.0"
 mkdocs-minify-plugin = "^0.5.0"
 mkdocs-git-revision-date-localized-plugin = "^1.0.0"
-pytest-cov = "^3.0.0"
+pytest-cov = "^4.0.0"
 stringcase = "^1.2.0"
 mkdocs-literate-nav = "^0.5.0"
 
