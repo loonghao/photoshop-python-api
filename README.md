@@ -37,6 +37,7 @@ Has been tested and used Photoshop version:
 
 | Photoshop Version | Supported          |
 | ----------------- | ------------------ |
+| 2022              |       ✅           |
 | 2021              |       ✅           |
 | 2020              |       ✅           |
 | cc2019            |       ✅           |
