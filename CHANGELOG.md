@@ -1,3 +1,9 @@
+## v0.19.6 (2022-11-06)
+
+### Refactor
+
+- update constants for support Photoshop 2022
+
 ## v0.19.5 (2022-07-17)
 
 ### Refactor
