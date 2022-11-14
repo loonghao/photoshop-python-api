@@ -1,3 +1,9 @@
+## v0.19.7 (2022-11-14)
+
+### Fix
+
+- **deps**: update dependency wheel to ^0.38.0
+
 ## v0.19.6 (2022-11-06)
 
 ### Refactor
