@@ -1,11 +1,11 @@
 """Python API for Photoshop."""
-
 # Import local modules
 from photoshop.api import constants
 from photoshop.api.action_descriptor import ActionDescriptor
 from photoshop.api.action_list import ActionList
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.application import Application
+from photoshop.api.batch_options import BatchOptions
 from photoshop.api.colors import CMYKColor
 from photoshop.api.colors import GrayColor
 from photoshop.api.colors import HSBColor
@@ -35,6 +35,7 @@ __all__ = [  # noqa: F405
     "ActionReference",
     "ActionList",
     "Application",
+    "BatchOptions",
     "constants",
     "enumerations",
     "PhotoshopPythonAPIError",
