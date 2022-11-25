@@ -20,6 +20,7 @@ result/
 # Coverage output
 .coverage
 /venv/
+venv_python
 
 # Docs
 docs_src/_build/

@@ -10,7 +10,6 @@ app = Application()
 app.documents.add(800, 600, 72, "docRef")
 
 """
-
 # Import built-in modules
 import os
 from pathlib import Path
@@ -259,13 +258,13 @@ class Application(Photoshop):
         return self.app.windowsFileTypes
 
     # Methods.
-    def batch(self, *args, **kwargs):
+    def batch(self, files, actionName, actionSet, options):
         """Runs the batch automation routine.
 
         Similar to the **File** > **Automate** > **Batch** command.
 
         """
-        self.app.bath(*args, **kwargs)
+        self.app.batch(files, actionName, actionSet, options)
 
     def beep(self):
         """Causes a "beep" sound."""
