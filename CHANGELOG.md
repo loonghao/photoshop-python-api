@@ -1,3 +1,9 @@
+## v0.20.0 (2022-11-26)
+
+### Feat
+
+- add a new option for create batch
+
 ## v0.19.7 (2022-11-14)
 
 ### Fix
