@@ -145,6 +145,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Alyxion",
+      "name": "Michael Ikemann",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33489959?v=4",
+      "profile": "http://www.linkedin.com/in/michael-ikemann",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "skipCi": true
