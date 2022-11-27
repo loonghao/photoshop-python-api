@@ -79,7 +79,7 @@ class ActionDescriptor(Photoshop):
         """Gets raw byte data as a string value."""
         return self.app.getData(key)
 
-    def getDouble(self, key: int) -> int:
+    def getDouble(self, key: int) -> float:
         """Gets the value of a key of type double."""
         return self.app.getDouble(key)
 
@@ -164,7 +164,7 @@ class ActionDescriptor(Photoshop):
         """Puts raw byte data as a string value."""
         self.app.putData(key, value)
 
-    def putDouble(self, key: int, value: int):
+    def putDouble(self, key: int, value: float):
         """Sets the value for a key whose type is double."""
         self.app.putDouble(key, value)
 
@@ -200,7 +200,7 @@ class ActionDescriptor(Photoshop):
         """Sets the value for a key whose type is string."""
         self.app.putString(key, value)
 
-    def putUnitDouble(self, key: int, unit_id: int, value: int):
+    def putUnitDouble(self, key: int, unit_id: int, value: float):
         """Sets the value for a key whose type is a unit value formatted as
         double."""
         self.app.putUnitDouble(key, unit_id, value)
