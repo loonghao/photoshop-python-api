@@ -57,7 +57,7 @@ class ActionDescriptor(Photoshop, ABC):
 
     def erase(self, key: int):
         """Erases a key from the descriptor."""
-        self.erase(key)
+        self.app.erase(key)
 
     def fromStream(self, value: str):
         """Creates a descriptor from a stream of bytes; for reading from disk."""
@@ -171,7 +171,7 @@ class ActionDescriptor(Photoshop, ABC):
         except BaseException:
             pass
 
-    def putDouble(self, key: int, value: int):
+    def putDouble(self, key: int, value: float):
         """Sets the value for a key whose type is double."""
         self.app.putDouble(key, value)
 
