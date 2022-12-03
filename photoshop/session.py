@@ -35,6 +35,7 @@ from photoshop.api import ActionList
 from photoshop.api import ActionReference
 from photoshop.api import Application
 from photoshop.api import BMPSaveOptions
+from photoshop.api import BatchOptions
 from photoshop.api import CMYKColor
 from photoshop.api import EPSSaveOptions
 from photoshop.api import EventID
@@ -128,6 +129,7 @@ class Session:
         self.EventID = EventID
         self.SolidColor = SolidColor
         self.TextItem = TextItem
+        self.BatchOptions = BatchOptions
 
         # The save options.
         self.GIFSaveOptions = GIFSaveOptions

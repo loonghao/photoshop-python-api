@@ -1,3 +1,21 @@
+## v0.20.1 (2022-11-28)
+
+### Refactor
+
+- **action_descriptor**: Fix type hints for doubles
+
+## v0.20.0 (2022-11-26)
+
+### Feat
+
+- add a new option for create batch
+
+## v0.19.7 (2022-11-14)
+
+### Fix
+
+- **deps**: update dependency wheel to ^0.38.0
+
 ## v0.19.6 (2022-11-06)
 
 ### Refactor

@@ -151,8 +151,8 @@ class ActionDescriptor(Photoshop, ABC):
         """Gets the unit type of a key of type UnitDouble."""
         return self.app.getUnitDoubleType(key)
 
-    def getUnitDoubleValue(self, key: int) -> float:
-        """Gets the value of a key of type UnitDouble."""
+    def getUnitDoubleValue(self, key: int) -> int:
+        """Gets the unit type of a key of type UnitDouble."""
         return self.app.getUnitDoubleValue(key)
 
     def putBoolean(self, key: int, value: bool):
@@ -171,7 +171,7 @@ class ActionDescriptor(Photoshop, ABC):
         except BaseException:
             pass
 
-    def putDouble(self, key: int, value: float):
+    def putDouble(self, key: int, value: int):
         """Sets the value for a key whose type is double."""
         self.app.putDouble(key, value)
 
@@ -213,6 +213,12 @@ class ActionDescriptor(Photoshop, ABC):
         """Sets the value for a key whose type is string."""
         self.app.putString(key, value)
 
-    def putUnitDouble(self, key: int, classID: int, value: float):
-        """Sets the value for a key whose type is a unit value formatted as a double."""
-        self.app.putUnitDouble(key, classID, value)
+    def putUnitDouble(self, key: int, unit_id: int, value: int):
+        """Sets the value for a key whose type is a unit value formatted as
+        double."""
+        self.app.putUnitDouble(key, unit_id, value)
+
+    def toStream(self) -> str:
+        """Gets the entire descriptor as as stream of bytes,
+        for writing to disk."""
+        return self.app.toSteadm()
