@@ -7,7 +7,7 @@ from photoshop.api.enumerations import DitherType
 class ExportOptionsSaveForWeb(Photoshop):
     """Options for exporting Save For Web files."""
 
-    object_name = 'ExportOptionsSaveForWeb'
+    object_name = "ExportOptionsSaveForWeb"
 
     def __init__(self):
         super().__init__()
@@ -72,7 +72,7 @@ class ExportOptionsSaveForWeb(Photoshop):
 class PNGSaveOptions(Photoshop):
     """Options for saving file as PNG."""
 
-    object_name = 'PNGSaveOptions'
+    object_name = "PNGSaveOptions"
 
     def __init__(self, interlaced: bool = False, compression: int = 6):
         super().__init__()
