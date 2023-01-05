@@ -1,5 +1,6 @@
 # Import local modules
-from photoshop.api import ColorReductionType, DitherType
+from photoshop.api import ColorReductionType
+from photoshop.api import DitherType
 from photoshop.api._core import Photoshop
 
 
