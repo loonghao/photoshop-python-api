@@ -1,3 +1,9 @@
+## v0.20.1 (2022-11-28)
+
+### Refactor
+
+- **action_descriptor**: Fix type hints for doubles
+
 ## v0.20.0 (2022-11-26)
 
 ### Feat

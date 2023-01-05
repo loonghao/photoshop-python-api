@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "photoshop-python-api"
-version = "0.20.0"
+version = "0.20.1"
 description = "Python API for Photoshop."
 homepage = "https://github.com/loonghao/photoshop-python-api"
 repository = "https://github.com/loonghao/photoshop-python-api"
@@ -39,7 +39,7 @@ pylint = "^2.8.2"
 isort = "^5.8.0"
 pytest = "^7.0.0"
 flake8 = "^4.0.0"
-mypy = "^0.961"
+mypy = "^0.991"
 coverage = "^6.3"
 mkdocs = "^1.2.2"
 mkdocs-git-revision-date-plugin = "^0.3.1"
@@ -59,7 +59,7 @@ mkdocs-literate-nav = "^0.5.0"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.20.0"
+version = "0.20.1"
 tag_format = "v$version"
 version_files = [
     "pyproject.toml:version",
