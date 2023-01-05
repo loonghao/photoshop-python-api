@@ -1,4 +1,5 @@
 # Import local modules
+from photoshop.api import ColorReductionType, DitherType
 from photoshop.api._core import Photoshop
 
 
@@ -13,7 +14,7 @@ class ExportOptionsSaveForWeb(Photoshop):
         self.PNG8 = False  # Sets it to PNG-24 bit
 
     @property
-    def PNG8(self):
+    def PNG8(self) -> bool:
         """If true, uses 8 bits. If false, uses 24 bits. Valid only when ‘format’ = PNG."""
         return self.app.PNG8
 
@@ -22,41 +23,44 @@ class ExportOptionsSaveForWeb(Photoshop):
         self.app.PNG8 = value
 
     @property
-    def blur(self):
+    def blur(self) -> float:
+        """Applies blur to the image to reduce artifacts."""
         return self.app.blur
 
     @blur.setter
-    def blur(self, value):
+    def blur(self, value: float):
         self.app.blur = value
 
     @property
-    def colorReduction(self):
+    def colorReduction(self) -> ColorReductionType:
+        """The color reduction algorithm."""
         return self.app.colorReduction
 
     @colorReduction.setter
-    def colorReduction(self, value):
+    def colorReduction(self, value: ColorReductionType):
         self.app.colorReduction = value
 
     @property
-    def colors(self):
+    def colors(self) -> int:
         """The number of colors in the palette."""
         return self.app.colors
 
     @colors.setter
-    def colors(self, value):
-        """The number of colors in the palette."""
+    def colors(self, value: int):
         self.app.colors = value
 
     @property
-    def dither(self):
+    def dither(self) -> DitherType:
+        """The type of dither to use."""
         return self.app.dither
 
     @dither.setter
-    def dither(self, value):
+    def dither(self, value: DitherType):
         self.app.dither = value
 
     @property
-    def quality(self):
+    def quality(self) -> int:
+        """The quality of the output image, from 0 to 100."""
         return self.app.quality
 
     @quality.setter
@@ -65,12 +69,14 @@ class ExportOptionsSaveForWeb(Photoshop):
 
 
 class PNGSaveOptions(Photoshop):
+    """Options for saving file as PNG."""
+
     object_name = "PNGSaveOptions"
 
-    def __init__(self):
+    def __init__(self, interlaced: bool = False, compression: int = 6):
         super().__init__()
-        self.interlaced = False
-        self.compression = 6
+        self.interlaced = interlaced
+        self.compression = compression
 
     @property
     def interlaced(self) -> bool:
