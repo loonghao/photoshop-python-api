@@ -1,3 +1,9 @@
+## v0.21.0 (2023-01-06)
+
+### Feat
+
+- **png.py**: Add optional args to PNGSaveOptions
+
 ## v0.20.1 (2022-11-28)
 
 ### Refactor
