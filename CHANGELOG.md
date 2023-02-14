@@ -1,3 +1,9 @@
+## v0.21.1 (2023-02-14)
+
+### Refactor
+
+- update constants for support Photoshop 2023
+
 ## v0.21.0 (2023-01-06)
 
 ### Feat
