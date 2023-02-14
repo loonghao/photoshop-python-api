@@ -22,7 +22,20 @@
 <img src="https://github.com/loonghao/photoshop-python-api/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a>
 <a href="https://github.com/loonghao/photoshop-python-api/actions/workflows/publish_docs.yml">
 <img src="https://github.com/loonghao/photoshop-python-api/actions/workflows/publish_docs.yml/badge.svg" alt="Documentation Status"></a>
-
+<a href="https://img.shields.io/badge/photoshop-2023-green">
+<img src="https://img.shields.io/badge/photoshop-2023-green" alt="photoshop-2023"></a>
+<a href="https://img.shields.io/badge/photoshop-2022-green">
+<img src="https://img.shields.io/badge/photoshop-2022-green" alt="photoshop-2022"></a>
+<a href="https://img.shields.io/badge/photoshop-2021-green">
+<img src="https://img.shields.io/badge/photoshop-2021-green" alt="photoshop-2021"></a>
+<a href="https://img.shields.io/badge/photoshop-2020-green">
+<img src="https://img.shields.io/badge/photoshop-2020-green" alt="photoshop-2020"></a>
+<a href="https://img.shields.io/badge/photoshop-CC2019-green">
+<img src="https://img.shields.io/badge/photoshop-CC2019-green" alt="photoshop-CC2019"></a>
+<a href="https://img.shields.io/badge/photoshop-CC2018-green">
+<img src="https://img.shields.io/badge/photoshop-CC2018-green" alt="photoshop-CC2018"></a>
+<a href="https://img.shields.io/badge/photoshop-CC2017-green">
+<img src="https://img.shields.io/badge/photoshop-CC2017-green" alt="photoshop-CC2017"></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
@@ -37,6 +50,7 @@ Has been tested and used Photoshop version:
 
 | Photoshop Version | Supported          |
 | ----------------- | ------------------ |
+| 2023              |       ✅           |
 | 2022              |       ✅           |
 | 2021              |       ✅           |
 | 2020              |       ✅           |
