@@ -15,7 +15,7 @@ import photoshop
 
 def test_imports():
     """Test import modules."""
-    prefix = "{}.".format(photoshop.__name__)
+    prefix = f"{photoshop.__name__}."
     iter_packages = pkgutil.walk_packages(
         photoshop.__path__,  # noqa: WPS609
         prefix,

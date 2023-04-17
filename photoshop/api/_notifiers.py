@@ -27,7 +27,7 @@ class Notifiers(Photoshop):
 
     @property
     def _notifiers(self) -> list:
-        return [n for n in self.app]
+        return list(self.app)
 
     def __len__(self):
         return self.length

@@ -16,7 +16,7 @@ class TextFonts(Photoshop):
 
     @property
     def _fonts(self):
-        return [a for a in self.app]
+        return list(self.app)
 
     def __len__(self):
         return self.length
