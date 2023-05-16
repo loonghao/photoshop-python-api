@@ -1,3 +1,6 @@
+# Import third-party modules
+from comtypes import ArgumentError
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._layerSet import LayerSet
@@ -13,8 +16,12 @@ class LayerSets(Photoshop):
     def __len__(self):
         return self.length
 
-    def __getitem__(self, key):
-        return LayerSet(self._layerSets[key])
+    def __getitem__(self, key: str):
+        """Access a given LayerSet using dictionary key lookup."""
+        try:
+            return LayerSet(self.app[key])
+        except ArgumentError:
+            raise PhotoshopPythonAPIError(f'Could not find a LayerSet named "{key}"')
 
     @property
     def _layerSets(self):
@@ -33,6 +40,10 @@ class LayerSets(Photoshop):
 
     def removeAll(self):
         self.app.removeAll()
+
+    def getByIndex(self, index: int):
+        """Access LayerSet using list index lookup."""
+        return LayerSet(self._layerSets[index])
 
     def getByName(self, name: str) -> LayerSet:
         """Get the first element in the collection with the provided name."""
