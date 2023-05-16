@@ -1,3 +1,6 @@
+# Import third-party modules
+from comtypes import ArgumentError
+
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
@@ -22,8 +25,12 @@ class ArtLayers(Photoshop):
         for layer in self.app:
             yield layer
 
-    def __getitem__(self, item):
-        return self.app[item]
+    def __getitem__(self, key: str):
+        """Access a given ArtLayer using dictionary key lookup."""
+        try:
+            return ArtLayer(self.app[key])
+        except ArgumentError:
+            raise PhotoshopPythonAPIError(f'Could not find an artLayer named "{key}"')
 
     @property
     def length(self):
@@ -41,17 +48,20 @@ class ArtLayers(Photoshop):
         """Adds an element."""
         return ArtLayer(self.app.add())
 
+    def getByIndex(self, index: int):
+        """Access ArtLayer using list index lookup."""
+        return ArtLayer(self._layers[index])
+
     def getByName(self, name: str) -> ArtLayer:
         """Get the first element in the collection with the provided name.
 
         Raises:
             PhotoshopPythonAPIError: Could not find a artLayer.
-
         """
         for layer in self.app:
             if layer.name == name:
                 return ArtLayer(layer)
-        raise PhotoshopPythonAPIError(f'Could not find a artLayer named "{name}"')
+        raise PhotoshopPythonAPIError(f'Could not find an artLayer named "{name}"')
 
     def removeAll(self):
         """Deletes all elements."""
