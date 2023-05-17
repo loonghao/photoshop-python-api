@@ -1,3 +1,9 @@
+## v0.21.2 (2023-05-17)
+
+### Refactor
+
+- **artLayers,layerSets**: Refactored __getitem__ to work like a dictionary key on LayerSets. Added type hinting and try/except to __getitem__ for both ArtLayers and LayerSets
+
 ## v0.21.1 (2023-02-14)
 
 ### Refactor
