@@ -761,14 +761,14 @@ i18n = ["babel (>=2.9.0)"]
 
 [[package]]
 name = "mkdocs-autolinks-plugin"
-version = "0.6.0"
+version = "0.7.0"
 description = "An MkDocs plugin"
 category = "dev"
 optional = false
-python-versions = ">=2.7"
+python-versions = ">=3.4"
 files = [
-    {file = "mkdocs-autolinks-plugin-0.6.0.tar.gz", hash = "sha256:7bddb5bfb06f003fa7f139a4373ffc433e9ad761a297c7fe6ee205a4d7d913b6"},
-    {file = "mkdocs_autolinks_plugin-0.6.0-py3-none-any.whl", hash = "sha256:db967582a5d3bd282d197730cd9035a74b559b0febb44645e95df27d5c67cad9"},
+    {file = "mkdocs-autolinks-plugin-0.7.0.tar.gz", hash = "sha256:75b43e0806d6fb9dfbe8e830371cf50d092c13c155e3cb5a44f71a800fb08c2d"},
+    {file = "mkdocs_autolinks_plugin-0.7.0-py3-none-any.whl", hash = "sha256:c8db70fe22ccc6fc914282c724b36a577e90daa9cac6204a63fb962fd9584359"},
 ]
 
 [package.dependencies]
@@ -1767,4 +1767,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.7,<4.0"
-content-hash = "d9443a249cc31eefc116e973de83dc4f2e9795ccc2861755ad8cca789d1a70a7"
+content-hash = "a9a371019a326e996caa8c68b3b8d8eadae4c59371df9acbac6f8aa93e95b0ca"
