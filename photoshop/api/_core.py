@@ -15,7 +15,7 @@ from photoshop.api import constants
 from photoshop.api.errors import PhotoshopPythonAPIError
 
 
-class Photoshop(object):
+class Photoshop():
     """Core API for all photoshop objects."""
 
     _root = "Photoshop"

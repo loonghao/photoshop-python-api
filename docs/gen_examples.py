@@ -26,7 +26,7 @@ Examples
 )
 
 
-class Examples(object):
+class Examples():
     def __init__(self, root: Path):
         self._root = root
 
