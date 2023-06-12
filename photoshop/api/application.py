@@ -1,4 +1,4 @@
-"""The Adobe Adobe Photoshop CC application object.
+"""The Adobe Photoshop CC application object.
 
 Which is the root of the object model and provides access to all other
 objects. This object provides application-wide information,
@@ -12,12 +12,12 @@ app.documents.add(800, 600, 72, "docRef")
 """
 # Import built-in modules
 import os
-from pathlib import Path
 import time
+from functools import cache
+from pathlib import Path
 from typing import List
 from typing import Optional
 
-# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -29,6 +29,7 @@ from photoshop.api._preferences import Preferences
 from photoshop.api._text_fonts import TextFonts
 from photoshop.api.enumerations import DialogModes
 from photoshop.api.solid_color import SolidColor
+# Import local modules
 
 
 class Application(Photoshop):
@@ -52,12 +53,11 @@ class Application(Photoshop):
 
     @property
     def activeDocument(self):
-        """The frontmost documents.
+        """The front-most document.
 
         Setting this property is equivalent to clicking an
         open document in the Adobe Photoshop CC
         application to bring it to the front of the screen.
-
         """
         return Document(self.app.activeDocument)
 
@@ -115,19 +115,18 @@ class Application(Photoshop):
 
         Args:
             tool_name: The name of the current tool sel.
-
         """
         self.app.currentTool = tool_name
 
     @property
     def displayDialogs(self) -> DialogModes:
-        """The dialog mode for the document, which indicates whether or not
+        """The dialog mode for the document, which indicates whether
         Photoshop displays dialogs when the script runs."""
         return DialogModes(self.app.displayDialogs)
 
     @displayDialogs.setter
     def displayDialogs(self, dialog_mode: DialogModes):
-        """The dialog mode for the document, which indicates whether or not
+        """The dialog mode for the document, which indicates whether
         Photoshop displays dialogs when the script runs.
         """
         self.app.displayDialogs = dialog_mode
@@ -277,6 +276,7 @@ class Application(Photoshop):
         """Changes the text that appears in the progress window."""
         self.eval_javascript(f"app.changeProgressText('{text}')")
 
+    @cache
     def charIDToTypeID(self, char_id):
         return self.app.charIDToTypeID(char_id)
 
@@ -444,6 +444,7 @@ class Application(Photoshop):
         """Returns false if dialog is cancelled, true otherwise."""
         return self.eval_javascript("app.showColorPicker();")
 
+    @cache
     def stringIDToTypeID(self, string_id):
         return self.app.stringIDToTypeID(string_id)
 
@@ -461,9 +462,11 @@ class Application(Photoshop):
     def system(command):
         os.system(command)
 
+    @cache
     def typeIDToStringID(self, type_id):
         return self.app.typeIDToStringID(type_id)
 
+    @cache
     def typeIDToCharID(self, type_id):
         return self.app.typeIDToCharID(type_id)
 

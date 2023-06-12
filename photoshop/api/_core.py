@@ -1,21 +1,21 @@
 """This class provides all photoshop API core functions."""
-
 # Import built-in modules
 import os
 import platform
+import winreg
 from typing import Any
 from typing import List
-import winreg
 
-# Import third-party modules
 from comtypes.client import CreateObject
+from comtypes.client import GetActiveObject
 
-# Import local modules
 from photoshop.api import constants
 from photoshop.api.errors import PhotoshopPythonAPIError
+# Import third-party modules
+# Import local modules
 
 
-class Photoshop(object):
+class Photoshop:
     """Core API for all photoshop objects."""
 
     _root = "Photoshop"
@@ -33,6 +33,7 @@ class Photoshop(object):
             os.environ["PS_VERSION"] = self.photoshop_version
         self.app_id = version_mappings.get(self.photoshop_version, "0")
         try:
+            # Get photoshop from environ
             self.app = self.instance_app(self.app_id)
         except OSError:
             # get photoshop from registration.
@@ -68,7 +69,7 @@ class Photoshop(object):
             return getattr(self.app, item)
 
     @staticmethod
-    def open_key(key: str) -> str:
+    def open_key(key: str) -> winreg.HKEYType:
         """Open the register key.
 
         Args:
@@ -79,7 +80,6 @@ class Photoshop(object):
 
         Raises:
             - PhotoshopPythonAPIError
-
         """
         machine_type = platform.machine()
         mappings = {"AMD64": winreg.KEY_WOW64_64KEY}
@@ -94,7 +94,7 @@ class Photoshop(object):
             full_reg_path = f"HKEY_LOCAL_MACHINE\\{key}"
             raise PhotoshopPythonAPIError(
                 f"Failed to read the registration: <{full_reg_path}>, "
-                "please check if you have Photoshop installed correctly."
+                "please check if you have Photoshop installed correctly.",
             ) from err
 
     def get_application_path(self):
@@ -122,7 +122,13 @@ class Photoshop(object):
             naming_space.append(self.object_name)
         naming_space.append(ps_id)
         self._program_name = self._assemble_program_name(naming_space)
-        return CreateObject(self._program_name, dynamic=True)
+        try:
+            # Get running Photoshop
+            app = GetActiveObject(self._program_name, dynamic=True)
+        except OSError:
+            # Load new Photoshop
+            app = CreateObject(self._program_name, dynamic=True)
+        return app
 
     def get_program_id(self) -> str:
         key = self.open_key(self.REG_PATH)
