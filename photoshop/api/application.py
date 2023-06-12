@@ -29,7 +29,6 @@ from photoshop.api._preferences import Preferences
 from photoshop.api._text_fonts import TextFonts
 from photoshop.api.enumerations import DialogModes
 from photoshop.api.solid_color import SolidColor
-# Import local modules
 
 
 class Application(Photoshop):

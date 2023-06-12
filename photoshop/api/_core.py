@@ -11,8 +11,6 @@ from comtypes.client import GetActiveObject
 
 from photoshop.api import constants
 from photoshop.api.errors import PhotoshopPythonAPIError
-# Import third-party modules
-# Import local modules
 
 
 class Photoshop:
