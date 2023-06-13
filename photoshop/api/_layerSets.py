@@ -16,6 +16,10 @@ class LayerSets(Photoshop):
     def __len__(self):
         return self.length
 
+    def __iter__(self):
+        for layer_set in self.app:
+            yield layer_set
+
     def __getitem__(self, key: str):
         """Access a given LayerSet using dictionary key lookup."""
         try:
