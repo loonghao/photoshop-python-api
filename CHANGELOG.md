@@ -1,3 +1,13 @@
+## v0.21.4 (2023-06-13)
+
+### Fix
+
+- **LayerSets**: Fix infinite recursion when trying to access LayerSets as a list
+
+### Refactor
+
+- **Photoshop**: Attempt to get running Photoshop application before spawning new one
+
 ## v0.21.3 (2023-05-18)
 
 ### Fix
