@@ -1,5 +1,4 @@
 """This class provides all photoshop API core functions."""
-
 # Import built-in modules
 import os
 import platform
@@ -9,13 +8,14 @@ import winreg
 
 # Import third-party modules
 from comtypes.client import CreateObject
+from comtypes.client import GetActiveObject
 
 # Import local modules
 from photoshop.api import constants
 from photoshop.api.errors import PhotoshopPythonAPIError
 
 
-class Photoshop(object):
+class Photoshop:
     """Core API for all photoshop objects."""
 
     _root = "Photoshop"
@@ -68,7 +68,7 @@ class Photoshop(object):
             return getattr(self.app, item)
 
     @staticmethod
-    def open_key(key: str) -> str:
+    def open_key(key: str) -> winreg.HKEYType:
         """Open the register key.
 
         Args:
@@ -94,10 +94,10 @@ class Photoshop(object):
             full_reg_path = f"HKEY_LOCAL_MACHINE\\{key}"
             raise PhotoshopPythonAPIError(
                 f"Failed to read the registration: <{full_reg_path}>, "
-                "please check if you have Photoshop installed correctly."
+                "please check if you have Photoshop installed correctly.",
             ) from err
 
-    def get_application_path(self):
+    def get_application_path(self) -> str:
         """str: The absolute path of Photoshop installed location."""
         key = self.open_key(f"{self.REG_PATH}\\{self.get_program_id()}")
         return winreg.QueryValueEx(key, "ApplicationPath")[0]
@@ -122,7 +122,13 @@ class Photoshop(object):
             naming_space.append(self.object_name)
         naming_space.append(ps_id)
         self._program_name = self._assemble_program_name(naming_space)
-        return CreateObject(self._program_name, dynamic=True)
+        try:
+            # Get running Photoshop
+            app = GetActiveObject(self._program_name, dynamic=True)
+        except OSError:
+            # Load new Photoshop
+            app = CreateObject(self._program_name, dynamic=True)
+        return app
 
     def get_program_id(self) -> str:
         key = self.open_key(self.REG_PATH)
