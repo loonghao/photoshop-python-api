@@ -1,3 +1,9 @@
+## v0.21.5 (2023-07-02)
+
+### Fix
+
+- fix paste contents of the clipboard
+
 ## v0.21.4 (2023-06-13)
 
 ### Fix
