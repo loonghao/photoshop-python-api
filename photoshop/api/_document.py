@@ -367,7 +367,8 @@ class Document(Photoshop):
 
     def paste(self):
         """Pastes contents of the clipboard into the Document."""
-        return self.app.paste()
+        self.eval_javascript("app.activeDocument.paste()")
+        return self.activeLayer
 
     def print(self):
         """Prints the document."""
