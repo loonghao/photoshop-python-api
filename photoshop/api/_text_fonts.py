@@ -18,7 +18,7 @@ class TextFonts(Photoshop):
             yield TextFont(font)
 
     def __getitem__(self, key: str):
-        """Access a given TextFont using dictionary key lookup, most provide the postScriptName."""
+        """Access a given TextFont using dictionary key lookup, must provide the postScriptName."""
         try:
             return TextFont(self.app[key])
         except ArgumentError:
