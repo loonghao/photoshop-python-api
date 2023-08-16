@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install -U pip setuptools wheel
-        python -m pip install 'poetry>=1.4.0,<=1.5.0'
+        python -m pip install 'poetry>=1.4.0,<1.5.0'
         poetry --version
         poetry install
         poetry run pytest
