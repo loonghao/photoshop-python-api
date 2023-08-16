@@ -1,3 +1,6 @@
+# Import third-party modules
+from comtypes import ArgumentError
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
@@ -13,6 +16,13 @@ class TextFonts(Photoshop):
     def __iter__(self):
         for font in self.app:
             yield TextFont(font)
+
+    def __getitem__(self, key: str):
+        """Access a given TextFont using dictionary key lookup, most provide the postScriptName."""
+        try:
+            return TextFont(self.app[key])
+        except ArgumentError:
+            raise PhotoshopPythonAPIError(f'Could not find a font with postScriptName "{key}"')
 
     @property
     def _fonts(self):
