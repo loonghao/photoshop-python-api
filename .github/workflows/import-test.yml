@@ -22,5 +22,6 @@ jobs:
         python -m pip install -U pip setuptools wheel
         python -m pip install poetry virtualenv==20.23.1
         poetry --version
+        poetry lock --no-update
         poetry install
         poetry run pytest
