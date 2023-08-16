@@ -19,8 +19,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install -U pip setuptools wheel
-        python -m pip install poetry virtualenv==20.23.1
+        python -m pip install -U pip poetry
         poetry --version
-        poetry install -vvv --no-root || poetry install -vvv --no-root || poetry install -vvv --no-root
+        poetry install -vvv || poetry install -vvv || poetry install -vvv
         poetry run pytest
