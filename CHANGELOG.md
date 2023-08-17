@@ -1,3 +1,19 @@
+## v0.21.6 (2023-08-17)
+
+### Fix
+
+- **test_imports.py**: Include root in install lines
+- **import-test.yml**: Try an alternate approach with multiple poetry install retries
+- **import-test.yml**: Correct typo in poetry version string
+- **import-test.yml**: Revert to <= poetry 1.5.0 to fix "Import Test" workflow
+- **import-test.yml**: Attempt to update lock to prevent inconsitent poetry.lock and pyproject.toml
+- **import-test**: Attempt to fix poetry bug in "Import Test" workflow
+- **deps**: Attempt to fix failing "Import Test" workflow
+
+### Refactor
+
+- **TextFonts**: Implement __getitem__ to allow lookup by postScriptName
+
 ## v0.21.5 (2023-07-02)
 
 ### Fix
