@@ -36,6 +36,11 @@ class ArtLayer(Photoshop):
         self.app.blendMode = mode
 
     @property
+    def bounds(self):
+        """The bounding rectangle of the layer."""
+        return self.app.bounds
+
+    @property
     def linkedLayers(self) -> list:
         """Get all layers linked to this layer.
 
