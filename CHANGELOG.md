@@ -1,3 +1,9 @@
+## v0.21.8 (2023-08-22)
+
+### Fix
+
+- **deps**: update dependency wheel to v0.41.2
+
 ## v0.21.7 (2023-08-17)
 
 ### Fix
