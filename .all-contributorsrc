@@ -154,7 +154,17 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "dsmtE",
+      "name": "Enguerrand DE SMET",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37016704?v=4",
+      "profile": "https://github.com/dsmtE",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "skipCi": true
+  "skipCi": true,
+  "commitType": "docs"
 }
