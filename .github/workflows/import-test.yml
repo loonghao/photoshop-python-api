@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   python-check:
-    runs-on: windows-2019
+    runs-on: windows-2022
     strategy:
       max-parallel: 3
       matrix:
