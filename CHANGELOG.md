@@ -1,3 +1,9 @@
+## v0.21.9 (2023-08-31)
+
+### Fix
+
+- **constants**: Update PHOTOSHOP_VERSION_MAPPINGS to add 2024 release mapping (v24/180.0)
+
 ## v0.21.8 (2023-08-22)
 
 ### Fix
