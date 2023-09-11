@@ -8,6 +8,10 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 class Channels(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "add",
+            "removeAll",
+        )
 
     @property
     def _channels(self):
