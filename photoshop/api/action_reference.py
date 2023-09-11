@@ -25,6 +25,22 @@ class ActionReference(Photoshop):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "getContainer",
+            "getDesiredClass",
+            "getEnumeratedType",
+            "getEnumeratedValue",
+            "getForm",
+            "getIdentifier",
+            "getIndex",
+            "putName",
+            "putClass",
+            "putEnumerated",
+            "putIdentifier",
+            "putIndex",
+            "putOffset",
+            "putProperty",
+        )
 
     def getContainer(self):
         return self.app.getContainer()

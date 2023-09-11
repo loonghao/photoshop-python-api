@@ -58,6 +58,27 @@ class Document(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "autoCount",
+            "changeMode",
+            "close",
+            "convertProfile",
+            "Flatten",
+            "mergeVisibleLayers",
+            "crop",
+            "export",
+            "duplicate",
+            "printOneCopy",
+            "rasterizeAllLayers",
+            "recordMeasurements",
+            "revealAll",
+            "save",
+            "saveAs",
+            "splitChannels",
+            "trap",
+            "trim",
+            "resizeImage",
+        )
 
     @property
     def artLayers(self) -> ArtLayers:

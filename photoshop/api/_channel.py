@@ -6,6 +6,10 @@ from photoshop.api._core import Photoshop
 class Channel(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "duplicate",
+            "merge",
+        )
 
     @property
     def color(self):

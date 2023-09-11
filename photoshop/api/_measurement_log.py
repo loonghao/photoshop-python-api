@@ -7,6 +7,10 @@ class MeasurementLog(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "exportMeasurements",
+            "deleteMeasurements",
+        )
 
     def exportMeasurements(self, file_path: str, range_: int = None, data_point=None):
         if data_point is None:

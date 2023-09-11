@@ -21,6 +21,18 @@ class ActionList(Photoshop):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "getBoolean",
+            "getClass",
+            "getData",
+            "getDouble",
+            "getEnumerationType",
+            "getEnumerationValue",
+            "getInteger",
+            "getLargeInteger",
+            "getList",
+            "getObjectType",
+        )
 
     @property
     def count(self):

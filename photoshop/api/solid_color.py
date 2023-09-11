@@ -25,6 +25,9 @@ class SolidColor(Photoshop):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "isEqual",
+        )
 
     @property
     def cmyk(self) -> CMYKColor:

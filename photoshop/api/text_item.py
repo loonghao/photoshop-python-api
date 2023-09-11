@@ -19,6 +19,11 @@ class TextItem(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "convertToShape",
+            "createPath",
+        )
+
 
     @property
     def alternateLigatures(self):
