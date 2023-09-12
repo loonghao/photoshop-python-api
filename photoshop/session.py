@@ -123,9 +123,9 @@ class Session:
         self._active_document = None
 
         self.app: Application = Application(version=ps_version)
-        self.ActionReference: ActionReference = ActionReference()
-        self.ActionDescriptor: ActionDescriptor = ActionDescriptor()
-        self.ActionList: ActionList = ActionList()
+        self.ActionReference: ActionReference = ActionReference
+        self.ActionDescriptor: ActionDescriptor = ActionDescriptor
+        self.ActionList: ActionList = ActionList
         self.EventID = EventID
         self.SolidColor = SolidColor
         self.TextItem = TextItem

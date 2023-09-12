@@ -11,6 +11,7 @@ import examples._psd_files as psd  # Import from examples.
 
 # Import local modules
 import photoshop.api as ps
+import photoshop.api.action_manager as am
 
 
 app = ps.Application()
@@ -25,32 +26,16 @@ docRef.activeLayer = nArtLayers.artLayers.item(nArtLayers.artLayers.length)
 
 
 def SmartSharpen(inAmount, inRadius, inNoise):
-    idsmart_sharpen_id = app.stringIDToTypeID(ps.EventID.SmartSharpen)
-    desc37 = ps.ActionDescriptor()
-
-    idpresetKind = app.stringIDToTypeID(ps.EventID.PresetKind)
-    idpresetKindType = app.stringIDToTypeID(ps.EventID.PresetKindType)
-    idpresetKindCustom = app.stringIDToTypeID(ps.EventID.PresetKindCustom)
-    desc37.putEnumerated(idpresetKind, idpresetKindType, idpresetKindCustom)
-
-    idAmnt = app.charIDToTypeID("Amnt")
-    idPrc = app.charIDToTypeID("Rds ")
-    desc37.putUnitDouble(idAmnt, idPrc, inAmount)
-
-    idRds = app.charIDToTypeID("Rds ")
-    idPxl = app.charIDToTypeID("#Pxl")
-    desc37.putUnitDouble(idRds, idPxl, inRadius)
-
-    idnoiseReduction = app.stringIDToTypeID("noiseReduction")
-    idPrc = app.charIDToTypeID("#Prc")
-    desc37.putUnitDouble(idnoiseReduction, idPrc, inNoise)
-
-    idblur = app.charIDToTypeID("blur")
-    idblurType = app.stringIDToTypeID("blurType")
-    idGsnB = app.charIDToTypeID("GsnB")
-    desc37.putEnumerated(idblur, idblurType, idGsnB)
-
-    app.ExecuteAction(idsmart_sharpen_id, desc37)
+    ss_dict = {
+        "_classID": None,
+        "presetKindType": am.Enumerated(type="presetKindType", value="presetKindCustom"),  # noqa
+        "amount": am.UnitDouble(unit="radius", double=inAmount),
+        "radius": am.UnitDouble(unit="pixelsUnit", double=inRadius),
+        "noiseReduction": am.UnitDouble(unit="percentUnit", double=inNoise),
+        "blur": am.Enumerated(type="blurType", value="gaussianBlur"),
+    }
+    ss_desc = ps.ActionDescriptor.load(ss_dict)
+    app.ExecuteAction(am.str2id("smartSharpen"), ss_desc)
 
 
 SmartSharpen(300, 2.0, 20)

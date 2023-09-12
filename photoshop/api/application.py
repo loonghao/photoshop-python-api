@@ -18,6 +18,7 @@ from typing import List
 from typing import Optional
 
 # Import local modules
+from photoshop.api._actionmanager_type_binder import ActionDescriptor
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -351,10 +352,12 @@ class Application(Photoshop):
         self.app.eraseCustomOptions(key)
 
     def executeAction(self, event_id, descriptor, display_dialogs=2):
-        return self.app.executeAction(event_id, descriptor, display_dialogs)
+        comobj = self.app.executeAction(event_id, descriptor, display_dialogs)
+        return ActionDescriptor(parent=comobj)
 
     def executeActionGet(self, reference):
-        return self.app.executeActionGet(reference)
+        comobj = self.app.executeActionGet(reference)
+        return ActionDescriptor(parent=comobj)
 
     def featureEnabled(self, name):
         """Determines whether the feature

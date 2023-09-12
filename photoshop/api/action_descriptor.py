@@ -1,4 +1,4 @@
-"""A record of key-text_font pairs for actions.
+"""A record of key-data pairs for actions.
 
 such as those included on the Adobe Photoshop Actions menu.
 The ActionDescriptor class is part of the Action
@@ -8,27 +8,32 @@ see the Photoshop Scripting Guide.
 """
 
 # Import built-in modules
-from pathlib import Path
+from abc import ABC
+from abc import abstractmethod
+import pathlib
+import warnings
+
+# Import third-party modules
+import comtypes
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.action_list import ActionList
-from photoshop.api.action_reference import ActionReference
-from photoshop.api.enumerations import DescValueType
 
 
-class ActionDescriptor(Photoshop):
-    """A record of key-value pairs for actions, such as those included on the Adobe Photoshop Actions menu.
+DATAFUNC_WARN = """fromSteam, toStream, getData, putData is seldom performed successfully (even in native js, for
+example https://github.com/drsong2000/CRYENGINE/blob/release/Tools/photoshop/UltimateTextureSaver/Install/xtools/xlib/
+xml/atn2bin.jsx#L753-L769), and is deprecated. In fact, searching in github shows that these 4 functions are barely
+used in regular photoshop scripting. If you have found the criteria of these functions, please open an issue."""
 
-    The ActionDescriptor class is part of the Action Manager functionality.
-    For more details on the Action Manager, see the Photoshop Scripting Guide.
 
-    """
+class ActionDescriptor(Photoshop, ABC):
+    """This object provides a dictionary-style mechanism for storing data as key-value pairs. It can be used for
+    low-level access into Photoshop."""
 
     object_name = "ActionDescriptor"
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent: comtypes.client.lazybind.Dispatch = None):
+        super().__init__(parent=parent)
 
     @property
     def count(self):
@@ -39,118 +44,116 @@ class ActionDescriptor(Photoshop):
         """Clears the descriptor."""
         self.app.clear()
 
+    def isEqual(self, otherDesc):
+        """Determines whether the descriptor is the same as another descriptor."""
+        assert otherDesc.typename == "ActionDescriptor"
+        return self.app.isEqual(otherDesc)
+
+    def __eq__(self, other):
+        try:
+            return self.isEqual(other)
+        except AssertionError:
+            return False
+
     def erase(self, key: int):
-        """Erases a key form the descriptor."""
+        """Erases a key from the descriptor."""
         self.app.erase(key)
 
     def fromStream(self, value: str):
-        """Create a descriptor from a stream of bytes.
+        """Creates a descriptor from a stream of bytes; for reading from disk."""
+        warnings.warn(DATAFUNC_WARN, category=PendingDeprecationWarning)
+        try:
+            self.app.fromStream(bytes.decode(value))
+        except BaseException:
+            pass
 
-        for reading from disk.
+    def toStream(self) -> str:
+        """Gets the entire descriptor as a stream of bytes, for writing to disk."""
+        warnings.warn(DATAFUNC_WARN, category=PendingDeprecationWarning)
+        try:
+            return self.app.toStream()
+        except BaseException:
+            return None
 
-        """
-        self.app.fromStream(value)
+    def getKey(self, index: int) -> int:
+        """Gets the ID of the Nth key, provided by index."""
+        return self.app.getKey(index)
 
-    def getBoolean(self, key: int) -> int:
-        """Gets the text_font of a key of type boolean.
-
-        Args:
-            key (str): key of type boolean.
-
-        Returns:
-            bool: The text_font of a key of type boolean.
-
-        """
+    def getBoolean(self, key: int) -> bool:
+        """Gets the value of a key of type boolean."""
         return self.app.getBoolean(key)
 
-    def getClass(self, key):
-        """Gets the text_font of a key of type class.
-
-        Args:
-            key (str): The key of type class.
-
-        Returns:
-            int: The text_font of a key of type class.
-
-        """
+    def getClass(self, key: int) -> int:
+        """Gets the value of a key of type class."""
         return self.app.getClass(key)
 
-    def getData(self, key: int) -> int:
+    def getData(self, key: int) -> str:
         """Gets raw byte data as a string value."""
-        return self.app.getData(key)
+        warnings.warn(DATAFUNC_WARN, category=PendingDeprecationWarning)
+        try:
+            return self.app.getData(key)
+        except BaseException:
+            return None
 
     def getDouble(self, key: int) -> float:
         """Gets the value of a key of type double."""
         return self.app.getDouble(key)
 
-    def getEnumerationType(self, index: int) -> int:
+    def getEnumerationType(self, key: int) -> int:
         """Gets the enumeration type of a key."""
-        return self.app.getEnumerationType(index)
+        return self.app.getEnumerationType(key)
 
-    def getEnumerationValue(self, index: int) -> int:
+    def getEnumerationValue(self, key: int) -> int:
         """Gets the enumeration value of a key."""
-        return self.app.getEnumerationValue(index)
+        return self.app.getEnumerationValue(key)
 
-    def getInteger(self, index: int) -> int:
+    def getInteger(self, key: int) -> int:
         """Gets the value of a key of type integer."""
-        return self.app.getInteger(index)
+        return self.app.getInteger(key)
 
-    def getKey(self, index: int) -> int:
-        """Gets the ID of the key provided by index."""
-        return self.app.getKey(index)
-
-    def getLargeInteger(self, index: int) -> int:
+    def getLargeInteger(self, key: int) -> int:
         """Gets the value of a key of type large integer."""
-        return self.app.getLargeInteger(index)
+        return self.app.getLargeInteger(key)
 
-    def getList(self, index: int) -> ActionList:
-        """Gets the value of a key of type list."""
-        return ActionList(self.app.getList(index))
+    @abstractmethod
+    def getList(self, key):
+        """Implemented in _actionmanager_type_binder.ActionDescriptor"""
+        pass
 
     def getObjectType(self, key: int) -> int:
         """Gets the class ID of an object in a key of type object."""
         return self.app.getObjectType(key)
 
-    def getObjectValue(self, key: int) -> int:
-        """Get the class ID of an object in a key of type object."""
-        return self.app.getObjectValue(key)
+    @abstractmethod
+    def getObjectValue(self, key):
+        """Implemented in _actionmanager_type_binder.ActionDescriptor"""
+        pass
 
-    def getPath(self, key: int) -> Path:
-        """Gets the value of a key of type."""
-        return Path(self.app.getPath(key))
+    def getPath(self, key: int) -> pathlib.WindowsPath:
+        """Gets the value of a key of type File."""
+        return pathlib.Path(self.app.getPath(key))
 
-    def getReference(self, key: int) -> ActionReference:
-        """Gets the value of a key of type."""
-        return ActionReference(self.app.getReference(key))
+    @abstractmethod
+    def getReference(self, key):
+        """Implemented in _actionmanager_type_binder.ActionDescriptor"""
+        pass
 
     def getString(self, key: int) -> str:
-        """Gets the value of a key of type."""
+        """Gets the value of a key of type string."""
         return self.app.getString(key)
 
-    def getType(self, key: int) -> DescValueType:
-        """Gets the type of a key."""
-        return DescValueType(self.app.getType(key))
+    @abstractmethod
+    def getType(self, key):
+        """Implemented in _actionmanager_type_binder.ActionDescriptor"""
+        pass
 
     def getUnitDoubleType(self, key: int) -> int:
         """Gets the unit type of a key of type UnitDouble."""
         return self.app.getUnitDoubleType(key)
 
-    def getUnitDoubleValue(self, key: int) -> float:
+    def getUnitDoubleValue(self, key: int) -> int:
         """Gets the unit type of a key of type UnitDouble."""
         return self.app.getUnitDoubleValue(key)
-
-    def hasKey(self, key: int) -> bool:
-        """Checks whether the descriptor contains the provided key."""
-        return self.app.hasKey(key)
-
-    def isEqual(self, otherDesc) -> bool:
-        """Determines whether the descriptor is the same as another descriptor.
-
-        Args:
-            otherDesc (.action_descriptor.ActionDescriptor):
-
-        """
-        return self.app.isEqual(otherDesc)
 
     def putBoolean(self, key: int, value: bool):
         """Sets the value for a key whose type is boolean."""
@@ -162,45 +165,55 @@ class ActionDescriptor(Photoshop):
 
     def putData(self, key: int, value: str):
         """Puts raw byte data as a string value."""
-        self.app.putData(key, value)
+        warnings.warn(DATAFUNC_WARN, category=PendingDeprecationWarning)
+        try:
+            self.app.putData(key, value)
+        except BaseException:
+            pass
 
     def putDouble(self, key: int, value: float):
         """Sets the value for a key whose type is double."""
         self.app.putDouble(key, value)
 
-    def putEnumerated(self, key: int, enum_type: int, value: int):
+    def putEnumerated(self, key: int, enumType: int, value: int):
         """Sets the enumeration type and value for a key."""
-        self.app.putEnumerated(key, enum_type, value)
+        self.app.putEnumerated(key, enumType, value)
 
     def putInteger(self, key: int, value: int):
         """Sets the value for a key whose type is integer."""
-        self.app.putInteger(key, value)
+        if value.bit_length() <= 32:
+            self.app.putInteger(key, value)
+        else:
+            self.app.putLargeInteger(key, value)
 
     def putLargeInteger(self, key: int, value: int):
         """Sets the value for a key whose type is large integer."""
         self.app.putLargeInteger(key, value)
 
-    def putList(self, key: int, value: ActionList):
+    def putList(self, key: int, value):
         """Sets the value for a key whose type is an ActionList object."""
+        assert value.typename == "ActionList"
         self.app.putList(key, value)
 
-    def putObject(self, key: int, class_id: int, value):
-        """Sets the value for a key whose type is an object."""
-        self.app.putObject(key, class_id, value)
+    def putObject(self, key: int, classID: int, value):
+        """Sets the value for a key whose type is an object, represented by an Action Descriptor."""
+        assert value.typename == "ActionDescriptor"
+        self.app.putObject(key, classID, value)
 
-    def putPath(self, key: int, value: str):
+    def putPath(self, key: int, value: pathlib.WindowsPath):
         """Sets the value for a key whose type is path."""
-        self.app.putPath(key, value)
+        self.app.putPath(key, str(value))
 
-    def putReference(self, key: int, value: ActionReference):
+    def putReference(self, key: int, value):
         """Sets the value for a key whose type is an object reference."""
+        assert value.typename == "ActionReference"
         self.app.putReference(key, value)
 
     def putString(self, key: int, value: str):
         """Sets the value for a key whose type is string."""
         self.app.putString(key, value)
 
-    def putUnitDouble(self, key: int, unit_id: int, value: float):
+    def putUnitDouble(self, key: int, unit_id: int, value: int):
         """Sets the value for a key whose type is a unit value formatted as
         double."""
         self.app.putUnitDouble(key, unit_id, value)
