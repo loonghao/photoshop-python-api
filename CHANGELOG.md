@@ -1,3 +1,10 @@
+## v0.21.10 (2023-09-14)
+
+### Fix
+
+- fix auto bump version
+- fix can't set attribute `activeHistoryState`
+
 ## v0.21.9 (2023-08-31)
 
 ### Fix
