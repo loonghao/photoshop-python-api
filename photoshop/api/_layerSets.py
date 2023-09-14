@@ -18,7 +18,6 @@ class LayerSets(Photoshop):
             "removeAll",
         )
 
-
     def __len__(self):
         return self.length
 

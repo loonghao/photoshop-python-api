@@ -24,7 +24,6 @@ class TextItem(Photoshop):
             "createPath",
         )
 
-
     @property
     def alternateLigatures(self):
         return self.app.alternateLigatures
