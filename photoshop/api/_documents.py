@@ -13,7 +13,7 @@ class Documents(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
-        self._flag_as_method('add')
+        self._flag_as_method("add")
 
     def __len__(self) -> int:
         return self.length

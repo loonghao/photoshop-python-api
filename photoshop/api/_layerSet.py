@@ -17,16 +17,16 @@ class LayerSet(Photoshop):
     def __init__(self, parent):
         super().__init__(parent=parent)
         self._flag_as_method(
-            "merge"
-            "duplicate"
-            "add"
-            "delete"
-            "link"
-            "move"
-            "resize"
-            "rotate"
-            "translate"
-            "unlink"
+            "merge",
+            "duplicate",
+            "add",
+            "delete",
+            "link",
+            "move",
+            "resize",
+            "rotate",
+            "translate",
+            "unlink",
         )
 
     @property

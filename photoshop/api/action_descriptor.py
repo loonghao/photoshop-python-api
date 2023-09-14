@@ -69,7 +69,6 @@ class ActionDescriptor(Photoshop):
             "toSteadm",
         )
 
-
     @property
     def count(self):
         """The number of keys contained in the descriptor."""
