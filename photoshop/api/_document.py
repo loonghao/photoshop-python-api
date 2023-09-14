@@ -101,6 +101,10 @@ class Document(Photoshop):
         """The current history state for this document."""
         return self.app.activeHistoryState
 
+    @activeHistoryState.setter
+    def activeHistoryState(self, state):
+        self.app.activeHistoryState = state
+
     @property
     def backgroundLayer(self):
         """The background layer for the Document."""
