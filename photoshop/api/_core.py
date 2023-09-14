@@ -9,6 +9,7 @@ import winreg
 # Import third-party modules
 from comtypes.client import CreateObject
 from comtypes.client import GetActiveObject
+from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
 
 # Import local modules
 from photoshop.api import constants
@@ -55,7 +56,7 @@ class Photoshop:
         # However Photoshop does not return the proper error code,
         # it blindly treats the property get as a method call.
         # Fortunately, comtypes provided a way to explicitly flag a name as a method.
-        if hasattr(self.app, '_FlagAsMethod'):
+        if isinstance(self.app, FullyDynamicDispatch):
             self.app._FlagAsMethod(*names)
 
     @property
