@@ -1,3 +1,14 @@
+## v0.22.0 (2023-09-18)
+
+### Feat
+
+- Explicitly flag COM methods
+
+### Fix
+
+- formatting and linting
+- comtypes does not play well with hasattr
+
 ## v0.21.10 (2023-09-14)
 
 ### Fix
