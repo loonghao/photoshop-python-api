@@ -163,6 +163,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "feisuzhu",
+      "name": "Proton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/857880?v=4",
+      "profile": "http://www.thbattle.net",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "skipCi": true,
