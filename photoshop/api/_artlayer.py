@@ -18,6 +18,47 @@ class ArtLayer(Photoshop):
 
     def __init__(self, parent: Any = None):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "add",
+            "adjustBrightnessContrast",
+            "adjustColorBalance",
+            "adjustCurves",
+            "adjustLevels",
+            "applyAddNoise",
+            "applyAverage",
+            "applyBlur",
+            "applyBlurMore",
+            "applyClouds",
+            "applyCustomFilter",
+            "applyDeInterlace",
+            "applyDespeckle",
+            "applyDifferenceClouds",
+            "applyDiffuseGlow",
+            "applyDisplace",
+            "applyDustAndScratches",
+            "applyGaussianBlur",
+            "applyGlassEffect",
+            "applyHighPass",
+            "applyLensBlur",
+            "applyLensFlare",
+            "applyMaximum",
+            "applyMedianNoise",
+            "applyMinimum",
+            "applyMotionBlur",
+            "applyNTSC",
+            "applyOceanRipple",
+            "applyOffset",
+            "applyPinch",
+            "delete",
+            "duplicate",
+            "invert",
+            "link",
+            "merge",
+            "move",
+            "posterize",
+            "rasterize",
+            "unlink",
+        )
 
     @property
     def allLocked(self):

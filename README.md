@@ -38,7 +38,7 @@
 <img src="https://img.shields.io/badge/photoshop-CC2017-green" alt="photoshop-CC2017"></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 </p>
 
@@ -159,6 +159,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/be42day"><img src="https://avatars.githubusercontent.com/u/20614168?v=4?s=100" width="100px;" alt="Ehsan Akbari Tabar"/><br /><sub><b>Ehsan Akbari Tabar</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3Abe42day" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.linkedin.com/in/michael-ikemann"><img src="https://avatars.githubusercontent.com/u/33489959?v=4?s=100" width="100px;" alt="Michael Ikemann"/><br /><sub><b>Michael Ikemann</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/issues?q=author%3AAlyxion" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dsmtE"><img src="https://avatars.githubusercontent.com/u/37016704?v=4?s=100" width="100px;" alt="Enguerrand DE SMET"/><br /><sub><b>Enguerrand DE SMET</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=dsmtE" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.thbattle.net"><img src="https://avatars.githubusercontent.com/u/857880?v=4?s=100" width="100px;" alt="Proton"/><br /><sub><b>Proton</b></sub></a><br /><a href="https://github.com/loonghao/photoshop-python-api/commits?author=feisuzhu" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

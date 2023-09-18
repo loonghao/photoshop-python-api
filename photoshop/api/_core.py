@@ -9,6 +9,7 @@ import winreg
 # Import third-party modules
 from comtypes.client import CreateObject
 from comtypes.client import GetActiveObject
+from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
 
 # Import local modules
 from photoshop.api import constants
@@ -46,6 +47,17 @@ class Photoshop:
             self.adobe = self.app
             self.app = parent
             self._has_parent = True
+
+    def _flag_as_method(self, *names: str):
+        # This is a hack for Photoshop's broken COM implementation.
+        # Photoshop does not implement the IDispatch::GetTypeInfo,
+        # so when getting a field from COM object, comtypes will first try
+        # to fetch it as a property, and treat it as a method if it fails.
+        # However Photoshop does not return the proper error code,
+        # it blindly treats the property get as a method call.
+        # Fortunately, comtypes provided a way to explicitly flag a name as a method.
+        if isinstance(self.app, FullyDynamicDispatch):
+            self.app._FlagAsMethod(*names)
 
     @property
     def typename(self) -> str:

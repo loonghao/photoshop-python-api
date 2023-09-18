@@ -29,6 +29,45 @@ class ActionDescriptor(Photoshop):
 
     def __init__(self):
         super().__init__()
+        self._flag_as_method(
+            "clear",
+            "erase",
+            "fromStream",
+            "getBoolean",
+            "getClass",
+            "getData",
+            "getDouble",
+            "getEnumerationType",
+            "getEnumerationValue",
+            "getInteger",
+            "getKey",
+            "getLargeInteger",
+            "getList",
+            "getObjectType",
+            "getObjectValue",
+            "getPath",
+            "getReference",
+            "getString",
+            "getType",
+            "getUnitDoubleType",
+            "getUnitDoubleValue",
+            "hasKey",
+            "isEqual",
+            "putBoolean",
+            "putClass",
+            "putData",
+            "putDouble",
+            "putEnumerated",
+            "putInteger",
+            "putLargeInteger",
+            "putList",
+            "putObject",
+            "putPath",
+            "putReference",
+            "putString",
+            "putUnitDouble",
+            "toSteadm",
+        )
 
     @property
     def count(self):

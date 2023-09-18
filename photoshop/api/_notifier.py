@@ -14,8 +14,10 @@ from photoshop.api._core import Photoshop
 
 class Notifier(Photoshop):
     def __init__(self, parent=None):
-        print(parent)
         super().__init__()
+        self._flag_as_method(
+            "remove",
+        )
 
     @property
     def event(self):

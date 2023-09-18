@@ -41,6 +41,29 @@ class Application(Photoshop):
 
     def __init__(self, version: Optional[str] = None):
         super().__init__(ps_version=version)
+        self._flag_as_method(
+            "batch",
+            "charIDToTypeID",
+            "doAction",
+            "doJavaScript",
+            "eraseCustomOptions",
+            "executeAction",
+            "executeActionGet",
+            "featureEnabled",
+            "getCustomOptions",
+            "isQuicktimeAvailable",
+            "load",
+            "open",
+            "openDialog",
+            "purge",
+            "putCustomOptions",
+            "refresh",
+            "stringIDToTypeID",
+            "toolSupportsBrushes",
+            "toolSupportsPresets",
+            "typeIDToCharID",
+            "typeIDToStringID",
+        )
 
     @property
     def activeLayer(self) -> ArtLayer:

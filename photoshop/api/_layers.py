@@ -10,6 +10,10 @@ class Layers(Photoshop):
 
     def __init__(self, parent):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "add",
+            "item",
+        )
 
     @property
     def _layers(self):

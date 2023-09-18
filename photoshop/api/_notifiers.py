@@ -24,6 +24,10 @@ class Notifiers(Photoshop):
 
     def __init__(self, parent: Optional[Any] = None):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "add",
+            "removeAll",
+        )
 
     @property
     def _notifiers(self) -> list:

@@ -13,6 +13,32 @@ class Selection(Photoshop):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._flag_as_method(
+            "clear",
+            "contract",
+            "copy",
+            "cut",
+            "deselect",
+            "expand",
+            "feather",
+            "fill",
+            "grow",
+            "invert",
+            "load",
+            "makeWorkPath",
+            "resize",
+            "resizeBoundary",
+            "rotate",
+            "rotateBoundary",
+            "select",
+            "selectBorder",
+            "similar",
+            "smooth",
+            "store",
+            "stroke",
+            "translate",
+            "translateBoundary",
+        )
 
     @property
     def bounds(self):
