@@ -1,4 +1,4 @@
-"""The Adobe Adobe Photoshop CC application object.
+"""The Adobe Photoshop CC application object.
 
 Which is the root of the object model and provides access to all other
 objects. This object provides application-wide information,
@@ -16,8 +16,13 @@ from pathlib import Path
 import time
 from typing import List
 from typing import Optional
+from typing import Union
+
+# Import third-party modules
+from _ctypes import COMError
 
 # Import local modules
+from photoshop.api import PhotoshopPythonAPIError
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -28,6 +33,7 @@ from photoshop.api._notifiers import Notifiers
 from photoshop.api._preferences import Preferences
 from photoshop.api._text_fonts import TextFonts
 from photoshop.api.enumerations import DialogModes
+from photoshop.api.enumerations import PurgeTarget
 from photoshop.api.solid_color import SolidColor
 
 
@@ -75,7 +81,7 @@ class Application(Photoshop):
 
     @property
     def activeDocument(self):
-        """The frontmost documents.
+        """The front-most documents.
 
         Setting this property is equivalent to clicking an
         open document in the Adobe Photoshop CC
@@ -104,53 +110,55 @@ class Application(Photoshop):
         self.app.backgroundColor = color
 
     @property
-    def build(self):
+    def build(self) -> str:
         """str: The information about the application."""
         return self.app.build
 
     @property
-    def colorSettings(self):
-        """The name of the current color settings.
-
-        as selected with Edit > Color Settings.
+    def colorSettings(self) -> str:
+        """str: The name of the currently selected color settings profile
+        (selected with Edit > Color Settings).
 
         """
         return self.app.colorSettings
 
     @colorSettings.setter
     def colorSettings(self, settings: str):
-        """The name of the current color settings.
+        """Sets the currently selected color settings profile.
 
         Args:
-            settings: The name of the current tool sel.
+            settings: The name of a color settings profile to select.
 
         """
-        self.doJavaScript(f'app.colorSettings="{settings}"')
+        try:
+            self.doJavaScript(f'app.colorSettings="{settings}"')
+        except COMError as e:
+            raise PhotoshopPythonAPIError(f"Invalid color profile provided: '{settings}'") from e
 
     @property
-    def currentTool(self):
-        """str: The name of the current tool sel."""
+    def currentTool(self) -> str:
+        """str: The name of the current tool selected."""
         return self.app.currentTool
 
     @currentTool.setter
     def currentTool(self, tool_name: str):
-        """Sets the current tool for select.
+        """Sets the currently selected tool.
 
         Args:
-            tool_name: The name of the current tool sel.
+            tool_name: The name of a tool to select..
 
         """
         self.app.currentTool = tool_name
 
     @property
     def displayDialogs(self) -> DialogModes:
-        """The dialog mode for the document, which indicates whether or not
+        """The dialog mode for the document, which indicates whether
         Photoshop displays dialogs when the script runs."""
         return DialogModes(self.app.displayDialogs)
 
     @displayDialogs.setter
     def displayDialogs(self, dialog_mode: DialogModes):
-        """The dialog mode for the document, which indicates whether or not
+        """The dialog mode for the document, which indicates whether
         Photoshop displays dialogs when the script runs.
         """
         self.app.displayDialogs = dialog_mode
@@ -217,12 +225,12 @@ class Application(Photoshop):
         return Notifiers(self.app.notifiers)
 
     @property
-    def notifiersEnabled(self):
-        """If true, notifiers are enabled."""
+    def notifiersEnabled(self) -> bool:
+        """bool: If true, notifiers are enabled."""
         return self.app.notifiersEnabled
 
     @notifiersEnabled.setter
-    def notifiersEnabled(self, value):
+    def notifiersEnabled(self, value: bool):
         self.app.notifiersEnabled = value
 
     @property
@@ -231,7 +239,7 @@ class Application(Photoshop):
         return self.app.parent
 
     @property
-    def path(self):
+    def path(self) -> Path:
         """str: The full path to the location of the Photoshop application."""
         return Path(self.app.path)
 
@@ -249,11 +257,11 @@ class Application(Photoshop):
         self.app.playbackParameters = value
 
     @property
-    def preferences(self):
+    def preferences(self) -> Preferences:
         return Preferences(self.app.preferences)
 
     @property
-    def preferencesFolder(self):
+    def preferencesFolder(self) -> Path:
         return Path(self.app.preferencesFolder)
 
     @property
@@ -409,9 +417,9 @@ class Application(Photoshop):
             return Document(document)
         return document
 
-    def load(self, document_file_path):
-        """Loads a support document."""
-        self.app.load(document_file_path)
+    def load(self, document_file_path: Union[str, os.PathLike]) -> Document:
+        """Loads a supported Photoshop document."""
+        self.app.load(str(document_file_path))
         return self.activeDocument
 
     def doJavaScript(self, javascript, Arguments=None, ExecutionMode=None):
@@ -423,18 +431,15 @@ class Application(Photoshop):
     def openDialog(self):
         return self.app.openDialog()
 
-    def purge(self, target):
+    def purge(self, target: PurgeTarget):
         """Purges one or more caches.
 
         Args:
             target:
-                .e.g:
-                    0: Clears all caches.
-                    1: Clears the clipboard.
-                    2: Deletes all history states from the History palette.
-                    3: Clears the undo cache.
-
-        Returns:
+                1: Clears the undo cache.
+                2: Clears history states from the History palette.
+                3: Clears the clipboard data.
+                4: Clears all caches
 
         """
         self.app.purge(target)
@@ -484,10 +489,10 @@ class Application(Photoshop):
     def system(command):
         os.system(command)
 
-    def typeIDToStringID(self, type_id):
+    def typeIDToStringID(self, type_id: int) -> str:
         return self.app.typeIDToStringID(type_id)
 
-    def typeIDToCharID(self, type_id):
+    def typeIDToCharID(self, type_id: int) -> str:
         return self.app.typeIDToCharID(type_id)
 
     def updateProgress(self, done, total):
