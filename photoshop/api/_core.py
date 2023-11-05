@@ -48,8 +48,8 @@ class Photoshop:
             os.environ["PS_VERSION"] = ps_version
 
         # Establish the application object using provided version ID
-        if self._app_id:
-            self.app = self._get_application_object([self._app_id])
+        if self.app_id:
+            self.app = self._get_application_object([self.app_id])
             if not self.app:
                 # Attempt unsuccessful
                 self._logger.debug(
@@ -187,7 +187,7 @@ class Photoshop:
         """
         for v in versions:
             self.app_id = v
-            with suppress(OSError, AttributeError):
+            with suppress(OSError):
                 return CreateObject(self.program_name, dynamic=True)
         return
 
