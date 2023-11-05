@@ -9,6 +9,7 @@ from logging import getLogger
 import os
 import platform
 from typing import Any
+from typing import List
 from typing import Optional
 import winreg
 
@@ -160,7 +161,7 @@ class Photoshop:
         if isinstance(self.app, FullyDynamicDispatch):
             self.app._FlagAsMethod(*names)
 
-    def _get_photoshop_versions(self) -> list[str]:
+    def _get_photoshop_versions(self) -> List[str]:
         """Retrieve a list of Photoshop version ID's from registry."""
         with suppress(OSError, IndexError):
             key = self._open_key(self._reg_path)
@@ -171,7 +172,7 @@ class Photoshop:
         self._logger.debug("Unable to find Photoshop version number in HKEY_LOCAL_MACHINE registry!")
         return []
 
-    def _get_application_object(self, versions: list[str] = None) -> Optional[Dispatch]:
+    def _get_application_object(self, versions: List[str] = None) -> Optional[Dispatch]:
         """
         Try each version string until a valid Photoshop application Dispatch object is returned.
 
