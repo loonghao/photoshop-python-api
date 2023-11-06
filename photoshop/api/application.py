@@ -22,7 +22,6 @@ from typing import Union
 from _ctypes import COMError
 
 # Import local modules
-from photoshop.api import PhotoshopPythonAPIError
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -34,6 +33,7 @@ from photoshop.api._preferences import Preferences
 from photoshop.api._text_fonts import TextFonts
 from photoshop.api.enumerations import DialogModes
 from photoshop.api.enumerations import PurgeTarget
+from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.solid_color import SolidColor
 
 
