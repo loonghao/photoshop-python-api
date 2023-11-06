@@ -1,8 +1,8 @@
 language: python
 python:
-    - "3.6"
-    - "3.7"
     - "3.8"
+    - "3.9"
+    - "3.10"
 before_script:
     - pip install poetry
     - poetry install

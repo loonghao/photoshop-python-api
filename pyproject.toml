@@ -15,9 +15,11 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Microsoft :: Windows :: Windows 10",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 
 packages = [
@@ -27,7 +29,7 @@ packages = [
 generate-setup-file = false
 
 [tool.poetry.dependencies]
-python = ">=3.7,<4.0"
+python = ">=3.8,<4.0"
 wheel = "^0.41.0"
 comtypes = "^1.1.11"
 

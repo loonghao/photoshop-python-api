@@ -13,7 +13,7 @@
 <img src="https://img.shields.io/pypi/l/photoshop-python-api" alt="License">
 <img src="https://img.shields.io/pypi/format/photoshop-python-api" alt="pypi format">
 <a href="https://discord.gg/AnxSa6n">
-<img src="https://img.shields.io/discord/724615671400628314" alt="Chat on Discird"></a>
+<img src="https://img.shields.io/discord/724615671400628314" alt="Chat on Discord"></a>
 <a href="https://github.com/loonghao/photoshop-python-api/graphs/commit-activity">
 <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
 <a href="https://github.com/loonghao/photoshop-python-api/actions/workflows/bumpversion.yml">
@@ -22,6 +22,8 @@
 <img src="https://github.com/loonghao/photoshop-python-api/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a>
 <a href="https://github.com/loonghao/photoshop-python-api/actions/workflows/publish_docs.yml">
 <img src="https://github.com/loonghao/photoshop-python-api/actions/workflows/publish_docs.yml/badge.svg" alt="Documentation Status"></a>
+<a href="https://img.shields.io/badge/photoshop-2024-green">
+<img src="https://img.shields.io/badge/photoshop-2024-green" alt="photoshop-2024"></a>
 <a href="https://img.shields.io/badge/photoshop-2023-green">
 <img src="https://img.shields.io/badge/photoshop-2023-green" alt="photoshop-2023"></a>
 <a href="https://img.shields.io/badge/photoshop-2022-green">
