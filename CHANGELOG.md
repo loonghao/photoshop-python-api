@@ -1,3 +1,16 @@
+## v0.22.2 (2023-11-08)
+
+### Fix
+
+- **workflows**: Add quotes to prevent 3.10 being interpretted as 3.1
+- **typing**: Replace list with List as Python <= 3.8 does not support subscriptable types
+
+### Refactor
+
+- **Photoshop**: Remove unnecessary exception type from suppress
+- **Application**: Fix incorrect docstring for app.purge, allow Path objects for app.load, wrap colorSettings exceptions
+- **Photoshop**: Restructure the sequence of events attempting to initialize a valid Dispatch object
+
 ## v0.22.1 (2023-09-22)
 
 ### Refactor
