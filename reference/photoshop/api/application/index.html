@@ -1,1 +1,1108 @@
-<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=longhao><link rel=icon href=../../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.2.4, mkdocs-material-8.2.7"><title>application - Photoshop Python API</title><link rel=stylesheet href=../../../../assets/stylesheets/main.9d5733d3.min.css><link rel=stylesheet href=../../../../assets/stylesheets/palette.e6a45f82.min.css><script src=../../../../assets/pymdownx-extras/material-extra-theme-7c147bb7.js type=text/javascript></script><script src=../../../../assets/pymdownx-extras/material-extra-3rdparty-69a692a6.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style><link rel=stylesheet href=../../../../assets/_mkdocstrings.css><link rel=stylesheet href=../../../../css/timeago.css><link rel=stylesheet href=../../../../assets/pymdownx-extras/extra-02e418c270.css><script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script></head> <body dir=ltr data-md-color-scheme data-md-color-primary=none data-md-color-accent=none> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#photoshop.api.application class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../../../.. title="Photoshop Python API" class="md-header__button md-logo" aria-label="Photoshop Python API"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Photoshop Python API </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> application </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg> </a> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg> </a> <a href=javascript:toggleScheme(); title="System preference" class=system-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07 19.07 3.5m-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13.51 1.67m-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87.4 1.31M19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35-2.53-2.2m4.33-2.7 1.15-2.77 2.2 2.54-3.35.23m1.15-4.96-1.14-2.78 3.34.24-2.2 2.54M9.63 18.93l2.77 1.15-2.53 2.19-.24-3.34z"/></svg> </a> <a href=javascript:toggleScheme(); title="Unknown scheme" class=unknown-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10z"/></svg> </a> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <nav class=md-search__options aria-label=Search> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </nav> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/loonghao/photoshop-python-api/ title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg> </div> <div class=md-source__repository> github </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../../../.. title="Photoshop Python API" class="md-nav__button md-logo" aria-label="Photoshop Python API" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> Photoshop Python API </label> <div class=md-nav__source> <a href=https://github.com/loonghao/photoshop-python-api/ title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg> </div> <div class=md-source__repository> github </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../.. class=md-nav__link> Overview </a> </li> <li class=md-nav__item> <a href=../../../../changelog/ class=md-nav__link> Changelog </a> </li> <li class=md-nav__item> <a href=../../../../examples/ class=md-nav__link> Examples </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2 checked> <label class=md-nav__link for=__nav_2> Code Reference <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Code Reference" data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Code Reference </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1 type=checkbox id=__nav_2_1 checked> <label class=md-nav__link for=__nav_2_1> photoshop <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=photoshop data-md-level=2> <label class=md-nav__title for=__nav_2_1> <span class="md-nav__icon md-icon"></span> photoshop </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1 type=checkbox id=__nav_2_1_1 checked> <label class=md-nav__link for=__nav_2_1_1> api <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=api data-md-level=3> <label class=md-nav__title for=__nav_2_1_1> <span class="md-nav__icon md-icon"></span> api </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../_active_layer/ class=md-nav__link> active_layer </a> </li> <li class=md-nav__item> <a href=../_artlayer/ class=md-nav__link> artlayer </a> </li> <li class=md-nav__item> <a href=../_artlayers/ class=md-nav__link> artlayers </a> </li> <li class=md-nav__item> <a href=../_channel/ class=md-nav__link> channel </a> </li> <li class=md-nav__item> <a href=../_channels/ class=md-nav__link> channels </a> </li> <li class=md-nav__item> <a href=../_core/ class=md-nav__link> core </a> </li> <li class=md-nav__item> <a href=../_document/ class=md-nav__link> document </a> </li> <li class=md-nav__item> <a href=../_documentinfo/ class=md-nav__link> documentinfo </a> </li> <li class=md-nav__item> <a href=../_documents/ class=md-nav__link> documents </a> </li> <li class=md-nav__item> <a href=../_layerComp/ class=md-nav__link> layerComp </a> </li> <li class=md-nav__item> <a href=../_layerComps/ class=md-nav__link> layerComps </a> </li> <li class=md-nav__item> <a href=../_layerSet/ class=md-nav__link> layerSet </a> </li> <li class=md-nav__item> <a href=../_layerSets/ class=md-nav__link> layerSets </a> </li> <li class=md-nav__item> <a href=../_layers/ class=md-nav__link> layers </a> </li> <li class=md-nav__item> <a href=../_measurement_log/ class=md-nav__link> measurement_log </a> </li> <li class=md-nav__item> <a href=../_notifier/ class=md-nav__link> notifier </a> </li> <li class=md-nav__item> <a href=../_notifiers/ class=md-nav__link> notifiers </a> </li> <li class=md-nav__item> <a href=../_preferences/ class=md-nav__link> preferences </a> </li> <li class=md-nav__item> <a href=../_selection/ class=md-nav__link> selection </a> </li> <li class=md-nav__item> <a href=../_text_fonts/ class=md-nav__link> text_fonts </a> </li> <li class=md-nav__item> <a href=../action_descriptor/ class=md-nav__link> action_descriptor </a> </li> <li class=md-nav__item> <a href=../action_list/ class=md-nav__link> action_list </a> </li> <li class=md-nav__item> <a href=../action_reference/ class=md-nav__link> action_reference </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> application <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> application </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#photoshop.api.application class=md-nav__link> application </a> <nav class=md-nav aria-label=application> <ul class=md-nav__list> <li class=md-nav__item> <a href=#photoshop.api.application.Application class=md-nav__link> Application </a> <nav class=md-nav aria-label=Application> <ul class=md-nav__list> <li class=md-nav__item> <a href=#photoshop.api.application.Application.activeDocument class=md-nav__link> activeDocument </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.backgroundColor class=md-nav__link> backgroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.build class=md-nav__link> build </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.colorSettings class=md-nav__link> colorSettings </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.currentTool class=md-nav__link> currentTool </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.displayDialogs class=md-nav__link> displayDialogs </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.documents class=md-nav__link> documents </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.foregroundColor class=md-nav__link> foregroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.freeMemory class=md-nav__link> freeMemory </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.locale class=md-nav__link> locale </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.macintoshFileTypes class=md-nav__link> macintoshFileTypes </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.measurementLog class=md-nav__link> measurementLog </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiers class=md-nav__link> notifiers </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiersEnabled class=md-nav__link> notifiersEnabled </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.parent class=md-nav__link> parent </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.path class=md-nav__link> path </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.playbackParameters class=md-nav__link> playbackParameters </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.batch class=md-nav__link> batch() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.beep class=md-nav__link> beep() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.changeProgressText class=md-nav__link> changeProgressText() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doAction class=md-nav__link> doAction() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgress class=md-nav__link> doProgress() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgressTask class=md-nav__link> doProgressTask() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.eraseCustomOptions class=md-nav__link> eraseCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.featureEnabled class=md-nav__link> featureEnabled() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.getCustomOptions class=md-nav__link> getCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.load class=md-nav__link> load() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.purge class=md-nav__link> purge() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refresh class=md-nav__link> refresh() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refreshFonts class=md-nav__link> refreshFonts() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.runMenuItem class=md-nav__link> runMenuItem() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.showColorPicker class=md-nav__link> showColorPicker() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.togglePalettes class=md-nav__link> togglePalettes() </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../batch_options/ class=md-nav__link> batch_options </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1_26 type=checkbox id=__nav_2_1_1_26> <label class=md-nav__link for=__nav_2_1_1_26> colors <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=colors data-md-level=4> <label class=md-nav__title for=__nav_2_1_1_26> <span class="md-nav__icon md-icon"></span> colors </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../colors/cmyk/ class=md-nav__link> cmyk </a> </li> <li class=md-nav__item> <a href=../colors/gray/ class=md-nav__link> gray </a> </li> <li class=md-nav__item> <a href=../colors/hsb/ class=md-nav__link> hsb </a> </li> <li class=md-nav__item> <a href=../colors/lab/ class=md-nav__link> lab </a> </li> <li class=md-nav__item> <a href=../colors/rgb/ class=md-nav__link> rgb </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../constants/ class=md-nav__link> constants </a> </li> <li class=md-nav__item> <a href=../enumerations/ class=md-nav__link> enumerations </a> </li> <li class=md-nav__item> <a href=../errors/ class=md-nav__link> errors </a> </li> <li class=md-nav__item> <a href=../event_id/ class=md-nav__link> event_id </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1_31 type=checkbox id=__nav_2_1_1_31> <label class=md-nav__link for=__nav_2_1_1_31> open_options <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=open_options data-md-level=4> <label class=md-nav__title for=__nav_2_1_1_31> <span class="md-nav__icon md-icon"></span> open_options </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../open_options/eps/ class=md-nav__link> eps </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1_32 type=checkbox id=__nav_2_1_1_32> <label class=md-nav__link for=__nav_2_1_1_32> save_options <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=save_options data-md-level=4> <label class=md-nav__title for=__nav_2_1_1_32> <span class="md-nav__icon md-icon"></span> save_options </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../save_options/bmp/ class=md-nav__link> bmp </a> </li> <li class=md-nav__item> <a href=../save_options/eps/ class=md-nav__link> eps </a> </li> <li class=md-nav__item> <a href=../save_options/gif/ class=md-nav__link> gif </a> </li> <li class=md-nav__item> <a href=../save_options/jpg/ class=md-nav__link> jpg </a> </li> <li class=md-nav__item> <a href=../save_options/pdf/ class=md-nav__link> pdf </a> </li> <li class=md-nav__item> <a href=../save_options/png/ class=md-nav__link> png </a> </li> <li class=md-nav__item> <a href=../save_options/psd/ class=md-nav__link> psd </a> </li> <li class=md-nav__item> <a href=../save_options/tag/ class=md-nav__link> tag </a> </li> <li class=md-nav__item> <a href=../save_options/tif/ class=md-nav__link> tif </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../solid_color/ class=md-nav__link> solid_color </a> </li> <li class=md-nav__item> <a href=../text_font/ class=md-nav__link> text_font </a> </li> <li class=md-nav__item> <a href=../text_item/ class=md-nav__link> text_item </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../session/ class=md-nav__link> session </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=https://github.com/loonghao/photoshop-python-api/issues class=md-nav__link> Issue Tracker </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#photoshop.api.application class=md-nav__link> application </a> <nav class=md-nav aria-label=application> <ul class=md-nav__list> <li class=md-nav__item> <a href=#photoshop.api.application.Application class=md-nav__link> Application </a> <nav class=md-nav aria-label=Application> <ul class=md-nav__list> <li class=md-nav__item> <a href=#photoshop.api.application.Application.activeDocument class=md-nav__link> activeDocument </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.backgroundColor class=md-nav__link> backgroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.build class=md-nav__link> build </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.colorSettings class=md-nav__link> colorSettings </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.currentTool class=md-nav__link> currentTool </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.displayDialogs class=md-nav__link> displayDialogs </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.documents class=md-nav__link> documents </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.foregroundColor class=md-nav__link> foregroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.freeMemory class=md-nav__link> freeMemory </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.locale class=md-nav__link> locale </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.macintoshFileTypes class=md-nav__link> macintoshFileTypes </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.measurementLog class=md-nav__link> measurementLog </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiers class=md-nav__link> notifiers </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiersEnabled class=md-nav__link> notifiersEnabled </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.parent class=md-nav__link> parent </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.path class=md-nav__link> path </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.playbackParameters class=md-nav__link> playbackParameters </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.batch class=md-nav__link> batch() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.beep class=md-nav__link> beep() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.changeProgressText class=md-nav__link> changeProgressText() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doAction class=md-nav__link> doAction() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgress class=md-nav__link> doProgress() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgressTask class=md-nav__link> doProgressTask() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.eraseCustomOptions class=md-nav__link> eraseCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.featureEnabled class=md-nav__link> featureEnabled() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.getCustomOptions class=md-nav__link> getCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.load class=md-nav__link> load() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.purge class=md-nav__link> purge() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refresh class=md-nav__link> refresh() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refreshFonts class=md-nav__link> refreshFonts() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.runMenuItem class=md-nav__link> runMenuItem() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.showColorPicker class=md-nav__link> showColorPicker() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.togglePalettes class=md-nav__link> togglePalettes() </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href=https://github.com/home/runner/work/photoshop-python-api/photoshop-python-api/photoshop/api/application.py title="Edit this page" class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg> </a> <h1>application</h1> <div class="doc doc-object doc-module"> <h2 id=photoshop.api.application class="doc doc-heading"> <code>photoshop.api.application</code> </h2> <div class="doc doc-contents first"> <p>The Adobe Adobe Photoshop CC application object.</p> <p>Which is the root of the object model and provides access to all other objects. This object provides application-wide information, such as application defaults and available fonts. It provides many important methods, such as those for opening files and loading documents.</p> <p>app = Application()</p> <p>app.documents.add(800, 600, 72, "docRef")</p> <div class="doc doc-children"> <div class="doc doc-object doc-class"> <h3 id=photoshop.api.application.Application class="doc doc-heading"> <code class="highlight language-python"><span class=n>Application</span><span class=p>(</span><span class=n>version</span><span class=o>=</span><span class=kc>None</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p class="doc doc-class-bases"> Bases: <code><a class="autorefs autorefs-internal" title=photoshop.api._core.Photoshop href=../_core/#photoshop.api._core.Photoshop>Photoshop</a></code></p> <p>The Adobe Photoshop application object, which contains all other Adobe Photoshop objects.</p> <p>This is the root of the object model, and provides access to all other objects. To access the properties and methods, you can use the pre-defined global variable app.</p> <div class="doc doc-children"> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.activeDocument class="doc doc-heading"> <code class="highlight language-python"><span class=n>activeDocument</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> <p>The frontmost documents.</p> <p>Setting this property is equivalent to clicking an open document in the Adobe Photoshop CC application to bring it to the front of the screen.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.backgroundColor class="doc doc-heading"> <code class="highlight language-python"><span class=n>backgroundColor</span><span class=p>:</span> <span class=n>SolidColor</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> <p>The default background color and color style for documents.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.build class="doc doc-heading"> <code class="highlight language-python"><span class=n>build</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.colorSettings class="doc doc-heading"> <code class="highlight language-python"><span class=n>colorSettings</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> <p>The name of the current color settings.</p> <p>as selected with Edit &gt; Color Settings.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.currentTool class="doc doc-heading"> <code class="highlight language-python"><span class=n>currentTool</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.displayDialogs class="doc doc-heading"> <code class="highlight language-python"><span class=n>displayDialogs</span><span class=p>:</span> <span class=n>DialogModes</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> <p>The dialog mode for the document, which indicates whether or not Photoshop displays dialogs when the script runs.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.documents class="doc doc-heading"> <code class="highlight language-python"><span class=n>documents</span><span class=p>:</span> <span class=n>Documents</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> <p>._documents.Documents: The Documents instance.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.foregroundColor class="doc doc-heading"> <code class="highlight language-python"><span class=n>foregroundColor</span><span class=p>:</span> <span class=n>SolidColor</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> <p>Get default foreground color.</p> <p>Used to paint, fill, and stroke selections.</p> <p>Returns:</p> <ul> <li class=field-body> <code><a class="autorefs autorefs-internal" title=photoshop.api.solid_color.SolidColor href=../solid_color/#photoshop.api.solid_color.SolidColor>SolidColor</a></code> – <div class=doc-md-description> <p>The SolidColor instance.</p> </div> </li> </ul> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.freeMemory class="doc doc-heading"> <code class="highlight language-python"><span class=n>freeMemory</span><span class=p>:</span> <span class=nb>float</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> <p>The amount of unused memory available to .</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.locale class="doc doc-heading"> <code class="highlight language-python"><span class=n>locale</span><span class=p>:</span> <span class=nb>str</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> <p>The language locale of the application.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.macintoshFileTypes class="doc doc-heading"> <code class="highlight language-python"><span class=n>macintoshFileTypes</span><span class=p>:</span> <span class=n>List</span><span class=p>[</span><span class=nb>str</span><span class=p>]</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> <p>A list of the image file types Photoshop can open.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.measurementLog class="doc doc-heading"> <code class="highlight language-python"><span class=n>measurementLog</span><span class=p>:</span> <span class=n>MeasurementLog</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> <p>The log of measurements taken.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.notifiers class="doc doc-heading"> <code class="highlight language-python"><span class=n>notifiers</span><span class=p>:</span> <span class=n>Notifiers</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> <p>The notifiers currently configured (in the Scripts Events Manager menu in the application).</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.notifiersEnabled class="doc doc-heading"> <code class="highlight language-python"><span class=n>notifiersEnabled</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> <p>If true, notifiers are enabled.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.parent class="doc doc-heading"> <code class="highlight language-python"><span class=n>parent</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> <p>The object’s container.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.path class="doc doc-heading"> <code class="highlight language-python"><span class=n>path</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h4> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h4 id=photoshop.api.application.Application.playbackParameters class="doc doc-heading"> <code class="highlight language-python"><span class=n>playbackParameters</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h4> <div class="doc doc-contents "> <p>Stores and retrieves parameters used as part of a recorded action.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.batch class="doc doc-heading"> <code class="highlight language-python"><span class=n>batch</span><span class=p>(</span><span class=n>files</span><span class=p>,</span> <span class=n>actionName</span><span class=p>,</span> <span class=n>actionSet</span><span class=p>,</span> <span class=n>options</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Runs the batch automation routine.</p> <p>Similar to the <strong>File</strong> &gt; <strong>Automate</strong> &gt; <strong>Batch</strong> command.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.beep class="doc doc-heading"> <code class="highlight language-python"><span class=n>beep</span><span class=p>()</span></code> </h4> <div class="doc doc-contents "> <p>Causes a "beep" sound.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.changeProgressText class="doc doc-heading"> <code class="highlight language-python"><span class=n>changeProgressText</span><span class=p>(</span><span class=n>text</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Changes the text that appears in the progress window.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.doAction class="doc doc-heading"> <code class="highlight language-python"><span class=n>doAction</span><span class=p>(</span><span class=n>action</span><span class=p>,</span> <span class=n>action_from</span><span class=o>=</span><span class=s1>&#39;Default Actions&#39;</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Plays the specified action from the Actions palette.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.doProgress class="doc doc-heading"> <code class="highlight language-python"><span class=n>doProgress</span><span class=p>(</span><span class=n>title</span><span class=p>,</span> <span class=n>javascript</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Performs a task with a progress bar. Other progress APIs must be called periodically to update the progress bar and allow cancelling.</p> <p>Parameters:</p> <ul> <li class=field-body> <b>title</b> (<code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/stdtypes.html#str>str</a></code>) – <div class=doc-md-description> <p>String to show in the progress window.</p> </div> </li> <li class=field-body> <b>javascript</b> (<code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/stdtypes.html#str>str</a></code>) – <div class=doc-md-description> <p>JavaScriptString to execute.</p> </div> </li> </ul> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.doProgressTask class="doc doc-heading"> <code class="highlight language-python"><span class=n>doProgressTask</span><span class=p>(</span><span class=n>index</span><span class=p>,</span> <span class=n>javascript</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Sections off a portion of the unused progress bar for execution of a subtask. Returns false on cancel.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.eraseCustomOptions class="doc doc-heading"> <code class="highlight language-python"><span class=n>eraseCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Removes the specified user objects from the Photoshop registry.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.featureEnabled class="doc doc-heading"> <code class="highlight language-python"><span class=n>featureEnabled</span><span class=p>(</span><span class=n>name</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Determines whether the feature</p> <p>specified by name is enabled. The following features are supported</p> <p>as values for name: "photoshop/extended" "photoshop/standard" "photoshop/trial</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.getCustomOptions class="doc doc-heading"> <code class="highlight language-python"><span class=n>getCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Retrieves user objects in the Photoshop registry for the ID with value key.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.load class="doc doc-heading"> <code class="highlight language-python"><span class=n>load</span><span class=p>(</span><span class=n>document_file_path</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Loads a support document.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.purge class="doc doc-heading"> <code class="highlight language-python"><span class=n>purge</span><span class=p>(</span><span class=n>target</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Purges one or more caches.</p> <p>Parameters:</p> <ul> <li class=field-body> <b>target</b> – <div class=doc-md-description> <p>.e.g: 0: Clears all caches. 1: Clears the clipboard. 2: Deletes all history states from the History palette. 3: Clears the undo cache.</p> </div> </li> </ul> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.refresh class="doc doc-heading"> <code class="highlight language-python"><span class=n>refresh</span><span class=p>()</span></code> </h4> <div class="doc doc-contents "> <p>Pauses the script while the application refreshes.</p> <p>Ues to slow down execution and show the results to the user as the script runs. Use carefully; your script runs much more slowly when using this method.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.refreshFonts class="doc doc-heading"> <code class="highlight language-python"><span class=n>refreshFonts</span><span class=p>()</span></code> </h4> <div class="doc doc-contents "> <p>Force the font list to get refreshed.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.runMenuItem class="doc doc-heading"> <code class="highlight language-python"><span class=n>runMenuItem</span><span class=p>(</span><span class=n>menu_id</span><span class=p>)</span></code> </h4> <div class="doc doc-contents "> <p>Run a menu item given the menu ID.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.showColorPicker class="doc doc-heading"> <code class="highlight language-python"><span class=n>showColorPicker</span><span class=p>()</span></code> </h4> <div class="doc doc-contents "> <p>Returns false if dialog is cancelled, true otherwise.</p> </div> </div> <div class="doc doc-object doc-function"> <h4 id=photoshop.api.application.Application.togglePalettes class="doc doc-heading"> <code class="highlight language-python"><span class=n>togglePalettes</span><span class=p>()</span></code> </h4> <div class="doc doc-contents "> <p>Toggle palette visibility.</p> </div> </div> </div> </div> </div> </div> </div> </div> <hr> <div class=md-source-file> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2023-09-14T14:50:09+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-14</span> <br> Created: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2023-09-14T14:50:09+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-14</span> </small> </div> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../action_reference/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> action_reference </div> </div> </a> <a href=../batch_options/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> batch_options </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright (c) 2019 Long Hao </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> <div class=md-social> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js"}</script> <script src=../../../../assets/javascripts/bundle.e87a5f81.min.js></script> <script src=../../../../js/timeago.min.js></script> <script src=../../../../js/timeago_mkdocs_material.js></script> <script src=../../../../assets/pymdownx-extras/extra-loader-9e2c67b9.js></script> </body> </html>
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=longhao><link rel=icon href=../../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.5.3, mkdocs-material-8.5.10"><title>application - Photoshop Python API</title><link rel=stylesheet href=../../../../assets/stylesheets/main.975780f9.min.css><link rel=stylesheet href=../../../../assets/stylesheets/palette.2505c338.min.css><script src=../../../../assets/pymdownx-extras/material-extra-theme-TVq-kNRT.js type=text/javascript></script><script src=../../../../assets/pymdownx-extras/material-extra-3rdparty-E-i8w1WA.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style><link rel=stylesheet href=../../../../assets/_mkdocstrings.css><link rel=stylesheet href=../../../../css/timeago.css><link rel=stylesheet href=../../../../assets/pymdownx-extras/extra-ed665380f8.css><script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=None data-md-color-accent=None> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#photoshop.api.application class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../../../.. title="Photoshop Python API" class="md-header__button md-logo" aria-label="Photoshop Python API"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Photoshop Python API </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> application </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg> </a> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg> </a> <a href=javascript:toggleScheme(); title="System preference" class=system-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07 19.07 3.5m-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13.51 1.67m-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87.4 1.31M19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35-2.53-2.2m4.33-2.7 1.15-2.77 2.2 2.54-3.35.23m1.15-4.96-1.14-2.78 3.34.24-2.2 2.54M9.63 18.93l2.77 1.15-2.53 2.19-.24-3.34Z"/></svg> </a> <a href=javascript:toggleScheme(); title="Unknown scheme" class=unknown-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10Z"/></svg> </a> </div> </div> <div class=md-header__source> <a href=https://github.com/loonghao/photoshop-python-api title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg> </div> <div class=md-source__repository> github </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../../../.. title="Photoshop Python API" class="md-nav__button md-logo" aria-label="Photoshop Python API" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg> </a> Photoshop Python API </label> <div class=md-nav__source> <a href=https://github.com/loonghao/photoshop-python-api title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg> </div> <div class=md-source__repository> github </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../.. class=md-nav__link> Overview </a> </li> <li class=md-nav__item> <a href=../../../../changelog/ class=md-nav__link> Changelog </a> </li> <li class=md-nav__item> <a href=../../../../examples/ class=md-nav__link> Examples </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2 checked> <label class=md-nav__link for=__nav_2> Code Reference <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Code Reference" data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Code Reference </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1 type=checkbox id=__nav_2_1 checked> <label class=md-nav__link for=__nav_2_1> photoshop <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=photoshop data-md-level=2> <label class=md-nav__title for=__nav_2_1> <span class="md-nav__icon md-icon"></span> photoshop </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1 type=checkbox id=__nav_2_1_1 checked> <label class=md-nav__link for=__nav_2_1_1> api <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=api data-md-level=3> <label class=md-nav__title for=__nav_2_1_1> <span class="md-nav__icon md-icon"></span> api </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../_active_layer/ class=md-nav__link> active_layer </a> </li> <li class=md-nav__item> <a href=../_artlayer/ class=md-nav__link> artlayer </a> </li> <li class=md-nav__item> <a href=../_artlayers/ class=md-nav__link> artlayers </a> </li> <li class=md-nav__item> <a href=../_channel/ class=md-nav__link> channel </a> </li> <li class=md-nav__item> <a href=../_channels/ class=md-nav__link> channels </a> </li> <li class=md-nav__item> <a href=../_core/ class=md-nav__link> core </a> </li> <li class=md-nav__item> <a href=../_document/ class=md-nav__link> document </a> </li> <li class=md-nav__item> <a href=../_documentinfo/ class=md-nav__link> documentinfo </a> </li> <li class=md-nav__item> <a href=../_documents/ class=md-nav__link> documents </a> </li> <li class=md-nav__item> <a href=../_layerComp/ class=md-nav__link> layerComp </a> </li> <li class=md-nav__item> <a href=../_layerComps/ class=md-nav__link> layerComps </a> </li> <li class=md-nav__item> <a href=../_layerSet/ class=md-nav__link> layerSet </a> </li> <li class=md-nav__item> <a href=../_layerSets/ class=md-nav__link> layerSets </a> </li> <li class=md-nav__item> <a href=../_layers/ class=md-nav__link> layers </a> </li> <li class=md-nav__item> <a href=../_measurement_log/ class=md-nav__link> measurement_log </a> </li> <li class=md-nav__item> <a href=../_notifier/ class=md-nav__link> notifier </a> </li> <li class=md-nav__item> <a href=../_notifiers/ class=md-nav__link> notifiers </a> </li> <li class=md-nav__item> <a href=../_preferences/ class=md-nav__link> preferences </a> </li> <li class=md-nav__item> <a href=../_selection/ class=md-nav__link> selection </a> </li> <li class=md-nav__item> <a href=../_text_fonts/ class=md-nav__link> text_fonts </a> </li> <li class=md-nav__item> <a href=../action_descriptor/ class=md-nav__link> action_descriptor </a> </li> <li class=md-nav__item> <a href=../action_list/ class=md-nav__link> action_list </a> </li> <li class=md-nav__item> <a href=../action_reference/ class=md-nav__link> action_reference </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> application <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> application </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#photoshop.api.application class=md-nav__link> application </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application class=md-nav__link> Application </a> <nav class=md-nav aria-label=Application> <ul class=md-nav__list> <li class=md-nav__item> <a href=#photoshop.api.application.Application.activeDocument class=md-nav__link> activeDocument </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.backgroundColor class=md-nav__link> backgroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.build class=md-nav__link> build </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.colorSettings class=md-nav__link> colorSettings </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.currentTool class=md-nav__link> currentTool </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.displayDialogs class=md-nav__link> displayDialogs </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.documents class=md-nav__link> documents </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.foregroundColor class=md-nav__link> foregroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.freeMemory class=md-nav__link> freeMemory </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.locale class=md-nav__link> locale </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.macintoshFileTypes class=md-nav__link> macintoshFileTypes </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.measurementLog class=md-nav__link> measurementLog </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiers class=md-nav__link> notifiers </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiersEnabled class=md-nav__link> notifiersEnabled </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.parent class=md-nav__link> parent </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.path class=md-nav__link> path </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.playbackParameters class=md-nav__link> playbackParameters </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.batch class=md-nav__link> batch() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.beep class=md-nav__link> beep() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.changeProgressText class=md-nav__link> changeProgressText() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doAction class=md-nav__link> doAction() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgress class=md-nav__link> doProgress() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgressTask class=md-nav__link> doProgressTask() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.eraseCustomOptions class=md-nav__link> eraseCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.featureEnabled class=md-nav__link> featureEnabled() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.getCustomOptions class=md-nav__link> getCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.load class=md-nav__link> load() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.purge class=md-nav__link> purge() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refresh class=md-nav__link> refresh() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refreshFonts class=md-nav__link> refreshFonts() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.runMenuItem class=md-nav__link> runMenuItem() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.showColorPicker class=md-nav__link> showColorPicker() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.togglePalettes class=md-nav__link> togglePalettes() </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../batch_options/ class=md-nav__link> batch_options </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1_26 type=checkbox id=__nav_2_1_1_26> <label class=md-nav__link for=__nav_2_1_1_26> colors <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=colors data-md-level=4> <label class=md-nav__title for=__nav_2_1_1_26> <span class="md-nav__icon md-icon"></span> colors </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../colors/cmyk/ class=md-nav__link> cmyk </a> </li> <li class=md-nav__item> <a href=../colors/gray/ class=md-nav__link> gray </a> </li> <li class=md-nav__item> <a href=../colors/hsb/ class=md-nav__link> hsb </a> </li> <li class=md-nav__item> <a href=../colors/lab/ class=md-nav__link> lab </a> </li> <li class=md-nav__item> <a href=../colors/rgb/ class=md-nav__link> rgb </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../constants/ class=md-nav__link> constants </a> </li> <li class=md-nav__item> <a href=../enumerations/ class=md-nav__link> enumerations </a> </li> <li class=md-nav__item> <a href=../errors/ class=md-nav__link> errors </a> </li> <li class=md-nav__item> <a href=../event_id/ class=md-nav__link> event_id </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1_31 type=checkbox id=__nav_2_1_1_31> <label class=md-nav__link for=__nav_2_1_1_31> open_options <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=open_options data-md-level=4> <label class=md-nav__title for=__nav_2_1_1_31> <span class="md-nav__icon md-icon"></span> open_options </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../open_options/eps/ class=md-nav__link> eps </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_1_1_32 type=checkbox id=__nav_2_1_1_32> <label class=md-nav__link for=__nav_2_1_1_32> save_options <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=save_options data-md-level=4> <label class=md-nav__title for=__nav_2_1_1_32> <span class="md-nav__icon md-icon"></span> save_options </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../save_options/bmp/ class=md-nav__link> bmp </a> </li> <li class=md-nav__item> <a href=../save_options/eps/ class=md-nav__link> eps </a> </li> <li class=md-nav__item> <a href=../save_options/gif/ class=md-nav__link> gif </a> </li> <li class=md-nav__item> <a href=../save_options/jpg/ class=md-nav__link> jpg </a> </li> <li class=md-nav__item> <a href=../save_options/pdf/ class=md-nav__link> pdf </a> </li> <li class=md-nav__item> <a href=../save_options/png/ class=md-nav__link> png </a> </li> <li class=md-nav__item> <a href=../save_options/psd/ class=md-nav__link> psd </a> </li> <li class=md-nav__item> <a href=../save_options/tag/ class=md-nav__link> tag </a> </li> <li class=md-nav__item> <a href=../save_options/tif/ class=md-nav__link> tif </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../solid_color/ class=md-nav__link> solid_color </a> </li> <li class=md-nav__item> <a href=../text_font/ class=md-nav__link> text_font </a> </li> <li class=md-nav__item> <a href=../text_item/ class=md-nav__link> text_item </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../session/ class=md-nav__link> session </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=https://github.com/loonghao/photoshop-python-api/issues class=md-nav__link> Issue Tracker </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#photoshop.api.application class=md-nav__link> application </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application class=md-nav__link> Application </a> <nav class=md-nav aria-label=Application> <ul class=md-nav__list> <li class=md-nav__item> <a href=#photoshop.api.application.Application.activeDocument class=md-nav__link> activeDocument </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.backgroundColor class=md-nav__link> backgroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.build class=md-nav__link> build </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.colorSettings class=md-nav__link> colorSettings </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.currentTool class=md-nav__link> currentTool </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.displayDialogs class=md-nav__link> displayDialogs </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.documents class=md-nav__link> documents </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.foregroundColor class=md-nav__link> foregroundColor </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.freeMemory class=md-nav__link> freeMemory </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.locale class=md-nav__link> locale </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.macintoshFileTypes class=md-nav__link> macintoshFileTypes </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.measurementLog class=md-nav__link> measurementLog </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiers class=md-nav__link> notifiers </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.notifiersEnabled class=md-nav__link> notifiersEnabled </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.parent class=md-nav__link> parent </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.path class=md-nav__link> path </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.playbackParameters class=md-nav__link> playbackParameters </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.batch class=md-nav__link> batch() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.beep class=md-nav__link> beep() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.changeProgressText class=md-nav__link> changeProgressText() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doAction class=md-nav__link> doAction() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgress class=md-nav__link> doProgress() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.doProgressTask class=md-nav__link> doProgressTask() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.eraseCustomOptions class=md-nav__link> eraseCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.featureEnabled class=md-nav__link> featureEnabled() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.getCustomOptions class=md-nav__link> getCustomOptions() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.load class=md-nav__link> load() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.purge class=md-nav__link> purge() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refresh class=md-nav__link> refresh() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.refreshFonts class=md-nav__link> refreshFonts() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.runMenuItem class=md-nav__link> runMenuItem() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.showColorPicker class=md-nav__link> showColorPicker() </a> </li> <li class=md-nav__item> <a href=#photoshop.api.application.Application.togglePalettes class=md-nav__link> togglePalettes() </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href=https://github.com/home/runner/work/photoshop-python-api/photoshop-python-api/photoshop/api/application.py title="Edit this page" class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg> </a> <h1>application</h1> <div class="doc doc-object doc-module"> <a id=photoshop.api.application></a> <div class="doc doc-contents first"> <p>The Adobe Photoshop CC application object.</p> <p>Which is the root of the object model and provides access to all other objects. This object provides application-wide information, such as application defaults and available fonts. It provides many important methods, such as those for opening files and loading documents.</p> <p>app = Application()</p> <p>app.documents.add(800, 600, 72, "docRef")</p> <div class="doc doc-children"> <div class="doc doc-object doc-class"> <h2 id=photoshop.api.application.Application class="doc doc-heading"> <code>Application</code> </h2> <div class="doc doc-contents "> <p class="doc doc-class-bases"> Bases: <code><a class="autorefs autorefs-internal" title=photoshop.api._core.Photoshop href=../_core/#photoshop.api._core.Photoshop>Photoshop</a></code></p> <p>The Adobe Photoshop application object, which contains all other Adobe Photoshop objects.</p> <p>This is the root of the object model, and provides access to all other objects. To access the properties and methods, you can use the pre-defined global variable app.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal> 40</span>
+<span class=normal> 41</span>
+<span class=normal> 42</span>
+<span class=normal> 43</span>
+<span class=normal> 44</span>
+<span class=normal> 45</span>
+<span class=normal> 46</span>
+<span class=normal> 47</span>
+<span class=normal> 48</span>
+<span class=normal> 49</span>
+<span class=normal> 50</span>
+<span class=normal> 51</span>
+<span class=normal> 52</span>
+<span class=normal> 53</span>
+<span class=normal> 54</span>
+<span class=normal> 55</span>
+<span class=normal> 56</span>
+<span class=normal> 57</span>
+<span class=normal> 58</span>
+<span class=normal> 59</span>
+<span class=normal> 60</span>
+<span class=normal> 61</span>
+<span class=normal> 62</span>
+<span class=normal> 63</span>
+<span class=normal> 64</span>
+<span class=normal> 65</span>
+<span class=normal> 66</span>
+<span class=normal> 67</span>
+<span class=normal> 68</span>
+<span class=normal> 69</span>
+<span class=normal> 70</span>
+<span class=normal> 71</span>
+<span class=normal> 72</span>
+<span class=normal> 73</span>
+<span class=normal> 74</span>
+<span class=normal> 75</span>
+<span class=normal> 76</span>
+<span class=normal> 77</span>
+<span class=normal> 78</span>
+<span class=normal> 79</span>
+<span class=normal> 80</span>
+<span class=normal> 81</span>
+<span class=normal> 82</span>
+<span class=normal> 83</span>
+<span class=normal> 84</span>
+<span class=normal> 85</span>
+<span class=normal> 86</span>
+<span class=normal> 87</span>
+<span class=normal> 88</span>
+<span class=normal> 89</span>
+<span class=normal> 90</span>
+<span class=normal> 91</span>
+<span class=normal> 92</span>
+<span class=normal> 93</span>
+<span class=normal> 94</span>
+<span class=normal> 95</span>
+<span class=normal> 96</span>
+<span class=normal> 97</span>
+<span class=normal> 98</span>
+<span class=normal> 99</span>
+<span class=normal>100</span>
+<span class=normal>101</span>
+<span class=normal>102</span>
+<span class=normal>103</span>
+<span class=normal>104</span>
+<span class=normal>105</span>
+<span class=normal>106</span>
+<span class=normal>107</span>
+<span class=normal>108</span>
+<span class=normal>109</span>
+<span class=normal>110</span>
+<span class=normal>111</span>
+<span class=normal>112</span>
+<span class=normal>113</span>
+<span class=normal>114</span>
+<span class=normal>115</span>
+<span class=normal>116</span>
+<span class=normal>117</span>
+<span class=normal>118</span>
+<span class=normal>119</span>
+<span class=normal>120</span>
+<span class=normal>121</span>
+<span class=normal>122</span>
+<span class=normal>123</span>
+<span class=normal>124</span>
+<span class=normal>125</span>
+<span class=normal>126</span>
+<span class=normal>127</span>
+<span class=normal>128</span>
+<span class=normal>129</span>
+<span class=normal>130</span>
+<span class=normal>131</span>
+<span class=normal>132</span>
+<span class=normal>133</span>
+<span class=normal>134</span>
+<span class=normal>135</span>
+<span class=normal>136</span>
+<span class=normal>137</span>
+<span class=normal>138</span>
+<span class=normal>139</span>
+<span class=normal>140</span>
+<span class=normal>141</span>
+<span class=normal>142</span>
+<span class=normal>143</span>
+<span class=normal>144</span>
+<span class=normal>145</span>
+<span class=normal>146</span>
+<span class=normal>147</span>
+<span class=normal>148</span>
+<span class=normal>149</span>
+<span class=normal>150</span>
+<span class=normal>151</span>
+<span class=normal>152</span>
+<span class=normal>153</span>
+<span class=normal>154</span>
+<span class=normal>155</span>
+<span class=normal>156</span>
+<span class=normal>157</span>
+<span class=normal>158</span>
+<span class=normal>159</span>
+<span class=normal>160</span>
+<span class=normal>161</span>
+<span class=normal>162</span>
+<span class=normal>163</span>
+<span class=normal>164</span>
+<span class=normal>165</span>
+<span class=normal>166</span>
+<span class=normal>167</span>
+<span class=normal>168</span>
+<span class=normal>169</span>
+<span class=normal>170</span>
+<span class=normal>171</span>
+<span class=normal>172</span>
+<span class=normal>173</span>
+<span class=normal>174</span>
+<span class=normal>175</span>
+<span class=normal>176</span>
+<span class=normal>177</span>
+<span class=normal>178</span>
+<span class=normal>179</span>
+<span class=normal>180</span>
+<span class=normal>181</span>
+<span class=normal>182</span>
+<span class=normal>183</span>
+<span class=normal>184</span>
+<span class=normal>185</span>
+<span class=normal>186</span>
+<span class=normal>187</span>
+<span class=normal>188</span>
+<span class=normal>189</span>
+<span class=normal>190</span>
+<span class=normal>191</span>
+<span class=normal>192</span>
+<span class=normal>193</span>
+<span class=normal>194</span>
+<span class=normal>195</span>
+<span class=normal>196</span>
+<span class=normal>197</span>
+<span class=normal>198</span>
+<span class=normal>199</span>
+<span class=normal>200</span>
+<span class=normal>201</span>
+<span class=normal>202</span>
+<span class=normal>203</span>
+<span class=normal>204</span>
+<span class=normal>205</span>
+<span class=normal>206</span>
+<span class=normal>207</span>
+<span class=normal>208</span>
+<span class=normal>209</span>
+<span class=normal>210</span>
+<span class=normal>211</span>
+<span class=normal>212</span>
+<span class=normal>213</span>
+<span class=normal>214</span>
+<span class=normal>215</span>
+<span class=normal>216</span>
+<span class=normal>217</span>
+<span class=normal>218</span>
+<span class=normal>219</span>
+<span class=normal>220</span>
+<span class=normal>221</span>
+<span class=normal>222</span>
+<span class=normal>223</span>
+<span class=normal>224</span>
+<span class=normal>225</span>
+<span class=normal>226</span>
+<span class=normal>227</span>
+<span class=normal>228</span>
+<span class=normal>229</span>
+<span class=normal>230</span>
+<span class=normal>231</span>
+<span class=normal>232</span>
+<span class=normal>233</span>
+<span class=normal>234</span>
+<span class=normal>235</span>
+<span class=normal>236</span>
+<span class=normal>237</span>
+<span class=normal>238</span>
+<span class=normal>239</span>
+<span class=normal>240</span>
+<span class=normal>241</span>
+<span class=normal>242</span>
+<span class=normal>243</span>
+<span class=normal>244</span>
+<span class=normal>245</span>
+<span class=normal>246</span>
+<span class=normal>247</span>
+<span class=normal>248</span>
+<span class=normal>249</span>
+<span class=normal>250</span>
+<span class=normal>251</span>
+<span class=normal>252</span>
+<span class=normal>253</span>
+<span class=normal>254</span>
+<span class=normal>255</span>
+<span class=normal>256</span>
+<span class=normal>257</span>
+<span class=normal>258</span>
+<span class=normal>259</span>
+<span class=normal>260</span>
+<span class=normal>261</span>
+<span class=normal>262</span>
+<span class=normal>263</span>
+<span class=normal>264</span>
+<span class=normal>265</span>
+<span class=normal>266</span>
+<span class=normal>267</span>
+<span class=normal>268</span>
+<span class=normal>269</span>
+<span class=normal>270</span>
+<span class=normal>271</span>
+<span class=normal>272</span>
+<span class=normal>273</span>
+<span class=normal>274</span>
+<span class=normal>275</span>
+<span class=normal>276</span>
+<span class=normal>277</span>
+<span class=normal>278</span>
+<span class=normal>279</span>
+<span class=normal>280</span>
+<span class=normal>281</span>
+<span class=normal>282</span>
+<span class=normal>283</span>
+<span class=normal>284</span>
+<span class=normal>285</span>
+<span class=normal>286</span>
+<span class=normal>287</span>
+<span class=normal>288</span>
+<span class=normal>289</span>
+<span class=normal>290</span>
+<span class=normal>291</span>
+<span class=normal>292</span>
+<span class=normal>293</span>
+<span class=normal>294</span>
+<span class=normal>295</span>
+<span class=normal>296</span>
+<span class=normal>297</span>
+<span class=normal>298</span>
+<span class=normal>299</span>
+<span class=normal>300</span>
+<span class=normal>301</span>
+<span class=normal>302</span>
+<span class=normal>303</span>
+<span class=normal>304</span>
+<span class=normal>305</span>
+<span class=normal>306</span>
+<span class=normal>307</span>
+<span class=normal>308</span>
+<span class=normal>309</span>
+<span class=normal>310</span>
+<span class=normal>311</span>
+<span class=normal>312</span>
+<span class=normal>313</span>
+<span class=normal>314</span>
+<span class=normal>315</span>
+<span class=normal>316</span>
+<span class=normal>317</span>
+<span class=normal>318</span>
+<span class=normal>319</span>
+<span class=normal>320</span>
+<span class=normal>321</span>
+<span class=normal>322</span>
+<span class=normal>323</span>
+<span class=normal>324</span>
+<span class=normal>325</span>
+<span class=normal>326</span>
+<span class=normal>327</span>
+<span class=normal>328</span>
+<span class=normal>329</span>
+<span class=normal>330</span>
+<span class=normal>331</span>
+<span class=normal>332</span>
+<span class=normal>333</span>
+<span class=normal>334</span>
+<span class=normal>335</span>
+<span class=normal>336</span>
+<span class=normal>337</span>
+<span class=normal>338</span>
+<span class=normal>339</span>
+<span class=normal>340</span>
+<span class=normal>341</span>
+<span class=normal>342</span>
+<span class=normal>343</span>
+<span class=normal>344</span>
+<span class=normal>345</span>
+<span class=normal>346</span>
+<span class=normal>347</span>
+<span class=normal>348</span>
+<span class=normal>349</span>
+<span class=normal>350</span>
+<span class=normal>351</span>
+<span class=normal>352</span>
+<span class=normal>353</span>
+<span class=normal>354</span>
+<span class=normal>355</span>
+<span class=normal>356</span>
+<span class=normal>357</span>
+<span class=normal>358</span>
+<span class=normal>359</span>
+<span class=normal>360</span>
+<span class=normal>361</span>
+<span class=normal>362</span>
+<span class=normal>363</span>
+<span class=normal>364</span>
+<span class=normal>365</span>
+<span class=normal>366</span>
+<span class=normal>367</span>
+<span class=normal>368</span>
+<span class=normal>369</span>
+<span class=normal>370</span>
+<span class=normal>371</span>
+<span class=normal>372</span>
+<span class=normal>373</span>
+<span class=normal>374</span>
+<span class=normal>375</span>
+<span class=normal>376</span>
+<span class=normal>377</span>
+<span class=normal>378</span>
+<span class=normal>379</span>
+<span class=normal>380</span>
+<span class=normal>381</span>
+<span class=normal>382</span>
+<span class=normal>383</span>
+<span class=normal>384</span>
+<span class=normal>385</span>
+<span class=normal>386</span>
+<span class=normal>387</span>
+<span class=normal>388</span>
+<span class=normal>389</span>
+<span class=normal>390</span>
+<span class=normal>391</span>
+<span class=normal>392</span>
+<span class=normal>393</span>
+<span class=normal>394</span>
+<span class=normal>395</span>
+<span class=normal>396</span>
+<span class=normal>397</span>
+<span class=normal>398</span>
+<span class=normal>399</span>
+<span class=normal>400</span>
+<span class=normal>401</span>
+<span class=normal>402</span>
+<span class=normal>403</span>
+<span class=normal>404</span>
+<span class=normal>405</span>
+<span class=normal>406</span>
+<span class=normal>407</span>
+<span class=normal>408</span>
+<span class=normal>409</span>
+<span class=normal>410</span>
+<span class=normal>411</span>
+<span class=normal>412</span>
+<span class=normal>413</span>
+<span class=normal>414</span>
+<span class=normal>415</span>
+<span class=normal>416</span>
+<span class=normal>417</span>
+<span class=normal>418</span>
+<span class=normal>419</span>
+<span class=normal>420</span>
+<span class=normal>421</span>
+<span class=normal>422</span>
+<span class=normal>423</span>
+<span class=normal>424</span>
+<span class=normal>425</span>
+<span class=normal>426</span>
+<span class=normal>427</span>
+<span class=normal>428</span>
+<span class=normal>429</span>
+<span class=normal>430</span>
+<span class=normal>431</span>
+<span class=normal>432</span>
+<span class=normal>433</span>
+<span class=normal>434</span>
+<span class=normal>435</span>
+<span class=normal>436</span>
+<span class=normal>437</span>
+<span class=normal>438</span>
+<span class=normal>439</span>
+<span class=normal>440</span>
+<span class=normal>441</span>
+<span class=normal>442</span>
+<span class=normal>443</span>
+<span class=normal>444</span>
+<span class=normal>445</span>
+<span class=normal>446</span>
+<span class=normal>447</span>
+<span class=normal>448</span>
+<span class=normal>449</span>
+<span class=normal>450</span>
+<span class=normal>451</span>
+<span class=normal>452</span>
+<span class=normal>453</span>
+<span class=normal>454</span>
+<span class=normal>455</span>
+<span class=normal>456</span>
+<span class=normal>457</span>
+<span class=normal>458</span>
+<span class=normal>459</span>
+<span class=normal>460</span>
+<span class=normal>461</span>
+<span class=normal>462</span>
+<span class=normal>463</span>
+<span class=normal>464</span>
+<span class=normal>465</span>
+<span class=normal>466</span>
+<span class=normal>467</span>
+<span class=normal>468</span>
+<span class=normal>469</span>
+<span class=normal>470</span>
+<span class=normal>471</span>
+<span class=normal>472</span>
+<span class=normal>473</span>
+<span class=normal>474</span>
+<span class=normal>475</span>
+<span class=normal>476</span>
+<span class=normal>477</span>
+<span class=normal>478</span>
+<span class=normal>479</span>
+<span class=normal>480</span>
+<span class=normal>481</span>
+<span class=normal>482</span>
+<span class=normal>483</span>
+<span class=normal>484</span>
+<span class=normal>485</span>
+<span class=normal>486</span>
+<span class=normal>487</span>
+<span class=normal>488</span>
+<span class=normal>489</span>
+<span class=normal>490</span>
+<span class=normal>491</span>
+<span class=normal>492</span>
+<span class=normal>493</span>
+<span class=normal>494</span>
+<span class=normal>495</span>
+<span class=normal>496</span>
+<span class=normal>497</span>
+<span class=normal>498</span>
+<span class=normal>499</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>class</span> <span class=nc>Application</span><span class=p>(</span><span class=n>Photoshop</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;The Adobe Photoshop application object, which contains all other Adobe Photoshop objects.</span>
+
+<span class=sd>    This is the root of the object model, and provides access to all other objects.</span>
+<span class=sd>    To access the properties and methods, you can use the pre-defined global variable app.</span>
+
+<span class=sd>    &quot;&quot;&quot;</span>
+
+    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>version</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=nb>str</span><span class=p>]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>):</span>
+        <span class=nb>super</span><span class=p>()</span><span class=o>.</span><span class=fm>__init__</span><span class=p>(</span><span class=n>ps_version</span><span class=o>=</span><span class=n>version</span><span class=p>)</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>_flag_as_method</span><span class=p>(</span>
+            <span class=s2>&quot;batch&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;charIDToTypeID&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;doAction&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;doJavaScript&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;eraseCustomOptions&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;executeAction&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;executeActionGet&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;featureEnabled&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;getCustomOptions&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;isQuicktimeAvailable&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;load&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;open&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;openDialog&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;purge&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;putCustomOptions&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;refresh&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;stringIDToTypeID&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;toolSupportsBrushes&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;toolSupportsPresets&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;typeIDToCharID&quot;</span><span class=p>,</span>
+            <span class=s2>&quot;typeIDToStringID&quot;</span><span class=p>,</span>
+        <span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>activeLayer</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>ArtLayer</span><span class=p>:</span>
+        <span class=k>return</span> <span class=n>ArtLayer</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>ArtLayer</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>layerSets</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>LayerSets</span><span class=p>:</span>
+        <span class=k>return</span> <span class=n>LayerSets</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>LayerSets</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>activeDocument</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The front-most documents.</span>
+
+<span class=sd>        Setting this property is equivalent to clicking an</span>
+<span class=sd>        open document in the Adobe Photoshop CC</span>
+<span class=sd>        application to bring it to the front of the screen.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>Document</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>activeDocument</span><span class=p>)</span>
+
+    <span class=nd>@activeDocument</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>activeDocument</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>document</span><span class=p>:</span> <span class=n>Document</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>activeDocument</span> <span class=o>=</span> <span class=n>document</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>backgroundColor</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>SolidColor</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The default background color and color style for documents.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>SolidColor</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>backgroundColor</span><span class=p>)</span>
+
+    <span class=nd>@backgroundColor</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>backgroundColor</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>color</span><span class=p>:</span> <span class=n>SolidColor</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Sets the default background color and color style for documents.</span>
+
+<span class=sd>        Args:</span>
+<span class=sd>            color: The SolidColor instance.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>backgroundColor</span> <span class=o>=</span> <span class=n>color</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>build</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;str: The information about the application.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>build</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>colorSettings</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;str: The name of the currently selected color settings profile</span>
+<span class=sd>        (selected with Edit &gt; Color Settings).</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>colorSettings</span>
+
+    <span class=nd>@colorSettings</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>colorSettings</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>settings</span><span class=p>:</span> <span class=nb>str</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Sets the currently selected color settings profile.</span>
+
+<span class=sd>        Args:</span>
+<span class=sd>            settings: The name of a color settings profile to select.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=k>try</span><span class=p>:</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>doJavaScript</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;app.colorSettings=&quot;</span><span class=si>{</span><span class=n>settings</span><span class=si>}</span><span class=s1>&quot;&#39;</span><span class=p>)</span>
+        <span class=k>except</span> <span class=n>COMError</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+            <span class=k>raise</span> <span class=n>PhotoshopPythonAPIError</span><span class=p>(</span><span class=sa>f</span><span class=s2>&quot;Invalid color profile provided: &#39;</span><span class=si>{</span><span class=n>settings</span><span class=si>}</span><span class=s2>&#39;&quot;</span><span class=p>)</span> <span class=kn>from</span> <span class=nn>e</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>currentTool</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;str: The name of the current tool selected.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>currentTool</span>
+
+    <span class=nd>@currentTool</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>currentTool</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>tool_name</span><span class=p>:</span> <span class=nb>str</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Sets the currently selected tool.</span>
+
+<span class=sd>        Args:</span>
+<span class=sd>            tool_name: The name of a tool to select..</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>currentTool</span> <span class=o>=</span> <span class=n>tool_name</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>displayDialogs</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>DialogModes</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The dialog mode for the document, which indicates whether</span>
+<span class=sd>        Photoshop displays dialogs when the script runs.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>DialogModes</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>displayDialogs</span><span class=p>)</span>
+
+    <span class=nd>@displayDialogs</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>displayDialogs</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>dialog_mode</span><span class=p>:</span> <span class=n>DialogModes</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The dialog mode for the document, which indicates whether</span>
+<span class=sd>        Photoshop displays dialogs when the script runs.</span>
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>displayDialogs</span> <span class=o>=</span> <span class=n>dialog_mode</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>documents</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Documents</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;._documents.Documents: The Documents instance.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>Documents</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>documents</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>fonts</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>TextFonts</span><span class=p>:</span>
+        <span class=k>return</span> <span class=n>TextFonts</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>fonts</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>foregroundColor</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>SolidColor</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Get default foreground color.</span>
+
+<span class=sd>        Used to paint, fill, and stroke selections.</span>
+
+<span class=sd>        Returns:</span>
+<span class=sd>            The SolidColor instance.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>SolidColor</span><span class=p>(</span><span class=n>parent</span><span class=o>=</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>foregroundColor</span><span class=p>)</span>
+
+    <span class=nd>@foregroundColor</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>foregroundColor</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>color</span><span class=p>:</span> <span class=n>SolidColor</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Set the `foregroundColor`.</span>
+
+<span class=sd>        Args:</span>
+<span class=sd>            color: The SolidColor instance.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>foregroundColor</span> <span class=o>=</span> <span class=n>color</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>freeMemory</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>float</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The amount of unused memory available to .&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>freeMemory</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>locale</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The language locale of the application.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>locale</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>macintoshFileTypes</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>List</span><span class=p>[</span><span class=nb>str</span><span class=p>]:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;A list of the image file types Photoshop can open.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>macintoshFileTypes</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>measurementLog</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>MeasurementLog</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The log of measurements taken.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>MeasurementLog</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>measurementLog</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>name</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>name</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>notifiers</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Notifiers</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The notifiers currently configured (in the Scripts Events Manager</span>
+<span class=sd>        menu in the application).&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>Notifiers</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>notifiers</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>notifiersEnabled</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>bool</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;bool: If true, notifiers are enabled.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>notifiersEnabled</span>
+
+    <span class=nd>@notifiersEnabled</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>notifiersEnabled</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>value</span><span class=p>:</span> <span class=nb>bool</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>notifiersEnabled</span> <span class=o>=</span> <span class=n>value</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>parent</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;The object’s container.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>parent</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>path</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Path</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;str: The full path to the location of the Photoshop application.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=n>Path</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>path</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>playbackDisplayDialogs</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>doJavaScript</span><span class=p>(</span><span class=s2>&quot;app.playbackDisplayDialogs&quot;</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>playbackParameters</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Stores and retrieves parameters used as part of a recorded action.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>playbackParameters</span>
+
+    <span class=nd>@playbackParameters</span><span class=o>.</span><span class=n>setter</span>
+    <span class=k>def</span> <span class=nf>playbackParameters</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>value</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>playbackParameters</span> <span class=o>=</span> <span class=n>value</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>preferences</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Preferences</span><span class=p>:</span>
+        <span class=k>return</span> <span class=n>Preferences</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>preferences</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>preferencesFolder</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Path</span><span class=p>:</span>
+        <span class=k>return</span> <span class=n>Path</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>preferencesFolder</span><span class=p>)</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>recentFiles</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>recentFiles</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>scriptingBuildDate</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>scriptingBuildDate</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>scriptingVersion</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>scriptingVersion</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>systemInformation</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>systemInformation</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>version</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>version</span>
+
+    <span class=nd>@property</span>
+    <span class=k>def</span> <span class=nf>windowsFileTypes</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>windowsFileTypes</span>
+
+    <span class=c1># Methods.</span>
+    <span class=k>def</span> <span class=nf>batch</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>files</span><span class=p>,</span> <span class=n>actionName</span><span class=p>,</span> <span class=n>actionSet</span><span class=p>,</span> <span class=n>options</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Runs the batch automation routine.</span>
+
+<span class=sd>        Similar to the **File** &gt; **Automate** &gt; **Batch** command.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>batch</span><span class=p>(</span><span class=n>files</span><span class=p>,</span> <span class=n>actionName</span><span class=p>,</span> <span class=n>actionSet</span><span class=p>,</span> <span class=n>options</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>beep</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Causes a &quot;beep&quot; sound.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=s2>&quot;app.beep()&quot;</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>bringToFront</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=s2>&quot;app.bringToFront()&quot;</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>changeProgressText</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>text</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Changes the text that appears in the progress window.&quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=sa>f</span><span class=s2>&quot;app.changeProgressText(&#39;</span><span class=si>{</span><span class=n>text</span><span class=si>}</span><span class=s2>&#39;)&quot;</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>charIDToTypeID</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>char_id</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>charIDToTypeID</span><span class=p>(</span><span class=n>char_id</span><span class=p>)</span>
+
+    <span class=nd>@staticmethod</span>
+    <span class=k>def</span> <span class=nf>compareWithNumbers</span><span class=p>(</span><span class=n>first</span><span class=p>,</span> <span class=n>second</span><span class=p>):</span>
+        <span class=k>return</span> <span class=n>first</span> <span class=o>&gt;</span> <span class=n>second</span>
+
+    <span class=k>def</span> <span class=nf>doAction</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>action</span><span class=p>,</span> <span class=n>action_from</span><span class=o>=</span><span class=s2>&quot;Default Actions&quot;</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Plays the specified action from the Actions palette.&quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>doAction</span><span class=p>(</span><span class=n>action</span><span class=p>,</span> <span class=n>action_from</span><span class=p>)</span>
+        <span class=k>return</span> <span class=kc>True</span>
+
+    <span class=k>def</span> <span class=nf>doForcedProgress</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>title</span><span class=p>,</span> <span class=n>javascript</span><span class=p>):</span>
+        <span class=n>script</span> <span class=o>=</span> <span class=s2>&quot;app.doForcedProgress(&#39;</span><span class=si>{}</span><span class=s2>&#39;, &#39;</span><span class=si>{}</span><span class=s2>&#39;)&quot;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span>
+            <span class=n>title</span><span class=p>,</span>
+            <span class=n>javascript</span><span class=p>,</span>
+        <span class=p>)</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>script</span><span class=p>)</span>
+        <span class=c1># Ensure the script execute success.</span>
+        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>doProgress</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>title</span><span class=p>,</span> <span class=n>javascript</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Performs a task with a progress bar. Other progress APIs must be</span>
+<span class=sd>        called periodically to update the progress bar and allow cancelling.</span>
+
+<span class=sd>        Args:</span>
+<span class=sd>            title (str): String to show in the progress window.</span>
+<span class=sd>            javascript (str): JavaScriptString to execute.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=n>script</span> <span class=o>=</span> <span class=s2>&quot;app.doProgress(&#39;</span><span class=si>{}</span><span class=s2>&#39;, &#39;</span><span class=si>{}</span><span class=s2>&#39;)&quot;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span>
+            <span class=n>title</span><span class=p>,</span>
+            <span class=n>javascript</span><span class=p>,</span>
+        <span class=p>)</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>script</span><span class=p>)</span>
+        <span class=c1># Ensure the script execute success.</span>
+        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>doProgressSegmentTask</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>segmentLength</span><span class=p>,</span> <span class=n>done</span><span class=p>,</span> <span class=n>total</span><span class=p>,</span> <span class=n>javascript</span><span class=p>):</span>
+        <span class=n>script</span> <span class=o>=</span> <span class=s2>&quot;app.doProgressSegmentTask(</span><span class=si>{}</span><span class=s2>, </span><span class=si>{}</span><span class=s2>, </span><span class=si>{}</span><span class=s2>, &#39;</span><span class=si>{}</span><span class=s2>&#39;);&quot;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span>
+            <span class=n>segmentLength</span><span class=p>,</span>
+            <span class=n>done</span><span class=p>,</span>
+            <span class=n>total</span><span class=p>,</span>
+            <span class=n>javascript</span><span class=p>,</span>
+        <span class=p>)</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>script</span><span class=p>)</span>
+        <span class=c1># Ensure the script execute success.</span>
+        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>doProgressSubTask</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>index</span><span class=p>,</span> <span class=n>limit</span><span class=p>,</span> <span class=n>javascript</span><span class=p>):</span>
+        <span class=n>script</span> <span class=o>=</span> <span class=s2>&quot;app.doProgressSubTask(</span><span class=si>{}</span><span class=s2>, </span><span class=si>{}</span><span class=s2>, &#39;</span><span class=si>{}</span><span class=s2>&#39;);&quot;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span>
+            <span class=n>index</span><span class=p>,</span>
+            <span class=n>limit</span><span class=p>,</span>
+            <span class=n>javascript</span><span class=p>,</span>
+        <span class=p>)</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>script</span><span class=p>)</span>
+        <span class=c1># Ensure the script execute success.</span>
+        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>doProgressTask</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>index</span><span class=p>,</span> <span class=n>javascript</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Sections off a portion of the unused progress bar for execution of</span>
+<span class=sd>        a subtask. Returns false on cancel.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=n>script</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&quot;app.doProgressTask(</span><span class=si>{</span><span class=n>index</span><span class=si>}</span><span class=s2>, &#39;</span><span class=si>{</span><span class=n>javascript</span><span class=si>}</span><span class=s2>&#39;);&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>script</span><span class=p>)</span>
+        <span class=c1># Ensure the script execute success.</span>
+        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>eraseCustomOptions</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Removes the specified user objects from the Photoshop registry.&quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>eraseCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>executeAction</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>event_id</span><span class=p>,</span> <span class=n>descriptor</span><span class=p>,</span> <span class=n>display_dialogs</span><span class=o>=</span><span class=mi>2</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>executeAction</span><span class=p>(</span><span class=n>event_id</span><span class=p>,</span> <span class=n>descriptor</span><span class=p>,</span> <span class=n>display_dialogs</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>executeActionGet</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>reference</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>executeActionGet</span><span class=p>(</span><span class=n>reference</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>featureEnabled</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>name</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Determines whether the feature</span>
+
+<span class=sd>        specified by name is enabled.</span>
+<span class=sd>        The following features are supported</span>
+
+<span class=sd>        as values for name:</span>
+<span class=sd>        &quot;photoshop/extended&quot;</span>
+<span class=sd>        &quot;photoshop/standard&quot;</span>
+<span class=sd>        &quot;photoshop/trial</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>featureEnabled</span><span class=p>(</span><span class=n>name</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>getCustomOptions</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Retrieves user objects in the Photoshop registry for the ID with</span>
+<span class=sd>        value key.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>getCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>open</span><span class=p>(</span>
+        <span class=bp>self</span><span class=p>,</span>
+        <span class=n>document_file_path</span><span class=p>,</span>
+        <span class=n>document_type</span><span class=p>:</span> <span class=nb>str</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+        <span class=n>as_smart_object</span><span class=p>:</span> <span class=nb>bool</span> <span class=o>=</span> <span class=kc>False</span><span class=p>,</span>
+    <span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Document</span><span class=p>:</span>
+        <span class=n>document</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>document_file_path</span><span class=p>,</span> <span class=n>document_type</span><span class=p>,</span> <span class=n>as_smart_object</span><span class=p>)</span>
+        <span class=k>if</span> <span class=ow>not</span> <span class=n>as_smart_object</span><span class=p>:</span>
+            <span class=k>return</span> <span class=n>Document</span><span class=p>(</span><span class=n>document</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>document</span>
+
+    <span class=k>def</span> <span class=nf>load</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>document_file_path</span><span class=p>:</span> <span class=n>Union</span><span class=p>[</span><span class=nb>str</span><span class=p>,</span> <span class=n>os</span><span class=o>.</span><span class=n>PathLike</span><span class=p>])</span> <span class=o>-&gt;</span> <span class=n>Document</span><span class=p>:</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Loads a supported Photoshop document.&quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>document_file_path</span><span class=p>))</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>activeDocument</span>
+
+    <span class=k>def</span> <span class=nf>doJavaScript</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>javascript</span><span class=p>,</span> <span class=n>Arguments</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span> <span class=n>ExecutionMode</span><span class=o>=</span><span class=kc>None</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>doJavaScript</span><span class=p>(</span><span class=n>javascript</span><span class=p>,</span> <span class=n>Arguments</span><span class=p>,</span> <span class=n>ExecutionMode</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>isQuicktimeAvailable</span><span class=p>(</span><span class=bp>self</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>bool</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>isQuicktimeAvailable</span>
+
+    <span class=k>def</span> <span class=nf>openDialog</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>openDialog</span><span class=p>()</span>
+
+    <span class=k>def</span> <span class=nf>purge</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>target</span><span class=p>:</span> <span class=n>PurgeTarget</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Purges one or more caches.</span>
+
+<span class=sd>        Args:</span>
+<span class=sd>            target:</span>
+<span class=sd>                1: Clears the undo cache.</span>
+<span class=sd>                2: Clears history states from the History palette.</span>
+<span class=sd>                3: Clears the clipboard data.</span>
+<span class=sd>                4: Clears all caches</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>purge</span><span class=p>(</span><span class=n>target</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>putCustomOptions</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>key</span><span class=p>,</span> <span class=n>custom_object</span><span class=p>,</span> <span class=n>persistent</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>putCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>,</span> <span class=n>custom_object</span><span class=p>,</span> <span class=n>persistent</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>refresh</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Pauses the script while the application refreshes.</span>
+
+<span class=sd>        Ues to slow down execution and show the results to the user as the</span>
+<span class=sd>        script runs.</span>
+<span class=sd>        Use carefully; your script runs much more slowly when using this</span>
+<span class=sd>        method.</span>
+
+<span class=sd>        &quot;&quot;&quot;</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>refresh</span><span class=p>()</span>
+
+    <span class=k>def</span> <span class=nf>refreshFonts</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Force the font list to get refreshed.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=s2>&quot;app.refreshFonts();&quot;</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>runMenuItem</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>menu_id</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Run a menu item given the menu ID.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span>
+            <span class=sa>f</span><span class=s2>&quot;app.runMenuItem(</span><span class=si>{</span><span class=n>menu_id</span><span class=si>}</span><span class=s2>)&quot;</span><span class=p>,</span>
+        <span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>showColorPicker</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Returns false if dialog is cancelled, true otherwise.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=s2>&quot;app.showColorPicker();&quot;</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>stringIDToTypeID</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>string_id</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>stringIDToTypeID</span><span class=p>(</span><span class=n>string_id</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>togglePalettes</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Toggle palette visibility.&quot;&quot;&quot;</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>doJavaScript</span><span class=p>(</span><span class=s2>&quot;app.togglePalettes()&quot;</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>toolSupportsBrushes</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>tool</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>toolSupportsBrushes</span><span class=p>(</span><span class=n>tool</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>toolSupportsBrushPresets</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>tool</span><span class=p>):</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>toolSupportsPresets</span><span class=p>(</span><span class=n>tool</span><span class=p>)</span>
+
+    <span class=nd>@staticmethod</span>
+    <span class=k>def</span> <span class=nf>system</span><span class=p>(</span><span class=n>command</span><span class=p>):</span>
+        <span class=n>os</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=n>command</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>typeIDToStringID</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>type_id</span><span class=p>:</span> <span class=nb>int</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>typeIDToStringID</span><span class=p>(</span><span class=n>type_id</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>typeIDToCharID</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>type_id</span><span class=p>:</span> <span class=nb>int</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>typeIDToCharID</span><span class=p>(</span><span class=n>type_id</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>updateProgress</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>done</span><span class=p>,</span> <span class=n>total</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=sa>f</span><span class=s2>&quot;app.updateProgress(</span><span class=si>{</span><span class=n>done</span><span class=si>}</span><span class=s2>, </span><span class=si>{</span><span class=n>total</span><span class=si>}</span><span class=s2>)&quot;</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> <div class="doc doc-children"> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.activeDocument class="doc doc-heading"> <code class="highlight language-python"><span class=n>activeDocument</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The front-most documents.</p> <p>Setting this property is equivalent to clicking an open document in the Adobe Photoshop CC application to bring it to the front of the screen.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.backgroundColor class="doc doc-heading"> <code class="highlight language-python"><span class=n>backgroundColor</span><span class=p>:</span> <span class=n>SolidColor</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The default background color and color style for documents.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.build class="doc doc-heading"> <code class="highlight language-python"><span class=n>build</span><span class=p>:</span> <span class=nb>str</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.colorSettings class="doc doc-heading"> <code class="highlight language-python"><span class=n>colorSettings</span><span class=p>:</span> <span class=nb>str</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>(selected with Edit &gt; Color Settings).</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.currentTool class="doc doc-heading"> <code class="highlight language-python"><span class=n>currentTool</span><span class=p>:</span> <span class=nb>str</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.displayDialogs class="doc doc-heading"> <code class="highlight language-python"><span class=n>displayDialogs</span><span class=p>:</span> <span class=n>DialogModes</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The dialog mode for the document, which indicates whether Photoshop displays dialogs when the script runs.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.documents class="doc doc-heading"> <code class="highlight language-python"><span class=n>documents</span><span class=p>:</span> <span class=n>Documents</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>._documents.Documents: The Documents instance.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.foregroundColor class="doc doc-heading"> <code class="highlight language-python"><span class=n>foregroundColor</span><span class=p>:</span> <span class=n>SolidColor</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>Get default foreground color.</p> <p>Used to paint, fill, and stroke selections.</p> <p><strong>Returns:</strong></p> <table> <thead> <tr> <th>Type</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td> <code><a class="autorefs autorefs-internal" title=photoshop.api.solid_color.SolidColor href=../solid_color/#photoshop.api.solid_color.SolidColor>SolidColor</a></code> </td> <td> <div class=doc-md-description> <p>The SolidColor instance.</p> </div> </td> </tr> </tbody> </table> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.freeMemory class="doc doc-heading"> <code class="highlight language-python"><span class=n>freeMemory</span><span class=p>:</span> <span class=nb>float</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>The amount of unused memory available to .</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.locale class="doc doc-heading"> <code class="highlight language-python"><span class=n>locale</span><span class=p>:</span> <span class=nb>str</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>The language locale of the application.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.macintoshFileTypes class="doc doc-heading"> <code class="highlight language-python"><span class=n>macintoshFileTypes</span><span class=p>:</span> <span class=n>List</span><span class=p>[</span><span class=nb>str</span><span class=p>]</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>A list of the image file types Photoshop can open.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.measurementLog class="doc doc-heading"> <code class="highlight language-python"><span class=n>measurementLog</span><span class=p>:</span> <span class=n>MeasurementLog</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>The log of measurements taken.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.notifiers class="doc doc-heading"> <code class="highlight language-python"><span class=n>notifiers</span><span class=p>:</span> <span class=n>Notifiers</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>The notifiers currently configured (in the Scripts Events Manager menu in the application).</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.notifiersEnabled class="doc doc-heading"> <code class="highlight language-python"><span class=n>notifiersEnabled</span><span class=p>:</span> <span class=nb>bool</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.parent class="doc doc-heading"> <code class="highlight language-python"><span class=n>parent</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>The object’s container.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.path class="doc doc-heading"> <code class="highlight language-python"><span class=n>path</span><span class=p>:</span> <span class=n>Path</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api.application.Application.playbackParameters class="doc doc-heading"> <code class="highlight language-python"><span class=n>playbackParameters</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>Stores and retrieves parameters used as part of a recorded action.</p> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.batch class="doc doc-heading"> <code class="highlight language-python"><span class=n>batch</span><span class=p>(</span><span class=n>files</span><span class=p>,</span> <span class=n>actionName</span><span class=p>,</span> <span class=n>actionSet</span><span class=p>,</span> <span class=n>options</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Runs the batch automation routine.</p> <p>Similar to the <strong>File</strong> &gt; <strong>Automate</strong> &gt; <strong>Batch</strong> command.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>292</span>
+<span class=normal>293</span>
+<span class=normal>294</span>
+<span class=normal>295</span>
+<span class=normal>296</span>
+<span class=normal>297</span>
+<span class=normal>298</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>batch</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>files</span><span class=p>,</span> <span class=n>actionName</span><span class=p>,</span> <span class=n>actionSet</span><span class=p>,</span> <span class=n>options</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Runs the batch automation routine.</span>
+
+<span class=sd>    Similar to the **File** &gt; **Automate** &gt; **Batch** command.</span>
+
+<span class=sd>    &quot;&quot;&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>batch</span><span class=p>(</span><span class=n>files</span><span class=p>,</span> <span class=n>actionName</span><span class=p>,</span> <span class=n>actionSet</span><span class=p>,</span> <span class=n>options</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.beep class="doc doc-heading"> <code class="highlight language-python"><span class=n>beep</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Causes a "beep" sound.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>300</span>
+<span class=normal>301</span>
+<span class=normal>302</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>beep</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Causes a &quot;beep&quot; sound.&quot;&quot;&quot;</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=s2>&quot;app.beep()&quot;</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.changeProgressText class="doc doc-heading"> <code class="highlight language-python"><span class=n>changeProgressText</span><span class=p>(</span><span class=n>text</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Changes the text that appears in the progress window.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>307</span>
+<span class=normal>308</span>
+<span class=normal>309</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>changeProgressText</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>text</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Changes the text that appears in the progress window.&quot;&quot;&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=sa>f</span><span class=s2>&quot;app.changeProgressText(&#39;</span><span class=si>{</span><span class=n>text</span><span class=si>}</span><span class=s2>&#39;)&quot;</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.doAction class="doc doc-heading"> <code class="highlight language-python"><span class=n>doAction</span><span class=p>(</span><span class=n>action</span><span class=p>,</span> <span class=n>action_from</span><span class=o>=</span><span class=s1>&#39;Default Actions&#39;</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Plays the specified action from the Actions palette.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>318</span>
+<span class=normal>319</span>
+<span class=normal>320</span>
+<span class=normal>321</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>doAction</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>action</span><span class=p>,</span> <span class=n>action_from</span><span class=o>=</span><span class=s2>&quot;Default Actions&quot;</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Plays the specified action from the Actions palette.&quot;&quot;&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>doAction</span><span class=p>(</span><span class=n>action</span><span class=p>,</span> <span class=n>action_from</span><span class=p>)</span>
+    <span class=k>return</span> <span class=kc>True</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.doProgress class="doc doc-heading"> <code class="highlight language-python"><span class=n>doProgress</span><span class=p>(</span><span class=n>title</span><span class=p>,</span> <span class=n>javascript</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Performs a task with a progress bar. Other progress APIs must be called periodically to update the progress bar and allow cancelling.</p> <p><strong>Parameters:</strong></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr> <td><code>title</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/stdtypes.html#str>str</a></code> </td> <td> <div class=doc-md-description> <p>String to show in the progress window.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr> <td><code>javascript</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/stdtypes.html#str>str</a></code> </td> <td> <div class=doc-md-description> <p>JavaScriptString to execute.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>332</span>
+<span class=normal>333</span>
+<span class=normal>334</span>
+<span class=normal>335</span>
+<span class=normal>336</span>
+<span class=normal>337</span>
+<span class=normal>338</span>
+<span class=normal>339</span>
+<span class=normal>340</span>
+<span class=normal>341</span>
+<span class=normal>342</span>
+<span class=normal>343</span>
+<span class=normal>344</span>
+<span class=normal>345</span>
+<span class=normal>346</span>
+<span class=normal>347</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>doProgress</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>title</span><span class=p>,</span> <span class=n>javascript</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Performs a task with a progress bar. Other progress APIs must be</span>
+<span class=sd>    called periodically to update the progress bar and allow cancelling.</span>
+
+<span class=sd>    Args:</span>
+<span class=sd>        title (str): String to show in the progress window.</span>
+<span class=sd>        javascript (str): JavaScriptString to execute.</span>
+
+<span class=sd>    &quot;&quot;&quot;</span>
+    <span class=n>script</span> <span class=o>=</span> <span class=s2>&quot;app.doProgress(&#39;</span><span class=si>{}</span><span class=s2>&#39;, &#39;</span><span class=si>{}</span><span class=s2>&#39;)&quot;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span>
+        <span class=n>title</span><span class=p>,</span>
+        <span class=n>javascript</span><span class=p>,</span>
+    <span class=p>)</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>script</span><span class=p>)</span>
+    <span class=c1># Ensure the script execute success.</span>
+    <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.doProgressTask class="doc doc-heading"> <code class="highlight language-python"><span class=n>doProgressTask</span><span class=p>(</span><span class=n>index</span><span class=p>,</span> <span class=n>javascript</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Sections off a portion of the unused progress bar for execution of a subtask. Returns false on cancel.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>370</span>
+<span class=normal>371</span>
+<span class=normal>372</span>
+<span class=normal>373</span>
+<span class=normal>374</span>
+<span class=normal>375</span>
+<span class=normal>376</span>
+<span class=normal>377</span>
+<span class=normal>378</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>doProgressTask</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>index</span><span class=p>,</span> <span class=n>javascript</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Sections off a portion of the unused progress bar for execution of</span>
+<span class=sd>    a subtask. Returns false on cancel.</span>
+
+<span class=sd>    &quot;&quot;&quot;</span>
+    <span class=n>script</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&quot;app.doProgressTask(</span><span class=si>{</span><span class=n>index</span><span class=si>}</span><span class=s2>, &#39;</span><span class=si>{</span><span class=n>javascript</span><span class=si>}</span><span class=s2>&#39;);&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>script</span><span class=p>)</span>
+    <span class=c1># Ensure the script execute success.</span>
+    <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.eraseCustomOptions class="doc doc-heading"> <code class="highlight language-python"><span class=n>eraseCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Removes the specified user objects from the Photoshop registry.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>380</span>
+<span class=normal>381</span>
+<span class=normal>382</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>eraseCustomOptions</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Removes the specified user objects from the Photoshop registry.&quot;&quot;&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>eraseCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.featureEnabled class="doc doc-heading"> <code class="highlight language-python"><span class=n>featureEnabled</span><span class=p>(</span><span class=n>name</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Determines whether the feature</p> <p>specified by name is enabled. The following features are supported</p> <p>as values for name: "photoshop/extended" "photoshop/standard" "photoshop/trial</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>390</span>
+<span class=normal>391</span>
+<span class=normal>392</span>
+<span class=normal>393</span>
+<span class=normal>394</span>
+<span class=normal>395</span>
+<span class=normal>396</span>
+<span class=normal>397</span>
+<span class=normal>398</span>
+<span class=normal>399</span>
+<span class=normal>400</span>
+<span class=normal>401</span>
+<span class=normal>402</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>featureEnabled</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>name</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Determines whether the feature</span>
+
+<span class=sd>    specified by name is enabled.</span>
+<span class=sd>    The following features are supported</span>
+
+<span class=sd>    as values for name:</span>
+<span class=sd>    &quot;photoshop/extended&quot;</span>
+<span class=sd>    &quot;photoshop/standard&quot;</span>
+<span class=sd>    &quot;photoshop/trial</span>
+
+<span class=sd>    &quot;&quot;&quot;</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>featureEnabled</span><span class=p>(</span><span class=n>name</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.getCustomOptions class="doc doc-heading"> <code class="highlight language-python"><span class=n>getCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Retrieves user objects in the Photoshop registry for the ID with value key.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>404</span>
+<span class=normal>405</span>
+<span class=normal>406</span>
+<span class=normal>407</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>getCustomOptions</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Retrieves user objects in the Photoshop registry for the ID with</span>
+<span class=sd>    value key.&quot;&quot;&quot;</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>getCustomOptions</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.load class="doc doc-heading"> <code class="highlight language-python"><span class=n>load</span><span class=p>(</span><span class=n>document_file_path</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Loads a supported Photoshop document.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>420</span>
+<span class=normal>421</span>
+<span class=normal>422</span>
+<span class=normal>423</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>load</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>document_file_path</span><span class=p>:</span> <span class=n>Union</span><span class=p>[</span><span class=nb>str</span><span class=p>,</span> <span class=n>os</span><span class=o>.</span><span class=n>PathLike</span><span class=p>])</span> <span class=o>-&gt;</span> <span class=n>Document</span><span class=p>:</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Loads a supported Photoshop document.&quot;&quot;&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>document_file_path</span><span class=p>))</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>activeDocument</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.purge class="doc doc-heading"> <code class="highlight language-python"><span class=n>purge</span><span class=p>(</span><span class=n>target</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Purges one or more caches.</p> <p><strong>Parameters:</strong></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr> <td><code>target</code></td> <td> <code><span title=photoshop.api.enumerations.PurgeTarget>PurgeTarget</span></code> </td> <td> <div class=doc-md-description> <p>1: Clears the undo cache. 2: Clears history states from the History palette. 3: Clears the clipboard data. 4: Clears all caches</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>434</span>
+<span class=normal>435</span>
+<span class=normal>436</span>
+<span class=normal>437</span>
+<span class=normal>438</span>
+<span class=normal>439</span>
+<span class=normal>440</span>
+<span class=normal>441</span>
+<span class=normal>442</span>
+<span class=normal>443</span>
+<span class=normal>444</span>
+<span class=normal>445</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>purge</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>target</span><span class=p>:</span> <span class=n>PurgeTarget</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Purges one or more caches.</span>
+
+<span class=sd>    Args:</span>
+<span class=sd>        target:</span>
+<span class=sd>            1: Clears the undo cache.</span>
+<span class=sd>            2: Clears history states from the History palette.</span>
+<span class=sd>            3: Clears the clipboard data.</span>
+<span class=sd>            4: Clears all caches</span>
+
+<span class=sd>    &quot;&quot;&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>purge</span><span class=p>(</span><span class=n>target</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.refresh class="doc doc-heading"> <code class="highlight language-python"><span class=n>refresh</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Pauses the script while the application refreshes.</p> <p>Ues to slow down execution and show the results to the user as the script runs. Use carefully; your script runs much more slowly when using this method.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>450</span>
+<span class=normal>451</span>
+<span class=normal>452</span>
+<span class=normal>453</span>
+<span class=normal>454</span>
+<span class=normal>455</span>
+<span class=normal>456</span>
+<span class=normal>457</span>
+<span class=normal>458</span>
+<span class=normal>459</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>refresh</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Pauses the script while the application refreshes.</span>
+
+<span class=sd>    Ues to slow down execution and show the results to the user as the</span>
+<span class=sd>    script runs.</span>
+<span class=sd>    Use carefully; your script runs much more slowly when using this</span>
+<span class=sd>    method.</span>
+
+<span class=sd>    &quot;&quot;&quot;</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>refresh</span><span class=p>()</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.refreshFonts class="doc doc-heading"> <code class="highlight language-python"><span class=n>refreshFonts</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Force the font list to get refreshed.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>461</span>
+<span class=normal>462</span>
+<span class=normal>463</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>refreshFonts</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Force the font list to get refreshed.&quot;&quot;&quot;</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=s2>&quot;app.refreshFonts();&quot;</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.runMenuItem class="doc doc-heading"> <code class="highlight language-python"><span class=n>runMenuItem</span><span class=p>(</span><span class=n>menu_id</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Run a menu item given the menu ID.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>465</span>
+<span class=normal>466</span>
+<span class=normal>467</span>
+<span class=normal>468</span>
+<span class=normal>469</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>runMenuItem</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>menu_id</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Run a menu item given the menu ID.&quot;&quot;&quot;</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span>
+        <span class=sa>f</span><span class=s2>&quot;app.runMenuItem(</span><span class=si>{</span><span class=n>menu_id</span><span class=si>}</span><span class=s2>)&quot;</span><span class=p>,</span>
+    <span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.showColorPicker class="doc doc-heading"> <code class="highlight language-python"><span class=n>showColorPicker</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Returns false if dialog is cancelled, true otherwise.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>471</span>
+<span class=normal>472</span>
+<span class=normal>473</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>showColorPicker</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Returns false if dialog is cancelled, true otherwise.&quot;&quot;&quot;</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=s2>&quot;app.showColorPicker();&quot;</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api.application.Application.togglePalettes class="doc doc-heading"> <code class="highlight language-python"><span class=n>togglePalettes</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Toggle palette visibility.</p> <details class=quote> <summary>Source code in <code>photoshop/api/application.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>478</span>
+<span class=normal>479</span>
+<span class=normal>480</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>togglePalettes</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+<span class=w>    </span><span class=sd>&quot;&quot;&quot;Toggle palette visibility.&quot;&quot;&quot;</span>
+    <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>doJavaScript</span><span class=p>(</span><span class=s2>&quot;app.togglePalettes()&quot;</span><span class=p>)</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> </div> </div> </div> </div> </div> </div> <hr> <div class=md-source-file> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2023-11-08T16:10:51+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-08</span> <br> Created: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2023-11-08T16:10:51+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-08</span> </small> </div> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../action_reference/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> action_reference </div> </div> </a> <a href=../batch_options/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> batch_options </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright (c) 2019 Long Hao </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> <div class=md-social> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script> <script src=../../../../assets/javascripts/bundle.5a2dcb6a.min.js></script> <script src=../../../../js/timeago.min.js></script> <script src=../../../../js/timeago_mkdocs_material.js></script> <script src=../../../../assets/pymdownx-extras/extra-loader-q9CWAeV9.js></script> </body> </html>
