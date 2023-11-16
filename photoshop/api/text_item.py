@@ -9,7 +9,6 @@ from photoshop.api.enumerations import StrikeThruType
 from photoshop.api.enumerations import TextComposer
 from photoshop.api.enumerations import TextType
 from photoshop.api.solid_color import SolidColor
-from photoshop.api.text_font import TextFont
 
 
 class TextItem(Photoshop):
