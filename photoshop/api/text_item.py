@@ -209,26 +209,31 @@ class TextItem(Photoshop):
         self.app.firstLineIndent = value
 
     @property
-    def font(self):
-        """.text_font.TextFont: Current font."""
-        return TextFont(self.app.font)
+    def font(self) -> str:
+        """str: postScriptName of the TextItem's font."""
+        return self.app.font
 
     @font.setter
-    def font(self, text_font):
+    def font(self, text_font: str):
+        """Set the font of this TextItem.
+
+        Args:
+            text_font (str): Must provide the postScriptName of a valid font.
+        """
         self.app.font = text_font
 
     @property
-    def hangingPunctuation(self):
-        """True to use Roman hanging punctuation."""
+    def hangingPunctuation(self) -> bool:
+        """bool: Whether to use Roman hanging punctuation."""
         return self.app.hangingPunctuation
 
     @hangingPunctuation.setter
-    def hangingPunctuation(self, value):
+    def hangingPunctuation(self, value: bool):
         self.app.hangingPunctuation = value
 
     @property
     def height(self):
-        """int:The height of the bounding box for paragraph text."""
+        """int: The height of the bounding box for paragraph text."""
         return self.app.height
 
     @height.setter
@@ -236,16 +241,17 @@ class TextItem(Photoshop):
         self.app.height = value
 
     @property
-    def horizontalScale(self):
-        """Character scaling (horizontal) in proportion to verticalScale
-
-        (a percentage value).
-
-        """
+    def horizontalScale(self) -> int:
+        """Character scaling (horizontal) in proportion to verticalScale (a percentage value)."""
         return self.app.horizontalScale
 
     @horizontalScale.setter
-    def horizontalScale(self, value):
+    def horizontalScale(self, value: int):
+        """Set the horizontalScale of this TextItem.
+
+        Args:
+            value: An integer between 0 and 1000.
+        """
         self.app.horizontalScale = value
 
     @property
