@@ -1,3 +1,10 @@
+## v0.22.3 (2023-11-20)
+
+### Fix
+
+- **text_item**: Remove unused import
+- **TextItem.font**: Change font to a read/write string property
+
 ## v0.22.2 (2023-11-08)
 
 ### Fix
