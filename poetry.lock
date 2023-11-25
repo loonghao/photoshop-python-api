@@ -874,13 +874,13 @@ mkdocs = ">=1.0.4"
 
 [[package]]
 name = "mkdocs-pymdownx-material-extras"
-version = "2.5.5"
+version = "2.5.6"
 description = "Plugin to extend MkDocs Material theme."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mkdocs_pymdownx_material_extras-2.5.5-py3-none-any.whl", hash = "sha256:4f5c28a10f530efa525b6fd8b374700afe3e68cbec19d1704070f24a792c951c"},
-    {file = "mkdocs_pymdownx_material_extras-2.5.5.tar.gz", hash = "sha256:694fe11365078888e5580a234cb8520b5e3232a9e0f0d4cc53b9f846c3ca3c10"},
+    {file = "mkdocs_pymdownx_material_extras-2.5.6-py3-none-any.whl", hash = "sha256:ed5bfc23c6f42f485603e05abc22926c27c2b31ef9972a0132582b73f49557e9"},
+    {file = "mkdocs_pymdownx_material_extras-2.5.6.tar.gz", hash = "sha256:e0cf0aa4f284a78ecab9caf0bc62a12d8b836a5abbd49f9638cc03b2698a021c"},
 ]
 
 [package.dependencies]
