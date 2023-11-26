@@ -30,7 +30,7 @@ generate-setup-file = false
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-wheel = "^0.41.0"
+wheel = "^0.42.0"
 comtypes = "^1.1.11"
 
 [tool.poetry.group.dev.dependencies]
