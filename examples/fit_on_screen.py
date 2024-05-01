@@ -1,5 +1,4 @@
 """Let the current document Fit on screen."""
-
 # Import local modules
 from photoshop import Session
 

@@ -4,7 +4,6 @@ with red color. In order to use the Fill tool we will first select the entire
 layer and then fill it with a color.
 
 """
-
 # Import local modules
 from photoshop import Session
 

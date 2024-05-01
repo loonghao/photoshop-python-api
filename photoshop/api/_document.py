@@ -12,7 +12,6 @@ The basic canvas for the file.
 
 
 """
-
 # Import built-in modules
 from pathlib import Path
 from typing import List
@@ -21,25 +20,25 @@ from typing import Optional
 from typing import TypeVar
 from typing import Union
 
-# Import third-party modules
 from comtypes import COMError
 
-# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channels import Channels
 from photoshop.api._core import Photoshop
 from photoshop.api._documentinfo import DocumentInfo
 from photoshop.api._layerComps import LayerComps
+from photoshop.api._layers import Layers
 from photoshop.api._layerSet import LayerSet
 from photoshop.api._layerSets import LayerSets
-from photoshop.api._layers import Layers
 from photoshop.api._selection import Selection
 from photoshop.api.enumerations import ExportType
 from photoshop.api.enumerations import ExtensionType
 from photoshop.api.enumerations import SaveOptions
 from photoshop.api.enumerations import TrimType
 from photoshop.api.save_options import ExportOptionsSaveForWeb
+# Import third-party modules
+# Import local modules
 
 
 # Custom types.

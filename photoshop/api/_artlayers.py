@@ -1,10 +1,10 @@
 # Import third-party modules
 from comtypes import ArgumentError
 
-# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
+# Import local modules
 
 
 # pylint: disable=too-many-public-methods
@@ -25,8 +25,7 @@ class ArtLayers(Photoshop):
         return self.length
 
     def __iter__(self):
-        for layer in self.app:
-            yield layer
+        yield from self.app
 
     def __getitem__(self, key: str):
         """Access a given ArtLayer using dictionary key lookup."""

@@ -21,8 +21,7 @@ class Channels(Photoshop):
         return self.length
 
     def __iter__(self):
-        for layer in self.app:
-            yield layer
+        yield from self.app
 
     def __getitem__(self, item):
         return self.app[item]

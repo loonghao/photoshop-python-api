@@ -1,10 +1,9 @@
 """Plugin for generate API docs."""
-
 # Import built-in modules
 from pathlib import Path
 
-# Import third-party modules
 import mkdocs_gen_files
+# Import third-party modules
 
 
 def main():

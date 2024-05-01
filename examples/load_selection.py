@@ -1,6 +1,5 @@
 # This script will demonstrate how to load a selection from a saved alpha
 # channel.
-
 # Import local modules
 from photoshop import Session
 

@@ -1,10 +1,9 @@
 """Manual test all examples."""
-
 # Import built-in modules
 from pathlib import Path
 
-# Import local modules
 from photoshop.api import Application
+# Import local modules
 
 
 root = Path(__file__).parent.parent.parent.joinpath("examples")

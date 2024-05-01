@@ -2,14 +2,14 @@
 from typing import Any
 from typing import Union
 
-# Import third-party modules
 from comtypes import ArgumentError
 from comtypes import COMError
 
-# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.text_font import TextFont
+# Import third-party modules
+# Import local modules
 
 
 class TextFonts(Photoshop):
