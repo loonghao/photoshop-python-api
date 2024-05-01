@@ -1,5 +1,4 @@
 """This example demonstrates how to roll back history."""
-
 # Import local modules
 from photoshop import Session
 

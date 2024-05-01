@@ -1,5 +1,4 @@
 """Defines a CMYK color, used in the `SolidColor` object."""
-
 # Import local modules
 from photoshop.api._core import Photoshop
 

@@ -2,8 +2,8 @@
 # Import third-party modules
 import pytest
 
-# Import local modules
 from photoshop import Session
+# Import local modules
 
 
 class TestSolidColor:

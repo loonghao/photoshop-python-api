@@ -4,7 +4,6 @@ References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/RotateLayer.py
 
 """
-
 # Import local modules
 import photoshop.api as ps
 

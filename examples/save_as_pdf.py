@@ -3,8 +3,8 @@
 import os
 from tempfile import mkdtemp
 
-# Import local modules
 from photoshop import Session
+# Import local modules
 
 
 with Session() as ps:

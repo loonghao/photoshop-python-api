@@ -7,7 +7,6 @@ Maps a color to equivalents in all available color models.
 - Passed to `PathItem.fillPath()`, `Selection.fill()`, and `Selection.stroke()`.
 
 """
-
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.colors.cmyk import CMYKColor

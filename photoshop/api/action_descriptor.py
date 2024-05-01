@@ -6,15 +6,14 @@ Manager functionality. For more details on the Action Manager,
 see the Photoshop Scripting Guide.
 
 """
-
 # Import built-in modules
 from pathlib import Path
 
-# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.action_list import ActionList
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.enumerations import DescValueType
+# Import local modules
 
 
 class ActionDescriptor(Photoshop):

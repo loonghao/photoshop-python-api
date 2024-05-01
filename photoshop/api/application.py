@@ -12,16 +12,13 @@ app.documents.add(800, 600, 72, "docRef")
 """
 # Import built-in modules
 import os
-from pathlib import Path
 import time
+from _ctypes import COMError
+from pathlib import Path
 from typing import List
 from typing import Optional
 from typing import Union
 
-# Import third-party modules
-from _ctypes import COMError
-
-# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -35,6 +32,8 @@ from photoshop.api.enumerations import DialogModes
 from photoshop.api.enumerations import PurgeTarget
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.solid_color import SolidColor
+# Import third-party modules
+# Import local modules
 
 
 class Application(Photoshop):
@@ -465,7 +464,8 @@ class Application(Photoshop):
     def runMenuItem(self, menu_id):
         """Run a menu item given the menu ID."""
         return self.eval_javascript(
-            f"app.runMenuItem({menu_id})",
+            f"app.runMenuItem({menu_id},
+        )",
         )
 
     def showColorPicker(self):

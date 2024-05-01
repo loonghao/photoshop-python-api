@@ -1,6 +1,6 @@
 # Import local modules
-from photoshop import Session
 import photoshop.api as ps
+from photoshop import Session
 
 
 # style 1

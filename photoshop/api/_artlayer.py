@@ -1,11 +1,11 @@
 # Import built-in modules
 from typing import Any
 
-# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import LayerKind
 from photoshop.api.enumerations import RasterizeType
 from photoshop.api.text_item import TextItem
+# Import local modules
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments

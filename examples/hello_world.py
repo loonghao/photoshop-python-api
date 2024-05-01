@@ -2,8 +2,8 @@
 import os
 from tempfile import mkdtemp
 
-# Import local modules
 import photoshop.api as ps
+# Import local modules
 
 
 def hello_world():

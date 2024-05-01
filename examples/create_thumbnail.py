@@ -3,13 +3,12 @@
 You can use the thumbnail image to upload to Shotgun or Ftrack.
 
 """
-
 # Import built-in modules
 import os
 from tempfile import mkdtemp
 
-# Import local modules
 from photoshop import Session
+# Import local modules
 
 
 def create_thumbnail(output_path=None, max_resolution=512):

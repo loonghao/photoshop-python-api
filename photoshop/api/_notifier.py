@@ -8,8 +8,8 @@ Notifiers must be enabled using the Application.notifiersEnabled property
 # Import built-in modules
 from pathlib import Path
 
-# Import local modules
 from photoshop.api._core import Photoshop
+# Import local modules
 
 
 class Notifier(Photoshop):
