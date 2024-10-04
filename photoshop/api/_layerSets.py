@@ -1,10 +1,10 @@
 # Import third-party modules
 from comtypes import ArgumentError
 
-# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._layerSet import LayerSet
 from photoshop.api.errors import PhotoshopPythonAPIError
+# Import local modules
 
 
 class LayerSets(Photoshop):
@@ -22,8 +22,7 @@ class LayerSets(Photoshop):
         return self.length
 
     def __iter__(self):
-        for layer_set in self.app:
-            yield layer_set
+        yield from self.app
 
     def __getitem__(self, key: str):
         """Access a given LayerSet using dictionary key lookup."""

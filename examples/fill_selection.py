@@ -1,6 +1,4 @@
 # Fill the current selection with an RGB color.
-
-
 # Import local modules
 from photoshop import Session
 

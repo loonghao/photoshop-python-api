@@ -1,5 +1,4 @@
 """A cropping example."""
-
 # Import local modules
 from photoshop import Session
 

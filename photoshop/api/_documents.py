@@ -59,7 +59,7 @@ class Documents(Photoshop):
                 pixelAspectRatio,
                 bitsPerChannel,
                 colorProfileName,
-            )
+            ),
         )
 
     def __iter__(self) -> Document:

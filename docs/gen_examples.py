@@ -1,13 +1,12 @@
 """Plugin for generate API docs."""
-
 # Import built-in modules
 import os
 from pathlib import Path
 
-# Import third-party modules
-from jinja2 import Template
 import mkdocs_gen_files
 import stringcase
+from jinja2 import Template
+# Import third-party modules
 
 
 template = Template(
@@ -22,11 +21,11 @@ Examples
 ```
 {% endfor %}
 
-"""
+""",
 )
 
 
-class Examples(object):
+class Examples:
     def __init__(self, root: Path):
         self._root = root
 

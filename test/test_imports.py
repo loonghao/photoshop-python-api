@@ -1,21 +1,16 @@
 """Import Test."""
-
 # Import future modules
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 # Import built-in modules
 import importlib
 import pkgutil
 
-# Import local modules
 import photoshop
+# Import local modules
 
 
 def test_imports():
     """Test import modules."""
-    prefix = "{}.".format(photoshop.__name__)
+    prefix = f"{photoshop.__name__}."
     iter_packages = pkgutil.walk_packages(
         photoshop.__path__,  # noqa: WPS609
         prefix,

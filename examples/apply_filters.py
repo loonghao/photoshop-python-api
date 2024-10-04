@@ -5,10 +5,9 @@ References:
 """
 # Import third-party modules
 import examples._psd_files as psd  # Import from examples.
-
+import photoshop.api as ps
 # Import local modules
 # selections in the open document.
-import photoshop.api as ps
 
 
 PSD_FILE = psd.get_psd_files()

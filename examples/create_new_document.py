@@ -1,5 +1,4 @@
 """Create a new document."""
-
 # Import local modules
 from photoshop import Session
 

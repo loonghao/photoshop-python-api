@@ -1,5 +1,4 @@
 """Import a image as a artLayer."""
-
 # Import local modules
 from photoshop import Session
 

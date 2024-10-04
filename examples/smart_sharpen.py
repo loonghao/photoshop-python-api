@@ -5,12 +5,10 @@ References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/SmartSharpen.py
 
 """
-
 # Import third-party modules
 import examples._psd_files as psd  # Import from examples.
-
-# Import local modules
 import photoshop.api as ps
+# Import local modules
 
 
 app = ps.Application()

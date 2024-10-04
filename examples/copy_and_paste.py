@@ -3,7 +3,6 @@ References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/CopyAndPaste.py
 
 """
-
 # Import local modules
 import photoshop.api as ps
 

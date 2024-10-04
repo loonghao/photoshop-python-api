@@ -6,13 +6,12 @@ alert "Start Application Event".
 Just like you manually in Script> Script Events Manager to enable the event.
 
 """
-
 # Import built-in modules
 import os
 from tempfile import mkdtemp
 
-# Import local modules
 from photoshop import Session
+# Import local modules
 
 
 with Session() as ps:

@@ -1,6 +1,5 @@
 # Set the active layer to the last art layer of the active document, or the
 # first if the last is already active.
-
 # Import local modules
 from photoshop import Session
 
