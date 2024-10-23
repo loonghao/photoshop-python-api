@@ -33,7 +33,7 @@ class TextItem(Photoshop):
 
     @property
     def antiAliasMethod(self) -> AntiAlias:
-        """The method of anti aliasing to use."""
+        """The method of antialiasing to use."""
         return AntiAlias(self.app.antiAliasMethod)
 
     @antiAliasMethod.setter

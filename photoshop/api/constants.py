@@ -1,5 +1,6 @@
 # The Photoshop version to COM program ID mappings.
 PHOTOSHOP_VERSION_MAPPINGS = {
+    "2025": "190",
     "2024": "180",
     "2023": "170",
     "2022": "160",
