@@ -1,3 +1,10 @@
+## v0.22.5 (2024-11-01)
+
+### Fix
+
+- deploy version to 0.22.5
+- **version**: Add support for Photoshop 190 (2025)
+
 ## v0.22.4 (2023-12-04)
 
 ### Fix
