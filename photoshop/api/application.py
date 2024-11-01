@@ -80,7 +80,7 @@ class Application(Photoshop):
         return LayerSets(self.app.LayerSets)
 
     @property
-    def activeDocument(self):
+    def activeDocument(self) -> Document:
         """The front-most documents.
 
         Setting this property is equivalent to clicking an
