@@ -1,3 +1,9 @@
+## v0.22.7 (2024-11-01)
+
+### Fix
+
+- **api/application**: Update return type hint for activeDocument method
+
 ## v0.22.6 (2024-11-01)
 
 ### Fix
