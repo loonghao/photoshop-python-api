@@ -31,7 +31,7 @@ jobs:
       run: |
         python -m pip install -U pip poetry mkdocs mkdocs-material
         poetry --version
-        poetry install
+        poetry build
     # Note that we don't need credentials.
     # We rely on https://docs.pypi.org/trusted-publishers/.
     - name: Upload to PyPI
