@@ -51,7 +51,9 @@
 Has been tested and used Photoshop version:
 
 | Photoshop Version | Supported          |
-| ----------------- | ------------------ |
+|-------------------| ------------------ |
+| 2025              |       ✅           |
+| 2024              |       ✅           |
 | 2023              |       ✅           |
 | 2022              |       ✅           |
 | 2021              |       ✅           |
