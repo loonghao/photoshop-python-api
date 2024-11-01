@@ -8,15 +8,21 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+      contents: write
+
     steps:
-    - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
         fetch-depth: 0
         ref: main
-    - name: Set output
-      id: vars
-      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+    - uses: olegtarasov/get-tag@v2.1.3
+      id: get_tag_name
+      with:
+        tagRegex: "v(?<version>.*)"
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -26,13 +32,35 @@ jobs:
         python -m pip install -U pip poetry mkdocs mkdocs-material
         poetry --version
         poetry install
-    - name: Publish
-      env:
-        PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run: |
-        poetry publish --build -u $PYPI_USERNAME -p $PYPI_PASSWORD
-    - name: Create release Version
-      run: gh release create ${{ steps.vars.outputs.tag }} --generate-notes
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # Note that we don't need credentials.
+    # We rely on https://docs.pypi.org/trusted-publishers/.
+    - name: Upload to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        packages-dir: dist
+    - name: Generate changelog
+      id: changelog
+      uses: jaywcjlove/changelog-generator@main
+      with:
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        filter-author: (|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
+        filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+        template: |
+          ## Bugs
+          {{fix}}
+          ## Feature
+          {{feat}}
+          ## Improve
+          {{refactor,perf,clean}}
+          ## Misc
+          {{chore,style,ci||🔶 Nothing change}}
+          ## Unknown
+          {{__unknown__}}
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "dist/*.whl"
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        body: |
+          Comparing Changes: ${{ steps.changelog.outputs.compareurl }}
+
+          ${{ steps.changelog.outputs.changelog }}
