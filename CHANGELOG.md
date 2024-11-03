@@ -1,3 +1,9 @@
+## v0.22.8 (2024-11-03)
+
+### Fix
+
+- **deps**: update dependency comtypes to v1.4.8
+
 ## v0.22.7 (2024-11-01)
 
 ### Fix
