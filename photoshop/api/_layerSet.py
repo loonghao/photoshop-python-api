@@ -140,5 +140,4 @@ class LayerSet(Photoshop):
         self.app.unlink()
 
     def __iter__(self):
-        for layer in self.app:
-            yield layer
+        yield from self.app

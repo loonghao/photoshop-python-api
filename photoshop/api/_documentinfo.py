@@ -4,12 +4,11 @@ These values can be set by selecting File > File Info in the Adobe Photoshop
 application.
 
 """
-
 # Import built-in modules
 from pprint import pformat
 
-# Import local modules
 from photoshop.api._core import Photoshop
+# Import local modules
 
 
 # pylint: disable=too-many-public-methods
@@ -45,7 +44,7 @@ class DocumentInfo(Photoshop):
                 "title": self.title,
                 "transmissionReference": self.transmissionReference,
                 "urgency": self.urgency,
-            }
+            },
         )
 
     @property

@@ -1,5 +1,4 @@
 """List current photoshop all documents."""
-
 # Import local modules
 import photoshop.api as ps
 

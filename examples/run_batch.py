@@ -1,8 +1,8 @@
 # Import built-in modules
 import os
 
-# Import local modules
 from photoshop import Session
+# Import local modules
 
 
 root = "your/images/root"

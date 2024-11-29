@@ -1,8 +1,8 @@
 # Import built-in modules
 import os
 
-# Import third-party modules
 import pytest
+# Import third-party modules
 
 
 @pytest.fixture()

@@ -9,14 +9,13 @@ Examples:
     ```
 
 """
-
 # Import built-in modules
 from typing import Any
 from typing import Optional
 
-# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._notifier import Notifier
+# Import local modules
 
 
 class Notifiers(Photoshop):
@@ -37,8 +36,7 @@ class Notifiers(Photoshop):
         return self.length
 
     def __iter__(self):
-        for app in self.app:
-            yield app
+        yield from self.app
 
     def __getitem__(self, item):
         return self._notifiers[item]

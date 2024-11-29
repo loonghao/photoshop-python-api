@@ -2,9 +2,9 @@
 # Import third-party modules
 import pytest
 
-# Import local modules
 from photoshop import Session
 from photoshop.api.enumerations import TextType
+# Import local modules
 
 
 class TestTextItem:

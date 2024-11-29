@@ -1,11 +1,11 @@
-stringcase
+mkdocs-autolinks-plugin = "^0.4.0"
+mkdocs-gen-files = "^0.3.4"
+mkdocs-git-revision-date-localized-plugin = "^1.0.0"
+mkdocs-include-markdown-plugin = "^3.3.0"
+mkdocs-literate-nav
 mkdocs-material = "^8.2.5"
-mkdocstrings-python = "^0.6.6"
+mkdocs-minify-plugin = "^0.5.0"
 mkdocs-pymdownx-material-extras = "^1.6"
 mkdocs-same-dir = "^0.1.1"
-mkdocs-include-markdown-plugin = "^3.3.0"
-mkdocs-gen-files = "^0.3.4"
-mkdocs-autolinks-plugin = "^0.4.0"
-mkdocs-minify-plugin = "^0.5.0"
-mkdocs-git-revision-date-localized-plugin = "^1.0.0"
-mkdocs-literate-nav
+mkdocstrings-python = "^0.6.6"
+stringcase

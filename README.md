@@ -41,7 +41,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END --> 
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
 <p align="center">Python API for Photoshop.</p>
@@ -72,7 +72,7 @@ pip install photoshop_python_api
 ```
 
 
-Since it uses COM (Component Object Model) connect Photoshop, it can be used 
+Since it uses COM (Component Object Model) connect Photoshop, it can be used
 in any DCC software with a python interpreter.
 
 
@@ -183,8 +183,8 @@ Contributions of any kind are welcome!
 how to get Photoshop program ID
 -------------------------------
 ```PS>
-Get-ChildItem "HKLM:\SOFTWARE\Classes" | 
-  ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } | 
+Get-ChildItem "HKLM:\SOFTWARE\Classes" |
+  ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } |
   ?{ $_.PSChildName -match "Photoshop.Application" } | ft PSChildName
 ```
 ![get_program_id](https://i.imgur.com/UwPN7qq.png)

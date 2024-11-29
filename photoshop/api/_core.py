@@ -1,26 +1,26 @@
 """This class provides all photoshop API core functions."""
 # Import built-in modules
+import os
+import platform
 from contextlib import suppress
 from functools import cached_property
 from logging import CRITICAL
 from logging import DEBUG
-from logging import Logger
 from logging import getLogger
-import os
-import platform
+from logging import Logger
 from typing import Any
 from typing import List
 from typing import Optional
-import winreg
 
-# Import third-party modules
+import winreg
 from comtypes.client import CreateObject
 from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
 from comtypes.client.lazybind import Dispatch
 
-# Import local modules
 from photoshop.api.constants import PHOTOSHOP_VERSION_MAPPINGS
 from photoshop.api.errors import PhotoshopPythonAPIError
+# Import third-party modules
+# Import local modules
 
 
 class Photoshop:
@@ -53,7 +53,7 @@ class Photoshop:
             if not self.app:
                 # Attempt unsuccessful
                 self._logger.debug(
-                    f"Unable to retrieve Photoshop object '{self.typename}' using version '{ps_version}'."
+                    f"Unable to retrieve Photoshop object '{self.typename}' using version '{ps_version}'.",
                 )
 
         # Look for version ID in registry data
@@ -242,5 +242,5 @@ class Photoshop:
         except FileNotFoundError as err:
             raise OSError(
                 "Failed to read the registration: <{path}>\n"
-                "Please check if you have Photoshop installed correctly.".format(path=f"HKEY_LOCAL_MACHINE\\{key}")
+                "Please check if you have Photoshop installed correctly.".format(path=f"HKEY_LOCAL_MACHINE\\{key}"),
             ) from err

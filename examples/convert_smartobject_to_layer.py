@@ -1,5 +1,4 @@
 """Convert Smart object to artLayer."""
-
 # Import local modules
 from photoshop import Session
 
