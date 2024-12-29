@@ -520,7 +520,28 @@
 <span class=normal>531</span>
 <span class=normal>532</span>
 <span class=normal>533</span>
-<span class=normal>534</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>class</span> <span class=nc>ArtLayer</span><span class=p>(</span><span class=n>Photoshop</span><span class=p>):</span>
+<span class=normal>534</span>
+<span class=normal>535</span>
+<span class=normal>536</span>
+<span class=normal>537</span>
+<span class=normal>538</span>
+<span class=normal>539</span>
+<span class=normal>540</span>
+<span class=normal>541</span>
+<span class=normal>542</span>
+<span class=normal>543</span>
+<span class=normal>544</span>
+<span class=normal>545</span>
+<span class=normal>546</span>
+<span class=normal>547</span>
+<span class=normal>548</span>
+<span class=normal>549</span>
+<span class=normal>550</span>
+<span class=normal>551</span>
+<span class=normal>552</span>
+<span class=normal>553</span>
+<span class=normal>554</span>
+<span class=normal>555</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>class</span> <span class=nc>ArtLayer</span><span class=p>(</span><span class=n>Photoshop</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;An object within a document that contains the visual elements of the image</span>
 
 <span class=sd>    (equivalent to a layer in the Adobe Photoshop application).</span>
@@ -654,15 +675,36 @@
 
     <span class=nd>@property</span>
     <span class=k>def</span> <span class=nf>kind</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-<span class=w>        </span><span class=sd>&quot;&quot;&quot;Sets the layer kind (such as ‘text layer’) for an empty layer.</span>
+<span class=w>        </span><span class=sd>&quot;&quot;&quot;Get the layer kind.</span>
 
-<span class=sd>        Valid only when the layer is empty and when `isBackgroundLayer` is</span>
-<span class=sd>        false. You can use the ‘kind ‘ property to make a background layer a</span>
-<span class=sd>         normal layer; however, to make a layer a background layer, you must</span>
-<span class=sd>         set `isBackgroundLayer` to true.</span>
-
+<span class=sd>        Returns:</span>
+<span class=sd>            LayerKind: The kind of this layer.</span>
 <span class=sd>        &quot;&quot;&quot;</span>
-        <span class=k>return</span> <span class=n>LayerKind</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>kind</span><span class=p>)</span>
+        <span class=k>try</span><span class=p>:</span>
+            <span class=n>js_code</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&quot;&quot;&quot;</span>
+<span class=s2>            function getLayerKindByIndex(index) </span><span class=se>{{</span>
+<span class=s2>                var ref = new ActionReference();</span>
+<span class=s2>                ref.putIndex(charIDToTypeID(&#39;Lyr &#39;), index);</span>
+<span class=s2>                var desc = executeActionGet(ref);</span>
+
+<span class=s2>                if (desc.hasKey(stringIDToTypeID(&#39;artboard&#39;))) </span><span class=se>{{</span>
+<span class=s2>                    return 25;  // ArtboardLayer</span>
+<span class=s2>                </span><span class=se>}}</span>
+
+<span class=s2>                if (desc.hasKey(stringIDToTypeID(&#39;textKey&#39;))) </span><span class=se>{{</span>
+<span class=s2>                    return 2;   // TextLayer</span>
+<span class=s2>                </span><span class=se>}}</span>
+
+<span class=s2>                return 1;  // NormalLayer</span>
+<span class=s2>            </span><span class=se>}}</span>
+<span class=s2>            getLayerKindByIndex(</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>itemIndex</span><span class=si>}</span><span class=s2>);</span>
+<span class=s2>            &quot;&quot;&quot;</span>
+            <span class=n>result</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>eval_javascript</span><span class=p>(</span><span class=n>js_code</span><span class=p>)</span>
+            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&quot;Layer kind result for </span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>name</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=n>result</span><span class=si>}</span><span class=s2>&quot;</span><span class=p>)</span>
+            <span class=k>return</span> <span class=n>LayerKind</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>result</span><span class=p>))</span>
+        <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&quot;Error getting layer kind for </span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>name</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)</span><span class=si>}</span><span class=s2>&quot;</span><span class=p>)</span>
+            <span class=k>return</span> <span class=n>LayerKind</span><span class=o>.</span><span class=n>NormalLayer</span>
 
     <span class=nd>@kind</span><span class=o>.</span><span class=n>setter</span>
     <span class=k>def</span> <span class=nf>kind</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>layer_type</span><span class=p>):</span>
@@ -1043,15 +1085,15 @@
 
     <span class=k>def</span> <span class=nf>duplicate</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>relativeObject</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span> <span class=n>insertionLocation</span><span class=o>=</span><span class=kc>None</span><span class=p>):</span>
         <span class=k>return</span> <span class=n>ArtLayer</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>duplicate</span><span class=p>(</span><span class=n>relativeObject</span><span class=p>,</span> <span class=n>insertionLocation</span><span class=p>))</span>
-</code></pre></div></td></tr></table></div> </details> <div class="doc doc-children"> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.bounds class="doc doc-heading"> <code class="highlight language-python"><span class=n>bounds</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>The bounding rectangle of the layer.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.fillOpacity class="doc doc-heading"> <code class="highlight language-python"><span class=n>fillOpacity</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The interior opacity of the layer. Range: 0.0 to 100.0.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.grouped class="doc doc-heading"> <code class="highlight language-python"><span class=n>grouped</span><span class=p>:</span> <span class=nb>bool</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>If true, the layer is grouped with the layer below.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.isBackgroundLayer class="doc doc-heading"> <code class="highlight language-python"><span class=n>isBackgroundLayer</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.kind class="doc doc-heading"> <code class="highlight language-python"><span class=n>kind</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>Sets the layer kind (such as ‘text layer’) for an empty layer.</p> <p>Valid only when the layer is empty and when <code>isBackgroundLayer</code> is false. You can use the ‘kind ‘ property to make a background layer a normal layer; however, to make a layer a background layer, you must set <code>isBackgroundLayer</code> to true.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.layerMaskDensity class="doc doc-heading"> <code class="highlight language-python"><span class=n>layerMaskDensity</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The density of the layer mask (between 0.0 and 100.0).</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.layerMaskFeather class="doc doc-heading"> <code class="highlight language-python"><span class=n>layerMaskFeather</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The feather of the layer mask (between 0.0 and 250.0).</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.linkedLayers class="doc doc-heading"> <code class="highlight language-python"><span class=n>linkedLayers</span><span class=p>:</span> <span class=nb>list</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>Get all layers linked to this layer.</p> <p><span class=doc-section-title>Returns:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>list</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/stdtypes.html#list>list</a></code> </td> <td> <div class=doc-md-description> <p>Layer objects</p> </div> </td> </tr> </tbody> </table> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.opacity class="doc doc-heading"> <code class="highlight language-python"><span class=n>opacity</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The master opacity of the layer.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.parent class="doc doc-heading"> <code class="highlight language-python"><span class=n>parent</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The object’s container.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.pixelsLocked class="doc doc-heading"> <code class="highlight language-python"><span class=n>pixelsLocked</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>If true, the pixels in the layer’s image cannot be edited.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.positionLocked class="doc doc-heading"> <code class="highlight language-python"><span class=n>positionLocked</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>within the layer.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.textItem class="doc doc-heading"> <code class="highlight language-python"><span class=n>textItem</span><span class=p>:</span> <span class=n>TextItem</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The text that is associated with the layer. Valid only when ‘kind’ is text layer.</p> <p><span class=doc-section-title>Returns:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>TextItem</code></td> <td> <code><a class="autorefs autorefs-internal" title=photoshop.api.text_item.TextItem href=../text_item/#photoshop.api.text_item.TextItem>TextItem</a></code> </td> <td> <div class=doc-md-description> </div> </td> </tr> </tbody> </table> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustBrightnessContrast class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustBrightnessContrast</span><span class=p>(</span><span class=n>brightness</span><span class=p>,</span> <span class=n>contrast</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts the brightness and contrast.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>brightness</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/functions.html#int>int</a></code> </td> <td> <div class=doc-md-description> <p>The brightness amount. Range: -100 to 100.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>contrast</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/functions.html#int>int</a></code> </td> <td> <div class=doc-md-description> <p>The contrast amount. Range: -100 to 100.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>270</span>
-<span class=normal>271</span>
-<span class=normal>272</span>
-<span class=normal>273</span>
-<span class=normal>274</span>
-<span class=normal>275</span>
-<span class=normal>276</span>
-<span class=normal>277</span>
-<span class=normal>278</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustBrightnessContrast</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>brightness</span><span class=p>,</span> <span class=n>contrast</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> <div class="doc doc-children"> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.bounds class="doc doc-heading"> <code class="highlight language-python"><span class=n>bounds</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>The bounding rectangle of the layer.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.fillOpacity class="doc doc-heading"> <code class="highlight language-python"><span class=n>fillOpacity</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The interior opacity of the layer. Range: 0.0 to 100.0.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.grouped class="doc doc-heading"> <code class="highlight language-python"><span class=n>grouped</span><span class=p>:</span> <span class=nb>bool</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>If true, the layer is grouped with the layer below.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.isBackgroundLayer class="doc doc-heading"> <code class="highlight language-python"><span class=n>isBackgroundLayer</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.kind class="doc doc-heading"> <code class="highlight language-python"><span class=n>kind</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>Get the layer kind.</p> <p><span class=doc-section-title>Returns:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>LayerKind</code></td> <td> </td> <td> <div class=doc-md-description> <p>The kind of this layer.</p> </div> </td> </tr> </tbody> </table> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.layerMaskDensity class="doc doc-heading"> <code class="highlight language-python"><span class=n>layerMaskDensity</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The density of the layer mask (between 0.0 and 100.0).</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.layerMaskFeather class="doc doc-heading"> <code class="highlight language-python"><span class=n>layerMaskFeather</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The feather of the layer mask (between 0.0 and 250.0).</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.linkedLayers class="doc doc-heading"> <code class="highlight language-python"><span class=n>linkedLayers</span><span class=p>:</span> <span class=nb>list</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> </span> </h3> <div class="doc doc-contents "> <p>Get all layers linked to this layer.</p> <p><span class=doc-section-title>Returns:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>list</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/stdtypes.html#list>list</a></code> </td> <td> <div class=doc-md-description> <p>Layer objects</p> </div> </td> </tr> </tbody> </table> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.opacity class="doc doc-heading"> <code class="highlight language-python"><span class=n>opacity</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The master opacity of the layer.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.parent class="doc doc-heading"> <code class="highlight language-python"><span class=n>parent</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The object’s container.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.pixelsLocked class="doc doc-heading"> <code class="highlight language-python"><span class=n>pixelsLocked</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>If true, the pixels in the layer’s image cannot be edited.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.positionLocked class="doc doc-heading"> <code class="highlight language-python"><span class=n>positionLocked</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>within the layer.</p> </div> </div> <div class="doc doc-object doc-attribute"> <h3 id=photoshop.api._artlayer.ArtLayer.textItem class="doc doc-heading"> <code class="highlight language-python"><span class=n>textItem</span><span class=p>:</span> <span class=n>TextItem</span></code> <span class="doc doc-labels"> <small class="doc doc-label doc-label-property"><code>property</code></small> <small class="doc doc-label doc-label-writable"><code>writable</code></small> </span> </h3> <div class="doc doc-contents "> <p>The text that is associated with the layer. Valid only when ‘kind’ is text layer.</p> <p><span class=doc-section-title>Returns:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>TextItem</code></td> <td> <code><a class="autorefs autorefs-internal" title=photoshop.api.text_item.TextItem href=../text_item/#photoshop.api.text_item.TextItem>TextItem</a></code> </td> <td> <div class=doc-md-description> </div> </td> </tr> </tbody> </table> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustBrightnessContrast class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustBrightnessContrast</span><span class=p>(</span><span class=n>brightness</span><span class=p>,</span> <span class=n>contrast</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts the brightness and contrast.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>brightness</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/functions.html#int>int</a></code> </td> <td> <div class=doc-md-description> <p>The brightness amount. Range: -100 to 100.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>contrast</code></td> <td> <code><a class="autorefs autorefs-external" href=https://docs.python.org/3/library/functions.html#int>int</a></code> </td> <td> <div class=doc-md-description> <p>The contrast amount. Range: -100 to 100.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>291</span>
+<span class=normal>292</span>
+<span class=normal>293</span>
+<span class=normal>294</span>
+<span class=normal>295</span>
+<span class=normal>296</span>
+<span class=normal>297</span>
+<span class=normal>298</span>
+<span class=normal>299</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustBrightnessContrast</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>brightness</span><span class=p>,</span> <span class=n>contrast</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Adjusts the brightness and contrast.</span>
 
 <span class=sd>    Args:</span>
@@ -1060,28 +1102,7 @@
 
 <span class=sd>    &quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>adjustBrightnessContrast</span><span class=p>(</span><span class=n>brightness</span><span class=p>,</span> <span class=n>contrast</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustColorBalance class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustColorBalance</span><span class=p>(</span><span class=n>shadows</span><span class=p>,</span> <span class=n>midtones</span><span class=p>,</span> <span class=n>highlights</span><span class=p>,</span> <span class=n>preserveLuminosity</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts the color balance of the layer’s component channels.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>shadows</code></td> <td> </td> <td> <div class=doc-md-description> <p>The adjustments for the shadows. The array must include three values (in the range -100 to 100), which represent cyan or red, magenta or green, and yellow or blue, when the document mode is CMYK or RGB.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>midtones</code></td> <td> </td> <td> <div class=doc-md-description> <p>The adjustments for the midtones. The array must include three values (in the range -100 to 100), which represent cyan or red, magenta or green, and yellow or blue, when the document mode is CMYK or RGB.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>highlights</code></td> <td> </td> <td> <div class=doc-md-description> <p>The adjustments for the highlights. The array must include three values (in the range -100 to 100), which represent cyan or red, magenta or green, and yellow or blue, when the document mode is CMYK or RGB.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>preserveLuminosity</code></td> <td> </td> <td> <div class=doc-md-description> <p>If true, luminosity is preserved.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>280</span>
-<span class=normal>281</span>
-<span class=normal>282</span>
-<span class=normal>283</span>
-<span class=normal>284</span>
-<span class=normal>285</span>
-<span class=normal>286</span>
-<span class=normal>287</span>
-<span class=normal>288</span>
-<span class=normal>289</span>
-<span class=normal>290</span>
-<span class=normal>291</span>
-<span class=normal>292</span>
-<span class=normal>293</span>
-<span class=normal>294</span>
-<span class=normal>295</span>
-<span class=normal>296</span>
-<span class=normal>297</span>
-<span class=normal>298</span>
-<span class=normal>299</span>
-<span class=normal>300</span>
-<span class=normal>301</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustColorBalance class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustColorBalance</span><span class=p>(</span><span class=n>shadows</span><span class=p>,</span> <span class=n>midtones</span><span class=p>,</span> <span class=n>highlights</span><span class=p>,</span> <span class=n>preserveLuminosity</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts the color balance of the layer’s component channels.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>shadows</code></td> <td> </td> <td> <div class=doc-md-description> <p>The adjustments for the shadows. The array must include three values (in the range -100 to 100), which represent cyan or red, magenta or green, and yellow or blue, when the document mode is CMYK or RGB.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>midtones</code></td> <td> </td> <td> <div class=doc-md-description> <p>The adjustments for the midtones. The array must include three values (in the range -100 to 100), which represent cyan or red, magenta or green, and yellow or blue, when the document mode is CMYK or RGB.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>highlights</code></td> <td> </td> <td> <div class=doc-md-description> <p>The adjustments for the highlights. The array must include three values (in the range -100 to 100), which represent cyan or red, magenta or green, and yellow or blue, when the document mode is CMYK or RGB.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>preserveLuminosity</code></td> <td> </td> <td> <div class=doc-md-description> <p>If true, luminosity is preserved.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>301</span>
 <span class=normal>302</span>
 <span class=normal>303</span>
 <span class=normal>304</span>
@@ -1090,7 +1111,28 @@
 <span class=normal>307</span>
 <span class=normal>308</span>
 <span class=normal>309</span>
-<span class=normal>310</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustColorBalance</span><span class=p>(</span>
+<span class=normal>310</span>
+<span class=normal>311</span>
+<span class=normal>312</span>
+<span class=normal>313</span>
+<span class=normal>314</span>
+<span class=normal>315</span>
+<span class=normal>316</span>
+<span class=normal>317</span>
+<span class=normal>318</span>
+<span class=normal>319</span>
+<span class=normal>320</span>
+<span class=normal>321</span>
+<span class=normal>322</span>
+<span class=normal>323</span>
+<span class=normal>324</span>
+<span class=normal>325</span>
+<span class=normal>326</span>
+<span class=normal>327</span>
+<span class=normal>328</span>
+<span class=normal>329</span>
+<span class=normal>330</span>
+<span class=normal>331</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustColorBalance</span><span class=p>(</span>
     <span class=bp>self</span><span class=p>,</span>
     <span class=n>shadows</span><span class=p>,</span>
     <span class=n>midtones</span><span class=p>,</span>
@@ -1121,20 +1163,20 @@
         <span class=n>highlights</span><span class=p>,</span>
         <span class=n>preserveLuminosity</span><span class=p>,</span>
     <span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustCurves class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustCurves</span><span class=p>(</span><span class=n>curveShape</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts the tonal range of the selected channel using up to fourteen points.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>curveShape</code></td> <td> </td> <td> <div class=doc-md-description> <p>The curve points. The number of points must be between 2 and 14.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>312</span>
-<span class=normal>313</span>
-<span class=normal>314</span>
-<span class=normal>315</span>
-<span class=normal>316</span>
-<span class=normal>317</span>
-<span class=normal>318</span>
-<span class=normal>319</span>
-<span class=normal>320</span>
-<span class=normal>321</span>
-<span class=normal>322</span>
-<span class=normal>323</span>
-<span class=normal>324</span>
-<span class=normal>325</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustCurves</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>curveShape</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustCurves class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustCurves</span><span class=p>(</span><span class=n>curveShape</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts the tonal range of the selected channel using up to fourteen points.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>curveShape</code></td> <td> </td> <td> <div class=doc-md-description> <p>The curve points. The number of points must be between 2 and 14.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>333</span>
+<span class=normal>334</span>
+<span class=normal>335</span>
+<span class=normal>336</span>
+<span class=normal>337</span>
+<span class=normal>338</span>
+<span class=normal>339</span>
+<span class=normal>340</span>
+<span class=normal>341</span>
+<span class=normal>342</span>
+<span class=normal>343</span>
+<span class=normal>344</span>
+<span class=normal>345</span>
+<span class=normal>346</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustCurves</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>curveShape</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Adjusts the tonal range of the selected channel using up to fourteen</span>
 <span class=sd>    points.</span>
 
@@ -1148,33 +1190,33 @@
 
 <span class=sd>    &quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>adjustCurves</span><span class=p>(</span><span class=n>curveShape</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustLevels class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustLevels</span><span class=p>(</span><span class=n>inputRangeStart</span><span class=p>,</span> <span class=n>inputRangeEnd</span><span class=p>,</span> <span class=n>inputRangeGamma</span><span class=p>,</span> <span class=n>outputRangeStart</span><span class=p>,</span> <span class=n>outputRangeEnd</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts levels of the selected channels.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>inputRangeStart</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>inputRangeEnd</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>inputRangeGamma</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>outputRangeStart</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>outputRangeEnd</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>327</span>
-<span class=normal>328</span>
-<span class=normal>329</span>
-<span class=normal>330</span>
-<span class=normal>331</span>
-<span class=normal>332</span>
-<span class=normal>333</span>
-<span class=normal>334</span>
-<span class=normal>335</span>
-<span class=normal>336</span>
-<span class=normal>337</span>
-<span class=normal>338</span>
-<span class=normal>339</span>
-<span class=normal>340</span>
-<span class=normal>341</span>
-<span class=normal>342</span>
-<span class=normal>343</span>
-<span class=normal>344</span>
-<span class=normal>345</span>
-<span class=normal>346</span>
-<span class=normal>347</span>
-<span class=normal>348</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.adjustLevels class="doc doc-heading"> <code class="highlight language-python"><span class=n>adjustLevels</span><span class=p>(</span><span class=n>inputRangeStart</span><span class=p>,</span> <span class=n>inputRangeEnd</span><span class=p>,</span> <span class=n>inputRangeGamma</span><span class=p>,</span> <span class=n>outputRangeStart</span><span class=p>,</span> <span class=n>outputRangeEnd</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Adjusts levels of the selected channels.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>inputRangeStart</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>inputRangeEnd</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>inputRangeGamma</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>outputRangeStart</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>outputRangeEnd</code></td> <td> </td> <td> <div class=doc-md-description> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>348</span>
 <span class=normal>349</span>
 <span class=normal>350</span>
 <span class=normal>351</span>
 <span class=normal>352</span>
-<span class=normal>353</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustLevels</span><span class=p>(</span>
+<span class=normal>353</span>
+<span class=normal>354</span>
+<span class=normal>355</span>
+<span class=normal>356</span>
+<span class=normal>357</span>
+<span class=normal>358</span>
+<span class=normal>359</span>
+<span class=normal>360</span>
+<span class=normal>361</span>
+<span class=normal>362</span>
+<span class=normal>363</span>
+<span class=normal>364</span>
+<span class=normal>365</span>
+<span class=normal>366</span>
+<span class=normal>367</span>
+<span class=normal>368</span>
+<span class=normal>369</span>
+<span class=normal>370</span>
+<span class=normal>371</span>
+<span class=normal>372</span>
+<span class=normal>373</span>
+<span class=normal>374</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>adjustLevels</span><span class=p>(</span>
     <span class=bp>self</span><span class=p>,</span>
     <span class=n>inputRangeStart</span><span class=p>,</span>
     <span class=n>inputRangeEnd</span><span class=p>,</span>
@@ -1201,53 +1243,53 @@
         <span class=n>outputRangeStart</span><span class=p>,</span>
         <span class=n>outputRangeEnd</span><span class=p>,</span>
     <span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyAverage class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyAverage</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the average filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>371</span>
-<span class=normal>372</span>
-<span class=normal>373</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyAverage</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyAverage class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyAverage</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the average filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>392</span>
+<span class=normal>393</span>
+<span class=normal>394</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyAverage</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the average filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyAverage</span><span class=p>()</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyBlur class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyBlur</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the blur filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>375</span>
-<span class=normal>376</span>
-<span class=normal>377</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyBlur</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyBlur class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyBlur</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the blur filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>396</span>
+<span class=normal>397</span>
+<span class=normal>398</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyBlur</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the blur filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyBlur</span><span class=p>()</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyBlurMore class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyBlurMore</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the blur more filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>379</span>
-<span class=normal>380</span>
-<span class=normal>381</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyBlurMore</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyBlurMore class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyBlurMore</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the blur more filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>400</span>
+<span class=normal>401</span>
+<span class=normal>402</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyBlurMore</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the blur more filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyBlurMore</span><span class=p>()</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyClouds class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyClouds</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the clouds filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>383</span>
-<span class=normal>384</span>
-<span class=normal>385</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyClouds</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyClouds class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyClouds</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the clouds filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>404</span>
+<span class=normal>405</span>
+<span class=normal>406</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyClouds</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the clouds filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyClouds</span><span class=p>()</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyCustomFilter class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyCustomFilter</span><span class=p>(</span><span class=n>characteristics</span><span class=p>,</span> <span class=n>scale</span><span class=p>,</span> <span class=n>offset</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the custom filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>387</span>
-<span class=normal>388</span>
-<span class=normal>389</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyCustomFilter</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>characteristics</span><span class=p>,</span> <span class=n>scale</span><span class=p>,</span> <span class=n>offset</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyCustomFilter class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyCustomFilter</span><span class=p>(</span><span class=n>characteristics</span><span class=p>,</span> <span class=n>scale</span><span class=p>,</span> <span class=n>offset</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the custom filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>408</span>
+<span class=normal>409</span>
+<span class=normal>410</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyCustomFilter</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>characteristics</span><span class=p>,</span> <span class=n>scale</span><span class=p>,</span> <span class=n>offset</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the custom filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyCustomFilter</span><span class=p>(</span><span class=n>characteristics</span><span class=p>,</span> <span class=n>scale</span><span class=p>,</span> <span class=n>offset</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDeInterlace class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDeInterlace</span><span class=p>(</span><span class=n>eliminateFields</span><span class=p>,</span> <span class=n>createFields</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the de-interlace filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>391</span>
-<span class=normal>392</span>
-<span class=normal>393</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDeInterlace</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>eliminateFields</span><span class=p>,</span> <span class=n>createFields</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDeInterlace class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDeInterlace</span><span class=p>(</span><span class=n>eliminateFields</span><span class=p>,</span> <span class=n>createFields</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the de-interlace filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>412</span>
+<span class=normal>413</span>
+<span class=normal>414</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDeInterlace</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>eliminateFields</span><span class=p>,</span> <span class=n>createFields</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the de-interlace filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyDeInterlace</span><span class=p>(</span><span class=n>eliminateFields</span><span class=p>,</span> <span class=n>createFields</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDifferenceClouds class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDifferenceClouds</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the difference clouds filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>398</span>
-<span class=normal>399</span>
-<span class=normal>400</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDifferenceClouds</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDifferenceClouds class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDifferenceClouds</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Applies the difference clouds filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>419</span>
+<span class=normal>420</span>
+<span class=normal>421</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDifferenceClouds</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the difference clouds filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyDifferenceClouds</span><span class=p>()</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDiffuseGlow class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDiffuseGlow</span><span class=p>(</span><span class=n>graininess</span><span class=p>,</span> <span class=n>amount</span><span class=p>,</span> <span class=n>clear_amount</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the diffuse glow filter.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>graininess</code></td> <td> </td> <td> <div class=doc-md-description> <p>The amount of graininess. Range: 0 to 10.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>amount</code></td> <td> </td> <td> <div class=doc-md-description> <p>The glow amount. Range: 0 to 20.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>clear_amount</code></td> <td> </td> <td> <div class=doc-md-description> <p>The clear amount. Range: 0 to 20.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>358</span>
-<span class=normal>359</span>
-<span class=normal>360</span>
-<span class=normal>361</span>
-<span class=normal>362</span>
-<span class=normal>363</span>
-<span class=normal>364</span>
-<span class=normal>365</span>
-<span class=normal>366</span>
-<span class=normal>367</span>
-<span class=normal>368</span>
-<span class=normal>369</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDiffuseGlow</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>graininess</span><span class=p>,</span> <span class=n>amount</span><span class=p>,</span> <span class=n>clear_amount</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDiffuseGlow class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDiffuseGlow</span><span class=p>(</span><span class=n>graininess</span><span class=p>,</span> <span class=n>amount</span><span class=p>,</span> <span class=n>clear_amount</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the diffuse glow filter.</p> <p><span class=doc-section-title>Parameters:</span></p> <table> <thead> <tr> <th>Name</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr class=doc-section-item> <td><code>graininess</code></td> <td> </td> <td> <div class=doc-md-description> <p>The amount of graininess. Range: 0 to 10.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>amount</code></td> <td> </td> <td> <div class=doc-md-description> <p>The glow amount. Range: 0 to 20.</p> </div> </td> <td> <em>required</em> </td> </tr> <tr class=doc-section-item> <td><code>clear_amount</code></td> <td> </td> <td> <div class=doc-md-description> <p>The clear amount. Range: 0 to 20.</p> </div> </td> <td> <em>required</em> </td> </tr> </tbody> </table> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>379</span>
+<span class=normal>380</span>
+<span class=normal>381</span>
+<span class=normal>382</span>
+<span class=normal>383</span>
+<span class=normal>384</span>
+<span class=normal>385</span>
+<span class=normal>386</span>
+<span class=normal>387</span>
+<span class=normal>388</span>
+<span class=normal>389</span>
+<span class=normal>390</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDiffuseGlow</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>graininess</span><span class=p>,</span> <span class=n>amount</span><span class=p>,</span> <span class=n>clear_amount</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the diffuse glow filter.</span>
 
 <span class=sd>    Args:</span>
@@ -1259,22 +1301,22 @@
 
 <span class=sd>    &quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyDiffuseGlow</span><span class=p>(</span><span class=n>graininess</span><span class=p>,</span> <span class=n>amount</span><span class=p>,</span> <span class=n>clear_amount</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDisplace class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDisplace</span><span class=p>(</span><span class=n>horizontalScale</span><span class=p>,</span> <span class=n>verticalScale</span><span class=p>,</span> <span class=n>displacementType</span><span class=p>,</span> <span class=n>undefinedAreas</span><span class=p>,</span> <span class=n>displacementMapFile</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the displace filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>402</span>
-<span class=normal>403</span>
-<span class=normal>404</span>
-<span class=normal>405</span>
-<span class=normal>406</span>
-<span class=normal>407</span>
-<span class=normal>408</span>
-<span class=normal>409</span>
-<span class=normal>410</span>
-<span class=normal>411</span>
-<span class=normal>412</span>
-<span class=normal>413</span>
-<span class=normal>414</span>
-<span class=normal>415</span>
-<span class=normal>416</span>
-<span class=normal>417</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDisplace</span><span class=p>(</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDisplace class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDisplace</span><span class=p>(</span><span class=n>horizontalScale</span><span class=p>,</span> <span class=n>verticalScale</span><span class=p>,</span> <span class=n>displacementType</span><span class=p>,</span> <span class=n>undefinedAreas</span><span class=p>,</span> <span class=n>displacementMapFile</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the displace filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>423</span>
+<span class=normal>424</span>
+<span class=normal>425</span>
+<span class=normal>426</span>
+<span class=normal>427</span>
+<span class=normal>428</span>
+<span class=normal>429</span>
+<span class=normal>430</span>
+<span class=normal>431</span>
+<span class=normal>432</span>
+<span class=normal>433</span>
+<span class=normal>434</span>
+<span class=normal>435</span>
+<span class=normal>436</span>
+<span class=normal>437</span>
+<span class=normal>438</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDisplace</span><span class=p>(</span>
     <span class=bp>self</span><span class=p>,</span>
     <span class=n>horizontalScale</span><span class=p>,</span>
     <span class=n>verticalScale</span><span class=p>,</span>
@@ -1290,43 +1332,22 @@
         <span class=n>undefinedAreas</span><span class=p>,</span>
         <span class=n>displacementMapFile</span><span class=p>,</span>
     <span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDustAndScratches class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDustAndScratches</span><span class=p>(</span><span class=n>radius</span><span class=p>,</span> <span class=n>threshold</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the dust and scratches filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>419</span>
-<span class=normal>420</span>
-<span class=normal>421</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDustAndScratches</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>radius</span><span class=p>,</span> <span class=n>threshold</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyDustAndScratches class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyDustAndScratches</span><span class=p>(</span><span class=n>radius</span><span class=p>,</span> <span class=n>threshold</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the dust and scratches filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>440</span>
+<span class=normal>441</span>
+<span class=normal>442</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyDustAndScratches</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>radius</span><span class=p>,</span> <span class=n>threshold</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the dust and scratches filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyDustAndScratches</span><span class=p>(</span><span class=n>radius</span><span class=p>,</span> <span class=n>threshold</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyGaussianBlur class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyGaussianBlur</span><span class=p>(</span><span class=n>radius</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the gaussian blur filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>423</span>
-<span class=normal>424</span>
-<span class=normal>425</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyGaussianBlur</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>radius</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyGaussianBlur class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyGaussianBlur</span><span class=p>(</span><span class=n>radius</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the gaussian blur filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>444</span>
+<span class=normal>445</span>
+<span class=normal>446</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyGaussianBlur</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>radius</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the gaussian blur filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyGaussianBlur</span><span class=p>(</span><span class=n>radius</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyHighPass class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyHighPass</span><span class=p>(</span><span class=n>radius</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the high pass filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>445</span>
-<span class=normal>446</span>
-<span class=normal>447</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyHighPass</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>radius</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyHighPass class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyHighPass</span><span class=p>(</span><span class=n>radius</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Applies the high pass filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>466</span>
+<span class=normal>467</span>
+<span class=normal>468</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyHighPass</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>radius</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Applies the high pass filter.&quot;&quot;&quot;</span>
     <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>applyHighPass</span><span class=p>(</span><span class=n>radius</span><span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyLensBlur class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyLensBlur</span><span class=p>(</span><span class=n>source</span><span class=p>,</span> <span class=n>focalDistance</span><span class=p>,</span> <span class=n>invertDepthMap</span><span class=p>,</span> <span class=n>shape</span><span class=p>,</span> <span class=n>radius</span><span class=p>,</span> <span class=n>bladeCurvature</span><span class=p>,</span> <span class=n>rotation</span><span class=p>,</span> <span class=n>brightness</span><span class=p>,</span> <span class=n>threshold</span><span class=p>,</span> <span class=n>amount</span><span class=p>,</span> <span class=n>distribution</span><span class=p>,</span> <span class=n>monochromatic</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Apply the lens blur filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>449</span>
-<span class=normal>450</span>
-<span class=normal>451</span>
-<span class=normal>452</span>
-<span class=normal>453</span>
-<span class=normal>454</span>
-<span class=normal>455</span>
-<span class=normal>456</span>
-<span class=normal>457</span>
-<span class=normal>458</span>
-<span class=normal>459</span>
-<span class=normal>460</span>
-<span class=normal>461</span>
-<span class=normal>462</span>
-<span class=normal>463</span>
-<span class=normal>464</span>
-<span class=normal>465</span>
-<span class=normal>466</span>
-<span class=normal>467</span>
-<span class=normal>468</span>
-<span class=normal>469</span>
-<span class=normal>470</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.applyLensBlur class="doc doc-heading"> <code class="highlight language-python"><span class=n>applyLensBlur</span><span class=p>(</span><span class=n>source</span><span class=p>,</span> <span class=n>focalDistance</span><span class=p>,</span> <span class=n>invertDepthMap</span><span class=p>,</span> <span class=n>shape</span><span class=p>,</span> <span class=n>radius</span><span class=p>,</span> <span class=n>bladeCurvature</span><span class=p>,</span> <span class=n>rotation</span><span class=p>,</span> <span class=n>brightness</span><span class=p>,</span> <span class=n>threshold</span><span class=p>,</span> <span class=n>amount</span><span class=p>,</span> <span class=n>distribution</span><span class=p>,</span> <span class=n>monochromatic</span><span class=p>)</span></code> </h3> <div class="doc doc-contents "> <p>Apply the lens blur filter.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>470</span>
 <span class=normal>471</span>
 <span class=normal>472</span>
 <span class=normal>473</span>
@@ -1334,7 +1355,28 @@
 <span class=normal>475</span>
 <span class=normal>476</span>
 <span class=normal>477</span>
-<span class=normal>478</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyLensBlur</span><span class=p>(</span>
+<span class=normal>478</span>
+<span class=normal>479</span>
+<span class=normal>480</span>
+<span class=normal>481</span>
+<span class=normal>482</span>
+<span class=normal>483</span>
+<span class=normal>484</span>
+<span class=normal>485</span>
+<span class=normal>486</span>
+<span class=normal>487</span>
+<span class=normal>488</span>
+<span class=normal>489</span>
+<span class=normal>490</span>
+<span class=normal>491</span>
+<span class=normal>492</span>
+<span class=normal>493</span>
+<span class=normal>494</span>
+<span class=normal>495</span>
+<span class=normal>496</span>
+<span class=normal>497</span>
+<span class=normal>498</span>
+<span class=normal>499</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>applyLensBlur</span><span class=p>(</span>
     <span class=bp>self</span><span class=p>,</span>
     <span class=n>source</span><span class=p>,</span>
     <span class=n>focalDistance</span><span class=p>,</span>
@@ -1364,14 +1406,14 @@
         <span class=n>distribution</span><span class=p>,</span>
         <span class=n>monochromatic</span><span class=p>,</span>
     <span class=p>)</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.remove class="doc doc-heading"> <code class="highlight language-python"><span class=n>remove</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Removes this layer from the document.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>507</span>
-<span class=normal>508</span>
-<span class=normal>509</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>remove</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.remove class="doc doc-heading"> <code class="highlight language-python"><span class=n>remove</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Removes this layer from the document.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>528</span>
+<span class=normal>529</span>
+<span class=normal>530</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>remove</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Removes this layer from the document.&quot;&quot;&quot;</span>
     <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>delete</span><span class=p>()</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.unlink class="doc doc-heading"> <code class="highlight language-python"><span class=n>unlink</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Unlink this layer from any linked layers.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>526</span>
-<span class=normal>527</span>
-<span class=normal>528</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>unlink</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</code></pre></div></td></tr></table></div> </details> </div> </div> <div class="doc doc-object doc-function"> <h3 id=photoshop.api._artlayer.ArtLayer.unlink class="doc doc-heading"> <code class="highlight language-python"><span class=n>unlink</span><span class=p>()</span></code> </h3> <div class="doc doc-contents "> <p>Unlink this layer from any linked layers.</p> <details class=quote> <summary>Source code in <code>photoshop/api/_artlayer.py</code></summary> <div class=highlight><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>547</span>
+<span class=normal>548</span>
+<span class=normal>549</span></pre></div></td><td class=code><div><pre><span></span><code><span class=k>def</span> <span class=nf>unlink</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
 <span class=w>    </span><span class=sd>&quot;&quot;&quot;Unlink this layer from any linked layers.&quot;&quot;&quot;</span>
     <span class=bp>self</span><span class=o>.</span><span class=n>app</span><span class=o>.</span><span class=n>unlink</span><span class=p>()</span>
-</code></pre></div></td></tr></table></div> </details> </div> </div> </div> </div> </div> </div> </div> </div> <hr> <div class=md-source-file> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2024-12-29T13:53:35+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-29</span> <br> Created: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2024-12-29T13:53:35+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-29</span> </small> </div> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../_active_layer/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> active_layer </div> </div> </a> <a href=../_artlayers/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> artlayers </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright (c) 2019 Long Hao </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> <div class=md-social> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script> <script src=../../../../assets/javascripts/bundle.5a2dcb6a.min.js></script> <script src=../../../../js/timeago.min.js></script> <script src=../../../../js/timeago_mkdocs_material.js></script> <script src=../../../../assets/pymdownx-extras/extra-loader-B5CKpNQx.js></script> </body> </html>
+</code></pre></div></td></tr></table></div> </details> </div> </div> </div> </div> </div> </div> </div> </div> <hr> <div class=md-source-file> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2024-12-29T16:05:55+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-29</span> <br> Created: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2024-12-29T16:05:55+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-29</span> </small> </div> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../_active_layer/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> active_layer </div> </div> </a> <a href=../_artlayers/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> artlayers </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright (c) 2019 Long Hao </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> <div class=md-social> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script> <script src=../../../../assets/javascripts/bundle.5a2dcb6a.min.js></script> <script src=../../../../js/timeago.min.js></script> <script src=../../../../js/timeago_mkdocs_material.js></script> <script src=../../../../assets/pymdownx-extras/extra-loader-B5CKpNQx.js></script> </body> </html>
