@@ -19,7 +19,7 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         fetch-depth: 0
         ref: main
-    - uses: olegtarasov/get-tag@v2.1.3
+    - uses: olegtarasov/get-tag@v2.1.4
       id: get_tag_name
       with:
         tagRegex: "v(?<version>.*)"
