@@ -2,38 +2,41 @@ name: Deploy Documentation
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - '.github/workflows/publish_docs.yml'
+      - 'pyproject.toml'
+      - 'poetry.lock'
   workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.9'
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install mkdocs-material
-          pip install -r docs/requirements.txt
+          pip install poetry
+          poetry config virtualenvs.create false
+          poetry install --only docs
 
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy Documentation
+      - name: Deploy documentation
         run: |
-          git fetch origin gh-pages || true
           mkdocs gh-deploy --force

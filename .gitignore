@@ -6,7 +6,14 @@
 
 # Vim / Notepad++ temp files
 *~
-.*/
+
+# Specific dot directories to ignore (but not .github)
+.pytest_cache/
+.mypy_cache/
+.tox/
+.venv/
+.coverage/
+
 *.egg-info
 # PyInstaller output
 build/

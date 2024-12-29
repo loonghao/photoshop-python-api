@@ -1,0 +1,46 @@
+name: Test Documentation Build
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - '.github/workflows/test_docs.yml'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+
+jobs:
+  test-docs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry==${{ vars.POETRY_VERSION || '1.7.1' }}
+          poetry config virtualenvs.create false
+          poetry install --with docs
+
+      - name: Test documentation build
+        run: |
+          mkdocs build --strict
+          
+      - name: Check for documentation warnings
+        run: |
+          if grep -r "WARNING" site/; then
+            echo "Documentation contains warnings"
+            exit 1
+          fi
