@@ -530,6 +530,7 @@ class LayerCompressionType(IntEnum):
 
 
 class LayerKind(IntEnum):
+    """The kind of a layer."""
     BlackAndWhiteLayer = 22
     BrightnessContrastLayer = 9
     ChannelMixerLayer = 12
@@ -554,6 +555,7 @@ class LayerKind(IntEnum):
     ThresholdLayer = 15
     Vibrance = 23
     VideoLayer = 21
+    ArtboardLayer = 25  # Add new type for Artboard
 
 
 class LayerType(IntEnum):

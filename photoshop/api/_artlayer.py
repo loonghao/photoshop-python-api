@@ -143,15 +143,36 @@ class ArtLayer(Photoshop):
 
     @property
     def kind(self):
-        """Sets the layer kind (such as ‘text layer’) for an empty layer.
+        """Get the layer kind.
 
-        Valid only when the layer is empty and when `isBackgroundLayer` is
-        false. You can use the ‘kind ‘ property to make a background layer a
-         normal layer; however, to make a layer a background layer, you must
-         set `isBackgroundLayer` to true.
-
+        Returns:
+            LayerKind: The kind of this layer.
         """
-        return LayerKind(self.app.kind)
+        try:
+            js_code = f"""
+            function getLayerKindByIndex(index) {{
+                var ref = new ActionReference();
+                ref.putIndex(charIDToTypeID('Lyr '), index);
+                var desc = executeActionGet(ref);
+                
+                if (desc.hasKey(stringIDToTypeID('artboard'))) {{
+                    return 25;  // ArtboardLayer
+                }}
+                
+                if (desc.hasKey(stringIDToTypeID('textKey'))) {{
+                    return 2;   // TextLayer
+                }}
+                
+                return 1;  // NormalLayer
+            }}
+            getLayerKindByIndex({self.itemIndex});
+            """
+            result = self.eval_javascript(js_code)
+            print(f"Layer kind result for {self.name}: {result}")
+            return LayerKind(int(result))
+        except Exception as e:
+            print(f"Error getting layer kind for {self.name}: {str(e)}")
+            return LayerKind.NormalLayer
 
     @kind.setter
     def kind(self, layer_type):
