@@ -1,3 +1,14 @@
+## v0.24.0 (2024-12-29)
+
+### Feat
+
+- **examples**: add scripts for deleting and filling selections and exporting documents with options
+- **artlayer**: add convertToSmartObject method and update layer kind property
+
+### Refactor
+
+- **artlayer**: remove unused import of LayerKind enumeration
+
 ## v0.23.0 (2024-12-29)
 
 ### Feat
