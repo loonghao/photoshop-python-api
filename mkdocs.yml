@@ -4,24 +4,37 @@ repo_name: github
 site_author: longhao
 remote_branch: master
 copyright: "Copyright (c) 2019 Long Hao"
-features:
-  - content.code.annotate
-  - navigation.indexes
-  - navigation.sections
-  - navigation.tabs
-  - navigation.top
-  - navigation.tracking
-  - search.highlight
-  - search.share
-  - search.suggest
-  - toc.follow
+
+theme:
+  name: material
+  features:
+    - content.code.annotate
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 docs_dir: docs
-
-palette:
-  scheme: dracula
-  primary: deep purple # Primary colors
-  accent: deep purple # accent color
 
 nav:
 - Home:
@@ -31,7 +44,6 @@ nav:
 # defer to gen-files + literate-nav
 - Code Reference: reference/
 - 'Issue Tracker': 'https://github.com/loonghao/photoshop-python-api/issues'
-
 
 markdown_extensions:
   - pymdownx.extra
@@ -48,27 +60,8 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.highlight
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-  - attr_list
-  - md_in_html
-
-theme:
-  name: material
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
     - include-markdown

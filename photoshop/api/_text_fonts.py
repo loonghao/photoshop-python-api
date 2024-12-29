@@ -22,14 +22,14 @@ class TextFonts(Photoshop):
     MAGIC METHODS
     """
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self.length
 
     def __iter__(self):
         for font in self.app:
             yield TextFont(font)
 
-    def __contains__(self, name: str):
+    def __contains__(self, name: str) -> bool:
         """Check if a font is installed. Lookup by font postScriptName (fastest) or name.
 
         Args:
@@ -50,7 +50,7 @@ class TextFonts(Photoshop):
                 continue
         return False
 
-    def __getitem__(self, key: str):
+    def __getitem__(self, key: str) -> TextFont:
         """Access a given TextFont using dictionary key lookup, must provide the postScriptName.
 
         Args:
@@ -111,6 +111,6 @@ class TextFonts(Photoshop):
         return [a for a in self.app]
 
     @property
-    def length(self):
+    def length(self) -> int:
         """The number pf elements in the collection."""
         return len(self._fonts)

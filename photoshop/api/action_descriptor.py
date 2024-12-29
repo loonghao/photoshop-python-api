@@ -66,23 +66,23 @@ class ActionDescriptor(Photoshop):
             "putReference",
             "putString",
             "putUnitDouble",
-            "toSteadm",
+            "toStream",
         )
 
     @property
-    def count(self):
+    def count(self) -> int:
         """The number of keys contained in the descriptor."""
         return self.app.count
 
-    def clear(self):
+    def clear(self) -> None:
         """Clears the descriptor."""
         self.app.clear()
 
-    def erase(self, key: int):
+    def erase(self, key: int) -> None:
         """Erases a key form the descriptor."""
         self.app.erase(key)
 
-    def fromStream(self, value: str):
+    def fromStream(self, value: str) -> None:
         """Create a descriptor from a stream of bytes.
 
         for reading from disk.
@@ -90,7 +90,7 @@ class ActionDescriptor(Photoshop):
         """
         self.app.fromStream(value)
 
-    def getBoolean(self, key: int) -> int:
+    def getBoolean(self, key: int) -> bool:
         """Gets the text_font of a key of type boolean.
 
         Args:
@@ -102,7 +102,7 @@ class ActionDescriptor(Photoshop):
         """
         return self.app.getBoolean(key)
 
-    def getClass(self, key):
+    def getClass(self, key) -> int:
         """Gets the text_font of a key of type class.
 
         Args:
@@ -191,55 +191,55 @@ class ActionDescriptor(Photoshop):
         """
         return self.app.isEqual(otherDesc)
 
-    def putBoolean(self, key: int, value: bool):
+    def putBoolean(self, key: int, value: bool) -> None:
         """Sets the value for a key whose type is boolean."""
         self.app.putBoolean(key, value)
 
-    def putClass(self, key: int, value: int):
+    def putClass(self, key: int, value: int) -> None:
         """Sets the value for a key whose type is class."""
         self.app.putClass(key, value)
 
-    def putData(self, key: int, value: str):
+    def putData(self, key: int, value: str) -> None:
         """Puts raw byte data as a string value."""
         self.app.putData(key, value)
 
-    def putDouble(self, key: int, value: float):
+    def putDouble(self, key: int, value: float) -> None:
         """Sets the value for a key whose type is double."""
         self.app.putDouble(key, value)
 
-    def putEnumerated(self, key: int, enum_type: int, value: int):
+    def putEnumerated(self, key: int, enum_type: int, value: int) -> None:
         """Sets the enumeration type and value for a key."""
         self.app.putEnumerated(key, enum_type, value)
 
-    def putInteger(self, key: int, value: int):
+    def putInteger(self, key: int, value: int) -> None:
         """Sets the value for a key whose type is integer."""
         self.app.putInteger(key, value)
 
-    def putLargeInteger(self, key: int, value: int):
+    def putLargeInteger(self, key: int, value: int) -> None:
         """Sets the value for a key whose type is large integer."""
         self.app.putLargeInteger(key, value)
 
-    def putList(self, key: int, value: ActionList):
+    def putList(self, key: int, value: ActionList) -> None:
         """Sets the value for a key whose type is an ActionList object."""
         self.app.putList(key, value)
 
-    def putObject(self, key: int, class_id: int, value):
+    def putObject(self, key: int, class_id: int, value) -> None:
         """Sets the value for a key whose type is an object."""
         self.app.putObject(key, class_id, value)
 
-    def putPath(self, key: int, value: str):
+    def putPath(self, key: int, value: str) -> None:
         """Sets the value for a key whose type is path."""
         self.app.putPath(key, value)
 
-    def putReference(self, key: int, value: ActionReference):
+    def putReference(self, key: int, value: ActionReference) -> None:
         """Sets the value for a key whose type is an object reference."""
         self.app.putReference(key, value)
 
-    def putString(self, key: int, value: str):
+    def putString(self, key: int, value: str) -> None:
         """Sets the value for a key whose type is string."""
         self.app.putString(key, value)
 
-    def putUnitDouble(self, key: int, unit_id: int, value: float):
+    def putUnitDouble(self, key: int, unit_id: int, value: float) -> None:
         """Sets the value for a key whose type is a unit value formatted as
         double."""
         self.app.putUnitDouble(key, unit_id, value)

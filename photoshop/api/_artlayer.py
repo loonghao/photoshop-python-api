@@ -279,81 +279,73 @@ class ArtLayer(Photoshop):
 
     def adjustColorBalance(
         self,
-        shadows,
-        midtones,
-        highlights,
-        preserveLuminosity,
-    ):
-        """Adjusts the color balance of the layer’s component channels.
+        shadows: list = None,
+        midtones: list = None,
+        highlights: list = None,
+        preserve_luminosity: bool = True
+    ) -> None:
+        """Apply the color balance adjustment to the layer.
 
         Args:
-            shadows: The adjustments for the shadows. The array must include
-                     three values (in the range -100 to 100), which represent
-                     cyan or red, magenta or green, and yellow or blue, when
-                     the document mode is CMYK or RGB.
-            midtones: The adjustments for the midtones. The array must include
-                      three values (in the range -100 to 100), which represent
-                      cyan or red, magenta or green, and yellow or blue, when
-                      the document mode is CMYK or RGB.
-            highlights: The adjustments for the highlights. The array must
-                        include three values (in the range -100 to 100), which
-                        represent cyan or red, magenta or green, and yellow or
-                        blue, when the document mode is CMYK or RGB.
-            preserveLuminosity: If true, luminosity is preserved.
-
+            shadows: Shadows color levels adjustment.
+            midtones: Midtones color levels adjustment.
+            highlights: Highlights color levels adjustment.
+            preserve_luminosity: Option to preserve luminosity.
         """
         return self.app.adjustColorBalance(
             shadows,
             midtones,
             highlights,
-            preserveLuminosity,
+            preserve_luminosity,
         )
 
-    def adjustCurves(self, curveShape):
-        """Adjusts the tonal range of the selected channel using up to fourteen
-        points.
-
-
+    def adjustCurves(self, curve_shape: list) -> None:
+        """Apply a curves adjustment to the layer.
 
         Args:
-            curveShape: The curve points. The number of points must be between
-                2 and 14.
-
-        Returns:
-
+            curve_shape: List of curve adjustment points.
         """
-        return self.app.adjustCurves(curveShape)
+        return self.app.adjustCurves(curve_shape)
 
     def adjustLevels(
         self,
-        inputRangeStart,
-        inputRangeEnd,
-        inputRangeGamma,
-        outputRangeStart,
-        outputRangeEnd,
-    ):
-        """Adjusts levels of the selected channels.
+        input_range_start: int = 0,
+        input_range_end: int = 255,
+        input_range_gamma: float = 1.0,
+        output_range_start: int = 0,
+        output_range_end: int = 255
+    ) -> None:
+        """Apply a levels adjustment to the layer.
 
         Args:
-            inputRangeStart:
-            inputRangeEnd:
-            inputRangeGamma:
-            outputRangeStart:
-            outputRangeEnd:
-
-        Returns:
-
+            input_range_start: Start of input range (0-255).
+            input_range_end: End of input range (0-255).
+            input_range_gamma: Gamma value for input range (typically 0.1-10).
+            output_range_start: Start of output range (0-255).
+            output_range_end: End of output range (0-255).
         """
         return self.app.adjustLevels(
-            inputRangeStart,
-            inputRangeEnd,
-            inputRangeGamma,
-            outputRangeStart,
-            outputRangeEnd,
+            input_range_start,
+            input_range_end,
+            input_range_gamma,
+            output_range_start,
+            output_range_end,
         )
 
-    def applyAddNoise(self, amount, distribution, monochromatic):
-        return self.app.applyAddNoise(amount, distribution, monochromatic)
+    def applyAddNoise(
+        self,
+        graininess: float,
+        amount: float,
+        clear_amount: float
+    ) -> None:
+        """Add noise to the layer.
+
+        Args:
+            graininess: Graininess level (0.0-100.0).
+            amount: Amount of noise to add (0.0-100.0).
+            clear_amount: Clear amount value (0.0-100.0).
+        """
+        return self.app.applyAddNoise(graininess, amount, clear_amount)
 
     def applyDiffuseGlow(self, graininess, amount, clear_amount):
         """Applies the diffuse glow filter.
