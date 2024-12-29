@@ -1,11 +1,12 @@
 """Manual test all examples."""
 
 # Import built-in modules
+from __future__ import annotations
+
 from pathlib import Path
 
 # Import local modules
 from photoshop.api import Application
-
 
 root = Path(__file__).parent.parent.parent.joinpath("examples")
 for script_file in root.glob("*.py"):

@@ -1,13 +1,17 @@
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import AntiAlias
-from photoshop.api.enumerations import AutoKernType
-from photoshop.api.enumerations import Direction
-from photoshop.api.enumerations import Justification
-from photoshop.api.enumerations import Language
-from photoshop.api.enumerations import StrikeThruType
-from photoshop.api.enumerations import TextComposer
-from photoshop.api.enumerations import TextType
+from photoshop.api.enumerations import (
+    AntiAlias,
+    AutoKernType,
+    Direction,
+    Justification,
+    Language,
+    StrikeThruType,
+    TextComposer,
+    TextType,
+)
 from photoshop.api.solid_color import SolidColor
 
 
@@ -111,7 +115,8 @@ class TextItem(Photoshop):
     def desiredGlyphScaling(self):
         """The desired amount by which to scale the horizontal size of the
         text letters. A percentage value; at 100, the width of characters is
-        not scaled."""
+        not scaled.
+        """
         return self.app.desiredGlyphScaling
 
     @desiredGlyphScaling.setter
@@ -140,8 +145,7 @@ class TextItem(Photoshop):
 
     @property
     def desiredWordScaling(self):
-        """
-        The amount (percentage) of space
+        """The amount (percentage) of space
         between words (at 100, no additional space is added
         between words).
         Equivalent to Word Spacing in the Justification
@@ -218,6 +222,7 @@ class TextItem(Photoshop):
 
         Args:
             text_font (str): Must provide the postScriptName of a valid font.
+
         """
         self.app.font = text_font
 
@@ -250,6 +255,7 @@ class TextItem(Photoshop):
 
         Args:
             value: An integer between 0 and 1000.
+
         """
         self.app.horizontalScale = value
 
@@ -283,7 +289,8 @@ class TextItem(Photoshop):
     @property
     def hyphenateWordsLongerThan(self):
         """The minimum number of letters a word must have in order for
-        hyphenation in word wrap to be allowed."""
+        hyphenation in word wrap to be allowed.
+        """
         return self.app.hyphenateWordsLongerThan
 
     @hyphenateWordsLongerThan.setter
@@ -302,7 +309,8 @@ class TextItem(Photoshop):
     @property
     def hyphenationZone(self):
         """The distance at the end of a line that will cause a word to break in
-        unjustified type."""
+        unjustified type.
+        """
         return self.app.hyphenationZone
 
     @hyphenationZone.setter
@@ -681,7 +689,8 @@ class TextItem(Photoshop):
 
     def convertToShape(self):
         """Converts the text item and its containing layer to a fill layer with the
-        text changed to a clipping path."""
+        text changed to a clipping path.
+        """
         return self.app.convertToShape()
 
     def createPath(self):

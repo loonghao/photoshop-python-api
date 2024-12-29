@@ -1,11 +1,13 @@
 # Import built-in modules
+from __future__ import annotations
+
 import os
 
 # Import third-party modules
 import pytest
 
 
-@pytest.fixture()
+@pytest.fixture
 def photoshop_app():
     # Import local modules
     from photoshop.api import Application
@@ -16,12 +18,12 @@ def photoshop_app():
     app.activeDocument.close()
 
 
-@pytest.fixture()
+@pytest.fixture
 def data_root():
     return os.path.join(os.path.dirname(__file__), "test_data")
 
 
-@pytest.fixture()
+@pytest.fixture
 def psd_file(data_root):
     def _get_psd_file(name):
         return os.path.join(data_root, f"{name}.psd")

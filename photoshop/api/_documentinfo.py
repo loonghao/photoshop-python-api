@@ -6,6 +6,8 @@ application.
 """
 
 # Import built-in modules
+from __future__ import annotations
+
 from pprint import pformat
 
 # Import local modules
@@ -45,7 +47,7 @@ class DocumentInfo(Photoshop):
                 "title": self.title,
                 "transmissionReference": self.transmissionReference,
                 "urgency": self.urgency,
-            }
+            },
         )
 
     @property

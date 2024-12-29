@@ -5,6 +5,8 @@ It can be used for low-level access info Photoshop.
 
 """
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 
 

@@ -1,6 +1,8 @@
 """Options for saving a document in BMO format."""
 
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "photoshop-python-api"
-version = "0.22.10"
+version = "0.22.7"
 description = "Python API for Photoshop."
 homepage = "https://github.com/loonghao/photoshop-python-api"
 repository = "https://github.com/loonghao/photoshop-python-api"
@@ -14,7 +14,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Microsoft :: Windows :: Windows 10",
-    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3 :: Only",  
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -25,59 +25,30 @@ classifiers = [
 packages = [
     { include = "photoshop" },
 ]
+
 [tool.poetry.build]
 generate-setup-file = false
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-wheel = "^0.45.0"
-comtypes = "^1.1.11"
+comtypes = "^1.2.0"
 
 [tool.poetry.group.dev.dependencies]
-commitizen = "^2.17.8"
-pre-commit = "^2.13.0"
-codecov = "^2.1.11"
-pylint = "^2.8.2"
-isort = "^5.8.0"
-pytest = "^7.0.0"
-flake8 = "^4.0.0"
-mypy = "^1.0"
-coverage = "^7.0.0"
-mkdocs = "^1.2.2"
-mkdocs-git-revision-date-plugin = "^0.3.1"
-black = "^23.0.0"
-mkdocs-material = "^8.2.5"
-mkdocstrings-python = "^1.0.0"
-mkdocs-pymdownx-material-extras = "^2.0"
-mkdocs-same-dir = "^0.1.1"
-mkdocs-include-markdown-plugin = "^3.3.0"
-mkdocs-gen-files = "^0.5.0"
-mkdocs-autolinks-plugin = "^0.7.0"
-mkdocs-minify-plugin = "^0.5.0"
-mkdocs-git-revision-date-localized-plugin = "^1.0.0"
-pytest-cov = "^4.0.0"
-stringcase = "^1.2.0"
-mkdocs-literate-nav = "^0.6.0"
+nox = "^2023.4.22"
+nox-poetry = "^1.0.3"
 
-[tool.commitizen]
-name = "cz_conventional_commits"
-version = "0.22.10"
-tag_format = "v$version"
-version_files = [
-    "pyproject.toml:version",
-    "photoshop/__version__.py"
-]
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/loonghao/photoshop-python-api/issues"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0", "wheel>=0.42.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
-target_version = ['py37']
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
 include = '\.pyi?$'
 exclude = '''
-
 (
   /(
       \.eggs         # exclude a few common directories in the
@@ -90,6 +61,7 @@ exclude = '''
     | buck-out
     | build
     | dist
+    | manual_test    # exclude manual test directory
   )/
   | foo.py           # also separately exclude a file named foo.py in
                      # the root of the project
@@ -98,14 +70,16 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
-atomic = true
+multi_line_output = 3
 include_trailing_comma = true
-lines_after_imports = 2
-lines_between_types = 1
+force_grid_wrap = 0
 use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 120
 src_paths = ["photoshop", "test"]
 filter_files = true
 known_first_party = "photoshop"
+extend_skip = ["manual_test"]  # Add manual_test to isort skip list
 
 # Enforce import section headers.
 import_heading_future = "Import future modules"
@@ -118,4 +92,121 @@ force_single_line = true
 
 # All project unrelated unknown imports belong to third-party.
 default_section = "THIRDPARTY"
-skip_glob = "*/docs/conf.py"
+skip_glob = ["*/docs/conf.py", "manual_test/**/*.py"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+extend-exclude = ["manual_test"]  # Add manual_test to ruff exclude list
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "S",   # flake8-bandit
+    "C4",  # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "T10", # flake8-debugger
+    "ISC", # flake8-implicit-str-concat
+    "ICN", # flake8-import-conventions
+    "G",   # flake8-logging-format
+    "PIE", # flake8-pie
+    "T20", # flake8-print
+    "PYI", # flake8-pyi
+    "PT",  # flake8-pytest-style
+    "Q",   # flake8-quotes
+    "RSE", # flake8-raise
+    "RET", # flake8-return
+    "SLF", # flake8-self
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "TCH", # flake8-type-checking
+    "ARG", # flake8-unused-arguments
+    "PTH", # flake8-use-pathlib
+    "ERA", # eradicate
+    "PGH", # pygrep-hooks
+    "PL",  # pylint
+    "TRY", # tryceratops
+    "RUF", # ruff-specific rules
+    "FBT", # boolean-trap
+    "A",   # flake8-builtins
+    "COM", # flake8-commas
+    "CPY", # flake8-copyright
+    "C90", # mccabe
+    "EM",  # flake8-errmsg
+    "FA",  # flake8-future-annotations
+    "FIX", # flake8-fixme
+    "FLY", # flynt
+    "INP", # flake8-no-pep420
+    "LOG", # flake8-logging
+    "N",   # pep8-naming
+    "D",   # pydocstyle
+    "ANN", # flake8-annotations
+]
+
+ignore = [
+    "E501",  # line too long
+    "E402",  # module level import not at top of file
+    "E731",  # do not assign a lambda expression, use a def
+    "E741",  # ambiguous variable name
+    "N802",  # function name should be lowercase
+    "N803",  # argument name should be lowercase
+    "N806",  # variable in function should be lowercase
+    "N815",  # argument name should not be a magic global variable
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"test_*.py" = ["S101"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["photoshop"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.lint.isort.sections]
+future = ["__future__"]
+standard-library = ["typing", "os", "sys", "datetime"]
+third-party = ["comtypes", "win32com"]
+first-party = ["photoshop"]
+local-folder = ["photoshop.api"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.22.7"
+tag_format = "v$version"
+version_files = [
+    "pyproject.toml:version",
+    "photoshop/__version__.py"
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+exclude = ["manual_test/.*"]  # Add manual_test to mypy exclude list
+ignore_missing_imports = true
+allow_redefinition = true
+disable_error_code = ["union-attr", "no-any-return", "assignment", "misc", "arg-type", "index", "attr-defined", "type-var"]
+
+[[tool.mypy.overrides]]
+module = "comtypes.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "win32com.*"
+ignore_missing_imports = true

@@ -1,4 +1,6 @@
 # The Photoshop version to COM program ID mappings.
+from __future__ import annotations
+
 PHOTOSHOP_VERSION_MAPPINGS = {
     "2025": "190",
     "2024": "180",

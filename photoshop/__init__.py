@@ -1,5 +1,6 @@
 # Import local modules
-from photoshop.session import Session
+from __future__ import annotations
 
+from photoshop.session import Session
 
 __all__ = ["Session"]

@@ -1,4 +1,6 @@
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 
 
@@ -125,5 +127,6 @@ class TiffSaveOptions(Photoshop):
     @transparency.setter
     def transparency(self, value):
         """If true, saves the transparency as an additional alpha channel when
-        the file is opened in another application."""
+        the file is opened in another application.
+        """
         self.app.transparency = value

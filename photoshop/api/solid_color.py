@@ -9,6 +9,8 @@ Maps a color to equivalents in all available color models.
 """
 
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 from photoshop.api.colors.cmyk import CMYKColor
 from photoshop.api.colors.gray import GrayColor

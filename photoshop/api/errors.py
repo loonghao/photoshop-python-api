@@ -1,4 +1,6 @@
 # Import third-party modules
+from __future__ import annotations
+
 from comtypes import COMError
 
 
@@ -10,4 +12,4 @@ class PhotoshopPythonAPICOMError(COMError):
     pass
 
 
-__all__ = ["PhotoshopPythonAPIError", "PhotoshopPythonAPICOMError"]
+__all__ = ["PhotoshopPythonAPICOMError", "PhotoshopPythonAPIError"]

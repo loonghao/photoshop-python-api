@@ -1,5 +1,4 @@
 stringcase
-mkdocs-material = "^8.2.5"
 mkdocstrings-python = "^0.6.6"
 mkdocs-pymdownx-material-extras = "^1.6"
 mkdocs-same-dir = "^0.1.1"
@@ -9,3 +8,6 @@ mkdocs-autolinks-plugin = "^0.4.0"
 mkdocs-minify-plugin = "^0.5.0"
 mkdocs-git-revision-date-localized-plugin = "^1.0.0"
 mkdocs-literate-nav
+mkdocs>=1.4.0
+mkdocs-material>=9.0.0
+mkdocs-material-extensions>=1.1

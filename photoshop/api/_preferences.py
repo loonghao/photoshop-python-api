@@ -1,4 +1,6 @@
 # Import built-in modules
+from __future__ import annotations
+
 from pathlib import Path
 
 # Import local modules
@@ -46,7 +48,8 @@ class Preferences(Photoshop):
     @property
     def colorChannelsInColor(self):
         """True to display component channels in the Channels palette in
-        color."""
+        color.
+        """
         return self.app.colorChannelsInColor
 
     @colorChannelsInColor.setter
@@ -81,7 +84,8 @@ class Preferences(Photoshop):
     @property
     def createFirstSnapshot(self):
         """Automatically make the first snapshot when a new document is
-        created."""
+        created.
+        """
         return self.app.createFirstSnapshot
 
     @createFirstSnapshot.setter

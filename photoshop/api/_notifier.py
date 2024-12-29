@@ -1,11 +1,12 @@
-"""
-The collection of Notifier objects in the document. Access through the
+"""The collection of Notifier objects in the document. Access through the
 Application.notifiers collection property. For example:
 var notRef = app.notifiers.add("OnClickGoButton", eventFile)
 Notifiers must be enabled using the Application.notifiersEnabled property
 
 """
 # Import built-in modules
+from __future__ import annotations
+
 from pathlib import Path
 
 # Import local modules
@@ -39,7 +40,8 @@ class Notifier(Photoshop):
     @property
     def eventFile(self) -> Path:
         """The path to the file to execute when the event occurs and
-        activates the notifier."""
+        activates the notifier.
+        """
         return Path(self.app.eventFile)
 
     def remove(self):

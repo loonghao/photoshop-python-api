@@ -1,5 +1,7 @@
 # https://theiviaxx.github.io/photoshop-docs/Photoshop/BatchOptions.html
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 
 
@@ -30,7 +32,8 @@ class BatchOptions(Photoshop):
     @property
     def errorFile(self):
         """The file in which to log errors encountered.
-        To display errors on the screen and stop batch processing when errors occur, leave blank."""
+        To display errors on the screen and stop batch processing when errors occur, leave blank.
+        """
         return self.app.errorFile
 
     @errorFile.setter

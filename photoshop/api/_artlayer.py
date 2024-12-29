@@ -1,11 +1,13 @@
 # Import built-in modules
+from __future__ import annotations
+
 from typing import Any
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import LayerKind
-from photoshop.api.enumerations import RasterizeType
+from photoshop.api.enumerations import LayerKind, RasterizeType
 from photoshop.api.text_item import TextItem
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments
@@ -57,6 +59,7 @@ class ArtLayer(Photoshop):
             "move",
             "posterize",
             "rasterize",
+            "rotate",
             "unlink",
         )
 
@@ -86,7 +89,9 @@ class ArtLayer(Photoshop):
         """Get all layers linked to this layer.
 
         Returns:
-            list: Layer objects"""
+            list: Layer objects
+
+        """
         return [ArtLayer(layer) for layer in self.app.linkedLayers]
 
     @property
@@ -155,7 +160,7 @@ class ArtLayer(Photoshop):
 
     @kind.setter
     def kind(self, layer_type):
-        """set the layer kind."""
+        """Set the layer kind."""
         self.app.kind = layer_type
 
     @property
@@ -207,7 +212,8 @@ class ArtLayer(Photoshop):
     @property
     def positionLocked(self):
         """bool: If true, the pixels in the layer’s image cannot be moved
-        within the layer."""
+        within the layer.
+        """
         return self.app.positionLocked
 
     @positionLocked.setter
@@ -219,8 +225,9 @@ class ArtLayer(Photoshop):
         """The text that is associated with the layer. Valid only when ‘kind’
         is text layer.
 
-        returns:
+        Returns:
             TextItem:
+
         """
         return TextItem(self.app.textItem)
 
@@ -279,83 +286,84 @@ class ArtLayer(Photoshop):
 
     def adjustColorBalance(
         self,
-        shadows,
-        midtones,
-        highlights,
-        preserveLuminosity,
-    ):
-        """Adjusts the color balance of the layer’s component channels.
+        shadows: list = None,
+        midtones: list = None,
+        highlights: list = None,
+        preserve_luminosity: bool = True,
+    ) -> None:
+        """Apply the color balance adjustment to the layer.
 
         Args:
-            shadows: The adjustments for the shadows. The array must include
-                     three values (in the range -100 to 100), which represent
-                     cyan or red, magenta or green, and yellow or blue, when
-                     the document mode is CMYK or RGB.
-            midtones: The adjustments for the midtones. The array must include
-                      three values (in the range -100 to 100), which represent
-                      cyan or red, magenta or green, and yellow or blue, when
-                      the document mode is CMYK or RGB.
-            highlights: The adjustments for the highlights. The array must
-                        include three values (in the range -100 to 100), which
-                        represent cyan or red, magenta or green, and yellow or
-                        blue, when the document mode is CMYK or RGB.
-            preserveLuminosity: If true, luminosity is preserved.
+            shadows: Shadows color levels adjustment.
+            midtones: Midtones color levels adjustment.
+            highlights: Highlights color levels adjustment.
+            preserve_luminosity: Option to preserve luminosity.
 
         """
         return self.app.adjustColorBalance(
             shadows,
             midtones,
             highlights,
-            preserveLuminosity,
+            preserve_luminosity,
         )
 
-    def adjustCurves(self, curveShape):
-        """Adjusts the tonal range of the selected channel using up to fourteen
-        points.
-
-
+    def adjustCurves(self, curve_shape: list) -> None:
+        """Apply a curves adjustment to the layer.
 
         Args:
-            curveShape: The curve points. The number of points must be between
-                2 and 14.
-
-        Returns:
+            curve_shape: List of curve adjustment points.
 
         """
-        return self.app.adjustCurves(curveShape)
+        return self.app.adjustCurves(curve_shape)
 
     def adjustLevels(
         self,
-        inputRangeStart,
-        inputRangeEnd,
-        inputRangeGamma,
-        outputRangeStart,
-        outputRangeEnd,
-    ):
-        """Adjusts levels of the selected channels.
+        input_range_start: int = 0,
+        input_range_end: int = 255,
+        input_range_gamma: float = 1.0,
+        output_range_start: int = 0,
+        output_range_end: int = 255,
+    ) -> None:
+        """Apply a levels adjustment to the layer.
 
         Args:
-            inputRangeStart:
-            inputRangeEnd:
-            inputRangeGamma:
-            outputRangeStart:
-            outputRangeEnd:
-
-        Returns:
+            input_range_start: Start of input range (0-255).
+            input_range_end: End of input range (0-255).
+            input_range_gamma: Gamma value for input range (typically 0.1-10).
+            output_range_start: Start of output range (0-255).
+            output_range_end: End of output range (0-255).
 
         """
         return self.app.adjustLevels(
-            inputRangeStart,
-            inputRangeEnd,
-            inputRangeGamma,
-            outputRangeStart,
-            outputRangeEnd,
+            input_range_start,
+            input_range_end,
+            input_range_gamma,
+            output_range_start,
+            output_range_end,
         )
 
-    def applyAddNoise(self, amount, distribution, monochromatic):
-        return self.app.applyAddNoise(amount, distribution, monochromatic)
+    def applyAddNoise(
+        self,
+        graininess: float,
+        amount: float,
+        clear_amount: float,
+    ) -> None:
+        """Add noise to the layer.
 
-    def applyDiffuseGlow(self, graininess, amount, clear_amount):
+        Args:
+            graininess: Graininess level (0.0-100.0).
+            amount: Amount of noise to add (0.0-100.0).
+            clear_amount: Clear amount value (0.0-100.0).
+
+        """
+        return self.app.applyAddNoise(graininess, amount, clear_amount)
+
+    def applyDiffuseGlow(
+        self,
+        graininess: float,
+        amount: float,
+        clear_amount: float,
+    ) -> None:
         """Applies the diffuse glow filter.
 
         Args:
@@ -532,3 +540,34 @@ class ArtLayer(Photoshop):
 
     def duplicate(self, relativeObject=None, insertionLocation=None):
         return ArtLayer(self.app.duplicate(relativeObject, insertionLocation))
+
+    def rotate(self, angle: float) -> None:
+        """Rotate the layer by a specified angle.
+
+        Args:
+            angle (float): The angle to rotate in degrees. Positive values rotate clockwise,
+                        negative values rotate counterclockwise.
+
+        Returns:
+            None
+
+        Raises:
+            PhotoshopPythonAPIError: If the rotation operation fails.
+        """
+        # Create a JavaScript code to perform the rotation
+        javascript = f"""
+            try {{
+                var desc = new ActionDescriptor();
+                desc.putUnitDouble(charIDToTypeID('Angl'), charIDToTypeID('#Ang'), {angle});
+                executeAction(charIDToTypeID('Rtte'), desc, DialogModes.NO);
+            }} catch(e) {{
+                // If rotation fails, cancel the transform and throw error
+                executeAction(charIDToTypeID('Trnf'), undefined, DialogModes.NO);
+                throw e;
+            }}
+        """
+        
+        try:
+            self.adobe.doJavaScript(javascript)
+        except Exception as e:
+            raise PhotoshopPythonAPIError(f"Failed to rotate layer: {e!s}")
