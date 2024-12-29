@@ -1,8 +1,9 @@
 """A examples to show you how to operate active document channels."""
 
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 with Session() as ps:
     doc = ps.active_document

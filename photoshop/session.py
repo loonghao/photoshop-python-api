@@ -27,34 +27,38 @@ with Session(action="new_document") as ps:
 """
 
 # Import built-in modules
+from __future__ import annotations
+
 from typing import Any
 
 # Import local modules
-from photoshop.api import ActionDescriptor
-from photoshop.api import ActionList
-from photoshop.api import ActionReference
-from photoshop.api import Application
-from photoshop.api import BMPSaveOptions
-from photoshop.api import BatchOptions
-from photoshop.api import CMYKColor
-from photoshop.api import EPSSaveOptions
-from photoshop.api import EventID
-from photoshop.api import ExportOptionsSaveForWeb
-from photoshop.api import GIFSaveOptions
-from photoshop.api import GrayColor
-from photoshop.api import HSBColor
-from photoshop.api import JPEGSaveOptions
-from photoshop.api import LabColor
-from photoshop.api import PDFSaveOptions
-from photoshop.api import PNGSaveOptions
-from photoshop.api import PhotoshopSaveOptions
-from photoshop.api import RGBColor
-from photoshop.api import SolidColor
-from photoshop.api import TargaSaveOptions
-from photoshop.api import TextItem
-from photoshop.api import TiffSaveOptions
-from photoshop.api import enumerations
-from photoshop.api import errors
+from photoshop.api import (
+    ActionDescriptor,
+    ActionList,
+    ActionReference,
+    Application,
+    BatchOptions,
+    BMPSaveOptions,
+    CMYKColor,
+    EPSSaveOptions,
+    EventID,
+    ExportOptionsSaveForWeb,
+    GIFSaveOptions,
+    GrayColor,
+    HSBColor,
+    JPEGSaveOptions,
+    LabColor,
+    PDFSaveOptions,
+    PhotoshopSaveOptions,
+    PNGSaveOptions,
+    RGBColor,
+    SolidColor,
+    TargaSaveOptions,
+    TextItem,
+    TiffSaveOptions,
+    enumerations,
+    errors,
+)
 
 
 # pylint: disable=too-many-arguments
@@ -79,7 +83,6 @@ class Session:
         ps_version: str = None,
     ):
         """Session of Photoshop.
-
 
         Examples:
             ```python
@@ -297,6 +300,15 @@ class Session:
         except errors.PhotoshopPythonAPICOMError:
             raise errors.PhotoshopPythonAPIError("No active document available.")
 
+    def set_active_document(self, doc):
+        """Set active document.
+        
+        Args:
+            doc: The document to set as active.
+
+        """
+        self._active_document = doc
+
     @staticmethod
     def echo(*args, **kwargs):
         """Print message."""
@@ -311,19 +323,14 @@ class Session:
         """
         self.app.doJavaScript(f"alert('{text}')")
 
-    @active_document.setter
-    def active_document(self, active_document):
-        """Set active document."""
-        self._active_document = active_document
-
     def _action_open(self):
-        self.active_document = self.app.open(self.path)
+        self.set_active_document(self.app.open(self.path))
 
     def _action_new_document(self):
-        self.active_document = self.app.documents.add()
+        self.set_active_document(self.app.documents.add())
 
     def _action_document_duplicate(self):
-        self.active_document = self.active_document.duplicate()
+        self.set_active_document(self.active_document.duplicate())
 
     def run_action(self):
         try:
@@ -333,7 +340,7 @@ class Session:
             pass
 
     def close(self):
-        """closing current session."""
+        """Closing current session."""
         if self._auto_close:
             self.active_document.close()
 

@@ -1,8 +1,10 @@
 """Add slate information dynamically."""
 
 # Import built-in modules
-from datetime import datetime
+from __future__ import annotations
+
 import os
+from datetime import datetime
 from tempfile import mkdtemp
 
 # Import third-party modules
@@ -10,7 +12,6 @@ import examples._psd_files as psd  # Import from examples.
 
 # Import local modules
 from photoshop import Session
-
 
 PSD_FILE = psd.get_psd_files()
 file_path = PSD_FILE["slate_template.psd"]

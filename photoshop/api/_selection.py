@@ -1,9 +1,10 @@
 """The selected area of the document or layer."""
 
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ColorBlendMode
-from photoshop.api.enumerations import SelectionType
+from photoshop.api.enumerations import ColorBlendMode, SelectionType
 from photoshop.api.solid_color import SolidColor
 
 
@@ -133,7 +134,8 @@ class Selection(Photoshop):
 
     def resize(self, horizontal, vertical, anchor):
         """Resizes the selected area to the specified dimensions and anchor
-        position."""
+        position.
+        """
         self.app.resize(horizontal, vertical, anchor)
 
     def resizeBoundary(self, horizontal, vertical, anchor):
@@ -178,7 +180,8 @@ class Selection(Photoshop):
 
     def smooth(self, radius):
         """Cleans up stray pixels left inside or outside a color-based
-        selection (within the radius specified in pixels)."""
+        selection (within the radius specified in pixels).
+        """
         return self.app.smooth(radius)
 
     def store(self, into, combination=SelectionType.ReplaceSelection):

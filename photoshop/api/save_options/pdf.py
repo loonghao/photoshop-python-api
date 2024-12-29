@@ -5,9 +5,10 @@ using the Document.saveAs() method.
 """
 
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import PDFEncodingType
-from photoshop.api.enumerations import PDFResampleType
+from photoshop.api.enumerations import PDFEncodingType, PDFResampleType
 from photoshop.api.errors import COMError
 
 
@@ -70,13 +71,15 @@ class PDFSaveOptions(Photoshop):
     @property
     def convertToEightBit(self):
         """If true, converts a 16-bit image to 8-bit for better
-        compatibility with other applications."""
+        compatibility with other applications.
+        """
         return self.app.convertToEightBit
 
     @convertToEightBit.setter
     def convertToEightBit(self, value):
         """If true, converts a 16-bit image to 8-bit for better
-        compatibility with other applications."""
+        compatibility with other applications.
+        """
         self.app.convertToEightBit = value
 
     @property
@@ -92,18 +95,20 @@ class PDFSaveOptions(Photoshop):
     @property
     def destinationProfile(self):
         """Describes the final RGB or CMYK output device,
-        such as a monitor or press standard."""
+        such as a monitor or press standard.
+        """
         try:
             return self.app.destinationProfile
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @destinationProfile.setter
     def destinationProfile(self, value):
         """Describes the final RGB or CMYK output device,
-        such as a monitor or press standard."""
+        such as a monitor or press standard.
+        """
         self.app.destinationProfile = value
 
     @property
@@ -119,35 +124,39 @@ class PDFSaveOptions(Photoshop):
     @property
     def downSampleSize(self):
         """The size (in pixels per inch) to downsample images to if they
-        exceed the value specified for down sample size limit."""
+        exceed the value specified for down sample size limit.
+        """
         try:
             return self.app.downSampleSize
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @downSampleSize.setter
     def downSampleSize(self, value):
         """The size (in pixels per inch) to downsample images to if they
-        exceed the value specified for ‘down sample size limit’."""
+        exceed the value specified for ‘down sample size limit’.
+        """
         self.app.downSampleSize = value
 
     @property
     def downSampleSizeLimit(self):
         """Limits downsampling or subsampling to images that
-        exceed this value (in pixels per inch)."""
+        exceed this value (in pixels per inch).
+        """
         try:
             return self.app.downSampleSizeLimit
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @downSampleSizeLimit.setter
     def downSampleSizeLimit(self, value: float):
         """Limits downsampling or subsampling to images that exceed this
-        value (in pixels per inch)."""
+        value (in pixels per inch).
+        """
         self.app.downSampleSizeLimit = value
 
     @property
@@ -220,13 +229,15 @@ class PDFSaveOptions(Photoshop):
     @property
     def outputCondition(self):
         """An optional comment field for inserting descriptions of the
-        output condition. The text is stored in the PDF/X file."""
+        output condition. The text is stored in the PDF/X file.
+        """
         return self.app.outputCondition
 
     @outputCondition.setter
     def outputCondition(self, value):
         """An optional comment field for inserting descriptions of
-        the output condition. The text is stored in the PDF/X file."""
+        the output condition. The text is stored in the PDF/X file.
+        """
         self.app.outputCondition = value
 
     @property
@@ -236,7 +247,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.outputConditionID
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @outputConditionID.setter
@@ -247,18 +258,20 @@ class PDFSaveOptions(Photoshop):
     @property
     def preserveEditing(self):
         """If true, allows users to reopen the PDF in Photoshop with
-        native Photoshop data intact."""
+        native Photoshop data intact.
+        """
         try:
             return self.app.preserveEditing
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @preserveEditing.setter
     def preserveEditing(self, value):
         """If true, allows users to reopen the PDF in Photoshop with
-        native Photoshop data intact."""
+        native Photoshop data intact.
+        """
         self.app.preserveEditing = value
 
     @property
@@ -268,7 +281,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.presetFile
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @presetFile.setter
@@ -283,7 +296,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.profileInclusionPolicy
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @profileInclusionPolicy.setter
@@ -298,7 +311,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.registryName
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @registryName.setter
@@ -313,7 +326,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.spotColors
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @spotColors.setter
@@ -328,7 +341,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.tileSize
         except COMError:
             raise ValueError(
-                "Should set value first. " "This parameter can only be read after the " "value has been set."
+                "Should set value first. This parameter can only be read after the value has been set.",
             )
 
     @tileSize.setter
@@ -342,7 +355,7 @@ class PDFSaveOptions(Photoshop):
             self.encoding_types.PDFJPEG2000LOW,
             self.encoding_types.PDFJPEG2000MEDHIGH,
         ):
-            raise ValueError("tileSize only work in JPEG2000. Please " "change PDFSaveOptions.encoding to JPEG2000.")
+            raise ValueError("tileSize only work in JPEG2000. Please change PDFSaveOptions.encoding to JPEG2000.")
         self.app.tileSize = value
 
     @property

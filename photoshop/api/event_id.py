@@ -1,4 +1,6 @@
 # Import built-in modules
+from __future__ import annotations
+
 from enum import Enum
 
 

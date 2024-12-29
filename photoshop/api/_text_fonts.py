@@ -1,10 +1,10 @@
 # Import built-in modules
-from typing import Any
-from typing import Union
+from __future__ import annotations
+
+from typing import Any, Union
 
 # Import third-party modules
-from comtypes import ArgumentError
-from comtypes import COMError
+from comtypes import ArgumentError, COMError
 
 # Import local modules
 from photoshop.api._core import Photoshop
@@ -37,6 +37,7 @@ class TextFonts(Photoshop):
 
         Returns:
             bool: True if font is found, otherwise False.
+
         """
         # Look for postScriptName
         if self.get(name):
@@ -70,8 +71,7 @@ class TextFonts(Photoshop):
     """
 
     def get(self, key: str, default: Any = None) -> Union[TextFont, Any]:
-        """
-        Accesses a given TextFont using dictionary key lookup of postScriptName, returns default if not found.
+        """Accesses a given TextFont using dictionary key lookup of postScriptName, returns default if not found.
 
         Args:
             key: The postScriptName of the font.

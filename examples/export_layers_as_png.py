@@ -1,5 +1,7 @@
 """Export every layer as a .png file."""
 # Import built-in modules
+from __future__ import annotations
+
 import os
 
 # Import third-party modules
@@ -7,7 +9,6 @@ import examples._psd_files as psd  # Import from examples.
 
 # Import local modules
 from photoshop import Session
-
 
 PSD_FILE = psd.get_psd_files()
 

@@ -1,5 +1,7 @@
 """"""
 # Import third-party modules
+from __future__ import annotations
+
 import pytest
 
 # Import local modules

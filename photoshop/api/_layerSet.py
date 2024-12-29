@@ -1,10 +1,11 @@
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
 from photoshop.api._core import Photoshop
 from photoshop.api._layers import Layers
-from photoshop.api.enumerations import AnchorPosition
-from photoshop.api.enumerations import BlendMode
+from photoshop.api.enumerations import AnchorPosition, BlendMode
 
 
 class LayerSet(Photoshop):

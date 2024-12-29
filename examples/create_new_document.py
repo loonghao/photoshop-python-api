@@ -1,8 +1,9 @@
 """Create a new document."""
 
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 with Session() as ps:
     ps.app.preferences.rulerUnits = ps.Units.Pixels

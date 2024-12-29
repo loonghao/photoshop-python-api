@@ -1,10 +1,11 @@
 # Import built-in modules
+from __future__ import annotations
+
 from typing import Any
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import LayerKind
-from photoshop.api.enumerations import RasterizeType
+from photoshop.api.enumerations import LayerKind, RasterizeType
 from photoshop.api.text_item import TextItem
 
 
@@ -86,7 +87,9 @@ class ArtLayer(Photoshop):
         """Get all layers linked to this layer.
 
         Returns:
-            list: Layer objects"""
+            list: Layer objects
+
+        """
         return [ArtLayer(layer) for layer in self.app.linkedLayers]
 
     @property
@@ -155,7 +158,7 @@ class ArtLayer(Photoshop):
 
     @kind.setter
     def kind(self, layer_type):
-        """set the layer kind."""
+        """Set the layer kind."""
         self.app.kind = layer_type
 
     @property
@@ -207,7 +210,8 @@ class ArtLayer(Photoshop):
     @property
     def positionLocked(self):
         """bool: If true, the pixels in the layer’s image cannot be moved
-        within the layer."""
+        within the layer.
+        """
         return self.app.positionLocked
 
     @positionLocked.setter
@@ -219,8 +223,9 @@ class ArtLayer(Photoshop):
         """The text that is associated with the layer. Valid only when ‘kind’
         is text layer.
 
-        returns:
+        Returns:
             TextItem:
+
         """
         return TextItem(self.app.textItem)
 
@@ -282,7 +287,7 @@ class ArtLayer(Photoshop):
         shadows: list = None,
         midtones: list = None,
         highlights: list = None,
-        preserve_luminosity: bool = True
+        preserve_luminosity: bool = True,
     ) -> None:
         """Apply the color balance adjustment to the layer.
 
@@ -291,6 +296,7 @@ class ArtLayer(Photoshop):
             midtones: Midtones color levels adjustment.
             highlights: Highlights color levels adjustment.
             preserve_luminosity: Option to preserve luminosity.
+
         """
         return self.app.adjustColorBalance(
             shadows,
@@ -304,6 +310,7 @@ class ArtLayer(Photoshop):
 
         Args:
             curve_shape: List of curve adjustment points.
+
         """
         return self.app.adjustCurves(curve_shape)
 
@@ -313,7 +320,7 @@ class ArtLayer(Photoshop):
         input_range_end: int = 255,
         input_range_gamma: float = 1.0,
         output_range_start: int = 0,
-        output_range_end: int = 255
+        output_range_end: int = 255,
     ) -> None:
         """Apply a levels adjustment to the layer.
 
@@ -323,6 +330,7 @@ class ArtLayer(Photoshop):
             input_range_gamma: Gamma value for input range (typically 0.1-10).
             output_range_start: Start of output range (0-255).
             output_range_end: End of output range (0-255).
+
         """
         return self.app.adjustLevels(
             input_range_start,
@@ -336,7 +344,7 @@ class ArtLayer(Photoshop):
         self,
         graininess: float,
         amount: float,
-        clear_amount: float
+        clear_amount: float,
     ) -> None:
         """Add noise to the layer.
 
@@ -344,6 +352,7 @@ class ArtLayer(Photoshop):
             graininess: Graininess level (0.0-100.0).
             amount: Amount of noise to add (0.0-100.0).
             clear_amount: Clear amount value (0.0-100.0).
+
         """
         return self.app.applyAddNoise(graininess, amount, clear_amount)
 

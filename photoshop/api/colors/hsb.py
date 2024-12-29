@@ -1,6 +1,8 @@
 """Defines an HSB color, used in the `SolidColor` object."""
 
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 
 

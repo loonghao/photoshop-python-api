@@ -1,9 +1,10 @@
 # Import third-party modules
+from __future__ import annotations
+
 import examples._psd_files as psd  # Import from examples.
 
 # Import local modules
 from photoshop import Session
-
 
 PSD_FILE = psd.get_psd_files()
 

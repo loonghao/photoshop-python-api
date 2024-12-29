@@ -1,7 +1,8 @@
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ColorReductionType
-from photoshop.api.enumerations import DitherType
+from photoshop.api.enumerations import ColorReductionType, DitherType
 
 
 class ExportOptionsSaveForWeb(Photoshop):

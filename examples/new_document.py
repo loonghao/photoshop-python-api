@@ -1,7 +1,8 @@
 # Create a new Photoshop document with diminsions 4 inches by 4 inches.
 # Import local modules
-import photoshop.api as ps
+from __future__ import annotations
 
+import photoshop.api as ps
 
 # Start up Photoshop application
 app = ps.Application()

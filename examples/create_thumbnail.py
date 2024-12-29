@@ -1,46 +1,52 @@
-"""Create a thumbnail image for currently active document.
-
-You can use the thumbnail image to upload to Shotgun or Ftrack.
-
-"""
+"""Create a thumbnail image for currently active document."""
 
 # Import built-in modules
-import os
+from __future__ import annotations
+from pathlib import Path
 from tempfile import mkdtemp
+from typing import Optional
 
 # Import local modules
 from photoshop import Session
 
 
-def create_thumbnail(output_path=None, max_resolution=512):
+def create_thumbnail(output_path: Optional[str] = None, max_resolution: int = 512) -> str:
     """Create a thumbnail image for currently active document.
 
     Args:
-        output_path (str): The absolute output path of the thumbnail image.
-            The default is to output to a temporary folder.
-        max_resolution (int): The max resolution of the thumbnail. The default
-            is `512`.
+        output_path: Output path for the thumbnail image.
+        max_resolution: Maximum resolution for the thumbnail image.
 
     Returns:
-        str: The absolute output path of the thumbnail image.
-
+        str: Path to the generated thumbnail image.
     """
-    output_path = output_path or os.path.join(mkdtemp(), "thumb.jpg")
+    output_path = output_path or str(Path(mkdtemp()) / "thumb.jpg")
 
     with Session(auto_close=True) as ps:
-        orig_name = ps.active_document.name
-        width_str = ps.active_document.width
-        height_str = ps.active_document.height
-        thumb_name = f"{orig_name}_thumb"
+        active_document = ps.active_document
+        width = active_document.width
+        height = active_document.height
+        ratio = width / height
 
-        max_resolution = width_str / max_resolution
-        thumb_width = int(width_str / max_resolution)
-        thumb_height = int(height_str / max_resolution)
+        if width > height:
+            new_width = max_resolution
+            new_height = max_resolution / ratio
+        else:
+            new_height = max_resolution
+            new_width = max_resolution * ratio
 
-        thumb_doc = ps.active_document.duplicate(thumb_name)
-        thumb_doc.resizeImage(thumb_width, thumb_height - 100)
-        thumb_doc.saveAs(output_path, ps.JPEGSaveOptions(), asCopy=True)
-        thumb_doc.close()
+        # Create new document
+        new_doc = ps.app.documents.add(new_width, new_height)
+
+        # Copy active document to new document
+        active_document.activeLayer.copy()
+        new_doc.paste()
+
+        # Save as jpg
+        options = ps.JPEGSaveOptions(quality=10)
+        new_doc.saveAs(output_path, options, True)
+        new_doc.close()
+
         return output_path
 
 

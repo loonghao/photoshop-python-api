@@ -1,5 +1,7 @@
 """constants type of enum for Photoshop."""
 # Import built-in modules
+from __future__ import annotations
+
 from enum import IntEnum
 
 
@@ -1127,7 +1129,6 @@ class ZigZagType(IntEnum):
 
 
 __all__ = [
-    "LensType",
     "AdjustmentReference",
     "AnchorPosition",
     "AntiAlias",
@@ -1190,6 +1191,7 @@ __all__ = [
     "LayerCompressionType",
     "LayerKind",
     "LayerType",
+    "LensType",
     "MagnificationType",
     "MatteType",
     "MeasurementRange",
@@ -1220,8 +1222,8 @@ __all__ = [
     "PreviewType",
     "PurgeTarget",
     "QueryStateType",
-    "RadialBlurMethod",
     "RadialBlurBest",
+    "RadialBlurMethod",
     "RasterizeType",
     "ReferenceFormType",
     "ResampleMethod",

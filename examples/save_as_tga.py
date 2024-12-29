@@ -1,10 +1,11 @@
 # Import built-in modules
+from __future__ import annotations
+
 import os
 from tempfile import mkdtemp
 
 # Import local modules
 from photoshop import Session
-
 
 with Session(action="new_document") as ps:
     doc = ps.active_document

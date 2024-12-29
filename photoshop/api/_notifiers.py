@@ -11,8 +11,9 @@ Examples:
 """
 
 # Import built-in modules
-from typing import Any
-from typing import Optional
+from __future__ import annotations
+
+from typing import Any, Optional
 
 # Import local modules
 from photoshop.api._core import Photoshop

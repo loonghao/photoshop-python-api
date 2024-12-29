@@ -1,7 +1,8 @@
 """Change the color of the background and foreground."""
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 with Session() as ps:
     foregroundColor = ps.SolidColor()

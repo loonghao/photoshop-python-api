@@ -5,8 +5,9 @@ References:
 
 """
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 with Session() as ps:
     if ps.app.foregroundColor.isEqual(ps.app.backgroundColor):

@@ -2,18 +2,14 @@
 
 
 # Import built-in modules
+from __future__ import annotations
+
+import os
+import winreg
 from contextlib import suppress
 from functools import cached_property
-from logging import CRITICAL
-from logging import DEBUG
-from logging import Logger
-from logging import getLogger
-import os
-import platform
-from typing import Any
-from typing import List
-from typing import Optional
-import winreg
+from logging import CRITICAL, DEBUG, Logger, getLogger
+from typing import Any, List, Optional
 
 # Import third-party modules
 from comtypes.client import CreateObject
@@ -33,12 +29,12 @@ class Photoshop:
     object_name: str = "Application"
 
     def __init__(self, ps_version: Optional[str] = None, parent: Any = None):
-        """
-        Initialize the Photoshop core object.
+        """Initialize the Photoshop core object.
 
         Args:
             ps_version: Optional, Photoshop version to look for explicitly in registry.
             parent: Optional, parent instance to use as app object.
+
         """
         # Establish the initial app and program ID
         ps_version = os.getenv("PS_VERSION", ps_version)
@@ -55,7 +51,7 @@ class Photoshop:
             if not self.app:
                 # Attempt unsuccessful
                 self._logger.debug(
-                    f"Unable to retrieve Photoshop object '{self.typename}' using version '{ps_version}'."
+                    f"Unable to retrieve Photoshop object '{self.typename}' using version '{ps_version}'.",
                 )
 
         # Look for version ID in registry data
@@ -133,8 +129,7 @@ class Photoshop:
     """
 
     def _flag_as_method(self, *names: str) -> None:
-        """
-        * This is a hack for Photoshop's broken COM implementation.
+        """* This is a hack for Photoshop's broken COM implementation.
         * Photoshop does not implement 'IDispatch::GetTypeInfo', so when
         getting a field from the COM object, comtypes will first try
         to fetch it as a property, then treat it as a method if it fails.
@@ -157,8 +152,7 @@ class Photoshop:
         return []
 
     def _get_application_object(self, versions: Optional[List[str]] = None) -> Optional[Dispatch]:
-        """
-        Try each version string until a valid Photoshop application Dispatch object is returned.
+        """Try each version string until a valid Photoshop application Dispatch object is returned.
 
         Args:
             versions: List of Photoshop version ID's found in registry.
@@ -168,6 +162,7 @@ class Photoshop:
 
         Raises:
             OSError: If a Dispatch object wasn't resolved.
+
         """
         if versions is None:
             versions = []
@@ -221,6 +216,7 @@ class Photoshop:
 
         Raises:
             OSError: if registry key cannot be read.
+
         """
         try:
             return winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, key)

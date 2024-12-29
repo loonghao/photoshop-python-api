@@ -1,4 +1,6 @@
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._channel import Channel
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError

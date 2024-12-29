@@ -1,4 +1,6 @@
 """Nox sessions."""
+from __future__ import annotations
+
 import os
 import shutil
 import sys
@@ -8,8 +10,7 @@ from textwrap import dedent
 import nox
 from nox.sessions import Session
 
-
-PYTHON_VERSIONS = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+PYTHON_VERSIONS = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 nox.needs_version = ">= 2023.4.22"
 nox.options.sessions = (
     "pre-commit",
@@ -49,7 +50,7 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
         text = hook.read_text()
         bindir = repr(session.bin)[1:-1]  # strip quotes
         if not (
-            Path("A") == Path("a") and bindir.lower() in text.lower() or bindir in text
+            (Path("A") == Path("a") and bindir.lower() in text.lower()) or bindir in text
         ):
             continue
 
@@ -65,7 +66,7 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
                 {session.bin!r},
                 os.environ.get("PATH", ""),
             ))
-            """
+            """,
         )
 
         lines.insert(1, header)
@@ -116,8 +117,16 @@ def safety(session: Session) -> None:
 @nox.session()
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
-    args = session.posargs or ["photoshop", "tests"]
-    install_with_uv(session, ".", "mypy", "types-all")
+    args = session.posargs or ["photoshop"]
+    install_with_uv(
+        session,
+        ".",
+        "mypy",
+        "types-setuptools",
+        "types-requests",
+        "types-six",
+        "types-python-dateutil",
+    )
     session.run("mypy", *args)
     if not session.posargs:
         session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
@@ -137,14 +146,12 @@ def tests(session: Session) -> None:
 @nox.session()
 def coverage(session: Session) -> None:
     """Produce the coverage report."""
-    args = session.posargs or ["report"]
-
     install_with_uv(session, "coverage[toml]")
 
     if not session.posargs and any(Path().glob(".coverage.*")):
         session.run("coverage", "combine")
 
-    session.run("coverage", *args)
+    session.run("coverage", "report")
 
 
 @nox.session(name="docs-build")
@@ -224,19 +231,17 @@ def release(session: Session) -> None:
     """Release the package to PyPI."""
     if not session.posargs:
         session.error("Please provide a version number, e.g: nox -s release -- 1.0.0")
-    
-    version = session.posargs[0]
-    
+
     # Install dependencies
     install_with_uv(session, "twine", "build")
-    
+
     # Clean up previous builds
     if os.path.exists("dist"):
         shutil.rmtree("dist")
-    
+
     # Build the package
     session.run("python", "-m", "build")
-    
+
     # Upload to PyPI
     session.run("twine", "check", "dist/*")
     session.run("twine", "upload", "dist/*")

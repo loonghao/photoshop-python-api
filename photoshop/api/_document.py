@@ -12,8 +12,10 @@ The basic canvas for the file.
 """
 
 # Import built-in modules
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Any, List, NoReturn, Optional, TypeVar, Union
+from typing import Any, List, Optional, TypeVar, Union
 
 # Import third-party modules
 from comtypes import COMError
@@ -24,9 +26,9 @@ from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channels import Channels
 from photoshop.api._core import Photoshop
 from photoshop.api._layerSet import LayerSet
-from photoshop.api.enumerations import ExtensionType, ExportType, SaveOptions, TrimType
+from photoshop.api.enumerations import ExportType, ExtensionType, SaveOptions, TrimType
 
-PS_Layer = TypeVar('PS_Layer', ArtLayer, LayerSet)
+PS_Layer = TypeVar("PS_Layer", ArtLayer, LayerSet)
 
 
 class Document(Photoshop):
@@ -79,6 +81,7 @@ class Document(Photoshop):
 
         Args:
             layer: The artLayer or layerSet to set as active.
+
         """
         self.app.activeLayer = layer.app
 
@@ -212,6 +215,7 @@ class Document(Photoshop):
             angle: The angle of cropping bounds.
             width: The width of the resulting document.
             height: The height of the resulting document.
+
         """
         return self.app.crop(bounds, angle, width, height)
 
@@ -219,7 +223,7 @@ class Document(Photoshop):
         self,
         file_path: Union[str, Path],
         exportAs: ExportType,
-        options: Any
+        options: Any,
     ) -> None:
         """Exports the Document.
 
@@ -227,18 +231,19 @@ class Document(Photoshop):
             file_path: Path where to save the exported file.
             exportAs: The export type.
             options: The export options.
+
         """
         if isinstance(file_path, Path):
             file_path = str(file_path)
         return self.eval_javascript(
-            f'app.activeDocument.exportDocument("{file_path}", {exportAs}, {options})'
+            f'app.activeDocument.exportDocument("{file_path}", {exportAs}, {options})',
         )
 
     def duplicate(
         self,
         name: Optional[str] = None,
-        merge_layers_only: bool = False
-    ) -> 'Document':
+        merge_layers_only: bool = False,
+    ) -> Document:
         """Duplicates this document.
 
         Args:
@@ -247,6 +252,7 @@ class Document(Photoshop):
 
         Returns:
             The duplicated Document object.
+
         """
         return Document(self.app.duplicate(name, merge_layers_only))
 
@@ -283,7 +289,7 @@ class Document(Photoshop):
         file_path: Union[str, Path],
         options: Any,
         asCopy: bool = True,
-        extensionType: ExtensionType = ExtensionType.Lowercase
+        extensionType: ExtensionType = ExtensionType.Lowercase,
     ) -> None:
         """Saves the document with the specified save options.
 
@@ -292,12 +298,13 @@ class Document(Photoshop):
             options: Save options.
             asCopy: If true, saves as a copy.
             extensionType: The case of the extension.
+
         """
         if isinstance(file_path, Path):
             file_path = str(file_path)
         return self.app.saveAs(file_path, options, asCopy, extensionType)
 
-    def splitChannels(self) -> List['Document']:
+    def splitChannels(self) -> List[Document]:
         """Splits the channels of the document."""
         return [Document(channel) for channel in self.app.splitChannels()]
 
@@ -307,6 +314,7 @@ class Document(Photoshop):
         Args:
             historyString: The history state name.
             javaScriptString: The JavaScript code to execute.
+
         """
         return self.app.suspendHistory(historyString, javaScriptString)
 
@@ -315,6 +323,7 @@ class Document(Photoshop):
 
         Args:
             width: The trap width in pixels.
+
         """
         return self.app.trap(width)
 
@@ -334,6 +343,7 @@ class Document(Photoshop):
             left: If true, trims away the left of the document.
             bottom: If true, trims away the bottom of the document.
             right: If true, trims away the right of the document.
+
         """
         return self.app.trim(trim_type, top, left, bottom, right)
 
@@ -342,7 +352,7 @@ class Document(Photoshop):
         width: int,
         height: int,
         resolution: int = 72,
-        automatic: int = 8
+        automatic: int = 8,
     ) -> None:
         """Changes the size of the image.
 
@@ -351,5 +361,6 @@ class Document(Photoshop):
             height: The desired height of the image.
             resolution: The resolution (in pixels per inch)
             automatic: Value for automatic.
+
         """
         return self.app.resizeImage(width, height, resolution, automatic)

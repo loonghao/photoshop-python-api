@@ -1,4 +1,6 @@
 # Import built-in modules
+from __future__ import annotations
+
 import os
 from tempfile import mkdtemp
 

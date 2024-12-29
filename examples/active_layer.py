@@ -2,8 +2,9 @@
 # first if the last is already active.
 
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 with Session() as ps:
     if len(ps.app.documents) < 1:

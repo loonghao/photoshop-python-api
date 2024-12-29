@@ -1,13 +1,13 @@
-"""
-Let's get the current document and create a new layer "Background" and fill it
+"""Let's get the current document and create a new layer "Background" and fill it
 with red color. In order to use the Fill tool we will first select the entire
 layer and then fill it with a color.
 
 """
 
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 with Session() as ps:
     document = ps.active_document

@@ -1,4 +1,6 @@
 # Import third-party modules
+from __future__ import annotations
+
 from comtypes import ArgumentError
 
 # Import local modules

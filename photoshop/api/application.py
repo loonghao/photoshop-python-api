@@ -11,15 +11,15 @@ app.documents.add(800, 600, 72, "docRef")
 
 """
 # Import built-in modules
+from __future__ import annotations
+
 import os
-from pathlib import Path
 import time
-from typing import List
-from typing import Optional
-from typing import Union
 
 # Import third-party modules
 from _ctypes import COMError
+from pathlib import Path
+from typing import List, Optional, Union
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
@@ -31,8 +31,7 @@ from photoshop.api._measurement_log import MeasurementLog
 from photoshop.api._notifiers import Notifiers
 from photoshop.api._preferences import Preferences
 from photoshop.api._text_fonts import TextFonts
-from photoshop.api.enumerations import DialogModes
-from photoshop.api.enumerations import PurgeTarget
+from photoshop.api.enumerations import DialogModes, PurgeTarget
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.solid_color import SolidColor
 
@@ -153,7 +152,8 @@ class Application(Photoshop):
     @property
     def displayDialogs(self) -> DialogModes:
         """The dialog mode for the document, which indicates whether
-        Photoshop displays dialogs when the script runs."""
+        Photoshop displays dialogs when the script runs.
+        """
         return DialogModes(self.app.displayDialogs)
 
     @displayDialogs.setter
@@ -221,7 +221,8 @@ class Application(Photoshop):
     @property
     def notifiers(self) -> Notifiers:
         """The notifiers currently configured (in the Scripts Events Manager
-        menu in the application)."""
+        menu in the application).
+        """
         return Notifiers(self.app.notifiers)
 
     @property
@@ -321,10 +322,7 @@ class Application(Photoshop):
         return True
 
     def doForcedProgress(self, title, javascript):
-        script = "app.doForcedProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = f"app.doForcedProgress('{title}', '{javascript}')"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -338,31 +336,19 @@ class Application(Photoshop):
             javascript (str): JavaScriptString to execute.
 
         """
-        script = "app.doProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = f"app.doProgress('{title}', '{javascript}')"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSegmentTask(self, segmentLength, done, total, javascript):
-        script = "app.doProgressSegmentTask({}, {}, {}, '{}');".format(
-            segmentLength,
-            done,
-            total,
-            javascript,
-        )
+        script = f"app.doProgressSegmentTask({segmentLength}, {done}, {total}, '{javascript}');"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSubTask(self, index, limit, javascript):
-        script = "app.doProgressSubTask({}, {}, '{}');".format(
-            index,
-            limit,
-            javascript,
-        )
+        script = f"app.doProgressSubTask({index}, {limit}, '{javascript}');"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -403,7 +389,8 @@ class Application(Photoshop):
 
     def getCustomOptions(self, key):
         """Retrieves user objects in the Photoshop registry for the ID with
-        value key."""
+        value key.
+        """
         return self.app.getCustomOptions(key)
 
     def open(

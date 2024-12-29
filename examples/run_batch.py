@@ -1,9 +1,10 @@
 # Import built-in modules
+from __future__ import annotations
+
 import os
 
 # Import local modules
 from photoshop import Session
-
 
 root = "your/images/root"
 files = []

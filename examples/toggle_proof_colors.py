@@ -5,8 +5,9 @@ Like operating in the menu:
 
 """
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 with Session() as ps:
     ps.app.runMenuItem(ps.app.stringIDToTypeID("toggleProofColors"))

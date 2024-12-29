@@ -1,4 +1,6 @@
 # Import built-in modules
+from __future__ import annotations
+
 import os
 from tempfile import mkdtemp
 
@@ -7,7 +9,6 @@ import examples._psd_files as psd  # Import from examples.
 
 # Import local modules
 from photoshop import Session
-
 
 PSD_FILE = psd.get_psd_files()
 

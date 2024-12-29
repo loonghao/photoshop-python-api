@@ -1,8 +1,9 @@
 """Convert Smart object to artLayer."""
 
 # Import local modules
-from photoshop import Session
+from __future__ import annotations
 
+from photoshop import Session
 
 # example 1
 with Session() as ps:

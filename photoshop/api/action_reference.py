@@ -9,6 +9,8 @@ with an ActionDescriptor.
 
 """
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ReferenceFormType
 
@@ -60,7 +62,8 @@ class ActionReference(Photoshop):
 
     def getIdentifier(self) -> int:
         """Gets the identifier value for a reference whose form is
-        identifier."""
+        identifier.
+        """
         return self.app.getIdentifier()
 
     def getIndex(self) -> int:
@@ -75,7 +78,8 @@ class ActionReference(Photoshop):
 
     def putEnumerated(self, desired_class, enum_type, value):
         """Puts an enumeration type and ID into a reference along with the
-        desired class for the reference."""
+        desired class for the reference.
+        """
         return self.app.putEnumerated(desired_class, enum_type, value)
 
     def putIdentifier(self, desired_class, value):

@@ -7,8 +7,9 @@ References:
 """
 
 # Import local modules
-import photoshop.api as ps
+from __future__ import annotations
 
+import photoshop.api as ps
 
 app = ps.Application()
 
@@ -52,4 +53,4 @@ if len(list((i, x) for i, x in enumerate(app.documents, 1))) > 0:
     else:
         print("Operation cannot be performed on background layer")
 else:
-    print("Create a document with an active selection before running this " "script!")
+    print("Create a document with an active selection before running this script!")

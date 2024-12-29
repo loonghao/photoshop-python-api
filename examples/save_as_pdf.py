@@ -1,11 +1,12 @@
 """Save current active document as a PDF file."""
 # Import built-in modules
+from __future__ import annotations
+
 import os
 from tempfile import mkdtemp
 
 # Import local modules
 from photoshop import Session
-
 
 with Session() as ps:
     option = ps.PDFSaveOptions(jpegQuality=12, layers=True, view=True)

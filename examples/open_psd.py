@@ -1,7 +1,8 @@
 # Import local modules
-from photoshop import Session
-import photoshop.api as ps
+from __future__ import annotations
 
+import photoshop.api as ps
+from photoshop import Session
 
 # style 1
 app = ps.Application()

@@ -1,4 +1,6 @@
 # Import third-party modules
+from __future__ import annotations
+
 from comtypes import ArgumentError
 
 # Import local modules
@@ -60,6 +62,7 @@ class ArtLayers(Photoshop):
 
         Raises:
             PhotoshopPythonAPIError: Could not find a artLayer.
+
         """
         for layer in self.app:
             if layer.name == name:

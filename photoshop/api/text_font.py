@@ -1,4 +1,6 @@
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 
 

@@ -1,9 +1,9 @@
 # Import local modules
+from __future__ import annotations
+
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
-from photoshop.api.enumerations import BitsPerChannelType
-from photoshop.api.enumerations import DocumentFill
-from photoshop.api.enumerations import NewDocumentMode
+from photoshop.api.enumerations import BitsPerChannelType, DocumentFill, NewDocumentMode
 from photoshop.api.errors import PhotoshopPythonAPIError
 
 
@@ -59,7 +59,7 @@ class Documents(Photoshop):
                 pixelAspectRatio,
                 bitsPerChannel,
                 colorProfileName,
-            )
+            ),
         )
 
     def __iter__(self) -> Document:

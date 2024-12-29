@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import photoshop.api as ps
 
 app = ps.Application()
