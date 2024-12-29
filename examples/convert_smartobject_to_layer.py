@@ -29,7 +29,7 @@ with Session() as ps:
     ps.echo("Layer converted to Smart Object")
     
     # Check if it's a smart object
-    if layer.kind == ps.LayerKind.SmartObject:
+    if layer.kind == ps.LayerKind.SmartObjectLayer:
         ps.echo("Layer is now a Smart Object")
         
         # Convert back to regular layer

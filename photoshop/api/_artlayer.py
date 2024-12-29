@@ -58,6 +58,7 @@ class ArtLayer(Photoshop):
             "posterize",
             "rasterize",
             "unlink",
+            "convertToSmartObject",
         )
 
     @property
@@ -149,30 +150,17 @@ class ArtLayer(Photoshop):
             LayerKind: The kind of this layer.
         """
         try:
-            js_code = f"""
-            function getLayerKindByIndex(index) {{
-                var ref = new ActionReference();
-                ref.putIndex(charIDToTypeID('Lyr '), index);
-                var desc = executeActionGet(ref);
-
-                if (desc.hasKey(stringIDToTypeID('artboard'))) {{
-                    return 25;  // ArtboardLayer
-                }}
-
-                if (desc.hasKey(stringIDToTypeID('textKey'))) {{
-                    return 2;   // TextLayer
-                }}
-
-                return 1;  // NormalLayer
-            }}
-            getLayerKindByIndex({self.itemIndex});
+            js = """
+            var ref = new ActionReference();
+            ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+            var desc = executeActionGet(ref);
+            var layerType = desc.getInteger(stringIDToTypeID("layerKind"));
+            layerType;
             """
-            result = self.eval_javascript(js_code)
-            print(f"Layer kind result for {self.name}: {result}")
-            return LayerKind(int(result))
+            return int(self.eval_javascript(js))
         except Exception as e:
-            print(f"Error getting layer kind for {self.name}: {str(e)}")
-            return LayerKind.NormalLayer
+            print(f"Error getting layer kind: {str(e)}")
+            return None
 
     @kind.setter
     def kind(self, layer_type):
@@ -552,4 +540,30 @@ class ArtLayer(Photoshop):
         self.app.invert()
 
     def duplicate(self, relativeObject=None, insertionLocation=None):
-        return ArtLayer(self.app.duplicate(relativeObject, insertionLocation))
+        """Duplicates the layer.
+
+        Args:
+            relativeObject: Layer or LayerSet.
+            insertionLocation: The location to insert the layer.
+
+        Returns:
+            ArtLayer: The duplicated layer.
+
+        """
+        dup = self.app.duplicate(relativeObject, insertionLocation)
+        return ArtLayer(dup)
+
+    def convertToSmartObject(self):
+        """Converts the layer to a smart object.
+
+        Returns:
+            ArtLayer: The converted smart object layer.
+
+        """
+        # Convert layer to smart object using JavaScript
+        js = """
+        var idnewPlacedLayer = stringIDToTypeID("newPlacedLayer");
+        executeAction(idnewPlacedLayer, undefined, DialogModes.NO);
+        """
+        self.eval_javascript(js)
+        return self
