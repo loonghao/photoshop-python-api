@@ -24,3 +24,4 @@ venv_python
 
 # Docs
 docs_src/_build/
+/run_pycharm.bat
