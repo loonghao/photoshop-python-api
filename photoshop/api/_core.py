@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import os
+import platform
 import winreg
 from contextlib import suppress
 from functools import cached_property
@@ -72,7 +73,7 @@ class Photoshop:
         return f"{self.__class__.__name__}()"
 
     def __call__(self, *args: Any, **kwargs: Any) -> Any:
-        return self.app(*args, **kwargs)
+        return self.app
 
     def __str__(self) -> str:
         return f"{self.typename}"
@@ -178,6 +179,7 @@ class Photoshop:
 
     def get_application_path(self) -> str:
         """str: The absolute path of Photoshop installed location."""
+        print(f"{self._reg_path}\\{self.app_id}")
         key = self._open_key(f"{self._reg_path}\\{self.app_id}")
         return winreg.QueryValueEx(key, "ApplicationPath")[0]
 
@@ -198,7 +200,10 @@ class Photoshop:
 
     def eval_javascript(self, javascript: str, Arguments: Any = None, ExecutionMode: Any = None) -> Any:
         """Instruct the application to execute javascript code."""
-        return self.app.DoJavaScript(javascript, Arguments, ExecutionMode)
+        executor = self.app
+        if self._has_parent:
+            executor = self.adobe
+        return executor.doJavaScript(javascript, Arguments, ExecutionMode)
 
     """
     * Private Static Methods
@@ -218,7 +223,13 @@ class Photoshop:
             OSError: if registry key cannot be read.
 
         """
+        machine_type = platform.machine()
+        mappings = {"AMD64": winreg.KEY_WOW64_64KEY}
+        access = winreg.KEY_READ | mappings.get(machine_type, winreg.KEY_WOW64_32KEY)
         try:
-            return winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, key)
-        except OSError:
-            raise OSError(f"Unable to find registry key: {key}")
+            return winreg.OpenKey(key=winreg.HKEY_LOCAL_MACHINE, sub_key=key, access=access)
+        except FileNotFoundError as err:
+            raise OSError(
+                "Failed to read the registration: <{path}>\n"
+                "Please check if you have Photoshop installed correctly.".format(path=f"HKEY_LOCAL_MACHINE\\{key}"),
+            ) from err

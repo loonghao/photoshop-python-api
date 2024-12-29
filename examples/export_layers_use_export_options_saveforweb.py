@@ -21,6 +21,7 @@ def hide_all_layers(layers):
 def main():
     psd_file = PSD_FILE["export_layers_as_png.psd"]
     with Session(psd_file, action="open") as ps:
+        print(ps.app.get_application_path())
         doc = ps.active_document
         options = ps.ExportOptionsSaveForWeb()
         layers = doc.artLayers

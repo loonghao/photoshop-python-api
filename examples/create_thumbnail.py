@@ -2,6 +2,7 @@
 
 # Import built-in modules
 from __future__ import annotations
+
 from pathlib import Path
 from tempfile import mkdtemp
 from typing import Optional

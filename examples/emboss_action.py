@@ -5,7 +5,7 @@ from photoshop import Session
 
 with Session() as ps:
     app = ps.app
-    for index, x in enumerate(range(50)):
+    for index, _ in enumerate(range(50)):
         # Execute an existing action from action palette.
         idPly = app.charIDToTypeID("Ply ")
         desc8 = ps.ActionDescriptor()

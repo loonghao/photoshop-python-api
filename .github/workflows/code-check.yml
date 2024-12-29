@@ -2,6 +2,11 @@ name: Code Quality Check
 
 on: [pull_request]
 
+# Add concurrency configuration
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -27,9 +32,11 @@ jobs:
 
   test:
     runs-on: windows-latest
+    needs: lint  # Add dependency on lint job
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+      fail-fast: false  # Continue with other versions if one fails
     steps:
     - uses: actions/checkout@v4
       with:

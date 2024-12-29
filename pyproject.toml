@@ -61,6 +61,7 @@ exclude = '''
     | buck-out
     | build
     | dist
+    | manual_test    # exclude manual test directory
   )/
   | foo.py           # also separately exclude a file named foo.py in
                      # the root of the project
@@ -78,6 +79,7 @@ line_length = 120
 src_paths = ["photoshop", "test"]
 filter_files = true
 known_first_party = "photoshop"
+extend_skip = ["manual_test"]  # Add manual_test to isort skip list
 
 # Enforce import section headers.
 import_heading_future = "Import future modules"
@@ -90,11 +92,12 @@ force_single_line = true
 
 # All project unrelated unknown imports belong to third-party.
 default_section = "THIRDPARTY"
-skip_glob = "*/docs/conf.py"
+skip_glob = ["*/docs/conf.py", "manual_test/**/*.py"]
 
 [tool.ruff]
 line-length = 120
 target-version = "py38"
+extend-exclude = ["manual_test"]  # Add manual_test to ruff exclude list
 
 [tool.ruff.lint]
 select = [

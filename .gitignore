@@ -36,3 +36,7 @@ docs_src/_build/
 
 # windsurf rules
 .windsurfrules
+/examples/files/bg/
+/examples/files/blue/
+/examples/files/green/
+/examples/files/red/

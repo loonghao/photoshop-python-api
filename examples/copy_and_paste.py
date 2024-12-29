@@ -1,7 +1,8 @@
 """Demonstrate copy and paste operations in Photoshop.
 
 References:
-    https://github.com/lohriialo/photoshop-scripting-python/blob/master/CopyAndPaste.py."""
+    https://github.com/lohriialo/photoshop-scripting-python/blob/master/CopyAndPaste.py.
+"""
 
 # Import local modules
 from __future__ import annotations

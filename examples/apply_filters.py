@@ -1,14 +1,16 @@
 """Apply various filters to an image.
 
 References:
-    https://github.com/lohriialo/photoshop-scripting-python/blob/master/ApplyFilters.py."""
+    https://github.com/lohriialo/photoshop-scripting-python/blob/master/ApplyFilters.py.
+"""
 
 # Import third-party modules
 from __future__ import annotations
 
+import examples._psd_files as psd  # Import from examples.
+
 # Import local modules
 from photoshop import Session
-import examples._psd_files as psd  # Import from examples.
 
 PSD_FILE = psd.get_psd_files()
 
