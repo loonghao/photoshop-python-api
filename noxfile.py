@@ -9,22 +9,26 @@ import nox
 from nox.sessions import Session
 
 
-
 PYTHON_VERSIONS = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
 nox.needs_version = ">= 2023.4.22"
 nox.options.sessions = (
     "pre-commit",
+    "ruff",
     "safety",
     "mypy",
     "tests",
     "docs-build",
+    "build",
+    "release",
 )
+
 
 def install_with_uv(session: Session, *args: str) -> None:
     """Install packages with uv."""
     session.install("uv")
     if args:
         session.run("uv", "pip", "install", *args, external=True)
+
 
 def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
     """Activate virtualenv in hooks installed by pre-commit."""
@@ -85,10 +89,19 @@ def precommit(session: Session) -> None:
         "pre-commit",
         "pre-commit-hooks",
         "pyupgrade",
+        "ruff",
     )
     session.run("pre-commit", *args)
     if args and args[0] == "install":
         activate_virtualenv_in_precommit_hooks(session)
+
+
+@nox.session()
+def ruff(session: Session) -> None:
+    """Run ruff."""
+    args = session.posargs or ["check", ".", "--fix"]
+    install_with_uv(session, "ruff")
+    session.run("ruff", *args)
 
 
 @nox.session()
@@ -168,7 +181,7 @@ def docs_build(session: Session) -> None:
 @nox.session()
 def docs(session: Session) -> None:
     """Build and serve the documentation with live reloading on file changes."""
-    args = session.posargs or ["docs", "serve"]
+    args = session.posargs or ["serve"]
     install_with_uv(
         session,
         ".",
@@ -189,8 +202,41 @@ def docs(session: Session) -> None:
         "stringcase",
     )
 
-    if session.interactive:
+    if args[0] == "serve":
         session.run("mkdocs", "serve")
-    else:
+    elif args[0] == "build":
         session.run("mkdocs", "build")
+    elif args[0] == "deploy":
+        session.run("mkdocs", "gh-deploy", "--force")
+    else:
+        session.run("mkdocs", *args)
 
+
+@nox.session()
+def build(session: Session) -> None:
+    """Build the package."""
+    install_with_uv(session, "build")
+    session.run("python", "-m", "build")
+
+
+@nox.session()
+def release(session: Session) -> None:
+    """Release the package to PyPI."""
+    if not session.posargs:
+        session.error("Please provide a version number, e.g: nox -s release -- 1.0.0")
+    
+    version = session.posargs[0]
+    
+    # Install dependencies
+    install_with_uv(session, "twine", "build")
+    
+    # Clean up previous builds
+    if os.path.exists("dist"):
+        shutil.rmtree("dist")
+    
+    # Build the package
+    session.run("python", "-m", "build")
+    
+    # Upload to PyPI
+    session.run("twine", "check", "dist/*")
+    session.run("twine", "upload", "dist/*")
