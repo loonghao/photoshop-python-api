@@ -1,0 +1,4 @@
+poetry
+nox
+pytest
+nox-poetry

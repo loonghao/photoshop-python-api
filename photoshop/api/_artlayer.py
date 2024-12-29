@@ -347,7 +347,12 @@ class ArtLayer(Photoshop):
         """
         return self.app.applyAddNoise(graininess, amount, clear_amount)
 
-    def applyDiffuseGlow(self, graininess, amount, clear_amount):
+    def applyDiffuseGlow(
+        self,
+        graininess: float,
+        amount: float,
+        clear_amount: float,
+    ) -> None:
         """Applies the diffuse glow filter.
 
         Args:

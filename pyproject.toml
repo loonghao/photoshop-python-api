@@ -14,7 +14,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Microsoft :: Windows :: Windows 10",
-    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3 :: Only",  
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -24,53 +26,28 @@ classifiers = [
 packages = [
     { include = "photoshop" },
 ]
+
 [tool.poetry.build]
 generate-setup-file = false
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-wheel = "^0.42.0"
+python = ">=3.7,<4.0"
 comtypes = "^1.2.0"
 
 [tool.poetry.group.dev.dependencies]
-commitizen = "^3.12.0"
-pre-commit = "^3.6.0"
-codecov = "^2.1.13"
-pylint = "^3.0.3"
-isort = "^5.13.2"
-pytest = "^7.4.3"
-flake8 = "^7.0.0"
-mypy = "^1.7.1"
-coverage = "^7.3.2"
-black = "^23.12.1"
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-mkdocs = "^1.5.3"
-mkdocs-git-revision-date-plugin = "^0.3.2"
-mkdocs-material = "^9.5.2"
-mkdocstrings-python = "^1.7.5"
-mkdocs-pymdownx-material-extras = "^2.5.5"
-mkdocs-same-dir = "^0.1.1"
-mkdocs-include-markdown-plugin = "^3.3.0"
-mkdocs-gen-files = "^0.5.0"
-mkdocs-literate-nav = "^0.6.0"
-mkdocs-git-revision-date-localized-plugin = "^1.0.0"
-mkdocs-section-index = "^0.3.4"
-mkdocs-git-authors-plugin = "^0.7.0"
+nox = "^2023.4.22"
+nox-poetry = "^1.0.3"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/loonghao/photoshop-python-api/issues"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0", "wheel>=0.42.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
-target-version = ['py39']
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311', 'py312']
 include = '\.pyi?$'
 exclude = '''
 (

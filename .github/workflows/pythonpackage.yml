@@ -17,22 +17,13 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+        
     - name: Install dependencies
       run: |
-        python -m pip install -U pip poetry
-        poetry --version
-        poetry install
+        python -m pip install --upgrade pip
+        pip install nox
 
-    - name: Run tests and linters
+    - name: Run linting checks
       run: |
-        #!/bin/sh -e
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        export PREFIX="poetry run python -m "
-        if [ -d 'venv' ] ; then
-            export PREFIX="venv/bin/"
-        fi
-
-        ${PREFIX}black photoshop --check
-        ${PREFIX}isort --check-only photoshop
-        ${PREFIX}flake8 photoshop --max-line-length 120
+        nox -s pre-commit

@@ -1,22 +1,21 @@
-name: Test Documentation Build
+name: Tests
 
 on:
+  push:
+    branches: [ main ]
   pull_request:
     branches: [ main ]
-    paths:
-      - 'docs/**'
-      - 'mkdocs.yml'
-      - '.github/workflows/test_docs.yml'
-      - 'pyproject.toml'
-      - 'poetry.lock'
-      - 'noxfile.py'
 
 jobs:
-  test-docs:
-    runs-on: ubuntu-latest
+  tests:
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.9"]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+        os: [windows-latest]
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,6 +32,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install nox
 
-      - name: Test documentation build
+      - name: Run tests
         run: |
-          nox -s docs-build
+          nox -s tests
