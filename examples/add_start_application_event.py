@@ -34,13 +34,13 @@ with Session() as ps:
     # Create a temporary directory to store the JSX script
     root = Path(mkdtemp())
     jsx_file = root / "event.jsx"
-    
+
     # Write the JavaScript code that will be executed when Photoshop starts
     jsx_file.write_text('alert("Start Application event.")')
-    
+
     # Add the event notifier to Photoshop
     # EventID.Notify is triggered when Photoshop starts
     ps.app.notifiers.add(ps.EventID.Notify, str(jsx_file))
-    
+
     # Confirm the event was added successfully
     ps.echo("Add event done.")

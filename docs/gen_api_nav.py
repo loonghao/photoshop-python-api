@@ -10,6 +10,7 @@ import mkdocs_gen_files
 
 
 def main() -> None:
+    """Generate API navigation for mkdocs."""
     nav = mkdocs_gen_files.Nav()
     root = Path(__file__).parent.parent
     api_root = root.joinpath("photoshop")

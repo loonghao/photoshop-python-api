@@ -35,6 +35,7 @@ theme:
         name: Switch to light mode
 
 docs_dir: docs
+site_dir: site
 
 nav:
 - Home:

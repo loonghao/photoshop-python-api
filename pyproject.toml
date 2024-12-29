@@ -102,26 +102,16 @@ extend-exclude = ["manual_test"]  # Add manual_test to ruff exclude list
 [tool.ruff.lint]
 select = [
     "E",   # pycodestyle errors
-    "W",   # pycodestyle warnings
     "F",   # pyflakes
-    "I",   # isort
-    "N",   # pep8-naming
     "UP",  # pyupgrade
-    "ANN", # flake8-annotations
-    "S",   # flake8-bandit
     "B",   # flake8-bugbear
-    "A",   # flake8-builtins
-    "COM", # flake8-commas
+    "S",   # flake8-bandit
     "C4",  # flake8-comprehensions
     "DTZ", # flake8-datetimez
     "T10", # flake8-debugger
-    "DJ",  # flake8-django
-    "EM",  # flake8-errmsg
-    "EXE", # flake8-executable
     "ISC", # flake8-implicit-str-concat
     "ICN", # flake8-import-conventions
     "G",   # flake8-logging-format
-    "INP", # flake8-no-pep420
     "PIE", # flake8-pie
     "T20", # flake8-print
     "PYI", # flake8-pyi
@@ -136,12 +126,24 @@ select = [
     "ARG", # flake8-unused-arguments
     "PTH", # flake8-use-pathlib
     "ERA", # eradicate
-    "PD",  # pandas-vet
     "PGH", # pygrep-hooks
     "PL",  # pylint
     "TRY", # tryceratops
+    "RUF", # ruff-specific rules
+    "FBT", # boolean-trap
+    "A",   # flake8-builtins
+    "COM", # flake8-commas
+    "CPY", # flake8-copyright
+    "C90", # mccabe
+    "EM",  # flake8-errmsg
+    "FA",  # flake8-future-annotations
+    "FIX", # flake8-fixme
     "FLY", # flynt
+    "INP", # flake8-no-pep420
+    "LOG", # flake8-logging
+    "N",   # pep8-naming
     "D",   # pydocstyle
+    "ANN", # flake8-annotations
 ]
 
 ignore = [
@@ -149,42 +151,10 @@ ignore = [
     "E402",  # module level import not at top of file
     "E731",  # do not assign a lambda expression, use a def
     "E741",  # ambiguous variable name
-    "C901",  # too complex
-    "D100",  # missing docstring in public module
-    "D101",  # missing docstring in public class
-    "D102",  # missing docstring in public method
-    "D103",  # missing docstring in public function
-    "D104",  # missing docstring in public package
-    "D105",  # missing docstring in magic method
-    "D107",  # missing docstring in __init__
-    "D202",  # no blank lines allowed after function docstring
-    "D205",  # 1 blank line required between summary line and description
-    "D400",  # first line should end with a period
-    "D401",  # first line should be in imperative mood
     "N802",  # function name should be lowercase
     "N803",  # argument name should be lowercase
     "N806",  # variable in function should be lowercase
-    "N815",  # variable in class scope should not be mixedCase
-    "N816",  # variable in global scope should not be mixedCase
-    "ANN101",  # missing type annotation for self in method
-    "ANN102",  # missing type annotation for cls in classmethod
-    "ANN401",  # dynamically typed expressions (typing.Any) are disallowed
-    "S101",  # use of assert detected
-    "S603",  # subprocess call - check for execution of untrusted input
-    "S607",  # start process with a shell
-    "PLR0911",  # too many return statements
-    "PLR0912",  # too many branches
-    "PLR0913",  # too many arguments to function call
-    "PLR0915",  # too many statements
-    "PLR2004",  # magic value used in comparison
-    "RET505",  # unnecessary else after return statement
-    "RET506",  # unnecessary else after raise statement
-    "RET507",  # unnecessary else after continue statement
-    "RET508",  # unnecessary else after break statement
-    "SIM105",  # use contextlib.suppress instead of try-except-pass
-    "SIM108",  # use ternary operator instead of if-else block
-    "SIM115",  # use context handler for opening files
-    "SIM117",  # use multiple with statements instead of a single with statement
+    "N815",  # argument name should not be a magic global variable
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -217,17 +187,18 @@ version_files = [
 
 [tool.mypy]
 python_version = "3.8"
-warn_return_any = false
+warn_return_any = true
 warn_unused_configs = true
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
-check_untyped_defs = false
-disallow_untyped_decorators = false
-no_implicit_optional = false
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
+exclude = ["manual_test/.*"]  # Add manual_test to mypy exclude list
 ignore_missing_imports = true
 allow_redefinition = true
 disable_error_code = ["union-attr", "no-any-return", "assignment", "misc", "arg-type", "index", "attr-defined", "type-var"]

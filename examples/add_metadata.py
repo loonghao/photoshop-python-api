@@ -29,12 +29,12 @@ from photoshop import Session
 with Session(action="new_document") as ps:
     # Get reference to active document
     doc = ps.active_document
-    
+
     # Set metadata properties
     doc.info.author = os.getenv("USERNAME")  # Set author to system username
     doc.info.provinceState = "Beijing"  # Set location information
     doc.info.title = "My Demo"  # Set document title
-    
+
     # Print the metadata information
     ps.echo("Metadata of current active document:")
     ps.echo(doc.info)

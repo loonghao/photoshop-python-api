@@ -26,6 +26,8 @@ from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channels import Channels
 from photoshop.api._core import Photoshop
 from photoshop.api._layerSet import LayerSet
+from photoshop.api._layerSets import LayerSets
+from photoshop.api._layers import Layers
 from photoshop.api.enumerations import ExportType, ExtensionType, SaveOptions, TrimType
 
 PS_Layer = TypeVar("PS_Layer", ArtLayer, LayerSet)
@@ -65,7 +67,18 @@ class Document(Photoshop):
 
     @property
     def artLayers(self) -> ArtLayers:
+        """The art layers collection in the document."""
         return ArtLayers(self.app.artLayers)
+
+    @property
+    def layers(self) -> Layers:
+        """The layers collection in the document."""
+        return Layers(self.app.layers)
+
+    @property
+    def layerSets(self) -> LayerSets:
+        """The layer sets collection in the document."""
+        return LayerSets(self.app.layerSets)
 
     @property
     def activeLayer(self) -> PS_Layer:

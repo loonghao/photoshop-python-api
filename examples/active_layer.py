@@ -9,14 +9,14 @@ This example shows how to:
 Example:
     ```python
     with Session() as ps:
-        docRef = ps.app.documents.add()  # Create new document
-        new_layer = docRef.artLayers.add()  # Add new layer
+        doc_ref = ps.app.documents.add()  # Create new document
+        new_layer = doc_ref.artLayers.add()  # Add new layer
         new_layer.name = "test"  # Rename layer
     ```
 
 Note:
     The script will create a new document if none exists,
-    and will add a new layer if the document has less than 2 layers.
+    and will add a new layer if the document has less than MIN_LAYERS layers.
 """
 
 # Import built-in modules
@@ -25,24 +25,26 @@ from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
-# Create a new Photoshop session
-with Session() as ps:
-    # Create a new document if none exists
-    if len(ps.app.documents) < 1:
-        docRef = ps.app.documents.add()
-    else:
-        docRef = ps.app.activeDocument
+def main():
+    """Demonstrate active layer operations in Photoshop."""
+    with Session() as ps:
+        # Create a new document if none exists
+        doc_ref = ps.app.documents.add() if len(ps.app.documents) < 1 else ps.app.activeDocument
 
-    # Add a new layer if document has less than 2 layers
-    if len(docRef.layers) < 2:
-        docRef.artLayers.add()
+        # Add a new layer if document has less than MIN_LAYERS layers
+        MIN_LAYERS = 2
+        if len(doc_ref.layers) < MIN_LAYERS:
+            doc_ref.artLayers.add()
 
-    # Print the name of the current active layer
-    ps.echo(docRef.activeLayer.name)
-    
-    # Create a new art layer and make it active
-    new_layer = docRef.artLayers.add()
-    ps.echo(new_layer.name)
-    
-    # Rename the new layer
-    new_layer.name = "test"
+        # Print the name of the current active layer
+        ps.echo(doc_ref.activeLayer.name)
+
+        # Create a new art layer and make it active
+        new_layer = doc_ref.artLayers.add()
+        ps.echo(new_layer.name)
+
+        # Rename the new layer
+        new_layer.name = "test"
+
+if __name__ == "__main__":
+    main()

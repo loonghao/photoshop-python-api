@@ -1,46 +1,60 @@
 # Import local modules
 from __future__ import annotations
 
+from typing import Any
+
 from photoshop.api._channel import Channel
-from photoshop.api._core import Photoshop
+from photoshop.api._collection_base import CollectionBase
 from photoshop.api.errors import PhotoshopPythonAPIError
 
 
-# pylint: disable=too-many-public-methods
-class Channels(Photoshop):
-    def __init__(self, parent):
-        super().__init__(parent=parent)
-        self._flag_as_method(
-            "add",
-            "removeAll",
-        )
+class Channels(CollectionBase[Channel]):
+    """The collection of channel objects in the document.
+    
+    This class represents a collection of channels in a Photoshop document.
+    It provides methods to:
+    - Add new channels
+    - Access channels by index or name
+    - Remove channels
+    - Iterate over channels
+    """
 
-    @property
-    def _channels(self):
-        return list(self.app)
+    def add(self) -> Channel:
+        """Add a new channel to the document.
+        
+        Returns:
+            Channel: The newly created channel
+        """
+        return self._wrap_item(self.app.add())
 
-    def __len__(self):
-        return self.length
-
-    def __iter__(self):
-        for layer in self.app:
-            yield layer
-
-    def __getitem__(self, item):
-        return self.app[item]
-
-    @property
-    def length(self):
-        return len(self._channels)
-
-    def add(self):
-        self.app.add()
-
-    def removeAll(self):
+    def removeAll(self) -> None:
+        """Delete all channels in the collection."""
         self.app.removeAll()
 
-    def getByName(self, name) -> Channel:
-        for channel in self._channels:
+    def getByName(self, name: str) -> Channel:
+        """Get the first channel with the specified name.
+        
+        Args:
+            name: The name of the channel to find
+            
+        Returns:
+            Channel: The channel with the specified name
+            
+        Raises:
+            PhotoshopPythonAPIError: If no channel with the specified name is found
+        """
+        for channel in self:
             if channel.name == name:
-                return Channel(channel)
+                return channel
         raise PhotoshopPythonAPIError(f'Could not find a channel named "{name}"')
+
+    def _wrap_item(self, item: Any) -> Channel:
+        """Wrap a COM channel object in a Channel instance.
+        
+        Args:
+            item: The COM channel object to wrap
+            
+        Returns:
+            Channel: The wrapped channel
+        """
+        return Channel(item)

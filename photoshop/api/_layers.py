@@ -2,51 +2,54 @@
 from __future__ import annotations
 
 from photoshop.api._artlayer import ArtLayer
-from photoshop.api._core import Photoshop
+from photoshop.api._collection_base import CollectionBase
 from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods
-class Layers(Photoshop):
+class Layers(CollectionBase[ArtLayer]):
     """The layers collection in the document."""
 
-    def __init__(self, parent):
-        super().__init__(parent=parent)
-        self._flag_as_method(
-            "add",
-            "item",
-        )
-
-    @property
-    def _layers(self):
-        return list(self.app)
-
-    def __len__(self):
-        return self.length
-
-    def __getitem__(self, key):
-        item = self._layers[key]
-        return ArtLayer(item)
-
-    @property
-    def length(self):
-        return len(self._layers)
-
-    def removeAll(self):
+    def removeAll(self) -> None:
         """Deletes all elements."""
-        for layer in self.app:
-            ArtLayer(layer).remove()
+        for layer in self:
+            layer.remove()
 
-    def item(self, index):
-        return ArtLayer(self.app.item(index))
-
-    def __iter__(self):
-        for layer in self._layers:
-            yield ArtLayer(layer)
+    def item(self, index: int) -> ArtLayer:
+        """Get layer by index.
+        
+        Args:
+            index: The index of the layer to get
+            
+        Returns:
+            ArtLayer: The layer at the specified index
+        """
+        return self._wrap_item(self.app.item(index))
 
     def getByName(self, name: str) -> ArtLayer:
-        """Get the first element in the collection with the provided name."""
-        for layer in self.app:
+        """Get the first element in the collection with the provided name.
+        
+        Args:
+            name: The name of the layer to find
+            
+        Returns:
+            ArtLayer: The first layer with the specified name
+            
+        Raises:
+            PhotoshopPythonAPIError: If no layer with the specified name is found
+        """
+        for layer in self:
             if layer.name == name:
-                return ArtLayer(layer)
-        raise PhotoshopPythonAPIError("X")
+                return layer
+        raise PhotoshopPythonAPIError(f'Could not find a layer named "{name}"')
+
+    def _wrap_item(self, item: Any) -> ArtLayer:
+        """Wrap a COM layer object in an ArtLayer instance.
+        
+        Args:
+            item: The COM layer object to wrap
+            
+        Returns:
+            ArtLayer: The wrapped layer
+        """
+        return ArtLayer(item)

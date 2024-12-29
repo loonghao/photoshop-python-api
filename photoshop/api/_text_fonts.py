@@ -7,37 +7,40 @@ from typing import Any, Union
 from comtypes import ArgumentError, COMError
 
 # Import local modules
-from photoshop.api._core import Photoshop
+from photoshop.api._collection_base import CollectionBase
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.text_font import TextFont
 
 
-class TextFonts(Photoshop):
-    """An installed font."""
-
-    def __init__(self, parent=None):
-        super().__init__(parent=parent)
-
+class TextFonts(CollectionBase[TextFont]):
+    """The collection of installed fonts in Photoshop.
+    
+    This class represents all the fonts installed in the system and available to
+    Photoshop. It provides methods to:
+    - Access fonts by name or postScriptName
+    - Check if a font is installed
+    - Iterate over all available fonts
+    """
+    
     """
     MAGIC METHODS
     """
-
+    
     def __len__(self) -> int:
         return self.length
 
     def __iter__(self):
         for font in self.app:
-            yield TextFont(font)
+            yield self._wrap_item(font)
 
     def __contains__(self, name: str) -> bool:
         """Check if a font is installed. Lookup by font postScriptName (fastest) or name.
-
+        
         Args:
-            name: Name or postScriptName of the font to look for.
-
+            name: Name or postScriptName of the font to look for
+            
         Returns:
-            bool: True if font is found, otherwise False.
-
+            bool: True if font is found, otherwise False
         """
         # Look for postScriptName
         if self.get(name):
@@ -53,64 +56,71 @@ class TextFonts(Photoshop):
 
     def __getitem__(self, key: str) -> TextFont:
         """Access a given TextFont using dictionary key lookup, must provide the postScriptName.
-
+        
         Args:
             key: The postScriptName of the font.
-
+            
         Returns:
             TextFont instance.
-
+            
         """
         try:
-            return TextFont(self.app[key])
+            return self._wrap_item(self.app[key])
         except ArgumentError:
             raise PhotoshopPythonAPIError(f'Could not find a font with postScriptName "{key}"')
 
     """
     METHODS
     """
-
+    
     def get(self, key: str, default: Any = None) -> Union[TextFont, Any]:
-        """Accesses a given TextFont using dictionary key lookup of postScriptName, returns default if not found.
-
+        """Get a font by its postScriptName, return default if not found.
+        
         Args:
-            key: The postScriptName of the font.
-            default: Value to return if font isn't found.
-
+            key: The postScriptName of the font
+            default: Value to return if font isn't found
+            
         Returns:
-            TextFont instance.
-
+            TextFont: The font if found, otherwise the default value
         """
         try:
-            return TextFont(self.app[key])
+            return self._wrap_item(self.app[key])
         except (KeyError, ArgumentError):
             return default
 
     def getByName(self, name: str) -> TextFont:
-        """Gets the font by the font name.
-
+        """Get a font by its display name.
+        
         Args:
-            name: The name of the font.
-
-
+            name: The display name of the font
+            
         Returns:
-            font instance.
-
+            TextFont: The font with the specified name
+            
+        Raises:
+            PhotoshopPythonAPIError: If no font with the specified name is found
         """
-        for font in self.app:
+        for font in self:
             if font.name == name:
-                return TextFont(font)
-        raise PhotoshopPythonAPIError('Could not find a TextFont named "{name}"')
+                return font
+        raise PhotoshopPythonAPIError(f'Could not find a font named "{name}"')
+
+    def _wrap_item(self, item: Any) -> TextFont:
+        """Wrap a COM font object in a TextFont instance.
+        
+        Args:
+            item: The COM font object to wrap
+            
+        Returns:
+            TextFont: The wrapped font
+        """
+        return TextFont(item)
 
     """
     PROPERTIES
     """
-
-    @property
-    def _fonts(self):
-        return [a for a in self.app]
-
+    
     @property
     def length(self) -> int:
         """The number pf elements in the collection."""
-        return len(self._fonts)
+        return len(self.app)

@@ -7,6 +7,7 @@ from typing import Any
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import LayerKind, RasterizeType
 from photoshop.api.text_item import TextItem
+from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments
@@ -58,6 +59,7 @@ class ArtLayer(Photoshop):
             "move",
             "posterize",
             "rasterize",
+            "rotate",
             "unlink",
         )
 
@@ -538,3 +540,34 @@ class ArtLayer(Photoshop):
 
     def duplicate(self, relativeObject=None, insertionLocation=None):
         return ArtLayer(self.app.duplicate(relativeObject, insertionLocation))
+
+    def rotate(self, angle: float) -> None:
+        """Rotate the layer by a specified angle.
+
+        Args:
+            angle (float): The angle to rotate in degrees. Positive values rotate clockwise,
+                        negative values rotate counterclockwise.
+
+        Returns:
+            None
+
+        Raises:
+            PhotoshopPythonAPIError: If the rotation operation fails.
+        """
+        # Create a JavaScript code to perform the rotation
+        javascript = f"""
+            try {{
+                var desc = new ActionDescriptor();
+                desc.putUnitDouble(charIDToTypeID('Angl'), charIDToTypeID('#Ang'), {angle});
+                executeAction(charIDToTypeID('Rtte'), desc, DialogModes.NO);
+            }} catch(e) {{
+                // If rotation fails, cancel the transform and throw error
+                executeAction(charIDToTypeID('Trnf'), undefined, DialogModes.NO);
+                throw e;
+            }}
+        """
+        
+        try:
+            self.adobe.doJavaScript(javascript)
+        except Exception as e:
+            raise PhotoshopPythonAPIError(f"Failed to rotate layer: {e!s}")

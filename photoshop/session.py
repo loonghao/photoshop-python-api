@@ -300,11 +300,11 @@ class Session:
         except errors.PhotoshopPythonAPICOMError:
             raise errors.PhotoshopPythonAPIError("No active document available.")
 
-    def set_active_document(self, doc):
+    def set_active_document(self, doc: Document) -> None:
         """Set active document.
         
         Args:
-            doc: The document to set as active.
+            doc (Document): The document to set as active.
 
         """
         self._active_document = doc
