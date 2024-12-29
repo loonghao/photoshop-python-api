@@ -154,15 +154,15 @@ class ArtLayer(Photoshop):
                 var ref = new ActionReference();
                 ref.putIndex(charIDToTypeID('Lyr '), index);
                 var desc = executeActionGet(ref);
-                
+
                 if (desc.hasKey(stringIDToTypeID('artboard'))) {{
                     return 25;  // ArtboardLayer
                 }}
-                
+
                 if (desc.hasKey(stringIDToTypeID('textKey'))) {{
                     return 2;   // TextLayer
                 }}
-                
+
                 return 1;  // NormalLayer
             }}
             getLayerKindByIndex({self.itemIndex});

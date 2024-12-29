@@ -1,56 +1,57 @@
-"""This script demonstrates how you can use the action manager to execute the
-Emboss filter.
+"""Example of applying Smart Sharpen filter in Photoshop.
 
-References:
-    https://github.com/lohriialo/photoshop-scripting-python/blob/master/SmartSharpen.py
+This example demonstrates how to:
+1. Apply Smart Sharpen filter with various settings
+2. Configure sharpening parameters
+3. Handle different sharpening methods
+4. Process multiple layers
 
+Key concepts:
+- Smart Sharpen filter
+- Filter parameters
+- Image enhancement
+- Layer processing
 """
 
-# Import third-party modules
-import examples._psd_files as psd  # Import from examples.
-
 # Import local modules
-import photoshop.api as ps
+from photoshop import Session
 
 
-app = ps.Application()
-
-PSD_FILE = psd.get_psd_files()
-file_path = PSD_FILE["layer_comps.psd"]
-docRef = app.open(file_path)
-
-nlayerSets = docRef.layerSets
-nArtLayers = docRef.layerSets.item(nlayerSets.length)
-docRef.activeLayer = nArtLayers.artLayers.item(nArtLayers.artLayers.length)
-
-
-def SmartSharpen(inAmount, inRadius, inNoise):
-    idsmart_sharpen_id = app.stringIDToTypeID(ps.EventID.SmartSharpen)
-    desc37 = ps.ActionDescriptor()
-
-    idpresetKind = app.stringIDToTypeID(ps.EventID.PresetKind)
-    idpresetKindType = app.stringIDToTypeID(ps.EventID.PresetKindType)
-    idpresetKindCustom = app.stringIDToTypeID(ps.EventID.PresetKindCustom)
-    desc37.putEnumerated(idpresetKind, idpresetKindType, idpresetKindCustom)
-
-    idAmnt = app.charIDToTypeID("Amnt")
-    idPrc = app.charIDToTypeID("Rds ")
-    desc37.putUnitDouble(idAmnt, idPrc, inAmount)
-
-    idRds = app.charIDToTypeID("Rds ")
-    idPxl = app.charIDToTypeID("#Pxl")
-    desc37.putUnitDouble(idRds, idPxl, inRadius)
-
-    idnoiseReduction = app.stringIDToTypeID("noiseReduction")
-    idPrc = app.charIDToTypeID("#Prc")
-    desc37.putUnitDouble(idnoiseReduction, idPrc, inNoise)
-
-    idblur = app.charIDToTypeID("blur")
-    idblurType = app.stringIDToTypeID("blurType")
-    idGsnB = app.charIDToTypeID("GsnB")
-    desc37.putEnumerated(idblur, idblurType, idGsnB)
-
-    app.ExecuteAction(idsmart_sharpen_id, desc37)
-
-
-SmartSharpen(300, 2.0, 20)
+with Session() as ps:
+    doc = ps.active_document
+    layer = doc.activeLayer
+    
+    # Configure Smart Sharpen options
+    options = ps.SmartSharpenOptions()
+    options.amount = 100.0
+    options.radius = 3.0
+    options.noiseReduction = 20
+    options.removeMotionBlur = False
+    options.angle = 0
+    options.moreAccurate = True
+    
+    # Apply Smart Sharpen
+    layer.applySmartSharpen(
+        amount=options.amount,
+        radius=options.radius,
+        noiseReduction=options.noiseReduction,
+        removeMotionBlur=options.removeMotionBlur,
+        angle=options.angle,
+        moreAccurate=options.moreAccurate
+    )
+    
+    # Create a copy with different settings
+    new_layer = layer.duplicate()
+    new_layer.name = "Sharp Copy"
+    
+    # Apply stronger sharpening
+    options.amount = 150.0
+    options.radius = 4.0
+    new_layer.applySmartSharpen(
+        amount=options.amount,
+        radius=options.radius,
+        noiseReduction=options.noiseReduction,
+        removeMotionBlur=options.removeMotionBlur,
+        angle=options.angle,
+        moreAccurate=options.moreAccurate
+    )

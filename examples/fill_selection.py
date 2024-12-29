@@ -1,26 +1,56 @@
-# Fill the current selection with an RGB color.
+"""Example of filling selections in Photoshop.
 
+This example demonstrates how to:
+1. Create and modify selections
+2. Fill selections with colors
+3. Work with selection options
+4. Apply different fill methods
+
+Key concepts:
+- Selection tools
+- Fill operations
+- Color fills
+- Selection modification
+- Fill opacity and blending
+"""
 
 # Import local modules
 from photoshop import Session
 
 
 with Session() as ps:
-    start_ruler_units = ps.app.Preferences.RulerUnits
-
-    if len(ps.app.documents) < 1:
-        if start_ruler_units is not ps.Units.Pixels:
-            ps.app.Preferences.RulerUnits = ps.Units.Pixels
-        docRef = ps.app.documents.add(320, 240, 72, None, ps.NewDocumentMode.NewRGB, ps.DocumentFill.White)
-        docRef.artLayers.add()
-        ps.app.preferences.rulerUnits = start_ruler_units
-
-    if not ps.active_document.activeLayer.isBackgroundLayer:
-        selRef = ps.active_document.selection
-        fillcolor = ps.SolidColor()
-        fillcolor.rgb.red = 225
-        fillcolor.rgb.green = 0
-        fillcolor.rgb.blue = 0
-        selRef.fill(fillcolor, ps.ColorBlendMode.NormalBlendColor, 25, False)
-    else:
-        ps.echo("Can't perform operation on background layer.")
+    doc = ps.active_document
+    
+    # Create a rectangular selection
+    doc.selection.select([
+        [100, 100],
+        [300, 100],
+        [300, 200],
+        [100, 200]
+    ])
+    
+    # Create fill color
+    fill_color = ps.SolidColor()
+    fill_color.rgb.red = 255
+    fill_color.rgb.green = 0
+    fill_color.rgb.blue = 0
+    
+    # Fill the selection
+    doc.selection.fill(fill_color)
+    
+    # Deselect
+    doc.selection.deselect()
+    
+    # Create another selection and fill with opacity
+    doc.selection.select([
+        [150, 150],
+        [350, 150],
+        [350, 250],
+        [150, 250]
+    ])
+    
+    fill_color.rgb.blue = 255
+    doc.selection.fill(fill_color, ps.ColorBlendMode.Normal, 50)
+    
+    # Clear selection
+    doc.selection.deselect()

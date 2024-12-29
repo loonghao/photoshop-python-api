@@ -30,5 +30,7 @@ exclude =
     dist,
     venv,
     docs
+    examples
+    test
 
 max-line-length = 120

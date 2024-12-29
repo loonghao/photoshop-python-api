@@ -531,6 +531,7 @@ class LayerCompressionType(IntEnum):
 
 class LayerKind(IntEnum):
     """The kind of a layer."""
+
     BlackAndWhiteLayer = 22
     BrightnessContrastLayer = 9
     ChannelMixerLayer = 12
