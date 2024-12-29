@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "photoshop-python-api"
-version = "0.22.10"
+version = "0.22.7"
 description = "Python API for Photoshop."
 homepage = "https://github.com/loonghao/photoshop-python-api"
 repository = "https://github.com/loonghao/photoshop-python-api"
@@ -15,7 +15,6 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Microsoft :: Windows :: Windows 10",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -29,44 +28,36 @@ packages = [
 generate-setup-file = false
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-wheel = "^0.45.0"
-comtypes = "^1.1.11"
+python = ">=3.9,<4.0"
+wheel = "^0.42.0"
+comtypes = "^1.2.0"
 
 [tool.poetry.group.dev.dependencies]
-commitizen = "^2.17.8"
-pre-commit = "^2.13.0"
-codecov = "^2.1.11"
-pylint = "^2.8.2"
-isort = "^5.8.0"
-pytest = "^7.0.0"
-flake8 = "^4.0.0"
-mypy = "^1.0"
-coverage = "^7.0.0"
-mkdocs = "^1.2.2"
-mkdocs-git-revision-date-plugin = "^0.3.1"
-black = "^23.0.0"
-mkdocs-material = "^8.2.5"
-mkdocstrings-python = "^1.0.0"
-mkdocs-pymdownx-material-extras = "^2.0"
+commitizen = "^3.12.0"
+pre-commit = "^3.6.0"
+codecov = "^2.1.13"
+pylint = "^3.0.3"
+isort = "^5.13.2"
+pytest = "^7.4.3"
+flake8 = "^7.0.0"
+mypy = "^1.7.1"
+coverage = "^7.3.2"
+mkdocs = "^1.5.3"
+mkdocs-git-revision-date-plugin = "^0.3.2"
+black = "^23.12.1"
+mkdocs-material = "^9.5.2"
+mkdocstrings-python = "^1.7.5"
+mkdocs-pymdownx-material-extras = "^2.5.5"
 mkdocs-same-dir = "^0.1.1"
 mkdocs-include-markdown-plugin = "^3.3.0"
 mkdocs-gen-files = "^0.5.0"
-mkdocs-autolinks-plugin = "^0.7.0"
-mkdocs-minify-plugin = "^0.5.0"
-mkdocs-git-revision-date-localized-plugin = "^1.0.0"
-pytest-cov = "^4.0.0"
-stringcase = "^1.2.0"
 mkdocs-literate-nav = "^0.6.0"
+mkdocs-git-revision-date-localized-plugin = "^1.0.0"
+mkdocs-section-index = "^0.3.4"
+mkdocs-git-authors-plugin = "^0.7.0"
 
-[tool.commitizen]
-name = "cz_conventional_commits"
-version = "0.22.10"
-tag_format = "v$version"
-version_files = [
-    "pyproject.toml:version",
-    "photoshop/__version__.py"
-]
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/loonghao/photoshop-python-api/issues"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -74,10 +65,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
-target_version = ['py37']
+target-version = ['py39']
 include = '\.pyi?$'
 exclude = '''
-
 (
   /(
       \.eggs         # exclude a few common directories in the
@@ -98,11 +88,12 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
-atomic = true
+multi_line_output = 3
 include_trailing_comma = true
-lines_after_imports = 2
-lines_between_types = 1
+force_grid_wrap = 0
 use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 120
 src_paths = ["photoshop", "test"]
 filter_files = true
 known_first_party = "photoshop"
@@ -119,3 +110,12 @@ force_single_line = true
 # All project unrelated unknown imports belong to third-party.
 default_section = "THIRDPARTY"
 skip_glob = "*/docs/conf.py"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.22.7"
+tag_format = "v$version"
+version_files = [
+    "pyproject.toml:version",
+    "photoshop/__version__.py"
+]
