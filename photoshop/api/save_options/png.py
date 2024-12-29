@@ -2,6 +2,7 @@
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ColorReductionType
 from photoshop.api.enumerations import DitherType
+from photoshop.api.enumerations import SaveDocumentType
 
 
 class ExportOptionsSaveForWeb(Photoshop):
@@ -11,12 +12,22 @@ class ExportOptionsSaveForWeb(Photoshop):
 
     def __init__(self):
         super().__init__()
-        self.format = 13  # PNG
+        self._format = SaveDocumentType.PNGSave  # Default to PNG
         self.PNG8 = False  # Sets it to PNG-24 bit
 
     @property
+    def format(self) -> SaveDocumentType:
+        """The file format to use. One of the SaveDocumentType constants."""
+        return self._format
+
+    @format.setter
+    def format(self, value: SaveDocumentType):
+        """Set the file format to use."""
+        self._format = value
+
+    @property
     def PNG8(self) -> bool:
-        """If true, uses 8 bits. If false, uses 24 bits. Valid only when ‘format’ = PNG."""
+        """If true, uses 8 bits. If false, uses 24 bits. Valid only when 'format' = PNG."""
         return self.app.PNG8
 
     @PNG8.setter
@@ -58,6 +69,15 @@ class ExportOptionsSaveForWeb(Photoshop):
     @dither.setter
     def dither(self, value: DitherType):
         self.app.dither = value
+
+    @property
+    def optimized(self) -> bool:
+        """If true, optimization is enabled."""
+        return self.app.optimized
+
+    @optimized.setter
+    def optimized(self, value: bool):
+        self.app.optimized = value
 
     @property
     def quality(self) -> int:
