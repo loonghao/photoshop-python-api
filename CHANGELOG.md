@@ -1,3 +1,10 @@
+## v0.23.0 (2024-12-29)
+
+### Feat
+
+- **examples**: enhance documentation and examples for Photoshop scripting
+- **artlayer**: improve layer kind property to support artboard layer
+
 ## v0.22.10 (2024-12-29)
 
 ### Fix
