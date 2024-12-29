@@ -4,10 +4,13 @@ This script demonstrates how to:
 1. Identify artboard layers in a PSD file
 2. Export each artboard as a separate image
 """
+# Import built-in modules
 import os.path
 from pathlib import Path
-from typing import List, Union
+from typing import List
+from typing import Union
 
+# Import local modules
 from photoshop import Session
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._layerSet import LayerSet
@@ -25,27 +28,7 @@ def is_artboard(layer: Union[ArtLayer, LayerSet], ps) -> bool:
         bool: True if the layer is an artboard, False otherwise
     """
     try:
-        # Get the active document
-        doc = ps.active_document
-        
-        # Select the layer
-        doc.activeLayer = layer
-        
-        # Check if it's an artboard by checking its bounds and artboard property
-        js_code = """
-        var layer = app.activeDocument.activeLayer;
-        try {
-            var ref = new ActionReference();
-            ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
-            var desc = executeActionGet(ref);
-            var hasArtboard = desc.hasKey(stringIDToTypeID("artboardEnabled"));
-            hasArtboard && desc.getBoolean(stringIDToTypeID("artboardEnabled"));
-        } catch(e) {
-            false;
-        }
-        """
-        result = ps.app.eval_javascript(js_code)
-        return result.lower() == "true"
+        return layer.kind == LayerKind.ArtboardLayer
     except Exception as e:
         print(f"Error checking layer {layer.name}: {str(e)}")
         # Fallback to checking layer name

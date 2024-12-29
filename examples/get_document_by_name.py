@@ -1,15 +1,25 @@
-"""Get document by document name from documents."""
+"""Example of retrieving a Photoshop document by its name.
 
-# Import third-party modules
-import examples._psd_files as psd  # Import from examples.
+This example demonstrates how to:
+1. Access documents in the Photoshop application
+2. Find a specific document by its name
+3. Handle cases when the document doesn't exist
+
+Key concepts:
+- Using the documents collection
+- Document name comparison
+- Error handling for missing documents
+"""
 
 # Import local modules
 from photoshop import Session
 
 
-PSD_FILE = psd.get_psd_files()
-slate_template = PSD_FILE["slate_template.psd"]
-with Session(slate_template, action="open", auto_close=True) as ps:
+with Session() as ps:
+    # Try to get document named 'test.psd'
     for doc in ps.app.documents:
-        print(doc.name)
-    print(ps.app.documents.getByName("slate_template.psd").fullName)
+        if doc.name == "test.psd":
+            ps.echo(doc.name)
+            break
+    else:
+        ps.echo("Document not found!")

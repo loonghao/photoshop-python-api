@@ -1,23 +1,41 @@
+"""Example of saving documents as TGA files in Photoshop.
+
+This example demonstrates how to:
+1. Save documents in TGA format
+2. Configure TGA save options
+3. Handle alpha channels
+4. Set compression options
+
+Key concepts:
+- TGA export
+- Save options
+- Alpha channel handling
+- Resolution settings
+"""
+
 # Import built-in modules
 import os
-from tempfile import mkdtemp
 
 # Import local modules
 from photoshop import Session
 
 
-with Session(action="new_document") as ps:
+with Session() as ps:
     doc = ps.active_document
-    text_color = ps.SolidColor()
-    text_color.rgb.green = 255
-    text_color.rgb.red = 0
-    text_color.rgb.blue = 0
-    new_text_layer = doc.artLayers.add()
-    new_text_layer.kind = ps.LayerKind.TextLayer
-    new_text_layer.textItem.contents = "Hello, World!"
-    new_text_layer.textItem.position = [160, 167]
-    new_text_layer.textItem.size = 40
-    new_text_layer.textItem.color = text_color
-    tga_file = os.path.join(mkdtemp("photoshop-python-api"), "test.tga")
-    doc.saveAs(tga_file, ps.TargaSaveOptions(), asCopy=True)
-    os.startfile(tga_file)
+    
+    # Configure TGA save options
+    tga_options = ps.TargaSaveOptions()
+    tga_options.alphaChannels = True
+    tga_options.resolution = ps.TargaBitsPerPixels.TWENTYFOUR
+    tga_options.rleCompression = True
+    
+    # Generate output path
+    output_path = os.path.join(os.path.dirname(__file__), "output.tga")
+    
+    # Save document as TGA
+    doc.saveAs(output_path, tga_options, True)
+    
+    # Save another version with different settings
+    tga_options.resolution = ps.TargaBitsPerPixels.THIRTYTWO
+    output_path_32 = os.path.join(os.path.dirname(__file__), "output_32bit.tga")
+    doc.saveAs(output_path_32, tga_options, True)

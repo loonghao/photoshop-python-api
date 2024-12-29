@@ -1,13 +1,24 @@
-# Import third-party modules
-import examples._psd_files as psd  # Import from examples.
+"""Example of retrieving a layer by its name in Photoshop.
+
+This example demonstrates how to:
+1. Access layers in the active document
+2. Find a specific layer by its name
+3. Handle layer search in the document hierarchy
+
+Key concepts:
+- Layer navigation
+- Name-based layer lookup
+- Active document context
+"""
 
 # Import local modules
 from photoshop import Session
 
 
-PSD_FILE = psd.get_psd_files()
-
-psd_file = PSD_FILE["export_layers_as_png.psd"]
-with Session(psd_file, action="open", auto_close=True) as ps:
-    art_layer = ps.active_document.artLayers.getByName("blue")
-    assert art_layer.name == "blue"
+with Session() as ps:
+    # Access active document's layers
+    doc = ps.app.activeDocument
+    for layer in doc.layers:
+        if layer.name == "example layer":
+            ps.echo(layer.name)
+            break

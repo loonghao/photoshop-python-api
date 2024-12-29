@@ -1,23 +1,43 @@
-"""This scripts demonstrates how to rotate a layer 45 degrees clockwise.
+"""Example of rotating layers in Photoshop.
 
-References:
-    https://github.com/lohriialo/photoshop-scripting-python/blob/master/RotateLayer.py
+This example demonstrates how to:
+1. Rotate layers by specific angles
+2. Apply different rotation methods
+3. Handle layer transformations
+4. Preserve layer properties during rotation
 
+Key concepts:
+- Layer rotation
+- Transform operations
+- Angle calculations
+- Layer positioning
 """
 
 # Import local modules
-import photoshop.api as ps
+from photoshop import Session
 
 
-app = ps.Application()
-
-if len(app.documents) > 0:
-    print(app.activeDocument.activeLayer.typename)
-    if not app.activeDocument.activeLayer.isBackgroundLayer:
-        docRef = app.activeDocument
-        layerRef = docRef.layers[0]
-        layerRef.rotate(45.0)
-    else:
-        print("Operation cannot be performed on background layer")
-else:
-    print("You must have at least one open document to run this script!")
+with Session() as ps:
+    doc = ps.active_document
+    layer = doc.activeLayer
+    
+    # Store original bounds
+    bounds = layer.bounds
+    
+    # Calculate center point
+    center_x = (bounds[0] + bounds[2]) / 2
+    center_y = (bounds[1] + bounds[3]) / 2
+    
+    # Rotate layer by 45 degrees
+    layer.rotate(45.0, ps.AnchorPosition.MiddleCenter)
+    
+    # Create new layer and rotate it
+    new_layer = doc.artLayers.add()
+    new_layer.name = "Rotated Layer"
+    
+    # Rotate new layer by 90 degrees
+    new_layer.rotate(90.0, ps.AnchorPosition.MiddleCenter)
+    
+    # Move layer to original center
+    new_layer.translate(center_x - new_layer.bounds[0],
+                       center_y - new_layer.bounds[1])
