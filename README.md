@@ -45,6 +45,7 @@
 </p>
 
 <p align="center">Python API for Photoshop.</p>
+<p align="center"><i>⚠️ Only for Windows platform !</i></p>
 
 <p align="center"><em>The example above was created with Photoshop Python API. Check it out at <a href="https://loonghao.github.io/photoshop-python-api/examples">https://loonghao.github.io/photoshop-python-api/examples</a>.</em></p>
 
