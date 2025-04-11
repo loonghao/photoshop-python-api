@@ -41,7 +41,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END --> 
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
 <p align="center">Python API for Photoshop.</p>
@@ -72,7 +72,7 @@ pip install photoshop_python_api
 ```
 
 
-Since it uses COM (Component Object Model) connect Photoshop, it can be used 
+Since it uses COM (Component Object Model) connect Photoshop, it can be used
 in any DCC software with a python interpreter.
 
 
@@ -183,8 +183,8 @@ Contributions of any kind are welcome!
 how to get Photoshop program ID
 -------------------------------
 ```PS>
-Get-ChildItem "HKLM:\SOFTWARE\Classes" | 
-  ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } | 
+Get-ChildItem "HKLM:\SOFTWARE\Classes" |
+  ?{ ($_.PSChildName -match "^[a-z]+\.[a-z]+(\.\d+)?$") -and ($_.GetSubKeyNames() -contains "CLSID") } |
   ?{ $_.PSChildName -match "Photoshop.Application" } | ft PSChildName
 ```
 ![get_program_id](https://i.imgur.com/UwPN7qq.png)
@@ -208,3 +208,89 @@ Useful links
 - http://www.tonton-pixel.com/scripts/utility-scripts/get-equivalent-id-code/index.html
 - https://github.com/Adobe-CEP/Samples/tree/master/PhotoshopEvents
 - https://evanmccall.wordpress.com/2015/03/09/how-to-develop-photoshop-tools-in-python
+
+
+## 🛠️ Development Guide
+
+Welcome to the development guide for the Photoshop Python API project! This section outlines our development practices and standards to ensure code quality and consistency.
+
+### 📋 Quick Start for Contributors
+
+```bash
+# Clone the repository
+git clone https://github.com/loonghao/photoshop-python-api.git
+cd photoshop-python-api
+
+# Install dependencies with Poetry
+poetry install
+
+# Install pre-commit hooks
+pre-commit install
+
+# Run tests
+pytest
+```
+
+### 🎨 Code Style & Quality
+
+We maintain high code quality standards through automated tools and consistent style guidelines:
+
+- **Style Guide**: We follow the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) with project-specific adjustments:
+  - Line length: 120 characters max
+  - Docstrings: Google style format
+  - Quotes: Double quotes preferred
+
+- **Quality Tools**:
+  - [Black](https://black.readthedocs.io/) - Code formatting
+  - [isort](https://pycqa.github.io/isort/) - Import organization
+  - [flake8](https://flake8.pycqa.org/) - Style enforcement
+  - [pre-commit](https://pre-commit.com/) - Automated checks before commits
+
+### 🔄 Git Workflow
+
+We use a structured workflow to maintain a clean and organized repository:
+
+- **Commit Messages**: Follow [Conventional Commits](https://www.conventionalcommits.org/) format
+
+  ```text
+  <type>(<scope>): <description>
+
+  [optional body]
+
+  [optional footer(s)]
+  ```
+
+  Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+- **Branching Strategy**:
+  - Main branch: `main` - Always stable and deployable
+  - Feature branches: `feature/<feature-name>`
+  - Bug fixes: `fix/<bug-description>`
+  - Documentation: `docs/<doc-description>`
+
+### 🧪 Testing
+
+We value thorough testing to ensure reliability:
+
+- **Framework**: We use `pytest` for all tests
+- **Coverage**: Aim for high test coverage on new features
+- **Run Tests**: `pytest` or `poetry run pytest`
+
+### 📦 Development Environment
+
+- **Python Versions**: We support Python 3.8+ (see `pyproject.toml` for specifics)
+- **Dependency Management**: [Poetry](https://python-poetry.org/) for consistent environments
+- **Virtual Environment**: Poetry automatically creates and manages virtual environments
+
+### 🤝 Contributing Process
+
+1. **Fork & Clone**: Fork the repository and clone your fork
+2. **Branch**: Create a feature branch with a descriptive name
+3. **Develop**: Make your changes following our code style guidelines
+4. **Test**: Ensure all tests pass and add new tests for new features
+5. **Commit**: Use conventional commit format for clear history
+6. **Push & PR**: Push your branch and create a Pull Request
+7. **Review**: Address any feedback from code reviews
+8. **Merge**: Once approved, your PR will be merged
+
+Thank you for contributing to the Photoshop Python API project! 🎉
