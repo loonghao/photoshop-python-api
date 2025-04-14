@@ -211,13 +211,13 @@ typing-extensions = ">=4.0.1,<5.0.0"
 
 [[package]]
 name = "comtypes"
-version = "1.4.8"
+version = "1.4.10"
 description = "Pure Python COM package"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "comtypes-1.4.8-py3-none-any.whl", hash = "sha256:773109b12aa0bec630d5b2272dd983cbaa25605a12fc1319f99730c9d0b72f79"},
-    {file = "comtypes-1.4.8.zip", hash = "sha256:bb2286cfb3b96f838307200a85b00b98e1bdebf1e58ec3c28b36b1ccfafac01f"},
+    {file = "comtypes-1.4.10-py3-none-any.whl", hash = "sha256:e078555721ee7ab40648a3363697d420b845b323e5944b55846e96aff97d2534"},
+    {file = "comtypes-1.4.10.zip", hash = "sha256:b92372e76299836177b41aeda784225e18c5071c6bacdab88a7433224a4dc912"},
 ]
 
 [[package]]
