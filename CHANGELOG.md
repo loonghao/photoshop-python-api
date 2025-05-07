@@ -1,3 +1,9 @@
+## v0.24.1 (2025-05-07)
+
+### Fix
+
+- **deps**: update dependency comtypes to v1.4.10
+
 ## v0.24.0 (2024-12-29)
 
 ### Feat
