@@ -1,49 +1,57 @@
 # https://theiviaxx.github.io/photoshop-docs/Photoshop/BatchOptions.html
 # Import local modules
+from os import PathLike
+from pathlib import Path
+from typing import Sequence
+
 from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import BatchDestinationType, FileNamingType
 
 
 class BatchOptions(Photoshop):
     object_name = "BatchOptions"
 
-    def __init__(self):
-        super().__init__()
-
     @property
-    def destination(self):
+    def destination(self) -> BatchDestinationType:
         """The type of destination for the processed files."""
-        return self.app.destination
+        return BatchDestinationType(self.app.destination)
 
     @destination.setter
-    def destination(self, value):
+    def destination(self, value: BatchDestinationType) -> None:
         self.app.destination = value
 
     @property
-    def destinationFolder(self):
-        """The folder location for the processed files. Valid only when ‘destination’ = folder."""
-        return self.app.destinationFolder
+    def destinationFolder(self) -> Path | None:
+        """The folder location for the processed files. Valid only when ‘destination’ == BatchDestinationType.FOLDER."""
+        destination = self.app.destinationFolder
+        if destination:
+            return Path(self.app.destinationFolder)
+        return None
 
     @destinationFolder.setter
-    def destinationFolder(self, path):
-        self.app.destinationFolder = path
+    def destinationFolder(self, path: str | PathLike[str]) -> None:
+        self.app.destinationFolder = str(path)
 
     @property
-    def errorFile(self):
+    def errorFile(self) -> Path | None:
         """The file in which to log errors encountered.
         To display errors on the screen and stop batch processing when errors occur, leave blank."""
-        return self.app.errorFile
+        err_file = self.app.errorFile
+        if err_file:
+            return Path(self.app.errorFile)
+        return None
 
     @errorFile.setter
-    def errorFile(self, file_path):
-        self.app.errorFile = file_path
+    def errorFile(self, file_path: str | PathLike[str] | None) -> None:
+        self.app.errorFile = str(file_path) if file_path else None
 
     @property
-    def fileNaming(self) -> list:
+    def fileNaming(self) -> list[FileNamingType]:
         """A list of file naming options. Maximum: 6."""
-        return self.app.fileNaming
+        return [FileNamingType(file_naming) for file_naming in self.app.fileNaming]
 
     @fileNaming.setter
-    def fileNaming(self, file_naming: list):
+    def fileNaming(self, file_naming: Sequence[FileNamingType]) -> None:
         self.app.fileNaming = file_naming
 
     @property
@@ -52,7 +60,7 @@ class BatchOptions(Photoshop):
         return self.app.macintoshCompatible
 
     @macintoshCompatible.setter
-    def macintoshCompatible(self, value: bool):
+    def macintoshCompatible(self, value: bool) -> None:
         self.app.macintoshCompatible = value
 
     @property
@@ -61,7 +69,7 @@ class BatchOptions(Photoshop):
         return self.app.overrideOpen
 
     @overrideOpen.setter
-    def overrideOpen(self, value: bool):
+    def overrideOpen(self, value: bool) -> None:
         self.app.overrideOpen = value
 
     @property
@@ -70,7 +78,7 @@ class BatchOptions(Photoshop):
         return self.app.overrideSave
 
     @overrideSave.setter
-    def overrideSave(self, value: bool):
+    def overrideSave(self, value: bool) -> None:
         self.app.overrideSave = value
 
     @property
@@ -79,7 +87,7 @@ class BatchOptions(Photoshop):
         return self.app.startingSerial
 
     @startingSerial.setter
-    def startingSerial(self, value: int):
+    def startingSerial(self, value: int) -> None:
         self.app.startingSerial = value
 
     @property
@@ -88,7 +96,7 @@ class BatchOptions(Photoshop):
         return self.app.suppressOpen
 
     @suppressOpen.setter
-    def suppressOpen(self, value: bool):
+    def suppressOpen(self, value: bool) -> None:
         self.app.suppressOpen = value
 
     @property
@@ -97,7 +105,7 @@ class BatchOptions(Photoshop):
         return self.app.suppressProfile
 
     @suppressProfile.setter
-    def suppressProfile(self, value: bool):
+    def suppressProfile(self, value: bool) -> None:
         self.app.suppressProfile = value
 
     @property
@@ -106,7 +114,7 @@ class BatchOptions(Photoshop):
         return self.app.unixCompatible
 
     @unixCompatible.setter
-    def unixCompatible(self, value: bool):
+    def unixCompatible(self, value: bool) -> None:
         self.app.unixCompatible = value
 
     @property
@@ -115,5 +123,5 @@ class BatchOptions(Photoshop):
         return self.app.windowsCompatible
 
     @windowsCompatible.setter
-    def windowsCompatible(self, value: bool):
+    def windowsCompatible(self, value: bool) -> None:
         self.app.windowsCompatible = value

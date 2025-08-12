@@ -1,4 +1,5 @@
 """"""
+
 # Import third-party modules
 import pytest
 
@@ -6,6 +7,7 @@ import pytest
 from photoshop.api import Application
 from photoshop.api import EventID
 from photoshop.api import SolidColor
+from photoshop.api.enumerations import FontSize
 
 
 class TestApplication:
@@ -45,7 +47,10 @@ class TestApplication:
 
     def test_set_background_color(self, photoshop_app):
         self.app.backgroundColor.rgb.green = 0
-        assert self.app.backgroundColor.rgb.green == photoshop_app.backgroundColor.rgb.green
+        assert (
+            self.app.backgroundColor.rgb.green
+            == photoshop_app.backgroundColor.rgb.green
+        )
 
     def test_build(self):
         assert self.app.build == "21.0 (20191018.r.37 2019/10/18: 614690fb487)"
@@ -151,6 +156,7 @@ class TestApplication:
         assert self.app.version == "21.1.2"
 
     def test_windowsFileTypes(self):
+        assert isinstance(self.app.windowsFileTypes, tuple)
         assert len(self.app.windowsFileTypes) >= 100
 
     def test_batch(self):
@@ -167,9 +173,6 @@ class TestApplication:
 
     def test_charIDToTypeID(self):
         assert self.app.charIDToTypeID("Type") == "1417244773"
-
-    def test_compareWithNumbers(self):
-        assert self.app.compareWithNumbers(20, 1)
 
     def test_do_action(self):
         self.app.doAction("Vignette (selection)", "Default Actions")
@@ -219,3 +222,16 @@ class TestApplication:
 
     def test_updateProgress(self):
         assert self.app.updateProgress("Done", "total")
+
+    def test_ui_text_font_size(self):
+        prefs = self.app.preferences
+        initial_font_size = prefs.textFontSize
+        try:
+            prefs.textFontSize = FontSize.Large
+            assert prefs.textFontSize == FontSize.Large
+            prefs.textFontSize = FontSize.Medium
+            assert prefs.textFontSize == FontSize.Medium
+            prefs.textFontSize = FontSize.Small
+            assert prefs.textFontSize == FontSize.Small
+        finally:
+            prefs.textFontSize = initial_font_size

@@ -9,30 +9,30 @@ class HSBColor(Photoshop):
 
     object_name = "HSBColor"
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
     @property
-    def brightness(self):
-        return round(self.app.brightness)
+    def brightness(self) -> float:
+        return self.app.brightness
 
     @brightness.setter
-    def brightness(self, value):
+    def brightness(self, value: float) -> None:
         self.app.brightness = value
 
     @property
-    def saturation(self):
-        return round(self.app.saturation)
+    def saturation(self) -> float:
+        return self.app.saturation
 
     @saturation.setter
-    def saturation(self, value):
+    def saturation(self, value: float) -> None:
         self.app.saturation = value
 
     @property
-    def hue(self):
+    def hue(self) -> float:
         """The hue value. Range: 0.0 to 360.0."""
-        return round(self.app.hue)
+        return self.app.hue
 
     @hue.setter
-    def hue(self, value):
+    def hue(self, value: float) -> None:
         self.app.hue = value

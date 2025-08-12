@@ -7,19 +7,21 @@ application.
 
 # Import built-in modules
 from pprint import pformat
+from typing import Sequence
 
 # Import local modules
 from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import CopyrightedType, Urgency
 
 
 # pylint: disable=too-many-public-methods
 class DocumentInfo(Photoshop):
     """Metadata about a document object."""
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return pformat(
             {
                 "author": self.author,
@@ -49,195 +51,195 @@ class DocumentInfo(Photoshop):
         )
 
     @property
-    def author(self):
+    def author(self) -> str:
         """str: The author."""
         return self.app.author
 
     @author.setter
-    def author(self, name):
+    def author(self, name: str) -> None:
         self.app.author = name
 
     @property
-    def authorPosition(self):
+    def authorPosition(self) -> str:
         """str:The author’s position."""
         return self.app.authorPosition
 
     @authorPosition.setter
-    def authorPosition(self, name):
+    def authorPosition(self, name: str) -> None:
         self.app.authorPosition = name
 
     @property
-    def caption(self):
+    def caption(self) -> str:
         return self.app.caption
 
     @caption.setter
-    def caption(self, name):
+    def caption(self, name: str) -> None:
         self.app.caption = name
 
     @property
-    def captionWriter(self):
+    def captionWriter(self) -> str:
         return self.app.captionWriter
 
     @captionWriter.setter
-    def captionWriter(self, name):
+    def captionWriter(self, name: str) -> None:
         self.app.captionWriter = name
 
     @property
-    def category(self):
+    def category(self) -> str:
         """str: The document category."""
         return self.app.category
 
     @category.setter
-    def category(self, name):
+    def category(self, name: str) -> None:
         self.app.category = name
 
     @property
-    def city(self):
+    def city(self) -> str:
         return self.app.city
 
     @city.setter
-    def city(self, city_name):
+    def city(self, city_name: str) -> None:
         self.app.city = city_name
 
     @property
-    def copyrightNotice(self):
+    def copyrightNotice(self) -> str:
         """str: The copyright notice."""
         return self.app.copyrightNotice
 
     @copyrightNotice.setter
-    def copyrightNotice(self, name):
+    def copyrightNotice(self, name: str) -> None:
         self.app.copyrightNotice = name
 
     @property
-    def copyrighted(self):
-        """str: The copyright status."""
-        return self.app.copyrighted
+    def copyrighted(self) -> CopyrightedType:
+        """The copyright status."""
+        return CopyrightedType(self.app.copyrighted)
 
     @copyrighted.setter
-    def copyrighted(self, info):
+    def copyrighted(self, info: CopyrightedType) -> None:
         self.app.copyrighted = info
 
     @property
-    def country(self):
+    def country(self) -> str:
         return self.app.country
 
     @country.setter
-    def country(self, name):
+    def country(self, name: str) -> None:
         self.app.country = name
 
     @property
-    def creationDate(self):
+    def creationDate(self) -> str:
         return self.app.creationDate
 
     @creationDate.setter
-    def creationDate(self, name):
+    def creationDate(self, name: str) -> None:
         self.app.creationDate = name
 
     @property
-    def credit(self):
+    def credit(self) -> str:
         """str: The author credit."""
         return self.app.credit
 
     @credit.setter
-    def credit(self, value):
+    def credit(self, value: str) -> None:
         self.app.credit = value
 
     @property
-    def exif(self):
+    def exif(self) -> tuple[tuple[str, str], ...]:
         return self.app.exif
 
     @exif.setter
-    def exif(self, info):
+    def exif(self, info: Sequence[tuple[str, str]]) -> None:
         self.app.exif = info
 
     @property
-    def headline(self):
+    def headline(self) -> str:
         return self.app.headline
 
     @headline.setter
-    def headline(self, value):
+    def headline(self, value: str) -> None:
         self.app.headline = value
 
     @property
-    def instructions(self):
+    def instructions(self) -> str:
         return self.app.instructions
 
     @instructions.setter
-    def instructions(self, value):
+    def instructions(self, value: str) -> None:
         self.app.instructions = value
 
     @property
-    def jobName(self):
+    def jobName(self) -> str:
         return self.app.jobName
 
     @jobName.setter
-    def jobName(self, job):
+    def jobName(self, job: str) -> None:
         self.app.jobName = job
 
     @property
-    def keywords(self):
+    def keywords(self) -> tuple[str, ...] | None:
         return self.app.keywords
 
     @keywords.setter
-    def keywords(self, words):
+    def keywords(self, words: Sequence[str]) -> None:
         self.app.keywords = words
 
     @property
-    def ownerUrl(self):
+    def ownerUrl(self) -> str:
         return self.app.ownerUrl
 
     @ownerUrl.setter
-    def ownerUrl(self, url):
+    def ownerUrl(self, url: str) -> None:
         self.app.ownerUrl = url
 
     @property
-    def provinceState(self):
+    def provinceState(self) -> str:
         """str: The state or province."""
         return self.app.provinceState
 
     @provinceState.setter
-    def provinceState(self, state_name):
+    def provinceState(self, state_name: str) -> None:
         self.app.provinceState = state_name
 
     @property
-    def source(self):
+    def source(self) -> str:
         return self.app.source
 
     @source.setter
-    def source(self, source_name):
+    def source(self, source_name: str) -> None:
         self.app.source = source_name
 
     @property
-    def supplementalCategories(self):
+    def supplementalCategories(self) -> tuple[str, ...]:
         """str: Other categories."""
         return self.app.supplementalCategories
 
     @supplementalCategories.setter
-    def supplementalCategories(self, info):
+    def supplementalCategories(self, info: Sequence[str]) -> None:
         self.app.supplementalCategories = info
 
     @property
-    def title(self):
+    def title(self) -> str:
         return self.app.title
 
     @title.setter
-    def title(self, name):
+    def title(self, name: str) -> None:
         self.app.title = name
 
     @property
-    def transmissionReference(self):
+    def transmissionReference(self) -> str:
         """str: The transmission reference."""
         return self.app.transmissionReference
 
     @transmissionReference.setter
-    def transmissionReference(self, reference):
+    def transmissionReference(self, reference: str) -> None:
         self.app.transmissionReference = reference
 
     @property
-    def urgency(self):
+    def urgency(self) -> Urgency:
         """The document urgency."""
-        return self.app.urgency
+        return Urgency(self.app.urgency)
 
     @urgency.setter
-    def urgency(self, status):
+    def urgency(self, status: Urgency) -> None:
         self.app.urgency = status

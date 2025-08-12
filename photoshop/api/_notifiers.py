@@ -11,46 +11,32 @@ Examples:
 """
 
 # Import built-in modules
-from typing import Any
-from typing import Optional
+from typing import TYPE_CHECKING
 
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._notifier import Notifier
+from photoshop.api.collections import CollectionOfRemovables
 
 
-class Notifiers(Photoshop):
+class Notifiers(CollectionOfRemovables[Notifier, int]):
     """The `notifiers` currently configured (in the Scripts Events Manager menu in the application)."""
 
-    def __init__(self, parent: Optional[Any] = None):
-        super().__init__(parent=parent)
-        self._flag_as_method(
-            "add",
-            "removeAll",
-        )
+    if TYPE_CHECKING:
+        from photoshop.api.application import Application
 
-    @property
-    def _notifiers(self) -> list:
-        return [n for n in self.app]
+        parent: Application
 
-    def __len__(self):
-        return self.length
+    def __init__(self, parent: Photoshop | None = None) -> None:
+        super().__init__(type=Notifier, parent=parent)
+        self._flag_as_method("add")
 
-    def __iter__(self):
-        for app in self.app:
-            yield app
-
-    def __getitem__(self, item):
-        return self._notifiers[item]
-
-    @property
-    def length(self):
-        return len(self._notifiers)
-
-    def add(self, event, event_file: Optional[Any] = None, event_class: Optional[Any] = None) -> Notifier:
+    def add(
+        self, event: str, event_file: str, event_class: str | None = None
+    ) -> Notifier:
         self.parent.notifiersEnabled = True
         return Notifier(self.app.add(event, event_file, event_class))
 
-    def removeAll(self):
+    def removeAll(self) -> None:
         self.app.removeAll()
         self.parent.notifiersEnabled = False

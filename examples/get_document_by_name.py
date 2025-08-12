@@ -19,7 +19,7 @@ with Session() as ps:
     # Try to get document named 'test.psd'
     for doc in ps.app.documents:
         if doc.name == "test.psd":
-            ps.echo(doc.name)
+            print(doc.name)
             break
     else:
-        ps.echo("Document not found!")
+        print("Document not found!")

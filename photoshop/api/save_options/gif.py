@@ -1,5 +1,6 @@
 # Import local modules
 from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import DitherType, ForcedColors, MatteType, PaletteType
 
 
 class GIFSaveOptions(Photoshop):
@@ -7,77 +8,77 @@ class GIFSaveOptions(Photoshop):
 
     object_name = "GIFSaveOptions"
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     @property
-    def colors(self):
+    def colors(self) -> int:
         return self.app.color
 
     @colors.setter
-    def colors(self, value):
+    def colors(self, value: int) -> None:
         self.app.colors = value
 
     @property
-    def dither(self):
-        return self.app.dither
+    def dither(self) -> DitherType:
+        return DitherType(self.app.dither)
 
     @dither.setter
-    def dither(self, value):
+    def dither(self, value: DitherType) -> None:
         self.app.dither = value
 
     @property
-    def ditherAmount(self):
+    def ditherAmount(self) -> int:
         return self.app.ditherAmount
 
     @ditherAmount.setter
-    def ditherAmount(self, value):
+    def ditherAmount(self, value: int) -> None:
         self.app.ditherAmount = value
 
     @property
-    def forced(self):
-        return self.app.forced
+    def forced(self) -> ForcedColors:
+        return ForcedColors(self.app.forced)
 
     @forced.setter
-    def forced(self, value):
+    def forced(self, value: ForcedColors) -> None:
         self.app.forced = value
 
     @property
-    def interlaced(self):
+    def interlaced(self) -> bool:
         return self.app.interlaced
 
     @interlaced.setter
-    def interlaced(self, value):
+    def interlaced(self, value: bool) -> None:
         self.app.interlaced = value
 
     @property
-    def matte(self):
-        return self.app.matte
+    def matte(self) -> MatteType:
+        return MatteType(self.app.matte)
 
     @matte.setter
-    def matte(self, value):
+    def matte(self, value: MatteType) -> None:
         self.app.matte = value
 
     @property
-    def palette(self):
-        return self.app.palette
+    def palette(self) -> PaletteType:
+        return PaletteType(self.app.palette)
 
     @palette.setter
-    def palette(self, value):
+    def palette(self, value: PaletteType) -> None:
         self.app.palette = value
 
     @property
-    def preserveExactColors(self):
+    def preserveExactColors(self) -> bool:
         return self.app.preserveExactColors
 
     @preserveExactColors.setter
-    def preserveExactColors(self, value):
+    def preserveExactColors(self, value: bool) -> None:
         self.app.preserveExactColors = value
 
     @property
-    def transparency(self):
+    def transparency(self) -> bool:
         return self.app.transparency
 
     @transparency.setter
-    def transparency(self, value):
+    def transparency(self, value: bool) -> None:
         self.app.transparency = value

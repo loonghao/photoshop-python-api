@@ -4,11 +4,20 @@ It can be used for low-level access info Photoshop.
 
 
 """
+
 # Import local modules
+from os import PathLike
+from typing import TYPE_CHECKING
+
 from photoshop.api._core import Photoshop
+from photoshop.api.action_reference import ActionReference
+from photoshop.api.base_action import BaseAction
+
+if TYPE_CHECKING:
+    from photoshop.api.action_descriptor import ActionDescriptor
 
 
-class ActionList(Photoshop):
+class ActionList(BaseAction):
     """The list of commands that comprise an Action.
 
     (such as an Action created using the Actions palette in the Adobe Photoshop application).
@@ -19,51 +28,79 @@ class ActionList(Photoshop):
 
     object_name = "ActionList"
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
-            "getBoolean",
-            "getClass",
-            "getData",
-            "getDouble",
-            "getEnumerationType",
-            "getEnumerationValue",
-            "getInteger",
-            "getLargeInteger",
-            "getList",
-            "getObjectType",
+            "putBoolean",
+            "putClass",
+            "putData",
+            "putDouble",
+            "putEnumerated",
+            "putInteger",
+            "putLargeInteger",
+            "putList",
+            "putObject",
+            "putPath",
+            "putReference",
+            "putString",
+            "putUnitDouble",
+            "toSteadm",
         )
 
-    @property
-    def count(self):
-        return self.app.count
+    def putBoolean(self, value: bool) -> None:
+        """Sets the value for a key whose type is boolean."""
+        self.app.putBoolean(value)
 
-    def getBoolean(self, index):
-        return self.app.getBoolean(index)
+    def putClass(self, value: int) -> None:
+        """Sets the value for a key whose type is class."""
+        self.app.putClass(value)
 
-    def getClass(self, index):
-        return self.app.getClass(index)
+    def putData(self, value: str) -> None:
+        """Puts raw byte data as a string value."""
+        self.app.putData(value)
 
-    def getData(self, index):
-        return self.app.getData(index)
+    def putDouble(self, value: float) -> None:
+        """Sets the value for a key whose type is double."""
+        self.app.putDouble(value)
 
-    def getDouble(self, index):
-        return self.app.getDouble(index)
+    def putEnumerated(self, enum_type: int, value: int) -> None:
+        """Sets the enumeration type and value for a key."""
+        self.app.putEnumerated(enum_type, value)
 
-    def getEnumerationType(self, index):
-        return self.app.getEnumerationType(index)
+    def putInteger(self, value: int) -> None:
+        """Sets the value for a key whose type is integer."""
+        self.app.putInteger(value)
 
-    def getEnumerationValue(self, index):
-        return self.app.getEnumerationValue(index)
+    def putLargeInteger(self, value: int) -> None:
+        """Sets the value for a key whose type is large integer."""
+        self.app.putLargeInteger(value)
 
-    def getInteger(self, index):
-        return self.app.getInteger(index)
+    def putList(self, value: "ActionList") -> None:
+        """Sets the value for a key whose type is an ActionList object."""
+        self.app.putList(value)
 
-    def getLargeInteger(self, index):
-        return self.app.getLargeInteger(index)
+    def putObject(self, class_id: int, value: "ActionDescriptor") -> None:
+        """Sets the value for a key whose type is an object."""
+        self.app.putObject(class_id, value)
 
-    def getList(self, index):
-        return self.app.getList(index)
+    def putPath(self, value: str | PathLike[str]) -> None:
+        """Sets the value for a key whose type is path."""
+        self.app.putPath(str(value))
 
-    def getObjectType(self, index):
-        return self.app.getObjectType(index)
+    def putReference(self, value: ActionReference) -> None:
+        """Sets the value for a key whose type is an object reference."""
+        self.app.putReference(value)
+
+    def putString(self, value: str) -> None:
+        """Sets the value for a key whose type is string."""
+        self.app.putString(value)
+
+    def putUnitDouble(self, unit_id: int, value: float) -> None:
+        """Sets the value for a key whose type is a unit value formatted as
+        double."""
+        self.app.putUnitDouble(unit_id, value)
+
+    def toStream(self) -> str:
+        """Gets the entire descriptor as as stream of bytes,
+        for writing to disk."""
+        return self.app.toSteadm()

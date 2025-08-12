@@ -34,4 +34,4 @@ with Session() as ps:
                color1.rgb.green == color2.rgb.green and
                color1.rgb.blue == color2.rgb.blue)
     
-    ps.echo(f"Colors are {'same' if is_same else 'different'}")
+    print(f"Colors are {'same' if is_same else 'different'}")

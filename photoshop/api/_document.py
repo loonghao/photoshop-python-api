@@ -14,12 +14,9 @@ The basic canvas for the file.
 """
 
 # Import built-in modules
+from os import PathLike
 from pathlib import Path
-from typing import List
-from typing import NoReturn
-from typing import Optional
-from typing import TypeVar
-from typing import Union
+from typing import TYPE_CHECKING, Optional
 
 # Import third-party modules
 from comtypes import COMError
@@ -27,23 +24,46 @@ from comtypes import COMError
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
+from photoshop.api._channel import Channel
 from photoshop.api._channels import Channels
 from photoshop.api._core import Photoshop
 from photoshop.api._documentinfo import DocumentInfo
+from photoshop.api._layer import Layer
 from photoshop.api._layerComps import LayerComps
+from photoshop.api._layers import Layers
 from photoshop.api._layerSet import LayerSet
 from photoshop.api._layerSets import LayerSets
-from photoshop.api._layers import Layers
-from photoshop.api._selection import Selection
-from photoshop.api.enumerations import ExportType
-from photoshop.api.enumerations import ExtensionType
-from photoshop.api.enumerations import SaveOptions
-from photoshop.api.enumerations import TrimType
+from photoshop.api.enumerations import (
+    AnchorPosition,
+    BitsPerChannelType,
+    ChangeMode,
+    ColorProfileType,
+    Direction,
+    DocumentMode,
+    ExportType,
+    ExtensionType,
+    Intent,
+    MeasurementSource,
+    ResampleMethod,
+    SaveOptions,
+    SourceSpaceType,
+    TrimType,
+)
+from photoshop.api.path_items import PathItems
+from photoshop.api.protocols import HistoryState, MeasurementScale, XMPMetadata
 from photoshop.api.save_options import ExportOptionsSaveForWeb
+from photoshop.api.save_options.bmp import BMPSaveOptions
+from photoshop.api.save_options.eps import EPSSaveOptions
+from photoshop.api.save_options.gif import GIFSaveOptions
+from photoshop.api.save_options.jpg import JPEGSaveOptions
+from photoshop.api.save_options.pdf import PDFSaveOptions
+from photoshop.api.save_options.png import PNGSaveOptions
+from photoshop.api.save_options.psd import PhotoshopSaveOptions
+from photoshop.api.save_options.tag import TargaSaveOptions
+from photoshop.api.save_options.tif import TiffSaveOptions
 
-
-# Custom types.
-PS_Layer = TypeVar("PS_Layer", LayerSet, ArtLayer)
+if TYPE_CHECKING:
+    from photoshop.api._selection import Selection
 
 
 # pylint: disable=too-many-public-methods
@@ -56,7 +76,7 @@ class Document(Photoshop):
 
     object_name = "Application"
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
             "autoCount",
@@ -64,6 +84,7 @@ class Document(Photoshop):
             "close",
             "convertProfile",
             "Flatten",
+            "flipCanvas",
             "mergeVisibleLayers",
             "crop",
             "export",
@@ -77,7 +98,9 @@ class Document(Photoshop):
             "splitChannels",
             "trap",
             "trim",
+            "resizeCanvas",
             "resizeImage",
+            "rotateCanvas",
         )
 
     @property
@@ -85,15 +108,18 @@ class Document(Photoshop):
         return ArtLayers(self.app.artLayers)
 
     @property
-    def activeLayer(self) -> PS_Layer:
+    def activeLayer(self) -> ArtLayer | LayerSet:
         """The selected layer."""
         type_ = self.eval_javascript("app.activeDocument.activeLayer.typename")
-        mappings = {"LayerSet": LayerSet, "ArtLayer": ArtLayer}
+        mappings: dict[str, type[ArtLayer] | type[LayerSet]] = {
+            "LayerSet": LayerSet,
+            "ArtLayer": ArtLayer,
+        }
         func = mappings[type_]
         return func(self.app.activeLayer)
 
     @activeLayer.setter
-    def activeLayer(self, layer) -> NoReturn:
+    def activeLayer(self, layer: Layer) -> None:
         """Sets the select layer as active layer.
 
         Args:
@@ -104,64 +130,64 @@ class Document(Photoshop):
         self.app.activeLayer = layer
 
     @property
-    def activeChannels(self):
+    def activeChannels(self) -> list[Channel]:
         """The selected channels."""
-        return self.app.activeChannels
+        return [Channel(channel) for channel in self.app.activeChannels]
 
     @activeChannels.setter
-    def activeChannels(self, channels):
+    def activeChannels(self, channels: list[Channel]) -> None:
         self.app.activeChannels = channels
 
     @property
-    def activeHistoryBrushSource(self):
+    def activeHistoryBrushSource(self) -> HistoryState:
         """The history state to use with the history brush."""
         return self.app.activeHistoryBrushSource
 
     @property
-    def activeHistoryState(self):
+    def activeHistoryState(self) -> HistoryState:
         """The current history state for this document."""
         return self.app.activeHistoryState
 
     @activeHistoryState.setter
-    def activeHistoryState(self, state):
+    def activeHistoryState(self, state: HistoryState) -> None:
         self.app.activeHistoryState = state
 
     @property
-    def backgroundLayer(self):
+    def backgroundLayer(self) -> ArtLayer:
         """The background layer for the Document."""
-        return self.app.backgroundLayer
+        return ArtLayer(self.app.backgroundLayer)
 
     @property
-    def bitsPerChannel(self):
+    def bitsPerChannel(self) -> BitsPerChannelType:
         """The number of bits per channel."""
-        return self.app.bitsPerChannel
+        return BitsPerChannelType(self.app.bitsPerChannel)
 
     @bitsPerChannel.setter
-    def bitsPerChannel(self, value):
+    def bitsPerChannel(self, value: BitsPerChannelType) -> None:
         self.app.bitsPerChannel = value
 
     @property
-    def channels(self):
+    def channels(self) -> Channels:
         return Channels(self.app.channels)
 
     @property
-    def colorProfileName(self):
+    def colorProfileName(self) -> str:
         """The name of the color profile. Valid only when no value is specified
         for color profile kind (to indicate a custom color profile)."""
         return self.app.colorProfileName
 
     @colorProfileName.setter
-    def colorProfileName(self, name):
+    def colorProfileName(self, name: str) -> None:
         self.app.colorProfileName = name
 
     @property
-    def colorProfileType(self):
+    def colorProfileType(self) -> ColorProfileType:
         """The type of color model that defines the working space of the
         Document."""
-        return self.app.colorProfileType
+        return ColorProfileType(self.app.colorProfileType)
 
     @colorProfileType.setter
-    def colorProfileType(self, profile_type):
+    def colorProfileType(self, profile_type: ColorProfileType) -> None:
         self.app.colorProfileType = profile_type
 
     @property
@@ -170,9 +196,9 @@ class Document(Photoshop):
         return self.app.colorSamplers
 
     @property
-    def componentChannels(self):
+    def componentChannels(self) -> list[Channel]:
         """The color component channels for this Document."""
-        return self.app.componentChannels
+        return [Channel(channel) for channel in self.app.componentChannels]
 
     @property
     def countItems(self):
@@ -180,22 +206,22 @@ class Document(Photoshop):
         return self.app.countItems
 
     @property
-    def fullName(self):
+    def fullName(self) -> Path | None:
         """The full path name of the Document."""
         try:
             return Path(self.app.fullName)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
+                'alert ("Please save your Document first!","{}")'.format(self.name),
             )
 
     @property
-    def height(self):
+    def height(self) -> float:
         """The height of the Document."""
         return self.app.Height
 
     @property
-    def histogram(self):
+    def histogram(self) -> tuple[int, ...]:
         """A histogram showing the number of pixels at each color intensity
         level for the composite channel."""
         return self.app.Histogram
@@ -206,44 +232,44 @@ class Document(Photoshop):
         return self.app.HistoryStates
 
     @property
-    def id(self):
+    def id(self) -> int:
         """The unique ID of this Document."""
         return self.app.Id
 
     @property
-    def info(self):
+    def info(self) -> DocumentInfo:
         """Metadata about the Document."""
         return DocumentInfo(self.app.info)
 
     @property
-    def layerComps(self):
+    def layerComps(self) -> LayerComps:
         """The layer comps collection in this Document."""
         return LayerComps(self.app.layerComps)
 
     @property
-    def layers(self):
+    def layers(self) -> Layers:
         """The layers collection in the Document."""
         return Layers(self.app.Layers)
 
     @property
-    def layerSets(self):
+    def layerSets(self) -> LayerSets:
         """The layer sets collection in the Document."""
         return LayerSets(self.app.layerSets)
 
     @property
-    def managed(self):
+    def managed(self) -> bool:
         """If true, the Document is a workgroup Document."""
         return self.app.Managed
 
     @property
-    def measurement_scale(self):
+    def measurement_scale(self) -> MeasurementScale:
         """The measurement scale of the Document."""
         return self.app.MeasurementScale
 
     @property
-    def mode(self):
+    def mode(self) -> DocumentMode:
         """The color profile."""
-        return self.app.Mode
+        return DocumentMode(self.app.Mode)
 
     @property
     def name(self) -> str:
@@ -251,30 +277,30 @@ class Document(Photoshop):
         return self.app.name
 
     @property
-    def parent(self):
+    def parent(self) -> object:
         """The object's container."""
         return self.app.Parent
 
     @property
-    def path(self) -> str:
+    def path(self) -> Path | None:
         """The path to the Document."""
         try:
             return Path(self.app.path)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
+                'alert ("Please save your Document first!","{}")'.format(self.name),
             )
 
     @path.setter
-    def path(self, path: str) -> NoReturn:
-        self.app.fullName = path
+    def path(self, path: str | PathLike[str]) -> None:
+        self.app.fullName = str(path)
 
     @property
-    def pathItems(self):
-        return self.app.pathItems
+    def pathItems(self) -> PathItems:
+        return PathItems(self.app.pathItems)
 
     @property
-    def pixelAspectRatio(self):
+    def pixelAspectRatio(self) -> float:
         """The (custom) pixel aspect ratio of the Document.
 
         Range: 0.100 to 10.000.
@@ -288,29 +314,26 @@ class Document(Photoshop):
         return self.app.printSettings
 
     @property
-    def quickMaskMode(self):
+    def quickMaskMode(self) -> bool:
         """If true, the document is in Quick Mask mode."""
         return self.app.quickMaskMode
 
     @property
-    def saved(self):
+    def saved(self) -> bool:
         """If true, the Document been saved since the last change."""
         return self.app.Saved
 
     @property
-    def resolution(self):
+    def resolution(self) -> float:
         """The resolution of the Document (in pixels per inch)"""
         return self.app.resolution
 
     @property
-    def selection(self):
+    def selection(self) -> "Selection":
         """The selected area of the Document."""
-        return Selection(self.app.selection)
+        from ._selection import Selection
 
-    @property
-    def typename(self):
-        """The class name of the object."""
-        return self.app.typename
+        return Selection(self.app.selection)
 
     @property
     def cloudDocument(self):
@@ -323,45 +346,56 @@ class Document(Photoshop):
         return self.app.cloudWorkAreaDirectory
 
     @property
-    def width(self):
+    def width(self) -> float:
         return self.app.Width
 
     @property
-    def xmpMetadata(self):
+    def xmpMetadata(self) -> XMPMetadata:
         """The XMP properties of the Document. The Camera RAW settings are
         stored here."""
         return self.app.xmpMetadata
 
     # Methods
-    def autoCount(self, *args, **kwargs):
+    def autoCount(self, channel: Channel, threshold: int) -> None:
         """Counts the objects in the Document."""
-        return self.app.autoCount(*args, **kwargs)
+        self.app.autoCount(channel, threshold)
 
-    def changeMode(self, *args, **kwargs):
+    def changeMode(self, destinationMode: ChangeMode, options: object) -> None:
         """Changes the mode of the Document."""
-        return self.app.changeMode(*args, **kwargs)
+        self.app.changeMode(destinationMode, options)
 
-    def close(self, saving=SaveOptions.DoNotSaveChanges):
-        return self.app.close(saving)
+    def close(self, saving: SaveOptions = SaveOptions.DoNotSaveChanges) -> None:
+        self.app.close(saving)
 
-    def convertProfile(self):
-        return self.app.convertProfile()
+    def convertProfile(
+        self,
+        destinationProfile: str,
+        intent: Intent,
+        blackPointCompensation: bool,
+        dither: bool,
+    ) -> None:
+        self.app.convertProfile(
+            destinationProfile, intent, blackPointCompensation, dither
+        )
 
-    def flatten(self):
+    def flatten(self) -> None:
         """Flattens all layers."""
-        return self.app.Flatten()
+        self.app.Flatten()
 
-    def mergeVisibleLayers(self):
+    def flipCanvas(self, direction: Direction) -> None:
+        self.app.flipCanvas(direction)
+
+    def mergeVisibleLayers(self) -> None:
         """Flattens all visible layers in the Document."""
-        return self.app.mergeVisibleLayers()
+        self.app.mergeVisibleLayers()
 
     def crop(
         self,
-        bounds: List[int],
-        angle: Optional[float] = None,
-        width: Optional[int] = None,
-        height: Optional[int] = None,
-    ):
+        bounds: list[int],
+        angle: float | None = None,
+        width: int | None = None,
+        height: int | None = None,
+    ) -> None:
         """Crops the document.
 
         Args:
@@ -371,9 +405,14 @@ class Document(Photoshop):
             height: The height of the resulting document.
 
         """
-        return self.app.crop(bounds, angle, width, height)
+        self.app.crop(bounds, angle, width, height)
 
-    def exportDocument(self, file_path: str, exportAs: ExportType, options: Union[ExportOptionsSaveForWeb]):
+    def exportDocument(
+        self,
+        file_path: str,
+        exportAs: ExportType,
+        options: ExportOptionsSaveForWeb,
+    ) -> None:
         """Exports the Document.
 
         Note:
@@ -387,59 +426,84 @@ class Document(Photoshop):
         file_path = file_path.replace("\\", "/")
         self.app.export(file_path, exportAs, options)
 
-    def duplicate(self, name=None, merge_layers_only=False):
+    def duplicate(
+        self, name: str | None = None, merge_layers_only: bool = False
+    ) -> "Document":
         return Document(self.app.duplicate(name, merge_layers_only))
 
-    def paste(self):
+    def paste(self) -> ArtLayer | LayerSet:
         """Pastes contents of the clipboard into the Document."""
         self.eval_javascript("app.activeDocument.paste()")
         return self.activeLayer
 
-    def print(self):
+    def print(
+        self,
+        sourceSpace: SourceSpaceType,
+        printSpace: str,
+        intent: Intent,
+        blackPointCompensation: bool,
+    ) -> None:
         """Prints the document."""
-        return self.app.print()
+        self.app.print(sourceSpace, printSpace, intent, blackPointCompensation)
 
-    def printOneCopy(self):
+    def printOneCopy(self) -> None:
         self.app.printOneCopy()
 
-    def rasterizeAllLayers(self):
-        return self.app.rasterizeAllLayers()
+    def rasterizeAllLayers(self) -> None:
+        self.app.rasterizeAllLayers()
 
-    def recordMeasurements(self, source, dataPoints):
+    def recordMeasurements(self, source: MeasurementSource, dataPoints: str) -> None:
         """Records the measurements of document."""
         self.app.recordMeasurements(source, dataPoints)
 
-    def reveal_all(self):
+    def reveal_all(self) -> None:
         """Expands the Document to show clipped sections."""
-        return self.app.revealAll()
+        self.app.revealAll()
 
-    def save(self):
+    def save(self) -> None:
         """Saves the Document."""
-        return self.app.save()
+        self.app.save()
 
-    def saveAs(self, file_path, options, asCopy=True, extensionType=ExtensionType.Lowercase):
+    def saveAs(
+        self,
+        file_path: str,
+        options: BMPSaveOptions
+        | EPSSaveOptions
+        | GIFSaveOptions
+        | JPEGSaveOptions
+        | PDFSaveOptions
+        | PNGSaveOptions
+        | PhotoshopSaveOptions
+        | TargaSaveOptions
+        | TiffSaveOptions
+        | None = None,
+        asCopy: bool = False,
+        extensionType: ExtensionType = ExtensionType.Lowercase,
+    ) -> None:
         """Saves the documents with the specified save options.
 
         Args:
-            file_path (str): Absolute path of psd file.
-            options (JPEGSaveOptions): Save options.
-            asCopy (bool):
+            file_path: Absolute path of psd file.
+            options: Save options.
+            asCopy: Saves the document as a copy, leaving the original open.
         """
-        return self.app.saveAs(file_path, options, asCopy, extensionType)
+        self.app.saveAs(file_path, options, asCopy, extensionType)
 
-    def splitChannels(self):
+    def splitChannels(self) -> None:
         """Splits the channels of the document."""
         self.app.splitChannels()
 
-    def suspendHistory(self, historyString, javaScriptString):
+    def suspendHistory(self, historyString: str, javaScriptString: str) -> None:
         """Provides a single history state for the entire script.
 
         Allows a single undo for all actions taken in the script.
 
         """
-        self.eval_javascript(f"app.activeDocument.suspendHistory('{historyString}', '{javaScriptString}')")
+        self.eval_javascript(
+            f"app.activeDocument.suspendHistory('{historyString}', '{javaScriptString}')"
+        )
 
-    def trap(self, width: int):
+    def trap(self, width: int) -> None:
         """
         Applies trapping to a CMYK document.
         Valid only when ‘mode’ = CMYK.
@@ -454,7 +518,7 @@ class Document(Photoshop):
         left: Optional[bool] = True,
         bottom: Optional[bool] = True,
         right: Optional[bool] = True,
-    ):
+    ) -> None:
         """Trims the transparent area around the image on the specified sides of the canvas.
 
         Args:
@@ -471,16 +535,35 @@ class Document(Photoshop):
             right: If true, trims away the right of the document.
 
         """
-        return self.app.trim(trim_type, top, left, bottom, right)
+        self.app.trim(trim_type, top, left, bottom, right)
 
-    def resizeImage(self, width: int, height: int, resolution: int = 72, automatic: int = 8):
+    def resizeCanvas(
+        self,
+        width: int,
+        height: int,
+        anchor: AnchorPosition = AnchorPosition.MiddleCenter,
+    ) -> None:
+        self.app.resizeCanvas(width, height, anchor)
+
+    def resizeImage(
+        self,
+        width: int,
+        height: int,
+        resolution: float = 72,
+        resampleMethod: ResampleMethod = ResampleMethod.Automatic,
+        amount: int = 0,
+    ) -> None:
         """Changes the size of the image.
 
         Args:
             width: The desired width of the image.
             height: The desired height of the image.
             resolution: The resolution (in pixels per inch)
-            automatic: Value for automatic.
+            resampleMethod: The downsample method.
+            amount: Amount of noise value when using preserve details (range: 0 - 100)
 
         """
-        return self.app.resizeImage(width, height, resolution, automatic)
+        self.app.resizeImage(width, height, resolution, resampleMethod, amount)
+
+    def rotateCanvas(self, angle: float) -> None:
+        self.app.rotateCanvas(angle)

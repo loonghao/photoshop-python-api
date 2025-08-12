@@ -9,4 +9,4 @@ app.load("your/psd/or/psb/file_path.psd")
 
 # style 2
 with Session("your/psd/or/psb/file_path.psd", action="open") as ps:
-    ps.echo(ps.active_document.name)
+    print(ps.active_document.name)

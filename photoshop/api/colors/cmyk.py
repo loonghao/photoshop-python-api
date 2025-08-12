@@ -9,41 +9,41 @@ class CMYKColor(Photoshop):
 
     object_name = "CMYKColor"
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
     @property
-    def black(self) -> int:
+    def black(self) -> float:
         """The black color value. Range: 0.0 to 100.0."""
-        return round(self.app.black)
+        return self.app.black
 
     @black.setter
-    def black(self, value: int):
+    def black(self, value: float) -> None:
         self.app.black = value
 
     @property
-    def cyan(self) -> int:
+    def cyan(self) -> float:
         """The cyan color value. Range: 0.0 to 100.0."""
-        return round(self.app.cyan)
+        return self.app.cyan
 
     @cyan.setter
-    def cyan(self, value: int):
+    def cyan(self, value: float) -> None:
         self.app.cyan = value
 
     @property
-    def magenta(self) -> int:
+    def magenta(self) -> float:
         """The magenta color value. Range: 0.0 to 100.0."""
-        return round(self.app.magenta)
+        return self.app.magenta
 
     @magenta.setter
-    def magenta(self, value: int):
+    def magenta(self, value: float) -> None:
         self.app.magenta = value
 
     @property
-    def yellow(self) -> int:
+    def yellow(self) -> float:
         """The yellow color value. Range: 0.0 to 100.0."""
-        return round(self.app.yellow)
+        return self.app.yellow
 
     @yellow.setter
-    def yellow(self, value: int):
+    def yellow(self, value: float) -> None:
         self.app.yellow = value

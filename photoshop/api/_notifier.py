@@ -5,6 +5,7 @@ var notRef = app.notifiers.add("OnClickGoButton", eventFile)
 Notifiers must be enabled using the Application.notifiersEnabled property
 
 """
+
 # Import built-in modules
 from pathlib import Path
 
@@ -13,19 +14,19 @@ from photoshop.api._core import Photoshop
 
 
 class Notifier(Photoshop):
-    def __init__(self, parent=None):
-        super().__init__()
+    def __init__(self, parent: Photoshop | None = None) -> None:
+        super().__init__(parent=parent)
         self._flag_as_method(
             "remove",
         )
 
     @property
-    def event(self):
+    def event(self) -> str:
         """The event identifier, a four-character code or a unique string."""
         return self.app.event
 
     @property
-    def eventClass(self):
+    def eventClass(self) -> str:
         """The class identifier, a four-character code or a unique string.
 
         When an event applies to multiple types of objects, use this
@@ -42,7 +43,7 @@ class Notifier(Photoshop):
         activates the notifier."""
         return Path(self.app.eventFile)
 
-    def remove(self):
+    def remove(self) -> None:
         """Deletes this object.
 
         You can also remove a Notifier object
@@ -53,4 +54,4 @@ class Notifier(Photoshop):
         Photoshop CC help for more information.
 
         """
-        return self.app.remove()
+        self.app.remove()

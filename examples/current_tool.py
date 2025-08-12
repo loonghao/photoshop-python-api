@@ -22,4 +22,4 @@ with Session() as ps:
     current = ps.app.currentTool
     
     # Print current tool name
-    ps.echo(f"Current tool: {current}")
+    print(f"Current tool: {current}")

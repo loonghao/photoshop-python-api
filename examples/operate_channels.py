@@ -22,7 +22,7 @@ with Session() as ps:
     
     # List all channels
     for channel in doc.channels:
-        ps.echo(f"Channel: {channel.name}")
+        print(f"Channel: {channel.name}")
         
     # Create a new alpha channel
     new_channel = doc.channels.add()

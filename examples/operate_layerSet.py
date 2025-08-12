@@ -41,10 +41,10 @@ with Session() as ps:
     
     # List layers in groups
     for layer in main_group.layers:
-        ps.echo(f"Layer in main group: {layer.name}")
+        print(f"Layer in main group: {layer.name}")
         
     for layer in sub_group.layers:
-        ps.echo(f"Layer in sub group: {layer.name}")
+        print(f"Layer in sub group: {layer.name}")
     
     # Move a layer between groups
     layer1.move(sub_group, ps.ElementPlacement.INSIDE)

@@ -1,10 +1,12 @@
 """"""
+
 # Import third-party modules
 import pytest
 
 # Import local modules
 from photoshop import Session
-from photoshop.api.enumerations import TextType
+from photoshop.api._artlayer import ArtLayer
+from photoshop.api.enumerations import Justification, TextType
 
 
 class TestTextItem:
@@ -14,11 +16,14 @@ class TestTextItem:
     @pytest.fixture(autouse=True)
     def setup(self, psd_file):
         """Setup for current test."""
-        self.session = Session(file_path=psd_file("textitem"), action="open", auto_close=True)
+        self.session = Session(
+            file_path=psd_file("textitem"), action="open", auto_close=True
+        )
         self.session.run_action()
         doc = self.session.active_document
         layer = doc.activeLayer
-        self.text_item = layer.textItem()  # -> TextItem
+        assert isinstance(layer, ArtLayer)
+        self.text_item = layer.textItem  # -> TextItem
         yield
         # self.session.close()
 
@@ -72,8 +77,8 @@ class TestTextItem:
         assert self.text_item.justification == 1
 
     def test_set_justification(self):
-        self.text_item.justification = 2
-        assert self.text_item.justification == 2
+        self.text_item.justification = Justification.Center
+        assert self.text_item.justification == Justification.Center
 
     def test_kind(self):
         assert self.text_item.kind == 1
@@ -95,3 +100,6 @@ class TestTextItem:
     def test_change_size(self):
         self.text_item.size = 20
         assert self.text_item.size == 20.0
+
+    def test_width(self):
+        assert isinstance(self.text_item.width, float)

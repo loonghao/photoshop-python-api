@@ -28,9 +28,9 @@ with Session() as ps:
         docRef.artLayers.add()
 
     # Display current active layer name
-    ps.echo(docRef.activeLayer.name)
+    print(docRef.activeLayer.name)
     
     # Create and rename a new layer
     new_layer = docRef.artLayers.add()
-    ps.echo(new_layer.name)
+    print(new_layer.name)
     new_layer.name = "test"
