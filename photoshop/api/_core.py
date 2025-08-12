@@ -1,17 +1,13 @@
 """This class provides all photoshop API core functions."""
+
 # Import built-in modules
-from contextlib import suppress
-from functools import cached_property
-from logging import CRITICAL
-from logging import DEBUG
-from logging import Logger
-from logging import getLogger
 import os
 import platform
-from typing import Any
-from typing import List
-from typing import Optional
 import winreg
+from contextlib import suppress
+from functools import cached_property
+from logging import CRITICAL, DEBUG, Logger, getLogger
+from typing import TYPE_CHECKING, Any
 
 # Import third-party modules
 from comtypes.client import CreateObject
@@ -30,7 +26,9 @@ class Photoshop:
     _reg_path = "SOFTWARE\\Adobe\\Photoshop"
     object_name: str = "Application"
 
-    def __init__(self, ps_version: Optional[str] = None, parent: Any = None):
+    def __init__(
+        self, ps_version: str | None = None, parent: "Photoshop | None" = None
+    ):
         """
         Initialize the Photoshop core object.
 
@@ -40,7 +38,9 @@ class Photoshop:
         """
         # Establish the initial app and program ID
         ps_version = os.getenv("PS_VERSION", ps_version)
-        self._app_id = PHOTOSHOP_VERSION_MAPPINGS.get(ps_version, "")
+        self._app_id = (
+            PHOTOSHOP_VERSION_MAPPINGS.get(ps_version, "") if ps_version else ""
+        )
         self._has_parent, self.adobe, self.app = False, None, None
 
         # Store current photoshop version
@@ -49,7 +49,7 @@ class Photoshop:
 
         # Establish the application object using provided version ID
         if self.app_id:
-            self.app = self._get_application_object([self.app_id])
+            self.app: Any = self._get_application_object([self.app_id])
             if not self.app:
                 # Attempt unsuccessful
                 self._logger.debug(
@@ -62,7 +62,9 @@ class Photoshop:
             self.app = self._get_application_object(versions)
             if not self.app:
                 # All attempts exhausted
-                raise PhotoshopPythonAPIError("Please check if you have Photoshop installed correctly.")
+                raise PhotoshopPythonAPIError(
+                    "Please check if you have Photoshop installed correctly."
+                )
 
         # Add the parent app object
         if parent:
@@ -70,20 +72,19 @@ class Photoshop:
             self.app = parent
             self._has_parent = True
 
-    def __repr__(self):
-        return self
-
-    def __call__(self, *args, **kwargs):
+    def __call__(self):
         return self.app
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__class__.__name__} <{self.program_name}>"
 
-    def __getattribute__(self, item):
-        try:
-            return super().__getattribute__(item)
-        except AttributeError:
-            return getattr(self.app, item)
+    if not TYPE_CHECKING:
+
+        def __getattribute__(self, name):
+            try:
+                return super().__getattribute__(name)
+            except AttributeError:
+                return getattr(self.app, name)
 
     """
     * Debug Logger
@@ -92,7 +93,9 @@ class Photoshop:
     @cached_property
     def _debug(self) -> bool:
         """bool: Enable DEBUG level in logger if PS_DEBUG environment variable is truthy."""
-        return bool(os.getenv("PS_DEBUG", "False").lower() in ["y", "t", "on", "yes", "true"])
+        return bool(
+            os.getenv("PS_DEBUG", "False").lower() in ["y", "t", "on", "yes", "true"]
+        )
 
     @cached_property
     def _logger(self) -> Logger:
@@ -141,14 +144,14 @@ class Photoshop:
         return self._app_id
 
     @app_id.setter
-    def app_id(self, value: str):
+    def app_id(self, value: str) -> None:
         self._app_id = value
 
     """
     * Private Methods
     """
 
-    def _flag_as_method(self, *names: str):
+    def _flag_as_method(self, *names: str) -> None:
         """
         * This is a hack for Photoshop's broken COM implementation.
         * Photoshop does not implement 'IDispatch::GetTypeInfo', so when
@@ -161,7 +164,7 @@ class Photoshop:
         if isinstance(self.app, FullyDynamicDispatch):
             self.app._FlagAsMethod(*names)
 
-    def _get_photoshop_versions(self) -> List[str]:
+    def _get_photoshop_versions(self) -> list[str]:
         """Retrieve a list of Photoshop version ID's from registry."""
         with suppress(OSError, IndexError):
             key = self._open_key(self._reg_path)
@@ -169,10 +172,14 @@ class Photoshop:
             versions = [winreg.EnumKey(key, i).split(".")[0] for i in range(key_count)]
             # Sort from latest version to oldest, use blank version as a fallback
             return [*sorted(versions, reverse=True), ""]
-        self._logger.debug("Unable to find Photoshop version number in HKEY_LOCAL_MACHINE registry!")
+        self._logger.debug(
+            "Unable to find Photoshop version number in HKEY_LOCAL_MACHINE registry!"
+        )
         return []
 
-    def _get_application_object(self, versions: List[str] = None) -> Optional[Dispatch]:
+    def _get_application_object(
+        self, versions: list[str] | None = None
+    ) -> Dispatch | None:
         """
         Try each version string until a valid Photoshop application Dispatch object is returned.
 
@@ -185,10 +192,11 @@ class Photoshop:
         Raises:
             OSError: If a Dispatch object wasn't resolved.
         """
-        for v in versions:
-            self.app_id = v
-            with suppress(OSError):
-                return CreateObject(self.program_name, dynamic=True)
+        if versions:
+            for v in versions:
+                self.app_id = v
+                with suppress(OSError):
+                    return CreateObject(self.program_name, dynamic=True)
         return
 
     """
@@ -212,10 +220,16 @@ class Photoshop:
         """str: The absolute scripts path of Photoshop."""
         return os.path.join(self.presets_path, "Scripts")
 
-    def eval_javascript(self, javascript: str, Arguments: Any = None, ExecutionMode: Any = None) -> str:
+    def eval_javascript(
+        self, javascript: str, Arguments: Any = None, ExecutionMode: Any = None
+    ) -> str:
         """Instruct the application to execute javascript code."""
         executor = self.adobe if self._has_parent else self.app
-        return executor.doJavaScript(javascript, Arguments, ExecutionMode)
+        if executor:
+            return executor.doJavaScript(javascript, Arguments, ExecutionMode)
+        else:
+            print("Tried to eval javascript, but executor is not available.")
+        return ""
 
     """
     * Private Static Methods
@@ -238,9 +252,13 @@ class Photoshop:
         mappings = {"AMD64": winreg.KEY_WOW64_64KEY}
         access = winreg.KEY_READ | mappings.get(machine_type, winreg.KEY_WOW64_32KEY)
         try:
-            return winreg.OpenKey(key=winreg.HKEY_LOCAL_MACHINE, sub_key=key, access=access)
+            return winreg.OpenKey(
+                key=winreg.HKEY_LOCAL_MACHINE, sub_key=key, access=access
+            )
         except FileNotFoundError as err:
             raise OSError(
                 "Failed to read the registration: <{path}>\n"
-                "Please check if you have Photoshop installed correctly.".format(path=f"HKEY_LOCAL_MACHINE\\{key}")
+                "Please check if you have Photoshop installed correctly.".format(
+                    path=f"HKEY_LOCAL_MACHINE\\{key}"
+                )
             ) from err

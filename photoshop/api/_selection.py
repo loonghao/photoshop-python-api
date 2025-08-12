@@ -1,9 +1,15 @@
 """The selected area of the document or layer."""
 
 # Import local modules
+from photoshop.api._channel import Channel
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ColorBlendMode
-from photoshop.api.enumerations import SelectionType
+from photoshop.api._document import Document
+from photoshop.api.enumerations import (
+    AnchorPosition,
+    ColorBlendMode,
+    SelectionType,
+    StrokeLocation,
+)
 from photoshop.api.solid_color import SolidColor
 
 
@@ -11,7 +17,7 @@ from photoshop.api.solid_color import SolidColor
 class Selection(Photoshop):
     """The selected area of the document."""
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
             "clear",
@@ -32,6 +38,7 @@ class Selection(Photoshop):
             "rotateBoundary",
             "select",
             "selectBorder",
+            "selectAll",
             "similar",
             "smooth",
             "store",
@@ -41,44 +48,46 @@ class Selection(Photoshop):
         )
 
     @property
-    def bounds(self):
+    def bounds(self) -> tuple[float, float, float, float]:
         return self.app.bounds
 
-    def parent(self):
-        return self.app.parent
+    def parent(self) -> Document:
+        return Document(self.app.parent)
 
     @property
-    def solid(self):
+    def solid(self) -> bool:
         return self.app.solid
 
-    @property
-    def typename(self):
-        return self.app.typename
-
-    def clear(self):
+    def clear(self) -> None:
         """Clears the selection and does not copy it to the clipboard."""
         self.app.clear()
 
-    def contract(self, contract_by):
+    def contract(self, contract_by: float) -> None:
         """Contracts the selection."""
         self.app.contract(contract_by)
 
-    def copy(self):
+    def copy(self, merge: bool = False) -> None:
         """Copies the selection to the clipboard."""
-        self.app.copy()
+        self.app.copy(merge)
 
-    def cut(self):
-        """Cuts the current selection to the clipboard."""
+    def cut(self) -> None:
+        """Clears the current selection and copies it to the clipboard."""
         self.app.cut()
 
-    def select(self, *args, **kwargs):
-        return self.app.select(*args, **kwargs)
+    def select(
+        self,
+        region: tuple[float, float, float, float],
+        selection_type: SelectionType | None = None,
+        feather: float = 0,
+        anti_alias: bool = True,
+    ) -> None:
+        self.app.select(region, selection_type, feather, anti_alias)
 
-    def deselect(self):
+    def deselect(self) -> None:
         """Deselects the current selection."""
-        return self.app.deselect()
+        self.app.deselect()
 
-    def expand(self, by: int):
+    def expand(self, by: float) -> None:
         """Expands the selection.
 
         Args:
@@ -87,26 +96,26 @@ class Selection(Photoshop):
         """
         self.app.expand(by)
 
-    def feather(self, by: int):
+    def feather(self, by: float) -> None:
         """Feathers the edges of the selection.
 
         Args:
             by: The amount to feather the edge.
 
         """
-        return self.app.feather(by)
+        self.app.feather(by)
 
     def fill(
         self,
         fill_type: SolidColor,
-        mode: ColorBlendMode = None,
-        opacity=None,
-        preserve_transparency=None,
-    ):
+        mode: ColorBlendMode | None = None,
+        opacity: float | None = None,
+        preserve_transparency: bool = False,
+    ) -> None:
         """Fills the selection."""
-        return self.app.fill(fill_type, mode, opacity, preserve_transparency)
+        self.app.fill(fill_type, mode, opacity, preserve_transparency)
 
-    def grow(self, tolerance, anti_alias):
+    def grow(self, tolerance: int, anti_alias: bool) -> None:
         """Grows the selection to include all adjacent pixels falling within
 
         The specified tolerance range.
@@ -117,38 +126,58 @@ class Selection(Photoshop):
 
 
         """
-        return self.app.grow(tolerance, anti_alias)
+        self.app.grow(tolerance, anti_alias)
 
-    def invert(self):
+    def invert(self) -> None:
         """Inverts the selection."""
         self.app.invert()
 
-    def load(self, from_channel, combination, inverting):
+    def load(
+        self,
+        from_channel: Channel,
+        combination: SelectionType | None = None,
+        inverting: bool = False,
+    ) -> None:
         """Loads the selection from the specified channel."""
-        return self.app.load(from_channel, combination, inverting)
+        self.app.load(from_channel, combination, inverting)
 
-    def makeWorkPath(self, tolerance):
+    def makeWorkPath(self, tolerance: float) -> None:
         """Makes this selection item the workpath for this document."""
         self.app.makeWorkPath(tolerance)
 
-    def resize(self, horizontal, vertical, anchor):
+    def resize(
+        self, horizontal: float, vertical: float, anchor: AnchorPosition
+    ) -> None:
         """Resizes the selected area to the specified dimensions and anchor
         position."""
         self.app.resize(horizontal, vertical, anchor)
 
-    def resizeBoundary(self, horizontal, vertical, anchor):
+    def resizeBoundary(
+        self, horizontal: float, vertical: float, anchor: AnchorPosition
+    ) -> None:
         """Scales the boundary of the selection."""
         self.app.resizeBoundary(horizontal, vertical, anchor)
 
-    def rotate(self, angle, anchor):
+    def rotate(self, angle: float, anchor: AnchorPosition) -> None:
         """Rotates the object."""
         self.app.rotate(angle, anchor)
 
-    def rotateBoundary(self, angle, anchor):
+    def rotateBoundary(self, angle: float, anchor: AnchorPosition) -> None:
         """Rotates the boundary of the selection."""
         self.app.rotateBoundary(angle, anchor)
 
-    def stroke(self, strokeColor, width, location, mode, opacity, preserveTransparency):
+    def selectAll(self) -> None:
+        self.app.selectAll()
+
+    def stroke(
+        self,
+        strokeColor: SolidColor,
+        width: int,
+        location: StrokeLocation | None = None,
+        mode: ColorBlendMode | None = None,
+        opacity: int = 100,
+        preserveTransparency: bool = False,
+    ) -> None:
         """Strokes the selection.
 
         Args:
@@ -161,9 +190,11 @@ class Selection(Photoshop):
             preserveTransparency (bool): If true, preserves transparency.
 
         """
-        return self.app.stroke(strokeColor, width, location, mode, opacity, preserveTransparency)
+        self.app.stroke(
+            strokeColor, width, location, mode, opacity, preserveTransparency
+        )
 
-    def selectBorder(self, width):
+    def selectBorder(self, width: float) -> None:
         """Selects the selection border only (in the specified width);
         subsequent actions do not affect the selected area within the borders.
 
@@ -171,24 +202,26 @@ class Selection(Photoshop):
             width (int): The width of the border selection.
 
         """
-        return self.app.selectBorder(width)
+        self.app.selectBorder(width)
 
-    def similar(self, tolerance, antiAlias):
-        return self.app.similar(tolerance, antiAlias)
+    def similar(self, tolerance: int, anti_alias: bool = True) -> None:
+        self.app.similar(tolerance, anti_alias)
 
-    def smooth(self, radius):
+    def smooth(self, radius: int) -> None:
         """Cleans up stray pixels left inside or outside a color-based
         selection (within the radius specified in pixels)."""
-        return self.app.smooth(radius)
+        self.app.smooth(radius)
 
-    def store(self, into, combination=SelectionType.ReplaceSelection):
+    def store(
+        self, into: Channel, combination: SelectionType = SelectionType.ReplaceSelection
+    ) -> None:
         """Saves the selection as a channel."""
-        return self.app.store(into, combination)
+        self.app.store(into, combination)
 
-    def translate(self, deltaX, deltaY):
+    def translate(self, deltaX: float = 0, deltaY: float = 0) -> None:
         """Moves the object relative to its current position."""
-        return self.app.translate(deltaX, deltaY)
+        self.app.translate(deltaX, deltaY)
 
-    def translateBoundary(self, deltaX, deltaY):
+    def translateBoundary(self, deltaX: float = 0, deltaY: float = 0) -> None:
         """Moves the boundary of selection relative to its current position."""
-        return self.app.translateBoundary(deltaX, deltaY)
+        self.app.translateBoundary(deltaX, deltaY)

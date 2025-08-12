@@ -1,6 +1,6 @@
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import MatteType
+from photoshop.api.enumerations import FormatOptionsType, MatteType
 
 
 class JPEGSaveOptions(Photoshop):
@@ -8,51 +8,56 @@ class JPEGSaveOptions(Photoshop):
 
     object_name = "JPEGSaveOptions"
 
-    def __init__(self, quality=5, embedColorProfile=True, matte=MatteType.NoMatte):
+    def __init__(
+        self,
+        quality: int = 5,
+        embedColorProfile: bool = True,
+        matte: MatteType = MatteType.NoMatte,
+    ):
         super().__init__()
         self.quality = quality
         self.embedColorProfile = embedColorProfile
         self.matte = matte
 
     @property
-    def quality(self):
+    def quality(self) -> int:
         return self.app.quality
 
     @quality.setter
-    def quality(self, value):
+    def quality(self, value: int) -> None:
         self.app.quality = value
 
     @property
-    def formatOptions(self):
+    def formatOptions(self) -> FormatOptionsType:
         """The download format to use."""
-        return self.app.formatOptions
+        return FormatOptionsType(self.app.formatOptions)
 
     @formatOptions.setter
-    def formatOptions(self, value):
+    def formatOptions(self, value: FormatOptionsType) -> None:
         self.app.formatOptions = value
 
     @property
-    def embedColorProfile(self):
+    def embedColorProfile(self) -> bool:
         return self.app.embedColorProfile
 
     @embedColorProfile.setter
-    def embedColorProfile(self, value):
+    def embedColorProfile(self, value: bool) -> None:
         self.app.embedColorProfile = value
 
     @property
-    def matte(self):
+    def matte(self) -> MatteType:
         """The color to use to fill anti-aliased edges adjacent to
         transparent"""
-        return self.app.matte
+        return MatteType(self.app.matte)
 
     @matte.setter
-    def matte(self, value):
+    def matte(self, value: MatteType) -> None:
         self.app.matte = value
 
     @property
-    def scans(self):
+    def scans(self) -> int:
         return self.app.scans
 
     @scans.setter
-    def scans(self, value):
+    def scans(self, value: int) -> None:
         self.app.scans = value

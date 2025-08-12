@@ -1,35 +1,35 @@
 # Import built-in modules
-from typing import Any
-from typing import Union
+from typing import Iterator, TypeVar, overload
 
 # Import third-party modules
-from comtypes import ArgumentError
-from comtypes import COMError
+from comtypes import ArgumentError, COMError
 
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.text_font import TextFont
 
+T = TypeVar("T")
+
 
 class TextFonts(Photoshop):
     """An installed font."""
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
     """
     MAGIC METHODS
     """
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self.length
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[TextFont]:
         for font in self.app:
             yield TextFont(font)
 
-    def __contains__(self, name: str):
+    def __contains__(self, name: str) -> bool:
         """Check if a font is installed. Lookup by font postScriptName (fastest) or name.
 
         Args:
@@ -50,7 +50,7 @@ class TextFonts(Photoshop):
                 continue
         return False
 
-    def __getitem__(self, key: str):
+    def __getitem__(self, key: str) -> TextFont:
         """Access a given TextFont using dictionary key lookup, must provide the postScriptName.
 
         Args:
@@ -63,13 +63,21 @@ class TextFonts(Photoshop):
         try:
             return TextFont(self.app[key])
         except ArgumentError:
-            raise PhotoshopPythonAPIError(f'Could not find a font with postScriptName "{key}"')
+            raise PhotoshopPythonAPIError(
+                f'Could not find a font with postScriptName "{key}"'
+            )
 
     """
     METHODS
     """
 
-    def get(self, key: str, default: Any = None) -> Union[TextFont, Any]:
+    @overload
+    def get(self, key: str, default: T) -> TextFont | T: ...
+
+    @overload
+    def get(self, key: str) -> TextFont | None: ...
+
+    def get(self, key: str, default: T | None = None) -> TextFont | T | None:
         """
         Accesses a given TextFont using dictionary key lookup of postScriptName, returns default if not found.
 
@@ -86,7 +94,7 @@ class TextFonts(Photoshop):
         except (KeyError, ArgumentError):
             return default
 
-    def getByName(self, name: str) -> TextFont:
+    def getByName(self, name: str) -> TextFont | None:
         """Gets the font by the font name.
 
         Args:
@@ -100,17 +108,12 @@ class TextFonts(Photoshop):
         for font in self.app:
             if font.name == name:
                 return TextFont(font)
-        raise PhotoshopPythonAPIError('Could not find a TextFont named "{name}"')
 
     """
     PROPERTIES
     """
 
     @property
-    def _fonts(self):
-        return [a for a in self.app]
-
-    @property
-    def length(self):
+    def length(self) -> int:
         """The number pf elements in the collection."""
-        return len(self._fonts)
+        return len(list(self.app))
