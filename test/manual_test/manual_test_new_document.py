@@ -5,6 +5,7 @@ import pytest
 
 from photoshop import Session
 from photoshop.api._artlayer import ArtLayer
+from photoshop.api._document import Document
 from photoshop.api._layerSet import LayerSet
 from photoshop.api.enumerations import LayerKind
 
@@ -72,7 +73,18 @@ class TestNewDocument:
         assert layer_1.kind == LayerKind.TextLayer
 
     def test_layer_iteration(self):
-        self.doc.layerSets.add()
+        layer_set = self.doc.layerSets.add()
         layers = list(self.doc.layers)
         assert any((layer for layer in layers if isinstance(layer, LayerSet)))
         assert any((layer for layer in layers if isinstance(layer, ArtLayer)))
+
+        layer_set.artLayers.add()
+        layer_set.layerSets.add()
+        assert any((layer for layer in layer_set if isinstance(layer, LayerSet)))
+        assert any((layer for layer in layer_set if isinstance(layer, ArtLayer)))
+
+    def test_layer_parent(self):
+        layer_set = self.doc.layerSets.add()
+        assert isinstance(layer_set.parent, Document)
+        sub_layer = layer_set.artLayers.add()
+        assert isinstance(sub_layer.parent, LayerSet)
