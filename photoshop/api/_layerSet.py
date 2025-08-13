@@ -70,5 +70,5 @@ class LayerSet(Layer):
         return ArtLayer(self.app.merge())
 
     def __iter__(self) -> Iterator[Layer]:
-        for layer in self.app:
-            yield Layer(layer)
+        for layer in self.layers:
+            yield layer
