@@ -31,6 +31,7 @@ from photoshop.api._notifiers import Notifiers
 from photoshop.api._preferences import Preferences
 from photoshop.api._text_fonts import TextFonts
 from photoshop.api.action_descriptor import ActionDescriptor
+from photoshop.api.action_reference import ActionReference
 from photoshop.api.batch_options import BatchOptions
 from photoshop.api.enumerations import DialogModes, PurgeTarget
 from photoshop.api.errors import PhotoshopPythonAPIError
@@ -396,7 +397,7 @@ class Application(Photoshop):
             self.app.executeAction(event_id, descriptor, display_dialogs)
         )
 
-    def executeActionGet(self, reference: ActionDescriptor) -> ActionDescriptor:
+    def executeActionGet(self, reference: ActionReference) -> ActionDescriptor:
         return ActionDescriptor(self.app.executeActionGet(reference))
 
     def featureEnabled(self, name: str) -> bool:
