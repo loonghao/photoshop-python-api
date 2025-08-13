@@ -84,11 +84,18 @@ class Layer(Photoshop):
         self.app.opacity = value
 
     @property
-    def parent(self) -> "Document":
-        """The object's container."""
-        from photoshop.api._document import Document
+    def parent(self) -> "Document | LayerSet":
+        """The layers's container."""
+        parent = self.app.parent
+        try:
+            parent.resolution
+            from photoshop.api._document import Document
 
-        return Document(self.app.parent)
+            return Document(parent)
+        except NameError:
+            from photoshop.api._layerSet import LayerSet
+
+            return LayerSet(parent)
 
     @property
     def visible(self) -> bool:
