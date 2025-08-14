@@ -76,7 +76,12 @@ class Selection(Photoshop):
 
     def select(
         self,
-        region: tuple[float, float, float, float],
+        region: tuple[
+            tuple[float, float],
+            tuple[float, float],
+            tuple[float, float],
+            tuple[float, float],
+        ],
         selection_type: SelectionType | None = None,
         feather: float = 0,
         anti_alias: bool = True,
