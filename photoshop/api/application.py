@@ -390,7 +390,7 @@ class Application(Photoshop):
     def executeAction(
         self,
         event_id: int,
-        descriptor: ActionDescriptor,
+        descriptor: ActionDescriptor | None = None,
         display_dialogs: DialogModes = DialogModes.DisplayNoDialogs,
     ) -> ActionDescriptor:
         return ActionDescriptor(
