@@ -150,7 +150,7 @@ class Layer(Photoshop):
         """Scales the object."""
         self.app.resize(horizontal, vertical, anchor)
 
-    def rotate(self, angle: float, anchor: AnchorPosition) -> None:
+    def rotate(self, angle: float, anchor: AnchorPosition = AnchorPosition.MiddleCenter) -> None:
         return self.app.rotate(angle, anchor)
 
     def translate(self, deltaX: float, deltaY: float) -> None:
