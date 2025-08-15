@@ -1,11 +1,15 @@
+# Import built-in modules
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.enumerations import DescValueType
 
+
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api.action_descriptor import ActionDescriptor
     from photoshop.api.action_list import ActionList
 
@@ -98,6 +102,7 @@ class BaseAction(Photoshop):
 
     def getList(self, index: int) -> "ActionList":
         """Gets the value of a key of type list."""
+        # Import local modules
         from photoshop.api.action_list import ActionList
 
         return ActionList(self.app.getList(index))

@@ -4,12 +4,10 @@
 from photoshop.api._channel import Channel
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
-from photoshop.api.enumerations import (
-    AnchorPosition,
-    ColorBlendMode,
-    SelectionType,
-    StrokeLocation,
-)
+from photoshop.api.enumerations import AnchorPosition
+from photoshop.api.enumerations import ColorBlendMode
+from photoshop.api.enumerations import SelectionType
+from photoshop.api.enumerations import StrokeLocation
 from photoshop.api.solid_color import SolidColor
 
 
@@ -150,16 +148,12 @@ class Selection(Photoshop):
         """Makes this selection item the workpath for this document."""
         self.app.makeWorkPath(tolerance)
 
-    def resize(
-        self, horizontal: float, vertical: float, anchor: AnchorPosition
-    ) -> None:
+    def resize(self, horizontal: float, vertical: float, anchor: AnchorPosition) -> None:
         """Resizes the selected area to the specified dimensions and anchor
         position."""
         self.app.resize(horizontal, vertical, anchor)
 
-    def resizeBoundary(
-        self, horizontal: float, vertical: float, anchor: AnchorPosition
-    ) -> None:
+    def resizeBoundary(self, horizontal: float, vertical: float, anchor: AnchorPosition) -> None:
         """Scales the boundary of the selection."""
         self.app.resizeBoundary(horizontal, vertical, anchor)
 
@@ -195,9 +189,7 @@ class Selection(Photoshop):
             preserveTransparency (bool): If true, preserves transparency.
 
         """
-        self.app.stroke(
-            strokeColor, width, location, mode, opacity, preserveTransparency
-        )
+        self.app.stroke(strokeColor, width, location, mode, opacity, preserveTransparency)
 
     def selectBorder(self, width: float) -> None:
         """Selects the selection border only (in the specified width);
@@ -217,9 +209,7 @@ class Selection(Photoshop):
         selection (within the radius specified in pixels)."""
         self.app.smooth(radius)
 
-    def store(
-        self, into: Channel, combination: SelectionType = SelectionType.ReplaceSelection
-    ) -> None:
+    def store(self, into: Channel, combination: SelectionType = SelectionType.ReplaceSelection) -> None:
         """Saves the selection as a channel."""
         self.app.store(into, combination)
 

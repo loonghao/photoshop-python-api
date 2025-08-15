@@ -2,7 +2,8 @@
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import BMPDepthType, OperatingSystem
+from photoshop.api.enumerations import BMPDepthType
+from photoshop.api.enumerations import OperatingSystem
 
 
 class BMPSaveOptions(Photoshop):

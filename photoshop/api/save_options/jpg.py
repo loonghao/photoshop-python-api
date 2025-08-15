@@ -1,6 +1,7 @@
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import FormatOptionsType, MatteType
+from photoshop.api.enumerations import FormatOptionsType
+from photoshop.api.enumerations import MatteType
 
 
 class JPEGSaveOptions(Photoshop):

@@ -1,9 +1,13 @@
+# Import built-in modules
 from typing import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import PointKind
 
+
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api.sub_path_item import SubPathItem
 
 
@@ -25,6 +29,7 @@ class PathPoint(Photoshop):
 
     @property
     def parent(self) -> "SubPathItem":
+        # Import local modules
         from photoshop.api.sub_path_item import SubPathItem
 
         return SubPathItem(self.app.parent)

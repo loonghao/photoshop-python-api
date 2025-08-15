@@ -16,7 +16,8 @@ The basic canvas for the file.
 # Import built-in modules
 from os import PathLike
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
+from typing import TYPE_CHECKING
 
 # Import third-party modules
 from comtypes import COMError
@@ -30,27 +31,27 @@ from photoshop.api._core import Photoshop
 from photoshop.api._documentinfo import DocumentInfo
 from photoshop.api._layer import Layer
 from photoshop.api._layerComps import LayerComps
-from photoshop.api._layers import Layers
 from photoshop.api._layerSet import LayerSet
 from photoshop.api._layerSets import LayerSets
-from photoshop.api.enumerations import (
-    AnchorPosition,
-    BitsPerChannelType,
-    ChangeMode,
-    ColorProfileType,
-    Direction,
-    DocumentMode,
-    ExportType,
-    ExtensionType,
-    Intent,
-    MeasurementSource,
-    ResampleMethod,
-    SaveOptions,
-    SourceSpaceType,
-    TrimType,
-)
+from photoshop.api._layers import Layers
+from photoshop.api.enumerations import AnchorPosition
+from photoshop.api.enumerations import BitsPerChannelType
+from photoshop.api.enumerations import ChangeMode
+from photoshop.api.enumerations import ColorProfileType
+from photoshop.api.enumerations import Direction
+from photoshop.api.enumerations import DocumentMode
+from photoshop.api.enumerations import ExportType
+from photoshop.api.enumerations import ExtensionType
+from photoshop.api.enumerations import Intent
+from photoshop.api.enumerations import MeasurementSource
+from photoshop.api.enumerations import ResampleMethod
+from photoshop.api.enumerations import SaveOptions
+from photoshop.api.enumerations import SourceSpaceType
+from photoshop.api.enumerations import TrimType
 from photoshop.api.path_items import PathItems
-from photoshop.api.protocols import HistoryState, MeasurementScale, XMPMetadata
+from photoshop.api.protocols import HistoryState
+from photoshop.api.protocols import MeasurementScale
+from photoshop.api.protocols import XMPMetadata
 from photoshop.api.save_options import ExportOptionsSaveForWeb
 from photoshop.api.save_options.bmp import BMPSaveOptions
 from photoshop.api.save_options.eps import EPSSaveOptions
@@ -62,7 +63,9 @@ from photoshop.api.save_options.psd import PhotoshopSaveOptions
 from photoshop.api.save_options.tag import TargaSaveOptions
 from photoshop.api.save_options.tif import TiffSaveOptions
 
+
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api._selection import Selection
 
 
@@ -374,9 +377,7 @@ class Document(Photoshop):
         blackPointCompensation: bool,
         dither: bool,
     ) -> None:
-        self.app.convertProfile(
-            destinationProfile, intent, blackPointCompensation, dither
-        )
+        self.app.convertProfile(destinationProfile, intent, blackPointCompensation, dither)
 
     def flatten(self) -> None:
         """Flattens all layers."""
@@ -426,9 +427,7 @@ class Document(Photoshop):
         file_path = file_path.replace("\\", "/")
         self.app.export(file_path, exportAs, options)
 
-    def duplicate(
-        self, name: str | None = None, merge_layers_only: bool = False
-    ) -> "Document":
+    def duplicate(self, name: str | None = None, merge_layers_only: bool = False) -> "Document":
         return Document(self.app.duplicate(name, merge_layers_only))
 
     def paste(self) -> ArtLayer | LayerSet:
@@ -499,9 +498,7 @@ class Document(Photoshop):
         Allows a single undo for all actions taken in the script.
 
         """
-        self.eval_javascript(
-            f"app.activeDocument.suspendHistory('{historyString}', '{javaScriptString}')"
-        )
+        self.eval_javascript(f"app.activeDocument.suspendHistory('{historyString}', '{javaScriptString}')")
 
     def trap(self, width: int) -> None:
         """

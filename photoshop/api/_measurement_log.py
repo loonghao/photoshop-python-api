@@ -1,6 +1,7 @@
-# Import local modules
+# Import built-in modules
 from typing import Sequence
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import MeasurementRange
 

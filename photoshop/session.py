@@ -30,36 +30,35 @@ with Session(action="new_document") as ps:
 from contextlib import AbstractContextManager
 from os import PathLike
 from types import TracebackType
-from typing import Any, Literal
+from typing import Any
+from typing import Literal
 
 # Import local modules
-from photoshop.api import (
-    ActionDescriptor,
-    ActionList,
-    ActionReference,
-    Application,
-    BatchOptions,
-    BMPSaveOptions,
-    CMYKColor,
-    EPSSaveOptions,
-    EventID,
-    ExportOptionsSaveForWeb,
-    GIFSaveOptions,
-    GrayColor,
-    HSBColor,
-    JPEGSaveOptions,
-    LabColor,
-    PDFSaveOptions,
-    PhotoshopSaveOptions,
-    PNGSaveOptions,
-    RGBColor,
-    SolidColor,
-    TargaSaveOptions,
-    TextItem,
-    TiffSaveOptions,
-    enumerations,
-    errors,
-)
+from photoshop.api import ActionDescriptor
+from photoshop.api import ActionList
+from photoshop.api import ActionReference
+from photoshop.api import Application
+from photoshop.api import BMPSaveOptions
+from photoshop.api import BatchOptions
+from photoshop.api import CMYKColor
+from photoshop.api import EPSSaveOptions
+from photoshop.api import EventID
+from photoshop.api import ExportOptionsSaveForWeb
+from photoshop.api import GIFSaveOptions
+from photoshop.api import GrayColor
+from photoshop.api import HSBColor
+from photoshop.api import JPEGSaveOptions
+from photoshop.api import LabColor
+from photoshop.api import PDFSaveOptions
+from photoshop.api import PNGSaveOptions
+from photoshop.api import PhotoshopSaveOptions
+from photoshop.api import RGBColor
+from photoshop.api import SolidColor
+from photoshop.api import TargaSaveOptions
+from photoshop.api import TextItem
+from photoshop.api import TiffSaveOptions
+from photoshop.api import enumerations
+from photoshop.api import errors
 from photoshop.api._document import Document
 
 
@@ -204,9 +203,7 @@ class Session(AbstractContextManager["Session"]):
         self.GalleryConstrainType = enumerations.GalleryConstrainType
         self.GalleryFontType = enumerations.GalleryFontType
         self.GallerySecurityTextColorType = enumerations.GallerySecurityTextColorType
-        self.GallerySecurityTextPositionType = (
-            enumerations.GallerySecurityTextPositionType
-        )
+        self.GallerySecurityTextPositionType = enumerations.GallerySecurityTextPositionType
         self.GallerySecurityTextRotateType = enumerations.GallerySecurityTextRotateType
         self.GallerySecurityType = enumerations.GallerySecurityType
         self.GalleryThumbSizeType = enumerations.GalleryThumbSizeType

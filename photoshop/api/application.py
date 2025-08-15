@@ -13,12 +13,12 @@ app.documents.add(800, 600, 72, "docRef")
 
 # Import built-in modules
 import os
+from pathlib import Path
 import time
+from typing import Any
 
 # Import third-party modules
 from _ctypes import COMError
-from pathlib import Path
-from typing import Any
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
@@ -33,7 +33,8 @@ from photoshop.api._text_fonts import TextFonts
 from photoshop.api.action_descriptor import ActionDescriptor
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.batch_options import BatchOptions
-from photoshop.api.enumerations import DialogModes, PurgeTarget
+from photoshop.api.enumerations import DialogModes
+from photoshop.api.enumerations import PurgeTarget
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.solid_color import SolidColor
 
@@ -134,9 +135,7 @@ class Application(Photoshop):
         try:
             self.doJavaScript(f'app.colorSettings="{settings}"')
         except COMError as e:
-            raise PhotoshopPythonAPIError(
-                f"Invalid color profile provided: '{settings}'"
-            ) from e
+            raise PhotoshopPythonAPIError(f"Invalid color profile provided: '{settings}'") from e
 
     @property
     def currentTool(self) -> str:
@@ -350,9 +349,7 @@ class Application(Photoshop):
         # Ensure the script execute success.
         time.sleep(1)
 
-    def doProgressSegmentTask(
-        self, segmentLength: int, done: int, total: int, javascript: str
-    ) -> None:
+    def doProgressSegmentTask(self, segmentLength: int, done: int, total: int, javascript: str) -> None:
         script = "app.doProgressSegmentTask({}, {}, {}, '{}');".format(
             segmentLength,
             done,
@@ -393,9 +390,7 @@ class Application(Photoshop):
         descriptor: ActionDescriptor | None = None,
         display_dialogs: DialogModes = DialogModes.DisplayNoDialogs,
     ) -> ActionDescriptor:
-        return ActionDescriptor(
-            self.app.executeAction(event_id, descriptor, display_dialogs)
-        )
+        return ActionDescriptor(self.app.executeAction(event_id, descriptor, display_dialogs))
 
     def executeActionGet(self, reference: ActionReference) -> ActionDescriptor:
         return ActionDescriptor(self.app.executeActionGet(reference))
@@ -425,9 +420,7 @@ class Application(Photoshop):
         document_type: str | None = None,
         as_smart_object: bool = False,
     ) -> Document:
-        document = self.app.open(
-            str(document_file_path), document_type, as_smart_object
-        )
+        document = self.app.open(str(document_file_path), document_type, as_smart_object)
         if not as_smart_object:
             return Document(document)
         return document
@@ -437,9 +430,7 @@ class Application(Photoshop):
         self.app.load(str(document_file_path))
         return self.activeDocument
 
-    def doJavaScript(
-        self, javascript: str, Arguments: Any = None, ExecutionMode: Any = None
-    ):
+    def doJavaScript(self, javascript: str, Arguments: Any = None, ExecutionMode: Any = None):
         return self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
     def isQuicktimeAvailable(self) -> bool:
@@ -461,9 +452,7 @@ class Application(Photoshop):
         """
         self.app.purge(target)
 
-    def putCustomOptions(
-        self, key: str, custom_object: ActionDescriptor, persistent: bool
-    ) -> None:
+    def putCustomOptions(self, key: str, custom_object: ActionDescriptor, persistent: bool) -> None:
         self.app.putCustomOptions(key, custom_object, persistent)
 
     def refresh(self) -> None:

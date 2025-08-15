@@ -1,23 +1,22 @@
-# Import local modules
+# Import built-in modules
 from os import PathLike
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._layer import Layer
-from photoshop.api.enumerations import (
-    CreateFields,
-    DepthMaource,
-    DisplacementMapType,
-    ElementPlacement,
-    EliminateFields,
-    Geometry,
-    LayerKind,
-    LensType,
-    NoiseDistribution,
-    OffsetUndefinedAreas,
-    RasterizeType,
-    TextureType,
-    UndefinedAreas,
-)
+from photoshop.api.enumerations import CreateFields
+from photoshop.api.enumerations import DepthMaource
+from photoshop.api.enumerations import DisplacementMapType
+from photoshop.api.enumerations import ElementPlacement
+from photoshop.api.enumerations import EliminateFields
+from photoshop.api.enumerations import Geometry
+from photoshop.api.enumerations import LayerKind
+from photoshop.api.enumerations import LensType
+from photoshop.api.enumerations import NoiseDistribution
+from photoshop.api.enumerations import OffsetUndefinedAreas
+from photoshop.api.enumerations import RasterizeType
+from photoshop.api.enumerations import TextureType
+from photoshop.api.enumerations import UndefinedAreas
 from photoshop.api.text_item import TextItem
 
 
@@ -290,9 +289,7 @@ class ArtLayer(Layer):
             outputRangeEnd,
         )
 
-    def applyAddNoise(
-        self, amount: float, distribution: NoiseDistribution, monochromatic: bool
-    ) -> None:
+    def applyAddNoise(self, amount: float, distribution: NoiseDistribution, monochromatic: bool) -> None:
         self.app.applyAddNoise(amount, distribution, monochromatic)
 
     def applyDiffuseGlow(self, graininess: int, amount: int, clear_amount: int) -> None:
@@ -324,15 +321,11 @@ class ArtLayer(Layer):
         """Applies the clouds filter."""
         self.app.applyClouds()
 
-    def applyCustomFilter(
-        self, characteristics: list[int], scale: int, offset: int
-    ) -> None:
+    def applyCustomFilter(self, characteristics: list[int], scale: int, offset: int) -> None:
         """Applies the custom filter."""
         self.app.applyCustomFilter(characteristics, scale, offset)
 
-    def applyDeInterlace(
-        self, eliminateFields: EliminateFields, createFields: CreateFields
-    ) -> None:
+    def applyDeInterlace(self, eliminateFields: EliminateFields, createFields: CreateFields) -> None:
         """Applies the de-interlace filter."""
         self.app.applyDeInterlace(eliminateFields, createFields)
 
@@ -421,9 +414,7 @@ class ArtLayer(Layer):
             monochromatic,
         )
 
-    def applyLensFlare(
-        self, brightness: int, flareCenter: tuple[float, float], lensType: LensType
-    ) -> None:
+    def applyLensFlare(self, brightness: int, flareCenter: tuple[float, float], lensType: LensType) -> None:
         self.app.applyLensFlare(brightness, flareCenter, lensType)
 
     def applyMaximum(self, radius: float) -> None:
@@ -444,9 +435,7 @@ class ArtLayer(Layer):
     def applyOceanRipple(self, size: int, magnitude: int) -> None:
         self.app.applyOceanRipple(size, magnitude)
 
-    def applyOffset(
-        self, horizontal: int, vertical: int, undefinedAreas: OffsetUndefinedAreas
-    ) -> None:
+    def applyOffset(self, horizontal: int, vertical: int, undefinedAreas: OffsetUndefinedAreas) -> None:
         self.app.applyOffset(horizontal, vertical, undefinedAreas)
 
     def applyPinch(self, amount: int) -> None:

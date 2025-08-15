@@ -1,10 +1,8 @@
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import (
-    ByteOrderType,
-    LayerCompressionType,
-    TiffEncodingType,
-)
+from photoshop.api.enumerations import ByteOrderType
+from photoshop.api.enumerations import LayerCompressionType
+from photoshop.api.enumerations import TiffEncodingType
 
 
 class TiffSaveOptions(Photoshop):

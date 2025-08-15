@@ -1,10 +1,15 @@
-from typing import TYPE_CHECKING, Iterator
+# Import built-in modules
+from typing import Iterator
+from typing import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ShapeOperation
 from photoshop.api.path_point import PathPoint
 
+
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api.path_item import PathItem
 
 
@@ -22,6 +27,7 @@ class SubPathItem(Photoshop):
 
     @property
     def parent(self) -> "PathItem":
+        # Import local modules
         from photoshop.api.path_item import PathItem
 
         return PathItem(self.app.parent)

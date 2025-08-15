@@ -1,11 +1,13 @@
 # https://theiviaxx.github.io/photoshop-docs/Photoshop/BatchOptions.html
-# Import local modules
+# Import built-in modules
 from os import PathLike
 from pathlib import Path
 from typing import Sequence
 
+# Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import BatchDestinationType, FileNamingType
+from photoshop.api.enumerations import BatchDestinationType
+from photoshop.api.enumerations import FileNamingType
 
 
 class BatchOptions(Photoshop):

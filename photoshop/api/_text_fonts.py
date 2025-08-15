@@ -1,13 +1,17 @@
 # Import built-in modules
-from typing import Iterator, TypeVar, overload
+from typing import Iterator
+from typing import TypeVar
+from typing import overload
 
 # Import third-party modules
-from comtypes import ArgumentError, COMError
+from comtypes import ArgumentError
+from comtypes import COMError
 
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.text_font import TextFont
+
 
 T = TypeVar("T")
 
@@ -63,19 +67,19 @@ class TextFonts(Photoshop):
         try:
             return TextFont(self.app[key])
         except ArgumentError:
-            raise PhotoshopPythonAPIError(
-                f'Could not find a font with postScriptName "{key}"'
-            )
+            raise PhotoshopPythonAPIError(f'Could not find a font with postScriptName "{key}"')
 
     """
     METHODS
     """
 
     @overload
-    def get(self, key: str, default: T) -> TextFont | T: ...
+    def get(self, key: str, default: T) -> TextFont | T:
+        ...
 
     @overload
-    def get(self, key: str) -> TextFont | None: ...
+    def get(self, key: str) -> TextFont | None:
+        ...
 
     def get(self, key: str, default: T | None = None) -> TextFont | T | None:
         """

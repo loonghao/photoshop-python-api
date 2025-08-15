@@ -1,13 +1,21 @@
+# Import built-in modules
 from typing import Iterator
 
+# Import third-party modules
 from git import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ColorBlendMode, PathKind, SelectionType, ToolType
+from photoshop.api.enumerations import ColorBlendMode
+from photoshop.api.enumerations import PathKind
+from photoshop.api.enumerations import SelectionType
+from photoshop.api.enumerations import ToolType
 from photoshop.api.solid_color import SolidColor
 from photoshop.api.sub_path_item import SubPathItem
 
+
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api._document import Document
 
 
@@ -43,6 +51,7 @@ class PathItem(Photoshop):
 
     @property
     def parent(self) -> "Document":
+        # Import local modules
         from photoshop.api._document import Document
 
         return Document(self.app.parent)
