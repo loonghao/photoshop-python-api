@@ -1,6 +1,7 @@
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import PreviewType, SaveEncoding
+from photoshop.api.enumerations import PreviewType
+from photoshop.api.enumerations import SaveEncoding
 
 
 class EPSSaveOptions(Photoshop):

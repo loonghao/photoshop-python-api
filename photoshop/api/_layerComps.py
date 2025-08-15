@@ -1,10 +1,8 @@
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._layerComp import LayerComp
-from photoshop.api.collections import (
-    CollectionOfNamedObjects,
-    CollectionOfRemovables,
-)
+from photoshop.api.collections import CollectionOfNamedObjects
+from photoshop.api.collections import CollectionOfRemovables
 
 
 class LayerComps(
@@ -26,8 +24,4 @@ class LayerComps(
         visibility: bool = True,
         childLayerCompStat: bool = False,
     ) -> LayerComp:
-        return LayerComp(
-            self.app.add(
-                name, comment, appearance, position, visibility, childLayerCompStat
-            )
-        )
+        return LayerComp(self.app.add(name, comment, appearance, position, visibility, childLayerCompStat))

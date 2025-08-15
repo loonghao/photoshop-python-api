@@ -5,15 +5,18 @@ It can be used for low-level access info Photoshop.
 
 """
 
-# Import local modules
+# Import built-in modules
 from os import PathLike
 from typing import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.base_action import BaseAction
 
+
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api.action_descriptor import ActionDescriptor
 
 

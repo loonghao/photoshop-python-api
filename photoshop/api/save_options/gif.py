@@ -1,6 +1,9 @@
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import DitherType, ForcedColors, MatteType, PaletteType
+from photoshop.api.enumerations import DitherType
+from photoshop.api.enumerations import ForcedColors
+from photoshop.api.enumerations import MatteType
+from photoshop.api.enumerations import PaletteType
 
 
 class GIFSaveOptions(Photoshop):

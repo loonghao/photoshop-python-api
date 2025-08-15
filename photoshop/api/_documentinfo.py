@@ -11,7 +11,8 @@ from typing import Sequence
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import CopyrightedType, Urgency
+from photoshop.api.enumerations import CopyrightedType
+from photoshop.api.enumerations import Urgency
 
 
 # pylint: disable=too-many-public-methods

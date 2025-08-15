@@ -1,6 +1,8 @@
-# Import local modules
-from typing import TYPE_CHECKING, Iterator
+# Import built-in modules
+from typing import Iterator
+from typing import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channel import Channel
@@ -9,9 +11,11 @@ from photoshop.api._core import Photoshop
 from photoshop.api._layer import Layer
 from photoshop.api.enumerations import ElementPlacement
 
+
 if TYPE_CHECKING:
-    from photoshop.api._layers import Layers
+    # Import local modules
     from photoshop.api._layerSets import LayerSets
+    from photoshop.api._layers import Layers
 
 
 class LayerSet(Layer):

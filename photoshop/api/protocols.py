@@ -1,21 +1,31 @@
-from typing import TYPE_CHECKING, Protocol
+# Import built-in modules
+from typing import Protocol
+from typing import TYPE_CHECKING
+
 
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api._document import Document
 
 
 class BaseProtocol(Protocol):
     @property
-    def typename(self) -> str: ...
+    def typename(self) -> str:
+        ...
 
 
 class HistoryState(BaseProtocol, Protocol):
     @property
-    def name(self) -> str: ...
+    def name(self) -> str:
+        ...
+
     @property
-    def parent(self) -> "Document": ...
+    def parent(self) -> "Document":
+        ...
+
     @property
-    def snapshot(self) -> bool: ...
+    def snapshot(self) -> bool:
+        ...
 
 
 class MeasurementScale(BaseProtocol, Protocol):
@@ -26,6 +36,7 @@ class MeasurementScale(BaseProtocol, Protocol):
 
 class XMPMetadata(BaseProtocol, Protocol):
     @property
-    def parent(self) -> "Document": ...
+    def parent(self) -> "Document":
+        ...
 
     rawData: str

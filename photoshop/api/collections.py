@@ -1,18 +1,26 @@
-from typing import Generic, Iterator, Protocol, TypeVar
+# Import built-in modules
+from typing import Generic
+from typing import Iterator
+from typing import Protocol
+from typing import TypeVar
 
+# Import third-party modules
 from comtypes import ArgumentError
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class _PhotoshopObject(Protocol):
-    def __init__(self, parent: Photoshop | None = None) -> None: ...
+    def __init__(self, parent: Photoshop | None = None) -> None:
+        ...
 
 
 class NamedPhotoshopObject(_PhotoshopObject, Protocol):
     @property
-    def name(self) -> str: ...
+    def name(self) -> str:
+        ...
 
 
 T = TypeVar("T", bound=_PhotoshopObject)
@@ -39,9 +47,7 @@ class BaseCollection(Photoshop, Generic[T, G]):
         try:
             return self.type(self.app[key])
         except ArgumentError as exc:
-            raise PhotoshopPythonAPIError(
-                f"Couldn't find an item with key '{key}' in {type(self)}"
-            ) from exc
+            raise PhotoshopPythonAPIError(f"Couldn't find an item with key '{key}' in {type(self)}") from exc
 
     def __iter__(self) -> Iterator[T]:
         for item in self.app:

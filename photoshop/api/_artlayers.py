@@ -1,11 +1,9 @@
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
-from photoshop.api.collections import (
-    CollectionOfNamedObjects,
-    CollectionOfRemovables,
-    CollectionWithAdd,
-)
+from photoshop.api.collections import CollectionOfNamedObjects
+from photoshop.api.collections import CollectionOfRemovables
+from photoshop.api.collections import CollectionWithAdd
 
 
 # pylint: disable=too-many-public-methods

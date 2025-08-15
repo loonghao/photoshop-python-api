@@ -1,10 +1,16 @@
+# Import built-in modules
 from typing import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import AnchorPosition, BlendMode, ElementPlacement
+from photoshop.api.enumerations import AnchorPosition
+from photoshop.api.enumerations import BlendMode
+from photoshop.api.enumerations import ElementPlacement
 from photoshop.api.protocols import XMPMetadata
 
+
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api._document import Document
     from photoshop.api._layerSet import LayerSet
 
@@ -89,10 +95,12 @@ class Layer(Photoshop):
         parent = self.app.parent
         try:
             parent.resolution
+            # Import local modules
             from photoshop.api._document import Document
 
             return Document(parent)
         except NameError:
+            # Import local modules
             from photoshop.api._layerSet import LayerSet
 
             return LayerSet(parent)
@@ -128,9 +136,7 @@ class Layer(Photoshop):
     def link(self, with_layer: "Layer") -> None:
         self.app.link(with_layer)
 
-    def move(
-        self, relativeObject: "Layer | LayerSet", insertionLocation: ElementPlacement
-    ) -> None:
+    def move(self, relativeObject: "Layer | LayerSet", insertionLocation: ElementPlacement) -> None:
         self.app.move(relativeObject, insertionLocation)
 
     def moveToEnd(self, layer_set: "LayerSet") -> None:
@@ -140,9 +146,7 @@ class Layer(Photoshop):
         """Removes this layer from the document."""
         self.app.delete()
 
-    def resize(
-        self, horizontal: float, vertical: float, anchor: AnchorPosition
-    ) -> None:
+    def resize(self, horizontal: float, vertical: float, anchor: AnchorPosition) -> None:
         """Scales the object."""
         self.app.resize(horizontal, vertical, anchor)
 

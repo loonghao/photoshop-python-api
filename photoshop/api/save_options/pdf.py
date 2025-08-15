@@ -6,12 +6,10 @@ using the Document.saveAs() method.
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import (
-    PDFCompatibilityType,
-    PDFEncodingType,
-    PDFResampleType,
-    PDFStandardType,
-)
+from photoshop.api.enumerations import PDFCompatibilityType
+from photoshop.api.enumerations import PDFEncodingType
+from photoshop.api.enumerations import PDFResampleType
+from photoshop.api.enumerations import PDFStandardType
 from photoshop.api.errors import COMError
 
 
@@ -150,9 +148,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.destinationProfile
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @destinationProfile.setter
@@ -179,9 +175,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.downSampleSize
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @downSampleSize.setter
@@ -198,9 +192,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.downSampleSizeLimit
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @downSampleSizeLimit.setter
@@ -295,9 +287,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.outputConditionID
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @outputConditionID.setter
@@ -329,9 +319,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.preserveEditing
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @preserveEditing.setter
@@ -347,9 +335,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.presetFile
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @presetFile.setter
@@ -364,9 +350,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.profileInclusionPolicy
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @profileInclusionPolicy.setter
@@ -381,9 +365,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.registryName
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @registryName.setter
@@ -398,9 +380,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.spotColors
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @spotColors.setter
@@ -415,9 +395,7 @@ class PDFSaveOptions(Photoshop):
             return self.app.tileSize
         except COMError:
             raise ValueError(
-                "Should set value first. "
-                "This parameter can only be read after the "
-                "value has been set."
+                "Should set value first. " "This parameter can only be read after the " "value has been set."
             )
 
     @tileSize.setter
@@ -431,10 +409,7 @@ class PDFSaveOptions(Photoshop):
             PDFEncodingType.PDFJPEG2000LOW,
             PDFEncodingType.PDFJPEG2000MEDHIGH,
         ):
-            raise ValueError(
-                "tileSize only work in JPEG2000. Please "
-                "change PDFSaveOptions.encoding to JPEG2000."
-            )
+            raise ValueError("tileSize only work in JPEG2000. Please " "change PDFSaveOptions.encoding to JPEG2000.")
         self.app.tileSize = value
 
     @property

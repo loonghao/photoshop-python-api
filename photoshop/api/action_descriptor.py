@@ -7,9 +7,10 @@ see the Photoshop Scripting Guide.
 
 """
 
-# Import local modules
+# Import built-in modules
 from os import PathLike
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.action_list import ActionList
 from photoshop.api.action_reference import ActionReference
