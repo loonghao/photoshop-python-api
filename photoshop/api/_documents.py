@@ -17,8 +17,8 @@ class Documents(CollectionOfNamedObjects[Document, int | str]):
 
     def add(
         self,
-        width: int = 960,
-        height: int = 540,
+        width: float = 960,
+        height: float = 540,
         resolution: float = 72.0,
         name: str | None = None,
         mode: NewDocumentMode = NewDocumentMode.NewRGB,
@@ -30,9 +30,9 @@ class Documents(CollectionOfNamedObjects[Document, int | str]):
         """Creates a new document object and adds it to this collections.
 
         Args:
-            width (int): The width of the document.
-            height (int): The height of the document.
-            resolution (int): The resolution of the document (in pixels per inch)
+            width (float): The width of the document. Non-integer values are converted to integers.
+            height (float): The height of the document. Non-integer values are converted to integers.
+            resolution (float): The resolution of the document (in pixels per inch)
             name (str): The name of the document.
             mode (): The document mode.
             initialFill : The initial fill of the document.
