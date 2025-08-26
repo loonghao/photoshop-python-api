@@ -1,15 +1,9 @@
 # Import built-in modules
-from typing import Iterator
-
-# Import third-party modules
-from git import TYPE_CHECKING
+from typing import TYPE_CHECKING, Iterator
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ColorBlendMode
-from photoshop.api.enumerations import PathKind
-from photoshop.api.enumerations import SelectionType
-from photoshop.api.enumerations import ToolType
+from photoshop.api.enumerations import ColorBlendMode, PathKind, SelectionType, ToolType
 from photoshop.api.solid_color import SolidColor
 from photoshop.api.sub_path_item import SubPathItem
 
