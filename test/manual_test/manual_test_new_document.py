@@ -23,6 +23,14 @@ class TestNewDocument:
         yield
         self.session.close()
 
+    def test_active_layer(self):
+        layer_1 = self.doc.artLayers.add()
+        layer_2 = self.doc.artLayers.add()
+        self.doc.activeLayer = layer_1
+        assert layer_1.id == self.doc.activeLayer.id
+        self.doc.activeLayer = layer_2
+        assert layer_2.id == self.doc.activeLayer.id
+
     def test_channel_histogram(self):
         channel = self.doc.activeChannels[0]
         assert isinstance(channel.histogram, tuple)
@@ -38,8 +46,12 @@ class TestNewDocument:
         assert doc_info.keywords == tuple_keywords
 
     def test_selection(self):
+        self.doc.resizeImage(500, 500)
+        assert self.doc.width == 500
+        assert self.doc.height == 500
         selection = self.doc.selection
-        selection.selectAll()
+        # If the selection touches the document's borders it might not get contracted
+        selection.select(((10, 10), (200, 10), (200, 200), (10, 200)))
         bounds = selection.bounds
         assert isinstance(bounds, tuple)
         assert isinstance(bounds[0], float)
@@ -88,3 +100,17 @@ class TestNewDocument:
         assert isinstance(layer_set.parent, Document)
         sub_layer = layer_set.artLayers.add()
         assert isinstance(sub_layer.parent, LayerSet)
+
+    def test_layer_access(self):
+        for collection in (self.doc.artLayers, self.doc.layerSets):
+            names = ("l_1", "l_2")
+            layers: list[ArtLayer | LayerSet] = []
+            for name in names:
+                layer = collection.add()
+                layer.name = name
+                layers.append(layer)
+            for name, layer in zip(names, layers):
+                assert collection[name].id == layer.id
+                got_layer = collection.getByName(name)
+                assert got_layer
+                assert got_layer.id == layer.id
