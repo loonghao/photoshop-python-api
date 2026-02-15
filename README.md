@@ -207,6 +207,7 @@ Useful links
 - http://shining-lucy.com/wiki/page.php?id=appwiki:photoshop:ps_script
 - http://web.archive.org/web/20140121053819/http://www.pcpix.com/Photoshop/char.html
 - http://www.tonton-pixel.com/scripts/utility-scripts/get-equivalent-id-code/index.html
+- https://github.com/Adobe-CEP/CEP-Resources/tree/master/Documentation/Product%20specific%20Documentation/Photoshop%20Scripting
 - https://github.com/Adobe-CEP/Samples/tree/master/PhotoshopEvents
 - https://evanmccall.wordpress.com/2015/03/09/how-to-develop-photoshop-tools-in-python
 
@@ -279,7 +280,7 @@ We value thorough testing to ensure reliability:
 
 ### 📦 Development Environment
 
-- **Python Versions**: We support Python 3.8+ (see `pyproject.toml` for specifics)
+- **Python Versions**: We support Python 3.10+ (see `pyproject.toml` for specifics)
 - **Dependency Management**: [Poetry](https://python-poetry.org/) for consistent environments
 - **Virtual Environment**: Poetry automatically creates and manages virtual environments
 
@@ -295,3 +296,18 @@ We value thorough testing to ensure reliability:
 8. **Merge**: Once approved, your PR will be merged
 
 Thank you for contributing to the Photoshop Python API project! 🎉
+
+### Development Notes
+
+One way to view the COM API structure is to use Visual Studio.
+
+1. Install Visual Studio with the .NET desktop development workload
+2. Open Visual Studio
+3. Choose View -> Object Browser
+4. In the Object Browser from the Browse dropdown choose *Edit Custom Component Set...*
+5. In the Edit Custom Component Set window's COM tab add Photoshop's Object and Type libraries
+6. After pressing OK the libraries should show up in the Object Browser
+
+If the libraries aren't visible in the COM tab make sure you have the .NET desktop development workload installed. Other things you may try are running Photoshop once as administrator and reinstalling Photoshop and/or your PC. The object library is defined usually in */your/path/to/Adobe Photoshop \<version\>/Required/Plug-ins/Extensions/ScriptingSupport.8li*
+
+The [VBS reference 2020](https://github.com/Adobe-CEP/CEP-Resources/blob/master/Documentation/Product%20specific%20Documentation/Photoshop%20Scripting/photoshop-vbs-ref-2020.pdf) is also quite trustworthy, since Adobe isn't actively developing the COM API anymore.
