@@ -41,7 +41,7 @@ class SolidColor(Photoshop):
 
     @cmyk.setter
     def cmyk(self, value: CMYKColor) -> None:
-        self.app.cmyk = value
+        self.app.cmyk = value.app
 
     @property
     def gray(self) -> GrayColor:
@@ -49,7 +49,7 @@ class SolidColor(Photoshop):
 
     @gray.setter
     def gray(self, value: GrayColor) -> None:
-        self.app.gray = value
+        self.app.gray = value.app
 
     @property
     def hsb(self) -> HSBColor:
@@ -57,7 +57,7 @@ class SolidColor(Photoshop):
 
     @hsb.setter
     def hsb(self, value: HSBColor) -> None:
-        self.app.hsb = value
+        self.app.hsb = value.app
 
     @property
     def lab(self) -> LabColor:
@@ -65,7 +65,7 @@ class SolidColor(Photoshop):
 
     @lab.setter
     def lab(self, value: LabColor) -> None:
-        self.app.lab = value
+        self.app.lab = value.app
 
     @property
     def model(self) -> ColorModel:
@@ -89,8 +89,8 @@ class SolidColor(Photoshop):
 
     @rgb.setter
     def rgb(self, value: RGBColor) -> None:
-        self.app.rgb = value
+        self.app.rgb = value.app
 
     def isEqual(self, color: RGBColor) -> bool:
         """`SolidColor` object is visually equal to the specified color."""
-        return self.app.isEqual(color)
+        return self.app.isEqual(color.app)

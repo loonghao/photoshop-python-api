@@ -73,7 +73,7 @@ class PathItem(Photoshop):
         anti_alias: bool = True,
     ) -> None:
         return self.app.fillPath(
-            fill_color,
+            fill_color.app,
             mode,
             opacity,
             preserve_transparency,

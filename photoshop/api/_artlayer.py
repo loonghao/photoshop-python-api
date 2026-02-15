@@ -1,22 +1,22 @@
-# Import built-in modules
 from os import PathLike
 
-# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._layer import Layer
-from photoshop.api.enumerations import CreateFields
-from photoshop.api.enumerations import DepthMaource
-from photoshop.api.enumerations import DisplacementMapType
-from photoshop.api.enumerations import ElementPlacement
-from photoshop.api.enumerations import EliminateFields
-from photoshop.api.enumerations import Geometry
-from photoshop.api.enumerations import LayerKind
-from photoshop.api.enumerations import LensType
-from photoshop.api.enumerations import NoiseDistribution
-from photoshop.api.enumerations import OffsetUndefinedAreas
-from photoshop.api.enumerations import RasterizeType
-from photoshop.api.enumerations import TextureType
-from photoshop.api.enumerations import UndefinedAreas
+from photoshop.api.enumerations import (
+    CreateFields,
+    DepthMaource,
+    DisplacementMapType,
+    ElementPlacement,
+    EliminateFields,
+    Geometry,
+    LayerKind,
+    LensType,
+    NoiseDistribution,
+    OffsetUndefinedAreas,
+    RasterizeType,
+    TextureType,
+    UndefinedAreas,
+)
 from photoshop.api.text_item import TextItem
 
 
@@ -176,7 +176,7 @@ class ArtLayer(Layer):
 
     @textItem.setter
     def textItem(self, value: TextItem) -> None:
-        self.app.textItem = value
+        self.app.textItem = value.app
 
     @property
     def transparentPixelsLocked(self) -> bool:
@@ -468,7 +468,7 @@ class ArtLayer(Layer):
             ArtLayer: The duplicated layer.
 
         """
-        return ArtLayer(self.app.duplicate(relativeObject, insertionLocation))
+        return ArtLayer(self.app.duplicate(relativeObject.app if relativeObject else None, insertionLocation))
 
     def convertToSmartObject(self) -> "ArtLayer":
         """Converts the layer to a smart object.

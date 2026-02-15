@@ -70,7 +70,7 @@ class ActionDescriptor(BaseAction):
             otherDesc (.action_descriptor.ActionDescriptor):
 
         """
-        return self.app.isEqual(otherDesc)
+        return self.app.isEqual(otherDesc.app)
 
     def putBoolean(self, key: int, value: bool) -> None:
         """Sets the value for a key whose type is boolean."""
@@ -102,11 +102,11 @@ class ActionDescriptor(BaseAction):
 
     def putList(self, key: int, value: "ActionList") -> None:
         """Sets the value for a key whose type is an ActionList object."""
-        self.app.putList(key, value)
+        self.app.putList(key, value.app)
 
     def putObject(self, key: int, class_id: int, value: "ActionDescriptor") -> None:
         """Sets the value for a key whose type is an object."""
-        self.app.putObject(key, class_id, value)
+        self.app.putObject(key, class_id, value.app)
 
     def putPath(self, key: int, value: str | PathLike[str]) -> None:
         """Sets the value for a key whose type is path."""
@@ -114,7 +114,7 @@ class ActionDescriptor(BaseAction):
 
     def putReference(self, key: int, value: ActionReference) -> None:
         """Sets the value for a key whose type is an object reference."""
-        self.app.putReference(key, value)
+        self.app.putReference(key, value.app)
 
     def putString(self, key: int, value: str) -> None:
         """Sets the value for a key whose type is string."""

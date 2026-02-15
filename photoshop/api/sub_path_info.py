@@ -1,8 +1,5 @@
-# Import built-in modules
-from typing import Iterator
-from typing import Sequence
+from typing import Iterator, Sequence
 
-# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ShapeOperation
 from photoshop.api.path_point_info import PathPointInfo
@@ -40,7 +37,7 @@ class SubPathInfo(Photoshop):
 
     @entireSubPath.setter
     def entireSubPath(self, value: Sequence[PathPointInfo]) -> None:
-        self.app.entireSubPath = value
+        self.app.entireSubPath = [info.app for info in value]
 
     @property
     def operation(self) -> ShapeOperation:

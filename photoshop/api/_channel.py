@@ -27,7 +27,7 @@ class Channel(Photoshop):
 
     @color.setter
     def color(self, value: SolidColor) -> None:
-        self.app.color = value
+        self.app.color = value.app
 
     @property
     def histogram(self) -> tuple[int, ...]:
@@ -66,10 +66,10 @@ class Channel(Photoshop):
         return self.app.name
 
     def duplicate(self, targetDocument: "Document | None" = None) -> "Channel":
-        return Channel(self.app.duplicate(targetDocument))
+        return Channel(self.app.duplicate(targetDocument.app if targetDocument else None))
 
     def merge(self) -> None:
         self.app.merge()
 
-    def remove(self) -> None:
-        self.eval_javascript(f'app.activeDocument.channels.getByName("{self.name}").remove()')
+    def delete(self) -> None:
+        self.app.delete()

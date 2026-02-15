@@ -4,21 +4,23 @@ from pathlib import Path
 
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ColorPicker
-from photoshop.api.enumerations import EditLogItemsType
-from photoshop.api.enumerations import FontPreviewType
-from photoshop.api.enumerations import FontSize
-from photoshop.api.enumerations import GridLineStyle
-from photoshop.api.enumerations import GridSize
-from photoshop.api.enumerations import GuideLineStyle
-from photoshop.api.enumerations import OtherPaintingCursors
-from photoshop.api.enumerations import PaintingCursors
-from photoshop.api.enumerations import PointType
-from photoshop.api.enumerations import QueryStateType
-from photoshop.api.enumerations import ResampleMethod
-from photoshop.api.enumerations import SaveBehavior
-from photoshop.api.enumerations import TypeUnits
-from photoshop.api.enumerations import Units
+from photoshop.api.enumerations import (
+    ColorPicker,
+    EditLogItemsType,
+    FontPreviewType,
+    FontSize,
+    GridLineStyle,
+    GridSize,
+    GuideLineStyle,
+    OtherPaintingCursors,
+    PaintingCursors,
+    PointType,
+    QueryStateType,
+    ResampleMethod,
+    SaveBehavior,
+    TypeUnits,
+    Units,
+)
 
 
 class Preferences(Photoshop):
@@ -387,7 +389,7 @@ class Preferences(Photoshop):
 
     @textFontSize.setter
     def textFontSize(self, value: FontSize) -> None:
-        self.eval_javascript(f"app.preferences.textFontSize = {FontSize(value)}")
+        self.eval_javascript(f"app.preferences.textFontSize = {value}")
 
     @property
     def typeUnits(self) -> TypeUnits:
