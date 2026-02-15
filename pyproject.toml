@@ -1,12 +1,9 @@
-[tool.poetry]
+[project]
 name = "photoshop-python-api"
 version = "0.24.1"
 description = "Python API for Photoshop."
-homepage = "https://github.com/loonghao/photoshop-python-api"
-repository = "https://github.com/loonghao/photoshop-python-api"
-documentation = "https://photoshop-python-api.readthedocs.io/en/master/"
 keywords = ["python-api, photoshop-python-api", "photoshop", "python"]
-authors = ["longhao <hal.long@outlook.com>"]
+authors = [{name = "longhao", email = "hal.long@outlook.com"}]
 license = "MIT"
 readme = "README.md"
 classifiers = [
@@ -14,24 +11,32 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
+requires-python = ">=3.10,<4.0"
 
+[project.urls]
+homepage = "https://github.com/loonghao/photoshop-python-api"
+repository = "https://github.com/loonghao/photoshop-python-api"
+documentation = "https://photoshop-python-api.readthedocs.io/en/master/"
+
+[tool.poetry]
 packages = [
     { include = "photoshop" },
 ]
+
 [tool.poetry.build]
 generate-setup-file = false
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-wheel = "^0.45.0"
-comtypes = "^1.1.11"
+wheel = "^0.46.3"
+comtypes = "^1.4.15"
 
 [tool.poetry.group.dev.dependencies]
 commitizen = "^2.17.8"
@@ -39,9 +44,9 @@ pre-commit = "^2.13.0"
 codecov = "^2.1.11"
 pylint = "^2.8.2"
 isort = "^5.8.0"
-pytest = "^8.0.0"
+pytest = "^9.0.2"
 flake8 = "^4.0.0"
-mypy = "^1.0"
+mypy = "^1.19.1"
 coverage = "^7.0.0"
 mkdocs = "^1.2.2"
 mkdocs-git-revision-date-plugin = "^0.3.1"
@@ -119,3 +124,11 @@ force_single_line = true
 # All project unrelated unknown imports belong to third-party.
 default_section = "THIRDPARTY"
 skip_glob = "*/docs/conf.py"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+lines-between-types = 1
+known-first-party = ["photoshop"]
