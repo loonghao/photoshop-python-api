@@ -1,9 +1,7 @@
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.colors.rgb import RGBColor
-from photoshop.api.enumerations import ColorReductionType
-from photoshop.api.enumerations import DitherType
-from photoshop.api.enumerations import SaveDocumentType
+from photoshop.api.enumerations import ColorReductionType, DitherType, SaveDocumentType
 
 
 class ExportOptionsSaveForWeb(Photoshop):
@@ -108,7 +106,7 @@ class ExportOptionsSaveForWeb(Photoshop):
 
     @matteColor.setter
     def matteColor(self, value: RGBColor) -> None:
-        self.app.matteColor = value
+        self.app.matteColor = value.app
 
     @property
     def optimized(self) -> bool:

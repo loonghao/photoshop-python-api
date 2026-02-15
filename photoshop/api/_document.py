@@ -13,16 +13,12 @@ The basic canvas for the file.
 
 """
 
-# Import built-in modules
+from _ctypes import COMError
+from logging import getLogger
 from os import PathLike
 from pathlib import Path
-from typing import Optional
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
-# Import third-party modules
-from comtypes import COMError
-
-# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channel import Channel
@@ -31,27 +27,27 @@ from photoshop.api._core import Photoshop
 from photoshop.api._documentinfo import DocumentInfo
 from photoshop.api._layer import Layer
 from photoshop.api._layerComps import LayerComps
+from photoshop.api._layers import Layers
 from photoshop.api._layerSet import LayerSet
 from photoshop.api._layerSets import LayerSets
-from photoshop.api._layers import Layers
-from photoshop.api.enumerations import AnchorPosition
-from photoshop.api.enumerations import BitsPerChannelType
-from photoshop.api.enumerations import ChangeMode
-from photoshop.api.enumerations import ColorProfileType
-from photoshop.api.enumerations import Direction
-from photoshop.api.enumerations import DocumentMode
-from photoshop.api.enumerations import ExportType
-from photoshop.api.enumerations import ExtensionType
-from photoshop.api.enumerations import Intent
-from photoshop.api.enumerations import MeasurementSource
-from photoshop.api.enumerations import ResampleMethod
-from photoshop.api.enumerations import SaveOptions
-from photoshop.api.enumerations import SourceSpaceType
-from photoshop.api.enumerations import TrimType
+from photoshop.api.enumerations import (
+    AnchorPosition,
+    BitsPerChannelType,
+    ChangeMode,
+    ColorProfileType,
+    Direction,
+    DocumentMode,
+    ExportType,
+    ExtensionType,
+    Intent,
+    MeasurementSource,
+    ResampleMethod,
+    SaveOptions,
+    SourceSpaceType,
+    TrimType,
+)
 from photoshop.api.path_items import PathItems
-from photoshop.api.protocols import HistoryState
-from photoshop.api.protocols import MeasurementScale
-from photoshop.api.protocols import XMPMetadata
+from photoshop.api.protocols import HistoryState, MeasurementScale, XMPMetadata
 from photoshop.api.save_options import ExportOptionsSaveForWeb
 from photoshop.api.save_options.bmp import BMPSaveOptions
 from photoshop.api.save_options.eps import EPSSaveOptions
@@ -67,6 +63,8 @@ from photoshop.api.save_options.tif import TiffSaveOptions
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api._selection import Selection
+
+_logger = getLogger(__name__)
 
 
 # pylint: disable=too-many-public-methods
@@ -130,7 +128,7 @@ class Document(Photoshop):
                    ._layerSet.LayerSet): The artLayer.
 
         """
-        self.app.activeLayer = layer
+        self.app.activeLayer = layer.app
 
     @property
     def activeChannels(self) -> list[Channel]:
@@ -139,7 +137,7 @@ class Document(Photoshop):
 
     @activeChannels.setter
     def activeChannels(self, channels: list[Channel]) -> None:
-        self.app.activeChannels = channels
+        self.app.activeChannels = [channel.app for channel in channels]
 
     @property
     def activeHistoryBrushSource(self) -> HistoryState:
@@ -214,9 +212,7 @@ class Document(Photoshop):
         try:
             return Path(self.app.fullName)
         except COMError:
-            self.eval_javascript(
-                'alert ("Please save your Document first!","{}")'.format(self.name),
-            )
+            _logger.exception(f"Please save your Document first: {self.name}")
 
     @property
     def height(self) -> float:
@@ -290,9 +286,7 @@ class Document(Photoshop):
         try:
             return Path(self.app.path)
         except COMError:
-            self.eval_javascript(
-                'alert ("Please save your Document first!","{}")'.format(self.name),
-            )
+            _logger.exception(f"Please save your Document first: {self.name}")
 
     @path.setter
     def path(self, path: str | PathLike[str]) -> None:
@@ -361,7 +355,7 @@ class Document(Photoshop):
     # Methods
     def autoCount(self, channel: Channel, threshold: int) -> None:
         """Counts the objects in the Document."""
-        self.app.autoCount(channel, threshold)
+        self.app.autoCount(channel.app, threshold)
 
     def changeMode(self, destinationMode: ChangeMode, options: object) -> None:
         """Changes the mode of the Document."""
@@ -392,15 +386,15 @@ class Document(Photoshop):
 
     def crop(
         self,
-        bounds: list[int],
+        bounds: tuple[float, float, float, float],
         angle: float | None = None,
-        width: int | None = None,
-        height: int | None = None,
+        width: float | None = None,
+        height: float | None = None,
     ) -> None:
         """Crops the document.
 
         Args:
-            bounds: Four coordinates for the region remaining after cropping.
+            bounds: Four coordinates for the region remaining after cropping, in the following order: left, top, right, bottom.
             angle: The angle of cropping bounds.
             width: The width of the resulting document.
             height: The height of the resulting document.
@@ -425,15 +419,14 @@ class Document(Photoshop):
 
         """
         file_path = file_path.replace("\\", "/")
-        self.app.export(file_path, exportAs, options)
+        self.app.export(file_path, exportAs, options.app)
 
     def duplicate(self, name: str | None = None, merge_layers_only: bool = False) -> "Document":
         return Document(self.app.duplicate(name, merge_layers_only))
 
-    def paste(self) -> ArtLayer | LayerSet:
+    def paste(self, into_selection: bool | None = None) -> None:
         """Pastes contents of the clipboard into the Document."""
-        self.eval_javascript("app.activeDocument.paste()")
-        return self.activeLayer
+        self.app.paste(into_selection)
 
     def print(
         self,
@@ -486,7 +479,7 @@ class Document(Photoshop):
             options: Save options.
             asCopy: Saves the document as a copy, leaving the original open.
         """
-        self.app.saveAs(file_path, options, asCopy, extensionType)
+        self.app.saveAs(file_path, options.app if options else None, asCopy, extensionType)
 
     def splitChannels(self) -> None:
         """Splits the channels of the document."""

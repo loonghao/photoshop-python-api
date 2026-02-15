@@ -1,13 +1,9 @@
 """The selected area of the document or layer."""
 
-# Import local modules
 from photoshop.api._channel import Channel
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
-from photoshop.api.enumerations import AnchorPosition
-from photoshop.api.enumerations import ColorBlendMode
-from photoshop.api.enumerations import SelectionType
-from photoshop.api.enumerations import StrokeLocation
+from photoshop.api.enumerations import AnchorPosition, ColorBlendMode, SelectionType, StrokeLocation
 from photoshop.api.solid_color import SolidColor
 
 
@@ -116,7 +112,7 @@ class Selection(Photoshop):
         preserve_transparency: bool = False,
     ) -> None:
         """Fills the selection."""
-        self.app.fill(fill_type, mode, opacity, preserve_transparency)
+        self.app.fill(fill_type.app, mode, opacity, preserve_transparency)
 
     def grow(self, tolerance: int, anti_alias: bool) -> None:
         """Grows the selection to include all adjacent pixels falling within
@@ -142,7 +138,7 @@ class Selection(Photoshop):
         inverting: bool = False,
     ) -> None:
         """Loads the selection from the specified channel."""
-        self.app.load(from_channel, combination, inverting)
+        self.app.load(from_channel.app, combination, inverting)
 
     def makeWorkPath(self, tolerance: float) -> None:
         """Makes this selection item the workpath for this document."""
@@ -189,7 +185,7 @@ class Selection(Photoshop):
             preserveTransparency (bool): If true, preserves transparency.
 
         """
-        self.app.stroke(strokeColor, width, location, mode, opacity, preserveTransparency)
+        self.app.stroke(strokeColor.app, width, location, mode, opacity, preserveTransparency)
 
     def selectBorder(self, width: float) -> None:
         """Selects the selection border only (in the specified width);
@@ -211,7 +207,7 @@ class Selection(Photoshop):
 
     def store(self, into: Channel, combination: SelectionType = SelectionType.ReplaceSelection) -> None:
         """Saves the selection as a channel."""
-        self.app.store(into, combination)
+        self.app.store(into.app, combination)
 
     def translate(self, deltaX: float = 0, deltaY: float = 0) -> None:
         """Moves the object relative to its current position."""

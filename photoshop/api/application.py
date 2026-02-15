@@ -13,12 +13,13 @@ app.documents.add(800, 600, 72, "docRef")
 
 # Import built-in modules
 import os
-from pathlib import Path
 import time
-from typing import Any
+
 
 # Import third-party modules
 from _ctypes import COMError
+from pathlib import Path
+from typing import Any
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
@@ -33,8 +34,7 @@ from photoshop.api._text_fonts import TextFonts
 from photoshop.api.action_descriptor import ActionDescriptor
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.batch_options import BatchOptions
-from photoshop.api.enumerations import DialogModes
-from photoshop.api.enumerations import PurgeTarget
+from photoshop.api.enumerations import DialogModes, JavaScriptExecutionMode, PurgeTarget
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.solid_color import SolidColor
 
@@ -94,7 +94,7 @@ class Application(Photoshop):
 
     @activeDocument.setter
     def activeDocument(self, document: Document) -> None:
-        self.app.activeDocument = document
+        self.app.activeDocument = document.app
 
     @property
     def backgroundColor(self) -> SolidColor:
@@ -109,7 +109,7 @@ class Application(Photoshop):
             color: The SolidColor instance.
 
         """
-        self.app.backgroundColor = color
+        self.app.backgroundColor = color.app
 
     @property
     def build(self) -> str:
@@ -194,7 +194,7 @@ class Application(Photoshop):
             color: The SolidColor instance.
 
         """
-        self.app.foregroundColor = color
+        self.app.foregroundColor = color.app
 
     @property
     def freeMemory(self) -> float:
@@ -256,7 +256,7 @@ class Application(Photoshop):
 
     @playbackParameters.setter
     def playbackParameters(self, value: ActionDescriptor) -> None:
-        self.app.playbackParameters = value
+        self.app.playbackParameters = value.app
 
     @property
     def preferences(self) -> Preferences:
@@ -303,7 +303,7 @@ class Application(Photoshop):
         Similar to the **File** > **Automate** > **Batch** command.
 
         """
-        self.app.batch(files, actionName, actionSet, options)
+        self.app.batch(files, actionName, actionSet, options.app)
 
     def beep(self) -> None:
         """Causes a "beep" sound."""
@@ -390,10 +390,12 @@ class Application(Photoshop):
         descriptor: ActionDescriptor | None = None,
         display_dialogs: DialogModes = DialogModes.DisplayNoDialogs,
     ) -> ActionDescriptor:
-        return ActionDescriptor(self.app.executeAction(event_id, descriptor, display_dialogs))
+        return ActionDescriptor(
+            self.app.executeAction(event_id, descriptor.app if descriptor else None, display_dialogs)
+        )
 
     def executeActionGet(self, reference: ActionReference) -> ActionDescriptor:
-        return ActionDescriptor(self.app.executeActionGet(reference))
+        return ActionDescriptor(self.app.executeActionGet(reference.app))
 
     def featureEnabled(self, name: str) -> bool:
         """Determines whether the feature
@@ -430,7 +432,12 @@ class Application(Photoshop):
         self.app.load(str(document_file_path))
         return self.activeDocument
 
-    def doJavaScript(self, javascript: str, Arguments: Any = None, ExecutionMode: Any = None):
+    def doJavaScript(
+        self,
+        javascript: str,
+        Arguments: list[Any] | tuple[Any] | None = None,
+        ExecutionMode: JavaScriptExecutionMode | None = None,
+    ):
         return self.app.doJavaScript(javascript, Arguments, ExecutionMode)
 
     def isQuicktimeAvailable(self) -> bool:
@@ -453,16 +460,15 @@ class Application(Photoshop):
         self.app.purge(target)
 
     def putCustomOptions(self, key: str, custom_object: ActionDescriptor, persistent: bool) -> None:
-        self.app.putCustomOptions(key, custom_object, persistent)
+        self.app.putCustomOptions(key, custom_object.app, persistent)
 
     def refresh(self) -> None:
         """Pauses the script while the application refreshes.
 
-        Ues to slow down execution and show the results to the user as the
+        Use to slow down execution and show the results to the user as the
         script runs.
         Use carefully; your script runs much more slowly when using this
         method.
-
         """
         self.app.refresh()
 
@@ -485,13 +491,15 @@ class Application(Photoshop):
 
     def togglePalettes(self) -> None:
         """Toggle palette visibility."""
-        self.doJavaScript("app.togglePalettes()")
+        self.eval_javascript("app.togglePalettes()")
 
     def toolSupportsBrushes(self, tool: str) -> bool:
-        return self.app.toolSupportsBrushes(tool)
+        result = self.eval_javascript(f'app.toolSupportsBrushes("{tool}")')
+        return True if result == "true" else False
 
     def toolSupportsBrushPresets(self, tool: str) -> bool:
-        return self.app.toolSupportsPresets(tool)
+        result = self.eval_javascript(f'app.toolSupportsPresets("{tool}")')
+        return True if result == "true" else False
 
     def typeIDToStringID(self, type_id: int) -> str:
         return self.app.typeIDToStringID(type_id)

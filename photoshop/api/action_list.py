@@ -80,11 +80,11 @@ class ActionList(BaseAction):
 
     def putList(self, value: "ActionList") -> None:
         """Sets the value for a key whose type is an ActionList object."""
-        self.app.putList(value)
+        self.app.putList(value.app)
 
     def putObject(self, class_id: int, value: "ActionDescriptor") -> None:
         """Sets the value for a key whose type is an object."""
-        self.app.putObject(class_id, value)
+        self.app.putObject(class_id, value.app)
 
     def putPath(self, value: str | PathLike[str]) -> None:
         """Sets the value for a key whose type is path."""
@@ -92,7 +92,7 @@ class ActionList(BaseAction):
 
     def putReference(self, value: ActionReference) -> None:
         """Sets the value for a key whose type is an object reference."""
-        self.app.putReference(value)
+        self.app.putReference(value.app)
 
     def putString(self, value: str) -> None:
         """Sets the value for a key whose type is string."""

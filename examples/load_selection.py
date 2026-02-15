@@ -54,5 +54,5 @@ with Session() as ps:
     doc.selection.combine(doc.channels[-1], ps.SelectionType.ExtendSelection)
     
     # Clean up - delete added channels
-    doc.channels[-1].remove()
-    doc.channels[-1].remove()
+    doc.channels[-1].delete()
+    doc.channels[-1].delete()

@@ -1,8 +1,6 @@
-# Import built-in modules
-from typing import Iterator
-from typing import TYPE_CHECKING
+from collections.abc import Sequence
+from typing import TYPE_CHECKING, Iterator
 
-# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channel import Channel
@@ -13,9 +11,8 @@ from photoshop.api.enumerations import ElementPlacement
 
 
 if TYPE_CHECKING:
-    # Import local modules
-    from photoshop.api._layerSets import LayerSets
     from photoshop.api._layers import Layers
+    from photoshop.api._layerSets import LayerSets
 
 
 class LayerSet(Layer):
@@ -41,8 +38,8 @@ class LayerSet(Layer):
         return Channels(self.app.enabledChannels)
 
     @enabledChannels.setter
-    def enabledChannels(self, value: list[Channel] | Channels) -> None:
-        self.app.enabledChannels = value
+    def enabledChannels(self, value: Sequence[Channel] | Channels) -> None:
+        self.app.enabledChannels = value.app if isinstance(value, Channels) else [channel.app for channel in value]
 
     @property
     def layers(self) -> "Layers":
@@ -63,7 +60,7 @@ class LayerSet(Layer):
         relativeObject: Layer | None = None,
         insertionLocation: ElementPlacement | None = None,
     ):
-        return LayerSet(self.app.duplicate(relativeObject, insertionLocation))
+        return LayerSet(self.app.duplicate(relativeObject.app if relativeObject else None, insertionLocation))
 
     def add(self) -> "LayerSet":
         """Adds an element."""

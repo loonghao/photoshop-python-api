@@ -1,16 +1,11 @@
-# Import built-in modules
 from typing import TYPE_CHECKING
 
-# Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import AnchorPosition
-from photoshop.api.enumerations import BlendMode
-from photoshop.api.enumerations import ElementPlacement
+from photoshop.api.enumerations import AnchorPosition, BlendMode, ElementPlacement
 from photoshop.api.protocols import XMPMetadata
 
 
 if TYPE_CHECKING:
-    # Import local modules
     from photoshop.api._document import Document
     from photoshop.api._layerSet import LayerSet
 
@@ -131,16 +126,16 @@ class Layer(Photoshop):
         Returns:
             Layer: The duplicated layer.
         """
-        return Layer(self.app.duplicate(relativeObject, insertionLocation))
+        return Layer(self.app.duplicate(relativeObject.app if relativeObject else None, insertionLocation))
 
     def link(self, with_layer: "Layer") -> None:
-        self.app.link(with_layer)
+        self.app.link(with_layer.app)
 
     def move(self, relativeObject: "Layer | LayerSet", insertionLocation: ElementPlacement) -> None:
-        self.app.move(relativeObject, insertionLocation)
+        self.app.move(relativeObject.app, insertionLocation)
 
     def moveToEnd(self, layer_set: "LayerSet") -> None:
-        self.app.moveToEnd(layer_set)
+        self.app.moveToEnd(layer_set.app)
 
     def remove(self) -> None:
         """Removes this layer from the document."""

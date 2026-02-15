@@ -1,24 +1,23 @@
-# Import built-in modules
 from typing import TYPE_CHECKING
 
-# Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import AntiAlias
-from photoshop.api.enumerations import AutoKernType
-from photoshop.api.enumerations import Case
-from photoshop.api.enumerations import Direction
-from photoshop.api.enumerations import Justification
-from photoshop.api.enumerations import Language
-from photoshop.api.enumerations import StrikeThruType
-from photoshop.api.enumerations import TextComposer
-from photoshop.api.enumerations import TextType
-from photoshop.api.enumerations import UnderlineType
-from photoshop.api.enumerations import WarpStyle
+from photoshop.api.enumerations import (
+    AntiAlias,
+    AutoKernType,
+    Case,
+    Direction,
+    Justification,
+    Language,
+    StrikeThruType,
+    TextComposer,
+    TextType,
+    UnderlineType,
+    WarpStyle,
+)
 from photoshop.api.solid_color import SolidColor
 
 
 if TYPE_CHECKING:
-    # Import local modules
     from photoshop.api._artlayer import ArtLayer
 
 
@@ -101,7 +100,7 @@ class TextItem(Photoshop):
     @color.setter
     def color(self, color_value: SolidColor) -> None:
         """The color of textItem."""
-        self.app.color = color_value
+        self.app.color = color_value.app
 
     @property
     def contents(self) -> str:
@@ -524,7 +523,7 @@ class TextItem(Photoshop):
 
     @parent.setter
     def parent(self, value: "ArtLayer") -> None:
-        self.app.parent = value
+        self.app.parent = value.app
 
     @property
     def position(self) -> tuple[int, int]:
