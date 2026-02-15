@@ -1,4 +1,5 @@
 from math import isclose
+
 import pytest
 
 from photoshop.api.application import Application
@@ -19,7 +20,10 @@ class TestNewDocument:
         h = 47
         res = 55.8
         doc = self.docs.add(22.3, 47, resolution=55.8, name=doc_name)
-        assert doc.name == doc_name
-        assert doc.width == int(w)
-        assert doc.height == h
-        assert isclose(doc.resolution, res, abs_tol=0.01)
+        try:
+            assert doc.name == doc_name
+            assert doc.width == int(w)
+            assert doc.height == h
+            assert isclose(doc.resolution, res, abs_tol=0.01)
+        finally:
+            doc.close()
