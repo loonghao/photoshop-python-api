@@ -1,5 +1,7 @@
 """The selected area of the document or layer."""
 
+from collections.abc import Sequence
+
 from photoshop.api._channel import Channel
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -70,12 +72,7 @@ class Selection(Photoshop):
 
     def select(
         self,
-        region: tuple[
-            tuple[float, float],
-            tuple[float, float],
-            tuple[float, float],
-            tuple[float, float],
-        ],
+        region: Sequence[tuple[float, float]],
         selection_type: SelectionType | None = None,
         feather: float = 0,
         anti_alias: bool = True,
