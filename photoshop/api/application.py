@@ -11,17 +11,15 @@ app.documents.add(800, 600, 72, "docRef")
 
 """
 
-# Import built-in modules
 import os
 import time
 
-
-# Import third-party modules
 from _ctypes import COMError
 from pathlib import Path
 from typing import Any
 
-# Import local modules
+from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
+
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -47,8 +45,8 @@ class Application(Photoshop):
 
     """
 
-    def __init__(self, version: str | None = None) -> None:
-        super().__init__(ps_version=version)
+    def __init__(self, version: str | None = None, parent: "Photoshop | FullyDynamicDispatch | None" = None) -> None:
+        super().__init__(ps_version=version, parent=parent)
         self._flag_as_method(
             "batch",
             "charIDToTypeID",

@@ -12,13 +12,16 @@ from typing import TYPE_CHECKING, Any
 from comtypes import COMError
 from comtypes.client import CreateObject
 from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
-from comtypes.client.lazybind import Dispatch
 
 from photoshop.api._clsid import resolution_failure_reason
 from photoshop.api._clsid import resolve_photoshop_class_id
 from photoshop.api.constants import PHOTOSHOP_VERSION_MAPPINGS
 from photoshop.api.enumerations import JavaScriptExecutionMode
 from photoshop.api.errors import PhotoshopPythonAPIError
+
+
+if TYPE_CHECKING:
+    from photoshop.api.application import Application
 
 
 class Photoshop:
@@ -28,7 +31,7 @@ class Photoshop:
     _reg_path = "SOFTWARE\\Adobe\\Photoshop"
     object_name: str = "Application"
 
-    def __init__(self, ps_version: str | None = None, parent: "Photoshop | Dispatch | None" = None):
+    def __init__(self, ps_version: str | None = None, parent: "Photoshop | FullyDynamicDispatch | None" = None):
         """
         Initialize the Photoshop core object.
 
@@ -40,12 +43,12 @@ class Photoshop:
         ps_version = os.getenv("PS_VERSION", ps_version)
         self._app_id = PHOTOSHOP_VERSION_MAPPINGS.get(ps_version, "") if ps_version else ""
         self._has_parent = False
-        self.adobe: Dispatch | None = None
+        self.adobe: FullyDynamicDispatch | None = None
         self.app: Any = None
         # Every COM lookup attempted while resolving this object, kept for error reporting.
         self._resolution_log: list[str] = []
         # Resolve into a local name so the COM passthrough below never sees a missing app.
-        app: Dispatch | None = None
+        app: FullyDynamicDispatch | None = None
 
         # Store current photoshop version
         if ps_version:
@@ -155,6 +158,12 @@ class Photoshop:
     def app_id(self, value: str) -> None:
         self._app_id = value
 
+    @property
+    def application(self) -> "Application":
+        from photoshop.api.application import Application
+
+        return Application(parent=self.app.application)
+
     """
     * Private Methods
     """
@@ -183,7 +192,7 @@ class Photoshop:
         self._logger.debug("Unable to find Photoshop version number in HKEY_LOCAL_MACHINE registry!")
         return []
 
-    def _get_application_object(self, versions: list[str] | None = None) -> Dispatch:
+    def _get_application_object(self, versions: list[str] | None = None) -> FullyDynamicDispatch:
         """
         Try each version string until a valid Photoshop application Dispatch object is returned.
 
