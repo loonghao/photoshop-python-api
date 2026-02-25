@@ -4,4 +4,4 @@ from photoshop import Session
 
 
 with Session(action="new_document") as ps:
-    ps.echo(ps.active_document.name)
+    print(ps.active_document.name)

@@ -1,11 +1,19 @@
+# Import built-in modules
+from typing import TYPE_CHECKING
+
 # Import local modules
 from photoshop.api._core import Photoshop
+
+
+if TYPE_CHECKING:
+    # Import local modules
+    from photoshop.api._document import Document
 
 
 class LayerComp(Photoshop):
     """A snapshot of a state of the layers in a document (can be used to view different page layouts or compostions)."""
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
             "apply",
@@ -14,87 +22,82 @@ class LayerComp(Photoshop):
             "resetfromComp",
         )
 
-    def __len__(self):
-        return self.length
-
     @property
-    def appearance(self):
+    def appearance(self) -> bool:
         return self.app.appearance
 
     @appearance.setter
-    def appearance(self, value):
+    def appearance(self, value: bool) -> None:
         self.app.appearance = value
 
     @property
-    def childLayerCompState(self):
+    def childLayerCompState(self) -> bool:
         return self.app.childLayerCompState
 
     @childLayerCompState.setter
-    def childLayerCompState(self, value):
+    def childLayerCompState(self, value: bool) -> None:
         self.app.childLayerCompState = value
 
     @property
-    def comment(self):
+    def comment(self) -> str:
         return self.app.comment
 
     @comment.setter
-    def comment(self, text):
+    def comment(self, text: str) -> None:
         self.app.comment = text
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.app.name
 
     @name.setter
-    def name(self, text):
+    def name(self, text: str) -> None:
         self.app.name = text
 
     @property
-    def parent(self):
-        return self.app.parent
+    def parent(self) -> "Document":
+        from ._document import Document
+
+        return Document(self.app.parent)
 
     @property
-    def position(self):
+    def position(self) -> bool:
         return self.app.position
 
     @position.setter
-    def position(self, value):
+    def position(self, value: bool) -> None:
         self.app.position = value
 
     @property
-    def selected(self):
+    def selected(self) -> bool:
         """True if the layer comp is currently selected."""
         return self.app.selected
 
     @selected.setter
-    def selected(self, value):
+    def selected(self, value: bool) -> None:
         self.app.selected = value
 
     @property
-    def typename(self):
-        return self.app.typename
-
-    @property
-    def visibility(self):
+    def visibility(self) -> bool:
         """True to use layer visibility settings."""
         return self.app.visibility
 
     @visibility.setter
-    def visibility(self, value):
+    def visibility(self, value: bool) -> None:
         self.app.visibility = value
 
-    def apply(self):
+    def apply(self) -> None:
         """Applies the layer comp to the document."""
         self.app.apply()
 
-    def recapture(self):
+    def recapture(self) -> None:
         """Recaptures the current layer state(s) for this layer comp."""
         self.app.recapture()
 
-    def remove(self):
+    def remove(self) -> None:
         """Deletes the layerComp object."""
         self.app.remove()
 
-    def resetfromComp(self):
+    def resetfromComp(self) -> None:
         """Resets the layer comp state to thedocument state."""
         self.app.resetfromComp()

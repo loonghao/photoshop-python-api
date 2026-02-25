@@ -27,7 +27,11 @@ with Session(action="new_document") as ps:
 """
 
 # Import built-in modules
+from contextlib import AbstractContextManager
+from os import PathLike
+from types import TracebackType
 from typing import Any
+from typing import Literal
 
 # Import local modules
 from photoshop.api import ActionDescriptor
@@ -55,10 +59,11 @@ from photoshop.api import TextItem
 from photoshop.api import TiffSaveOptions
 from photoshop.api import enumerations
 from photoshop.api import errors
+from photoshop.api._document import Document
 
 
 # pylint: disable=too-many-arguments
-class Session:
+class Session(AbstractContextManager["Session"]):
     """Session of photoshop.
 
     We can control active documents in this Session.
@@ -72,11 +77,11 @@ class Session:
 
     def __init__(
         self,
-        file_path: str = None,
-        action: str = None,
+        file_path: str | PathLike[str] | None = None,
+        action: Literal["open", "new_document", "document_duplicate"] | None = None,
         callback: Any = None,
         auto_close: bool = False,
-        ps_version: str = None,
+        ps_version: str | None = None,
     ):
         """Session of Photoshop.
 
@@ -87,7 +92,7 @@ class Session:
                 from photoshop import Session
                 with Session("your/psd/or/psb/file_path.psd",
                             action="open") as ps:
-                    ps.echo(ps.active_document.name)
+                    print(ps.active_document.name)
             ```
 
         Args:
@@ -116,11 +121,11 @@ class Session:
         """
         super().__init__()
 
-        self.path = file_path
+        self.path: str | PathLike[str] | None = file_path
         self._auto_close = auto_close
         self._callback = callback
         self._action = action
-        self._active_document = None
+        self._active_document: Document | None = None
 
         self.app: Application = Application(version=ps_version)
         self.ActionReference: ActionReference = ActionReference()
@@ -277,17 +282,17 @@ class Session:
         self.UnderlineType = enumerations.UnderlineType
         self.Units = enumerations.Units
         self.Urgency = enumerations.Urgency
-        self.Wartyle = enumerations.Wartyle
+        self.WarpStyle = enumerations.WarpStyle
         self.WaveType = enumerations.WaveType
         self.WhiteBalanceType = enumerations.WhiteBalanceType
         self.ZigZagType = enumerations.ZigZagType
 
     @property
-    def active_document(self):
+    def active_document(self) -> Document:
         """Get current active document.
 
         Raises:
-            - PhotoshopPythonAPICOMError: No active document available.
+            - PhotoshopPythonAPIError: No active document available.
 
         """
         try:
@@ -297,12 +302,7 @@ class Session:
         except errors.PhotoshopPythonAPICOMError:
             raise errors.PhotoshopPythonAPIError("No active document available.")
 
-    @staticmethod
-    def echo(*args, **kwargs):
-        """Print message."""
-        print(*args, **kwargs)
-
-    def alert(self, text: str):
+    def alert(self, text: str) -> None:
         """Alert message box in photoshop.
 
         Args:
@@ -312,36 +312,44 @@ class Session:
         self.app.doJavaScript(f"alert('{text}')")
 
     @active_document.setter
-    def active_document(self, active_document):
+    def active_document(self, active_document: Document) -> None:
         """Set active document."""
         self._active_document = active_document
 
-    def _action_open(self):
-        self.active_document = self.app.open(self.path)
+    def _action_open(self) -> None:
+        if self.path:
+            self.active_document = self.app.open(self.path)
+        else:
+            print("Specify the document's path before trying to open it.")
 
-    def _action_new_document(self):
+    def _action_new_document(self) -> None:
         self.active_document = self.app.documents.add()
 
-    def _action_document_duplicate(self):
+    def _action_document_duplicate(self) -> None:
         self.active_document = self.active_document.duplicate()
 
-    def run_action(self):
+    def run_action(self) -> None:
         try:
             _action = getattr(self, f"_action_{self._action}")
             _action()
         except AttributeError:
             pass
 
-    def close(self):
+    def close(self) -> None:
         """closing current session."""
         if self._auto_close:
             self.active_document.close()
 
-    def __enter__(self):
+    def __enter__(self) -> "Session":
         self.run_action()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> None:
         try:
             if self._callback:
                 self._callback(self)

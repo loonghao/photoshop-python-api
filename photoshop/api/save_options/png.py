@@ -1,8 +1,7 @@
 # Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import ColorReductionType
-from photoshop.api.enumerations import DitherType
-from photoshop.api.enumerations import SaveDocumentType
+from photoshop.api.colors.rgb import RGBColor
+from photoshop.api.enumerations import ColorReductionType, DitherType, SaveDocumentType
 
 
 class ExportOptionsSaveForWeb(Photoshop):
@@ -10,20 +9,19 @@ class ExportOptionsSaveForWeb(Photoshop):
 
     object_name = "ExportOptionsSaveForWeb"
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self._format = SaveDocumentType.PNGSave  # Default to PNG
         self.PNG8 = False  # Sets it to PNG-24 bit
 
     @property
     def format(self) -> SaveDocumentType:
         """The file format to use. One of the SaveDocumentType constants."""
-        return self._format
+        return SaveDocumentType(self.app.format)
 
     @format.setter
-    def format(self, value: SaveDocumentType):
+    def format(self, value: SaveDocumentType) -> None:
         """Set the file format to use."""
-        self._format = value
+        self.app.format = value
 
     @property
     def PNG8(self) -> bool:
@@ -31,7 +29,7 @@ class ExportOptionsSaveForWeb(Photoshop):
         return self.app.PNG8
 
     @PNG8.setter
-    def PNG8(self, value: bool):
+    def PNG8(self, value: bool) -> None:
         self.app.PNG8 = value
 
     @property
@@ -40,16 +38,16 @@ class ExportOptionsSaveForWeb(Photoshop):
         return self.app.blur
 
     @blur.setter
-    def blur(self, value: float):
+    def blur(self, value: float) -> None:
         self.app.blur = value
 
     @property
     def colorReduction(self) -> ColorReductionType:
         """The color reduction algorithm."""
-        return self.app.colorReduction
+        return ColorReductionType(self.app.colorReduction)
 
     @colorReduction.setter
-    def colorReduction(self, value: ColorReductionType):
+    def colorReduction(self, value: ColorReductionType) -> None:
         self.app.colorReduction = value
 
     @property
@@ -58,17 +56,57 @@ class ExportOptionsSaveForWeb(Photoshop):
         return self.app.colors
 
     @colors.setter
-    def colors(self, value: int):
+    def colors(self, value: int) -> None:
         self.app.colors = value
 
     @property
     def dither(self) -> DitherType:
         """The type of dither to use."""
-        return self.app.dither
+        return DitherType(self.app.dither)
 
     @dither.setter
-    def dither(self, value: DitherType):
+    def dither(self, value: DitherType) -> None:
         self.app.dither = value
+
+    @property
+    def ditherAmount(self) -> int:
+        return self.app.ditherAmount
+
+    @ditherAmount.setter
+    def ditherAmount(self, value: int) -> None:
+        self.app.ditherAmount = value
+
+    @property
+    def includeProfile(self) -> bool:
+        return self.app.includeProfile
+
+    @includeProfile.setter
+    def includeProfile(self, value: bool) -> None:
+        self.app.includeProfile = value
+
+    @property
+    def interlaced(self) -> bool:
+        return self.app.interlaced
+
+    @interlaced.setter
+    def interlaced(self, value: bool) -> None:
+        self.app.interlaced = value
+
+    @property
+    def lossy(self) -> int:
+        return self.app.lossy
+
+    @lossy.setter
+    def lossy(self, value: int) -> None:
+        self.app.lossy = value
+
+    @property
+    def matteColor(self) -> RGBColor:
+        return self.app.matteColor
+
+    @matteColor.setter
+    def matteColor(self, value: RGBColor) -> None:
+        self.app.matteColor = value.app
 
     @property
     def optimized(self) -> bool:
@@ -76,7 +114,7 @@ class ExportOptionsSaveForWeb(Photoshop):
         return self.app.optimized
 
     @optimized.setter
-    def optimized(self, value: bool):
+    def optimized(self, value: bool) -> None:
         self.app.optimized = value
 
     @property
@@ -85,8 +123,40 @@ class ExportOptionsSaveForWeb(Photoshop):
         return self.app.quality
 
     @quality.setter
-    def quality(self, value: int):
+    def quality(self, value: int) -> None:
         self.app.quality = value
+
+    @property
+    def transparency(self) -> bool:
+        return self.app.transparency
+
+    @transparency.setter
+    def transparency(self, value: bool) -> None:
+        self.app.transparency = value
+
+    @property
+    def transparencyAmount(self) -> int:
+        return self.app.transparencyAmount
+
+    @transparencyAmount.setter
+    def transparencyAmount(self, value: int) -> None:
+        self.app.transparencyAmount = value
+
+    @property
+    def transparencyDither(self) -> DitherType:
+        return DitherType(self.app.transparencyDither)
+
+    @transparencyDither.setter
+    def transparencyDither(self, value: DitherType) -> None:
+        self.app.transparencyDither = value
+
+    @property
+    def webSnap(self) -> int:
+        return self.app.webSnap
+
+    @webSnap.setter
+    def webSnap(self, value: int) -> None:
+        self.app.webSnap = value
 
 
 class PNGSaveOptions(Photoshop):
@@ -94,7 +164,7 @@ class PNGSaveOptions(Photoshop):
 
     object_name = "PNGSaveOptions"
 
-    def __init__(self, interlaced: bool = False, compression: int = 6):
+    def __init__(self, interlaced: bool = False, compression: int = 6) -> None:
         super().__init__()
         self.interlaced = interlaced
         self.compression = compression
@@ -104,7 +174,7 @@ class PNGSaveOptions(Photoshop):
         return self.app.interlaced
 
     @interlaced.setter
-    def interlaced(self, value: bool):
+    def interlaced(self, value: bool) -> None:
         self.app.interlaced = value
 
     @property
@@ -112,5 +182,5 @@ class PNGSaveOptions(Photoshop):
         return self.app.compression
 
     @compression.setter
-    def compression(self, value: int):
+    def compression(self, value: int) -> None:
         self.app.compression = value

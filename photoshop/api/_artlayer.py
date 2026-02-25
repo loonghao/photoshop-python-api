@@ -1,21 +1,34 @@
-# Import built-in modules
-from typing import Any
+from os import PathLike
 
-# Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import RasterizeType
+from photoshop.api._layer import Layer
+from photoshop.api.enumerations import (
+    CreateFields,
+    DepthMaource,
+    DisplacementMapType,
+    ElementPlacement,
+    EliminateFields,
+    Geometry,
+    LayerKind,
+    LensType,
+    NoiseDistribution,
+    OffsetUndefinedAreas,
+    RasterizeType,
+    TextureType,
+    UndefinedAreas,
+)
 from photoshop.api.text_item import TextItem
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments
-class ArtLayer(Photoshop):
+class ArtLayer(Layer):
     """An object within a document that contains the visual elements of the image
 
     (equivalent to a layer in the Adobe Photoshop application).
 
     """
 
-    def __init__(self, parent: Any = None):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
             "add",
@@ -48,79 +61,39 @@ class ArtLayer(Photoshop):
             "applyOceanRipple",
             "applyOffset",
             "applyPinch",
-            "delete",
-            "duplicate",
             "invert",
-            "link",
             "merge",
-            "move",
             "posterize",
             "rasterize",
-            "unlink",
             "convertToSmartObject",
         )
 
     @property
-    def allLocked(self):
-        return self.app.allLocked
-
-    @allLocked.setter
-    def allLocked(self, value):
-        self.app.allLocked = value
-
-    @property
-    def blendMode(self):
-        return self.app.blendMode
-
-    @blendMode.setter
-    def blendMode(self, mode):
-        self.app.blendMode = mode
-
-    @property
-    def bounds(self):
-        """The bounding rectangle of the layer."""
-        return self.app.bounds
-
-    @property
-    def linkedLayers(self) -> list:
-        """Get all layers linked to this layer.
-
-        Returns:
-            list: Layer objects"""
-        return [ArtLayer(layer) for layer in self.app.linkedLayers]
-
-    @property
-    def name(self) -> str:
-        return self.app.name
-
-    @name.setter
-    def name(self, text: str):
-        self.app.name = text
-
-    @property
-    def fillOpacity(self):
+    def fillOpacity(self) -> float:
         """The interior opacity of the layer. Range: 0.0 to 100.0."""
         return self.app.fillOpacity
 
     @fillOpacity.setter
-    def fillOpacity(self, value):
+    def fillOpacity(self, value: float) -> None:
         """The interior opacity of the layer. Range: 0.0 to 100.0."""
         self.app.fillOpacity = value
 
     @property
-    def filterMaskDensity(self):
+    def filterMaskDensity(self) -> float:
+        """The density of the filter mask (between 0.0 and 100.0)"""
         return self.app.filterMaskDensity
 
     @filterMaskDensity.setter
-    def filterMaskDensity(self, value):
+    def filterMaskDensity(self, value: float) -> None:
         self.app.filterMaskDensity = value
 
     @property
-    def filterMaskFeather(self):
+    def filterMaskFeather(self) -> float:
+        """The feather of the filter mask (between 0.0 and 250.0)"""
         return self.app.filterMaskFeather
 
     @filterMaskFeather.setter
-    def filterMaskFeather(self, value):
+    def filterMaskFeather(self, value: float) -> None:
         self.app.filterMaskFeather = value
 
     @property
@@ -129,97 +102,66 @@ class ArtLayer(Photoshop):
         return self.app.grouped
 
     @grouped.setter
-    def grouped(self, value):
+    def grouped(self, value: bool) -> None:
         self.app.grouped = value
 
     @property
-    def isBackgroundLayer(self):
+    def isBackgroundLayer(self) -> bool:
         """bool: If true, the layer is a background layer."""
         return self.app.isBackgroundLayer
 
     @isBackgroundLayer.setter
-    def isBackgroundLayer(self, value):
+    def isBackgroundLayer(self, value: bool) -> None:
         self.app.isBackgroundLayer = value
 
     @property
-    def kind(self):
+    def kind(self) -> LayerKind:
         """Get the layer kind.
 
         Returns:
             LayerKind: The kind of this layer.
         """
-        try:
-            js = """
-            var ref = new ActionReference();
-            ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
-            var desc = executeActionGet(ref);
-            var layerType = desc.getInteger(stringIDToTypeID("layerKind"));
-            layerType;
-            """
-            return int(self.eval_javascript(js))
-        except Exception as e:
-            print(f"Error getting layer kind: {str(e)}")
-            return None
+        return LayerKind(self.app.kind)
 
     @kind.setter
-    def kind(self, layer_type):
-        """set the layer kind."""
-        self.app.kind = layer_type
+    def kind(self, value: LayerKind) -> None:
+        self.app.kind = value
 
     @property
-    def layerMaskDensity(self):
+    def layerMaskDensity(self) -> float:
         """The density of the layer mask (between 0.0 and 100.0)."""
         return self.app.layerMaskDensity
 
     @layerMaskDensity.setter
-    def layerMaskDensity(self, value):
+    def layerMaskDensity(self, value: float) -> None:
         self.app.layerMaskDensity = value
 
     @property
-    def layerMaskFeather(self):
+    def layerMaskFeather(self) -> float:
         """The feather of the layer mask (between 0.0 and 250.0)."""
         return self.app.layerMaskFeather
 
     @layerMaskFeather.setter
-    def layerMaskFeather(self, value):
+    def layerMaskFeather(self, value: float) -> None:
         self.app.layerMaskFeather = value
 
     @property
-    def opacity(self):
-        """The master opacity of the layer."""
-        return round(self.app.opacity)
-
-    @opacity.setter
-    def opacity(self, value):
-        self.app.opacity = value
-
-    @property
-    def parent(self):
-        """The object’s container."""
-        return self.app.parent
-
-    @parent.setter
-    def parent(self, value):
-        """Set the object’s container."""
-        self.app.parent = value
-
-    @property
-    def pixelsLocked(self):
+    def pixelsLocked(self) -> bool:
         """If true, the pixels in the layer’s image cannot be edited."""
         return self.app.pixelsLocked
 
     @pixelsLocked.setter
-    def pixelsLocked(self, value):
+    def pixelsLocked(self, value: bool) -> None:
         self.app.pixelsLocked = value
 
     @property
-    def positionLocked(self):
+    def positionLocked(self) -> bool:
         """bool: If true, the pixels in the layer’s image cannot be moved
         within the layer."""
         return self.app.positionLocked
 
     @positionLocked.setter
-    def positionLocked(self, value):
+    def positionLocked(self, value: bool) -> None:
         self.app.positionLocked = value
 
     @property
@@ -233,49 +175,36 @@ class ArtLayer(Photoshop):
         return TextItem(self.app.textItem)
 
     @textItem.setter
-    def textItem(self, value):
-        self.app.textItem = value
+    def textItem(self, value: TextItem) -> None:
+        self.app.textItem = value.app
 
     @property
-    def transparentPixelsLocked(self):
+    def transparentPixelsLocked(self) -> bool:
         return self.app.transparentPixelsLocked
 
     @transparentPixelsLocked.setter
-    def transparentPixelsLocked(self, value):
+    def transparentPixelsLocked(self, value: bool) -> None:
         self.app.transparentPixelsLocked = value
 
     @property
-    def vectorMaskDensity(self):
+    def vectorMaskDensity(self) -> float:
+        """The density of the vector mask (between 0.0 and 100.0)"""
         return self.app.vectorMaskDensity
 
     @vectorMaskDensity.setter
-    def vectorMaskDensity(self, value):
+    def vectorMaskDensity(self, value: float) -> None:
         self.app.vectorMaskDensity = value
 
     @property
-    def vectorMaskFeather(self):
+    def vectorMaskFeather(self) -> float:
+        """The feather of the vector mask (between 0.0 and 250.0)"""
         return self.app.vectorMaskFeather
 
     @vectorMaskFeather.setter
-    def vectorMaskFeather(self, value):
+    def vectorMaskFeather(self, value: float) -> None:
         self.app.vectorMaskFeather = value
 
-    @property
-    def visible(self):
-        return self.app.visible
-
-    @visible.setter
-    def visible(self, value):
-        self.app.visible = value
-
-    @property
-    def length(self):
-        return len(list(self.app))
-
-    def add(self):
-        return self.app.add()
-
-    def adjustBrightnessContrast(self, brightness, contrast):
+    def adjustBrightnessContrast(self, brightness: int, contrast: int) -> None:
         """Adjusts the brightness and contrast.
 
         Args:
@@ -283,15 +212,15 @@ class ArtLayer(Photoshop):
             contrast (int): The contrast amount. Range: -100 to 100.
 
         """
-        return self.app.adjustBrightnessContrast(brightness, contrast)
+        self.app.adjustBrightnessContrast(brightness, contrast)
 
     def adjustColorBalance(
         self,
-        shadows,
-        midtones,
-        highlights,
-        preserveLuminosity,
-    ):
+        shadows: tuple[int, int, int],
+        midtones: tuple[int, int, int],
+        highlights: tuple[int, int, int],
+        preserveLuminosity: bool,
+    ) -> None:
         """Adjusts the color balance of the layer’s component channels.
 
         Args:
@@ -310,14 +239,14 @@ class ArtLayer(Photoshop):
             preserveLuminosity: If true, luminosity is preserved.
 
         """
-        return self.app.adjustColorBalance(
+        self.app.adjustColorBalance(
             shadows,
             midtones,
             highlights,
             preserveLuminosity,
         )
 
-    def adjustCurves(self, curveShape):
+    def adjustCurves(self, curveShape: list[tuple[float, float]]) -> None:
         """Adjusts the tonal range of the selected channel using up to fourteen
         points.
 
@@ -330,16 +259,16 @@ class ArtLayer(Photoshop):
         Returns:
 
         """
-        return self.app.adjustCurves(curveShape)
+        self.app.adjustCurves(curveShape)
 
     def adjustLevels(
         self,
-        inputRangeStart,
-        inputRangeEnd,
-        inputRangeGamma,
-        outputRangeStart,
-        outputRangeEnd,
-    ):
+        inputRangeStart: int,
+        inputRangeEnd: int,
+        inputRangeGamma: float,
+        outputRangeStart: int,
+        outputRangeEnd: int,
+    ) -> None:
         """Adjusts levels of the selected channels.
 
         Args:
@@ -352,7 +281,7 @@ class ArtLayer(Photoshop):
         Returns:
 
         """
-        return self.app.adjustLevels(
+        self.app.adjustLevels(
             inputRangeStart,
             inputRangeEnd,
             inputRangeGamma,
@@ -360,10 +289,10 @@ class ArtLayer(Photoshop):
             outputRangeEnd,
         )
 
-    def applyAddNoise(self, amount, distribution, monochromatic):
-        return self.app.applyAddNoise(amount, distribution, monochromatic)
+    def applyAddNoise(self, amount: float, distribution: NoiseDistribution, monochromatic: bool) -> None:
+        self.app.applyAddNoise(amount, distribution, monochromatic)
 
-    def applyDiffuseGlow(self, graininess, amount, clear_amount):
+    def applyDiffuseGlow(self, graininess: int, amount: int, clear_amount: int) -> None:
         """Applies the diffuse glow filter.
 
         Args:
@@ -374,103 +303,103 @@ class ArtLayer(Photoshop):
         Returns:
 
         """
-        return self.app.applyDiffuseGlow(graininess, amount, clear_amount)
+        self.app.applyDiffuseGlow(graininess, amount, clear_amount)
 
-    def applyAverage(self):
+    def applyAverage(self) -> None:
         """Applies the average filter."""
-        return self.app.applyAverage()
+        self.app.applyAverage()
 
-    def applyBlur(self):
+    def applyBlur(self) -> None:
         """Applies the blur filter."""
-        return self.app.applyBlur()
+        self.app.applyBlur()
 
-    def applyBlurMore(self):
+    def applyBlurMore(self) -> None:
         """Applies the blur more filter."""
-        return self.app.applyBlurMore()
+        self.app.applyBlurMore()
 
-    def applyClouds(self):
+    def applyClouds(self) -> None:
         """Applies the clouds filter."""
-        return self.app.applyClouds()
+        self.app.applyClouds()
 
-    def applyCustomFilter(self, characteristics, scale, offset):
+    def applyCustomFilter(self, characteristics: list[int], scale: int, offset: int) -> None:
         """Applies the custom filter."""
-        return self.app.applyCustomFilter(characteristics, scale, offset)
+        self.app.applyCustomFilter(characteristics, scale, offset)
 
-    def applyDeInterlace(self, eliminateFields, createFields):
+    def applyDeInterlace(self, eliminateFields: EliminateFields, createFields: CreateFields) -> None:
         """Applies the de-interlace filter."""
-        return self.app.applyDeInterlace(eliminateFields, createFields)
+        self.app.applyDeInterlace(eliminateFields, createFields)
 
-    def applyDespeckle(self):
-        return self.app.applyDespeckle()
+    def applyDespeckle(self) -> None:
+        self.app.applyDespeckle()
 
-    def applyDifferenceClouds(self):
+    def applyDifferenceClouds(self) -> None:
         """Applies the difference clouds filter."""
-        return self.app.applyDifferenceClouds()
+        self.app.applyDifferenceClouds()
 
     def applyDisplace(
         self,
-        horizontalScale,
-        verticalScale,
-        displacementType,
-        undefinedAreas,
-        displacementMapFile,
-    ):
+        horizontalScale: int,
+        verticalScale: int,
+        displacementType: DisplacementMapType,
+        undefinedAreas: UndefinedAreas,
+        displacementMapFile: str | PathLike[str],
+    ) -> None:
         """Applies the displace filter."""
-        return self.app.applyDisplace(
+        self.app.applyDisplace(
             horizontalScale,
             verticalScale,
             displacementType,
             undefinedAreas,
-            displacementMapFile,
+            str(displacementMapFile),
         )
 
-    def applyDustAndScratches(self, radius, threshold):
+    def applyDustAndScratches(self, radius: int, threshold: int) -> None:
         """Applies the dust and scratches filter."""
-        return self.app.applyDustAndScratches(radius, threshold)
+        self.app.applyDustAndScratches(radius, threshold)
 
-    def applyGaussianBlur(self, radius):
+    def applyGaussianBlur(self, radius: float) -> None:
         """Applies the gaussian blur filter."""
-        return self.app.applyGaussianBlur(radius)
+        self.app.applyGaussianBlur(radius)
 
     def applyGlassEffect(
         self,
-        distortion,
-        smoothness,
-        scaling,
-        invert,
-        texture,
-        textureFile,
-    ):
-        return self.app.applyGlassEffect(
+        distortion: int,
+        smoothness: int,
+        scaling: int,
+        invert: bool,
+        texture: TextureType,
+        textureFile: str | PathLike[str],
+    ) -> None:
+        self.app.applyGlassEffect(
             distortion,
             smoothness,
             scaling,
             invert,
             texture,
-            textureFile,
+            str(textureFile),
         )
 
-    def applyHighPass(self, radius):
+    def applyHighPass(self, radius: float) -> None:
         """Applies the high pass filter."""
-        return self.app.applyHighPass(radius)
+        self.app.applyHighPass(radius)
 
     def applyLensBlur(
         self,
-        source,
-        focalDistance,
-        invertDepthMap,
-        shape,
-        radius,
-        bladeCurvature,
-        rotation,
-        brightness,
-        threshold,
-        amount,
-        distribution,
-        monochromatic,
-    ):
+        source: DepthMaource,
+        focalDistance: int,
+        invertDepthMap: bool,
+        shape: Geometry,
+        radius: int,
+        bladeCurvature: int,
+        rotation: int,
+        brightness: int,
+        threshold: int,
+        amount: int,
+        distribution: NoiseDistribution,
+        monochromatic: bool,
+    ) -> None:
         """Apply the lens blur filter."""
-        return self.app.applyLensBlur(
+        self.app.applyLensBlur(
             source,
             focalDistance,
             invertDepthMap,
@@ -485,60 +414,50 @@ class ArtLayer(Photoshop):
             monochromatic,
         )
 
-    def applyLensFlare(self, brightness, flareCenter, lensType):
-        return self.app.applyLensFlare(brightness, flareCenter, lensType)
+    def applyLensFlare(self, brightness: int, flareCenter: tuple[float, float], lensType: LensType) -> None:
+        self.app.applyLensFlare(brightness, flareCenter, lensType)
 
-    def applyMaximum(self, radius):
+    def applyMaximum(self, radius: float) -> None:
         self.app.applyMaximum(radius)
 
-    def applyMedianNoise(self, radius):
+    def applyMedianNoise(self, radius: float) -> None:
         self.app.applyMedianNoise(radius)
 
-    def applyMinimum(self, radius):
+    def applyMinimum(self, radius: float) -> None:
         self.app.applyMinimum(radius)
 
-    def applyMotionBlur(self, angle, radius):
+    def applyMotionBlur(self, angle: int, radius: float) -> None:
         self.app.applyMotionBlur(angle, radius)
 
-    def applyNTSC(self):
+    def applyNTSC(self) -> None:
         self.app.applyNTSC()
 
-    def applyOceanRipple(self, size, magnitude):
+    def applyOceanRipple(self, size: int, magnitude: int) -> None:
         self.app.applyOceanRipple(size, magnitude)
 
-    def applyOffset(self, horizontal, vertical, undefinedAreas):
+    def applyOffset(self, horizontal: int, vertical: int, undefinedAreas: OffsetUndefinedAreas) -> None:
         self.app.applyOffset(horizontal, vertical, undefinedAreas)
 
-    def applyPinch(self, amount):
+    def applyPinch(self, amount: int) -> None:
         self.app.applyPinch(amount)
 
-    def remove(self):
-        """Removes this layer from the document."""
-        self.app.delete()
-
-    def rasterize(self, target: RasterizeType):
+    def rasterize(self, target: RasterizeType) -> None:
         self.app.rasterize(target)
 
-    def posterize(self, levels):
+    def posterize(self, levels: int) -> None:
         self.app.posterize(levels)
 
-    def move(self, relativeObject, insertionLocation):
-        self.app.move(relativeObject, insertionLocation)
-
-    def merge(self):
+    def merge(self) -> "ArtLayer":
         return ArtLayer(self.app.merge())
 
-    def link(self, with_layer):
-        self.app.link(with_layer)
-
-    def unlink(self):
-        """Unlink this layer from any linked layers."""
-        self.app.unlink()
-
-    def invert(self):
+    def invert(self) -> None:
         self.app.invert()
 
-    def duplicate(self, relativeObject=None, insertionLocation=None):
+    def duplicate(
+        self,
+        relativeObject: "Layer | None" = None,
+        insertionLocation: ElementPlacement | None = None,
+    ) -> "ArtLayer":
         """Duplicates the layer.
 
         Args:
@@ -549,10 +468,9 @@ class ArtLayer(Photoshop):
             ArtLayer: The duplicated layer.
 
         """
-        dup = self.app.duplicate(relativeObject, insertionLocation)
-        return ArtLayer(dup)
+        return ArtLayer(self.app.duplicate(relativeObject.app if relativeObject else None, insertionLocation))
 
-    def convertToSmartObject(self):
+    def convertToSmartObject(self) -> "ArtLayer":
         """Converts the layer to a smart object.
 
         Returns:
