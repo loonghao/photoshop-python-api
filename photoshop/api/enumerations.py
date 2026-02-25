@@ -1,7 +1,6 @@
 """constants type of enum for Photoshop."""
 # Import built-in modules
-from enum import IntEnum
-from enum import StrEnum
+from enum import Enum, IntEnum
 
 
 class LensType(IntEnum):
@@ -384,7 +383,7 @@ class FontPreviewType(IntEnum):
     FontPreviewSmall = 1
 
 
-class FontSize(StrEnum):
+class FontSize(str, Enum):
     Large = "FontSize.LARGE"
     Medium = "FontSize.MEDIUM"
     Small = "FontSize.SMALL"
