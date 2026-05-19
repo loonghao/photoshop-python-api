@@ -1,5 +1,5 @@
 [flake8]
-ignore = BLK100
+ignore = BLK100,W503
 
 # flake8-quotes:
 # Use double quotes as our default to comply with black, we like it and
@@ -15,7 +15,7 @@ avoid-escape = True
 # Use the Google Python Styleguide Docstring format.
 docstring-convention = google
 
-exclude = 
+exclude =
     .git,
     __pycache__,
     docs/source/conf.py,
