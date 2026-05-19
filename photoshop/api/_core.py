@@ -1,23 +1,31 @@
 """This class provides all photoshop API core functions."""
 
+# Import built-in modules
 import os
 import platform
 import winreg
 
 from contextlib import suppress
 from functools import cached_property
-from logging import CRITICAL, DEBUG, Logger, getLogger
-from typing import TYPE_CHECKING, Any
+from logging import CRITICAL
+from logging import DEBUG
+from logging import Logger
+from logging import getLogger
+from typing import TYPE_CHECKING
+from typing import Any
 
+# Import third-party modules
 from comtypes.client import CreateObject
 from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
 
+# Import local modules
 from photoshop.api.constants import PHOTOSHOP_VERSION_MAPPINGS
 from photoshop.api.enumerations import JavaScriptExecutionMode
 from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api.application import Application
 
 
@@ -133,6 +141,7 @@ class Photoshop:
 
     @property
     def application(self) -> "Application":
+        # Import local modules
         from photoshop.api.application import Application
 
         return Application(parent=self.app.application)

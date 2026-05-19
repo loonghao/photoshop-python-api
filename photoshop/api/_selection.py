@@ -1,11 +1,16 @@
 """The selected area of the document or layer."""
 
+# Import built-in modules
 from collections.abc import Sequence
 
+# Import local modules
 from photoshop.api._channel import Channel
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
-from photoshop.api.enumerations import AnchorPosition, ColorBlendMode, SelectionType, StrokeLocation
+from photoshop.api.enumerations import AnchorPosition
+from photoshop.api.enumerations import ColorBlendMode
+from photoshop.api.enumerations import SelectionType
+from photoshop.api.enumerations import StrokeLocation
 from photoshop.api.solid_color import SolidColor
 
 

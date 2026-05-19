@@ -1,6 +1,9 @@
+# Import built-in modules
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Iterator
+from typing import TYPE_CHECKING
+from typing import Iterator
 
+# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channel import Channel
@@ -11,6 +14,7 @@ from photoshop.api.enumerations import ElementPlacement
 
 
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api._layers import Layers
     from photoshop.api._layerSets import LayerSets
 

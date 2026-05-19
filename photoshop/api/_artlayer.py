@@ -1,22 +1,22 @@
+# Import built-in modules
 from os import PathLike
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._layer import Layer
-from photoshop.api.enumerations import (
-    CreateFields,
-    DepthMaource,
-    DisplacementMapType,
-    ElementPlacement,
-    EliminateFields,
-    Geometry,
-    LayerKind,
-    LensType,
-    NoiseDistribution,
-    OffsetUndefinedAreas,
-    RasterizeType,
-    TextureType,
-    UndefinedAreas,
-)
+from photoshop.api.enumerations import CreateFields
+from photoshop.api.enumerations import DepthMaource
+from photoshop.api.enumerations import DisplacementMapType
+from photoshop.api.enumerations import ElementPlacement
+from photoshop.api.enumerations import EliminateFields
+from photoshop.api.enumerations import Geometry
+from photoshop.api.enumerations import LayerKind
+from photoshop.api.enumerations import LensType
+from photoshop.api.enumerations import NoiseDistribution
+from photoshop.api.enumerations import OffsetUndefinedAreas
+from photoshop.api.enumerations import RasterizeType
+from photoshop.api.enumerations import TextureType
+from photoshop.api.enumerations import UndefinedAreas
 from photoshop.api.text_item import TextItem
 
 

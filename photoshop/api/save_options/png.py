@@ -1,7 +1,9 @@
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.colors.rgb import RGBColor
-from photoshop.api.enumerations import ColorReductionType, DitherType, SaveDocumentType
+from photoshop.api.enumerations import ColorReductionType
+from photoshop.api.enumerations import DitherType
+from photoshop.api.enumerations import SaveDocumentType
 
 
 class ExportOptionsSaveForWeb(Photoshop):

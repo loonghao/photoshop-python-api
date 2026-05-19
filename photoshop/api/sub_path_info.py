@@ -1,5 +1,8 @@
-from typing import Iterator, Sequence
+# Import built-in modules
+from typing import Iterator
+from typing import Sequence
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ShapeOperation
 from photoshop.api.path_point_info import PathPointInfo

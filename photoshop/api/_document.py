@@ -13,12 +13,15 @@ The basic canvas for the file.
 
 """
 
+# Import built-in modules
 from _ctypes import COMError
 from logging import getLogger
 from os import PathLike
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
+from typing import Optional
 
+# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._artlayers import ArtLayers
 from photoshop.api._channel import Channel
@@ -30,24 +33,24 @@ from photoshop.api._layerComps import LayerComps
 from photoshop.api._layers import Layers
 from photoshop.api._layerSet import LayerSet
 from photoshop.api._layerSets import LayerSets
-from photoshop.api.enumerations import (
-    AnchorPosition,
-    BitsPerChannelType,
-    ChangeMode,
-    ColorProfileType,
-    Direction,
-    DocumentMode,
-    ExportType,
-    ExtensionType,
-    Intent,
-    MeasurementSource,
-    ResampleMethod,
-    SaveOptions,
-    SourceSpaceType,
-    TrimType,
-)
+from photoshop.api.enumerations import AnchorPosition
+from photoshop.api.enumerations import BitsPerChannelType
+from photoshop.api.enumerations import ChangeMode
+from photoshop.api.enumerations import ColorProfileType
+from photoshop.api.enumerations import Direction
+from photoshop.api.enumerations import DocumentMode
+from photoshop.api.enumerations import ExportType
+from photoshop.api.enumerations import ExtensionType
+from photoshop.api.enumerations import Intent
+from photoshop.api.enumerations import MeasurementSource
+from photoshop.api.enumerations import ResampleMethod
+from photoshop.api.enumerations import SaveOptions
+from photoshop.api.enumerations import SourceSpaceType
+from photoshop.api.enumerations import TrimType
 from photoshop.api.path_items import PathItems
-from photoshop.api.protocols import HistoryState, MeasurementScale, XMPMetadata
+from photoshop.api.protocols import HistoryState
+from photoshop.api.protocols import MeasurementScale
+from photoshop.api.protocols import XMPMetadata
 from photoshop.api.save_options import ExportOptionsSaveForWeb
 from photoshop.api.save_options.bmp import BMPSaveOptions
 from photoshop.api.save_options.eps import EPSSaveOptions
@@ -394,7 +397,8 @@ class Document(Photoshop):
         """Crops the document.
 
         Args:
-            bounds: Four coordinates for the region remaining after cropping, in the following order: left, top, right, bottom.
+            bounds: Four coordinates for the region remaining after cropping, in the following order:
+                left, top, right, bottom.
             angle: The angle of cropping bounds.
             width: The width of the resulting document.
             height: The height of the resulting document.

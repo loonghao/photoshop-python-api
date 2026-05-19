@@ -38,8 +38,8 @@ from photoshop.api import ActionDescriptor
 from photoshop.api import ActionList
 from photoshop.api import ActionReference
 from photoshop.api import Application
-from photoshop.api import BMPSaveOptions
 from photoshop.api import BatchOptions
+from photoshop.api import BMPSaveOptions
 from photoshop.api import CMYKColor
 from photoshop.api import EPSSaveOptions
 from photoshop.api import EventID
@@ -50,8 +50,8 @@ from photoshop.api import HSBColor
 from photoshop.api import JPEGSaveOptions
 from photoshop.api import LabColor
 from photoshop.api import PDFSaveOptions
-from photoshop.api import PNGSaveOptions
 from photoshop.api import PhotoshopSaveOptions
+from photoshop.api import PNGSaveOptions
 from photoshop.api import RGBColor
 from photoshop.api import SolidColor
 from photoshop.api import TargaSaveOptions

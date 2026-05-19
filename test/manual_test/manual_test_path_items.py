@@ -1,8 +1,13 @@
+# Import built-in modules
 from typing import Sequence
 
+# Import third-party modules
 import pytest
 
-from photoshop.api.enumerations import PointKind, ShapeOperation, ToolType
+# Import local modules
+from photoshop.api.enumerations import PointKind
+from photoshop.api.enumerations import ShapeOperation
+from photoshop.api.enumerations import ToolType
 from photoshop.api.path_item import PathItem
 from photoshop.api.path_point_info import PathPointInfo
 from photoshop.api.solid_color import SolidColor

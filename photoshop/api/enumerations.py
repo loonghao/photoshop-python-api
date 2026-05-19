@@ -1,6 +1,7 @@
 """constants type of enum for Photoshop."""
 # Import built-in modules
-from enum import Enum, IntEnum
+from enum import Enum
+from enum import IntEnum
 
 
 class LensType(IntEnum):

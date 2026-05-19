@@ -22,8 +22,8 @@ from photoshop.api.save_options import ExportOptionsSaveForWeb
 from photoshop.api.save_options import GIFSaveOptions
 from photoshop.api.save_options import JPEGSaveOptions
 from photoshop.api.save_options import PDFSaveOptions
-from photoshop.api.save_options import PNGSaveOptions
 from photoshop.api.save_options import PhotoshopSaveOptions
+from photoshop.api.save_options import PNGSaveOptions
 from photoshop.api.save_options import TargaSaveOptions
 from photoshop.api.save_options import TiffSaveOptions
 from photoshop.api.solid_color import SolidColor

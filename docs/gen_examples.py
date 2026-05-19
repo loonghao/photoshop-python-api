@@ -2,12 +2,14 @@
 
 # Import built-in modules
 import os
+
 from pathlib import Path
 
 # Import third-party modules
-from jinja2 import Template
 import mkdocs_gen_files
 import stringcase
+
+from jinja2 import Template
 
 
 template = Template(
