@@ -42,15 +42,15 @@ comtypes = "^1.4.15"
 commitizen = "^2.17.8"
 pre-commit = "^2.13.0"
 codecov = "^2.1.11"
-pylint = "^2.8.2"
-isort = "^5.8.0"
+pylint = "^4.0.5"
+isort = "^8.0.1"
 pytest = "^9.0.2"
-flake8 = "^4.0.0"
+flake8 = "^7.3.0"
 mypy = "^1.19.1"
 coverage = "^7.0.0"
 mkdocs = "^1.2.2"
 mkdocs-git-revision-date-plugin = "^0.3.1"
-black = "^23.0.0"
+black = "^26.5.1"
 mkdocs-material = "^8.2.5"
 mkdocstrings-python = "^1.0.0"
 mkdocs-pymdownx-material-extras = "^2.0"
@@ -70,7 +70,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
-target_version = ['py37']
 include = '\.pyi?$'
 exclude = '''
 
@@ -98,10 +97,8 @@ atomic = true
 include_trailing_comma = true
 lines_after_imports = 2
 lines_between_types = 1
-use_parentheses = true
-src_paths = ["photoshop", "test"]
 filter_files = true
-known_first_party = "photoshop"
+extra_standard_library = ["_ctypes"]
 
 # Enforce import section headers.
 import_heading_future = "Import future modules"
@@ -109,7 +106,6 @@ import_heading_stdlib = "Import built-in modules"
 import_heading_thirdparty = "Import third-party modules"
 import_heading_firstparty = "Import local modules"
 
-force_sort_within_sections = true
 force_single_line = true
 
 # All project unrelated unknown imports belong to third-party.
@@ -139,7 +135,7 @@ extend-exclude = [
 # in CI, so only pycodestyle/pyflakes rules ever fired. Quote rules are enabled
 # here because the codebase already satisfies them; the docstring rules are not,
 # see the migration PR for the measured violation count.
-select = ["E", "W", "F", "Q"]
+select = ["E", "W", "F", "Q", "I"]
 
 [tool.ruff.lint.flake8-quotes]
 inline-quotes = "double"
@@ -150,4 +146,10 @@ avoid-escape = true
 [tool.ruff.lint.isort]
 lines-after-imports = 2
 lines-between-types = 1
-known-first-party = ["photoshop"]
+force-single-line = true
+
+# Enforce import section headers.
+import-heading.future = "Import future modules"
+import-heading.standard-library = "Import built-in modules"
+import-heading.third-party = "Import third-party modules"
+import-heading.first-party = "Import local modules"
