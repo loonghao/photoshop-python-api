@@ -1,6 +1,6 @@
 # Import built-in modules
-from typing import Iterator
 from typing import TYPE_CHECKING
+from typing import Iterator
 
 # Import local modules
 from photoshop.api._core import Photoshop

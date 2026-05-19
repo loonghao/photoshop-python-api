@@ -6,6 +6,7 @@ This script demonstrates how to:
 """
 # Import built-in modules
 import os.path
+
 from pathlib import Path
 from typing import List
 from typing import Union

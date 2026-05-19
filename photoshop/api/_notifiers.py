@@ -10,6 +10,7 @@ Examples:
 
 """
 
+# Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._notifier import Notifier
 from photoshop.api.collections import CollectionOfRemovables

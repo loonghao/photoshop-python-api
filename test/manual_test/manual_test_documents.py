@@ -1,7 +1,10 @@
+# Import built-in modules
 from math import isclose
 
+# Import third-party modules
 import pytest
 
+# Import local modules
 from photoshop.api.application import Application
 
 

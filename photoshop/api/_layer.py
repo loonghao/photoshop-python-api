@@ -1,11 +1,16 @@
+# Import built-in modules
 from typing import TYPE_CHECKING
 
+# Import local modules
 from photoshop.api._core import Photoshop
-from photoshop.api.enumerations import AnchorPosition, BlendMode, ElementPlacement
+from photoshop.api.enumerations import AnchorPosition
+from photoshop.api.enumerations import BlendMode
+from photoshop.api.enumerations import ElementPlacement
 from photoshop.api.protocols import XMPMetadata
 
 
 if TYPE_CHECKING:
+    # Import local modules
     from photoshop.api._document import Document
     from photoshop.api._layerSet import LayerSet
 

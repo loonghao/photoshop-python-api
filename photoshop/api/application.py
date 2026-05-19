@@ -11,6 +11,7 @@ app.documents.add(800, 600, 72, "docRef")
 
 """
 
+# Import built-in modules
 import os
 import time
 
@@ -18,8 +19,10 @@ from _ctypes import COMError
 from pathlib import Path
 from typing import Any
 
+# Import third-party modules
 from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
 
+# Import local modules
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -32,7 +35,9 @@ from photoshop.api._text_fonts import TextFonts
 from photoshop.api.action_descriptor import ActionDescriptor
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.batch_options import BatchOptions
-from photoshop.api.enumerations import DialogModes, JavaScriptExecutionMode, PurgeTarget
+from photoshop.api.enumerations import DialogModes
+from photoshop.api.enumerations import JavaScriptExecutionMode
+from photoshop.api.enumerations import PurgeTarget
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.solid_color import SolidColor
 

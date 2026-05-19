@@ -6,7 +6,8 @@ import pytest
 # Import local modules
 from photoshop import Session
 from photoshop.api._artlayer import ArtLayer
-from photoshop.api.enumerations import Justification, TextType
+from photoshop.api.enumerations import Justification
+from photoshop.api.enumerations import TextType
 
 
 class TestTextItem:

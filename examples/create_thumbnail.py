@@ -6,6 +6,7 @@ You can use the thumbnail image to upload to Shotgun or Ftrack.
 
 # Import built-in modules
 import os
+
 from tempfile import mkdtemp
 
 # Import local modules

@@ -2,10 +2,9 @@
 # Import built-in modules
 import os
 
-# Import third-party modules
+# Import local modules
 import examples._psd_files as psd  # Import from examples.
 
-# Import local modules
 from photoshop import Session
 
 

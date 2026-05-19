@@ -1,8 +1,11 @@
+# Import built-in modules
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+# Import third-party modules
 import pytest
 
+# Import local modules
 from photoshop import Session
 from photoshop.api._artlayer import ArtLayer
 from photoshop.api._document import Document
