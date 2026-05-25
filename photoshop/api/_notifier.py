@@ -17,7 +17,7 @@ class Notifier(Photoshop):
     def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
-            "remove",
+            "delete",
         )
 
     @property
@@ -54,4 +54,4 @@ class Notifier(Photoshop):
         Photoshop CC help for more information.
 
         """
-        self.app.remove()
+        self.app.delete()
