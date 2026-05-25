@@ -18,10 +18,14 @@ class LayerComps(
     def add(
         self,
         name: str,
-        comment: str = "No Comment.",
+        comment: str = "",
         appearance: bool = True,
         position: bool = True,
         visibility: bool = True,
         childLayerCompStat: bool = False,
     ) -> LayerComp:
-        return LayerComp(self.app.add(name, comment, appearance, position, visibility, childLayerCompStat))
+        len_before = self.length
+        # For some reason the self.app.add returns the first layer comp,
+        # which might not be the new one, so we have to get the new comp in a roundabout way.
+        self.app.add(name, comment, appearance, position, visibility, childLayerCompStat)
+        return self[len_before + 1]

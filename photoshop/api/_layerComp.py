@@ -18,7 +18,7 @@ class LayerComp(Photoshop):
         self._flag_as_method(
             "apply",
             "recapture",
-            "remove",
+            "delete",
             "resetfromComp",
         )
 
@@ -73,10 +73,6 @@ class LayerComp(Photoshop):
         """True if the layer comp is currently selected."""
         return self.app.selected
 
-    @selected.setter
-    def selected(self, value: bool) -> None:
-        self.app.selected = value
-
     @property
     def visibility(self) -> bool:
         """True to use layer visibility settings."""
@@ -96,7 +92,7 @@ class LayerComp(Photoshop):
 
     def remove(self) -> None:
         """Deletes the layerComp object."""
-        self.app.remove()
+        self.app.delete()
 
     def resetfromComp(self) -> None:
         """Resets the layer comp state to thedocument state."""
