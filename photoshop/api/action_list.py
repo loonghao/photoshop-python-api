@@ -47,7 +47,6 @@ class ActionList(BaseAction):
             "putReference",
             "putString",
             "putUnitDouble",
-            "toSteadm",
         )
 
     def putBoolean(self, value: bool) -> None:
@@ -102,8 +101,3 @@ class ActionList(BaseAction):
         """Sets the value for a key whose type is a unit value formatted as
         double."""
         self.app.putUnitDouble(unit_id, value)
-
-    def toStream(self) -> str:
-        """Gets the entire descriptor as as stream of bytes,
-        for writing to disk."""
-        return self.app.toSteadm()
