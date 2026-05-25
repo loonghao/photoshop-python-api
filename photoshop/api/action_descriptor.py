@@ -47,7 +47,6 @@ class ActionDescriptor(BaseAction):
             "putReference",
             "putString",
             "putUnitDouble",
-            "toSteadm",
         )
 
     def erase(self, key: int) -> None:
@@ -124,8 +123,3 @@ class ActionDescriptor(BaseAction):
         """Sets the value for a key whose type is a unit value formatted as
         double."""
         self.app.putUnitDouble(key, unit_id, value)
-
-    def toStream(self) -> str:
-        """Gets the entire descriptor as as stream of bytes,
-        for writing to disk."""
-        return self.app.toSteadm()
