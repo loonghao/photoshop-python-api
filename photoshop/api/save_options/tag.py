@@ -8,7 +8,7 @@ class TargaSaveOptions(Photoshop):
 
     object_name = "TargaSaveOptions"
 
-    def __int__(self) -> None:
+    def __init__(self) -> None:
         super().__init__()
 
     @property

@@ -10,7 +10,7 @@ class TiffSaveOptions(Photoshop):
 
     object_name = "TiffSaveOptions"
 
-    def __int__(self) -> None:
+    def __init__(self) -> None:
         super().__init__()
 
     @property

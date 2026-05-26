@@ -7,13 +7,13 @@ class PhotoshopSaveOptions(Photoshop):
 
     object_name = "PhotoshopSaveOptions"
 
-    def __int__(self) -> None:
+    def __init__(self) -> None:
         super().__init__()
 
     @property
     def alphaChannels(self) -> bool:
         """If true, the alpha channels are saved."""
-        return self.app.alphaChannels()
+        return self.app.alphaChannels
 
     @alphaChannels.setter
     def alphaChannels(self, value: bool) -> None:
@@ -22,7 +22,7 @@ class PhotoshopSaveOptions(Photoshop):
     @property
     def annotations(self) -> bool:
         """If true, the annotations are saved."""
-        return self.app.annotations()
+        return self.app.annotations
 
     @annotations.setter
     def annotations(self, value: bool) -> None:
@@ -31,7 +31,7 @@ class PhotoshopSaveOptions(Photoshop):
     @property
     def embedColorProfile(self) -> bool:
         """If true, the color profile is embedded in the document."""
-        return self.app.embedColorProfile()
+        return self.app.embedColorProfile
 
     @embedColorProfile.setter
     def embedColorProfile(self, value: bool) -> None:
@@ -40,7 +40,7 @@ class PhotoshopSaveOptions(Photoshop):
     @property
     def layers(self) -> bool:
         """If true, the layers are saved."""
-        return self.app.layers()
+        return self.app.layers
 
     @layers.setter
     def layers(self, value: bool) -> None:
@@ -49,7 +49,7 @@ class PhotoshopSaveOptions(Photoshop):
     @property
     def spotColors(self) -> bool:
         """If true, spot colors are saved."""
-        return self.app.spotColors()
+        return self.app.spotColors
 
     @spotColors.setter
     def spotColors(self, value: bool) -> None:
