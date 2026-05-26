@@ -147,7 +147,7 @@ class TextItem(Photoshop):
 
     @desiredLetterScaling.setter
     def desiredLetterScaling(self, value: float) -> None:
-        self.app.desiredGlyphScaling = value
+        self.app.desiredLetterScaling = value
 
     @property
     def desiredWordScaling(self) -> float:
