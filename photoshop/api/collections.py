@@ -1,6 +1,6 @@
 # Import built-in modules
+from collections.abc import Iterator
 from typing import Generic
-from typing import Iterator
 from typing import Protocol
 from typing import TypeVar
 
@@ -13,14 +13,12 @@ from photoshop.api.errors import PhotoshopPythonAPIError
 
 
 class _PhotoshopObject(Protocol):
-    def __init__(self, parent: Photoshop | None = None) -> None:
-        ...
+    def __init__(self, parent: Photoshop | None = None) -> None: ...
 
 
 class NamedPhotoshopObject(_PhotoshopObject, Protocol):
     @property
-    def name(self) -> str:
-        ...
+    def name(self) -> str: ...
 
 
 T = TypeVar("T", bound=_PhotoshopObject)

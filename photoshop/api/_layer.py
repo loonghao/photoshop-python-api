@@ -8,7 +8,6 @@ from photoshop.api.enumerations import BlendMode
 from photoshop.api.enumerations import ElementPlacement
 from photoshop.api.protocols import XMPMetadata
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api._document import Document

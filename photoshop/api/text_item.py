@@ -16,7 +16,6 @@ from photoshop.api.enumerations import UnderlineType
 from photoshop.api.enumerations import WarpStyle
 from photoshop.api.solid_color import SolidColor
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api._artlayer import ArtLayer

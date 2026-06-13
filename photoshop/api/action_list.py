@@ -14,7 +14,6 @@ from photoshop.api._core import Photoshop
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.base_action import BaseAction
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api.action_descriptor import ActionDescriptor

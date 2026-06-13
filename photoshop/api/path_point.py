@@ -5,7 +5,6 @@ from typing import TYPE_CHECKING
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import PointKind
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api.sub_path_item import SubPathItem

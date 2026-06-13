@@ -6,7 +6,6 @@ from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ChannelType
 from photoshop.api.solid_color import SolidColor
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api._document import Document

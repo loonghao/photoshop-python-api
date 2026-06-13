@@ -1,6 +1,6 @@
 # Import built-in modules
-from typing import Iterator
-from typing import Sequence
+from collections.abc import Iterator
+from collections.abc import Sequence
 
 # Import local modules
 from photoshop.api._core import Photoshop

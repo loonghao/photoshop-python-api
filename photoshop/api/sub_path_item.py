@@ -1,12 +1,11 @@
 # Import built-in modules
+from collections.abc import Iterator
 from typing import TYPE_CHECKING
-from typing import Iterator
 
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ShapeOperation
 from photoshop.api.path_point import PathPoint
-
 
 if TYPE_CHECKING:
     # Import local modules

@@ -6,8 +6,8 @@ application.
 """
 
 # Import built-in modules
+from collections.abc import Sequence
 from pprint import pformat
-from typing import Sequence
 
 # Import local modules
 from photoshop.api._core import Photoshop

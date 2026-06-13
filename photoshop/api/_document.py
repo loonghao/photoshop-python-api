@@ -19,7 +19,6 @@ from logging import getLogger
 from os import PathLike
 from pathlib import Path
 from typing import TYPE_CHECKING
-from typing import Optional
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
@@ -61,7 +60,6 @@ from photoshop.api.save_options.png import PNGSaveOptions
 from photoshop.api.save_options.psd import PhotoshopSaveOptions
 from photoshop.api.save_options.tag import TargaSaveOptions
 from photoshop.api.save_options.tif import TiffSaveOptions
-
 
 if TYPE_CHECKING:
     # Import local modules
@@ -463,16 +461,18 @@ class Document(Photoshop):
     def saveAs(
         self,
         file_path: str,
-        options: BMPSaveOptions
-        | EPSSaveOptions
-        | GIFSaveOptions
-        | JPEGSaveOptions
-        | PDFSaveOptions
-        | PNGSaveOptions
-        | PhotoshopSaveOptions
-        | TargaSaveOptions
-        | TiffSaveOptions
-        | None = None,
+        options: (
+            BMPSaveOptions
+            | EPSSaveOptions
+            | GIFSaveOptions
+            | JPEGSaveOptions
+            | PDFSaveOptions
+            | PNGSaveOptions
+            | PhotoshopSaveOptions
+            | TargaSaveOptions
+            | TiffSaveOptions
+            | None
+        ) = None,
         asCopy: bool = False,
         extensionType: ExtensionType = ExtensionType.Lowercase,
     ) -> None:
@@ -508,10 +508,10 @@ class Document(Photoshop):
     def trim(
         self,
         trim_type: TrimType,
-        top: Optional[bool] = True,
-        left: Optional[bool] = True,
-        bottom: Optional[bool] = True,
-        right: Optional[bool] = True,
+        top: bool | None = True,
+        left: bool | None = True,
+        bottom: bool | None = True,
+        right: bool | None = True,
     ) -> None:
         """Trims the transparent area around the image on the specified sides of the canvas.
 

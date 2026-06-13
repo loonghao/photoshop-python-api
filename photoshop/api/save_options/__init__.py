@@ -10,7 +10,6 @@ from photoshop.api.save_options.psd import PhotoshopSaveOptions
 from photoshop.api.save_options.tag import TargaSaveOptions
 from photoshop.api.save_options.tif import TiffSaveOptions
 
-
 __all__ = [
     BMPSaveOptions.__name__,
     EPSSaveOptions.__name__,

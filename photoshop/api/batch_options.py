@@ -1,8 +1,8 @@
 # https://theiviaxx.github.io/photoshop-docs/Photoshop/BatchOptions.html
 # Import built-in modules
+from collections.abc import Sequence
 from os import PathLike
 from pathlib import Path
-from typing import Sequence
 
 # Import local modules
 from photoshop.api._core import Photoshop
