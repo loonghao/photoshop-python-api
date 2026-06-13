@@ -3,7 +3,7 @@ name = "photoshop-python-api"
 version = "0.24.2"
 description = "Python API for Photoshop."
 keywords = ["python-api, photoshop-python-api", "photoshop", "python"]
-authors = [{name = "longhao", email = "hal.long@outlook.com"}]
+authors = [{ name = "longhao", email = "hal.long@outlook.com" }]
 license = "MIT"
 readme = "README.md"
 classifiers = [
@@ -27,9 +27,7 @@ repository = "https://github.com/loonghao/photoshop-python-api"
 documentation = "https://photoshop-python-api.readthedocs.io/en/master/"
 
 [tool.poetry]
-packages = [
-    { include = "photoshop" },
-]
+packages = [{ include = "photoshop" }]
 
 [tool.poetry.build]
 generate-setup-file = false
@@ -40,17 +38,15 @@ comtypes = "^1.4.15"
 
 [tool.poetry.group.dev.dependencies]
 commitizen = "^2.17.8"
-pre-commit = "^2.13.0"
+pre-commit = "^4.6.0"
 codecov = "^2.1.11"
 pylint = "^4.0.5"
-isort = "^8.0.1"
+ruff = "^0.15.17"
 pytest = "^9.0.2"
-flake8 = "^7.3.0"
 mypy = "^1.19.1"
 coverage = "^7.0.0"
 mkdocs = "^1.2.2"
 mkdocs-git-revision-date-plugin = "^0.3.1"
-black = "^26.5.1"
 mkdocs-material = "^8.2.5"
 mkdocstrings-python = "^1.0.0"
 mkdocs-pymdownx-material-extras = "^2.0"
@@ -68,63 +64,19 @@ mkdocs-literate-nav = "^0.6.0"
 name = "cz_conventional_commits"
 version = "0.24.2"
 tag_format = "v$version"
-version_files = [
-    "pyproject.toml:version",
-    "photoshop/__version__.py"
-]
+version_files = ["pyproject.toml:version", "photoshop/__version__.py"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.black]
-line-length = 120
-include = '\.pyi?$'
-exclude = '''
-
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-  )/
-  | foo.py           # also separately exclude a file named foo.py in
-                     # the root of the project
-)
-'''
-
-[tool.isort]
-profile = "black"
-atomic = true
-include_trailing_comma = true
-lines_after_imports = 2
-lines_between_types = 1
-filter_files = true
-extra_standard_library = ["_ctypes"]
-
-# Enforce import section headers.
-import_heading_future = "Import future modules"
-import_heading_stdlib = "Import built-in modules"
-import_heading_thirdparty = "Import third-party modules"
-import_heading_firstparty = "Import local modules"
-
-force_single_line = true
-
 [tool.ruff]
 line-length = 120
 
 [tool.ruff.lint]
-extend-select = ["I"]
+extend-select = ["I", "UP"]
 
 [tool.ruff.lint.isort]
-lines-after-imports = 2
 lines-between-types = 1
 force-single-line = true
 
