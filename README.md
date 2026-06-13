@@ -243,9 +243,7 @@ We maintain high code quality standards through automated tools and consistent s
   - Quotes: Double quotes preferred
 
 - **Quality Tools**:
-  - [Black](https://black.readthedocs.io/) - Code formatting
-  - [isort](https://pycqa.github.io/isort/) - Import organization
-  - [flake8](https://flake8.pycqa.org/) - Style enforcement
+  - [Ruff](https://docs.astral.sh/ruff/) - Linting, formatting, and import organization
   - [pre-commit](https://pre-commit.com/) - Automated checks before commits
 
 ### 🔄 Git Workflow

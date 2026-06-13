@@ -28,14 +28,5 @@ jobs:
 
     - name: Run tests and linters
       run: |
-        #!/bin/sh -e
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        export PREFIX="poetry run python -m "
-        if [ -d 'venv' ] ; then
-            export PREFIX="venv/bin/"
-        fi
-
-        ${PREFIX}black photoshop --check
-        ${PREFIX}isort --check-only photoshop
-        ruff check photoshop
+        poetry run ruff check photoshop
+        poetry run ruff format --check photoshop
