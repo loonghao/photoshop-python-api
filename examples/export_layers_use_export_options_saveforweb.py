@@ -2,10 +2,9 @@
 # Import built-in modules
 import os
 
-# Import third-party modules
+# Import local modules
 import examples._psd_files as psd  # Import from examples.
 
-# Import local modules
 from photoshop import Session
 
 
@@ -33,7 +32,7 @@ def main():
             image_path = os.path.join(layer_path, f"{layer.name}.png")
             doc.exportDocument(image_path, exportAs=ps.ExportType.SaveForWeb, options=options)
         ps.alert("Task done!")
-        ps.echo(doc.activeLayer)
+        print(doc.activeLayer)
 
 
 if __name__ == "__main__":

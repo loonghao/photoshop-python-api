@@ -19,6 +19,7 @@ result/
 .coverage
 /venv/
 venv_python
+.venv/
 
 # Docs
 docs_src/_build/

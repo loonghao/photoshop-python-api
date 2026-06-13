@@ -1,4 +1,5 @@
 """Python API for Photoshop."""
+
 # Import local modules
 from photoshop.api import constants
 from photoshop.api.action_descriptor import ActionDescriptor
@@ -22,13 +23,12 @@ from photoshop.api.save_options import ExportOptionsSaveForWeb
 from photoshop.api.save_options import GIFSaveOptions
 from photoshop.api.save_options import JPEGSaveOptions
 from photoshop.api.save_options import PDFSaveOptions
-from photoshop.api.save_options import PNGSaveOptions
 from photoshop.api.save_options import PhotoshopSaveOptions
+from photoshop.api.save_options import PNGSaveOptions
 from photoshop.api.save_options import TargaSaveOptions
 from photoshop.api.save_options import TiffSaveOptions
 from photoshop.api.solid_color import SolidColor
 from photoshop.api.text_item import TextItem
-
 
 __all__ = [  # noqa: F405
     "ActionDescriptor",

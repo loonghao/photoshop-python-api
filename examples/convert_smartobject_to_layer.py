@@ -26,12 +26,12 @@ with Session() as ps:
     
     # Convert to smart object
     layer.convertToSmartObject()
-    ps.echo("Layer converted to Smart Object")
+    print("Layer converted to Smart Object")
     
     # Check if it's a smart object
     if layer.kind == ps.LayerKind.SmartObjectLayer:
-        ps.echo("Layer is now a Smart Object")
+        print("Layer is now a Smart Object")
         
         # Convert back to regular layer
         layer.rasterize(ps.RasterizeType.EntireLayer)
-        ps.echo("Smart Object converted back to regular layer")
+        print("Smart Object converted back to regular layer")

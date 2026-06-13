@@ -29,7 +29,7 @@ def main():
         full_doc_path = full_doc_path.as_posix().replace("\\", "/")
         with mkdocs_gen_files.open(full_doc_path, "w") as fd:
             ident = ".".join(parts)
-            print(f"::: " + ident, file=fd)
+            print("::: " + ident, file=fd)
 
         mkdocs_gen_files.set_edit_path(full_doc_path, path.as_posix().replace("\\", "/"))
 

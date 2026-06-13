@@ -5,7 +5,7 @@ from photoshop.api._core import Photoshop
 class TextFont(Photoshop):
     """An installed font."""
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
     @property
@@ -14,16 +14,16 @@ class TextFont(Photoshop):
         return self.app.family
 
     @property
-    def name(self):
+    def name(self) -> str:
         """The name of the font."""
         return self.app.name
 
     @property
-    def postScriptName(self):
+    def postScriptName(self) -> str:
         """The PostScript name of the font."""
         return self.app.postScriptName
 
     @property
-    def style(self):
+    def style(self) -> str:
         """The font style."""
         return self.app.style

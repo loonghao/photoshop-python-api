@@ -1,5 +1,7 @@
 """constants type of enum for Photoshop."""
+
 # Import built-in modules
+from enum import Enum
 from enum import IntEnum
 
 
@@ -381,6 +383,12 @@ class FontPreviewType(IntEnum):
     FontPreviewMedium = 2
     FontPreviewNone = 0
     FontPreviewSmall = 1
+
+
+class FontSize(str, Enum):
+    Large = "FontSize.LARGE"
+    Medium = "FontSize.MEDIUM"
+    Small = "FontSize.SMALL"
 
 
 class ForcedColors(IntEnum):
@@ -1086,7 +1094,7 @@ class Urgency(IntEnum):
     Two = 2
 
 
-class Wartyle(IntEnum):
+class WarpStyle(IntEnum):
     Arc = 2
     ArcLower = 3
     ArcUpper = 4
@@ -1256,7 +1264,7 @@ __all__ = [
     "UnderlineType",
     "Units",
     "Urgency",
-    "Wartyle",
+    "WarpStyle",
     "WaveType",
     "WhiteBalanceType",
     "ZigZagType",

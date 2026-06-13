@@ -4,12 +4,13 @@
 import os
 
 # Import third-party modules
-from photoshop import Session
-from photoshop.api import SolidColor
-import photoshop.api as ps
+from _psd_files import get_psd_files
 
 # Import local modules
-from _psd_files import get_psd_files
+import photoshop.api as ps
+
+from photoshop.api import SolidColor
+
 
 def delete_and_fill_selection(doc, fill_type, mode=None, opacity=None, preserve_transparency=None):
     """Delete current selection and fill it with specified color.

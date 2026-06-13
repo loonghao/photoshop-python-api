@@ -21,4 +21,4 @@ with Session() as ps:
     # Execute JavaScript command
     js_code = "app.documents.length"
     result = ps.app.eval_javascript(js_code)
-    ps.echo(f"Number of open documents: {result}")
+    print(f"Number of open documents: {result}")

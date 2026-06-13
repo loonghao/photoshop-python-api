@@ -1,7 +1,0 @@
-# Generated Pylint configuration file that disables default output tables.
-
-[MESSAGES CONTROL]
-disable=RP0001,RP0002,RP0003,RP0101,RP0401,RP0402,RP0701,RP0801,C0103,R0903
-
-[REPORTS]
-output-format=text
