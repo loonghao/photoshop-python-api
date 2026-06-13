@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 # Import local modules
 from photoshop.api._core import Photoshop
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api._document import Document

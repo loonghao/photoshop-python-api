@@ -1,5 +1,5 @@
 # Import built-in modules
-from typing import Iterator
+from collections.abc import Iterator
 from typing import TypeVar
 from typing import overload
 
@@ -11,7 +11,6 @@ from comtypes import COMError
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
 from photoshop.api.text_font import TextFont
-
 
 T = TypeVar("T")
 
@@ -74,12 +73,10 @@ class TextFonts(Photoshop):
     """
 
     @overload
-    def get(self, key: str, default: T) -> TextFont | T:
-        ...
+    def get(self, key: str, default: T) -> TextFont | T: ...
 
     @overload
-    def get(self, key: str) -> TextFont | None:
-        ...
+    def get(self, key: str) -> TextFont | None: ...
 
     def get(self, key: str, default: T | None = None) -> TextFont | T | None:
         """

@@ -327,10 +327,7 @@ class Application(Photoshop):
         self.app.doAction(action, action_from)
 
     def doForcedProgress(self, title: str, javascript: str) -> None:
-        script = "app.doForcedProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = f"app.doForcedProgress('{title}', '{javascript}')"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -344,31 +341,19 @@ class Application(Photoshop):
             javascript (str): JavaScriptString to execute.
 
         """
-        script = "app.doProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = f"app.doProgress('{title}', '{javascript}')"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSegmentTask(self, segmentLength: int, done: int, total: int, javascript: str) -> None:
-        script = "app.doProgressSegmentTask({}, {}, {}, '{}');".format(
-            segmentLength,
-            done,
-            total,
-            javascript,
-        )
+        script = f"app.doProgressSegmentTask({segmentLength}, {done}, {total}, '{javascript}');"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSubTask(self, index: int, limit: int, javascript: str) -> None:
-        script = "app.doProgressSubTask({}, {}, '{}');".format(
-            index,
-            limit,
-            javascript,
-        )
+        script = f"app.doProgressSubTask({index}, {limit}, '{javascript}');"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)

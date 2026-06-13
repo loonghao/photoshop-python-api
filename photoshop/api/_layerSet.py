@@ -1,7 +1,7 @@
 # Import built-in modules
+from collections.abc import Iterator
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
-from typing import Iterator
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer
@@ -11,7 +11,6 @@ from photoshop.api._channels import Channels
 from photoshop.api._core import Photoshop
 from photoshop.api._layer import Layer
 from photoshop.api.enumerations import ElementPlacement
-
 
 if TYPE_CHECKING:
     # Import local modules
@@ -75,5 +74,4 @@ class LayerSet(Layer):
         return ArtLayer(self.app.merge())
 
     def __iter__(self) -> Iterator[Layer]:
-        for layer in self.layers:
-            yield layer
+        yield from self.layers

@@ -1,6 +1,6 @@
 # Import built-in modules
+from collections.abc import Iterator
 from typing import Any
-from typing import Iterator
 
 # Import local modules
 from photoshop.api._artlayer import ArtLayer

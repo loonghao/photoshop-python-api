@@ -23,7 +23,6 @@ from photoshop.api.constants import PHOTOSHOP_VERSION_MAPPINGS
 from photoshop.api.enumerations import JavaScriptExecutionMode
 from photoshop.api.errors import PhotoshopPythonAPIError
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api.application import Application

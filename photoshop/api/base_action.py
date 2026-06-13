@@ -7,7 +7,6 @@ from photoshop.api._core import Photoshop
 from photoshop.api.action_reference import ActionReference
 from photoshop.api.enumerations import DescValueType
 
-
 if TYPE_CHECKING:
     # Import local modules
     from photoshop.api.action_descriptor import ActionDescriptor
