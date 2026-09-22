@@ -1,5 +1,7 @@
 # Import local modules
 from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import PreviewType
+from photoshop.api.enumerations import SaveEncoding
 
 
 class EPSSaveOptions(Photoshop):
@@ -11,7 +13,7 @@ class EPSSaveOptions(Photoshop):
 
     object_name = "EPSSaveOptions"
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     @property
@@ -20,56 +22,56 @@ class EPSSaveOptions(Photoshop):
         return self.app.embedColorProfile
 
     @embedColorProfile.setter
-    def embedColorProfile(self, boolean: bool):
+    def embedColorProfile(self, boolean: bool) -> None:
         """True to embed the color profile in this document."""
         self.app.embedColorProfile = boolean
 
     @property
-    def encoding(self):
-        return self.app.encoding
+    def encoding(self) -> SaveEncoding:
+        return SaveEncoding(self.app.encoding)
 
     @encoding.setter
-    def encoding(self, value: bool):
+    def encoding(self, value: SaveEncoding) -> None:
         self.app.encoding = value
 
     @property
-    def halftoneScreen(self):
+    def halftoneScreen(self) -> bool:
         return self.app.halftoneScreen
 
     @halftoneScreen.setter
-    def halftoneScreen(self, value: bool):
+    def halftoneScreen(self, value: bool) -> None:
         self.app.halftoneScreen = value
 
     @property
-    def interpolation(self):
+    def interpolation(self) -> bool:
         return self.app.interpolation
 
     @interpolation.setter
-    def interpolation(self, value: bool):
+    def interpolation(self, value: bool) -> None:
         self.app.interpolation = value
 
     @property
-    def preview(self):
-        return self.app.preview
+    def preview(self) -> PreviewType:
+        return PreviewType(self.app.preview)
 
     @preview.setter
-    def preview(self, value: bool):
+    def preview(self, value: PreviewType) -> None:
         self.app.preview = value
 
     @property
-    def psColorManagement(self):
+    def psColorManagement(self) -> bool:
         return self.app.psColorManagement
 
     @psColorManagement.setter
-    def psColorManagement(self, value: bool):
+    def psColorManagement(self, value: bool) -> None:
         self.app.psColorManagement = value
 
     @property
-    def transferFunction(self):
+    def transferFunction(self) -> bool:
         return self.app.transferFunction
 
     @transferFunction.setter
-    def transferFunction(self, value: bool):
+    def transferFunction(self, value: bool) -> None:
         self.app.transferFunction = value
 
     @property
@@ -78,17 +80,17 @@ class EPSSaveOptions(Photoshop):
         return self.app.transparentWhites
 
     @transparentWhites.setter
-    def transparentWhites(self, value: bool):
+    def transparentWhites(self, value: bool) -> None:
         """True to display white areas as transparent"""
         self.app.transparentWhites = value
 
     @property
-    def vectorData(self):
+    def vectorData(self) -> bool:
         """True to include vector data."""
         return self.app.vectorData
 
     @vectorData.setter
-    def vectorData(self, value: bool):
+    def vectorData(self, value: bool) -> None:
         """True to include vector data.
 
         Valid only if the document includes vector data (text).

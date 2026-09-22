@@ -5,7 +5,6 @@ from photoshop.api.colors.hsb import HSBColor
 from photoshop.api.colors.lab import LabColor
 from photoshop.api.colors.rgb import RGBColor
 
-
 __all__ = [
     CMYKColor.__name__,
     GrayColor.__name__,

@@ -13,4 +13,4 @@ with Session(action="new_document") as ps:
     doc.info.provinceState = "Beijing"
     doc.info.title = "My Demo"
     print("Print all metadata of current active document.")
-    ps.echo(doc.info)
+    print(doc.info)

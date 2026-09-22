@@ -7,14 +7,14 @@ References:
 # Import built-in modules
 import os
 
-# Import third-party modules
+# Import local modules
 from photoshop import Session
 from photoshop.api.enumerations import DitherType
 from photoshop.api.enumerations import ExportType
 from photoshop.api.enumerations import SaveDocumentType
-from photoshop.api.save_options.png import PNGSaveOptions
 from photoshop.api.save_options.jpg import JPEGSaveOptions
 from photoshop.api.save_options.png import ExportOptionsSaveForWeb
+from photoshop.api.save_options.png import PNGSaveOptions
 
 
 def main():

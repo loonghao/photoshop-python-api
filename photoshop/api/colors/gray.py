@@ -9,7 +9,7 @@ class GrayColor(Photoshop):
 
     object_name = "GrayColor"
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
     @property
@@ -18,6 +18,6 @@ class GrayColor(Photoshop):
         return self.app.gray
 
     @gray.setter
-    def gray(self, value: float):
+    def gray(self, value: float) -> None:
         """The gray value."""
         self.app.gray = value

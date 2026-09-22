@@ -1,5 +1,6 @@
 # Import local modules
 from photoshop.api._core import Photoshop
+from photoshop.api.enumerations import OpenDocumentMode
 
 
 class EPSOpenOptions(Photoshop):
@@ -11,37 +12,53 @@ class EPSOpenOptions(Photoshop):
 
     object_name = "EPSOpenOptions"
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     @property
-    def antiAlias(self):
+    def antiAlias(self) -> bool:
         return self.app.antiAlias
 
+    @antiAlias.setter
+    def antiAlias(self, value: bool) -> None:
+        self.app.antiAlias = value
+
     @property
-    def constrainProportions(self):
+    def constrainProportions(self) -> bool:
         return self.app.constrainProportions
 
+    @constrainProportions.setter
+    def constrainProportions(self, value: bool) -> None:
+        self.app.constrainProportions = value
+
     @property
-    def height(self):
+    def height(self) -> float:
         return self.app.height
 
-    @property
-    def mode(self):
-        return self.app.mode
+    @height.setter
+    def height(self, value: float) -> None:
+        self.app.height = value
 
     @property
-    def resolution(self):
+    def mode(self) -> OpenDocumentMode:
+        return OpenDocumentMode(self.app.mode)
+
+    @mode.setter
+    def mode(self, value: OpenDocumentMode) -> None:
+        self.app.mode = value
+
+    @property
+    def resolution(self) -> float:
         return self.app.resolution
 
+    @resolution.setter
+    def resolution(self, value: float) -> None:
+        self.app.resolution = value
+
     @property
-    def width(self):
+    def width(self) -> float:
         return self.app.width
 
-    @property
-    def embedColorProfile(self):
-        return self.app.embedColorProfile
-
-    @embedColorProfile.setter
-    def embedColorProfile(self, boolean):
-        self.app.embedColorProfile = boolean
+    @width.setter
+    def width(self, value: float) -> None:
+        self.app.width = value

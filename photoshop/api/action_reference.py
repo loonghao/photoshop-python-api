@@ -8,6 +8,7 @@ It can be used for low-level access into Contains data associated
 with an ActionDescriptor.
 
 """
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ReferenceFormType
@@ -23,7 +24,7 @@ class ActionReference(Photoshop):
 
     object_name = "ActionReference"
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
             "getContainer",
@@ -33,6 +34,9 @@ class ActionReference(Photoshop):
             "getForm",
             "getIdentifier",
             "getIndex",
+            "getName",
+            "getOffset",
+            "getProperty",
             "putName",
             "putClass",
             "putEnumerated",
@@ -42,10 +46,10 @@ class ActionReference(Photoshop):
             "putProperty",
         )
 
-    def getContainer(self):
+    def getContainer(self) -> "ActionReference":
         return self.app.getContainer()
 
-    def getDesiredClass(self):
+    def getDesiredClass(self) -> int:
         return self.app.getDesiredClass()
 
     def getEnumeratedType(self) -> int:
@@ -67,25 +71,37 @@ class ActionReference(Photoshop):
         """Gets the index value for a reference in a list or array,"""
         return self.app.getIndex()
 
-    def putName(self, key, value):
-        return self.app.putName(key, value)
+    def getName(self) -> str:
+        """Gets the name of a reference."""
+        return self.app.getName()
 
-    def putClass(self, value):
-        return self.app.putClass(value)
+    def getOffset(self) -> int:
+        """Gets the offset of the object's index value."""
+        return self.app.getOffset()
 
-    def putEnumerated(self, desired_class, enum_type, value):
+    def getProperty(self) -> int:
+        """Gets the property ID value."""
+        return self.app.getProperty()
+
+    def putName(self, key: int, value: str) -> None:
+        self.app.putName(key, value)
+
+    def putClass(self, value: int) -> None:
+        self.app.putClass(value)
+
+    def putEnumerated(self, desired_class: int, enum_type: int, value: int) -> None:
         """Puts an enumeration type and ID into a reference along with the
         desired class for the reference."""
-        return self.app.putEnumerated(desired_class, enum_type, value)
+        self.app.putEnumerated(desired_class, enum_type, value)
 
-    def putIdentifier(self, desired_class, value):
-        return self.app.putIdentifier(desired_class, value)
+    def putIdentifier(self, desired_class: int, value: int) -> None:
+        self.app.putIdentifier(desired_class, value)
 
-    def putIndex(self, desired_class, value):
-        return self.app.putIndex(desired_class, value)
+    def putIndex(self, desired_class: int, value: int) -> None:
+        self.app.putIndex(desired_class, value)
 
-    def putOffset(self, desired_class, value):
-        return self.app.putOffset(desired_class, value)
+    def putOffset(self, desired_class: int, value: int) -> None:
+        self.app.putOffset(desired_class, value)
 
-    def putProperty(self, desired_class, value):
-        return self.app.putProperty(desired_class, value)
+    def putProperty(self, desired_class: int, value: int) -> None:
+        self.app.putProperty(desired_class, value)

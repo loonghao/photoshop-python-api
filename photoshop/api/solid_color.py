@@ -23,7 +23,7 @@ class SolidColor(Photoshop):
 
     object_name = "SolidColor"
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
         self._flag_as_method(
             "isEqual",
@@ -40,28 +40,32 @@ class SolidColor(Photoshop):
         return CMYKColor(self.app.cmyk)
 
     @cmyk.setter
-    def cmyk(self, value: CMYKColor):
-        self.app.cmyk = value
+    def cmyk(self, value: CMYKColor) -> None:
+        self.app.cmyk = value.app
 
     @property
     def gray(self) -> GrayColor:
         return GrayColor(self.app.gray)
+
+    @gray.setter
+    def gray(self, value: GrayColor) -> None:
+        self.app.gray = value.app
 
     @property
     def hsb(self) -> HSBColor:
         return HSBColor(self.app.hsb)
 
     @hsb.setter
-    def hsb(self, value: HSBColor):
-        self.app.hsb = value
+    def hsb(self, value: HSBColor) -> None:
+        self.app.hsb = value.app
 
     @property
     def lab(self) -> LabColor:
         return LabColor(self.app.lab)
 
     @lab.setter
-    def lab(self, value: LabColor):
-        self.app.lab = value
+    def lab(self, value: LabColor) -> None:
+        self.app.lab = value.app
 
     @property
     def model(self) -> ColorModel:
@@ -69,7 +73,7 @@ class SolidColor(Photoshop):
         return ColorModel(self.app.model)
 
     @model.setter
-    def model(self, value: ColorModel):
+    def model(self, value: ColorModel) -> None:
         """The color model."""
         self.app.model = value
 
@@ -84,9 +88,9 @@ class SolidColor(Photoshop):
         return RGBColor(self.app.rgb)
 
     @rgb.setter
-    def rgb(self, value: RGBColor):
-        self.app.rgb = value
+    def rgb(self, value: RGBColor) -> None:
+        self.app.rgb = value.app
 
-    def isEqual(self, color: RGBColor):
+    def isEqual(self, color: RGBColor) -> bool:
         """`SolidColor` object is visually equal to the specified color."""
-        return self.app.isEqual(color)
+        return self.app.isEqual(color.app)
