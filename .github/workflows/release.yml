@@ -213,7 +213,7 @@ jobs:
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag_name || github.sha }}
           persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
