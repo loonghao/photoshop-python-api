@@ -1,0 +1,172 @@
+name: Version Consistency
+
+# .release-please-manifest.json is the single source of truth for the version.
+# Every other version-bearing file must agree with it, otherwise release-please
+# bumps from a stale base and silently ships the wrong number.
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [main]
+    paths:
+      - "pyproject.toml"
+      - ".release-please-manifest.json"
+      - "release-please-config.json"
+      - ".github/workflows/version-consistency.yml"
+      - "photoshop/__version__.py"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  version-consistency:
+    name: Check version consistency across files
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Check version consistency
+        run: |
+          python3 - <<'PY'
+          """Check that every release-please-managed version agrees with the manifest.
+
+          .release-please-manifest.json is the single source of truth. Every file listed
+          in release-please-config.json must carry that exact version, and every
+          ``generic`` entry must also carry the ``x-release-please-version`` marker,
+          because release-please only rewrites marked lines.
+
+          The check is driven entirely by the two config files, so this script can be
+          vendored into any repository unmodified.
+          """
+
+          # Import built-in modules
+          import json
+          import re
+          import sys
+          from pathlib import Path
+
+          MANIFEST_PATH = Path(".release-please-manifest.json")
+          CONFIG_PATH = Path("release-please-config.json")
+          MARKER = "x-release-please-version"
+
+          VERSION_PATTERN = re.compile(r"\d+\.\d+\.\d+(?:[-+.\w]*)?")
+
+          # The only jsonpaths release-please is configured to use here. Mapping them to
+          # TOML section/key pairs keeps this script free of a TOML parser: ``tomllib``
+          # only exists from Python 3.11, and these repositories still support 3.7.
+          JSONPATH_SECTIONS = {
+              "$.project.version": ("[project]", "version"),
+              "$.tool.poetry.version": ("[tool.poetry]", "version"),
+          }
+
+
+          def toml_value(text, section, key):
+              """Return the quoted value of ``key`` inside TOML ``section``, or None."""
+              in_section = False
+              pattern = re.compile(r"^" + re.escape(key) + r'\s*=\s*"([^"]+)"')
+              for line in text.splitlines():
+                  stripped = line.strip()
+                  if stripped.startswith("["):
+                      in_section = stripped == section
+                      continue
+                  if in_section:
+                      match = pattern.match(stripped)
+                      if match:
+                          return match.group(1)
+              return None
+
+
+          def check_toml(path, jsonpath, version, errors):
+              """Verify a TOML extra-file entry holds the manifest version."""
+              section_key = JSONPATH_SECTIONS.get(jsonpath)
+              if section_key is None:
+                  errors.append(f"{path}: unsupported jsonpath {jsonpath!r}")
+                  return
+              try:
+                  text = path.read_text(encoding="utf-8")
+              except OSError as error:
+                  errors.append(f"{path}: cannot read file: {error}")
+                  return
+              actual = toml_value(text, section_key[0], section_key[1])
+              if actual != version:
+                  errors.append(f"{path} {jsonpath}={actual!r} != manifest {version!r}")
+              else:
+                  print(f"  {path}: {actual} OK")
+
+
+          def check_generic(path, version, errors):
+              """Verify every marked line in a generic extra-file holds the version."""
+              text = path.read_text(encoding="utf-8")
+              marked = [line for line in text.splitlines() if MARKER in line]
+              if not marked:
+                  errors.append(
+                      f"{path}: no '{MARKER}' marker, so release-please will never update it"
+                  )
+                  return
+              for line in marked:
+                  match = VERSION_PATTERN.search(line)
+                  if not match:
+                      errors.append(
+                          f"{path}: marked line has no parseable version: {line.strip()!r}"
+                      )
+                  elif match.group(0) != version:
+                      errors.append(
+                          f"{path}: marked version {match.group(0)!r} != manifest {version!r}"
+                      )
+                  else:
+                      print(f"  {path}: {version} OK")
+
+
+          def main():
+              """Return 0 when every managed version agrees with the manifest."""
+              errors = []
+
+              if not MANIFEST_PATH.exists():
+                  print("::error::.release-please-manifest.json is missing")
+                  return 1
+              if not CONFIG_PATH.exists():
+                  print("::error::release-please-config.json is missing")
+                  return 1
+
+              version = json.loads(MANIFEST_PATH.read_text(encoding="utf-8")).get(".")
+              if not version:
+                  print("::error::missing root package version in .release-please-manifest.json")
+                  return 1
+              print(f"Manifest version (source of truth): {version}")
+
+              config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+              packages = config.get("packages") or {".": config}
+              for root, package in packages.items():
+                  prefix = "" if root == "." else f"{root}/"
+                  for extra in package.get("extra-files", []):
+                      path = Path(prefix + extra["path"])
+                      if not path.exists():
+                          errors.append(f"{path}: extra-files entry points at a missing file")
+                          continue
+                      if extra.get("type") == "toml":
+                          check_toml(
+                              path, extra.get("jsonpath", "$.project.version"), version, errors
+                          )
+                      else:
+                          check_generic(path, version, errors)
+
+              for error in errors:
+                  print(f"::error::{error}")
+              if errors:
+                  print(f"::error::{len(errors)} version consistency problem(s)")
+                  return 1
+              print("OK: all release-please-managed versions agree with the manifest")
+              return 0
+
+
+          if __name__ == "__main__":
+              sys.exit(main())
+          PY

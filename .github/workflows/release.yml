@@ -1,0 +1,464 @@
+name: Release
+
+# Conventional commits drive the whole release:
+#
+#   push to main -> release-please opens/updates a "chore: release vX.Y.Z" PR
+#                -> merging that PR creates the vX.Y.Z tag + GitHub Release
+#                -> this workflow builds the wheel/sdist and publishes to PyPI
+#
+# The build/publish/attach jobs live in the same workflow as release-please on
+# purpose. GitHub never starts a workflow from a tag, release, or commit that
+# was created with the default GITHUB_TOKEN, so a separate "on: push: tags: v*"
+# workflow would silently stop releasing.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Backfill an existing tag (e.g. v0.17.2). Leave empty to only run release-please."
+        required: false
+        default: ""
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}${{ inputs.tag_name && format('-{0}', inputs.tag_name) || '' }}
+  # Never cancel a push run. release-please creates the tag and the GitHub
+  # Release early in the run; cancelling after that point leaves a release with
+  # no assets, and every job that could publish them or raise the alarm is
+  # skipped by its own `if`, so nothing goes red. Later push runs queue behind
+  # this one instead, and their preflight then sees nothing left to release.
+  # Manual backfills may cancel each other: they are short and idempotent.
+  cancel-in-progress: ${{ github.event_name != 'push' }}
+
+# Least privilege by default; each job asks for what it needs.
+permissions:
+  contents: read
+
+jobs:
+  # ── Guard: only ask release-please for a release when there is something ───
+  # to release. release-please treats every commit on main as release input, so
+  # a workflow that re-generates files on main (lock sync, formatting) would
+  # otherwise keep the release PR alive on chore/ci/docs commits alone.
+  preflight:
+    runs-on: ubuntu-latest
+    outputs:
+      releasable: ${{ steps.check.outputs.releasable }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check for releasable commits since the last release tag
+        id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+
+          # A manual backfill is always allowed to proceed.
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "workflow_dispatch: skipping the releasable-commit gate"
+            echo "releasable=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Only feat/fix/perf/refactor/revert and BREAKING CHANGE: move the
+          # version here; chore/ci/docs/test/style/build are release-neutral.
+          # The script fails open, so a broken range never suppresses a release.
+          python3 - <<'PY'
+          """Decide whether a commit window contains something worth releasing.
+
+          The release workflow uses this to keep release-please from cutting a release
+          for commits that do not move the product. release-please's own rule is blunt:
+          in ``determineReleaseType`` anything that is neither breaking nor a ``feat``
+          falls through to a patch bump, so a ``docs:`` or ``chore:`` commit alone is
+          enough to produce a release. That matters here because any automation that
+          regenerates files on the release branch would otherwise keep the release PR
+          alive.
+
+          The gate deliberately fails open: if the git range cannot be resolved the
+          script reports ``releasable=true`` so a release is never silently suppressed.
+
+          Input and output go through the environment (``GITHUB_OUTPUT``) rather than
+          argv so the body can be inlined into a workflow step unchanged.
+          """
+
+          # Import built-in modules
+          import os
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          # Only these conventional-commit types are treated as release-worthy. A
+          # ``BREAKING CHANGE:`` footer counts too, whatever the type of the commit.
+          RELEASABLE_PATTERN = re.compile(
+              r"^(feat|fix|perf|refactor|revert)(\([^)]*\))?!?:|^BREAKING CHANGE:",
+              re.MULTILINE,
+          )
+
+          TAG_PATTERN = "v*"
+
+
+          def git(*args):
+              """Run git and return (returncode, stdout)."""
+              result = subprocess.run(["git", *args], capture_output=True, text=True)
+              return result.returncode, result.stdout
+
+
+          def is_releasable(commit_text):
+              """Return True when a commit window contains at least one release-worthy commit.
+
+              ``commit_text`` is the concatenated ``%s%n%b`` (subject plus body) of every
+              commit in the window.
+              """
+              return bool(RELEASABLE_PATTERN.search(commit_text or ""))
+
+
+          def last_release_tag():
+              """Return the most recent ``v*`` tag reachable from HEAD, or None."""
+              code, out = git("describe", "--tags", "--match", TAG_PATTERN, "--abbrev=0")
+              if code != 0:
+                  return None
+              return out.strip() or None
+
+
+          def commit_window(range_spec):
+              """Return the combined subjects and bodies of the commits in a git range."""
+              code, out = git("log", "--no-merges", "--format=%s%n%b", range_spec)
+              if code != 0:
+                  raise RuntimeError(f"git log failed for range {range_spec!r}")
+              return out
+
+
+          def resolve_range():
+              """Return a git range covering everything since the last ``v*`` tag."""
+              tag = last_release_tag()
+              return f"{tag}..HEAD" if tag else "HEAD"
+
+
+          def decide(range_spec=None):
+              """Return True when the window should be released.
+
+              With no explicit range the window is everything since the last ``v*`` tag,
+              or the whole history when the repo has no such tag yet.
+              """
+              return is_releasable(commit_window(range_spec or resolve_range()))
+
+
+          def emit(releasable):
+              """Print the result and append it to $GITHUB_OUTPUT when one is set."""
+              line = f"releasable={str(releasable).lower()}"
+              print(line)
+              output = os.environ.get("GITHUB_OUTPUT")
+              if output:
+                  with Path(output).open("a", encoding="utf-8") as handle:
+                      handle.write(f"{line}\n")
+
+
+          def main():
+              """Return 0 always: this gate must never fail the workflow it guards."""
+              try:
+                  releasable = decide()
+              except (OSError, RuntimeError, ValueError) as error:
+                  # Fail open, but say why.
+                  print(f"::error::{error}")
+                  print("Failing open: treating the window as releasable")
+                  releasable = True
+              emit(releasable)
+              return 0
+
+
+          if __name__ == "__main__":
+              sys.exit(main())
+          PY
+
+  # ── Release Please — creates/updates the release PR, then the release ─────
+  release-please:
+    needs: [preflight]
+    if: needs.preflight.outputs.releasable == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # tag + GitHub Release
+      pull-requests: write # the release PR itself
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name || inputs.tag_name }}
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - uses: googleapis/release-please-action@v5
+        id: release
+        with:
+          # A PAT is required: with GITHUB_TOKEN, GitHub does not fire
+          # pull_request workflows for the release PR, so it would carry no CI
+          # status, and the tag/release it creates cannot trigger other
+          # workflows either.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.PERSONAL_ACCESS_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  # ── Build wheel + sdist for the release ──────────────────────────────────
+  build:
+    needs: [release-please]
+    if: needs.release-please.outputs.release_created == 'true' || (github.event_name == 'workflow_dispatch' && inputs.tag_name != '')
+    runs-on: ubuntu-latest
+    steps:
+      # A backfill must build the tagged source, not whatever main points at,
+      # otherwise another version's artifacts would be published under the
+      # requested tag.
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag_name || github.sha }}
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build wheel and sdist
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build --sdist --wheel --outdir dist
+
+      - name: Verify wheel and sdist were produced
+        run: |
+          shopt -s nullglob
+          wheels=(dist/*.whl)
+          sdists=(dist/*.tar.gz)
+          ls -la dist/
+          if [ ${#wheels[@]} -eq 0 ] || [ ${#sdists[@]} -eq 0 ]; then
+            echo "::error::the build produced no wheel and/or sdist; refusing to report a passing release gate"
+            exit 1
+          fi
+          echo "OK: ${#wheels[@]} wheel(s), ${#sdists[@]} sdist(s)"
+
+      # PyPI uploads cannot be overwritten, so the artifacts must belong to the
+      # version this release is about to publish.
+      - name: Verify dist matches the release version
+        env:
+          RELEASE_VERSION: ${{ needs.release-please.outputs.version }}
+          TAG_NAME: ${{ inputs.tag_name }}
+          EVENT_NAME: ${{ github.event_name }}
+          DIST_DIR: dist
+        run: |
+          python3 - <<'PY'
+          """Assert that the artifacts in dist/ belong to the version being released.
+
+          PyPI filenames are immutable: a version that was uploaded once can never be
+          overwritten or deleted. Publishing artifacts built from the wrong revision
+          would therefore burn that version number permanently, so the release workflow
+          checks the filenames against the version before handing them to PyPI.
+
+          Inputs come from the environment so the body can be inlined into a workflow
+          step unchanged:
+
+            DIST_DIR        directory holding the built artifacts (default ``dist``)
+            RELEASE_VERSION version release-please just created
+            TAG_NAME        workflow_dispatch tag input, e.g. ``v0.17.2``
+            EVENT_NAME      GitHub event that started the run
+          """
+
+          # Import built-in modules
+          import os
+          import re
+          import sys
+          from pathlib import Path
+
+
+          def toml_value(text, section, key):
+              """Return the quoted value of ``key`` inside TOML ``section``, or None.
+
+              A targeted scan instead of a TOML parser on purpose: ``tomllib`` only
+              exists from Python 3.11, and this script is vendored into repositories
+              that still support 3.7.
+              """
+              in_section = False
+              pattern = re.compile(r"^" + re.escape(key) + r'\s*=\s*"([^"]+)"')
+              for line in text.splitlines():
+                  stripped = line.strip()
+                  if stripped.startswith("["):
+                      in_section = stripped == section
+                      continue
+                  if in_section:
+                      match = pattern.match(stripped)
+                      if match:
+                          return match.group(1)
+              return None
+
+
+          def package_prefix(pyproject_path="pyproject.toml"):
+              """Return the PEP 503 normalised distribution name for this project.
+
+              Wheel and sdist filenames use the normalised name, so ``wecom-bot-mcp-server``
+              is distributed as ``wecom_bot_mcp_server-<version>-py3-none-any.whl``.
+              """
+              text = Path(pyproject_path).read_text(encoding="utf-8")
+              name = toml_value(text, "[project]", "name")
+              if not name:
+                  name = toml_value(text, "[tool.poetry]", "name")
+              if not name:
+                  raise RuntimeError(
+                      f"{pyproject_path} declares neither project.name nor tool.poetry.name"
+                  )
+              return re.sub(r"[-_.]+", "_", name).lower()
+
+
+          def resolve_version(event_name, tag_name, release_version):
+              """Return the version the release is about to publish.
+
+              A manual backfill builds the requested tag, so the tag wins there; a
+              release-please run publishes whatever version it just created.
+              """
+              if (event_name or "").strip() == "workflow_dispatch":
+                  return (tag_name or "").strip().lstrip("vV")
+              return (release_version or "").strip()
+
+
+          def mismatched_artifacts(version, names, prefix):
+              """Return the artifact names that do not belong to ``version``."""
+              if not version:
+                  return []
+              # Anchor on the separator that follows the version: a bare prefix would let
+              # "0.17.2" accept "my_package-0.17.20-py3-none-any.whl".
+              expected = (f"{prefix}-{version}-", f"{prefix}-{version}.tar.gz")
+              return [name for name in names if not name.startswith(expected)]
+
+
+          def artifact_names(dist_dir):
+              """Return the wheel and sdist filenames in ``dist_dir``."""
+              root = Path(dist_dir)
+              wheels = sorted(p.name for p in root.glob("*.whl"))
+              sdists = sorted(p.name for p in root.glob("*.tar.gz"))
+              return wheels + sdists
+
+
+          def main():
+              """Return 0 when every artifact belongs to the version being released."""
+              dist_dir = os.environ.get("DIST_DIR", "dist")
+              event_name = os.environ.get("EVENT_NAME", "")
+              tag_name = os.environ.get("TAG_NAME", "")
+              release_version = os.environ.get("RELEASE_VERSION", "")
+
+              version = resolve_version(event_name, tag_name, release_version)
+              if not version:
+                  print("No release version resolved; skipping the tag/artifact check")
+                  return 0
+
+              try:
+                  prefix = package_prefix()
+              except (OSError, RuntimeError) as error:
+                  print(f"::error::{error}")
+                  return 1
+
+              print(f"Distribution prefix: {prefix}")
+              print(f"Checking {dist_dir} against version {version}")
+
+              names = artifact_names(dist_dir)
+              mismatched = mismatched_artifacts(version, names, prefix)
+              if mismatched:
+                  joined = ", ".join(mismatched)
+                  print(f"::error::dist artifacts do not match version {version}: {joined}")
+                  return 1
+
+              print(f"OK: {len(names)} artifact(s) match version {version}")
+              return 0
+
+
+          if __name__ == "__main__":
+              sys.exit(main())
+          PY
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+
+  # ── Publish to PyPI ──────────────────────────────────────────────────────
+  publish:
+    needs: [release-please, build]
+    if: needs.release-please.outputs.release_created == 'true' || (github.event_name == 'workflow_dispatch' && inputs.tag_name != '')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/photoshop-python-api
+    permissions:
+      id-token: write # required for PyPI trusted publishing (OIDC)
+    steps:
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: List dist
+        run: ls -la dist/
+
+      - name: Publish to PyPI (Trusted Publisher)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          verbose: true
+          print-hash: true
+          # PyPI filenames are immutable, so re-uploading a version that is
+          # already there fails. Without this, a backfill of a release whose
+          # files reached PyPI but whose assets were never attached could never
+          # attach them: `publish` would fail and `attach-release-assets`
+          # depends on it. Treating an existing file as success keeps the
+          # recovery path usable.
+          skip-existing: true
+  # ── Attach the artifacts to the GitHub Release ───────────────────────────
+  attach-release-assets:
+    needs: [release-please, publish]
+    if: needs.release-please.outputs.release_created == 'true' || (github.event_name == 'workflow_dispatch' && inputs.tag_name != '')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: Attach wheel and sdist to the GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ needs.release-please.outputs.tag_name || inputs.tag_name }}
+          files: dist/*
+
+  # ── Alarm: a release without artifacts is not a shipped release ──────────
+  verify-release-assets:
+    needs: [release-please, publish, attach-release-assets]
+    if: always() && (needs.release-please.outputs.release_created == 'true' || (github.event_name == 'workflow_dispatch' && inputs.tag_name != ''))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Assert the release carries a wheel and an sdist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ needs.release-please.outputs.tag_name || inputs.tag_name }}
+        run: |
+          set -euo pipefail
+          assets="$(gh release view "$TAG_NAME" --repo "$GITHUB_REPOSITORY" --json assets --jq '[.assets[].name] | join("\n")')"
+          echo "Assets on $TAG_NAME:"
+          echo "$assets"
+
+          missing=0
+          if ! echo "$assets" | grep -q '\.whl$'; then
+            echo "::error::$TAG_NAME has no .whl attached"
+            missing=1
+          fi
+          if ! echo "$assets" | grep -q '\.tar\.gz$'; then
+            echo "::error::$TAG_NAME has no sdist (.tar.gz) attached"
+            missing=1
+          fi
+
+          if [ "$missing" -ne 0 ]; then
+            echo "::error::Release $TAG_NAME shipped without wheel/sdist; pip install -U photoshop-python-api will not pick it up. See the build, publish and attach jobs above."
+            exit 1
+          fi
+          echo "OK: $TAG_NAME carries a wheel and an sdist"
