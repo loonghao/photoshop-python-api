@@ -35,7 +35,7 @@ comtypes = "^1.1.11"
 
 [tool.poetry.group.dev.dependencies]
 commitizen = "^2.17.8"
-pre-commit = "^2.13.0"
+pre-commit = "^4.0.0"
 codecov = "^2.1.11"
 pylint = "^2.8.2"
 isort = "^5.8.0"
