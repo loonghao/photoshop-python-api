@@ -110,3 +110,33 @@ force_single_line = true
 # All project unrelated unknown imports belong to third-party.
 default_section = "THIRDPARTY"
 skip_glob = "*/docs/conf.py"
+
+# Linting lives here and nowhere else. This replaces the deleted .flake8, which
+# flake8 could not express in pyproject.toml (support landed in flake8 5).
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+extend-exclude = [
+    "docs/source/conf.py",
+    "old",
+    "build",
+    "dist",
+    "venv",
+    "docs",
+    "examples",
+    "test",
+]
+
+[tool.ruff.lint]
+# Behaviour-preserving port of .flake8. The old file also configured
+# flake8-docstrings (google) and flake8-quotes, but neither plugin was installed
+# in CI, so only pycodestyle/pyflakes rules ever fired. Quote rules are enabled
+# here because the codebase already satisfies them; the docstring rules are not,
+# see the migration PR for the measured violation count.
+select = ["E", "W", "F", "Q"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+multiline-quotes = "double"
+docstring-quotes = "double"
+avoid-escape = true
