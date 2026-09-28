@@ -14,11 +14,13 @@ from typing import Optional
 import winreg
 
 # Import third-party modules
+from comtypes import COMError
 from comtypes.client import CreateObject
 from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
 from comtypes.client.lazybind import Dispatch
 
 # Import local modules
+from photoshop.api._clsid import resolve_photoshop_class_id
 from photoshop.api.constants import PHOTOSHOP_VERSION_MAPPINGS
 from photoshop.api.errors import PhotoshopPythonAPIError
 
@@ -42,6 +44,8 @@ class Photoshop:
         ps_version = os.getenv("PS_VERSION", ps_version)
         self._app_id = PHOTOSHOP_VERSION_MAPPINGS.get(ps_version, "")
         self._has_parent, self.adobe, self.app = False, None, None
+        # Every COM lookup attempted while resolving this object, kept for error reporting.
+        self._resolution_log: List[str] = []
 
         # Store current photoshop version
         if ps_version:
@@ -62,7 +66,7 @@ class Photoshop:
             self.app = self._get_application_object(versions)
             if not self.app:
                 # All attempts exhausted
-                raise PhotoshopPythonAPIError("Please check if you have Photoshop installed correctly.")
+                raise PhotoshopPythonAPIError(self._build_resolution_error())
 
         # Add the parent app object
         if parent:
@@ -176,6 +180,9 @@ class Photoshop:
         """
         Try each version string until a valid Photoshop application Dispatch object is returned.
 
+        Installations that publish no versioned ProgID, such as portable or relocated copies of
+        Photoshop, are resolved through their CLSID once every ProgID lookup has failed.
+
         Args:
             versions: List of Photoshop version ID's found in registry.
 
@@ -189,7 +196,38 @@ class Photoshop:
             self.app_id = v
             with suppress(OSError):
                 return CreateObject(self.program_name, dynamic=True)
-        return
+            self._resolution_log.append(f"Program ID '{self.program_name}' could not be created.")
+        return self._create_object_from_class_id()
+
+    def _create_object_from_class_id(self) -> Optional[Dispatch]:
+        """
+        Create the automation object straight from its CLSID.
+
+        Some Photoshop installations never publish the versioned ``Photoshop.<Class>.<version>``
+        ProgIDs and only register a bare CLSID. Those classes are still perfectly creatable, so
+        fall back to resolving the CLSID instead of reporting Photoshop as missing.
+
+        Returns:
+            Photoshop application Dispatch object, or None if no CLSID could be created.
+        """
+        class_id = resolve_photoshop_class_id(self.object_name)
+        if not class_id:
+            self._resolution_log.append(f"No CLSID is registered for '{self.object_name}'.")
+            return None
+        with suppress(OSError, COMError):
+            return CreateObject(class_id, dynamic=True)
+        self._resolution_log.append(f"CLSID '{class_id}' for '{self.object_name}' could not be created.")
+        self._logger.debug(f"Unable to create Photoshop object '{self.typename}' from CLSID {class_id}.")
+        return None
+
+    def _build_resolution_error(self) -> str:
+        """Build the message raised when no Photoshop automation object could be resolved."""
+        attempts = "\n".join(f"  - {entry}" for entry in self._resolution_log)
+        return (
+            f"Unable to resolve the Photoshop COM object '{self.typename}'.\n"
+            f"{attempts}\n"
+            "Please check if you have Photoshop installed correctly."
+        )
 
     """
     * Public Methods
