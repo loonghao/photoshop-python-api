@@ -20,6 +20,7 @@ from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
 from comtypes.client.lazybind import Dispatch
 
 # Import local modules
+from photoshop.api._clsid import resolution_failure_reason
 from photoshop.api._clsid import resolve_photoshop_class_id
 from photoshop.api.constants import PHOTOSHOP_VERSION_MAPPINGS
 from photoshop.api.errors import PhotoshopPythonAPIError
@@ -210,9 +211,17 @@ class Photoshop:
         Returns:
             Photoshop application Dispatch object, or None if no CLSID could be created.
         """
-        class_id = resolve_photoshop_class_id(self.object_name)
+        try:
+            class_id = resolve_photoshop_class_id(self.object_name)
+        except Exception as error:
+            # Resolving reads the registry and may instantiate automation objects. A failure
+            # there must not replace the diagnosis below with an unrelated traceback.
+            self._resolution_log.append(f"Class ID lookup for '{self.object_name}' failed: {error!r}.")
+            self._logger.debug(f"Class ID lookup for '{self.typename}' raised {error!r}.")
+            return None
         if not class_id:
-            self._resolution_log.append(f"No CLSID is registered for '{self.object_name}'.")
+            reason = resolution_failure_reason(self.object_name)
+            self._resolution_log.append(f"No CLSID is registered for '{self.object_name}': {reason}")
             return None
         with suppress(OSError, COMError):
             return CreateObject(class_id, dynamic=True)
@@ -226,7 +235,10 @@ class Photoshop:
         return (
             f"Unable to resolve the Photoshop COM object '{self.typename}'.\n"
             f"{attempts}\n"
-            "Please check if you have Photoshop installed correctly."
+            "Please check if you have Photoshop installed correctly.\n"
+            "Class IDs are cached for the lifetime of the process; call "
+            "photoshop.api._clsid.reset_cache() if Photoshop was started or upgraded "
+            "after this process began."
         )
 
     """

@@ -135,16 +135,37 @@ def test_resolve_photoshop_class_id_probes_when_type_library_misses():
             assert _clsid.resolve_photoshop_class_id("ActionDescriptor") == ACTION_DESCRIPTOR_CLSID
 
 
-def test_resolve_photoshop_class_id_caches_misses():
-    """An unresolvable coclass is probed once, not once per wrapper instantiation."""
-    with mock.patch.object(_clsid, "_get_type_library_coclasses", return_value=[]):
-        with mock.patch.object(_clsid, "_get_probed_coclasses", return_value={}) as probe:
-            # The cache lives in ``resolve_photoshop_class_id``, so count lookups instead.
+def test_resolve_photoshop_class_id_caches_misses_once_photoshop_is_seen():
+    """A miss is only cached when Photoshop was actually found, so starting it later works."""
+    with mock.patch.object(_clsid, "_get_type_library_coclasses", return_value=[{"ActionList": "{X}"}]):
+        with mock.patch.object(_clsid, "_get_probed_coclasses", return_value={}):
+            # Photoshop was seen (the type library index is not empty), so the miss is cached.
             with mock.patch.object(_clsid, "_lookup_class_id", wraps=_clsid._lookup_class_id) as lookup:
                 assert _clsid.resolve_photoshop_class_id("Nope") is None
                 assert _clsid.resolve_photoshop_class_id("Nope") is None
             assert lookup.call_count == 1
-        assert probe.call_count == 1
+
+
+def test_resolve_photoshop_class_id_retries_when_photoshop_was_never_seen():
+    """A miss with no Photoshop in sight is retried rather than pinned for the process."""
+    with mock.patch.object(_clsid, "_get_type_library_coclasses", return_value=[]):
+        with mock.patch.object(_clsid, "_get_probed_coclasses", return_value={}):
+            with mock.patch.object(_clsid, "_lookup_class_id", wraps=_clsid._lookup_class_id) as lookup:
+                assert _clsid.resolve_photoshop_class_id("Nope") is None
+                assert _clsid.resolve_photoshop_class_id("Nope") is None
+            assert lookup.call_count == 2
+
+
+def test_resolution_failure_reason_distinguishes_unknown_class_from_failed_probe():
+    """The reported reason says whether the class is missing or Photoshop was unreachable."""
+    with mock.patch.object(_clsid, "_get_type_library_coclasses", return_value=[]):
+        with mock.patch.object(_clsid, "_get_probed_coclasses", return_value={"ActionList": "{X}"}):
+            assert _clsid.resolve_photoshop_class_id("Nope") is None
+            assert "declares 'Nope'" in _clsid.resolution_failure_reason("Nope")
+    with mock.patch.object(_clsid, "_get_type_library_coclasses", return_value=[]):
+        with mock.patch.object(_clsid, "_get_probed_coclasses", return_value={}):
+            assert _clsid.resolve_photoshop_class_id("Unreachable") is None
+            assert "could be inspected" in _clsid.resolution_failure_reason("Unreachable")
 
 
 @pytest.mark.parametrize(
