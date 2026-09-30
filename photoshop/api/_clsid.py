@@ -22,12 +22,15 @@ cached for the lifetime of the process.
 """
 
 # Import built-in modules
+from contextlib import contextmanager
 from contextlib import suppress
 import os
 import platform
 from typing import Dict
+from typing import Iterator
 from typing import List
 from typing import Optional
+from typing import Tuple
 import winreg
 
 # Import third-party modules
@@ -47,6 +50,8 @@ _APPLICATION_REG_PATH = "SOFTWARE\\Adobe\\Photoshop"
 _CLASS_ID_CACHE: Dict[str, Optional[str]] = {}
 _TYPE_LIBRARY_COCLASSES: Optional[List[Dict[str, str]]] = None
 _PROBED_COCLASSES: Optional[Dict[str, str]] = None
+# Why a lookup returned None, kept so the caller can report the real cause.
+_FAILURE_REASONS: Dict[str, str] = {}
 
 
 def resolve_photoshop_class_id(object_name: str) -> Optional[str]:
@@ -61,17 +66,38 @@ def resolve_photoshop_class_id(object_name: str) -> Optional[str]:
     with suppress(KeyError):
         return _CLASS_ID_CACHE[object_name]
     class_id = _lookup_class_id(object_name)
-    _CLASS_ID_CACHE[object_name] = class_id
+    # Only remember a miss once Photoshop has actually been seen. Otherwise a lookup that
+    # ran before Photoshop was started would keep failing for the rest of the process.
+    if class_id is not None or _saw_photoshop():
+        _CLASS_ID_CACHE[object_name] = class_id
     return class_id
+
+
+def resolution_failure_reason(object_name: str) -> str:
+    """Return why a lookup of ``object_name`` returned None, for error reporting.
+
+    Args:
+        object_name: Photoshop coclass name that could not be resolved.
+
+    Returns:
+        A human readable reason, or a fallback when no lookup recorded one.
+    """
+    return _FAILURE_REASONS.get(object_name, "no Photoshop automation class was inspected.")
 
 
 def reset_cache() -> None:
     """Forget every cached lookup. Only useful for tests and long lived processes."""
     _CLASS_ID_CACHE.clear()
+    _FAILURE_REASONS.clear()
     global _TYPE_LIBRARY_COCLASSES
     global _PROBED_COCLASSES
     _TYPE_LIBRARY_COCLASSES = None
     _PROBED_COCLASSES = None
+
+
+def _saw_photoshop() -> bool:
+    """Return whether any Photoshop type library or automation class has been found."""
+    return bool(_get_type_library_coclasses()) or bool(_get_probed_coclasses())
 
 
 def _lookup_class_id(object_name: str) -> Optional[str]:
@@ -79,7 +105,22 @@ def _lookup_class_id(object_name: str) -> Optional[str]:
     for coclasses in _get_type_library_coclasses():
         with suppress(KeyError):
             return coclasses[object_name]
-    return _get_probed_coclasses().get(object_name)
+    probed = _get_probed_coclasses()
+    with suppress(KeyError):
+        return probed[object_name]
+    _FAILURE_REASONS[object_name] = _describe_miss(object_name, probed)
+    return None
+
+
+def _describe_miss(object_name: str, probed: Dict[str, str]) -> str:
+    """Explain a failed lookup, separating an unknown class from a failed inspection."""
+    if probed:
+        return f"no Photoshop type library or automation class declares '{object_name}'."
+    return (
+        f"no Photoshop type library declares '{object_name}', and none of the registered "
+        "Photoshop automation classes could be inspected (Photoshop may be busy, "
+        "unreachable, or not running)."
+    )
 
 
 def _get_type_library_coclasses() -> List[Dict[str, str]]:
@@ -170,7 +211,7 @@ def _get_photoshop_install_dirs() -> List[str]:
     return directories
 
 
-def _iter_application_path_dirs():
+def _iter_application_path_dirs() -> Iterator[str]:
     """Yield the install directories recorded under ``HKLM\\SOFTWARE\\Adobe\\Photoshop``."""
     key = _open_key(winreg.HKEY_LOCAL_MACHINE, _APPLICATION_REG_PATH)
     if key is None:
@@ -182,17 +223,21 @@ def _iter_application_path_dirs():
                     yield winreg.QueryValueEx(version_key, "ApplicationPath")[0]
 
 
-def _iter_type_library_paths(install_dirs: List[str]):
+def _iter_type_library_paths(install_dirs: List[str]) -> Iterator[str]:
     """Yield every distinct registered type library hosted inside one of ``install_dirs``."""
+    if not install_dirs:
+        # Without an install directory every candidate would be discarded by _is_within, so
+        # skip the walk rather than enumerating the whole TypeLib hive for nothing.
+        return
     key = _open_key(winreg.HKEY_CLASSES_ROOT, "TypeLib")
     if key is None:
         return
     seen = set()
     with key:
         for library_id in _iter_sub_keys(key):
-            with winreg.OpenKey(key, library_id) as library_key:
+            with _registry_key(key, library_id) as library_key:
                 for version in _iter_sub_keys(library_key):
-                    with winreg.OpenKey(library_key, version) as version_key:
+                    with _registry_key(library_key, version) as version_key:
                         for locale in _iter_sub_keys(version_key):
                             for path in _iter_locale_library_paths(version_key, locale, install_dirs):
                                 marker = os.path.normcase(os.path.normpath(path))
@@ -201,19 +246,40 @@ def _iter_type_library_paths(install_dirs: List[str]):
                                     yield path
 
 
-def _iter_locale_library_paths(version_key, locale: str, install_dirs: List[str]):
+def _iter_locale_library_paths(version_key, locale: str, install_dirs: List[str]) -> Iterator[str]:
     """Yield the type library files registered for one library locale."""
-    with winreg.OpenKey(version_key, locale) as locale_key:
+    with _registry_key(version_key, locale) as locale_key:
         for architecture in ("win64", "win32"):
-            path = None
-            with suppress(OSError):
-                with winreg.OpenKey(locale_key, architecture) as architecture_key:
-                    path = winreg.QueryValue(architecture_key, None)
+            with _registry_key(locale_key, architecture) as architecture_key:
+                path = _query_value(architecture_key)
             if path and _is_within(path, install_dirs):
                 yield path
 
 
-def _iter_photoshop_local_servers():
+@contextmanager
+def _registry_key(parent_key, sub_key: str):
+    """Yield the sub key ``sub_key`` of ``parent_key``, or None when it cannot be opened."""
+    key = None
+    if parent_key is not None:
+        with suppress(OSError):
+            key = winreg.OpenKey(parent_key, sub_key)
+    try:
+        yield key
+    finally:
+        if key is not None:
+            key.Close()
+
+
+def _query_value(key) -> Optional[str]:
+    """Return the default value of a registry key, or None when there is none."""
+    if key is None:
+        return None
+    with suppress(OSError):
+        return winreg.QueryValue(key, None)
+    return None
+
+
+def _iter_photoshop_local_servers() -> Iterator[Tuple[str, str]]:
     """Yield ``(class_id, executable)`` for every COM class hosted by ``Photoshop.exe``."""
     key = _open_key(winreg.HKEY_CLASSES_ROOT, "CLSID")
     if key is None:
@@ -245,9 +311,18 @@ def _executable_from_command(command: Optional[str]) -> Optional[str]:
 
 
 def _is_within(path: str, directories: List[str]) -> bool:
-    """Return whether ``path`` lives inside one of ``directories``."""
+    """Return whether ``path`` lives inside one of ``directories``.
+
+    The comparison is anchored on a path separator so that a sibling directory sharing a
+    name prefix, such as ``Adobe Photoshop 2024 Beta`` next to ``Adobe Photoshop 2024``,
+    is not treated as being inside the install directory.
+    """
     normalized = os.path.normcase(os.path.normpath(path))
-    return any(normalized.startswith(os.path.normcase(os.path.normpath(d))) for d in directories)
+    for directory in directories:
+        prefix = os.path.normcase(os.path.normpath(directory)).rstrip(os.sep)
+        if normalized == prefix or normalized.startswith(prefix + os.sep):
+            return True
+    return False
 
 
 def _add_unique(values: List[str], value: Optional[str]):
@@ -260,7 +335,9 @@ def _add_unique(values: List[str], value: Optional[str]):
 
 
 def _iter_sub_keys(key) -> List[str]:
-    """Return the sub key names of an open registry key."""
+    """Return the sub key names of an open registry key, empty when it cannot be read."""
+    if key is None:
+        return []
     with suppress(OSError):
         return [winreg.EnumKey(key, index) for index in range(winreg.QueryInfoKey(key)[0])]
     return []
