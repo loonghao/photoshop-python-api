@@ -13,13 +13,15 @@ classifiers = [
     "Operating System :: Microsoft :: Windows :: Windows 10",
     "Operating System :: Microsoft :: Windows :: Windows 11",
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
 ]
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.8,<4.0"
 
 [project.urls]
 homepage = "https://github.com/loonghao/photoshop-python-api"
@@ -33,17 +35,26 @@ packages = [{ include = "photoshop" }]
 generate-setup-file = false
 
 [tool.poetry.dependencies]
-wheel = "^0.46.3"
-comtypes = "^1.4.15"
+wheel = [
+    { version = "^0.46.3", python = ">=3.9" },
+    { version = "^0.45.0", python = "<3.9" },
+]
+comtypes = [
+    { version = "^1.4.15", python = ">=3.9" },
+    { version = ">=1.1.11,<1.4.13", python = "<3.9" },
+]
 
 [tool.poetry.group.dev.dependencies]
 commitizen = "^2.17.8"
-pre-commit = "^4.6.0"
+pre-commit = { version = "^4.6.0", python = ">=3.10" }
 codecov = "^2.1.11"
-pylint = "^4.0.5"
+pylint = { version = "^4.0.5", python = ">=3.10" }
 ruff = "^0.15.17"
-pytest = "^9.0.2"
-mypy = "^1.19.1"
+pytest = [
+    { version = "^9.0.2", python = ">=3.10" },
+    { version = "^7.4.4", python = "<3.10" },
+]
+mypy = { version = "^1.19.1", python = ">=3.9" }
 coverage = "^7.0.0"
 mkdocs = "^1.2.2"
 mkdocs-git-revision-date-plugin = "^0.3.1"

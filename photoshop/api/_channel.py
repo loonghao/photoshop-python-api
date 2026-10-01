@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from typing import TYPE_CHECKING
 
@@ -64,7 +67,7 @@ class Channel(Photoshop):
     def name(self) -> str:
         return self.app.name
 
-    def duplicate(self, targetDocument: "Document | None" = None) -> "Channel":
+    def duplicate(self, targetDocument: Document | None = None) -> Channel:
         return Channel(self.app.duplicate(targetDocument.app if targetDocument else None))
 
     def merge(self) -> None:

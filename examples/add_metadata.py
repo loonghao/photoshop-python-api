@@ -1,5 +1,7 @@
 """Add metadata to current active document."""
 
+
+from __future__ import annotations
 # Import built-in modules
 import os
 

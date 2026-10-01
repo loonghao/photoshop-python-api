@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 # Import local modules
 import photoshop.api as ps
 

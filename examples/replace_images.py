@@ -1,5 +1,7 @@
 """Replace the image of the current active layer with a new image."""
 
+
+from __future__ import annotations
 # Import local modules
 import examples._psd_files as psd  # Import from examples.
 

@@ -1,5 +1,8 @@
 """constants type of enum for Photoshop."""
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from enum import Enum
 from enum import IntEnum

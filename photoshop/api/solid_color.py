@@ -8,6 +8,9 @@ Maps a color to equivalents in all available color models.
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.colors.cmyk import CMYKColor

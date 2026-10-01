@@ -1,5 +1,8 @@
-# https://theiviaxx.github.io/photoshop-docs/Photoshop/BatchOptions.html
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
+# https://theiviaxx.github.io/photoshop-docs/Photoshop/BatchOptions.html
 from collections.abc import Sequence
 from os import PathLike
 from pathlib import Path

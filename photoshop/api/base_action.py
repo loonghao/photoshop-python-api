@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -99,7 +102,7 @@ class BaseAction(Photoshop):
         """Gets the value of a key of type large integer."""
         return self.app.getLargeInteger(index)
 
-    def getList(self, index: int) -> "ActionList":
+    def getList(self, index: int) -> ActionList:
         """Gets the value of a key of type list."""
         # Import local modules
         from photoshop.api.action_list import ActionList
@@ -110,7 +113,7 @@ class BaseAction(Photoshop):
         """Gets the class ID of an object in a key of type object."""
         return self.app.getObjectType(key)
 
-    def getObjectValue(self, key: int) -> "ActionDescriptor":
+    def getObjectValue(self, key: int) -> ActionDescriptor:
         """Get the class ID of an object in a key of type object."""
         from .action_descriptor import ActionDescriptor
 

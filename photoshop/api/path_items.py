@@ -1,6 +1,10 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
+from typing import Union
 
 # Import local modules
 from photoshop.api._core import Photoshop
@@ -15,8 +19,8 @@ if TYPE_CHECKING:
 
 
 class PathItems(
-    CollectionOfRemovables[PathItem, int | str],
-    CollectionOfNamedObjects[PathItem, int | str],
+    CollectionOfRemovables[PathItem, Union[int, str]],
+    CollectionOfNamedObjects[PathItem, Union[int, str]],
 ):
     def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(PathItem, parent)
@@ -26,7 +30,7 @@ class PathItems(
         return PathItem(self.app.add(name, [item.app for item in entire_path]))
 
     @property
-    def parent(self) -> "Document":
+    def parent(self) -> Document:
         # Import local modules
         from photoshop.api._document import Document
 

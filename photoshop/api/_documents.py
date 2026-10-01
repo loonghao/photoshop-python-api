@@ -1,3 +1,9 @@
+# Import future modules
+from __future__ import annotations
+
+# Import built-in modules
+from typing import Union
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._document import Document
@@ -8,7 +14,7 @@ from photoshop.api.enumerations import NewDocumentMode
 
 
 # pylint: disable=too-many-public-methods, too-many-arguments
-class Documents(CollectionOfNamedObjects[Document, int | str]):
+class Documents(CollectionOfNamedObjects[Document, Union[int, str]]):
     """The collection of open documents."""
 
     def __init__(self, parent: Photoshop | None = None) -> None:

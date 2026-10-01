@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from collections.abc import Iterator
 from typing import TYPE_CHECKING
@@ -47,7 +50,7 @@ class PathItem(Photoshop):
         self.app.name = value
 
     @property
-    def parent(self) -> "Document":
+    def parent(self) -> Document:
         # Import local modules
         from photoshop.api._document import Document
 

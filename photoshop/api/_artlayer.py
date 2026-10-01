@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from os import PathLike
 
@@ -447,7 +450,7 @@ class ArtLayer(Layer):
     def posterize(self, levels: int) -> None:
         self.app.posterize(levels)
 
-    def merge(self) -> "ArtLayer":
+    def merge(self) -> ArtLayer:
         return ArtLayer(self.app.merge())
 
     def invert(self) -> None:
@@ -455,9 +458,9 @@ class ArtLayer(Layer):
 
     def duplicate(
         self,
-        relativeObject: "Layer | None" = None,
+        relativeObject: Layer | None = None,
         insertionLocation: ElementPlacement | None = None,
-    ) -> "ArtLayer":
+    ) -> ArtLayer:
         """Duplicates the layer.
 
         Args:
@@ -470,7 +473,7 @@ class ArtLayer(Layer):
         """
         return ArtLayer(self.app.duplicate(relativeObject.app if relativeObject else None, insertionLocation))
 
-    def convertToSmartObject(self) -> "ArtLayer":
+    def convertToSmartObject(self) -> ArtLayer:
         """Converts the layer to a smart object.
 
         Returns:

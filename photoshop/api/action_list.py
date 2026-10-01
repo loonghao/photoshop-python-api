@@ -5,6 +5,9 @@ It can be used for low-level access info Photoshop.
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from os import PathLike
 from typing import TYPE_CHECKING
@@ -76,11 +79,11 @@ class ActionList(BaseAction):
         """Sets the value for a key whose type is large integer."""
         self.app.putLargeInteger(value)
 
-    def putList(self, value: "ActionList") -> None:
+    def putList(self, value: ActionList) -> None:
         """Sets the value for a key whose type is an ActionList object."""
         self.app.putList(value.app)
 
-    def putObject(self, class_id: int, value: "ActionDescriptor") -> None:
+    def putObject(self, class_id: int, value: ActionDescriptor) -> None:
         """Sets the value for a key whose type is an object."""
         self.app.putObject(class_id, value.app)
 

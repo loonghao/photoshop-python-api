@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from typing import TYPE_CHECKING
 
@@ -54,7 +57,7 @@ class LayerComp(Photoshop):
         self.app.name = text
 
     @property
-    def parent(self) -> "Document":
+    def parent(self) -> Document:
         from ._document import Document
 
         return Document(self.app.parent)

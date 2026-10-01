@@ -22,25 +22,25 @@ cached for the lifetime of the process.
 """
 
 # Import built-in modules
-from contextlib import contextmanager
-from contextlib import suppress
 import os
 import platform
+import winreg
+
+from contextlib import contextmanager
+from contextlib import suppress
 from typing import Dict
 from typing import Iterator
 from typing import List
 from typing import Optional
 from typing import Tuple
-import winreg
 
 # Import third-party modules
 from comtypes import CLSCTX_LOCAL_SERVER
-from comtypes import COMError
-from comtypes import CoCreateInstance
 from comtypes import GUID
+from comtypes import CoCreateInstance
+from comtypes import COMError
 from comtypes import typeinfo
 from comtypes.automation import IDispatch
-
 
 _PHOTOSHOP_EXE = "photoshop.exe"
 _APPLICATION_REG_PATH = "SOFTWARE\\Adobe\\Photoshop"

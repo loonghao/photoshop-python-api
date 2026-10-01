@@ -13,6 +13,9 @@ The basic canvas for the file.
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from _ctypes import COMError
 from logging import getLogger
@@ -327,7 +330,7 @@ class Document(Photoshop):
         return self.app.resolution
 
     @property
-    def selection(self) -> "Selection":
+    def selection(self) -> Selection:
         """The selected area of the Document."""
         from ._selection import Selection
 
@@ -423,7 +426,7 @@ class Document(Photoshop):
         file_path = file_path.replace("\\", "/")
         self.app.export(file_path, exportAs, options.app)
 
-    def duplicate(self, name: str | None = None, merge_layers_only: bool = False) -> "Document":
+    def duplicate(self, name: str | None = None, merge_layers_only: bool = False) -> Document:
         return Document(self.app.duplicate(name, merge_layers_only))
 
     def paste(self, into_selection: bool | None = None) -> None:

@@ -4,6 +4,8 @@ References:
     https://github.com/loonghao/photoshop-python-api/issues/368
 """
 
+
+from __future__ import annotations
 # Import built-in modules
 import os
 

@@ -26,11 +26,14 @@ with Session(action="new_document") as ps:
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
-from contextlib import AbstractContextManager
 from os import PathLike
 from types import TracebackType
 from typing import Any
+from typing import ContextManager
 from typing import Literal
 
 # Import local modules
@@ -63,7 +66,7 @@ from photoshop.api._document import Document
 
 
 # pylint: disable=too-many-arguments
-class Session(AbstractContextManager["Session"]):
+class Session(ContextManager["Session"]):
     """Session of photoshop.
 
     We can control active documents in this Session.
@@ -340,7 +343,7 @@ class Session(AbstractContextManager["Session"]):
         if self._auto_close:
             self.active_document.close()
 
-    def __enter__(self) -> "Session":
+    def __enter__(self) -> Session:
         self.run_action()
         return self
 

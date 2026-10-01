@@ -1,3 +1,9 @@
+# Import future modules
+from __future__ import annotations
+
+# Import built-in modules
+from typing import Union
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api._layerComp import LayerComp
@@ -6,8 +12,8 @@ from photoshop.api.collections import CollectionOfRemovables
 
 
 class LayerComps(
-    CollectionOfRemovables[LayerComp, int | str],
-    CollectionOfNamedObjects[LayerComp, int | str],
+    CollectionOfRemovables[LayerComp, Union[int, str]],
+    CollectionOfNamedObjects[LayerComp, Union[int, str]],
 ):
     """The layer comps collection in this document."""
 

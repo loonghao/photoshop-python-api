@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from typing import TYPE_CHECKING
 
@@ -27,7 +30,7 @@ class PathPoint(Photoshop):
         return self.app.leftDirection
 
     @property
-    def parent(self) -> "SubPathItem":
+    def parent(self) -> SubPathItem:
         # Import local modules
         from photoshop.api.sub_path_item import SubPathItem
 

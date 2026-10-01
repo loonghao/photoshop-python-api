@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 # Import built-in modules
 from math import isclose
 

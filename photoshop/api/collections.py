@@ -1,8 +1,12 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from collections.abc import Iterator
 from typing import Generic
 from typing import Protocol
 from typing import TypeVar
+from typing import Union
 
 # Import third-party modules
 from comtypes import ArgumentError
@@ -23,7 +27,7 @@ class NamedPhotoshopObject(_PhotoshopObject, Protocol):
 
 T = TypeVar("T", bound=_PhotoshopObject)
 N = TypeVar("N", bound=NamedPhotoshopObject)
-G = TypeVar("G", bound=int | str)
+G = TypeVar("G", bound=Union[int, str])
 
 
 class BaseCollection(Photoshop, Generic[T, G]):

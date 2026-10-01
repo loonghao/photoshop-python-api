@@ -13,6 +13,8 @@ Key concepts:
 - Color model differences
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 

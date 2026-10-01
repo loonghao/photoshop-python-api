@@ -1,5 +1,7 @@
 """Plugin for generate API docs."""
 
+from __future__ import annotations
+
 # Import built-in modules
 from pathlib import Path
 

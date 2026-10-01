@@ -4,6 +4,9 @@ using the Document.saveAs() method.
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import PDFCompatibilityType

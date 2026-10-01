@@ -5,6 +5,9 @@ application.
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from collections.abc import Sequence
 from pprint import pformat

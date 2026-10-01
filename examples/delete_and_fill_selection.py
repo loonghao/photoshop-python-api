@@ -1,5 +1,7 @@
 """This script demonstrates how to delete and fill a selection in one operation."""
 
+
+from __future__ import annotations
 # Import built-in modules
 import os
 

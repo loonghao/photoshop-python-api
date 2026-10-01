@@ -6,6 +6,9 @@ Notifiers must be enabled using the Application.notifiersEnabled property
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from pathlib import Path
 

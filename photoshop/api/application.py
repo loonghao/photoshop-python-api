@@ -11,6 +11,9 @@ app.documents.add(800, 600, 72, "docRef")
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 import os
 import time
@@ -50,7 +53,7 @@ class Application(Photoshop):
 
     """
 
-    def __init__(self, version: str | None = None, parent: "Photoshop | FullyDynamicDispatch | None" = None) -> None:
+    def __init__(self, version: str | None = None, parent: Photoshop | FullyDynamicDispatch | None = None) -> None:
         super().__init__(ps_version=version, parent=parent)
         self._flag_as_method(
             "batch",

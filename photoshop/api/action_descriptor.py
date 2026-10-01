@@ -7,6 +7,9 @@ see the Photoshop Scripting Guide.
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from os import PathLike
 
@@ -62,7 +65,7 @@ class ActionDescriptor(BaseAction):
         """Checks whether the descriptor contains the provided key."""
         return self.app.hasKey(key)
 
-    def isEqual(self, otherDesc: "ActionDescriptor") -> bool:
+    def isEqual(self, otherDesc: ActionDescriptor) -> bool:
         """Determines whether the descriptor is the same as another descriptor.
 
         Args:
@@ -99,11 +102,11 @@ class ActionDescriptor(BaseAction):
         """Sets the value for a key whose type is large integer."""
         self.app.putLargeInteger(key, value)
 
-    def putList(self, key: int, value: "ActionList") -> None:
+    def putList(self, key: int, value: ActionList) -> None:
         """Sets the value for a key whose type is an ActionList object."""
         self.app.putList(key, value.app)
 
-    def putObject(self, key: int, class_id: int, value: "ActionDescriptor") -> None:
+    def putObject(self, key: int, class_id: int, value: ActionDescriptor) -> None:
         """Sets the value for a key whose type is an object."""
         self.app.putObject(key, class_id, value.app)
 

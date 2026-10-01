@@ -41,7 +41,7 @@ class Photoshop:
     _reg_path = "SOFTWARE\\Adobe\\Photoshop"
     object_name: str = "Application"
 
-    def __init__(self, ps_version: str | None = None, parent: "Photoshop | FullyDynamicDispatch | None" = None):
+    def __init__(self, ps_version: str | None = None, parent: Photoshop | FullyDynamicDispatch | None = None):
         """
         Initialize the Photoshop core object.
 
@@ -169,7 +169,7 @@ class Photoshop:
         self._app_id = value
 
     @property
-    def application(self) -> "Application":
+    def application(self) -> Application:
         # Import local modules
         from photoshop.api.application import Application
 
@@ -228,7 +228,7 @@ class Photoshop:
                     self._resolution_log.append(f"Program ID '{self.program_name}' could not be created.")
         return self._create_object_from_class_id()
 
-    def _create_object_from_class_id(self) -> Dispatch | None:
+    def _create_object_from_class_id(self) -> FullyDynamicDispatch | None:
         """
         Create the automation object straight from its CLSID.
 

@@ -1,5 +1,8 @@
 """The selected area of the document or layer."""
 
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from collections.abc import Sequence
 

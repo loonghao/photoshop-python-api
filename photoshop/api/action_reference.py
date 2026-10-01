@@ -9,6 +9,9 @@ with an ActionDescriptor.
 
 """
 
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api._core import Photoshop
 from photoshop.api.enumerations import ReferenceFormType
@@ -46,7 +49,7 @@ class ActionReference(Photoshop):
             "putProperty",
         )
 
-    def getContainer(self) -> "ActionReference":
+    def getContainer(self) -> ActionReference:
         return self.app.getContainer()
 
     def getDesiredClass(self) -> int:

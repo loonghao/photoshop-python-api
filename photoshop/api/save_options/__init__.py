@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api.save_options.bmp import BMPSaveOptions
 from photoshop.api.save_options.eps import EPSSaveOptions

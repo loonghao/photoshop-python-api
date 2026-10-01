@@ -13,6 +13,8 @@ Key concepts:
 - Active tool state
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 

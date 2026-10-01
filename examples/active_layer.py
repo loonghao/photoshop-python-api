@@ -12,6 +12,8 @@ The script will:
 - Create a new layer and rename it
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 

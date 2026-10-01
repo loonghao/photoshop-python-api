@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from typing import TYPE_CHECKING
 
@@ -516,13 +519,13 @@ class TextItem(Photoshop):
         self.app.oldStyle = value
 
     @property
-    def parent(self) -> "ArtLayer":
+    def parent(self) -> ArtLayer:
         from ._artlayer import ArtLayer
 
         return ArtLayer(self.app.parent)
 
     @parent.setter
-    def parent(self, value: "ArtLayer") -> None:
+    def parent(self, value: ArtLayer) -> None:
         self.app.parent = value.app
 
     @property

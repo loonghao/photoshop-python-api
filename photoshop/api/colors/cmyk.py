@@ -1,5 +1,8 @@
 """Defines a CMYK color, used in the `SolidColor` object."""
 
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api._core import Photoshop
 

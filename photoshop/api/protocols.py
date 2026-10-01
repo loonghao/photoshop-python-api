@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from typing import TYPE_CHECKING
 from typing import Protocol
@@ -17,7 +20,7 @@ class HistoryState(BaseProtocol, Protocol):
     def name(self) -> str: ...
 
     @property
-    def parent(self) -> "Document": ...
+    def parent(self) -> Document: ...
 
     @property
     def snapshot(self) -> bool: ...
@@ -31,6 +34,6 @@ class MeasurementScale(BaseProtocol, Protocol):
 
 class XMPMetadata(BaseProtocol, Protocol):
     @property
-    def parent(self) -> "Document": ...
+    def parent(self) -> Document: ...
 
     rawData: str

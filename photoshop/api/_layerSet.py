@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from collections.abc import Iterator
 from collections.abc import Sequence
@@ -45,14 +48,14 @@ class LayerSet(Layer):
         self.app.enabledChannels = value.app if isinstance(value, Channels) else [channel.app for channel in value]
 
     @property
-    def layers(self) -> "Layers":
+    def layers(self) -> Layers:
         # pylint: disable=import-outside-toplevel
         from ._layers import Layers
 
         return Layers(self.app.layers)
 
     @property
-    def layerSets(self) -> "LayerSets":
+    def layerSets(self) -> LayerSets:
         # pylint: disable=import-outside-toplevel
         from ._layerSets import LayerSets
 
@@ -65,7 +68,7 @@ class LayerSet(Layer):
     ):
         return LayerSet(self.app.duplicate(relativeObject.app if relativeObject else None, insertionLocation))
 
-    def add(self) -> "LayerSet":
+    def add(self) -> LayerSet:
         """Adds an element."""
         return LayerSet(self.app.add())
 

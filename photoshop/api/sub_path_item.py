@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
 from collections.abc import Iterator
 from typing import TYPE_CHECKING
@@ -25,7 +28,7 @@ class SubPathItem(Photoshop):
         return ShapeOperation(self.app.operation)
 
     @property
-    def parent(self) -> "PathItem":
+    def parent(self) -> PathItem:
         # Import local modules
         from photoshop.api.path_item import PathItem
 
