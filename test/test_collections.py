@@ -10,6 +10,8 @@ from __future__ import annotations
 
 # Import built-in modules
 from typing import Any
+from typing import Tuple
+from typing import Union
 
 # Import third-party modules
 import pytest
@@ -30,10 +32,18 @@ class FakeItem:
     Accepting an existing instance mirrors the real API classes, which wrap a COM
     object and are also constructed from one; it keeps the wrapper idempotent so
     tests can assert on the wrapped value rather than on nesting depth.
+
+    ``tag`` is an identity marker that is deliberately NOT part of equality. Two
+    elements can share a name while remaining tellable apart, which is what lets
+    the suite pin down "first match" rather than just "some match".
     """
 
-    def __init__(self, name: FakeItem | str) -> None:
-        self.name = name.name if isinstance(name, FakeItem) else name
+    def __init__(self, name: FakeItem | str, tag: str | None = None) -> None:
+        if isinstance(name, FakeItem):
+            tag = tag if tag is not None else name.tag
+            name = name.name
+        self.name = name
+        self.tag = tag
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, FakeItem) and other.name == self.name
@@ -42,14 +52,28 @@ class FakeItem:
         return hash(self.name)
 
     def __repr__(self) -> str:
-        return f"FakeItem({self.name!r})"
+        return f"FakeItem({self.name!r}, tag={self.tag!r})"
+
+
+# An element is either a bare name or a (name, tag) pair, where the tag keeps
+# same-named elements distinguishable.
+# Tuple, not tuple: this alias is evaluated at import time, and PEP 585
+# subscripting of builtins only works from Python 3.9 onwards.
+ElementSpec = Union[str, Tuple[str, str]]
+
+
+def _as_item(spec: ElementSpec) -> FakeItem:
+    """Build a FakeItem from a bare name or a (name, tag) pair."""
+    if isinstance(spec, tuple):
+        return FakeItem(*spec)
+    return FakeItem(spec)
 
 
 class FakeCollectionApp:
     """Minimal stand-in for the COM collection behind a Photoshop collection."""
 
-    def __init__(self, names: list[str]) -> None:
-        self._names = list(names)
+    def __init__(self, items: list[ElementSpec]) -> None:
+        self._items = [_as_item(spec) for spec in items]
         self.remove_all_calls = 0
         self.add_calls = 0
         self.flagged_as_method: set[str] = set()
@@ -58,35 +82,36 @@ class FakeCollectionApp:
         self.flagged_as_method.update(names)
 
     def __iter__(self):
-        return iter([FakeItem(name) for name in self._names])
+        # Yield the stored instances so callers observe element identity.
+        return iter(self._items)
 
     def __len__(self) -> int:
-        return len(self._names)
+        return len(self._items)
 
     def __getitem__(self, key: Any) -> FakeItem:
         if isinstance(key, str):
-            for name in self._names:
-                if name == key:
-                    return FakeItem(name)
+            for item in self._items:
+                if item.name == key:
+                    return item
             # Photoshop raises a COM ArgumentError for unknown names.
             raise ArgumentError()
-        return FakeItem(self._names[key])
+        return self._items[key]
 
     def item(self, index: int) -> FakeItem:
-        return FakeItem(self._names[index])
+        return self._items[index]
 
     def add(self) -> FakeItem:
         self.add_calls += 1
-        name = f"added_{self.add_calls}"
-        self._names.append(name)
-        return FakeItem(name)
+        item = FakeItem(f"added_{self.add_calls}")
+        self._items.append(item)
+        return item
 
     def removeAll(self) -> None:
         self.remove_all_calls += 1
-        self._names.clear()
+        self._items.clear()
 
 
-def _build(cls, names: list[str]):
+def _build(cls, items: list[ElementSpec]):
     """Instantiate a collection class and attach a fake COM collection to it.
 
     ``Photoshop.__init__`` is bypassed on purpose: it needs a live COM automation
@@ -97,27 +122,27 @@ def _build(cls, names: list[str]):
     collection._app_id = ""
     collection._has_parent = False
     collection.adobe = None
-    collection.app = FakeCollectionApp(names)
+    collection.app = FakeCollectionApp(items)
     collection._resolution_log = []
     collection.type = FakeItem
     return collection
 
 
-def make_collection(names: list[str]) -> BaseCollection[FakeItem, Any]:
+def make_collection(items: list[ElementSpec]) -> BaseCollection[FakeItem, Any]:
     """Build a BaseCollection backed by a fake COM collection."""
-    return _build(BaseCollection, names)
+    return _build(BaseCollection, items)
 
 
-def make_named_collection(names: list[str]) -> CollectionOfNamedObjects[FakeItem, Any]:
-    return _build(CollectionOfNamedObjects, names)
+def make_named_collection(items: list[ElementSpec]) -> CollectionOfNamedObjects[FakeItem, Any]:
+    return _build(CollectionOfNamedObjects, items)
 
 
-def make_removable_collection(names: list[str]) -> CollectionOfRemovables[FakeItem, Any]:
-    return _build(CollectionOfRemovables, names)
+def make_removable_collection(items: list[ElementSpec]) -> CollectionOfRemovables[FakeItem, Any]:
+    return _build(CollectionOfRemovables, items)
 
 
-def make_addable_collection(names: list[str]) -> CollectionWithAdd[FakeItem, Any]:
-    return _build(CollectionWithAdd, names)
+def make_addable_collection(items: list[ElementSpec]) -> CollectionWithAdd[FakeItem, Any]:
+    return _build(CollectionWithAdd, items)
 
 
 class TestBaseCollection:
@@ -186,8 +211,25 @@ class TestCollectionOfNamedObjects:
         assert collection.getByName("anything") is None
 
     def test_get_by_name_returns_first_match(self) -> None:
-        collection = make_named_collection(["dup", "dup"])
-        assert collection.getByName("dup").name == "dup"
+        """getByName returns the FIRST match, as its docstring promises.
+
+        Both elements share the name, so only the tag tells them apart; without
+        it a last-match regression would look identical to a first-match.
+        """
+        collection = make_named_collection([("dup", "first"), ("dup", "second")])
+        found = collection.getByName("dup")
+        assert found is not None
+        assert found.tag == "first"
+
+    def test_get_by_name_does_not_match_prefix(self) -> None:
+        """getByName matches the whole name, so a prefix is not a hit."""
+        collection = make_named_collection(["alpha"])
+        assert collection.getByName("alph") is None
+
+    def test_get_by_name_is_case_sensitive(self) -> None:
+        """getByName compares names case-sensitively."""
+        collection = make_named_collection(["alpha"])
+        assert collection.getByName("ALPHA") is None
 
 
 class TestCollectionOfRemovables:
