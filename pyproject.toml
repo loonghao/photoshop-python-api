@@ -115,3 +115,9 @@ import-heading.future = "Import future modules"
 import-heading.standard-library = "Import built-in modules"
 import-heading.third-party = "Import third-party modules"
 import-heading.first-party = "Import local modules"
+
+[tool.pytest.ini_options]
+# Also collect the manual tests so they are visible to CI. They drive a real
+# Photoshop instance and are skipped automatically when none is installed.
+python_files = ["test_*.py", "*_test.py", "manual_test_*.py"]
+testpaths = ["test"]

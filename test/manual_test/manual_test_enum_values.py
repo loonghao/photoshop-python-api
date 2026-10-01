@@ -1,9 +1,9 @@
+# Import future modules
 from __future__ import annotations
 
 # Import local modules
 from photoshop.api.application import Application
 from photoshop.api.enumerations import FontSize
-
 
 app = Application()
 prefs = app.preferences

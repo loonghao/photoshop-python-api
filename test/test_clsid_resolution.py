@@ -17,7 +17,6 @@ from photoshop.api import _clsid
 from photoshop.api import _core
 from photoshop.api.errors import PhotoshopPythonAPIError
 
-
 PS_BIN = os.path.join("C:", os.sep, "Adobe", "Photoshop 2024")
 PS_BETA_BIN = os.path.join("C:", os.sep, "Adobe", "Photoshop 2024 Beta")
 PHOTOSHOP_EXE = os.path.join(PS_BIN, "Photoshop.exe")

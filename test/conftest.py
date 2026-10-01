@@ -4,6 +4,11 @@ import os
 # Import third-party modules
 import pytest
 
+# Scripts, not tests: they execute their side effects at import time (launching
+# Photoshop and running every file under examples/), so collecting them would run
+# them on every pytest invocation.
+collect_ignore_glob = ["*/manual_test_all_examples.py", "*/manual_test_enum_values.py"]
+
 
 @pytest.fixture()
 def photoshop_app():

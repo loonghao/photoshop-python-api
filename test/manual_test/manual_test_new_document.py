@@ -1,3 +1,4 @@
+# Import future modules
 from __future__ import annotations
 
 # Import built-in modules
@@ -92,13 +93,13 @@ class TestNewDocument:
     def test_layer_iteration(self):
         layer_set = self.doc.layerSets.add()
         layers = list(self.doc.layers)
-        assert any((layer for layer in layers if isinstance(layer, LayerSet)))
-        assert any((layer for layer in layers if isinstance(layer, ArtLayer)))
+        assert any(layer for layer in layers if isinstance(layer, LayerSet))
+        assert any(layer for layer in layers if isinstance(layer, ArtLayer))
 
         layer_set.artLayers.add()
         layer_set.layerSets.add()
-        assert any((layer for layer in layer_set if isinstance(layer, LayerSet)))
-        assert any((layer for layer in layer_set if isinstance(layer, ArtLayer)))
+        assert any(layer for layer in layer_set if isinstance(layer, LayerSet))
+        assert any(layer for layer in layer_set if isinstance(layer, ArtLayer))
 
     def test_layer_parent(self):
         layer_set = self.doc.layerSets.add()
