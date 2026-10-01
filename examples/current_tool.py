@@ -13,6 +13,8 @@ Key concepts:
 - Active tool state
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -22,4 +24,4 @@ with Session() as ps:
     current = ps.app.currentTool
     
     # Print current tool name
-    ps.echo(f"Current tool: {current}")
+    print(f"Current tool: {current}")

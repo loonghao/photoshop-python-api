@@ -13,6 +13,8 @@ Key concepts:
 - Default colors
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -34,10 +36,10 @@ with Session() as ps:
     ps.app.backgroundColor = bg_color
     
     # Print current colors
-    ps.echo(f"Foreground RGB: {ps.app.foregroundColor.rgb.red}, "
+    print(f"Foreground RGB: {ps.app.foregroundColor.rgb.red}, "
             f"{ps.app.foregroundColor.rgb.green}, "
             f"{ps.app.foregroundColor.rgb.blue}")
     
-    ps.echo(f"Background RGB: {ps.app.backgroundColor.rgb.red}, "
+    print(f"Background RGB: {ps.app.backgroundColor.rgb.red}, "
             f"{ps.app.backgroundColor.rgb.green}, "
             f"{ps.app.backgroundColor.rgb.blue}")

@@ -11,6 +11,8 @@ Key concepts:
 - Active document context
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -20,5 +22,5 @@ with Session() as ps:
     doc = ps.app.activeDocument
     for layer in doc.layers:
         if layer.name == "example layer":
-            ps.echo(layer.name)
+            print(layer.name)
             break

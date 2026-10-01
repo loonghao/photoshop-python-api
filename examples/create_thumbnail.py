@@ -4,8 +4,11 @@ You can use the thumbnail image to upload to Shotgun or Ftrack.
 
 """
 
+
+from __future__ import annotations
 # Import built-in modules
 import os
+
 from tempfile import mkdtemp
 
 # Import local modules

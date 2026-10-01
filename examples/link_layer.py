@@ -13,6 +13,8 @@ Key concepts:
 - Link status
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -35,9 +37,9 @@ with Session() as ps:
     layer2.link(layer3)
     
     # Check link status
-    ps.echo(f"Layer 1 linked: {layer1.linked}")
-    ps.echo(f"Layer 2 linked: {layer2.linked}")
-    ps.echo(f"Layer 3 linked: {layer3.linked}")
+    print(f"Layer 1 linked: {layer1.linked}")
+    print(f"Layer 2 linked: {layer2.linked}")
+    print(f"Layer 3 linked: {layer3.linked}")
     
     # Move linked layers together
     layer1.translate(100, 100)

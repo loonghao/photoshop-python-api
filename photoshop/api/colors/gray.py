@@ -1,5 +1,8 @@
 """Defines a gray color, used in the `SolidColor` object."""
 
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api._core import Photoshop
 
@@ -9,7 +12,7 @@ class GrayColor(Photoshop):
 
     object_name = "GrayColor"
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
     @property
@@ -18,6 +21,6 @@ class GrayColor(Photoshop):
         return self.app.gray
 
     @gray.setter
-    def gray(self, value: float):
+    def gray(self, value: float) -> None:
         """The gray value."""
         self.app.gray = value

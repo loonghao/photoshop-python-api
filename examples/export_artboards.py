@@ -4,8 +4,11 @@ This script demonstrates how to:
 1. Identify artboard layers in a PSD file
 2. Export each artboard as a separate image
 """
+
+from __future__ import annotations
 # Import built-in modules
 import os.path
+
 from pathlib import Path
 from typing import List
 from typing import Union

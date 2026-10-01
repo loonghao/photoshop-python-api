@@ -1,7 +1,10 @@
 """Add slate information dynamically."""
 
+
+from __future__ import annotations
 # Import built-in modules
 import os
+
 from tempfile import mkdtemp
 
 # Import local modules

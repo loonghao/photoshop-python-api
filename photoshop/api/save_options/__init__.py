@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api.save_options.bmp import BMPSaveOptions
 from photoshop.api.save_options.eps import EPSSaveOptions
@@ -9,7 +12,6 @@ from photoshop.api.save_options.png import PNGSaveOptions
 from photoshop.api.save_options.psd import PhotoshopSaveOptions
 from photoshop.api.save_options.tag import TargaSaveOptions
 from photoshop.api.save_options.tif import TiffSaveOptions
-
 
 __all__ = [
     BMPSaveOptions.__name__,

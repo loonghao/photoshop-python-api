@@ -1,29 +1,37 @@
 """This class provides all photoshop API core functions."""
+
+# Import future modules
+from __future__ import annotations
+
 # Import built-in modules
+import os
+import platform
+import winreg
+
 from contextlib import suppress
 from functools import cached_property
 from logging import CRITICAL
 from logging import DEBUG
 from logging import Logger
 from logging import getLogger
-import os
-import platform
+from typing import TYPE_CHECKING
 from typing import Any
-from typing import List
-from typing import Optional
-import winreg
 
 # Import third-party modules
 from comtypes import COMError
 from comtypes.client import CreateObject
 from comtypes.client.dynamic import _Dispatch as FullyDynamicDispatch
-from comtypes.client.lazybind import Dispatch
 
 # Import local modules
 from photoshop.api._clsid import resolution_failure_reason
 from photoshop.api._clsid import resolve_photoshop_class_id
 from photoshop.api.constants import PHOTOSHOP_VERSION_MAPPINGS
+from photoshop.api.enumerations import JavaScriptExecutionMode
 from photoshop.api.errors import PhotoshopPythonAPIError
+
+if TYPE_CHECKING:
+    # Import local modules
+    from photoshop.api.application import Application
 
 
 class Photoshop:
@@ -33,7 +41,7 @@ class Photoshop:
     _reg_path = "SOFTWARE\\Adobe\\Photoshop"
     object_name: str = "Application"
 
-    def __init__(self, ps_version: Optional[str] = None, parent: Any = None):
+    def __init__(self, ps_version: str | None = None, parent: Photoshop | FullyDynamicDispatch | None = None):
         """
         Initialize the Photoshop core object.
 
@@ -43,10 +51,14 @@ class Photoshop:
         """
         # Establish the initial app and program ID
         ps_version = os.getenv("PS_VERSION", ps_version)
-        self._app_id = PHOTOSHOP_VERSION_MAPPINGS.get(ps_version, "")
-        self._has_parent, self.adobe, self.app = False, None, None
+        self._app_id = PHOTOSHOP_VERSION_MAPPINGS.get(ps_version, "") if ps_version else ""
+        self._has_parent = False
+        self.adobe: FullyDynamicDispatch | None = None
+        self.app: Any = None
         # Every COM lookup attempted while resolving this object, kept for error reporting.
-        self._resolution_log: List[str] = []
+        self._resolution_log: list[str] = []
+        # Resolve into a local name so the COM passthrough below never sees a missing app.
+        app: FullyDynamicDispatch | None = None
 
         # Store current photoshop version
         if ps_version:
@@ -54,41 +66,48 @@ class Photoshop:
 
         # Establish the application object using provided version ID
         if self.app_id:
-            self.app = self._get_application_object([self.app_id])
-            if not self.app:
+            app = self._get_application_object([self.app_id])
+            if not app:
                 # Attempt unsuccessful
                 self._logger.debug(
                     f"Unable to retrieve Photoshop object '{self.typename}' using version '{ps_version}'."
                 )
 
         # Look for version ID in registry data
-        if not self.app:
+        if not app:
             versions = self._get_photoshop_versions()
-            self.app = self._get_application_object(versions)
-            if not self.app:
+            app = self._get_application_object(versions)
+            if not app:
                 # All attempts exhausted
                 raise PhotoshopPythonAPIError(self._build_resolution_error())
 
         # Add the parent app object
         if parent:
-            self.adobe = self.app
-            self.app = parent
+            self.adobe = app
+            self.app = parent.app if isinstance(parent, Photoshop) else parent
             self._has_parent = True
+        else:
+            self.app = app
 
-    def __repr__(self):
-        return self
-
-    def __call__(self, *args, **kwargs):
+    def __call__(self):
         return self.app
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__class__.__name__} <{self.program_name}>"
 
-    def __getattribute__(self, item):
-        try:
-            return super().__getattribute__(item)
-        except AttributeError:
-            return getattr(self.app, item)
+    if not TYPE_CHECKING:
+
+        def __getattribute__(self, name):
+            """Fall back to the wrapped COM object for members the wrapper does not declare.
+
+            Kept out of ``TYPE_CHECKING`` so static type checkers only see the explicitly
+            annotated surface shipped with ``py.typed``, while runtime access keeps working
+            for COM members that have not been hand-declared yet.
+            """
+            try:
+                return super().__getattribute__(name)
+            except AttributeError:
+                return getattr(self.app, name)
 
     """
     * Debug Logger
@@ -146,14 +165,21 @@ class Photoshop:
         return self._app_id
 
     @app_id.setter
-    def app_id(self, value: str):
+    def app_id(self, value: str) -> None:
         self._app_id = value
+
+    @property
+    def application(self) -> Application:
+        # Import local modules
+        from photoshop.api.application import Application
+
+        return Application(parent=self.app.application)
 
     """
     * Private Methods
     """
 
-    def _flag_as_method(self, *names: str):
+    def _flag_as_method(self, *names: str) -> None:
         """
         * This is a hack for Photoshop's broken COM implementation.
         * Photoshop does not implement 'IDispatch::GetTypeInfo', so when
@@ -166,7 +192,7 @@ class Photoshop:
         if isinstance(self.app, FullyDynamicDispatch):
             self.app._FlagAsMethod(*names)
 
-    def _get_photoshop_versions(self) -> List[str]:
+    def _get_photoshop_versions(self) -> list[str]:
         """Retrieve a list of Photoshop version ID's from registry."""
         with suppress(OSError, IndexError):
             key = self._open_key(self._reg_path)
@@ -177,7 +203,7 @@ class Photoshop:
         self._logger.debug("Unable to find Photoshop version number in HKEY_LOCAL_MACHINE registry!")
         return []
 
-    def _get_application_object(self, versions: List[str] = None) -> Optional[Dispatch]:
+    def _get_application_object(self, versions: list[str] | None = None) -> FullyDynamicDispatch:
         """
         Try each version string until a valid Photoshop application Dispatch object is returned.
 
@@ -193,14 +219,16 @@ class Photoshop:
         Raises:
             OSError: If a Dispatch object wasn't resolved.
         """
-        for v in versions:
-            self.app_id = v
-            with suppress(OSError):
-                return CreateObject(self.program_name, dynamic=True)
-            self._resolution_log.append(f"Program ID '{self.program_name}' could not be created.")
+        if versions:
+            for v in versions:
+                self.app_id = v
+                try:
+                    return CreateObject(self.program_name, dynamic=True)
+                except OSError:
+                    self._resolution_log.append(f"Program ID '{self.program_name}' could not be created.")
         return self._create_object_from_class_id()
 
-    def _create_object_from_class_id(self) -> Optional[Dispatch]:
+    def _create_object_from_class_id(self) -> FullyDynamicDispatch | None:
         """
         Create the automation object straight from its CLSID.
 
@@ -262,9 +290,14 @@ class Photoshop:
         """str: The absolute scripts path of Photoshop."""
         return os.path.join(self.presets_path, "Scripts")
 
-    def eval_javascript(self, javascript: str, Arguments: Any = None, ExecutionMode: Any = None) -> str:
+    def eval_javascript(
+        self,
+        javascript: str,
+        Arguments: list[Any] | tuple[Any] | None = None,
+        ExecutionMode: JavaScriptExecutionMode | None = None,
+    ) -> str:
         """Instruct the application to execute javascript code."""
-        executor = self.adobe if self._has_parent else self.app
+        executor = self.adobe if self.adobe else self.app
         return executor.doJavaScript(javascript, Arguments, ExecutionMode)
 
     """

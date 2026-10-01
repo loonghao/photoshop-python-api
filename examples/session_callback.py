@@ -13,6 +13,8 @@ Key concepts:
 - Event processing
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -23,4 +25,4 @@ def on_close():
 
 
 with Session(callback=on_close) as ps:
-    ps.echo("Working in session...")
+    print("Working in session...")

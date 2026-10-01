@@ -1,6 +1,9 @@
+from __future__ import annotations
+
 # Import local modules
-from photoshop import Session
 import photoshop.api as ps
+
+from photoshop import Session
 
 
 # style 1
@@ -9,4 +12,4 @@ app.load("your/psd/or/psb/file_path.psd")
 
 # style 2
 with Session("your/psd/or/psb/file_path.psd", action="open") as ps:
-    ps.echo(ps.active_document.name)
+    print(ps.active_document.name)

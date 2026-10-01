@@ -1,3 +1,6 @@
+# Import future modules
+from __future__ import annotations
+
 # Import local modules
 from photoshop.api._core import Photoshop
 
@@ -7,29 +10,29 @@ class LabColor(Photoshop):
 
     object_name = "LabColor"
 
-    def __init__(self, parent):
+    def __init__(self, parent: Photoshop | None = None) -> None:
         super().__init__(parent=parent)
 
     @property
-    def A(self):
-        return round(self.app.A)
+    def A(self) -> float:
+        return self.app.A
 
     @A.setter
-    def A(self, value):
+    def A(self, value: float) -> None:
         self.app.A = value
 
     @property
-    def B(self):
-        return round(self.app.B)
+    def B(self) -> float:
+        return self.app.B
 
     @B.setter
-    def B(self, value):
+    def B(self, value: float) -> None:
         self.app.B = value
 
     @property
-    def L(self):
-        return round(self.app.L)
+    def L(self) -> float:
+        return self.app.L
 
     @L.setter
-    def L(self, value):
+    def L(self, value: float) -> None:
         self.app.L = value

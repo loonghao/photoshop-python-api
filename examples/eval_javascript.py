@@ -13,6 +13,8 @@ Key concepts:
 - Command execution
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -21,4 +23,4 @@ with Session() as ps:
     # Execute JavaScript command
     js_code = "app.documents.length"
     result = ps.app.eval_javascript(js_code)
-    ps.echo(f"Number of open documents: {result}")
+    print(f"Number of open documents: {result}")

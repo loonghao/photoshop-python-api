@@ -11,6 +11,8 @@ Key concepts:
 - Error handling for missing documents
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -19,7 +21,7 @@ with Session() as ps:
     # Try to get document named 'test.psd'
     for doc in ps.app.documents:
         if doc.name == "test.psd":
-            ps.echo(doc.name)
+            print(doc.name)
             break
     else:
-        ps.echo("Document not found!")
+        print("Document not found!")

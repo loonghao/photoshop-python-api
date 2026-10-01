@@ -12,6 +12,8 @@ The script will:
 - Create a new layer and rename it
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -28,9 +30,9 @@ with Session() as ps:
         docRef.artLayers.add()
 
     # Display current active layer name
-    ps.echo(docRef.activeLayer.name)
+    print(docRef.activeLayer.name)
     
     # Create and rename a new layer
     new_layer = docRef.artLayers.add()
-    ps.echo(new_layer.name)
+    print(new_layer.name)
     new_layer.name = "test"

@@ -9,10 +9,11 @@ References:
 
 """
 
-# Import third-party modules
+
+from __future__ import annotations
+# Import local modules
 import examples._psd_files as psd  # Import from examples.
 
-# Import local modules
 from photoshop import Session
 
 

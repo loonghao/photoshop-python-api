@@ -7,8 +7,11 @@ Just like you manually in Script> Script Events Manager to enable the event.
 
 """
 
+
+from __future__ import annotations
 # Import built-in modules
 import os
+
 from tempfile import mkdtemp
 
 # Import local modules

@@ -13,6 +13,8 @@ Key concepts:
 - Selection modification
 """
 
+
+from __future__ import annotations
 # Import local modules
 from photoshop import Session
 
@@ -54,5 +56,5 @@ with Session() as ps:
     doc.selection.combine(doc.channels[-1], ps.SelectionType.ExtendSelection)
     
     # Clean up - delete added channels
-    doc.channels[-1].remove()
-    doc.channels[-1].remove()
+    doc.channels[-1].delete()
+    doc.channels[-1].delete()

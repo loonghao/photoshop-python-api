@@ -12,7 +12,6 @@ from photoshop.api import _core
 from photoshop.api._core import Photoshop
 from photoshop.api.errors import PhotoshopPythonAPIError
 
-
 ACTION_DESCRIPTOR_CLSID = "{B907FC78-A0EB-4DCA-BC8C-4E36718E1DC9}"
 
 
