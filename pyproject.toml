@@ -1,9 +1,12 @@
-[project]
+[tool.poetry]
 name = "photoshop-python-api"
 version = "0.24.2"
 description = "Python API for Photoshop."
+homepage = "https://github.com/loonghao/photoshop-python-api"
+repository = "https://github.com/loonghao/photoshop-python-api"
+documentation = "https://photoshop-python-api.readthedocs.io/en/master/"
 keywords = ["python-api, photoshop-python-api", "photoshop", "python"]
-authors = [{ name = "longhao", email = "hal.long@outlook.com" }]
+authors = ["longhao <hal.long@outlook.com>"]
 license = "MIT"
 readme = "README.md"
 classifiers = [
@@ -21,20 +24,13 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
 ]
-requires-python = ">=3.8,<4.0"
-
-[project.urls]
-homepage = "https://github.com/loonghao/photoshop-python-api"
-repository = "https://github.com/loonghao/photoshop-python-api"
-documentation = "https://photoshop-python-api.readthedocs.io/en/master/"
-
-[tool.poetry]
 packages = [{ include = "photoshop" }]
 
 [tool.poetry.build]
 generate-setup-file = false
 
 [tool.poetry.dependencies]
+python = ">=3.8,<4.0"
 wheel = [
     { version = "^0.46.3", python = ">=3.9" },
     { version = "^0.45.0", python = "<3.9" },
