@@ -21,8 +21,6 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
 ]
 packages = [{ include = "photoshop" }]
 
@@ -45,7 +43,7 @@ commitizen = "^2.17.8"
 pre-commit = { version = "^4.6.0", python = ">=3.10" }
 codecov = "^2.1.11"
 pylint = { version = "^4.0.5", python = ">=3.10" }
-ruff = "^0.15.17"
+ruff = "^0.16.9"
 pytest = [
     { version = "^9.0.2", python = ">=3.10" },
     { version = "^7.4.4", python = "<3.10" },
