@@ -4,6 +4,23 @@
 
 - **deps**: update dependency comtypes to v1.4.12
 
+## [0.25.0](https://github.com/loonghao/photoshop-python-api/compare/v0.24.2...v0.25.0) (2026-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* 
+
+### Features
+
+* expand type annotations and add path item handling classes ([869c6a4](https://github.com/loonghao/photoshop-python-api/commit/869c6a46643d6143212e677ae1b428048e38c42f))
+
+
+### Bug Fixes
+
+* **core:** fall back to CLSID when Photoshop publishes no versioned ProgID ([b746bee](https://github.com/loonghao/photoshop-python-api/commit/b746bee98957a2edce3c657a971dfbca8b3366c0))
+* **examples:** correct selection stroke example API usage ([2e76334](https://github.com/loonghao/photoshop-python-api/commit/2e7633480c6b4e6ee46c6691a9a7764bd582f21f))
+
 ## v0.24.1 (2025-05-07)
 
 ### Fix

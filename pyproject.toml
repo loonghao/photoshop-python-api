@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "photoshop-python-api"
-version = "0.24.2"
+version = "0.25.0"
 description = "Python API for Photoshop."
 homepage = "https://github.com/loonghao/photoshop-python-api"
 repository = "https://github.com/loonghao/photoshop-python-api"
