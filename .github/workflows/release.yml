@@ -191,11 +191,30 @@ jobs:
       - uses: googleapis/release-please-action@v5
         id: release
         with:
-          # A PAT is required: with GITHUB_TOKEN, GitHub does not fire
-          # pull_request workflows for the release PR, so it would carry no CI
-          # status, and the tag/release it creates cannot trigger other
-          # workflows either.
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.PERSONAL_ACCESS_TOKEN }}
+          # GITHUB_TOKEN, not a PAT: both RELEASE_PLEASE_TOKEN (never existed)
+          # and PERSONAL_ACCESS_TOKEN (last rotated 2021-05-29) are dead, and
+          # every run of this workflow failed with "Bad credentials" because of
+          # it.
+          #
+          # Known tradeoff, accepted deliberately. A PR created or updated by a
+          # workflow using GITHUB_TOKEN still creates `pull_request` runs, but
+          # they stop at "require approval" instead of running: a user with
+          # write access must approve them on the pull request page. So the
+          # release PR is not CI-less — `Python package`, `Import Test` and
+          # `Version Consistency` all report on it — but their runs wait for a
+          # human to approve them, and main has no branch protection that would
+          # block merging before that happens.
+          #
+          # Release step for maintainers: when the "chore: release vX.Y.Z" PR
+          # opens, approve its pending `pull_request` runs and confirm they are
+          # green before merging it.
+          #
+          # Making those runs start automatically instead requires a PAT or a
+          # GitHub App token (both are exempt from the approval rule). Neither
+          # is available here: RELEASE_PLEASE_TOKEN was never created and
+          # PERSONAL_ACCESS_TOKEN is revoked. Rotating or minting one is the
+          # repository owner's call, not something this workflow can do.
+          token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
