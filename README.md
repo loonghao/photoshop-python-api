@@ -309,3 +309,4 @@ One way to view the COM API structure is to use Visual Studio.
 If the libraries aren't visible in the COM tab make sure you have the .NET desktop development workload installed. Other things you may try are running Photoshop once as administrator and reinstalling Photoshop and/or your PC. The object library is defined usually in */your/path/to/Adobe Photoshop \<version\>/Required/Plug-ins/Extensions/ScriptingSupport.8li*
 
 The [VBS reference 2020](https://github.com/Adobe-CEP/CEP-Resources/blob/master/Documentation/Product%20specific%20Documentation/Photoshop%20Scripting/photoshop-vbs-ref-2020.pdf) is also quite trustworthy, since Adobe isn't actively developing the COM API anymore.
+
