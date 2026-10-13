@@ -175,10 +175,64 @@ jobs:
               sys.exit(main())
           PY
 
+  # ── llms.txt / llms-full.txt — regenerate before the release is cut ───────
+  # Generated files, never hand-edited. Runs ahead of release-please so the
+  # version it stamps into llms.txt is the one about to be released. When the
+  # result differs from what is committed it opens (or updates) its own PR
+  # instead of pushing to main, so the content is reviewable like any other
+  # change and never silently rewrites the release branch.
+  #
+  # Non-blocking by design: `release-please` uses `always()` below, so a failure
+  # here reports red but does not hold the release hostage. The ordering is what
+  # matters, not the gate.
+  llms-txt:
+    needs: [preflight]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the generation branch
+      pull-requests: write # open/update the PR
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # fetch-depth 0: the generator stamps the version with
+          # `git describe --tags`, which needs the tag history.
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate llms.txt and llms-full.txt
+        run: python scripts/generate_llms.py
+
+      # No-op when the output already matches what is committed: the action
+      # skips PR creation entirely when the branch has no diff, which is what
+      # keeps this from opening an empty PR on every push to main.
+      - name: Open a pull request when the generated files changed
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: docs/update-llms-txt
+          title: "docs: regenerate llms.txt and llms-full.txt"
+          commit-message: "docs: regenerate llms.txt and llms-full.txt"
+          body: |
+            Automated regeneration by the `llms-txt` job in the Release workflow.
+
+            `scripts/generate_llms.py` produced output that differs from what is
+            committed, which means a source it reads (README, `examples/`, or the
+            package version) changed. Review the diff and merge; no code is
+            affected.
+
+            To regenerate locally: `python scripts/generate_llms.py`.
+          delete-branch: true
+
   # ── Release Please — creates/updates the release PR, then the release ─────
   release-please:
-    needs: [preflight]
-    if: needs.preflight.outputs.releasable == 'true'
+    needs: [preflight, llms-txt]
+    # `always()` keeps a failed llms regeneration from blocking the release; the
+    # job above only orders itself ahead of this one, it does not gate it.
+    if: always() && needs.preflight.outputs.releasable == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write # tag + GitHub Release
