@@ -5,15 +5,16 @@ documents worth reading; ``llms-full.txt`` concatenates the same content
 inline so a model can consume it in one request without fetching anything.
 
 Both files are generated, never hand-edited. The ``llms-txt`` job in
-``.github/workflows/llms-txt.yml`` regenerates them and opens a pull request
+``.github/workflows/release.yml`` regenerates them and opens a pull request
 whenever the result differs from what is committed.
 
 Run it locally with::
 
     python scripts/generate_llms.py
 
-Pass ``--check`` to exit non-zero when the committed files are stale, which
-is how the CI job decides whether a pull request is needed.
+Pass ``--check`` to exit non-zero when the committed files are stale. The
+``Python package`` workflow runs that on every pull request, so drift fails
+the build; the ``llms-txt`` job only opens a pull request to report it.
 """
 
 # Import future modules
@@ -175,7 +176,14 @@ def public_modules() -> list[str]:
 
 
 def version() -> str:
-    """Return the current package version from git, falling back to pyproject."""
+    """Return the newest released version, falling back to pyproject.
+
+    This reads the most recent tag, which is the version that has *already*
+    been published rather than the one a pending release is about to cut: the
+    ``llms-txt`` job runs ahead of release-please, so no tag for the upcoming
+    version exists yet. The generated files therefore carry the last released
+    version until the release lands and the job runs again.
+    """
     try:
         result = subprocess.run(
             ["git", "describe", "--tags", "--abbrev=0"],

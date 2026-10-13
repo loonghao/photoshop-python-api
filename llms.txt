@@ -58,3 +58,5 @@ with Session(action='new_document') as ps:
 
 - [Changelog](https://github.com/loonghao/photoshop-python-api/blob/main/CHANGELOG.md) — release history.
 - [Issue tracker](https://github.com/loonghao/photoshop-python-api/issues) — known problems and questions.
+
+stale drift injected for CI wiring test
