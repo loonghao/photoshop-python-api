@@ -377,7 +377,7 @@ def build_links() -> list[Link]:
 
 
 def without_version_line(text: str) -> str:
-    """Return `text` with every ``Version:`` line removed.
+    """Return `text` with the header ``Version:`` line removed.
 
     Used only when comparing, never when writing. The stamped version comes
     from the newest git tag, so it changes the moment a release lands, while
@@ -388,8 +388,27 @@ def without_version_line(text: str) -> str:
     The version is still regenerated and still committed: the `llms-txt` job
     opens a pull request for it, which is how it converges. This function only
     keeps the drift *gate* from firing on version lag alone.
+
+    Only the header line is removed, not every line starting with
+    ``Version: ``. Both files embed the README and the example scripts, so a
+    body line that happens to begin that way must still count as content:
+    stripping all of them would let real drift through the gate unnoticed. The
+    header is the run of lines before the first ``## `` heading, and the
+    generator writes exactly one ``Version: `` line there.
     """
-    return "\n".join(line for line in text.splitlines() if not line.startswith("Version: "))
+    lines = text.splitlines()
+    for index, line in enumerate(lines):
+        if line.startswith("## "):
+            # Reached the body: anything below is content, including any
+            # `Version: ` line it may contain.
+            header = lines[:index]
+            break
+    else:
+        header = lines
+        index = len(lines)
+
+    header = [line for line in header if not line.startswith("Version: ")]
+    return "\n".join(header + lines[index:])
 
 
 def is_current(name: str, expected: str) -> bool:
