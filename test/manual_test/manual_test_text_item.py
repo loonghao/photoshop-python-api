@@ -1,6 +1,5 @@
 """"""
 
-
 # Import future modules
 from __future__ import annotations
 
@@ -21,9 +20,7 @@ class TestTextItem:
     @pytest.fixture(autouse=True)
     def setup(self, psd_file):
         """Setup for current test."""
-        self.session = Session(
-            file_path=psd_file("textitem"), action="open", auto_close=True
-        )
+        self.session = Session(file_path=psd_file("textitem"), action="open", auto_close=True)
         self.session.run_action()
         doc = self.session.active_document
         layer = doc.activeLayer

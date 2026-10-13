@@ -35,12 +35,8 @@ class TestPathItems:
         yield
         self.session.close()
 
-    def _create_path(
-        self, name: str, point_anchors: Sequence[tuple[float, float]]
-    ) -> PathItem:
-        point_infos: list[PathPointInfo] = [
-            PathPointInfo(anchor=anchor) for anchor in point_anchors
-        ]
+    def _create_path(self, name: str, point_anchors: Sequence[tuple[float, float]]) -> PathItem:
+        point_infos: list[PathPointInfo] = [PathPointInfo(anchor=anchor) for anchor in point_anchors]
 
         last_anchor = point_anchors[-1]
         left = (last_anchor[0] + 1, last_anchor[1])

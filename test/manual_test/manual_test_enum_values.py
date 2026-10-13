@@ -12,4 +12,4 @@ prefs.textFontSize = FontSize.Medium
 print(prefs.textFontSize)
 prefs.textFontSize = FontSize.Small
 print(prefs.textFontSize)
-#app.eval_javascript("alert(app.preferences.textFontSize)")
+# app.eval_javascript("alert(app.preferences.textFontSize)")

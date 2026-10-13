@@ -177,14 +177,22 @@ jobs:
 
   # ── llms.txt / llms-full.txt — regenerate before the release is cut ───────
   # Generated files, never hand-edited. Runs ahead of release-please so the
-  # version it stamps into llms.txt is the one about to be released. When the
-  # result differs from what is committed it opens (or updates) its own PR
-  # instead of pushing to main, so the content is reviewable like any other
-  # change and never silently rewrites the release branch.
+  # files are up to date on the branch the release is cut from. When the result
+  # differs from what is committed it opens (or updates) its own PR instead of
+  # pushing to main, so the content is reviewable like any other change and
+  # never silently rewrites the release branch.
+  #
+  # The version stamped into llms.txt is the last *released* one: the generator
+  # reads the newest tag with `git describe --tags --abbrev=0`, and no tag for
+  # the pending release exists yet this early in the run. So each release is
+  # followed by one docs PR carrying the new version — harmless, because
+  # preflight treats `docs:` as release-neutral and does not cut a release for
+  # it.
   #
   # Non-blocking by design: `release-please` uses `always()` below, so a failure
   # here reports red but does not hold the release hostage. The ordering is what
-  # matters, not the gate.
+  # matters, not the gate. The `Python package` workflow is what makes stale
+  # generated files fail the build.
   llms-txt:
     needs: [preflight]
     runs-on: ubuntu-latest

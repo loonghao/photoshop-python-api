@@ -26,7 +26,18 @@ jobs:
     - name: Install ruff
       run: python -m pip install ruff==0.16.9
 
+    # Scope is explicit rather than `.` so the docstring baseline in
+    # pyproject.toml covers exactly these paths, and so generated or vendored
+    # trees cannot silently widen what CI lints. `test/` is included because
+    # the per-file-ignores baseline lists tiers for it; without it those tiers
+    # are dead configuration.
     - name: Run tests and linters
       run: |
-        poetry run ruff check photoshop
-        poetry run ruff format --check photoshop
+        poetry run ruff check photoshop test scripts
+        poetry run ruff format --check photoshop test scripts
+
+    # llms.txt and llms-full.txt are generated. The Release workflow opens a
+    # pull request when they drift, but that only reports — this is what makes
+    # a stale file fail the build.
+    - name: Check generated llms files are current
+      run: python scripts/generate_llms.py --check
