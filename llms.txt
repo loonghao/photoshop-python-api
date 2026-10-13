@@ -1,0 +1,60 @@
+# photoshop-python-api
+
+> A Python API for controlling Adobe Photoshop on Windows through COM
+> automation. It wraps Photoshop's COM interface so scripts can open
+> documents, drive layers, export images and run Photoshop actions from
+> plain Python.
+
+Version: 0.25.0
+Package: https://pypi.org/project/photoshop-python-api/
+Source: https://github.com/loonghao/photoshop-python-api
+Full documentation: https://photoshop-python-api.readthedocs.io/en/master/
+
+## Getting started
+
+Install with `pip install photoshop-python-api`. It requires Windows and
+a locally installed Adobe Photoshop. `photoshop.Session` is the entry
+point: it opens Photoshop if it is not running, gives you the active
+document, and exposes the API's classes and constants as attributes.
+
+```python
+from photoshop import Session
+
+with Session(action='new_document') as ps:
+    doc = ps.active_document
+    text_color = ps.SolidColor()
+    text_color.rgb.green = 255
+    new_text_layer = doc.artLayers.add()
+    new_text_layer.kind = ps.LayerKind.TextLayer
+    new_text_layer.textItem.contents = 'Hello, World!'
+    new_text_layer.textItem.position = [160, 167]
+    new_text_layer.textItem.size = 40
+    new_text_layer.textItem.color = text_color
+    options = ps.JPEGSaveOptions(quality=5)
+    jpg = 'd:/hello_world.jpg'
+    doc.saveAs(jpg, options, asCopy=True)
+```
+
+## Table of contents
+
+- [Getting started](https://github.com/loonghao/photoshop-python-api/blob/main/README.md) — installation, requirements and supported Photoshop versions
+- [API reference](https://photoshop-python-api.readthedocs.io/en/master/) — generated reference for every wrapper class
+- [Examples](https://github.com/loonghao/photoshop-python-api/tree/main/examples) — 59 runnable scripts covering common tasks
+- [Documentation source](https://github.com/loonghao/photoshop-python-api/tree/main/docs) — the MkDocs site sources
+
+## Conventions
+
+- All modules live under the `photoshop` package; `photoshop.api` exposes
+  the COM wrapper classes and `photoshop.api.enumerations` the constants.
+- The quickest route to a working script is `photoshop.Session`, which
+  exposes the API's classes and constants as attributes on the session
+  object so `import photoshop.api as ps` is not needed for every name.
+- Enumeration members use Photoshop's own names, so `ps.LayerKind.TextLayer`
+  maps to the constant Photoshop calls `LayerKind.TextLayer`.
+- Every example under `examples/` is runnable as a standalone script when
+  Photoshop is installed.
+
+## Optional
+
+- [Changelog](https://github.com/loonghao/photoshop-python-api/blob/main/CHANGELOG.md) — release history.
+- [Issue tracker](https://github.com/loonghao/photoshop-python-api/issues) — known problems and questions.
