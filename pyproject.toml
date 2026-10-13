@@ -92,24 +92,41 @@ extend-exclude = [
 # in CI, so only pycodestyle/pyflakes rules ever fired. Quote rules are enabled
 # here because the codebase already satisfies them.
 #
-# The docstring rules (D) are enabled but baselined per directory below: every
-# finding that exists today is recorded in `per-file-ignores`, so CI stays green
-# on the current tree while any NEW docstring debt is caught immediately. The
-# baseline is meant to shrink — pick a tier, fix it, delete its entry.
+# The docstring rules (D) are enabled, with the debt that existed when they were
+# switched on recorded per directory below. See the baseline block for what that
+# does and does not catch — the short version is that a rule listed for a file
+# stays silent for that file, including new violations of it.
 select = ["E", "W", "F", "Q", "I", "UP", "D"]
 
-# Selecting the whole D family makes ruff drop the mutually exclusive half of two
-# pairs on its own: D203 loses to D211, and D213 loses to D212. Both are reported
-# as warnings at startup, which is expected and not something to "fix".
+# The google convention selects a narrower set of pydocstyle rules than the
+# default (pep257): 665 findings tree-wide under google versus 864 under pep257,
+# 507 of them inside the CI lint scope. It also resolves the two mutually
+# exclusive rule pairs (D203/D211 and D212/D213), so ruff emits no warnings.
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 # ── Docstring baseline ──────────────────────────────────────────────────────
-# 864 findings existed when D was switched on. Each entry is a directory tier
-# plus the rules that tier currently violates; the number is the finding count
-# at baseline time. Deleting a rule from an entry makes that tier's existing
-# debt fail CI until it is fixed, which is the intended ratchet.
+# 665 findings existed when D was switched on (507 inside the CI lint scope).
+# Each entry is a directory tier plus the rules that tier currently violates;
+# the number is the finding count at baseline time.
+#
+# Read this before touching anything here. `per-file-ignores` is a UNION of
+# every pattern that matches a file, not a "most specific pattern wins" lookup:
+#
+#   - A rule listed for a file is ignored for that file, so NEW violations of
+#     that same rule are also ignored. This baseline stops the tree from going
+#     red; it does not stop new debt in already-baselined rules. Only violations
+#     of rules that are NOT listed for a file get caught.
+#   - Deleting a rule from an entry only tightens anything when no other
+#     matching entry still lists it. Every file under photoshop/ also matches
+#     "photoshop/**", so removing a rule from a narrower tier while the widest
+#     tier still lists it is a no-op. Tighten a rule by removing it from the
+#     widest tier that covers the files you just fixed.
 [tool.ruff.lint.per-file-ignores]
+# Ordered narrowest to widest, but order carries no meaning to ruff: matching
+# entries are unioned, so the widest entry below is the effective floor for
+# everything under photoshop/.
+#
 # Enum constant tables: one IntEnum class per Photoshop constant, 129 findings.
 "photoshop/api/enumerations.py" = ["D101"]
 # Save-option wrappers, 112 findings.
@@ -124,7 +141,9 @@ convention = "google"
 "test/**" = ["D100", "D101", "D102", "D103", "D104", "D105", "D107", "D202", "D401", "D403"]
 # The COM wrapper API, 443 findings.
 "photoshop/api/**" = ["D100", "D101", "D102", "D105", "D107", "D205", "D209", "D212", "D214", "D301", "D400", "D401", "D403", "D404", "D405", "D413", "D414", "D415", "D417"]
-# Package root, 8 findings.
+# Package root, 8 findings. Effective floor for the whole package: a rule listed
+# here is ignored for every file under photoshop/, whichever tier above also
+# lists it. Remove a rule here once no file under photoshop/ violates it.
 "photoshop/**" = ["D100", "D102", "D104", "D105", "D205", "D401", "D403"]
 
 [tool.ruff.lint.flake8-quotes]
