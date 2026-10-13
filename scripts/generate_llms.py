@@ -15,6 +15,14 @@ Run it locally with::
 Pass ``--check`` to exit non-zero when the committed files are stale. The
 ``Python package`` workflow runs that on every pull request, so drift fails
 the build; the ``llms-txt`` job only opens a pull request to report it.
+
+``--check`` deliberately ignores the ``Version:`` line on both sides. The
+version is the newest git tag, so it changes the moment a release lands while
+the committed file still carries the previous release; counting that as drift
+would turn ``main`` and every pull request red from each release until the
+bot's docs pull request is merged by hand. Version lag is converged by the
+``llms-txt`` job instead, which opens a pull request for it. Every other line
+-- README, examples, module index -- still fails the check.
 """
 
 # Import future modules
@@ -368,6 +376,30 @@ def build_links() -> list[Link]:
     return links
 
 
+def without_version_line(text: str) -> str:
+    """Return `text` with every ``Version:`` line removed.
+
+    Used only when comparing, never when writing. The stamped version comes
+    from the newest git tag, so it changes the moment a release lands, while
+    the committed file still carries the previous release's version. Treating
+    that as drift would turn `main` and every pull request red from each
+    release until the bot's docs pull request is merged by hand.
+
+    The version is still regenerated and still committed: the `llms-txt` job
+    opens a pull request for it, which is how it converges. This function only
+    keeps the drift *gate* from firing on version lag alone.
+    """
+    return "\n".join(line for line in text.splitlines() if not line.startswith("Version: "))
+
+
+def is_current(name: str, expected: str) -> bool:
+    """Return True when the committed `name` matches `expected`, ignoring version."""
+    committed = read(OUTPUT_DIR / name)
+    if not committed:
+        return False
+    return without_version_line(committed) == without_version_line(expected)
+
+
 def write_if_changed(path: Path, content: str) -> bool:
     """Write `content` to `path` when it differs; return True when it changed.
 
@@ -397,10 +429,13 @@ def main() -> int:
     full_text = render_full(links)
 
     if args.check:
+        # Ignores the `Version:` line on both sides: version lag is converged by
+        # the llms-txt bot pull request, not by failing the build. Anything else
+        # — README, examples, module index — still fails here.
         stale = [
             name
             for name, text in (("llms.txt", index_text), ("llms-full.txt", full_text))
-            if read(OUTPUT_DIR / name) != text
+            if not is_current(name, text)
         ]
         if stale:
             joined = ", ".join(stale)

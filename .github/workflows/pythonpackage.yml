@@ -39,5 +39,12 @@ jobs:
     # llms.txt and llms-full.txt are generated. The Release workflow opens a
     # pull request when they drift, but that only reports — this is what makes
     # a stale file fail the build.
+    #
+    # The check ignores the `Version:` line on both sides. That line is the
+    # newest git tag, so it changes as soon as a release lands, while the
+    # committed file still carries the previous release; counting it as drift
+    # would turn main and every PR red until the bot's docs PR is merged by
+    # hand. Version lag is converged by that bot PR instead. Everything else in
+    # the two files still fails here.
     - name: Check generated llms files are current
       run: python scripts/generate_llms.py --check

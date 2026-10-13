@@ -98,17 +98,23 @@ extend-exclude = [
 # stays silent for that file, including new violations of it.
 select = ["E", "W", "F", "Q", "I", "UP", "D"]
 
-# The google convention selects a narrower set of pydocstyle rules than the
-# default (pep257): 665 findings tree-wide under google versus 864 under pep257,
-# 507 of them inside the CI lint scope. It also resolves the two mutually
-# exclusive rule pairs (D203/D211 and D212/D213), so ruff emits no warnings.
+# The google convention selects a narrower set of pydocstyle rules than leaving
+# the convention unset: 665 findings under google, 804 under `pep257`, 864 with
+# no convention at all. It also resolves the two mutually exclusive rule pairs
+# (D203/D211 and D212/D213), so ruff emits no warnings under this config.
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 # ── Docstring baseline ──────────────────────────────────────────────────────
-# 665 findings existed when D was switched on (507 inside the CI lint scope).
-# Each entry is a directory tier plus the rules that tier currently violates;
-# the number is the finding count at baseline time.
+# 665 findings existed when D was switched on: 507 in the photoshop/ subtree,
+# 158 in test/, 0 in scripts/. (The lint scope was `photoshop` alone when the
+# baseline was written, so 507 was the whole CI scope at the time; it is now
+# `photoshop test scripts`, which is all 665.)
+#
+# Each entry is a directory tier plus the rules that tier currently violates.
+# The number on a tier is an UPPER BOUND, not a count: the tiers overlap, so the
+# eight labels add up to 883 against 665 actual findings. Do not try to
+# reconcile them.
 #
 # Read this before touching anything here. `per-file-ignores` is a UNION of
 # every pattern that matches a file, not a "most specific pattern wins" lookup:
@@ -125,7 +131,7 @@ convention = "google"
 [tool.ruff.lint.per-file-ignores]
 # Ordered narrowest to widest, but order carries no meaning to ruff: matching
 # entries are unioned, so the widest entry below is the effective floor for
-# everything under photoshop/.
+# everything under photoshop/. Counts below are per-tier upper bounds.
 #
 # Enum constant tables: one IntEnum class per Photoshop constant, 129 findings.
 "photoshop/api/enumerations.py" = ["D101"]
@@ -137,7 +143,8 @@ convention = "google"
 "photoshop/api/colors/**" = ["D100", "D102", "D104", "D105", "D107", "D401"]
 # Manual tests driving a real Photoshop instance, 118 findings.
 "test/manual_test/**" = ["D100", "D101", "D102", "D401", "D419"]
-# Unit tests, 45 findings.
+# Unit tests, 45 findings. (118 + 45 = 163, but the test/ subtree measures 158:
+# the two tiers overlap, so the labels bound the debt rather than count it.)
 "test/**" = ["D100", "D101", "D102", "D103", "D104", "D105", "D107", "D202", "D401", "D403"]
 # The COM wrapper API, 443 findings.
 "photoshop/api/**" = ["D100", "D101", "D102", "D105", "D107", "D205", "D209", "D212", "D214", "D301", "D400", "D401", "D403", "D404", "D405", "D413", "D414", "D415", "D417"]
