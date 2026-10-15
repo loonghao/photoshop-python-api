@@ -209,7 +209,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.15"
 
       - name: Regenerate llms.txt and llms-full.txt
         run: python scripts/generate_llms.py
@@ -296,7 +296,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.15"
 
       - name: Build wheel and sdist
         run: |
