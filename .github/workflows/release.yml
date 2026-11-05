@@ -45,7 +45,7 @@ jobs:
     outputs:
       releasable: ${{ steps.check.outputs.releasable }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -200,7 +200,7 @@ jobs:
       contents: write # push the generation branch
       pull-requests: write # open/update the PR
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           # fetch-depth 0: the generator stamps the version with
           # `git describe --tags`, which needs the tag history.
@@ -289,7 +289,7 @@ jobs:
       # A backfill must build the tagged source, not whatever main points at,
       # otherwise another version's artifacts would be published under the
       # requested tag.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag_name || github.sha }}
           persist-credentials: false
